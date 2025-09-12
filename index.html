@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gerardo Buenhombre – UI/UX Designer & Creative Director</title>
+  <meta name="description" content="Portafolio de Gerardo Buenhombre: UI/UX, branding, Web3, dashboards y sistemas de diseño." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root{
+      --bg:#fafafa;--fg:#1a1a1a;--muted:#666;--muted-2:#888;--card:#fff;--line:#eee;--shadow:0 4px 20px rgba(0,0,0,.08);
+      --brand:#0f172a;--accent:#0ea5e9;--accent-2:#22c55e;--radius:10px
+    }
+    .dark:root{--bg:#0b0f17;--fg:#e6e6e6;--muted:#a3a3a3;--muted-2:#9ca3af;--card:#0f172a;--line:#1f2937;--shadow:0 8px 30px rgba(0,0,0,.45)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;line-height:1.6;color:var(--fg);background:var(--bg)}
+    a{color:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:80px 40px}
+    header.site-head{position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:color-mix(in hsl, var(--bg), transparent 10%);border-bottom:1px solid var(--line);z-index:30}
+    .head-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    .brand{font-weight:700;letter-spacing:.2px}
+    nav a{font-size:.95rem;color:var(--muted);text-decoration:none;margin-left:18px;padding:8px 10px;border-radius:8px}
+    nav a:hover,nav a[aria-current="page"]{color:var(--fg);background:color-mix(in hsl, var(--line), transparent 70%)}
+    .dm-toggle{border:1px solid var(--line);background:var(--card);padding:8px 10px;border-radius:10px;cursor:pointer}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:2fr 1fr;gap:60px;margin-bottom:120px;min-height:60vh;align-items:center}
+    .hero-content{padding-right:40px}
+    .avatar{width:112px;height:112px;border-radius:999px;object-fit:cover;border:3px solid var(--card);box-shadow:var(--shadow)}
+    .avatar-wrap{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+    .avatar-wrap .hero-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.2em;color:var(--muted-2);font-weight:600}
+    .hero-title{font-size:clamp(2.8rem,7vw,4.6rem);font-weight:800;color:var(--fg);line-height:.95;margin-bottom:18px;letter-spacing:-.02em}
+    .hero-subtitle{font-size:1.35rem;color:var(--muted);font-weight:400;margin-bottom:26px}
+    .hero-description{font-size:1.05rem;color:var(--fg);opacity:.9;line-height:1.85;max-width:620px}
+    .hero-meta{background:var(--card);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .meta-item{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+    .meta-item:last-child{border-bottom:none;margin-bottom:0}
+    .meta-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted-2);margin-bottom:6px}
+    .meta-value{font-size:1rem}
+    .contact-links{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+    .contact-link{display:inline-block;color:var(--muted);text-decoration:none;font-size:.95rem;padding:8px 0;border-bottom:1px solid transparent;transition:all .2s}
+    .contact-link:hover{color:var(--fg);border-bottom-color:var(--line)}
+
+    .section-divider{height:1px;background:linear-gradient(90deg,transparent,#e0e0e0 20%,#e0e0e0 80%,transparent);margin:100px 0}
+    .dark .section-divider{background:linear-gradient(90deg,transparent,#1f2937 20%,#1f2937 80%,transparent)}
+
+    .section-header{margin-bottom:40px}
+    .section-number{font-size:.8rem;color:var(--muted-2);font-weight:600;margin-bottom:8px}
+    .section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:var(--fg);margin-bottom:12px}
+    .section-intro{font-size:1.05rem;color:var(--muted);max-width:700px}
+
+    /* SKILLS */
+    .skills-layout{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:40px}
+    .skill-column{background:var(--card);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .skill-column h3{font-size:1rem;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+    .skill-item{color:var(--fg);opacity:.9;margin-bottom:10px;font-size:.95rem}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .badge{font-size:.75rem;border:1px dashed var(--line);padding:6px 10px;border-radius:8px;color:var(--muted)}
+    .soft-skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:24px}
+    .soft-skill{text-align:center;padding:16px;background:color-mix(in hsl, var(--card), transparent 30%);border-radius:8px;font-size:.95rem;color:var(--fg);opacity:.9;border:1px solid var(--line)}
+
+    /* PROJECTS */
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 28px}
+    .filter-btn{border:1px solid var(--line);background:var(--card);padding:8px 12px;border-radius:999px;font-size:.85rem;color:var(--muted);cursor:pointer}
+    .filter-btn.active{border-color:var(--accent);color:var(--fg)}
+    .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .project-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s, box-shadow .2s}
+    .project-card:hover{transform:translateY(-4px)}
+    .project-image{width:100%;height:220px;background:linear-gradient(135deg,#f5f5f5,#e8e8e8);display:flex;align-items:center;justify-content:center;color:#999;font-size:.9rem;position:relative}
+    .dark .project-image{background:linear-gradient(135deg,#0b1220,#111827);color:#9ca3af}
+    .project-content{padding:22px}
+    .project-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted-2);margin-bottom:8px}
+    .project-title{font-size:1.2rem;font-weight:800;margin-bottom:8px}
+    .project-description{font-size:.95rem;color:var(--fg);line-height:1.6;margin-bottom:14px}
+    .project-link{color:var(--accent);text-decoration:none;font-weight:600}
+    .metrics{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+    .metric{font-size:.8rem;border:1px solid var(--line);padding:6px 10px;border-radius:8px;color:var(--muted)}
+
+    /* EXPERIENCE */
+    .timeline{margin-top:10px}
+    .timeline-item{display:grid;grid-template-columns:220px 1fr;gap:24px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+    .timeline-meta{text-align:right;padding-top:6px}
+    .timeline-date{font-size:.9rem;color:var(--muted-2);margin-bottom:4px}
+    .timeline-duration{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+    .timeline-content{background:var(--card);padding:24px;border-radius:12px;box-shadow:var(--shadow)}
+    .job-title{font-size:1.2rem;font-weight:800;margin-bottom:6px}
+    .job-company{font-size:1rem;color:var(--muted);margin-bottom:12px}
+    .job-description ul{list-style:none;padding-left:0}
+    .job-description li{margin-bottom:10px;padding-left:22px;position:relative;font-size:.95rem}
+    .job-description li:before{content:'•';position:absolute;left:0;color:var(--muted-2)}
+
+    /* CTA / FOOTER */
+    .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
+    .btn{display:inline-block;text-decoration:none;padding:12px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
+    .btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--accent),#38bdf8);color:white;font-weight:700}
+    footer{text-align:center;margin-top:100px;padding-top:40px;border-top:1px solid var(--line);color:var(--muted)}
+
+    /* RESPONSIVE */
+    @media (max-width: 920px){.hero{grid-template-columns:1fr;gap:28px;margin-bottom:70px}.timeline-item{grid-template-columns:1fr}.timeline-meta{text-align:left}}
+    @media (max-width: 640px){.container{padding:56px 22px}.project-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="site-head" role="banner">
+    <div class="head-inner">
+      <div class="brand">Gerardo Buenhombre</div>
+      <nav aria-label="Principal">
+        <a href="#skills" aria-current="page">Habilidades</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#experience">Experiencia</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button class="dm-toggle" id="dmToggle" aria-pressed="false" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <div class="hero-label">Portafolio 2025</div>
+        <h1 class="hero-title" id="hero-title">UI/UX Designer & Creative Director</h1>
+        <p class="hero-subtitle">Design systems, Web3 & product storytelling</p>
+        <p class="hero-description">
+          Soy diseñador UI/UX con 14+ años de experiencia en branding y producto digital. He liderado
+          interfaces para plataformas Web3, apps de salud y herramientas de contenido, conectando
+          estética, accesibilidad y negocio. Construyo sistemas de diseño escalables y procesos
+          claros para equipos de desarrollo.
+        </p>
+        <div class="cta" style="margin-top:18px">
+          <a class="btn primary" href="#projects">Ver proyectos</a>
+          <a class="btn" href="#" title="Descargar CV" aria-label="Descargar CV">Descargar CV (PDF)</a>
+        </div>
+      </div>
+      <aside class="hero-meta" aria-label="Datos de contacto y perfil">
+        <div class="meta-item">
+          <div class="meta-label">Educación</div>
+          <div class="meta-value">Diseño Gráfico (B.A.)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Idiomas</div>
+          <div class="meta-value">Español (nativo) • Inglés B2</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Ubicación</div>
+          <div class="meta-value">Bogotá, Colombia (GMT-5)</div>
+        </div>
+        <div class="contact-links" id="contacto">
+          <a class="contact-link" href="mailto:buenhombre.co@gmail.com">buenhombre.co@gmail.com</a>
+          <a class="contact-link" href="https://www.linkedin.com/in/buenhombre" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+          <a class="contact-link" href="https://www.behance.net/alanbuenhombre" target="_blank" rel="noreferrer noopener">Behance</a>
+          <a class="contact-link" href="https://dribbble.com/gerardobuenhombre" target="_blank" rel="noreferrer noopener">Dribbble</a>
+        </div>
+      </aside>
+    </section>
+
+    <div class="section-divider" role="presentation"></div>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="section-header">
+        <div class="section-number">01</div>
+        <h2 class="section-title" id="skills-title">Habilidades & Expertise</h2>
+        <p class="section-intro">Del branding y la dirección de arte al diseño de productos y sistemas. Enfoque fuerte en accesibilidad, consistencia y eficiencia.</p>
+      </div>
+      <div class="skills-layout">
+        <article class="skill-column" aria-labelledby="sc-1">
+          <h3 id="sc-1">Content Creation</h3>
+          <div class="skill-item">Adobe InDesign, Illustrator, Photoshop</div>
+          <div class="skill-item">After Effects, Premiere, Audition</div>
+          <div class="skill-item">3D: Blender & Spline</div>
+          <div class="badges">
+            <span class="badge">Storytelling</span>
+            <span class="badge">Motion</span>
+            <span class="badge">Editorial</span>
+          </div>
+        </article>
+        <article class="skill-column" aria-labelledby="sc-2">
+          <h3 id="sc-2">UI/UX Design</h3>
+          <div class="skill-item">Figma (componentes, variables, prototipos)</div>
+          <div class="skill-item">Design Systems (tokens, librerías, docs)</div>
+          <div class="skill-item">Research ligero & pruebas con usuarios</div>
+          <div class="badges">
+            <span class="badge">WCAG aware</span>
+            <span class="badge">Responsive</span>
+            <span class="badge">Design tokens</span>
+          </div>
+        </article>
+        <article class="skill-column" aria-labelledby="sc-3">
+          <h3 id="sc-3">Especializaciones</h3>
+          <div class="skill-item">Web3 & dApps (Stellar)</div>
+          <div class="skill-item">Healthcare UX</div>
+          <div class="skill-item">Dashboards & métricas</div>
+          <div class="skill-item">Brand Identity Systems</div>
+          <div class="badges">
+            <span class="badge">IA aplicada</span>
+            <span class="badge">No-code/Low-code</span>
+          </div>
+        </article>
