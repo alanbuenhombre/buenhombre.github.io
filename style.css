@@ -1,11 +1,25 @@
 /* ================================================
    DESIGN TOKENS
 ================================================ */
+@property --orange {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #E35914;
+}
+
+@keyframes color-cycle {
+  0%   { --orange: #E35914; }
+  33%  { --orange: #7DD6F0; }
+  66%  { --orange: #AAFF00; }
+  100% { --orange: #E35914; }
+}
+
 :root {
   --bg:           #1A1A1A;
   --card:         #292929;
   --orange:       #E35914;
   --text:         #FFFFFF;
+  animation: color-cycle 15s ease-in-out infinite;
   --muted:        rgba(255,255,255,0.6);
   --dim:          rgba(255,255,255,0.1);
   --radius-sm:    10px;
