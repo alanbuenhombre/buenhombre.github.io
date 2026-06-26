@@ -1016,7 +1016,7 @@ ul { list-style: none; }
 .cta-float__overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(26,26,26,0.85) 40%, rgba(26,26,26,0.5) 100%);
+  background: radial-gradient(ellipse at center, rgba(26,26,26,0.65) 30%, rgba(26,26,26,0.3) 100%);
 }
 .cta-float__content {
   position: relative;
