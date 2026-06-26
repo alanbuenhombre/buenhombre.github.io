@@ -42,7 +42,7 @@ const T = {
     'services.3.desc': 'Brand System Sprints de 10 días para startups y empresas que necesitan un lenguaje de diseño real, no solo un logo nuevo.',
     /* IMPACT */
     'impact.title': '14 años de trabajo. De la agencia a los sistemas.',
-    'impact.text': 'Diez años como Director de Arte en agencia publicitaria, cuatro a nivel de sistemas en una empresa de software. En cada etapa el diseño tuvo un rol distinto, pero el propósito fue el mismo.',
+    'impact.text': 'En cada etapa el diseño tuvo un rol distinto, pero el propósito fue el mismo.',
     'impact.btn': 'Contáctame',
     'impact.exp.label': 'Experiencia',
     'impact.edu.label': 'Formación',
@@ -341,7 +341,7 @@ const T = {
     'services.3.desc': '10-day Brand System Sprints for startups and companies that need a real design language, not just a logo refresh.',
     /* IMPACT */
     'impact.title': '14 years of work. From agency to systems.',
-    'impact.text': 'Ten years as an Art Director in advertising agencies, four at the system level in a software company. Each stage changed the role of design, but the purpose stayed the same.',
+    'impact.text': 'Each stage changed the role of design, but the purpose stayed the same.',
     'impact.btn': 'Get in touch',
     'impact.exp.label': 'Experience',
     'impact.edu.label': 'Education',

@@ -562,6 +562,14 @@ ul { list-style: none; }
 .impact {
   padding: 100px 0;
 }
+.impact__quote {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+  max-width: 520px;
+  margin-top: 16px;
+}
 .impact__header {
   display: flex;
   justify-content: space-between;
