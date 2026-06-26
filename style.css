@@ -1153,7 +1153,7 @@ ul { list-style: none; }
   transform: translateY(0);
 }
 .footer__social-invite {
-  margin-top: 14px;
+  margin-top: 6px;
   font-size: 0.6875rem;
   color: rgba(255,255,255,0.35);
   letter-spacing: 0.02em;
