@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noah App — Alan Buenhombre</title>
+  <meta name="description" content="Aplicación móvil de bienestar y hábitos con gamificación y seguimiento personal." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="work.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="4" fill="#E35914"/>
+          <text x="12" y="16" text-anchor="middle" fill="white" font-family="Poppins" font-weight="700" font-size="10">AB</text>
+        </svg>
+        <span>Alan Buenhombre</span>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html#about" data-i18n="nav.about">Sobre mí</a></li>
+        <li><a href="index.html#services" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="index.html#portfolio" data-i18n="nav.portfolio">Proyectos</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+      <button class="nav__lang" aria-label="Switch language">EN</button>
+      <button class="nav__toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="work-hero">
+    <div class="work-hero__bg">
+      <img src="assets/passage-hero.jpg" alt="Noah App" />
+      <div class="work-hero__overlay"></div>
+    </div>
+    <div class="work-hero__content section-inner">
+      <div class="work-hero__meta">
+        <span class="work-hero__tag" data-i18n="noah.tag">UI/UX · Mobile</span>
+        <span class="work-hero__year" data-i18n="noah.year">2023</span>
+      </div>
+      <h1 class="work-hero__title" data-i18n="noah.title">Noah App</h1>
+      <p class="work-hero__sub" data-i18n="noah.sub">Aplicación móvil de bienestar y hábitos con gamificación y seguimiento personal.</p>
+    </div>
+  </section>
+
+  <section class="work-overview">
+    <div class="section-inner">
+      <div class="work-overview__grid">
+        <div class="work-meta-col">
+          <div class="work-meta-item">
+            <span class="work-meta-label" data-i18n="work.meta.role">Rol</span>
+            <span class="work-meta-value" data-i18n="noah.meta.role">Lead Designer</span>
+          </div>
+          <div class="work-meta-item">
+            <span class="work-meta-label" data-i18n="work.meta.company">Empresa</span>
+            <span class="work-meta-value" data-i18n="noah.meta.company">Kommit</span>
+          </div>
+          <div class="work-meta-item">
+            <span class="work-meta-label" data-i18n="work.meta.year">Año</span>
+            <span class="work-meta-value" data-i18n="noah.meta.year">2023</span>
+          </div>
+          <div class="work-meta-item">
+            <span class="work-meta-label" data-i18n="work.meta.disciplines">Disciplinas</span>
+            <span class="work-meta-value" data-i18n="noah.meta.disc">UI/UX, Mobile, Product Design</span>
+          </div>
+        </div>
+        <div class="work-intro">
+          <h2 class="work-intro__title" data-i18n="noah.intro.title">El concepto</h2>
+          <p class="work-intro__text" data-i18n="noah.intro.p1">Noah App nació como una herramienta para acompañar el bienestar personal — seguimiento de hábitos, meditación y objetivos de vida — con enfoque en la motivación sostenida a largo plazo.</p>
+          <p class="work-intro__text" data-i18n="noah.intro.p2">El reto de diseño era evitar el síndrome de 'otra app de bienestar': crear una experiencia que se sintiera personal, cálida y efectiva sin caer en los clichés del género.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="work-img-full">
+    <img src="assets/passage-full.jpg" alt="Noah App — overview" />
+  </div>
+
+  <section class="work-body">
+    <div class="section-inner work-body__inner">
+      <div class="work-block">
+        <h3 class="work-block__label" data-i18n="noah.b1.label">01 — Visual</h3>
+        <h2 class="work-block__title" data-i18n="noah.b1.title">Identidad cálida en un mundo de apps frías</h2>
+        <p class="work-block__text" data-i18n="noah.b1.text">Desarrollé un lenguaje visual basado en tonos tierra y formas orgánicas, alejándose del blue/white corporativo típico del sector. La tipografía humanista refuerza la cercanía del producto.</p>
+      </div>
+      <div class="work-imgs-2col">
+        <div class="work-img-card"><img src="assets/passage-col1.jpg" alt="" /></div>
+        <div class="work-img-card"><img src="assets/passage-col2.jpg" alt="" /></div>
+      </div>
+      <div class="work-block">
+        <h3 class="work-block__label" data-i18n="noah.b2.label">02 — UX</h3>
+        <h2 class="work-block__title" data-i18n="noah.b2.title">Onboarding que genera compromiso</h2>
+        <p class="work-block__text" data-i18n="noah.b2.text">Diseñé un onboarding de 4 pasos que personaliza la experiencia desde el primer minuto. El usuario define sus áreas de mejora y la app adapta su contenido y recordatorios de forma inteligente.</p>
+      </div>
+      <div class="work-img-full work-img-full--inset">
+        <img src="assets/passage-inset.jpg" alt="" />
+      </div>
+      <div class="work-block">
+        <h3 class="work-block__label" data-i18n="noah.b3.label">03 — Gamificación</h3>
+        <h2 class="work-block__title" data-i18n="noah.b3.title">Motivación sin manipulación</h2>
+        <p class="work-block__text" data-i18n="noah.b3.text">Implementé un sistema de rachas y logros que celebra el progreso sin generar ansiedad. Los indicadores visuales son claros y los mensajes de la app refuerzan la autonomía del usuario sobre su bienestar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work-next">
+    <div class="section-inner">
+      <p class="work-next__label" data-i18n="work.next.label">Siguiente proyecto</p>
+      <div class="work-next__grid">
+        <a href="worklogs.html" class="work-next__card">
+          <div class="work-next__card-img">
+            <img src="assets/portal-kommit-card.jpg" alt="Worklogs" />
+            <div class="work-next__card-overlay"></div>
+          </div>
+          <div class="work-next__card-info">
+            <span class="work-next__card-tag">SaaS · 2023</span>
+            <h3 class="work-next__card-name">Worklogs</h3>
+          </div>
+        </a>
+        <a href="chaincerts.html" class="work-next__card">
+          <div class="work-next__card-img">
+            <img src="assets/chaincerts-card.jpg" alt="Chaincerts" />
+            <div class="work-next__card-overlay"></div>
+          </div>
+          <div class="work-next__card-info">
+            <span class="work-next__card-tag">Web3 · 2023</span>
+            <h3 class="work-next__card-name">Chaincerts</h3>
+          </div>
+        </a>
+        <a href="index.html#portfolio" class="work-next__all">
+          <span data-i18n="work.next.all">Ver todos los proyectos</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="work-footer">
+    <div class="section-inner work-footer__inner">
+      <a href="index.html" class="nav__logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="4" fill="#E35914"/>
+          <text x="12" y="16" text-anchor="middle" fill="white" font-family="Poppins" font-weight="700" font-size="10">AB</text>
+        </svg>
+        <span>Alan Buenhombre</span>
+      </a>
+      <p class="work-footer__copy">© 2026 · <a href="mailto:alangtres@gmail.com">alangtres@gmail.com</a></p>
+    </div>
+  </footer>
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

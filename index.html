@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alan Buenhombre — Lead Designer</title>
+  <meta name="description" content="Lead Designer con 14 años de experiencia en dirección de arte, UI/UX y branding. Bogotá, Colombia." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="4" fill="#E35914"/>
+          <text x="12" y="16" text-anchor="middle" fill="white" font-family="Poppins" font-weight="700" font-size="10">AB</text>
+        </svg>
+        <span>Alan Buenhombre</span>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
+        <li><a href="#services" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="#portfolio" data-i18n="nav.portfolio">Proyectos</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+      <button class="nav__lang" aria-label="Switch language">EN</button>
+      <button class="nav__toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <img src="assets/foto-perfil.jpg" alt="" />
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="hero__content">
+      <div class="hero__top">
+        <div class="hero__headline">
+          <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            <span data-i18n="hero.badge">Disponible</span>
+          </div>
+          <h1 class="hero__title" data-i18n="hero.title">Lead Designer &amp; Art Director basado en Bogotá</h1>
+        </div>
+        <div class="hero__bio-wrap">
+          <p class="hero__bio" data-i18n="hero.bio">14 años combinando dirección de arte con diseño UI/UX. De campañas galardonadas a plataformas Web3 — diseño con impacto medible.</p>
+          <a href="#portfolio" class="hero__link">
+            <span data-i18n="hero.link">Ver mis proyectos</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__bigname" aria-hidden="true">Buenhombre</div>
+  </section>
+
+  <!-- TOOLS STRIP -->
+  <div class="logos">
+    <div class="logos__track">
+      <div class="logos__item">Figma</div>
+      <div class="logos__item">Framer</div>
+      <div class="logos__item">Illustrator</div>
+      <div class="logos__item">Photoshop</div>
+      <div class="logos__item">After Effects</div>
+      <div class="logos__item">Adobe XD</div>
+      <div class="logos__item">InDesign</div>
+      <div class="logos__item">Sketch</div>
+      <div class="logos__item">Webflow</div>
+      <div class="logos__item">Notion</div>
+      <div class="logos__item">Figma</div>
+      <div class="logos__item">Framer</div>
+      <div class="logos__item">Illustrator</div>
+      <div class="logos__item">Photoshop</div>
+      <div class="logos__item">After Effects</div>
+      <div class="logos__item">Adobe XD</div>
+      <div class="logos__item">InDesign</div>
+      <div class="logos__item">Sketch</div>
+      <div class="logos__item">Webflow</div>
+      <div class="logos__item">Notion</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about__grid">
+        <div class="about__content">
+          <h2 class="section-title" data-i18n="about.title">Llevemos tu visión a la realidad</h2>
+          <p class="section-text" data-i18n="about.text">Líder de Diseño con 14 años de experiencia combinando dirección de arte con UI/UX. Mi trayectoria abarca desde campañas publicitarias galardonadas hasta plataformas Web3 de vanguardia. Creo que el gran diseño comienza entendiendo a las personas — cada proyecto inicia con investigación y empatía, continúa con prototipado iterativo y termina con resultados medibles.</p>
+          <a href="#portfolio" class="btn">
+            <span class="btn__icon"></span>
+            <span class="btn__text" data-i18n="about.btn">Ver mis proyectos</span>
+          </a>
+        </div>
+        <div class="about__tools">
+          <div class="tools-stack">
+
+            <div class="tools-cat">
+              <p class="tools-cat__label" data-i18n="about.tools.design">Diseño y UI</p>
+              <div class="tools-cat__items">
+                <div class="tools-row"><span class="tools-row__name">Figma</span><span class="tools-row__level" data-i18n="about.tools.l.advanced">Avanzado</span></div>
+                <div class="tools-row"><span class="tools-row__name">Adobe Illustrator</span><span class="tools-row__level" data-i18n="about.tools.l.advanced">Avanzado</span></div>
+                <div class="tools-row"><span class="tools-row__name">Adobe Photoshop</span><span class="tools-row__level" data-i18n="about.tools.l.advanced">Avanzado</span></div>
+                <div class="tools-row"><span class="tools-row__name">After Effects</span><span class="tools-row__level" data-i18n="about.tools.l.intermed">Intermedio-Avanzado</span></div>
+              </div>
+            </div>
+
+            <div class="tools-cat">
+              <p class="tools-cat__label" data-i18n="about.tools.web">Web y código</p>
+              <div class="tools-cat__items">
+                <div class="tools-row"><span class="tools-row__name">Framer</span><span class="tools-row__level" data-i18n="about.tools.l.webcms">Web + CMS</span></div>
+                <div class="tools-row"><span class="tools-row__name">Remotion / React</span><span class="tools-row__level" data-i18n="about.tools.l.motion">Motion code-based</span></div>
+                <div class="tools-row"><span class="tools-row__name">GitHub / Cloudflare</span><span class="tools-row__level" data-i18n="about.tools.l.deploy">Deploy</span></div>
+                <div class="tools-row"><span class="tools-row__name">VS Code</span><span class="tools-row__level"></span></div>
+                <div class="tools-row"><span class="tools-row__name">Notion · Slack · Discord</span><span class="tools-row__level" data-i18n="about.tools.l.collab">Colaboración</span></div>
+              </div>
+            </div>
+
+            <div class="tools-cat">
+              <p class="tools-cat__label" data-i18n="about.tools.ai">AI y generación</p>
+              <div class="tools-cat__items">
+                <div class="tools-row"><span class="tools-row__name">Claude · Claude Design</span><span class="tools-row__level"></span></div>
+                <div class="tools-row"><span class="tools-row__name">Gemini / Veo</span><span class="tools-row__level"></span></div>
+                <div class="tools-row"><span class="tools-row__name">Highfield Weave</span><span class="tools-row__level"></span></div>
+                <div class="tools-row"><span class="tools-row__name">Flora.ai</span><span class="tools-row__level"></span></div>
+              </div>
+            </div>
+
+            <div class="tools-cat">
+              <p class="tools-cat__label">Certificaciones</p>
+              <div class="tools-cat__items">
+                <div class="tools-row"><span class="tools-row__name">ISO/IEC 27001:2022</span><span class="tools-row__level">Seguridad de la información</span></div>
+              </div>
+            </div>
+
+            <div class="tools-cat">
+              <p class="tools-cat__label" data-i18n="about.tools.audio">Audio</p>
+              <div class="tools-cat__items">
+                <div class="tools-row"><span class="tools-row__name">Suno</span><span class="tools-row__level" data-i18n="about.tools.l.music">Música con IA</span></div>
+                <div class="tools-row"><span class="tools-row__name">Adobe Audition</span><span class="tools-row__level" data-i18n="about.tools.l.audio">Edición de audio</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-inner">
+      <div class="services__headline">
+        <h2 class="section-title" data-i18n="services.title">Diseño estratégico para marcas que quieren crecer</h2>
+        <p class="section-text" data-i18n="services.text">Desde la identidad hasta el producto digital — trabajo donde la estrategia y el oficio visual se encuentran.</p>
+      </div>
+      <div class="services__grid">
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__title" data-i18n="services.1.title">Brand Identity &amp; Art Direction</h3>
+            <p class="service-card__desc" data-i18n="services.1.desc">Identidad de marca completa, dirección de arte y sistemas visuales coherentes. De la estrategia al sistema.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="5" rx="1"/><rect x="2" y="10" width="20" height="5" rx="1"/><rect x="2" y="17" width="20" height="5" rx="1"/>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__title" data-i18n="services.2.title">Design Systems · UX · UI</h3>
+            <p class="service-card__desc" data-i18n="services.2.desc">Experiencias digitales intuitivas, design systems escalables y componentes en Figma para equipos de producto.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__title" data-i18n="services.3.title">Web Design &amp; Framer</h3>
+            <p class="service-card__desc" data-i18n="services.3.desc">Sitios web y landing pages de alto impacto. Especialización en plataformas Web3, SaaS y productos de salud.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT / EXPERIENCIA -->
+  <section class="impact">
+    <div class="section-inner">
+      <div class="impact__header">
+        <div>
+          <h2 class="section-title" data-i18n="impact.title">14 años de experiencia. Resultados que se miden.</h2>
+          <p class="section-text" data-i18n="impact.text">De agencia publicitaria a empresa de software, liderando diseño en proyectos que cruzan cultura, tecnología y oficio visual.</p>
+        </div>
+        <a href="#contact" class="btn">
+          <span class="btn__icon"></span>
+          <span class="btn__text" data-i18n="impact.btn">Trabajemos juntos</span>
+        </a>
+      </div>
+
+      <div class="impact__cols">
+
+        <div class="impact__col">
+          <p class="impact__col-label" data-i18n="impact.exp.label">Experiencia</p>
+          <div class="impact-list">
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.exp.1.year">2022 — Hoy</span>
+                <h4 class="impact-row__name" data-i18n="impact.exp.1.name">Líder de Diseño — Kommit</h4>
+                <p class="impact-row__desc" data-i18n="impact.exp.1.desc">Branding, UI/UX y design systems para plataformas Web3, SaaS y apps de salud</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.exp.2.year">2013 — 2023</span>
+                <h4 class="impact-row__name" data-i18n="impact.exp.2.name">Director de Arte — Ad Orange</h4>
+                <p class="impact-row__desc" data-i18n="impact.exp.2.desc">10 años. Campañas integradas, premios MUPI JCDECAUX y Premio Cinestecia</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.exp.3.year">2010 — 2013</span>
+                <h4 class="impact-row__name" data-i18n="impact.exp.3.name">Diseñador Gráfico Senior — Agencias</h4>
+                <p class="impact-row__desc" data-i18n="impact.exp.3.desc">Base en comunicación visual, branding y dirección creativa en múltiples industrias</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="impact__col impact__col--sm">
+          <p class="impact__col-label" data-i18n="impact.edu.label">Educación</p>
+          <div class="impact-list">
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.edu.1.year">2017 — 2021</span>
+                <h4 class="impact-row__name" data-i18n="impact.edu.1.name">Licenciatura en Diseño Gráfico</h4>
+                <p class="impact-row__desc" data-i18n="impact.edu.1.desc">Fundación Universitaria Los Libertadores</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.edu.2.year">2025</span>
+                <h4 class="impact-row__name" data-i18n="impact.edu.2.name">Google UX Design Specialization</h4>
+                <p class="impact-row__desc" data-i18n="impact.edu.2.desc">Google · Coursera — ID: DRFK05XJPB3V</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.edu.3.year">2025</span>
+                <h4 class="impact-row__name" data-i18n="impact.edu.3.name">Build Dynamic User Interfaces (UI)</h4>
+                <p class="impact-row__desc" data-i18n="impact.edu.3.desc">Google · Coursera — ID: 2HHBXSFN2MIJ</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year">IxDF</span>
+                <h4 class="impact-row__name" data-i18n="impact.edu.4.name">UX con Don Norman</h4>
+                <p class="impact-row__desc" data-i18n="impact.edu.4.desc">Interaction Design Foundation</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year">Coursera</span>
+                <h4 class="impact-row__name" data-i18n="impact.edu.5.name">Digital Product Management</h4>
+                <p class="impact-row__desc" data-i18n="impact.edu.5.desc">Coursera</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year">EF SET</span>
+                <h4 class="impact-row__name" data-i18n="impact.edu.6.name">English Certificate B2</h4>
+                <p class="impact-row__desc" data-i18n="impact.edu.6.desc">EF SET — Upper-Intermediate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="impact__col impact__col--sm">
+          <p class="impact__col-label" data-i18n="impact.awards.label">Premios</p>
+          <div class="impact-list">
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.awards.1.year">Ganador</span>
+                <h4 class="impact-row__name" data-i18n="impact.awards.1.name">MUPI JCDECAUX Awards</h4>
+                <p class="impact-row__desc" data-i18n="impact.awards.1.desc">Excelencia en publicidad exterior — Ad Orange</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.awards.2.year">Finalista</span>
+                <h4 class="impact-row__name" data-i18n="impact.awards.2.name">Premio Nacional de Diseño de Calzado</h4>
+                <p class="impact-row__desc" data-i18n="impact.awards.2.desc">Categoría diseño de producto</p>
+              </div>
+            </div>
+            <div class="impact-row">
+              <div class="impact-row__info">
+                <span class="impact-row__year" data-i18n="impact.awards.3.year">Finalista</span>
+                <h4 class="impact-row__name" data-i18n="impact.awards.3.name">Co Parching Poker Challenge</h4>
+                <p class="impact-row__desc" data-i18n="impact.awards.3.desc">Reto de diseño y estrategia creativa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-banner__bg">
+      <img src="assets/ad-orange-hero.jpg" alt="" />
+      <div class="cta-banner__overlay"></div>
+    </div>
+    <div class="cta-banner__content">
+      <h2 class="cta-banner__title" data-i18n-html="cta.banner.title">Llevemos tu<br>visión a la realidad</h2>
+      <a href="#contact" class="btn btn--dark">
+        <span class="btn__icon btn__icon--dark"></span>
+        <span class="btn__text" data-i18n="cta.banner.btn">Hablemos</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="section-inner">
+      <div class="portfolio__headline">
+        <h2 class="section-title" data-i18n="portfolio.title">Proyectos seleccionados</h2>
+        <p class="section-text" data-i18n="portfolio.text">Branding, UI/UX, plataformas Web3 y apps de salud — una muestra del trabajo reciente.</p>
+      </div>
+      <div class="portfolio__grid">
+        <a href="chaincerts.html" class="port-card">
+          <img src="assets/chaincerts-card.jpg" alt="Chaincerts" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Web3 · 2023</span>
+            <h3 class="port-card__name">Chaincerts</h3>
+          </div>
+        </a>
+        <a href="okdose.html" class="port-card">
+          <img src="assets/okdose-card.jpg" alt="Caciques" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Audiovisual · 2020</span>
+            <h3 class="port-card__name">Caciques</h3>
+          </div>
+        </a>
+        <a href="podcast.html" class="port-card">
+          <img src="assets/podcast-card.jpg" alt="Podcast Platform" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">UX · UI · 2022</span>
+            <h3 class="port-card__name">Podcast Platform</h3>
+          </div>
+        </a>
+        <a href="portal-kommit.html" class="port-card">
+          <img src="assets/portal-kommit-card.jpg" alt="Worklogs" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Branding · UX · UI · 2022</span>
+            <h3 class="port-card__name">Worklogs</h3>
+          </div>
+        </a>
+        <a href="noah.html" class="port-card">
+          <img src="assets/passage-card.jpg" alt="Passage" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Branding · UX · UI · 2023</span>
+            <h3 class="port-card__name">Passage</h3>
+          </div>
+        </a>
+        <a href="worklogs.html" class="port-card">
+          <img src="assets/portal-2026-card.jpg" alt="Portal Kommit" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Portal · 2026</span>
+            <h3 class="port-card__name">Portal Kommit</h3>
+          </div>
+        </a>
+      </div>
+
+      <div class="portfolio__more">
+        <p class="portfolio__more-label">Estrategia creativa · Diseño · Branding</p>
+        <div class="portfolio__more-list">
+          <a href="https://www.behance.net/gallery/134824769/CACIQUES-HH" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Caciques HH</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/134821849/CoParching-Hackathon" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">CoParching Hackathon</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Casa Ronald McDonald</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/92806223/ESPECTROMIA" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Espectromia</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/113654193/En-modo-IN" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">En modo IN</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/80419227/FESTIVAL-RENACER" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Festival Renacer</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="metrics">
+    <div class="section-inner">
+      <div class="metrics__inner">
+        <div class="metrics__left">
+          <h2 class="section-title" data-i18n="metrics.title">Números que respaldan el trabajo</h2>
+          <p class="section-text" data-i18n="metrics.text">El diseño sin métricas es decoración. Cada proyecto tiene un objetivo claro y resultados medibles que lo respaldan.</p>
+        </div>
+        <div class="metrics__stats">
+          <div class="stat">
+            <p class="stat__num">14+</p>
+            <p class="stat__label" data-i18n="metrics.1.label">Años de experiencia</p>
+          </div>
+          <div class="stat">
+            <p class="stat__num">100+</p>
+            <p class="stat__label" data-i18n="metrics.2.label">Proyectos de marca — en agencia y de forma independiente</p>
+          </div>
+          <div class="stat">
+            <p class="stat__num">95%</p>
+            <p class="stat__label" data-i18n="metrics.3.label">Tasa de satisfacción promedio entre clientes y equipos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FLOATING IMAGES -->
+  <section class="cta-float" id="contact">
+    <div class="cta-float__images">
+      <div class="cta-float__img cta-float__img--1">
+        <img src="assets/chaincerts-hero.jpg" alt="" />
+      </div>
+      <div class="cta-float__img cta-float__img--2">
+        <img src="assets/okdose-hero.jpg" alt="" />
+      </div>
+      <div class="cta-float__img cta-float__img--3">
+        <img src="assets/podcast-hero.jpg" alt="" />
+      </div>
+      <div class="cta-float__img cta-float__img--4">
+        <img src="assets/portal-kommit-hero.jpg" alt="" />
+      </div>
+    </div>
+    <div class="cta-float__overlay"></div>
+    <div class="cta-float__content">
+      <h2 class="cta-float__title" data-i18n-html="cta.float.title">Creemos algo<br>excepcional</h2>
+      <p class="cta-float__sub" data-i18n="cta.float.sub">Colaboremos para construir una marca poderosa o una experiencia digital que conecte y convierta.</p>
+      <a href="mailto:alangtres@gmail.com" class="btn">
+        <span class="btn__icon"></span>
+        <span class="btn__text" data-i18n="cta.float.btn">Escríbeme</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__col footer__col--brand">
+        <div class="footer__logo">Alan Buenhombre</div>
+        <p class="footer__role">Lead Designer &amp; Art Director</p>
+        <p class="footer__tagline">Bogotá, Colombia</p>
+        <p class="footer__copy" data-i18n="footer.copy">© 2025 Alan Buenhombre</p>
+      </div>
+      <div class="footer__col">
+        <h6 class="footer__col-title" data-i18n="footer.menu">Menú</h6>
+        <ul class="footer__links">
+          <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
+          <li><a href="#services" data-i18n="nav.services">Servicios</a></li>
+          <li><a href="#portfolio" data-i18n="nav.portfolio">Proyectos</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h6 class="footer__col-title" data-i18n="footer.contact">Contacto</h6>
+        <div class="footer__social">
+          <button class="footer__social-btn" id="copyEmailBtn" aria-label="Copiar email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </button>
+          <a class="footer__social-btn" href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/>
+            </svg>
+          </a>
+          <a class="footer__social-btn" href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener" aria-label="Behance">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="4"/>
+              <text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text>
+            </svg>
+          </a>
+          <a class="footer__social-btn" href="https://www.instagram.com/alanbuenhombre/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
+        <div class="footer__copied-toast" id="copiedToast" data-i18n="footer.copied">¡Copiado!</div>
+        <p class="footer__social-invite" data-i18n="footer.social.invite">Más diseño por descubrir en mis redes.</p>
+      </div>
+    </div>
+    <div class="footer__bigname" aria-hidden="true">Buenhombre</div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
