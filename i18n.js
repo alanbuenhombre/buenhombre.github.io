@@ -11,7 +11,7 @@ const T = {
     'lang.toggle': 'EN',
     /* HERO */
     'hero.badge': 'Disponible',
-    'hero.title': 'Lead Designer & Art Director — Fusagasugá, Colombia',
+    'hero.title': 'Lead Designer & Art Director — Bogotá, Colombia',
     'hero.bio': '14 años diseñando. Diez como Director de Arte en agencia, cuatro a nivel de sistemas. Lo que separa una marca que se recuerda de una que se ignora casi nunca es talento. Es estructura.',
     'hero.link': 'Ver mis proyectos',
     /* ABOUT */
@@ -310,7 +310,7 @@ const T = {
     'lang.toggle': 'ES',
     /* HERO */
     'hero.badge': 'Available',
-    'hero.title': 'Lead Designer & Art Director — Fusagasugá, Colombia',
+    'hero.title': 'Lead Designer & Art Director — Bogotá, Colombia',
     'hero.bio': 'I\'ve been designing for 14 years. Ten as an Art Director in advertising, four building brand systems. What separates a brand people remember from one they scroll past is almost never talent. It\'s structure.',
     'hero.link': 'View my projects',
     /* ABOUT */
