@@ -95,7 +95,7 @@ const T = {
     'metrics.3.label': 'Tasa de satisfacción promedio entre clientes y equipos',
     /* CTA FLOAT */
     'cta.float.title': 'Hablemos<br>de diseño',
-    'cta.float.sub': 'Si tu marca no puede explicarse sola sin que estés en la sala, ese es el problema que resuelvo. Escríbeme.',
+    'cta.float.sub': 'Trabajo con marcas y equipos que piensan a largo plazo.',
     'cta.float.btn': 'Escríbeme',
     /* FOOTER */
     'footer.menu': 'Menú',
