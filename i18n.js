@@ -7,6 +7,7 @@ const T = {
     'nav.about': 'Sobre mí',
     'nav.services': 'Servicios',
     'nav.portfolio': 'Proyectos',
+    'nav.ai': 'IA Creativa',
     'nav.contact': 'Contacto',
     'lang.toggle': 'EN',
     /* HERO */
@@ -33,13 +34,20 @@ const T = {
     'about.tools.l.collab': 'Colaboración',
     /* SERVICES */
     'services.title': 'Áreas de especialización',
-    'services.text': 'Tres áreas que he trabajado a lo largo de los años, en agencia y en empresa de software.',
+    'services.text': 'Cuatro áreas que he trabajado a lo largo de los años, en agencia, empresa de software y con herramientas de IA generativa.',
     'services.1.title': 'Brand Identity & Art Direction',
     'services.1.desc': 'Tomo identidades visuales inconsistentes y les doy una columna vertebral. De la estrategia al sistema completo.',
     'services.2.title': 'Design Systems · UX · UI',
     'services.2.desc': 'UI que sigue principios, no gusto personal. Sistemas en Figma que tu equipo puede reusar sin depender del diseñador en cada cambio.',
     'services.3.title': 'Web Design & Framer',
     'services.3.desc': 'Brand System Sprints de 10 días para startups y empresas que necesitan un lenguaje de diseño real, no solo un logo nuevo.',
+    'services.4.title': 'IA Generativa — Imagen & Video',
+    'services.4.desc': 'Producción de imágenes de alta fidelidad y video de formato corto. Prompt engineering avanzado, fine-tuning de modelos y flujos de trabajo para coherencia de marca.',
+    /* AI GEN */
+    'aigen.tag': 'IA Creativa · Imagen · Video',
+    'aigen.title': 'Generación visual con IA',
+    'aigen.text': 'Imágenes de alta fidelidad y video de formato corto usando modelos de vanguardia. Desde ingeniería avanzada de prompts hasta fine-tuning de modelos para garantizar coherencia de marca.',
+    'aigen.cta': 'Hablemos de tu proyecto',
     /* IMPACT */
     'impact.title': '14 años de trabajo. De la agencia a los sistemas.',
     'impact.text': 'En cada etapa el diseño tuvo un rol distinto, pero el propósito fue el mismo.',
@@ -306,6 +314,7 @@ const T = {
     'nav.about': 'About',
     'nav.services': 'Services',
     'nav.portfolio': 'Projects',
+    'nav.ai': 'AI Creative',
     'nav.contact': 'Contact',
     'lang.toggle': 'ES',
     /* HERO */
@@ -332,13 +341,20 @@ const T = {
     'about.tools.l.collab': 'Collaboration',
     /* SERVICES */
     'services.title': 'Areas of expertise',
-    'services.text': 'Three areas I\'ve worked in over the years, in agency and in software companies.',
+    'services.text': 'Four areas I\'ve worked in over the years — agency, software company, and generative AI tools.',
     'services.1.title': 'Brand Identity & Art Direction',
     'services.1.desc': 'I take inconsistent visual identities and give them a backbone. From strategy to the complete system.',
     'services.2.title': 'Design Systems · UX · UI',
     'services.2.desc': 'UI that follows principles, not personal taste. Systems in Figma your team can reuse without depending on the designer for every change.',
     'services.3.title': 'Web Design & Framer',
     'services.3.desc': '10-day Brand System Sprints for startups and companies that need a real design language, not just a logo refresh.',
+    'services.4.title': 'Generative AI — Image & Video',
+    'services.4.desc': 'High-fidelity image and short-form video production. Advanced prompt engineering, model fine-tuning and workflows built for brand consistency.',
+    /* AI GEN */
+    'aigen.tag': 'AI Creative · Image · Video',
+    'aigen.title': 'Visual generation with AI',
+    'aigen.text': 'High-fidelity images and short-form video using cutting-edge models. From advanced prompt engineering to model fine-tuning to ensure brand consistency.',
+    'aigen.cta': 'Let\'s talk about your project',
     /* IMPACT */
     'impact.title': '14 years of work. From agency to systems.',
     'impact.text': 'Each stage changed the role of design, but the purpose stayed the same.',
