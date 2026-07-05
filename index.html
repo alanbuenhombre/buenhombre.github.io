@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -52,15 +53,13 @@
         </div>
         <div class="hero__bio-wrap">
           <p class="hero__bio" data-i18n="hero.bio">14 años combinando dirección de arte con diseño UI/UX. De campañas galardonadas a plataformas Web3 — diseño con impacto medible.</p>
-          <a href="#portfolio" class="hero__link">
-            <span data-i18n="hero.link">Ver mis proyectos</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
         </div>
       </div>
     </div>
     <div class="hero__bigname" aria-hidden="true">Buenhombre</div>
   </section>
+
+  <div class="page">
 
   <!-- TOOLS STRIP -->
   <div class="logos">
@@ -94,7 +93,7 @@
       <div class="about__grid">
         <div class="about__content">
           <h2 class="section-title" data-i18n="about.title">Llevemos tu visión a la realidad</h2>
-          <p class="section-text" data-i18n="about.text">Líder de Diseño con 14 años de experiencia combinando dirección de arte con UI/UX. Mi trayectoria abarca desde campañas publicitarias galardonadas hasta plataformas Web3 de vanguardia. Creo que el gran diseño comienza entendiendo a las personas — cada proyecto inicia con investigación y empatía, continúa con prototipado iterativo y termina con resultados medibles.</p>
+          <p class="section-text" data-i18n-html="about.text">Empecé resolviendo comunicación de marca en agencia. Con el tiempo, ese mismo trabajo — darle orden y criterio visual a algo — lo empecé a aplicar en producto digital: interfaces, componentes, sistemas de diseño.<br><br>En corto, porque el resto ya lo leíste arriba:<br>→ Tomo identidades inconsistentes y les doy una columna vertebral.<br>→ Diseño interfaces que siguen principios, no gustos del momento.<br>→ Construyo sistemas que los equipos puedan reutilizar, no que tengan que reinventar.<br>→ Me mantengo al día en diseño generativo e IA, integrándolo a mis procesos en vez de tratarlo como novedad aparte.</p>
           <a href="#portfolio" class="btn">
             <span class="btn__icon"></span>
             <span class="btn__text" data-i18n="about.btn">Ver mis proyectos</span>
@@ -148,6 +147,102 @@
         </div>
       </div>
     </div>
+    <a class="corner-cta" href="#portfolio">
+      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40V0C40 22.09 22.09 40 0 40H40Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40H0C22.09 40 40 22.09 40 0V40Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      <div><div class="corner-cta-title">Proyectos</div><div class="corner-cta-sub">Ver portafolio <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+    </a>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="section-inner">
+      <div class="portfolio__headline">
+        <h2 class="section-title" data-i18n="portfolio.title">Proyectos seleccionados</h2>
+        <p class="section-text" data-i18n="portfolio.text">Branding, UI/UX, plataformas Web3 y apps de salud — una muestra del trabajo reciente.</p>
+      </div>
+      <div class="portfolio__grid">
+        <a href="chaincerts.html" class="port-card">
+          <img src="assets/chaincerts-card.jpg" alt="Chaincerts" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Web3 · 2023</span>
+          </div>
+        </a>
+        <a href="okdose.html" class="port-card">
+          <img src="assets/okdose-card.jpg" alt="OKdose" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Branding · UX · UI · 2022</span>
+          </div>
+        </a>
+        <a href="podcast.html" class="port-card">
+          <img src="assets/podcast-card.jpg" alt="Podcast Platform" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">UX · UI · 2022</span>
+          </div>
+        </a>
+        <a href="portal-kommit.html" class="port-card">
+          <img src="assets/portal-kommit-card.jpg" alt="Worklogs" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Branding · UX · UI · 2022</span>
+          </div>
+        </a>
+        <a href="noah.html" class="port-card">
+          <img src="assets/passage-card.jpg" alt="Passage" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Branding · UX · UI · 2023</span>
+          </div>
+        </a>
+        <a href="worklogs.html" class="port-card">
+          <img src="assets/kommit-card.jpg" alt="Portal Kommit" />
+          <div class="port-card__overlay"></div>
+          <div class="port-card__info">
+            <span class="port-card__year">Portal · 2026</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="portfolio__more">
+        <p class="portfolio__more-label">Estrategia creativa · Diseño · Branding</p>
+        <div class="portfolio__more-list">
+          <a href="https://www.behance.net/gallery/134824769/CACIQUES-HH" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Caciques HH</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/134821849/CoParching-Hackathon" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">CoParching Hackathon</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Casa Ronald McDonald</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/92806223/ESPECTROMIA" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Espectromia</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/113654193/En-modo-IN" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">En modo IN</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="https://www.behance.net/gallery/80419227/FESTIVAL-RENACER" class="more-entry" target="_blank" rel="noopener">
+            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Festival Renacer</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <a class="corner-cta corner-cta--left" href="#contact">
+      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M0 40V0C0 22.09 17.91 40 40 40H0Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M0 40H40C17.91 40 0 22.09 0 0V40Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      <div><div class="corner-cta-title">Contacto</div><div class="corner-cta-sub">Escríbeme <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+    </a>
   </section>
 
   <!-- GALLERY -->
@@ -161,33 +256,21 @@
       </div>
       <div class="services__grid">
         <div class="service-card">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </div>
+          <div class="service-card__n">01</div>
           <div class="service-card__body">
             <h3 class="service-card__title" data-i18n="services.1.title">Brand Identity &amp; Art Direction</h3>
             <p class="service-card__desc" data-i18n="services.1.desc">Identidad de marca completa, dirección de arte y sistemas visuales coherentes. De la estrategia al sistema.</p>
           </div>
         </div>
         <div class="service-card">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="5" rx="1"/><rect x="2" y="10" width="20" height="5" rx="1"/><rect x="2" y="17" width="20" height="5" rx="1"/>
-            </svg>
-          </div>
+          <div class="service-card__n">02</div>
           <div class="service-card__body">
             <h3 class="service-card__title" data-i18n="services.2.title">Design Systems · UX · UI</h3>
             <p class="service-card__desc" data-i18n="services.2.desc">Experiencias digitales intuitivas, design systems escalables y componentes en Figma para equipos de producto.</p>
           </div>
         </div>
         <div class="service-card">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-            </svg>
-          </div>
+          <div class="service-card__n">03</div>
           <div class="service-card__body">
             <h3 class="service-card__title" data-i18n="services.3.title">Web Design &amp; Framer</h3>
             <p class="service-card__desc" data-i18n="services.3.desc">Sitios web y landing pages de alto impacto. Especialización en plataformas Web3, SaaS y productos de salud.</p>
@@ -195,6 +278,12 @@
         </div>
       </div>
     </div>
+    <a class="corner-cta corner-cta--left" href="#contact">
+      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M0 40V0C0 22.09 17.91 40 40 40H0Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M0 40H40C17.91 40 0 22.09 0 0V40Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      <div><div class="corner-cta-title">Contacto</div><div class="corner-cta-sub">Hablemos <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+    </a>
   </section>
 
   <!-- IMPACT / EXPERIENCIA -->
@@ -317,6 +406,12 @@
 
       </div>
     </div>
+    <a class="corner-cta" href="#contact">
+      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40V0C40 22.09 22.09 40 0 40H40Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40H0C22.09 40 40 22.09 40 0V40Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      <div><div class="corner-cta-title">Contacto</div><div class="corner-cta-sub">Trabajemos juntos <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+    </a>
   </section>
 
   <!-- CTA BANNER -->
@@ -331,96 +426,6 @@
         <span class="btn__icon btn__icon--dark"></span>
         <span class="btn__text" data-i18n="cta.banner.btn">Hablemos</span>
       </a>
-    </div>
-  </section>
-
-  <!-- PORTFOLIO -->
-  <section class="portfolio" id="portfolio">
-    <div class="section-inner">
-      <div class="portfolio__headline">
-        <h2 class="section-title" data-i18n="portfolio.title">Proyectos seleccionados</h2>
-        <p class="section-text" data-i18n="portfolio.text">Branding, UI/UX, plataformas Web3 y apps de salud — una muestra del trabajo reciente.</p>
-      </div>
-      <div class="portfolio__grid">
-        <a href="chaincerts.html" class="port-card">
-          <img src="assets/chaincerts-card.jpg" alt="Chaincerts" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year">Web3 · 2023</span>
-            <h3 class="port-card__name">Chaincerts</h3>
-          </div>
-        </a>
-        <a href="okdose.html" class="port-card">
-          <img src="assets/okdose-card.jpg" alt="Caciques" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year">Audiovisual · 2020</span>
-            <h3 class="port-card__name">Caciques</h3>
-          </div>
-        </a>
-        <a href="podcast.html" class="port-card">
-          <img src="assets/podcast-card.jpg" alt="Podcast Platform" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year">UX · UI · 2022</span>
-            <h3 class="port-card__name">Podcast Platform</h3>
-          </div>
-        </a>
-        <a href="portal-kommit.html" class="port-card">
-          <img src="assets/portal-kommit-card.jpg" alt="Worklogs" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year">Branding · UX · UI · 2022</span>
-            <h3 class="port-card__name">Worklogs</h3>
-          </div>
-        </a>
-        <a href="noah.html" class="port-card">
-          <img src="assets/passage-card.jpg" alt="Passage" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year">Branding · UX · UI · 2023</span>
-            <h3 class="port-card__name">Passage</h3>
-          </div>
-        </a>
-        <a href="worklogs.html" class="port-card">
-          <img src="assets/kommit-card.jpg" alt="Portal Kommit" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year">Portal · 2026</span>
-            <h3 class="port-card__name">Portal Kommit</h3>
-          </div>
-        </a>
-      </div>
-
-      <div class="portfolio__more">
-        <p class="portfolio__more-label">Estrategia creativa · Diseño · Branding</p>
-        <div class="portfolio__more-list">
-          <a href="https://www.behance.net/gallery/134824769/CACIQUES-HH" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Caciques HH</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/134821849/CoParching-Hackathon" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">CoParching Hackathon</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Casa Ronald McDonald</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/92806223/ESPECTROMIA" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Espectromia</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/113654193/En-modo-IN" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">En modo IN</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/80419227/FESTIVAL-RENACER" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Festival Renacer</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -526,6 +531,8 @@
     </div>
     <div class="footer__bigname" aria-hidden="true">Buenhombre</div>
   </footer>
+
+  </div><!-- /.page -->
 
   <script src="i18n.js"></script>
   <script src="script.js"></script>

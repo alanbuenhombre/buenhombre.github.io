@@ -12,11 +12,10 @@ const T = {
     /* HERO */
     'hero.badge': 'Disponible',
     'hero.title': 'Lead Designer & Art Director — Bogotá, Colombia',
-    'hero.bio': '14 años diseñando. Diez como Director de Arte en agencia, cuatro a nivel de sistemas. Lo que separa una marca que se recuerda de una que se ignora casi nunca es talento. Es estructura.',
-    'hero.link': 'Ver mis proyectos',
+    'hero.bio': 'Soy diseñador desde hace 14 años, con una mitad en publicidad y otra mitad en producto digital. Esa mezcla es la que uso ahora para pensar marca y sistema como una sola estructura.',
     /* ABOUT */
     'about.title': 'De la agencia a los sistemas de marca.',
-    'about.text': 'Pasé diez años como Director de Arte en agencia publicitaria. Ahí aprendí lo que hace que una marca se recuerde: estrategia, criterio visual y trabajo bajo presión creativa. Ese camino me llevó a Kommit, donde apliqué todo eso a escala de sistema. Construí la identidad visual, el lenguaje de diseño y los componentes que mantienen todo coherente mientras la empresa crece.',
+    'about.text': 'Empecé resolviendo comunicación de marca en agencia. Con el tiempo, ese mismo trabajo — darle orden y criterio visual a algo — lo empecé a aplicar en producto digital: interfaces, componentes, sistemas de diseño.<br><br>En corto, porque el resto ya lo leíste arriba:<br>→ Tomo identidades inconsistentes y les doy una columna vertebral.<br>→ Diseño interfaces que siguen principios, no gustos del momento.<br>→ Construyo sistemas que los equipos puedan reutilizar, no que tengan que reinventar.<br>→ Me mantengo al día en diseño generativo e IA, integrándolo a mis procesos en vez de tratarlo como novedad aparte.',
     'about.btn': 'Ver mis proyectos',
     'about.tools.design': 'Diseño y UI',
     'about.tools.web': 'Web y código',
@@ -311,11 +310,10 @@ const T = {
     /* HERO */
     'hero.badge': 'Available',
     'hero.title': 'Lead Designer & Art Director — Bogotá, Colombia',
-    'hero.bio': 'I\'ve been designing for 14 years. Ten as an Art Director in advertising, four building brand systems. What separates a brand people remember from one they scroll past is almost never talent. It\'s structure.',
-    'hero.link': 'View my projects',
+    'hero.bio': 'I\'ve been a designer for 14 years, half in advertising and half in digital product. That mix is what I now use to think about brand and system as a single structure.',
     /* ABOUT */
     'about.title': 'From agency to brand systems.',
-    'about.text': 'I spent ten years as an Art Director in advertising agencies. That\'s where I learned what makes a brand memorable: strategy, visual judgment, and working under creative pressure. That path led me to Kommit, where I applied all of that at the system level. I built the visual identity, design language, and components that keep everything coherent as the company scales.',
+    'about.text': 'I started out solving brand communication in agencies. Over time, that same work — bringing order and visual judgment to something — is what I began applying to digital product: interfaces, components, design systems.<br><br>Short version, since you already read the rest above:<br>→ I take inconsistent identities and give them a backbone.<br>→ I design interfaces that follow principles, not passing tastes.<br>→ I build systems teams can reuse, not reinvent.<br>→ I stay current on generative design and AI, folding it into my process instead of treating it as a separate novelty.',
     'about.btn': 'View my projects',
     'about.tools.design': 'Design & UI',
     'about.tools.web': 'Web & Code',
