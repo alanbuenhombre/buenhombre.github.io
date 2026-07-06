@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Podcast Platform — Alan Buenhombre</title>
-  <meta name="description" content="Plataforma SaaS para creación, distribución y monetización de podcasts profesionales." />
+  <title>Podnation — Alan Buenhombre</title>
+  <meta name="description" content="Podnation — Brand Identity, UX/UI Dashboard y Website Redesign para plataforma de podcasting hispanohablante." />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="work.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body class="theme-podnation">
   <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">
@@ -22,6 +22,7 @@
         <span>Alan Buenhombre</span>
       </a>
       <ul class="nav__links" id="navLinks">
+        <li><a href="index.html" class="nav__home" data-i18n="nav.home">Inicio</a></li>
         <li><a href="index.html#about" data-i18n="nav.about">Sobre mí</a></li>
         <li><a href="index.html#services" data-i18n="nav.services">Servicios</a></li>
         <li><a href="index.html#portfolio" data-i18n="nav.portfolio">Proyectos</a></li>
@@ -36,18 +37,20 @@
 
   <section class="work-hero">
     <div class="work-hero__bg">
-      <img src="assets/podcast-hero.jpg" alt="Podcast Platform" />
+      <img src="assets/podcast-hero.jpg" alt="Podnation" />
       <div class="work-hero__overlay"></div>
     </div>
     <div class="work-hero__content section-inner">
+      <h1 class="work-hero__title" data-i18n="pod.title">Podnation</h1>
+      <p class="work-hero__sub" data-i18n="pod.sub">Una plataforma de podcasting renovada que conecta voces hispanohablantes con su audiencia.</p>
       <div class="work-hero__meta">
-        <span class="work-hero__tag" data-i18n="pod.tag">SaaS · UI/UX</span>
+        <span class="work-hero__tag" data-i18n="pod.tag">Brand Identity · UX/UI Dashboard · Website Redesign</span>
         <span class="work-hero__year" data-i18n="pod.year">2022</span>
       </div>
-      <h1 class="work-hero__title" data-i18n="pod.title">Podcast Platform</h1>
-      <p class="work-hero__sub" data-i18n="pod.sub">Plataforma SaaS para creación, distribución y monetización de podcasts profesionales.</p>
     </div>
   </section>
+
+  <div class="page">
 
   <section class="work-overview">
     <div class="section-inner">
@@ -67,56 +70,87 @@
           </div>
           <div class="work-meta-item">
             <span class="work-meta-label" data-i18n="work.meta.disciplines">Disciplinas</span>
-            <span class="work-meta-value" data-i18n="pod.meta.disc">UI/UX, SaaS, Product Design</span>
+            <span class="work-meta-value" data-i18n="pod.meta.disc">Brand Identity, UX/UI Dashboard, Website Redesign, Monetization</span>
           </div>
         </div>
         <div class="work-intro">
-          <h2 class="work-intro__title" data-i18n="pod.intro.title">La oportunidad</h2>
-          <p class="work-intro__text" data-i18n="pod.intro.p1">El mercado de podcasts en América Latina crecía aceleradamente pero carecía de herramientas robustas en español. La plataforma buscaba posicionarse como el Spotify for Creators de la región.</p>
-          <p class="work-intro__text" data-i18n="pod.intro.p2">El reto de diseño fue balancear una herramienta poderosa para creadores profesionales con una curva de entrada accesible para nuevos podcasters.</p>
+          <h2 class="work-intro__title" data-i18n="pod.intro.title">Project Overview</h2>
+          <p class="work-intro__text" data-i18n="pod.intro.p1">Una plataforma de podcasting renovada que conecta voces hispanohablantes con su audiencia, haciendo que crear, distribuir y monetizar contenido en audio sea simple y accesible para todos.</p>
+          <p class="work-intro__text" data-i18n="pod.intro.p2">El reto fue crear una identidad visual contemporánea y un sistema UX/UI intuitivo que transformara una plataforma técnica en una experiencia cercana y confiable para creadores de contenido en cualquier nivel de experiencia.</p>
         </div>
       </div>
     </div>
+    <a class="corner-cta" href="#next">
+      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40V0C40 22.09 22.09 40 0 40H40Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40H0C22.09 40 40 22.09 40 0V40Z" fill="#1A1A1A"/></svg></div>
+      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      <div><div class="corner-cta-title">Siguiente</div><div class="corner-cta-sub">Ver más proyectos <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+    </a>
   </section>
 
   <div class="work-img-full">
-    <img src="assets/podcast-full.jpg" alt="Podcast Platform — overview" />
+    <img src="assets/podcast-full.jpg" alt="Podnation — overview" />
   </div>
 
   <section class="work-body">
     <div class="section-inner work-body__inner">
       <div class="work-block">
-        <h3 class="work-block__label" data-i18n="pod.b1.label">01 — Arquitectura</h3>
-        <h2 class="work-block__title" data-i18n="pod.b1.title">Dashboard que empodera al creador</h2>
-        <p class="work-block__text" data-i18n="pod.b1.text">Diseñé un dashboard centralizado donde el creador tiene visibilidad completa de sus episodios, estadísticas y monetización. La navegación se organizó según el flujo de trabajo real del podcaster.</p>
+        <h3 class="work-block__label" data-i18n="pod.problem.label">01 — Problema</h3>
+        <p class="work-block__text" data-i18n="pod.problem.text">El desafío era renovar una plataforma de podcasting que, a pesar de ofrecer servicios completos de hosting, distribución, monetización y comunidad, no lograba conectar con la nueva generación de creadores de contenido en audio. Los creadores potenciales no conocían Podnation en un mercado dominado por competidores con mayor presencia visual, mientras que la identidad desactualizada generaba poco engagement y carecía de diferenciación clara que atrajera a podcasters hispanohablantes.</p>
       </div>
       <div class="work-imgs-2col">
         <div class="work-img-card"><img src="assets/podcast-col1.jpg" alt="" /></div>
         <div class="work-img-card"><img src="assets/podcast-col2.jpg" alt="" /></div>
       </div>
       <div class="work-block">
-        <h3 class="work-block__label" data-i18n="pod.b2.label">02 — Editor</h3>
-        <h2 class="work-block__title" data-i18n="pod.b2.title">Publicar un episodio en 3 pasos</h2>
-        <p class="work-block__text" data-i18n="pod.b2.text">Simplifiqué el flujo de publicación a tres pasos esenciales. El editor de notas y metadatos es clean y sin distracciones, permitiendo que el creador se enfoque en el contenido.</p>
+        <h3 class="work-block__label" data-i18n="pod.ux.label">02 — UX Improvements</h3>
+        <p class="work-block__text" data-i18n="pod.ux.text">Diseñamos flujos simplificados para integrar monetización directamente en el dashboard. Los creadores ahora pueden activar botones de "Buy Me a Coffee" y donaciones con pasos mínimos, y estos aparecen automáticamente en las páginas públicas de sus podcasts. Además, optimizamos la experiencia mobile considerando que la mayoría de oyentes consumen contenido en dispositivos móviles, asegurando que los botones de monetización sean accesibles sin interferir con los controles de reproducción.</p>
       </div>
       <div class="work-img-full work-img-full--inset">
         <img src="assets/podcast-inset.jpg" alt="" />
       </div>
       <div class="work-block">
-        <h3 class="work-block__label" data-i18n="pod.b3.label">03 — Distribución</h3>
-        <h2 class="work-block__title" data-i18n="pod.b3.title">Una plataforma, todos los canales</h2>
-        <p class="work-block__text" data-i18n="pod.b3.text">Integré el flujo de distribución multi-canal (Spotify, Apple, RSS) en una sola pantalla. Los creadores podían programar, distribuir y analizar el rendimiento desde un único lugar.</p>
+        <h3 class="work-block__label" data-i18n="pod.ui.label">03 — UI Enhancements</h3>
+        <p class="work-block__text" data-i18n="pod.ui.text">Desarrollamos una identidad visual contemporánea liderada por naranja vibrante que transmite energía y cercanía. El sistema de diseño incluye componentes modulares, tipografía moderna optimizada para interfaces digitales y jerarquías visuales claras. La nueva identidad se implementó consistentemente en website, dashboard y páginas de podcasts, creando una experiencia de marca unificada que posiciona a Podnation como la plataforma moderna y accesible para creadores hispanohablantes.</p>
+      </div>
+
+      <div class="work-scope">
+        <h3 class="work-block__label" data-i18n="pod.scope.label">04 — Scope of Work</h3>
+        <table class="scope-table">
+          <thead><tr><th data-i18n="scope.th.area">Área</th><th data-i18n="scope.th.desc">Descripción</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="pod.scope.1.area">Brand Identity Design</td><td data-i18n="pod.scope.1.desc">Logo, paleta de color naranja vibrante y sistema tipográfico, para transmitir cercanía, energía y profesionalismo en el entorno del podcasting hispanohablante.</td></tr>
+            <tr><td data-i18n="pod.scope.2.area">UX/UI Dashboard Design</td><td data-i18n="pod.scope.2.desc">Panel intuitivo para gestión de podcasts, optimizado para creadores con diferentes niveles técnicos, con integración nativa de monetización (donaciones, "Buy Me a Coffee").</td></tr>
+            <tr><td data-i18n="pod.scope.3.area">Website Redesign</td><td data-i18n="pod.scope.3.desc">Landing page, páginas de producto y páginas públicas de podcasts, enfoque mobile-first y experiencia responsive.</td></tr>
+            <tr><td data-i18n="pod.scope.4.area">Monetization Integration</td><td data-i18n="pod.scope.4.desc">Flujos UX/UI para activar sistemas de apoyo monetario desde el dashboard, con visualización clara en páginas públicas sin interferir con la escucha.</td></tr>
+            <tr><td data-i18n="pod.scope.5.area">Design Guidelines</td><td data-i18n="pod.scope.5.desc">Documentación de estilos, componentes y principios visuales para consistencia en futuras iteraciones y assets de marketing.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="work-car">
+        <h3 class="work-block__label" data-i18n="pod.car1.label">05 — UX/UI Design</h3>
+        <div class="work-car__row"><span class="work-car__label" data-i18n="car.context">Contexto</span><p class="work-car__text" data-i18n="pod.car1.context">Para incrementar el uso de Podnation y atraer más creadores, identificamos la necesidad de ofrecer valor diferencial frente a competidores. Los usuarios buscaban plataformas que no solo alojaran sus podcasts, sino que facilitaran la monetización directa sin complicaciones técnicas ni dependencia de servicios externos.</p></div>
+        <div class="work-car__row"><span class="work-car__label" data-i18n="car.action">Acción</span><p class="work-car__text" data-i18n="pod.car1.action">Diseñamos e integramos funcionalidades de monetización nativas en la plataforma. Los creadores activan botones de "Buy Me a Coffee" y donaciones directamente desde su dashboard con pasos sencillos, apareciendo automáticamente en sus mini sites. Flujos mínimos de configuración, interfaz intuitiva, visualización consistente en desktop y mobile.</p></div>
+        <div class="work-car__row"><span class="work-car__label" data-i18n="car.result">Resultado</span><p class="work-car__text" data-i18n="pod.car1.result">Podnation ahora ofrece una experiencia completa donde los creadores no solo publican contenido, sino que monetizan directamente desde la plataforma, incrementando el valor percibido del servicio y el engagement.</p></div>
+      </div>
+
+      <div class="work-car">
+        <h3 class="work-block__label" data-i18n="pod.car2.label">06 — Brand &amp; Landing Design</h3>
+        <div class="work-car__row"><span class="work-car__label" data-i18n="car.context">Contexto</span><p class="work-car__text" data-i18n="pod.car2.context">Podnation necesitaba una identidad visual que transmitiera confianza, modernidad y cercanía en un mercado competido. La marca existente era percibida como anticuada y no generaba reconocimiento suficiente entre la nueva generación de creadores de contenido hispanohablantes.</p></div>
+        <div class="work-car__row"><span class="work-car__label" data-i18n="car.action">Acción</span><p class="work-car__text" data-i18n="pod.car2.action">Logo y sistema visual frescos y modernos, tipografía clara, paleta naranja vibrante que transmite energía y creatividad, y un estilo que equilibra profesionalismo con cercanía. El concepto del logo integra los cuatro pilares de la comunicación en audio: voz, territorio, mensaje y audiencia. Landing page con jerarquía visual clara, propuesta de valor directa y CTAs efectivos para convertir visitantes en usuarios.</p></div>
+        <div class="work-car__row"><span class="work-car__label" data-i18n="car.result">Resultado</span><p class="work-car__text" data-i18n="pod.car2.result">La marca y el landing page se convirtieron en la puerta de entrada al ecosistema: una experiencia coherente, atractiva y profesional. Podnation ahora se posiciona como la plataforma moderna y accesible para creadores hispanohablantes, con una identidad visual que genera confianza y diferenciación inmediata frente a competidores.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="work-next">
+  <section class="work-next" id="next">
     <div class="section-inner">
       <p class="work-next__label" data-i18n="work.next.label">Siguiente proyecto</p>
       <div class="work-next__grid">
         <a href="portal-kommit.html" class="work-next__card">
           <div class="work-next__card-img">
-            <img src="assets/portal-kommit-card.jpg" alt="Worklogs" />
+            <img src="assets/kommit-card.jpg" alt="Portal Kommit" />
             <div class="work-next__card-overlay"></div>
           </div>
           <div class="work-next__card-info">
@@ -151,9 +185,12 @@
         </svg>
         <span>Alan Buenhombre</span>
       </a>
-      <p class="work-footer__copy">© 2026 · <a href="mailto:alangtres@gmail.com">alangtres@gmail.com</a></p>
+      <p class="work-footer__copy">Diseñado y construido por mí, con cariño · <a href="mailto:alangtres@gmail.com">alangtres@gmail.com</a></p>
     </div>
   </footer>
+
+  </div><!-- /.page -->
+
   <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
