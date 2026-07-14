@@ -310,6 +310,16 @@ ul { list-style: none; }
 .hero__bg img {
   object-position: center center;
 }
+.hero__hover-img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.hero__hover-img.active {
+  opacity: 1;
+}
 .hero__overlay {
   position: absolute;
   inset: 0;

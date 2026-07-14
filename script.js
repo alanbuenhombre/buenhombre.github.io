@@ -77,6 +77,49 @@ const observer = new IntersectionObserver((entries) => {
 
 fadeEls.forEach(el => observer.observe(el));
 
+/* HERO HOVER FLIPBOOK */
+(function() {
+  const hero = document.getElementById('hero');
+  const hoverImg = document.querySelector('.hero__hover-img');
+  if (!hero || !hoverImg) return;
+
+  const frames = [
+    'assets/personajes/001.jpg',
+    'assets/personajes/002.jpg',
+    'assets/personajes/003.jpg',
+    'assets/personajes/004.jpg',
+    'assets/personajes/005.jpg',
+    'assets/personajes/006.jpg',
+  ];
+  frames.forEach(src => { new Image().src = src; });
+
+  let intervalId = null;
+  let lastIndex = -1;
+
+  function showRandomFrame() {
+    let i;
+    do { i = Math.floor(Math.random() * frames.length); } while (i === lastIndex && frames.length > 1);
+    lastIndex = i;
+    hoverImg.src = frames[i];
+  }
+
+  function start() {
+    if (intervalId) return;
+    hoverImg.classList.add('active');
+    showRandomFrame();
+    intervalId = setInterval(showRandomFrame, 180);
+  }
+
+  function stop() {
+    clearInterval(intervalId);
+    intervalId = null;
+    hoverImg.classList.remove('active');
+  }
+
+  hero.addEventListener('mouseenter', start);
+  hero.addEventListener('mouseleave', stop);
+})();
+
 /* COPY EMAIL */
 const copyBtn = document.getElementById('copyEmailBtn');
 const copiedToast = document.getElementById('copiedToast');
