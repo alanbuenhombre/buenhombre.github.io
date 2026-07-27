@@ -1,541 +1,485 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alan Buenhombre — Lead Designer · Product Systems & Design Leadership</title>
-  <meta name="description" content="Lead Designer & Art Director — Product Systems, Branding, Design Leadership. 14 años: 10 en dirección de arte, 4+ liderando design systems y UI/UX de producto en fintech, salud y Web3. AI-assisted process, accesibilidad, component libraries. Bogotá, Colombia." />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alan Buenhombre — Lead Designer · Systems & Brand</title>
+<meta name="description" content="Alan Buenhombre — Lead Designer & Art Director. 14 años: dirección de arte + 4 liderando design systems, UI/UX y branding de producto en fintech, salud y Web3. Design tokens, component libraries, accesibilidad y proceso asistido por IA. Bogotá, Colombia." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#1A1A1A; --text:#fff; --muted:rgba(255,255,255,.5);
+    --font:'Manrope',system-ui,sans-serif; --font-mono:'IBM Plex Mono',monospace;
+    --font-display:'Stack Sans Notch',Arial,sans-serif; --orange:#E35914;
+    --pad:48px; --max-w:1200px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
+  img{display:block}
+  .dot{width:7px;height:7px;border-radius:50%;background:#AAFF00;display:inline-block;
+       animation:dotcycle 4s linear infinite}
+  @keyframes dotcycle{0%{background:#E35914}33%{background:#7DD6F0}66%{background:#AAFF00}100%{background:#E35914}}
+  .btn{display:inline-block;white-space:nowrap;font-family:var(--font-mono);font-size:.78rem;letter-spacing:.02em;
+       color:var(--text);text-decoration:none;border:1px solid rgba(255,255,255,.28);
+       border-radius:100px;padding:12px 22px;transition:background .25s,color .25s}
+  .btn:hover{background:#fff;color:#111}
+
+  /* ===== NAV (compartido) ===== */
+  .top{position:absolute;top:0;left:0;right:0;z-index:20;
+       display:flex;align-items:center;justify-content:space-between;padding:24px var(--pad)}
+  .top__name{font-family:var(--font);font-weight:600;font-size:.95rem;letter-spacing:-.01em;color:#fff;text-decoration:none}
+  .top__nav{display:flex;gap:30px;font-family:var(--font-mono);font-size:.74rem;margin-left:auto;margin-right:28px}
+  .top__nav a{color:var(--muted);text-decoration:none;transition:color .25s}
+  .top__nav a:hover{color:var(--text)}
+  .top__lang{cursor:pointer;color:var(--text);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;
+       background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:6px 14px;
+       transition:background .25s,border-color .25s}
+  .top__lang:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4)}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;height:100vh;min-height:680px;overflow:hidden}
+  .hero__bg{position:absolute;inset:0}
+  .hero__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center}
+  .hero__veil{position:absolute;inset:0;background:
+     linear-gradient(100deg, rgba(26,26,26,.72) 0%, rgba(26,26,26,.30) 42%, rgba(26,26,26,0) 68%),
+     linear-gradient(to top, #1A1A1A 0%, rgba(26,26,26,.85) 6%, rgba(26,26,26,.35) 22%, rgba(26,26,26,0) 45%);}
+  .wrap{position:absolute;inset:0;z-index:4;max-width:var(--max-w);margin:0 auto;
+        padding:0 var(--pad) 52px;display:flex;flex-direction:column;justify-content:flex-end}
+  .row{display:flex;align-items:flex-end;justify-content:space-between;gap:60px}
+  .hero-left{flex:1;min-width:0}
+  .kick{display:flex;flex-direction:column;gap:6px;margin-bottom:24px;
+        font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em}
+  .kick__avail{display:inline-flex;align-items:center;gap:8px;color:var(--muted)}
+  .titleblock{display:inline-block;max-width:min(88vw,540px)}
+  .title{font-family:var(--font);font-weight:300;font-size:clamp(2.1rem,4.6vw,4rem);
+         line-height:1.08;letter-spacing:-.035em}
+  .titlerule{border-top:1px dotted rgba(255,255,255,.28);margin:20px 0}
+  .lede{font-family:var(--font-mono);font-size:.85rem;color:var(--muted);letter-spacing:.02em}
+  .hero .cta{display:flex;flex-direction:column;align-items:flex-end}
+
+  /* ===== SECCIÓN 2 · CARD FAN ===== */
+  .fan{position:relative;min-height:100vh;display:flex;flex-direction:column;
+       align-items:center;justify-content:center;overflow:hidden;user-select:none;padding:80px 0}
+  .fan__head{text-align:center;margin-bottom:36px;padding:0 var(--pad)}
+  .fan__idx{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .fan__title{font-family:var(--font);font-weight:300;font-size:clamp(1.9rem,3.4vw,2.8rem);letter-spacing:-.025em;margin-top:12px}
+  .stage{position:relative;width:min(96vw,1100px);height:min(48vh,400px)}
+  .fcard{position:absolute;left:50%;top:50%;width:clamp(230px,30vw,360px);aspect-ratio:13/8;
+       border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#111;
+       box-shadow:0 20px 50px rgba(0,0,0,.45);cursor:pointer;transform-origin:center center;
+       transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s ease,box-shadow .3s ease;will-change:transform}
+  .fcard img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .fcard[data-center="1"]{box-shadow:0 34px 80px rgba(0,0,0,.6)}
+  .fan__ctrl{display:flex;align-items:center;gap:22px;margin-top:44px}
+  .fbtn{width:44px;height:44px;border-radius:100px;display:flex;align-items:center;justify-content:center;
+       background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.2);color:var(--text);cursor:pointer;
+       transition:background .25s,border-color .25s}
+  .fbtn:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4)}
+  .fbtn svg{width:16px;height:16px}
+  .fdots{display:flex;align-items:center;gap:9px}
+  .fdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:background .3s,transform .3s}
+  .fdot.on{background:#fff;transform:scale(1.3)}
+  .fan__hint{margin-top:18px;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;color:var(--muted)}
+
+  /* ===== SECCIÓN 3 · INFO STICKY ===== */
+  .info{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad)}
+  .info__intro{position:sticky;top:0;z-index:1;background:var(--bg);max-width:640px;padding:120px 0 48px}
+  .info__kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+  .info__statement{font-family:var(--font);font-weight:300;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;letter-spacing:-.025em;margin-bottom:24px}
+  .info__text{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted)}
+  .caps{position:relative}
+  .cap{position:sticky;top:46vh;z-index:2;background:var(--bg);display:flex;align-items:flex-start;justify-content:space-between;
+       gap:60px;padding:40px 4px;min-height:54vh;border-top:1px solid rgba(255,255,255,.14)}
+  .cap__title{font-family:var(--font);font-weight:500;font-size:clamp(1.9rem,4.4vw,3.6rem);letter-spacing:-.03em;line-height:1;
+       color:rgba(255,255,255,.85);transition:color .3s;flex:none}
+  .cap:hover .cap__title{color:#fff}
+  .cap__tags{display:flex;flex-wrap:wrap;align-content:flex-start;gap:10px 26px;max-width:480px;padding-top:10px}
+  .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.78rem;color:rgba(255,255,255,.72);white-space:nowrap;transition:color .3s}
+  .tag::before{content:"✛";color:var(--muted);font-size:.7rem}
+  .cap:hover .tag{color:#fff}
+
+  /* ===== SECCIÓN 4 · CASOS ===== */
+  .cases{max-width:var(--max-w);margin:0 auto;padding:130px var(--pad) 60px}
+  .cases__head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .cases__title{font-family:var(--font);font-weight:300;font-size:clamp(1.9rem,3.6vw,2.9rem);letter-spacing:-.03em}
+  .cases__meta{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+  .cases__list{list-style:none}
+  .crow{position:relative;display:flex;align-items:center;gap:24px;text-decoration:none;padding:30px 6px;
+       border-bottom:1px dotted rgba(255,255,255,.24);transition:padding-left .4s cubic-bezier(.2,.7,.2,1)}
+  .crow__num{font-family:var(--font-mono);font-size:.74rem;color:var(--muted);width:34px;flex:none}
+  .crow__name{font-family:var(--font);font-weight:300;font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1;color:rgba(255,255,255,.72);transition:color .3s}
+  .crow__disc{margin-left:auto;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+  .crow__arrow{flex:none;margin-left:18px;opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .3s;font-family:var(--font-mono);color:#fff}
+  .crow:hover{padding-left:22px}
+  .crow:hover .crow__name{color:#fff}
+  .crow:hover .crow__disc{color:rgba(255,255,255,.85)}
+  .crow:hover .crow__arrow{opacity:1;transform:translateX(0)}
+  .cases__list:hover .crow .crow__name{color:rgba(255,255,255,.3)}
+  .cases__list:hover .crow:hover .crow__name{color:#fff}
+  .cursor-preview{position:fixed;top:0;left:0;z-index:60;width:340px;aspect-ratio:3/2;border-radius:8px;overflow:hidden;
+       border:1px solid rgba(255,255,255,.18);box-shadow:0 24px 70px rgba(0,0,0,.55);pointer-events:none;
+       opacity:0;transform:translate(-50%,-50%) scale(.94);transition:opacity .22s ease,transform .22s ease}
+  .cursor-preview.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .cursor-preview img{width:100%;height:100%;object-fit:cover}
+
+  /* ===== OTROS PROYECTOS (cards) ===== */
+  .others{max-width:var(--max-w);margin:0 auto;padding:40px var(--pad) 120px}
+  .others__label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+       padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .others__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .pcard{display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:170px;
+       border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:22px;text-decoration:none;
+       transition:background .25s,border-color .25s,transform .25s}
+  .pcard:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.28);transform:translateY(-3px)}
+  .pcard__cat{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .pcard__name{font-family:var(--font);font-weight:400;font-size:1.3rem;letter-spacing:-.02em;color:#fff;
+       display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+  .pcard__name svg{width:15px;height:15px;flex:none;opacity:.5;transition:opacity .25s}
+  .pcard:hover .pcard__name svg{opacity:1}
+
+  /* ===== CLOSER · CTA con foto de fondo ===== */
+  .closer{position:relative;min-height:min(78vh,640px);display:flex;flex-direction:column;
+       align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:100px var(--pad)}
+  .closer__bg{position:absolute;inset:0;z-index:0}
+  .closer__bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  .closer__bg::after{content:"";position:absolute;inset:0;
+       background:linear-gradient(to bottom, rgba(26,26,26,.55) 0%, rgba(26,26,26,.4) 45%, rgba(26,26,26,.85) 100%)}
+  .closer__content{position:relative;z-index:2}
+  .closer__title{font-family:var(--font);font-weight:300;font-size:clamp(2.4rem,6vw,5rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:34px}
+
+  /* ===== FOOTER (original) ===== */
+  .footer{background:var(--bg);padding-top:80px;border-top:1px solid rgba(255,255,255,.06)}
+  .footer__top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;max-width:var(--max-w);
+       margin:0 auto;padding:0 var(--pad) 80px}
+  .footer__col-title{font-family:var(--font);font-size:.75rem;font-weight:600;letter-spacing:.1em;
+       text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px}
+  .footer__links{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .footer__links a{font-size:.9375rem;font-weight:300;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+  .footer__links a:hover{color:#fff}
+  .footer__col--brand{display:flex;flex-direction:column;gap:12px}
+  .footer__logo{font-family:var(--font);font-size:1.5rem;font-weight:600;color:#fff;text-decoration:none}
+  .footer__role{font-size:.875rem;color:var(--orange);font-weight:400}
+  .footer__tagline{font-size:.875rem;color:rgba(255,255,255,.4);font-weight:300}
+  .footer__copy{font-family:var(--font-mono);font-size:.75rem;color:rgba(255,255,255,.25);margin-top:8px}
+  .footer__social{display:flex;gap:12px;align-items:center}
+  .footer__social-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+       border-radius:10px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);
+       background:none;cursor:pointer;transition:color .2s,border-color .2s;flex-shrink:0;text-decoration:none}
+  .footer__social-btn svg{width:18px;height:18px}
+  .footer__social-btn:hover{color:var(--orange);border-color:color-mix(in srgb, var(--orange) 40%, transparent)}
+  .footer__copied-toast{font-family:var(--font-mono);font-size:.75rem;color:var(--orange);margin-top:12px;
+       opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s;pointer-events:none}
+  .footer__copied-toast.show{opacity:1;transform:translateY(0)}
+  .footer__social-invite{margin-top:6px;font-family:var(--font-mono);font-size:.6875rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
+  .footer__bigname{font-family:var(--font-display);font-weight:200;color:rgba(255,255,255,.05);
+       line-height:.85;letter-spacing:-.05em;user-select:none;white-space:nowrap;display:block;width:100%;
+       text-align:center;font-size:19vw;overflow:hidden}
+
+  /* ===== LIGHTBOX (fan) ===== */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.93);display:flex;align-items:center;justify-content:center;
+       padding:5vh 5vw;opacity:0;pointer-events:none;transition:opacity .3s ease;cursor:zoom-out}
+  .lb.on{opacity:1;pointer-events:auto}
+  .lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 90px rgba(0,0,0,.6);transform:scale(.96);transition:transform .3s ease}
+  .lb.on img{transform:scale(1)}
+  .lb__close{position:absolute;top:28px;right:32px;font-family:var(--font-mono);font-size:.8rem;color:var(--muted)}
+
+  @media(max-width:860px){
+    .cap{flex-direction:column;gap:22px} .cap__tags{max-width:100%}
+    .others__grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:760px){
+    .top__nav{display:none}
+    .row{flex-direction:column;align-items:flex-start;gap:24px}
+    .hero .cta{align-items:flex-start}
+    .cursor-preview{display:none} .crow__disc{display:none}
+    .others__grid{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="/" class="nav__logo">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="20" height="20" rx="4" fill="#E35914"/>
-          <text x="12" y="16" text-anchor="middle" fill="white" font-family="Poppins" font-weight="700" font-size="10">AB</text>
-        </svg>
-        <span>Alan Buenhombre</span>
-      </a>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
-        <li><a href="#services" data-i18n="nav.services">Servicios</a></li>
-        <li><a href="#portfolio" data-i18n="nav.portfolio">Proyectos</a></li>
-        <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
-      </ul>
-      <button class="nav__lang" aria-label="Switch language">EN</button>
-      <button class="nav__toggle" id="navToggle" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero__bg">
-      <img src="assets/foto-perfil.jpg" alt="" />
-      <img class="hero__hover-img" alt="" />
-      <div class="hero__overlay"></div>
-    </div>
-    <div class="hero__content">
-      <div class="hero__top">
-        <div class="hero__headline">
-          <div class="hero__badge">
-            <span class="hero__badge-dot"></span>
-            <span data-i18n="hero.badge">Abierto a roles Lead Designer</span>
-          </div>
-          <h1 class="hero__title" data-i18n="hero.title">Lead Designer &amp; Art Director → Product Systems, Branding, Design Leadership</h1>
-        </div>
-        <div class="hero__bio-wrap">
-          <p class="hero__bio" data-i18n="hero.bio">14 años de diseño: 10 en dirección de arte y 4+ liderando UI/UX y design systems en producto digital — fintech, salud y Web3. Diseño con product thinking, accesibilidad y un proceso asistido por IA con criterio humano en el loop.</p>
-        </div>
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio">
+    <div class="hero__bg"><img src="assets/foto-perfil.jpg" alt=""></div>
+    <div class="hero__veil"></div>
+    <nav class="top">
+      <a href="#inicio" class="top__name">Alan Buenhombre</a>
+      <div class="top__nav">
+        <a href="#inicio" data-i18n="nav_inicio">Inicio</a>
+        <a href="#trabajo" data-i18n="nav_trabajo">Trabajo</a>
+        <a href="#casos" data-i18n="nav_casos">Casos</a>
+        <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
       </div>
-    </div>
-    <div class="hero__bigname" aria-hidden="true">Buenhombre</div>
-  </section>
-
-  <div class="page">
-
-  <!-- TOOLS STRIP -->
-  <div class="logos">
-    <div class="logos__track">
-      <div class="logos__item">Figma</div>
-      <div class="logos__item">Framer</div>
-      <div class="logos__item">Illustrator</div>
-      <div class="logos__item">Photoshop</div>
-      <div class="logos__item">After Effects</div>
-      <div class="logos__item">Adobe XD</div>
-      <div class="logos__item">InDesign</div>
-      <div class="logos__item">Sketch</div>
-      <div class="logos__item">Webflow</div>
-      <div class="logos__item">Notion</div>
-      <div class="logos__item">Figma</div>
-      <div class="logos__item">Framer</div>
-      <div class="logos__item">Illustrator</div>
-      <div class="logos__item">Photoshop</div>
-      <div class="logos__item">After Effects</div>
-      <div class="logos__item">Adobe XD</div>
-      <div class="logos__item">InDesign</div>
-      <div class="logos__item">Sketch</div>
-      <div class="logos__item">Webflow</div>
-      <div class="logos__item">Notion</div>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="section-inner">
-      <div class="about__grid">
-        <div class="about__content">
-          <h2 class="section-title" data-i18n="about.title">De la dirección de arte a los sistemas de producto.</h2>
-          <p class="section-text" data-i18n-html="about.text">Empecé resolviendo comunicación de marca en agencia. Con el tiempo, ese mismo trabajo — darle orden y criterio visual a algo — lo empecé a aplicar en producto digital: interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.<br><br>En corto:<br>→ Lidero design systems end-to-end: tokens, componentes, documentación y gobernanza.<br>→ Diseño interfaces con product thinking y accesibilidad, no gustos del momento.<br>→ Construyo sistemas que los equipos de producto reutilizan, no que tienen que reinventar.<br>→ Integro IA generativa a mi proceso (AI-assisted, human-in-the-loop), no como novedad aparte.</p>
-          <a href="#portfolio" class="btn">
-            <span class="btn__icon"></span>
-            <span class="btn__text" data-i18n="about.btn">Ver mis proyectos</span>
-          </a>
-        </div>
-        <div class="about__tools">
-          <div class="tools-stack">
-
-            <div class="tools-cat">
-              <p class="tools-cat__label" data-i18n="about.tools.design">Diseño y UI</p>
-              <div class="tools-cat__items">
-                <div class="tools-row"><span class="tools-row__name">Figma</span><span class="tools-row__level" data-i18n="about.tools.l.advanced">Avanzado</span></div>
-                <div class="tools-row"><span class="tools-row__name">Adobe Illustrator</span><span class="tools-row__level" data-i18n="about.tools.l.advanced">Avanzado</span></div>
-                <div class="tools-row"><span class="tools-row__name">Adobe Photoshop</span><span class="tools-row__level" data-i18n="about.tools.l.advanced">Avanzado</span></div>
-                <div class="tools-row"><span class="tools-row__name">After Effects</span><span class="tools-row__level" data-i18n="about.tools.l.intermed">Intermedio-Avanzado</span></div>
-              </div>
-            </div>
-
-            <div class="tools-cat">
-              <p class="tools-cat__label" data-i18n="about.tools.web">Web y código</p>
-              <div class="tools-cat__items">
-                <div class="tools-row"><span class="tools-row__name">Framer</span><span class="tools-row__level" data-i18n="about.tools.l.webcms">Web + CMS</span></div>
-                <div class="tools-row"><span class="tools-row__name">Remotion / React</span><span class="tools-row__level" data-i18n="about.tools.l.motion">Motion code-based</span></div>
-                <div class="tools-row"><span class="tools-row__name">GitHub / Cloudflare</span><span class="tools-row__level" data-i18n="about.tools.l.deploy">Deploy</span></div>
-                <div class="tools-row"><span class="tools-row__name">VS Code</span><span class="tools-row__level"></span></div>
-                <div class="tools-row"><span class="tools-row__name">Notion · Slack · Discord</span><span class="tools-row__level" data-i18n="about.tools.l.collab">Colaboración</span></div>
-              </div>
-            </div>
-
-            <div class="tools-cat">
-              <p class="tools-cat__label" data-i18n="about.tools.ai">AI y generación</p>
-              <div class="tools-cat__items">
-                <div class="tools-row"><span class="tools-row__name">Claude · Claude Design</span><span class="tools-row__level"></span></div>
-                <div class="tools-row"><span class="tools-row__name">Gemini / Veo</span><span class="tools-row__level"></span></div>
-                <div class="tools-row"><span class="tools-row__name">Higgsfield</span><span class="tools-row__level"></span></div>
-                <div class="tools-row"><span class="tools-row__name">Weave</span><span class="tools-row__level"></span></div>
-                <div class="tools-row"><span class="tools-row__name">Flora.ai</span><span class="tools-row__level"></span></div>
-              </div>
-            </div>
-
-            <div class="tools-cat">
-              <p class="tools-cat__label" data-i18n="about.tools.audio">Audio</p>
-              <div class="tools-cat__items">
-                <div class="tools-row"><span class="tools-row__name">Suno</span><span class="tools-row__level" data-i18n="about.tools.l.music">Música con IA</span></div>
-                <div class="tools-row"><span class="tools-row__name">ElevenLabs</span><span class="tools-row__level">Voz con IA</span></div>
-                <div class="tools-row"><span class="tools-row__name">Adobe Audition</span><span class="tools-row__level" data-i18n="about.tools.l.audio">Edición de audio</span></div>
-              </div>
-            </div>
-
+      <button class="top__lang" id="lang">EN</button>
+    </nav>
+    <div class="wrap">
+      <div class="row">
+        <div class="hero-left">
+          <div class="kick"><span class="kick__avail"><span class="dot"></span> <span data-i18n="hero_avail">Disponible · Lead Designer · Systems &amp; Brand</span></span></div>
+          <div class="titleblock">
+            <h1 class="title" data-i18n="hero_title">Dirijo sistemas de diseño y lenguaje visual de marca.</h1>
+            <div class="titlerule"></div>
+            <p class="lede" data-i18n="hero_lede">14 años en dirección creativa → últimos 4 en productos digitales.</p>
           </div>
         </div>
-      </div>
-    </div>
-    <a class="corner-cta" href="#portfolio">
-      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40V0C40 22.09 22.09 40 0 40H40Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40H0C22.09 40 40 22.09 40 0V40Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-      <div><div class="corner-cta-title">Proyectos</div><div class="corner-cta-sub">Ver portafolio <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
-    </a>
-  </section>
-
-  <!-- PORTFOLIO -->
-  <section class="portfolio" id="portfolio">
-    <div class="section-inner">
-      <div class="portfolio__headline">
-        <h2 class="section-title" data-i18n="portfolio.title">Casos de producto</h2>
-        <p class="section-text" data-i18n="portfolio.text">Product systems, fintech, salud y Web3 — cada caso cuenta problema, decisión y resultado.</p>
-      </div>
-      <div class="portfolio__grid">
-        <a href="portal-kommit.html" class="port-card">
-          <img src="assets/kommit-card.jpg" alt="Kommit V5 Design System" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year" data-i18n="port.kommit">Kommit V5 Design System · Product Systems · 2022–2026 — Tokens, component library y gobernanza para equipos de producto</span>
-          </div>
-        </a>
-        <a href="chaincerts.html" class="port-card">
-          <img src="assets/chaincerts-card.jpg" alt="Chaincerts — fintech Web3" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year" data-i18n="port.chaincerts">Chaincerts · Fintech Web3 · 2023 — Hacer comprensibles las credenciales verificables en blockchain</span>
-          </div>
-        </a>
-        <a href="okdose.html" class="port-card">
-          <img src="assets/okdose-card.jpg" alt="OKdose Health Companion" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year" data-i18n="port.okdose">OKdose Health Companion · Product & Branding · 2022 — Adherencia a medicamentos con diseño accesible</span>
-          </div>
-        </a>
-        <a href="podcast.html" class="port-card">
-          <img src="assets/podcast-card.jpg" alt="Podnation" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year" data-i18n="port.podnation">Podnation · Product & Brand · 2022 — Monetización sin fricción para podcasters hispanohablantes</span>
-          </div>
-        </a>
-        <a href="noah.html" class="port-card">
-          <img src="assets/passage-card.jpg" alt="Passage" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year" data-i18n="port.passage">Passage · Product & Branding · 2023 — Orquestación de procesos internos con claridad</span>
-          </div>
-        </a>
-        <a href="worklogs.html" class="port-card">
-          <img src="assets/portal-kommit-card.jpg" alt="Worklogs" />
-          <div class="port-card__overlay"></div>
-          <div class="port-card__info">
-            <span class="port-card__year" data-i18n="port.worklogs">Worklogs · Internal Tools · 2023 — Timesheets integrados al flujo kanban del equipo</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="portfolio__more">
-        <p class="portfolio__more-label" data-i18n="portfolio.more.label">Sección aparte: dirección de arte y branding de campañas (Behance)</p>
-        <div class="portfolio__more-list">
-          <a href="https://www.behance.net/gallery/134824769/CACIQUES-HH" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Caciques HH</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/134821849/CoParching-Hackathon" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">CoParching Hackathon</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Casa Ronald McDonald</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/92806223/ESPECTROMIA" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Espectromia</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/113654193/En-modo-IN" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">En modo IN</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-          <a href="https://www.behance.net/gallery/80419227/FESTIVAL-RENACER" class="more-entry" target="_blank" rel="noopener">
-            <span class="more-entry__inner"><span class="more-entry__action">Ver proyecto</span><span class="more-entry__name">Festival Renacer</span></span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    <a class="corner-cta corner-cta--left" href="#contact">
-      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M0 40V0C0 22.09 17.91 40 40 40H0Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M0 40H40C17.91 40 0 22.09 0 0V40Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-      <div><div class="corner-cta-title">Contacto</div><div class="corner-cta-sub">Escríbeme <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
-    </a>
-  </section>
-
-  <!-- GALLERY -->
-
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="section-inner">
-      <div class="services__headline">
-        <h2 class="section-title" data-i18n="services.title">Áreas de especialización</h2>
-        <p class="section-text" data-i18n="services.text">Tres áreas donde lidero dentro de equipos de producto — de la estrategia al sistema en producción.</p>
-      </div>
-      <div class="services__grid">
-        <div class="service-card">
-          <div class="service-card__n">01</div>
-          <div class="service-card__body">
-            <h3 class="service-card__title" data-i18n="services.1.title">Design Systems &amp; Component Libraries</h3>
-            <p class="service-card__desc" data-i18n="services.1.desc">Tokens, componentes, documentación y gobernanza en Figma. Sistemas que los equipos de producto usan sin depender del diseñador en cada cambio.</p>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-card__n">02</div>
-          <div class="service-card__body">
-            <h3 class="service-card__title" data-i18n="services.2.title">Product Design · UX · UI</h3>
-            <p class="service-card__desc" data-i18n="services.2.desc">Interfaces con product thinking y accesibilidad para fintech, salud y Web3. Del problema a la decisión de diseño, en colaboración cross-functional con desarrollo.</p>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-card__n">03</div>
-          <div class="service-card__body">
-            <h3 class="service-card__title" data-i18n="services.3.title">Brand Identity &amp; Art Direction</h3>
-            <p class="service-card__desc" data-i18n="services.3.desc">10 años dirigiendo arte: identidades con columna vertebral que funcionan igual en campaña y dentro del producto.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a class="corner-cta corner-cta--left" href="#contact">
-      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M0 40V0C0 22.09 17.91 40 40 40H0Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M0 40H40C17.91 40 0 22.09 0 0V40Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-      <div><div class="corner-cta-title">Contacto</div><div class="corner-cta-sub">Hablemos <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
-    </a>
-  </section>
-
-  <!-- IMPACT / EXPERIENCIA -->
-  <section class="impact">
-    <div class="section-inner">
-      <div class="impact__header">
-        <div>
-          <h2 class="section-title" data-i18n="impact.title">14 años de trabajo. De la dirección de arte al liderazgo de producto.</h2>
-          <p class="section-text impact__quote" data-i18n="impact.text">En cada etapa el diseño tuvo un rol distinto, pero el propósito fue el mismo.</p>
-        </div>
-        <a href="#contact" class="btn">
-          <span class="btn__icon"></span>
-          <span class="btn__text" data-i18n="impact.btn">Contáctame</span>
-        </a>
-      </div>
-
-      <div class="impact__cols">
-
-        <div class="impact__col">
-          <p class="impact__col-label" data-i18n="impact.exp.label">Experiencia</p>
-          <div class="impact-list">
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.exp.1.year">2022 — Hoy</span>
-                <h4 class="impact-row__name" data-i18n="impact.exp.1.name">Líder de Diseño — Kommit</h4>
-                <p class="impact-row__desc" data-i18n="impact.exp.1.desc">Lidero design systems, branding y UI/UX de producto para plataformas fintech (Web3), SaaS y salud — incluido el design system V5 de Kommit</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.exp.2.year">2011 — 2022</span>
-                <h4 class="impact-row__name" data-i18n="impact.exp.2.name">Director de Arte — Ad Orange</h4>
-                <p class="impact-row__desc" data-i18n="impact.exp.2.desc">10 años. Campañas integradas, premios MUPI JCDECAUX y Premio Cinestecia</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.exp.3.year">2010 — 2013</span>
-                <h4 class="impact-row__name" data-i18n="impact.exp.3.name">Diseñador Gráfico Senior — Agencias</h4>
-                <p class="impact-row__desc" data-i18n="impact.exp.3.desc">Base en comunicación visual, branding y dirección creativa en múltiples industrias</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="impact__col impact__col--sm">
-          <p class="impact__col-label" data-i18n="impact.edu.label">Educación</p>
-          <div class="impact-list">
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.edu.1.year">2017 — 2021</span>
-                <h4 class="impact-row__name" data-i18n="impact.edu.1.name">Licenciatura en Diseño Gráfico</h4>
-                <p class="impact-row__desc" data-i18n="impact.edu.1.desc">Fundación Universitaria Los Libertadores</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.edu.2.year">2025</span>
-                <h4 class="impact-row__name" data-i18n="impact.edu.2.name">Google UX Design Specialization</h4>
-                <p class="impact-row__desc" data-i18n="impact.edu.2.desc">Google · Coursera — ID: DRFK05XJPB3V</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.edu.3.year">2025</span>
-                <h4 class="impact-row__name" data-i18n="impact.edu.3.name">Build Dynamic User Interfaces (UI)</h4>
-                <p class="impact-row__desc" data-i18n="impact.edu.3.desc">Google · Coursera — ID: 2HHBXSFN2MIJ</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year">IxDF</span>
-                <h4 class="impact-row__name" data-i18n="impact.edu.4.name">UX con Don Norman</h4>
-                <p class="impact-row__desc" data-i18n="impact.edu.4.desc">Interaction Design Foundation</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year">Coursera</span>
-                <h4 class="impact-row__name" data-i18n="impact.edu.5.name">Digital Product Management</h4>
-                <p class="impact-row__desc" data-i18n="impact.edu.5.desc">Coursera</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year">EF SET</span>
-                <h4 class="impact-row__name" data-i18n="impact.edu.6.name">English Certificate B2</h4>
-                <p class="impact-row__desc" data-i18n="impact.edu.6.desc">EF SET — Upper-Intermediate</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="impact__col impact__col--sm">
-          <p class="impact__col-label" data-i18n="impact.awards.label">Premios</p>
-          <div class="impact-list">
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.awards.1.year">Ganador</span>
-                <h4 class="impact-row__name" data-i18n="impact.awards.1.name">MUPI JCDECAUX Awards</h4>
-                <p class="impact-row__desc" data-i18n="impact.awards.1.desc">Excelencia en publicidad exterior — Ad Orange</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.awards.2.year">Finalista</span>
-                <h4 class="impact-row__name" data-i18n="impact.awards.2.name">Premio Nacional de Diseño de Calzado</h4>
-                <p class="impact-row__desc" data-i18n="impact.awards.2.desc">Categoría diseño de producto</p>
-              </div>
-            </div>
-            <div class="impact-row">
-              <div class="impact-row__info">
-                <span class="impact-row__year" data-i18n="impact.awards.3.year">Finalista</span>
-                <h4 class="impact-row__name" data-i18n="impact.awards.3.name">Co Parching Poker Challenge</h4>
-                <p class="impact-row__desc" data-i18n="impact.awards.3.desc">Reto de diseño y estrategia creativa</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <a class="corner-cta" href="#contact">
-      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40V0C40 22.09 22.09 40 0 40H40Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40H0C22.09 40 40 22.09 40 0V40Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-      <div><div class="corner-cta-title">Contacto</div><div class="corner-cta-sub">Escríbeme <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
-    </a>
-  </section>
-
-  <!-- CTA BANNER -->
-  <section class="cta-banner">
-    <div class="cta-banner__bg">
-      <img src="assets/background-002.jpg" alt="" />
-      <div class="cta-banner__overlay"></div>
-    </div>
-    <div class="cta-banner__content">
-      <h2 class="cta-banner__title" data-i18n-html="cta.banner.title">Busco mi próximo<br>equipo de producto</h2>
-      <a href="#contact" class="btn btn--dark">
-        <span class="btn__icon btn__icon--dark"></span>
-        <span class="btn__text" data-i18n="cta.banner.btn">Hablemos</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- METRICS -->
-  <section class="metrics">
-    <div class="section-inner">
-      <div class="metrics__inner">
-        <div class="metrics__left">
-          <h2 class="section-title" data-i18n="metrics.title">Evidencia que respalda el trabajo</h2>
-          <p class="section-text" data-i18n="metrics.text">Lideré el design system V5 de Kommit — tokens, component library y gobernanza — adoptado por los equipos de producto de la empresa, eliminando inconsistencias visuales y reduciendo los ciclos de feedback entre diseño y desarrollo.</p>
-        </div>
-        <div class="metrics__stats">
-          <div class="stat">
-            <p class="stat__num">14+</p>
-            <p class="stat__label" data-i18n="metrics.1.label">Años de diseño: dirección de arte y producto digital</p>
-          </div>
-          <div class="stat">
-            <p class="stat__num">4+</p>
-            <p class="stat__label" data-i18n="metrics.2.label">Años liderando UI/UX y design systems en producto</p>
-          </div>
-          <div class="stat">
-            <p class="stat__num">V5</p>
-            <p class="stat__label" data-i18n="metrics.3.label">Design system de Kommit: de la estrategia a la gobernanza</p>
-          </div>
-        </div>
+        <div class="cta"><a href="#casos" class="btn" data-i18n="hero_btn">Ver trabajo →</a></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FLOATING IMAGES -->
-  <section class="cta-float" id="contact">
-    <div class="cta-float__images">
-      <div class="cta-float__img cta-float__img--1">
-        <img src="assets/chaincerts-hero.jpg" alt="" />
-      </div>
-      <div class="cta-float__img cta-float__img--2">
-        <img src="assets/okdose-hero.jpg" alt="" />
-      </div>
-      <div class="cta-float__img cta-float__img--3">
-        <img src="assets/podcast-hero.jpg" alt="" />
-      </div>
-      <div class="cta-float__img cta-float__img--4">
-        <img src="assets/portal-kommit-hero.jpg" alt="" />
-      </div>
+  <!-- ===== SECCIÓN 2 · CARD FAN ===== -->
+  <section class="fan" id="trabajo">
+    <div class="fan__head">
+      <div class="fan__idx" data-i18n="fan_idx">02 — Trabajo &amp; exploración</div>
+      <h2 class="fan__title" data-i18n="fan_title">Algo de lo que diseño.</h2>
     </div>
-    <div class="cta-float__overlay"></div>
-    <div class="cta-float__content">
-      <h2 class="cta-float__title" data-i18n-html="cta.float.title">Hablemos<br>de tu equipo</h2>
-      <p class="cta-float__sub" data-i18n="cta.float.sub">¿Buscas un Lead Designer que piense en sistemas, accesibilidad y proceso con IA? Escríbeme.</p>
-      <a href="mailto:alangtres@gmail.com" class="btn">
-        <span class="btn__icon"></span>
-        <span class="btn__text" data-i18n="cta.float.btn">Escríbeme</span>
-      </a>
+    <div class="stage" id="stage"></div>
+    <div class="fan__ctrl">
+      <button class="fbtn" id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="fdots" id="dots"></div>
+      <button class="fbtn" id="next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+    <p class="fan__hint" data-i18n="fan_hint">Clic en una card para ampliar</p>
+  </section>
+
+  <!-- ===== SECCIÓN 3 · INFO STICKY ===== -->
+  <section class="info" id="sobre">
+    <div class="info__intro">
+      <p class="info__kicker" data-i18n="info_kicker">Sobre mí</p>
+      <h2 class="info__statement" data-i18n="info_statement">De la dirección de arte a los sistemas de producto.</h2>
+      <p class="info__text" data-i18n="info_text">14 años dándole orden y criterio visual a las cosas: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.</p>
+    </div>
+    <div class="caps" id="caps"></div>
+  </section>
+
+  <!-- ===== SECCIÓN 4 · CASOS ===== -->
+  <section class="cases" id="casos">
+    <div class="cases__head">
+      <h2 class="cases__title" data-i18n="cases_title">Casos de estudio</h2>
+      <span class="cases__meta" data-i18n="cases_meta">04 · 06 PROYECTOS</span>
+    </div>
+    <ul class="cases__list" id="casesList"></ul>
+  </section>
+
+  <!-- ===== OTROS PROYECTOS ===== -->
+  <section class="others">
+    <p class="others__label" data-i18n="others_label">Otros proyectos · Dirección de arte &amp; branding de campañas — Behance</p>
+    <div class="others__grid" id="othersGrid"></div>
+  </section>
+
+  <!-- ===== CLOSER · CTA + FOTO ===== -->
+  <section class="closer" id="contacto">
+    <div class="closer__bg"><img src="assets/background-002.jpg" alt=""></div>
+    <div class="closer__content">
+      <h2 class="closer__title" data-i18n-html="closer_title">Busco mi próximo<br>equipo de producto</h2>
+      <a href="mailto:alangtres@gmail.com" class="btn" data-i18n="closer_btn">Escríbeme →</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ===== FOOTER (original) ===== -->
   <footer class="footer">
     <div class="footer__top">
       <div class="footer__col footer__col--brand">
         <div class="footer__logo">Alan Buenhombre</div>
         <p class="footer__role">Lead Designer &amp; Art Director</p>
         <p class="footer__tagline">Bogotá, Colombia</p>
-        <p class="footer__copy" data-i18n="footer.copy">© 2026 Alan Buenhombre</p>
+        <p class="footer__copy" data-i18n="footer_copy">© 2026 Alan Buenhombre</p>
       </div>
       <div class="footer__col">
-        <h6 class="footer__col-title" data-i18n="footer.menu">Menú</h6>
+        <h6 class="footer__col-title" data-i18n="footer_menu">Menú</h6>
         <ul class="footer__links">
-          <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
-          <li><a href="#services" data-i18n="nav.services">Servicios</a></li>
-          <li><a href="#portfolio" data-i18n="nav.portfolio">Proyectos</a></li>
-          <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+          <li><a href="#inicio" data-i18n="nav_inicio">Inicio</a></li>
+          <li><a href="#trabajo" data-i18n="nav_trabajo">Trabajo</a></li>
+          <li><a href="#casos" data-i18n="nav_casos">Casos</a></li>
+          <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
         </ul>
       </div>
       <div class="footer__col">
-        <h6 class="footer__col-title" data-i18n="footer.contact">Contacto</h6>
+        <h6 class="footer__col-title" data-i18n="footer_contact">Contacto</h6>
         <div class="footer__social">
           <button class="footer__social-btn" id="copyEmailBtn" aria-label="Copiar email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
           </button>
           <a class="footer__social-btn" href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg>
           </a>
           <a class="footer__social-btn" href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener" aria-label="Behance">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="4"/>
-              <text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text></svg>
           </a>
           <a class="footer__social-btn" href="https://www.instagram.com/alanbuenhombre/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
           </a>
         </div>
-        <p class="footer__social-invite" data-i18n="footer.social.invite">Más diseño por descubrir en mis redes.</p>
-        <div class="footer__copied-toast" id="copiedToast" data-i18n="footer.copied">¡Copiado!</div>
+        <p class="footer__social-invite" data-i18n="footer_invite">Más diseño por descubrir en mis redes.</p>
+        <div class="footer__copied-toast" id="copiedToast" data-i18n="footer_copied">¡Copiado!</div>
       </div>
     </div>
     <div class="footer__bigname" aria-hidden="true">Buenhombre</div>
   </footer>
 
-  </div><!-- /.page -->
+  <div class="lb" id="lb"><span class="lb__close">Cerrar ✕</span><img id="lbimg" src="" alt=""></div>
+  <figure class="cursor-preview" id="cp"><img id="cpimg" src="" alt=""></figure>
 
-  <script src="i18n.js"></script>
-  <script src="script.js"></script>
+<script>
+  /* ===== i18n ===== */
+  const T={
+    es:{
+      nav_inicio:'Inicio',nav_trabajo:'Trabajo',nav_casos:'Casos',nav_contacto:'Contacto',
+      hero_avail:'Disponible · Lead Designer · Systems & Brand',
+      hero_title:'Dirijo sistemas de diseño y lenguaje visual de marca.',
+      hero_lede:'14 años en dirección creativa → últimos 4 en productos digitales.',
+      hero_btn:'Ver trabajo →',
+      fan_idx:'02 — Trabajo & exploración',fan_title:'Algo de lo que diseño.',fan_hint:'Clic en una card para ampliar',
+      info_kicker:'Sobre mí',info_statement:'De la dirección de arte a los sistemas de producto.',
+      info_text:'14 años dándole orden y criterio visual a las cosas: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.',
+      cases_title:'Casos de estudio',cases_meta:'04 · 06 PROYECTOS',
+      others_label:'Otros proyectos · Dirección de arte & branding de campañas — Behance',
+      closer_title:'Busco mi próximo<br>equipo de producto',closer_btn:'Escríbeme →',
+      footer_menu:'Menú',footer_contact:'Contacto',footer_copy:'© 2026 Alan Buenhombre',
+      footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
+    },
+    en:{
+      nav_inicio:'Home',nav_trabajo:'Work',nav_casos:'Cases',nav_contacto:'Contact',
+      hero_avail:'Available · Lead Designer · Systems & Brand',
+      hero_title:'I lead design systems and brand visual language.',
+      hero_lede:'14 years in creative direction → last 4 in digital product.',
+      hero_btn:'View work →',
+      fan_idx:'02 — Work & exploration',fan_title:'Some of what I design.',fan_hint:'Click a card to enlarge',
+      info_kicker:'About',info_statement:'From art direction to product systems.',
+      info_text:'14 years bringing order and visual judgment to things: first in brand and campaigns, now in digital product — interfaces, component libraries, design systems and cross-functional collaboration with engineering and product.',
+      cases_title:'Case studies',cases_meta:'04 · 06 PROJECTS',
+      others_label:'Other projects · Art direction & campaign branding — Behance',
+      closer_title:'Looking for my next<br>product team',closer_btn:'Write me →',
+      footer_menu:'Menu',footer_contact:'Contact',footer_copy:'© 2026 Alan Buenhombre',
+      footer_invite:'More design to discover on my socials.',footer_copied:'Copied!'
+    }
+  };
+  const CAPS_I18N={
+    es:[
+      ['Design Systems',['Design tokens','Component libraries','Documentación','Governance','Figma','Accesibilidad']],
+      ['Product · UX/UI',['Apps','Dashboards','Wireframing','Prototyping','Product thinking','Fintech · Salud · Web3']],
+      ['Brand & Art Direction',['Logo design','Typography & color','Brand guidelines','Art direction','Motion identity']],
+      ['Herramientas',['Figma','Illustrator','Photoshop','After Effects','Framer','React / Remotion','Claude','Higgsfield','Gemini / Veo','Suno','ElevenLabs']],
+      ['Experiencia',['Kommit · Lead Designer · 2022–Hoy','Ad Orange · Dir. de Arte · 2011–2022','Agencias · Sr. Designer · 2010–2013']],
+      ['Formación & Premios',['Google UX Specialization · 2025','Build Dynamic UI · 2025','Lic. Diseño Gráfico · 2016–2020','UX con Don Norman · IxDF','MUPI JCDECAUX · Ganador','Premio Nacional Calzado · Finalista']],
+    ],
+    en:[
+      ['Design Systems',['Design tokens','Component libraries','Documentation','Governance','Figma','Accessibility']],
+      ['Product · UX/UI',['Apps','Dashboards','Wireframing','Prototyping','Product thinking','Fintech · Health · Web3']],
+      ['Brand & Art Direction',['Logo design','Typography & color','Brand guidelines','Art direction','Motion identity']],
+      ['Tools',['Figma','Illustrator','Photoshop','After Effects','Framer','React / Remotion','Claude','Higgsfield','Gemini / Veo','Suno','ElevenLabs']],
+      ['Experience',['Kommit · Lead Designer · 2022–Now','Ad Orange · Art Director · 2011–2022','Agencies · Sr. Designer · 2010–2013']],
+      ['Education & Awards',['Google UX Specialization · 2025','Build Dynamic UI · 2025','BA Graphic Design · 2016–2020','UX with Don Norman · IxDF','MUPI JCDECAUX · Winner','National Footwear Design · Finalist']],
+    ]
+  };
+  const OTHERS_I18N={
+    es:[
+      ['Branding · Campaña','Caciques HH','https://www.behance.net/gallery/134824769/CACIQUES-HH'],
+      ['Estrategia · Diseño','CoParching Hackathon','https://www.behance.net/gallery/134821849/CoParching-Hackathon'],
+      ['Branding · Social','Casa Ronald McDonald','https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald'],
+      ['Dirección de arte','Espectromia','https://www.behance.net/gallery/92806223/ESPECTROMIA'],
+      ['Campaña','En modo IN','https://www.behance.net/gallery/113654193/En-modo-IN'],
+      ['Identidad · Evento','Festival Renacer','https://www.behance.net/gallery/80419227/FESTIVAL-RENACER'],
+    ],
+    en:[
+      ['Branding · Campaign','Caciques HH','https://www.behance.net/gallery/134824769/CACIQUES-HH'],
+      ['Strategy · Design','CoParching Hackathon','https://www.behance.net/gallery/134821849/CoParching-Hackathon'],
+      ['Branding · Social','Casa Ronald McDonald','https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald'],
+      ['Art direction','Espectromia','https://www.behance.net/gallery/92806223/ESPECTROMIA'],
+      ['Campaign','En modo IN','https://www.behance.net/gallery/113654193/En-modo-IN'],
+      ['Identity · Event','Festival Renacer','https://www.behance.net/gallery/80419227/FESTIVAL-RENACER'],
+    ]
+  };
+  const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>';
+
+  function buildCaps(l){
+    const wrap=document.getElementById('caps'); wrap.innerHTML='';
+    CAPS_I18N[l].forEach(([t,tags])=>{const r=document.createElement('div');r.className='cap';
+      r.innerHTML='<h3 class="cap__title">'+t+'</h3><div class="cap__tags">'+tags.map(x=>'<span class="tag">'+x+'</span>').join('')+'</div>';
+      wrap.appendChild(r);});
+  }
+  function buildOthers(l){
+    const g=document.getElementById('othersGrid'); g.innerHTML='';
+    OTHERS_I18N[l].forEach(([cat,name,href])=>{const a=document.createElement('a');a.className='pcard';a.href=href;a.target='_blank';a.rel='noopener';
+      a.innerHTML='<span class="pcard__cat">'+cat+'</span><span class="pcard__name">'+name+ARROW+'</span>';
+      g.appendChild(a);});
+  }
+  const langBtn=document.getElementById('lang');
+  let LANG='es';
+  function applyLang(l){
+    LANG=l; document.documentElement.lang=l;
+    document.querySelectorAll('[data-i18n]').forEach(e=>{const v=T[l][e.dataset.i18n]; if(v!=null)e.textContent=v;});
+    document.querySelectorAll('[data-i18n-html]').forEach(e=>{const v=T[l][e.dataset.i18nHtml]; if(v!=null)e.innerHTML=v;});
+    buildCaps(l); buildOthers(l);
+    langBtn.textContent = l==='es'?'EN':'ES';
+  }
+  langBtn.addEventListener('click',()=>applyLang(LANG==='es'?'en':'es'));
+
+  /* copiar email */
+  const copyBtn=document.getElementById('copyEmailBtn'), toast=document.getElementById('copiedToast');
+  copyBtn&&copyBtn.addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText('alangtres@gmail.com');
+    toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1600);});
+
+  /* ---- FAN ---- */
+  (function(){
+    const IMGS=['assets/brands/01-norvell.png','assets/brands/02-lumea.jpg','assets/brands/03-roselilab.png',
+      'assets/brands/04-voxen.jpg','assets/brands/05-cardinova.png','assets/brands/06-bonemesh.png',
+      'assets/brands/07-aptest.png','assets/brands/08-ikkaros.jpg','assets/brands/09-sounda.jpg','assets/brands/10-solartrade.jpg'];
+    const N=IMGS.length;
+    const POS=[{x:0,y:0,rot:0,s:1,z:10},{x:150,y:14,rot:7,s:.94,z:3},{x:288,y:44,rot:14,s:.86,z:2},{x:410,y:88,rot:21,s:.78,z:1}];
+    const HALF=3;
+    const mult=()=>{const w=innerWidth;return w<480?.42:w<640?.55:w<768?.7:w<1024?.85:1;};
+    const stage=document.getElementById('stage'), dotsWrap=document.getElementById('dots');
+    const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
+    let center=Math.floor(N/2);
+    const cards=IMGS.map((src,i)=>{const c=document.createElement('div');c.className='fcard';
+      c.innerHTML='<img src="'+src+'" alt="">';
+      c.addEventListener('click',()=>{ if(i===center){lbimg.src=src;lb.classList.add('on');} else {center=i;render();} });
+      stage.appendChild(c);return c;});
+    const dots=IMGS.map((_,i)=>{const d=document.createElement('span');d.className='fdot';
+      d.addEventListener('click',()=>{center=i;render();});dotsWrap.appendChild(d);return d;});
+    function render(){const m=mult();cards.forEach((c,i)=>{let off=i-center;if(off>N/2)off-=N;if(off<-N/2)off+=N;
+      const dist=Math.abs(off);
+      if(dist>HALF){c.style.opacity=0;c.style.pointerEvents='none';c.style.transform='translate(-50%,-50%) scale(.6)';c.style.zIndex=0;c.dataset.center=0;return;}
+      const p=POS[dist],sign=off<0?-1:1,x=sign*p.x*m;
+      c.style.opacity=1;c.style.pointerEvents='auto';c.style.zIndex=p.z;c.dataset.center=dist===0?1:0;
+      c.style.transform='translate(calc(-50% + '+x+'px), calc(-50% + '+p.y+'px)) rotate('+(sign*p.rot)+'deg) scale('+p.s+')';});
+      dots.forEach((d,i)=>d.classList.toggle('on',i===center));}
+    document.getElementById('prev').addEventListener('click',()=>{center=(center-1+N)%N;render();});
+    document.getElementById('next').addEventListener('click',()=>{center=(center+1)%N;render();});
+    addEventListener('resize',render);
+    addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');});
+    lb.addEventListener('click',()=>lb.classList.remove('on'));
+    render();
+  })();
+
+  /* ---- CASES ---- */
+  (function(){
+    const CASES=[
+      ['Kommit V5 Design System','Product Systems · 2022–26','portal-kommit.html','assets/portal-kommit-hero.jpg'],
+      ['Chaincerts','Fintech · Web3 · 2023','chaincerts.html','assets/chaincerts-hero.jpg'],
+      ['OKdose','Health Product · 2022','okdose.html','assets/okdose-hero.jpg'],
+      ['Podnation','Product & Brand · 2022','podcast.html','assets/podcast-hero.jpg'],
+      ['Passage','Product & Branding · 2023','noah.html','assets/passage-hero.jpg'],
+      ['Worklogs','Internal Tools · 2023','worklogs.html','assets/portal-2026-hero.jpg'],
+    ];
+    const list=document.getElementById('casesList'),cp=document.getElementById('cp'),cpimg=document.getElementById('cpimg');
+    CASES.forEach(([name,disc,href,src],i)=>{const a=document.createElement('a');a.className='crow';a.href=href;
+      a.innerHTML='<span class="crow__num">'+String(i+1).padStart(2,'0')+'</span><span class="crow__name">'+name+'</span><span class="crow__disc">'+disc+'</span><span class="crow__arrow">↗</span>';
+      a.addEventListener('mouseenter',()=>{cpimg.src=src;cp.classList.add('on');});
+      a.addEventListener('mouseleave',()=>cp.classList.remove('on'));
+      list.appendChild(a);});
+    let tx=0,ty=0,cx=0,cy=0;
+    addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});
+    (function loop(){cx+=(tx-cx)*.16;cy+=(ty-cy)*.16;cp.style.left=cx+'px';cp.style.top=cy+'px';requestAnimationFrame(loop);})();
+  })();
+
+  /* ---- INIT idioma ---- */
+  applyLang('es');
+</script>
 </body>
 </html>
