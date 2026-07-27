@@ -1,198 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Podnation — Alan Buenhombre</title>
-  <meta name="description" content="Podnation — Brand Identity, UX/UI Dashboard y Website Redesign para plataforma de podcasting hispanohablante." />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="work.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Podnation — Alan Buenhombre</title>
+<meta name="description" content="Caso de estudio: Podnation — plataforma de podcasting para creadores hispanohablantes. Brand identity, UX/UI dashboard y monetización sin fricción." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="case.css" />
 </head>
-<body class="theme-podnation">
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="2" width="20" height="20" rx="4" fill="#E35914"/>
-          <text x="12" y="16" text-anchor="middle" fill="white" font-family="Poppins" font-weight="700" font-size="10">AB</text>
-        </svg>
-        <span>Alan Buenhombre</span>
-      </a>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="index.html" class="nav__home" data-i18n="nav.home">Inicio</a></li>
-        <li><a href="index.html#about" data-i18n="nav.about">Sobre mí</a></li>
-        <li><a href="index.html#services" data-i18n="nav.services">Servicios</a></li>
-        <li><a href="index.html#portfolio" data-i18n="nav.portfolio">Proyectos</a></li>
-        <li><a href="index.html#contact" data-i18n="nav.contact">Contacto</a></li>
-      </ul>
-      <button class="nav__lang" aria-label="Switch language">EN</button>
-      <button class="nav__toggle" id="navToggle" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </button>
+<body>
+
+  <nav class="top">
+    <a href="index.html" class="top__name">Alan Buenhombre</a>
+    <div class="top__nav">
+      <a href="index.html#inicio" data-i18n="nav.home">Inicio</a>
+      <a href="index.html#trabajo" data-i18n="nav.work">Trabajo</a>
+      <a href="index.html#casos" data-i18n="nav.cases">Casos</a>
+      <a href="index.html#contacto" data-i18n="nav.contact">Contacto</a>
     </div>
+    <button class="top__lang nav__lang">EN</button>
   </nav>
 
-  <section class="work-hero">
-    <div class="work-hero__bg">
-      <img src="assets/podcast-hero.jpg" alt="Podnation" />
-      <div class="work-hero__overlay"></div>
+  <header class="chead">
+    <div class="chead__kicker" data-i18n="pod.tag">Brand Identity · UX/UI · Website</div>
+    <h1 class="chead__title" data-i18n="pod.title">Podnation</h1>
+    <p class="chead__sub" data-i18n="pod.sub"></p>
+  </header>
+
+  <div class="cmeta">
+    <div><div class="cmeta__k" data-i18n="work.meta.role">Rol</div><div class="cmeta__v" data-i18n="pod.meta.role">Lead Designer</div></div>
+    <div><div class="cmeta__k" data-i18n="work.meta.company">Empresa</div><div class="cmeta__v" data-i18n="pod.meta.company">Kommit</div></div>
+    <div><div class="cmeta__k" data-i18n="work.meta.year">Año</div><div class="cmeta__v" data-i18n="pod.meta.year">2022</div></div>
+    <div><div class="cmeta__k" data-i18n="work.meta.disciplines">Disciplinas</div><div class="cmeta__v" data-i18n="pod.meta.disc">Brand, UX/UI, Monetization</div></div>
+  </div>
+
+  <div class="cmediawrap"><div class="cshot cshot--hero"><img src="assets/podcast-hero.jpg" alt="Podnation"></div></div>
+
+  <section class="cbody">
+    <div class="cblock">
+      <h2 class="cblock__title" data-i18n="pod.intro.title">Project Overview</h2>
+      <p class="cblock__text" data-i18n="pod.intro.p1"></p>
+      <p class="cblock__text" data-i18n="pod.intro.p2" style="margin-top:18px"></p>
     </div>
-    <div class="work-hero__content section-inner">
-      <h1 class="work-hero__title" data-i18n="pod.title">Podnation</h1>
-      <p class="work-hero__sub" data-i18n="pod.sub">Una plataforma de podcasting renovada que conecta voces hispanohablantes con su audiencia.</p>
-      <div class="work-hero__meta">
-        <span class="work-hero__tag" data-i18n="pod.tag">Brand Identity · UX/UI Dashboard · Website Redesign</span>
-        <span class="work-hero__year" data-i18n="pod.year">2022</span>
-      </div>
+
+    <div class="cimgs">
+      <img src="assets/podcast-col1.jpg" alt="">
+      <img src="assets/podcast-col2.jpg" alt="">
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n="pod.problem.label">01 — Problema</div>
+      <p class="cblock__text" data-i18n="pod.problem.text"></p>
+    </div>
+
+    <div class="cshot cshot--wide"><img src="assets/podcast-inset.jpg" alt=""></div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n="pod.ux.label">02 — UX Improvements</div>
+      <p class="cblock__text" data-i18n="pod.ux.text"></p>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n="pod.ui.label">03 — UI Enhancements</div>
+      <p class="cblock__text" data-i18n="pod.ui.text"></p>
     </div>
   </section>
 
-  <div class="page">
-
-  <section class="work-overview">
-    <div class="section-inner">
-      <div class="work-overview__grid">
-        <div class="work-meta-col">
-          <div class="work-meta-item">
-            <span class="work-meta-label" data-i18n="work.meta.role">Rol</span>
-            <span class="work-meta-value" data-i18n="pod.meta.role">Lead Designer</span>
-          </div>
-          <div class="work-meta-item">
-            <span class="work-meta-label" data-i18n="work.meta.company">Empresa</span>
-            <span class="work-meta-value" data-i18n="pod.meta.company">Kommit</span>
-          </div>
-          <div class="work-meta-item">
-            <span class="work-meta-label" data-i18n="work.meta.year">Año</span>
-            <span class="work-meta-value" data-i18n="pod.meta.year">2022</span>
-          </div>
-          <div class="work-meta-item">
-            <span class="work-meta-label" data-i18n="work.meta.disciplines">Disciplinas</span>
-            <span class="work-meta-value" data-i18n="pod.meta.disc">Brand Identity, UX/UI Dashboard, Website Redesign, Monetization</span>
-          </div>
-        </div>
-        <div class="work-intro">
-          <h2 class="work-intro__title" data-i18n="pod.intro.title">Project Overview</h2>
-          <p class="work-intro__text" data-i18n="pod.intro.p1">Una plataforma de podcasting renovada que conecta voces hispanohablantes con su audiencia, haciendo que crear, distribuir y monetizar contenido en audio sea simple y accesible para todos.</p>
-          <p class="work-intro__text" data-i18n="pod.intro.p2">El reto fue crear una identidad visual contemporánea y un sistema UX/UI intuitivo que transformara una plataforma técnica en una experiencia cercana y confiable para creadores de contenido en cualquier nivel de experiencia.</p>
-        </div>
-      </div>
-    </div>
-    <a class="corner-cta" href="#next">
-      <div class="corner-cta-mt"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40V0C40 22.09 22.09 40 0 40H40Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-ml"><svg width="100%" height="100%" viewBox="0 0 40 40" fill="none"><path d="M40 40H0C22.09 40 40 22.09 40 0V40Z" fill="#1A1A1A"/></svg></div>
-      <div class="corner-cta-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-      <div><div class="corner-cta-title">Siguiente</div><div class="corner-cta-sub">Ver más proyectos <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+  <section class="cnext">
+    <div class="cnext__label" data-i18n="work.next.label">Siguiente proyecto</div>
+    <a href="noah.html" class="cnext__row">
+      <span class="cnext__name">Passage</span>
+      <span class="cnext__disc">Product & Branding · 2023</span>
     </a>
   </section>
 
-  <div class="work-img-full">
-    <img src="assets/podcast-full.jpg" alt="Podnation — overview" />
-  </div>
-
-  <section class="work-body">
-    <div class="section-inner work-body__inner">
-      <div class="work-block">
-        <h3 class="work-block__label" data-i18n="pod.problem.label">01 — Problema</h3>
-        <p class="work-block__text" data-i18n="pod.problem.text">El desafío era renovar una plataforma de podcasting que, a pesar de ofrecer servicios completos de hosting, distribución, monetización y comunidad, no lograba conectar con la nueva generación de creadores de contenido en audio. Los creadores potenciales no conocían Podnation en un mercado dominado por competidores con mayor presencia visual, mientras que la identidad desactualizada generaba poco engagement y carecía de diferenciación clara que atrajera a podcasters hispanohablantes.</p>
+  <footer class="footer">
+    <div class="footer__top">
+      <div>
+        <div class="footer__logo">Alan Buenhombre</div>
+        <p class="footer__role">Lead Designer &amp; Art Director</p>
+        <p class="footer__tagline">Bogotá, Colombia</p>
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Alan Buenhombre</p>
       </div>
-      <div class="work-imgs-2col">
-        <div class="work-img-card"><img src="assets/podcast-col1.jpg" alt="" /></div>
-        <div class="work-img-card"><img src="assets/podcast-col2.jpg" alt="" /></div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.menu">Menú</div>
+        <ul class="footer__links">
+          <li><a href="index.html#inicio" data-i18n="nav.home">Inicio</a></li>
+          <li><a href="index.html#trabajo" data-i18n="nav.work">Trabajo</a></li>
+          <li><a href="index.html#casos" data-i18n="nav.cases">Casos</a></li>
+          <li><a href="index.html#contacto" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
       </div>
-      <div class="work-block">
-        <h3 class="work-block__label" data-i18n="pod.ux.label">02 — UX Improvements</h3>
-        <p class="work-block__text" data-i18n="pod.ux.text">Diseñamos flujos simplificados para integrar monetización directamente en el dashboard. Los creadores ahora pueden activar botones de "Buy Me a Coffee" y donaciones con pasos mínimos, y estos aparecen automáticamente en las páginas públicas de sus podcasts. Además, optimizamos la experiencia mobile considerando que la mayoría de oyentes consumen contenido en dispositivos móviles, asegurando que los botones de monetización sean accesibles sin interferir con los controles de reproducción.</p>
-      </div>
-      <div class="work-img-full work-img-full--inset">
-        <img src="assets/podcast-inset.jpg" alt="" />
-      </div>
-      <div class="work-block">
-        <h3 class="work-block__label" data-i18n="pod.ui.label">03 — UI Enhancements</h3>
-        <p class="work-block__text" data-i18n="pod.ui.text">Desarrollamos una identidad visual contemporánea liderada por naranja vibrante que transmite energía y cercanía. El sistema de diseño incluye componentes modulares, tipografía moderna optimizada para interfaces digitales y jerarquías visuales claras. La nueva identidad se implementó consistentemente en website, dashboard y páginas de podcasts, creando una experiencia de marca unificada que posiciona a Podnation como la plataforma moderna y accesible para creadores hispanohablantes.</p>
-      </div>
-
-      <div class="work-scope">
-        <h3 class="work-block__label" data-i18n="pod.scope.label">04 — Scope of Work</h3>
-        <table class="scope-table">
-          <thead><tr><th data-i18n="scope.th.area">Área</th><th data-i18n="scope.th.desc">Descripción</th></tr></thead>
-          <tbody>
-            <tr><td data-i18n="pod.scope.1.area">Brand Identity Design</td><td data-i18n="pod.scope.1.desc">Logo, paleta de color naranja vibrante y sistema tipográfico, para transmitir cercanía, energía y profesionalismo en el entorno del podcasting hispanohablante.</td></tr>
-            <tr><td data-i18n="pod.scope.2.area">UX/UI Dashboard Design</td><td data-i18n="pod.scope.2.desc">Panel intuitivo para gestión de podcasts, optimizado para creadores con diferentes niveles técnicos, con integración nativa de monetización (donaciones, "Buy Me a Coffee").</td></tr>
-            <tr><td data-i18n="pod.scope.3.area">Website Redesign</td><td data-i18n="pod.scope.3.desc">Landing page, páginas de producto y páginas públicas de podcasts, enfoque mobile-first y experiencia responsive.</td></tr>
-            <tr><td data-i18n="pod.scope.4.area">Monetization Integration</td><td data-i18n="pod.scope.4.desc">Flujos UX/UI para activar sistemas de apoyo monetario desde el dashboard, con visualización clara en páginas públicas sin interferir con la escucha.</td></tr>
-            <tr><td data-i18n="pod.scope.5.area">Design Guidelines</td><td data-i18n="pod.scope.5.desc">Documentación de estilos, componentes y principios visuales para consistencia en futuras iteraciones y assets de marketing.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="work-car">
-        <h3 class="work-block__label" data-i18n="pod.car1.label">05 — UX/UI Design</h3>
-        <div class="work-car__row"><span class="work-car__label" data-i18n="car.context">Contexto</span><p class="work-car__text" data-i18n="pod.car1.context">Para incrementar el uso de Podnation y atraer más creadores, identificamos la necesidad de ofrecer valor diferencial frente a competidores. Los usuarios buscaban plataformas que no solo alojaran sus podcasts, sino que facilitaran la monetización directa sin complicaciones técnicas ni dependencia de servicios externos.</p></div>
-        <div class="work-car__row"><span class="work-car__label" data-i18n="car.action">Acción</span><p class="work-car__text" data-i18n="pod.car1.action">Diseñamos e integramos funcionalidades de monetización nativas en la plataforma. Los creadores activan botones de "Buy Me a Coffee" y donaciones directamente desde su dashboard con pasos sencillos, apareciendo automáticamente en sus mini sites. Flujos mínimos de configuración, interfaz intuitiva, visualización consistente en desktop y mobile.</p></div>
-        <div class="work-car__row"><span class="work-car__label" data-i18n="car.result">Resultado</span><p class="work-car__text" data-i18n="pod.car1.result">Podnation ahora ofrece una experiencia completa donde los creadores no solo publican contenido, sino que monetizan directamente desde la plataforma, incrementando el valor percibido del servicio y el engagement.</p></div>
-      </div>
-
-      <div class="work-car">
-        <h3 class="work-block__label" data-i18n="pod.car2.label">06 — Brand &amp; Landing Design</h3>
-        <div class="work-car__row"><span class="work-car__label" data-i18n="car.context">Contexto</span><p class="work-car__text" data-i18n="pod.car2.context">Podnation necesitaba una identidad visual que transmitiera confianza, modernidad y cercanía en un mercado competido. La marca existente era percibida como anticuada y no generaba reconocimiento suficiente entre la nueva generación de creadores de contenido hispanohablantes.</p></div>
-        <div class="work-car__row"><span class="work-car__label" data-i18n="car.action">Acción</span><p class="work-car__text" data-i18n="pod.car2.action">Logo y sistema visual frescos y modernos, tipografía clara, paleta naranja vibrante que transmite energía y creatividad, y un estilo que equilibra profesionalismo con cercanía. El concepto del logo integra los cuatro pilares de la comunicación en audio: voz, territorio, mensaje y audiencia. Landing page con jerarquía visual clara, propuesta de valor directa y CTAs efectivos para convertir visitantes en usuarios.</p></div>
-        <div class="work-car__row"><span class="work-car__label" data-i18n="car.result">Resultado</span><p class="work-car__text" data-i18n="pod.car2.result">La marca y el landing page se convirtieron en la puerta de entrada al ecosistema: una experiencia coherente, atractiva y profesional. Podnation ahora se posiciona como la plataforma moderna y accesible para creadores hispanohablantes, con una identidad visual que genera confianza y diferenciación inmediata frente a competidores.</p></div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.contact">Contacto</div>
+        <div class="footer__social">
+          <a class="footer__social-btn" href="mailto:alangtres@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
+          <a class="footer__social-btn" href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a class="footer__social-btn" href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener" aria-label="Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text></svg></a>
+        </div>
       </div>
     </div>
-  </section>
-
-  <section class="work-next" id="next">
-    <div class="section-inner">
-      <p class="work-next__label" data-i18n="work.next.label">Siguiente proyecto</p>
-      <div class="work-next__grid">
-        <a href="portal-kommit.html" class="work-next__card">
-          <div class="work-next__card-img">
-            <img src="assets/kommit-card.jpg" alt="Portal Kommit" />
-            <div class="work-next__card-overlay"></div>
-          </div>
-          <div class="work-next__card-info">
-            <span class="work-next__card-tag">Branding · 2022</span>
-            <h3 class="work-next__card-name">Portal Kommit</h3>
-          </div>
-        </a>
-        <a href="noah.html" class="work-next__card">
-          <div class="work-next__card-img">
-            <img src="assets/passage-card.jpg" alt="Passage" />
-            <div class="work-next__card-overlay"></div>
-          </div>
-          <div class="work-next__card-info">
-            <span class="work-next__card-tag">UI/UX · 2023</span>
-            <h3 class="work-next__card-name">Noah App</h3>
-          </div>
-        </a>
-        <a href="index.html#portfolio" class="work-next__all">
-          <span data-i18n="work.next.all">Ver todos los proyectos</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="work-footer">
-    <div class="section-inner work-footer__inner">
-      <a href="index.html" class="nav__logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="2" width="20" height="20" rx="4" fill="#E35914"/>
-          <text x="12" y="16" text-anchor="middle" fill="white" font-family="Poppins" font-weight="700" font-size="10">AB</text>
-        </svg>
-        <span>Alan Buenhombre</span>
-      </a>
-      <p class="work-footer__copy">Diseñado y construido por mí, con cariño · <a href="mailto:alangtres@gmail.com">alangtres@gmail.com</a></p>
-    </div>
+    <div class="footer__bigname" aria-hidden="true">Buenhombre</div>
   </footer>
 
-  </div><!-- /.page -->
-
   <script src="i18n.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>

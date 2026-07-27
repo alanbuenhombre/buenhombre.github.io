@@ -8,6 +8,8 @@ const T = {
     'nav.about': 'Sobre mí',
     'nav.services': 'Servicios',
     'nav.portfolio': 'Proyectos',
+    'nav.work': 'Trabajo',
+    'nav.cases': 'Casos',
     'nav.contact': 'Contacto',
     'lang.toggle': 'EN',
     /* HERO */
@@ -333,6 +335,8 @@ const T = {
     'nav.about': 'About',
     'nav.services': 'Services',
     'nav.portfolio': 'Projects',
+    'nav.work': 'Work',
+    'nav.cases': 'Cases',
     'nav.contact': 'Contact',
     'lang.toggle': 'ES',
     /* HERO */
