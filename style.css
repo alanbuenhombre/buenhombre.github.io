@@ -1310,6 +1310,7 @@ ul { list-style: none; }
   /* HERO */
   .hero { max-height: none; }
   .hero__content { padding-bottom: 100px; }
+  .hero__bg img { object-position: 25% center; }
   .hero__top {
     display: flex;
     flex-direction: column;
@@ -1352,4 +1353,5 @@ ul { list-style: none; }
 
   /* FOOTER */
   .footer__top { grid-template-columns: 1fr; gap: 40px; }
+  .footer__social { flex-wrap: wrap; }
 }
