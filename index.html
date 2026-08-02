@@ -29,7 +29,7 @@
   .btn:hover{background:#fff;color:#111}
 
   /* ===== NAV (compartido) ===== */
-  .top{position:absolute;top:0;left:0;right:0;z-index:20;
+  .top{position:absolute;top:0;left:0;right:0;z-index:20;max-width:var(--max-w);margin:0 auto;
        display:flex;align-items:center;justify-content:space-between;padding:24px var(--pad)}
   .top__name{font-family:var(--font);font-weight:600;font-size:.95rem;letter-spacing:-.01em;color:#fff;text-decoration:none}
   .top__nav{display:flex;gap:30px;font-family:var(--font-mono);font-size:.74rem;margin-left:auto;margin-right:28px}
@@ -59,7 +59,10 @@
          line-height:1.08;letter-spacing:-.035em}
   .titlerule{border-top:1px dotted rgba(255,255,255,.28);margin:20px 0}
   .lede{font-family:var(--font-mono);font-size:.85rem;color:var(--muted);letter-spacing:.02em}
-  .hero .cta{display:flex;flex-direction:column;align-items:flex-end}
+  .hero .cta{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
+  .cta-link{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.02em;color:rgba(255,255,255,.75);
+       text-decoration:none;transition:color .25s}
+  .cta-link:hover{color:#fff}
 
   /* ===== SECCIÓN 2 · CARD FAN ===== */
   .fan{position:relative;min-height:100vh;display:flex;flex-direction:column;
@@ -186,6 +189,14 @@
   .lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 90px rgba(0,0,0,.6);transform:scale(.96);transition:transform .3s ease}
   .lb.on img{transform:scale(1)}
   .lb__close{position:absolute;top:28px;right:32px;font-family:var(--font-mono);font-size:.8rem;color:var(--muted)}
+  .lb__arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:100px;
+       display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);
+       border:1px solid rgba(255,255,255,.2);color:var(--text);cursor:pointer;z-index:2;
+       transition:background .25s,border-color .25s}
+  .lb__arrow:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4)}
+  .lb__arrow svg{width:16px;height:16px}
+  .lb__arrow--prev{left:24px}
+  .lb__arrow--next{right:24px}
 
   @media(max-width:860px){
     .cap{flex-direction:column;gap:22px} .cap__tags{max-width:100%}
@@ -196,6 +207,7 @@
     .row{flex-direction:column;align-items:flex-start;gap:24px}
     .hero .cta{align-items:flex-start}
     .cursor-preview{display:none} .crow__disc{display:none}
+    .lb__arrow{display:none}
     .others__grid{grid-template-columns:1fr}
     .footer__top{grid-template-columns:1fr;gap:40px}
     .footer__bigname{font-size:24vw}
@@ -222,31 +234,28 @@
     <div class="wrap">
       <div class="row">
         <div class="hero-left">
-          <div class="kick"><span class="kick__avail"><span class="dot"></span> <span data-i18n="hero_avail">Disponible · Lead Designer · Systems &amp; Brand</span></span></div>
+          <div class="kick"><span class="kick__avail"><span class="dot"></span> <span data-i18n="hero_avail">Disponible</span></span></div>
           <div class="titleblock">
-            <h1 class="title" data-i18n="hero_title">Dirijo sistemas de diseño y lenguaje visual de marca.</h1>
+            <h1 class="title" data-i18n="hero_title">Diseño brand y productos digitales.</h1>
             <div class="titlerule"></div>
             <p class="lede" data-i18n="hero_lede">14 años en dirección creativa → últimos 4 en productos digitales.</p>
           </div>
         </div>
-        <div class="cta"><a href="#casos" class="btn" data-i18n="hero_btn">Ver trabajo →</a></div>
+        <div class="cta">
+          <a href="#sobre" class="cta-link" data-i18n="hero_cta_about">Sobre mí →</a>
+          <a href="#casos" class="cta-link" data-i18n="hero_cta_cases">Casos de estudio →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== SECCIÓN 2 · CARD FAN ===== -->
-  <section class="fan" id="trabajo">
-    <div class="fan__head">
-      <div class="fan__idx" data-i18n="fan_idx">02 — Trabajo &amp; exploración</div>
-      <h2 class="fan__title" data-i18n="fan_title">Algo de lo que diseño.</h2>
+  <!-- ===== SECCIÓN 2 · CASOS ===== -->
+  <section class="cases" id="casos">
+    <div class="cases__head">
+      <h2 class="cases__title" data-i18n="cases_title">Casos de estudio</h2>
+      <span class="cases__meta" data-i18n="cases_meta">02 · 06 PROYECTOS</span>
     </div>
-    <div class="stage" id="stage"></div>
-    <div class="fan__ctrl">
-      <button class="fbtn" id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <div class="fdots" id="dots"></div>
-      <button class="fbtn" id="next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-    </div>
-    <p class="fan__hint" data-i18n="fan_hint">Clic en una card para ampliar</p>
+    <ul class="cases__list" id="casesList"></ul>
   </section>
 
   <!-- ===== SECCIÓN 3 · INFO STICKY ===== -->
@@ -259,13 +268,19 @@
     <div class="caps" id="caps"></div>
   </section>
 
-  <!-- ===== SECCIÓN 4 · CASOS ===== -->
-  <section class="cases" id="casos">
-    <div class="cases__head">
-      <h2 class="cases__title" data-i18n="cases_title">Casos de estudio</h2>
-      <span class="cases__meta" data-i18n="cases_meta">04 · 06 PROYECTOS</span>
+  <!-- ===== SECCIÓN 4 · CARD FAN ===== -->
+  <section class="fan" id="trabajo">
+    <div class="fan__head">
+      <div class="fan__idx" data-i18n="fan_idx">04 — Trabajo &amp; exploración</div>
+      <h2 class="fan__title" data-i18n="fan_title">Algo de lo que diseño.</h2>
     </div>
-    <ul class="cases__list" id="casesList"></ul>
+    <div class="stage" id="stage"></div>
+    <div class="fan__ctrl">
+      <button class="fbtn" id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="fdots" id="dots"></div>
+      <button class="fbtn" id="next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+    <p class="fan__hint" data-i18n="fan_hint">Clic en una card para ampliar</p>
   </section>
 
   <!-- ===== OTROS PROYECTOS ===== -->
@@ -324,7 +339,12 @@
     <div class="footer__bigname" aria-hidden="true">Buenhombre</div>
   </footer>
 
-  <div class="lb" id="lb"><span class="lb__close">Cerrar ✕</span><img id="lbimg" src="" alt=""></div>
+  <div class="lb" id="lb">
+    <span class="lb__close">Cerrar ✕</span>
+    <button class="lb__arrow lb__arrow--prev" id="lbPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <img id="lbimg" src="" alt="">
+    <button class="lb__arrow lb__arrow--next" id="lbNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </div>
   <figure class="cursor-preview" id="cp"><img id="cpimg" src="" alt=""></figure>
 
 <script>
@@ -332,14 +352,14 @@
   const T={
     es:{
       nav_inicio:'Inicio',nav_trabajo:'Trabajo',nav_casos:'Casos',nav_contacto:'Contacto',
-      hero_avail:'Disponible · Lead Designer · Systems & Brand',
-      hero_title:'Dirijo sistemas de diseño y lenguaje visual de marca.',
+      hero_avail:'Disponible',
+      hero_title:'Diseño brand y productos digitales.',
       hero_lede:'14 años en dirección creativa → últimos 4 en productos digitales.',
-      hero_btn:'Ver trabajo →',
-      fan_idx:'02 — Trabajo & exploración',fan_title:'Algo de lo que diseño.',fan_hint:'Clic en una card para ampliar',
+      hero_cta_about:'Sobre mí →',hero_cta_cases:'Casos de estudio →',
+      fan_idx:'04 — Trabajo & exploración',fan_title:'Algo de lo que diseño.',fan_hint:'Clic en una card para ampliar',
       info_kicker:'Sobre mí',info_statement:'De la dirección de arte a los sistemas de producto.',
       info_text:'14 años dándole orden y criterio visual a las cosas: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.',
-      cases_title:'Casos de estudio',cases_meta:'04 · 06 PROYECTOS',
+      cases_title:'Casos de estudio',cases_meta:'02 · 06 PROYECTOS',
       others_label:'Otros proyectos · Dirección de arte & branding de campañas — Behance',
       closer_title:'Busco mi próximo<br>equipo de producto',closer_btn:'Escríbeme →',
       footer_menu:'Menú',footer_contact:'Contacto',footer_copy:'© 2026 Alan Buenhombre',
@@ -347,14 +367,14 @@
     },
     en:{
       nav_inicio:'Home',nav_trabajo:'Work',nav_casos:'Cases',nav_contacto:'Contact',
-      hero_avail:'Available · Lead Designer · Systems & Brand',
-      hero_title:'I lead design systems and brand visual language.',
+      hero_avail:'Available',
+      hero_title:'I design brand and digital products.',
       hero_lede:'14 years in creative direction → last 4 in digital product.',
-      hero_btn:'View work →',
-      fan_idx:'02 — Work & exploration',fan_title:'Some of what I design.',fan_hint:'Click a card to enlarge',
+      hero_cta_about:'About →',hero_cta_cases:'Case studies →',
+      fan_idx:'04 — Work & exploration',fan_title:'Some of what I design.',fan_hint:'Click a card to enlarge',
       info_kicker:'About',info_statement:'From art direction to product systems.',
       info_text:'14 years bringing order and visual judgment to things: first in brand and campaigns, now in digital product — interfaces, component libraries, design systems and cross-functional collaboration with engineering and product.',
-      cases_title:'Case studies',cases_meta:'04 · 06 PROJECTS',
+      cases_title:'Case studies',cases_meta:'02 · 06 PROJECTS',
       others_label:'Other projects · Art direction & campaign branding — Behance',
       closer_title:'Looking for my next<br>product team',closer_btn:'Write me →',
       footer_menu:'Menu',footer_contact:'Contact',footer_copy:'© 2026 Alan Buenhombre',
@@ -455,20 +475,38 @@
     document.getElementById('prev').addEventListener('click',()=>{center=(center-1+N)%N;render();});
     document.getElementById('next').addEventListener('click',()=>{center=(center+1)%N;render();});
     addEventListener('resize',render);
-    addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');});
-    lb.addEventListener('click',()=>lb.classList.remove('on'));
+    function lbStep(dir){center=(center+dir+N)%N;render();lbimg.src=IMGS[center];}
+    addEventListener('keydown',e=>{
+      if(e.key==='Escape'){lb.classList.remove('on');return;}
+      if(!lb.classList.contains('on'))return;
+      if(e.key==='ArrowRight')lbStep(1);
+      else if(e.key==='ArrowLeft')lbStep(-1);
+    });
+    const lbPrev=document.getElementById('lbPrev'),lbNext=document.getElementById('lbNext');
+    lbPrev.addEventListener('click',e=>{e.stopPropagation();lbStep(-1);});
+    lbNext.addEventListener('click',e=>{e.stopPropagation();lbStep(1);});
+    let touchX=0,swiped=false;
+    lb.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;swiped=false;},{passive:true});
+    lb.addEventListener('touchmove',e=>{
+      if(Math.abs(e.changedTouches[0].clientX-touchX)>10)e.preventDefault();
+    },{passive:false});
+    lb.addEventListener('touchend',e=>{
+      const dx=e.changedTouches[0].clientX-touchX;
+      if(Math.abs(dx)>40){swiped=true;lbStep(dx<0?1:-1);}
+    });
+    lb.addEventListener('click',()=>{if(swiped){swiped=false;return;}lb.classList.remove('on');});
     render();
   })();
 
   /* ---- CASES ---- */
   (function(){
     const CASES=[
-      ['Kommit V5 Design System','Product Systems · 2022–26','portal-kommit.html','assets/portal-kommit-hero.jpg'],
       ['Chaincerts','Fintech · Web3 · 2023','chaincerts.html','assets/chaincerts-hero.jpg'],
       ['OKdose','Health Product · 2022','okdose.html','assets/okdose-hero.jpg'],
       ['Podnation','Product & Brand · 2022','podcast.html','assets/podcast-hero.jpg'],
       ['Passage','Product & Branding · 2023','noah.html','assets/passage-hero.jpg'],
-      ['Worklogs','Internal Tools · 2023','worklogs.html','assets/portal-2026-hero.jpg'],
+      ['Portal Kommit','Internal Tools · 2026','worklogs.html','assets/portal-kommit-2026-hero.jpg'],
+      ['Kommit V5 Design System','Product Systems · 2022–26','portal-kommit.html','assets/portal-kommit-hero.jpg'],
     ];
     const list=document.getElementById('casesList'),cp=document.getElementById('cp'),cpimg=document.getElementById('cpimg');
     CASES.forEach(([name,disc,href,src],i)=>{const a=document.createElement('a');a.className='crow';a.href=href;
