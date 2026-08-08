@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>OKdose — Alan Buenhombre</title>
-<meta name="description" content="Caso de estudio: OKdose — plataforma de adherencia a medicamentos. Branding y UX/UI accesible para pacientes, médicos y farmacias." />
+<meta name="description" content="Caso de estudio: OKdose — herramienta médica para la Dirección Territorial de Salud de Caldas. Cálculo de dosis y tiempos de tratamiento para enfermedades de salud pública." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
@@ -27,7 +27,7 @@
   <header class="chead">
     <div class="chead__kicker" data-i18n="ok.tag">Healthcare · UX · UI</div>
     <h1 class="chead__title" data-i18n="ok.title">OKdose</h1>
-    <p class="chead__sub" data-i18n="ok.sub"></p>
+    <p class="chead__sub" data-i18n="ok.sub">Herramienta médica para la Dirección Territorial de Salud de Caldas: cálculo de dosis y tiempos de tratamiento para enfermedades de salud pública.</p>
   </header>
 
   <div class="cmeta">
@@ -41,9 +41,10 @@
 
   <section class="cbody">
     <div class="cblock">
-      <h2 class="cblock__title" data-i18n="ok.intro.title">El encargo</h2>
-      <p class="cblock__text" data-i18n="ok.intro.p1"></p>
-      <p class="cblock__text" data-i18n="ok.intro.p2" style="margin-top:18px"></p>
+      <h2 class="cblock__title" data-i18n="ok.ctx.title">Contexto</h2>
+      <p class="cblock__text" data-i18n="ok.ctx.p1">OKdose es una herramienta médica desarrollada por la Dirección Territorial de Salud de Caldas para ayudar a doctores a calcular dosis y tiempos de tratamiento de enfermedades de salud pública (malaria, leishmaniasis, chagas, tuberculosis).</p>
+      <p class="cblock__text" data-i18n="ok.ctx.p2">El reto: la interfaz original tenía un aspecto "developer-first" — funcional, pero no pensada para usuarios médicos. Faltaba claridad visual, organización de datos y flujos de UX que permitieran a doctores (muchos sin familiaridad técnica, en pueblos remotos) usar la app con confianza.</p>
+      <p class="cblock__text" data-i18n-html="ok.ctx.p3"><strong>En healthcare, la usabilidad no es comodidad. Es seguridad de pacientes.</strong> Una dosis mal calculada por confusión en la UI es un error crítico.</p>
     </div>
 
     <div class="cimgs">
@@ -52,23 +53,40 @@
     </div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="ok.b1.label">01 — Branding</div>
-      <h2 class="cblock__title" data-i18n="ok.b1.title">Una marca más moderna y concreta</h2>
-      <p class="cblock__text" data-i18n="ok.b1.text"></p>
+      <h2 class="cblock__title" data-i18n="ok.dec.title">Decisión</h2>
+      <p class="cblock__text" data-i18n="ok.dec.intro">Como Lead Designer, rediseñé la experiencia alrededor de la claridad y la confianza:</p>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="ok.dec.s1.h">01 — Simplificación de elementos</div>
+        <p class="cblock__text" data-i18n="ok.dec.s1.p">Reduje complejidad visual. Componentes claros, jerarquía de información, colores que comuniquen urgencia o seguridad según el contexto.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="ok.dec.s2.h">02 — Reorganización de datos</div>
+        <p class="cblock__text" data-i18n="ok.dec.s2.p">En el primer MVP, la información crítica (dosis, tiempo de tratamiento, contraindicaciones) estaba dispersa. Reorganicé el flujo para que el doctor viera primero qué importa: enfermedad → paciente → dosis → validación.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="ok.dec.s3.h">03 — UX para no-expertos técnicos</div>
+        <p class="cblock__text" data-i18n="ok.dec.s3.p">Consideré que los usuarios finales eran doctores rurales, no ingenieros. Cada pantalla debía ser comprensible sin documentación, con validación paso a paso para evitar errores.</p>
+      </div>
     </div>
 
     <div class="cshot cshot--wide"><img src="assets/okdose-full.jpg" alt=""></div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="ok.b2.label">02 — UX</div>
-      <h2 class="cblock__title" data-i18n="ok.b2.title">Experiencia pensada para todos</h2>
-      <p class="cblock__text" data-i18n="ok.b2.text"></p>
+      <h2 class="cblock__title" data-i18n="ok.res.title">Resultado</h2>
+      <p class="cblock__text" data-i18n="ok.res.p1">OKdose sigue siendo usado actualmente por personal médico en pueblos remotos de Caldas y otros territorios de salud en Colombia, como herramienta cotidiana para cálculo de dosificación.</p>
+      <p class="cblock__text" data-i18n-html="ok.res.p2"><strong>Limitación:</strong> El proyecto no escaló más allá de su propósito original por constraints de presupuesto (es una app pública gratuita, no un producto comercial). El producto funcionó, pero no había inversión para evolucionar features o expansión geográfica.</p>
+      <p class="cblock__text" data-i18n-html="ok.res.p3"><strong>Status hoy:</strong> Activo y funcional. Las mejoras de UX que implementé están en producción.</p>
     </div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="ok.b3.label">03 — UI</div>
-      <h2 class="cblock__title" data-i18n="ok.b3.title">El look del primer deploy</h2>
-      <p class="cblock__text" data-i18n="ok.b3.text"></p>
+      <h2 class="cblock__title" data-i18n="ok.learn.title">Aprendizajes transferibles</h2>
+      <ul class="cblock__list">
+        <li data-i18n-html="ok.learn.li1"><strong>Healthcare UX requiere sobrecarga cero:</strong> En medicina, cada pixel cuenta. El usuario no puede "descubrir" cómo usar la app — tiene que ser obvio de inmediato.</li>
+        <li data-i18n-html="ok.learn.li2"><strong>Diseño para contextos con constraints:</strong> OKdose funciona en pueblos remotos con conectividad limitada. Diseñar para esos contextos enseña economía de recursos.</li>
+        <li data-i18n-html="ok.learn.li3"><strong>Simplificación no es minimalismo:</strong> No se trata de quitar, sino de reorganizar. La información debe estar, pero presente de forma que no abrume.</li>
+        <li data-i18n-html="ok.learn.li4"><strong>Validación en UX salva vidas:</strong> En healthcare, los flujos deben prevenir errores, no solo permitir acciones. Confirmaciones, validaciones, avisos — todo tiene propósito.</li>
+        <li data-i18n-html="ok.learn.li5"><strong>Productos públicos vs comerciales:</strong> Trabajar en un producto gratuito de salud pública enseña a diseñar sin métricas de engagement típicas. El éxito es uso, confianza, y seguridad — no clicks.</li>
+      </ul>
     </div>
   </section>
 
@@ -84,7 +102,7 @@
     <div class="footer__top">
       <div>
         <div class="footer__logo">Alan Buenhombre</div>
-        <p class="footer__role">Lead Designer &amp; Art Director</p>
+        <p class="footer__role">Product &amp; Brand Designer</p>
         <p class="footer__tagline">Bogotá, Colombia</p>
         <p class="footer__copy" data-i18n="footer.copy">© 2026 Alan Buenhombre</p>
       </div>

@@ -41,9 +41,10 @@
 
   <section class="cbody">
     <div class="cblock">
-      <h2 class="cblock__title" data-i18n="pk.intro.title">El reto: qué estaba roto</h2>
-      <p class="cblock__text" data-i18n="pk.intro.p1"></p>
-      <p class="cblock__text" data-i18n="pk.intro.p2" style="margin-top:18px"></p>
+      <h2 class="cblock__title" data-i18n="pk.ctx.title">Contexto</h2>
+      <p class="cblock__text" data-i18n="pk.ctx.p1">Kommit no tenía un design system cuando inicié. Eso significaba inconsistencia visual, componentes duplicados, procesos ad-hoc entre diseño y desarrollo.</p>
+      <p class="cblock__text" data-i18n-html="pk.ctx.p2">El reto fue doble: crear un design system <strong>desde cero</strong> que fuera la base para Portal Kommit, <strong>en paralelo</strong> con la construcción de la marca corporativa de Kommit. Sistema y brand tenían que nacer juntos.</p>
+      <p class="cblock__text" data-i18n-html="pk.ctx.p3"><strong>Un design system no es documentación bonita. Es el lenguaje compartido entre diseño, producto y desarrollo.</strong></p>
     </div>
 
     <div class="cimgs">
@@ -52,23 +53,55 @@
     </div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="pk.b1.label">01 — Arquitectura</div>
-      <h2 class="cblock__title" data-i18n="pk.b1.title">Tokens, componentes y una sola base</h2>
-      <p class="cblock__text" data-i18n="pk.b1.text"></p>
+      <h2 class="cblock__title" data-i18n="pk.dec.title">Decisión</h2>
+      <p class="cblock__text" data-i18n="pk.dec.intro">Como Lead Designer, construí Kommit Design System desde cero:</p>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="pk.dec.s1.h">01 — Fundamentos visuales</div>
+        <p class="cblock__text" data-i18n="pk.dec.s1.p">Definí paleta cromática (K-Blue, K-Cyan, neutrals), tipografía (Manrope + monospace), grid system (8px base), elevación, sombras, spacing. Todo parametrizado para escalar.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="pk.dec.s2.h">02 — Componentes base reutilizables</div>
+        <p class="cblock__text" data-i18n="pk.dec.s2.p">Construí biblioteca de componentes: Button (variantes: primary, secondary, danger), Input, Select, Datepicker, Table, Modal, Card, Navigation. Cada uno con estados: default, hover, active, disabled, error, loading.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="pk.dec.s3.h">03 — Versionado (v1-v5)</div>
+        <p class="cblock__text" data-i18n="pk.dec.s3.p">A medida que Portal Kommit evolucionaba, el sistema evolucionaba. v1 fue MVP básico. v5 (actual) incluye: componentes avanzados, accesibilidad mejorada, dark/light mode, documentación completa, handoff dev automatizado.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="pk.dec.s4.h">04 — Integración con Claude Design</div>
+        <p class="cblock__text" data-i18n="pk.dec.s4.p">Documenté el sistema en formato que Claude Design pudiera interpretar. Esto permitió que el equipo usara IA para acelerar generación de componentes nuevos sin perder coherencia visual.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="pk.dec.s5.h">05 — Procesos de handoff dev</div>
+        <p class="cblock__text" data-i18n="pk.dec.s5.p">Establecí workflow claro: Figma → Design tokens exportados → Frontend implementa componentes → QA valida. Cada componente tenía documentación de props, estados y casos de uso.</p>
+      </div>
     </div>
 
     <div class="cshot cshot--wide"><img src="assets/portal-kommit-inset.jpg" alt=""></div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="pk.b2.label">02 — Adopción y gobernanza</div>
-      <h2 class="cblock__title" data-i18n="pk.b2.title">Un sistema que los equipos realmente usan</h2>
-      <p class="cblock__text" data-i18n="pk.b2.text"></p>
+      <h2 class="cblock__title" data-i18n="pk.res.title">Resultado</h2>
+      <p class="cblock__text" data-i18n="pk.res.p1">Kommit Design System es hoy el estándar visual de la compañía. 12+ módulos de Portal Kommit se construyeron sobre esta base sin inconsistencias visuales.</p>
+      <p class="cblock__text"><strong data-i18n="pk.res.impact.h">Impacto:</strong></p>
+      <ul class="cblock__list">
+        <li data-i18n="pk.res.impact.li1">Team velocity mejoró: diseñadores usan componentes pre-hechos, no reinventan.</li>
+        <li data-i18n="pk.res.impact.li2">Consistencia visual precedente: cualquier pantalla nueva sigue el sistema automáticamente.</li>
+        <li data-i18n="pk.res.impact.li3">Procesos establecidos: handoff dev es reproducible, no ad-hoc.</li>
+        <li data-i18n="pk.res.impact.li4">Escalabilidad: v1→v5 sin que necesite redesign completo — solo evolución.</li>
+      </ul>
+      <p class="cblock__text" data-i18n-html="pk.res.p3" style="margin-top:18px"><strong>Status hoy:</strong> Activo y mantenido. Es la guía para todo lo relacionado con UI y diseño de material en Kommit. El equipo lo consulta diariamente.</p>
     </div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="pk.b3.label">03 — Resultado</div>
-      <h2 class="cblock__title" data-i18n="pk.b3.title">Menos ciclos, más consistencia</h2>
-      <p class="cblock__text" data-i18n="pk.b3.text"></p>
+      <h2 class="cblock__title" data-i18n="pk.learn.title">Aprendizajes transferibles</h2>
+      <ul class="cblock__list">
+        <li data-i18n-html="pk.learn.li1"><strong>Sistemas de diseño para crecimiento:</strong> Un sistema debe escalar de 1 módulo a 12+ sin romperse. Eso requiere pensamiento estructural, no estético.</li>
+        <li data-i18n-html="pk.learn.li2"><strong>Versionado de sistemas:</strong> v1-v5 no significa "versiones rotas". Significa evolución controlada. Cada versión agrega features (dark mode, accesibilidad) sin perder compatibilidad.</li>
+        <li data-i18n-html="pk.learn.li3"><strong>Documentación = governance:</strong> Sin docs claras, el sistema es caótico. Cada componente debe tener: qué es, cuándo usarlo, cuándo no, props disponibles, ejemplos.</li>
+        <li data-i18n-html="pk.learn.li4"><strong>Handoff dev es diseño:</strong> Cómo se comunica el diseño al dev determina calidad de ejecución. Figma + design tokens + specs claras = implementación fiel.</li>
+        <li data-i18n-html="pk.learn.li5"><strong>IA tools aceleran pero no reemplazan:</strong> Integración con Claude Design acelera generación de componentes, pero el sistema mismo (principios, governance) debe estar claro de inicio.</li>
+        <li data-i18n-html="pk.learn.li6"><strong>Sistemas como producto interno:</strong> Un design system no es "hecho una vez". Requiere mantenimiento, evolución, y adopción activa del equipo.</li>
+      </ul>
     </div>
   </section>
 
@@ -84,7 +117,7 @@
     <div class="footer__top">
       <div>
         <div class="footer__logo">Alan Buenhombre</div>
-        <p class="footer__role">Lead Designer &amp; Art Director</p>
+        <p class="footer__role">Product &amp; Brand Designer</p>
         <p class="footer__tagline">Bogotá, Colombia</p>
         <p class="footer__copy" data-i18n="footer.copy">© 2026 Alan Buenhombre</p>
       </div>

@@ -41,9 +41,10 @@
 
   <section class="cbody">
     <div class="cblock">
-      <h2 class="cblock__title" data-i18n="wl.intro.title">Project Overview</h2>
-      <p class="cblock__text" data-i18n="wl.intro.p1"></p>
-      <p class="cblock__text" data-i18n="wl.intro.p2" style="margin-top:18px"></p>
+      <h2 class="cblock__title" data-i18n="wl.ctx.title">Contexto</h2>
+      <p class="cblock__text" data-i18n="wl.ctx.p1">Kommit no tenía un centro operativo centralizado. El equipo distribuido usaba múltiples herramientas (Notion para tareas, Amazon services para procesos, emails) para gestionar el flujo diario de trabajo.</p>
+      <p class="cblock__text" data-i18n="wl.ctx.p2">El reto: centralizar todo en un único espacio donde el equipo pudiera registrar horas, gestionar PTO, ver tareas, seguimiento de proyectos — sin saltar entre aplicaciones.</p>
+      <p class="cblock__text" data-i18n-html="wl.ctx.p3"><strong>Portal Kommit sería el sistema nervioso operativo de la compañía.</strong></p>
     </div>
 
     <div class="cimgs">
@@ -52,28 +53,48 @@
     </div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="wl.problem.label">01 — Problema</div>
-      <p class="cblock__text" data-i18n="wl.problem.text"></p>
-    </div>
-
-    <div class="cblock">
-      <div class="cblock__label" data-i18n="wl.ux.label">02 — UX Improvements</div>
-      <p class="cblock__text" data-i18n="wl.ux.text"></p>
+      <h2 class="cblock__title" data-i18n="wl.dec.title">Decisión</h2>
+      <p class="cblock__text" data-i18n="wl.dec.intro">Como Lead Designer, diseñé Portal Kommit como herramienta interna completa:</p>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="wl.dec.s1.h">01 — Arquitectura de módulos</div>
+        <p class="cblock__text" data-i18n="wl.dec.s1.p">Definí 12+ módulos independientes pero conectados: Home, Worklogs (registro de horas), Time Off (PTO), Tasks, Projects, Admin, etc. Cada uno con lógica clara pero visual coherente.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="wl.dec.s2.h">02 — Componentes reutilizables</div>
+        <p class="cblock__text" data-i18n="wl.dec.s2.p">Construí un sistema de componentes en React que permitiera: inputs validados, datepickers, tablas con sorting, modales, notificaciones. Componentes que fueran reutilizables pero específicos para operaciones internas.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="wl.dec.s3.h">03 — Dark mode + Light mode nativo</div>
+        <p class="cblock__text" data-i18n="wl.dec.s3.p">Diseñé ambos modos en paralelo desde el inicio. Herramientas internas se usan a cualquier hora — dark mode reduce fatiga visual en noches de trabajo.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n="wl.dec.s4.h">04 — Flujos de UX centrados en velocidad</div>
+        <p class="cblock__text" data-i18n="wl.dec.s4.p">Un empleado debe poder registrar sus horas en menos de 30 segundos. Solicitar PTO en 1 minuto. Ver sus proyectos asignados al cargar. Velocidad de UX = adopción.</p>
+      </div>
     </div>
 
     <div class="cshot cshot--wide"><img src="assets/worklogs-wide1.jpg" alt="Portal Kommit — Work Logs"></div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="wl.ui.label">03 — UI Enhancements</div>
-      <p class="cblock__text" data-i18n="wl.ui.text"></p>
-    </div>
-
-    <div class="cblock">
-      <div class="cblock__label" data-i18n="wl.scope.label">04 — Scope of Work</div>
-      <p class="cblock__text" data-i18n="wl.scope.pending"></p>
+      <h2 class="cblock__title" data-i18n="wl.res.title">Resultado</h2>
+      <p class="cblock__text" data-i18n="wl.res.p1">Portal Kommit centralizó completamente el flujo operativo de la compañía. 100k+ daily sessions demuestran que es el asset principal de trabajo diario para el equipo Kommit.</p>
+      <p class="cblock__text" data-i18n-html="wl.res.p2"><strong>Impacto:</strong> Eliminó fragmentación de herramientas. Un empleado entra a Portal, ve su día: qué proyecto, cuántas horas registradas, si hay PTO pendiente, qué tareas tiene asignadas. Transparencia operativa total.</p>
+      <p class="cblock__text" data-i18n-html="wl.res.p3"><strong>Status hoy:</strong> Activo en producción. Sigue siendo el centro operativo donde trabaja el equipo Kommit diariamente.</p>
     </div>
 
     <div class="cshot cshot--wide"><img src="assets/worklogs-wide2.jpg" alt="Portal Kommit — Objectives &amp; KPIs"></div>
+
+    <div class="cblock">
+      <h2 class="cblock__title" data-i18n="wl.learn.title">Aprendizajes transferibles</h2>
+      <ul class="cblock__list">
+        <li data-i18n-html="wl.learn.li1"><strong>Herramientas internas = diseño crítico:</strong> Empleados no son "usuarios cautivos". Si el UI es malo, lo usan a regañadientes. Buen UI = adopción real.</li>
+        <li data-i18n-html="wl.learn.li2"><strong>Dark mode como feature, no como add-on:</strong> En herramientas internas que se usan 8+ horas, dark mode no es cosmético. Es necesario.</li>
+        <li data-i18n-html="wl.learn.li3"><strong>Velocidad de acción es métrica de diseño:</strong> "Registrar horas en 30 segundos" es una decisión de UX, no de backend. Flujos claros = adopción.</li>
+        <li data-i18n-html="wl.learn.li4"><strong>Sistemas de componentes para escala:</strong> Portal Kommit pasó de 5 a 12+ módulos sin que cada módulo requiera diseño propio. Sistema de componentes = mantenibilidad.</li>
+        <li data-i18n-html="wl.learn.li5"><strong>Transparencia operativa vía diseño:</strong> El dashboard de Portal permite que cada empleado vea su contexto (horas, PTO, proyectos) de un vistazo. Eso es information architecture + UX combinadas.</li>
+        <li data-i18n-html="wl.learn.li6"><strong>Iteración constante en tools internas:</strong> Portal Kommit ha evolucionado v1-v5 en paralelo con cambios de la compañía. Las herramientas internas no son "terminadas", son vivas.</li>
+      </ul>
+    </div>
   </section>
 
   <section class="cnext">
@@ -88,7 +109,7 @@
     <div class="footer__top">
       <div>
         <div class="footer__logo">Alan Buenhombre</div>
-        <p class="footer__role">Lead Designer &amp; Art Director</p>
+        <p class="footer__role">Product &amp; Brand Designer</p>
         <p class="footer__tagline">Bogotá, Colombia</p>
         <p class="footer__copy" data-i18n="footer.copy">© 2026 Alan Buenhombre</p>
       </div>

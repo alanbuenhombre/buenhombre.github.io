@@ -116,29 +116,24 @@
        text-decoration:none;transition:color .25s}
   .cta-link:hover{color:#fff}
 
-  /* ===== SECCIÓN 2 · CARD FAN ===== */
-  .fan{position:relative;min-height:100vh;display:flex;flex-direction:column;
-       align-items:center;justify-content:center;overflow:hidden;user-select:none;padding:80px 0}
-  .fan__head{text-align:center;margin-bottom:36px;padding:0 var(--pad)}
+  /* ===== SECCIÓN 4 · PARALLAX GALLERY ===== */
+  .pgallery{position:relative;padding:120px 0 60px}
+  .fan__head{text-align:center;margin-bottom:36px;padding:0 var(--pad);position:relative;z-index:2}
   .fan__idx{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .fan__title{font-family:var(--font);font-weight:300;font-size:clamp(1.9rem,3.4vw,2.8rem);letter-spacing:-.025em;margin-top:12px}
-  .stage{position:relative;width:min(96vw,1100px);height:min(48vh,400px)}
-  .fcard{position:absolute;left:50%;top:50%;width:clamp(230px,30vw,360px);aspect-ratio:13/8;
-       border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#111;
-       box-shadow:0 20px 50px rgba(0,0,0,.45);cursor:pointer;transform-origin:center center;
-       transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s ease,box-shadow .3s ease;will-change:transform}
-  .fcard img{width:100%;height:100%;object-fit:cover;pointer-events:none}
-  .fcard[data-center="1"]{box-shadow:0 34px 80px rgba(0,0,0,.6)}
-  .fan__ctrl{display:flex;align-items:center;gap:22px;margin-top:44px}
-  .fbtn{width:44px;height:44px;border-radius:100px;display:flex;align-items:center;justify-content:center;
-       background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.2);color:var(--text);cursor:pointer;
-       transition:background .25s,border-color .25s}
-  .fbtn:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4)}
-  .fbtn svg{width:16px;height:16px}
-  .fdots{display:flex;align-items:center;gap:9px}
-  .fdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:background .3s,transform .3s}
-  .fdot.on{background:#fff;transform:scale(1.3)}
-  .fan__hint{margin-top:18px;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;color:var(--muted)}
+  .pgallery__scroll{position:relative;height:300vh}
+  .pgallery__sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;background:#0c0c0d;perspective:1400px}
+  .pgallery__grid{position:absolute;left:-15%;top:-25%;width:130%;height:150%;display:flex;gap:16px;justify-content:center;align-items:center;
+       transform-style:preserve-3d;will-change:transform}
+  .pgallery__col{display:flex;flex-direction:column;gap:16px;width:24%;min-width:240px;flex:none;will-change:transform}
+  .pgallery__col img{width:100%;object-fit:cover;border-radius:6px;background:#111;display:block;opacity:.85}
+  .pgallery__mask{position:absolute;inset:0;pointer-events:none;
+       box-shadow:inset 0 90px 110px -40px rgba(0,0,0,.95),inset 0 -90px 110px -40px rgba(0,0,0,.95),
+                  inset 110px 0 110px -40px rgba(0,0,0,.9),inset -110px 0 110px -40px rgba(0,0,0,.9)}
+  .pgallery__mobile{display:none;gap:14px;overflow-x:auto;padding:0 var(--pad);scrollbar-width:none}
+  .pgallery__mobile::-webkit-scrollbar{display:none}
+  .pgallery__mobile img{flex:none;height:56vh;width:auto;max-width:80vw;object-fit:cover;border-radius:10px;
+       border:1px solid rgba(255,255,255,.1);background:#111}
 
   /* ===== SECCIÓN 3 · INFO STICKY ===== */
   .info{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad)}
@@ -147,6 +142,7 @@
   .info__statement{font-family:var(--font);font-weight:300;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;letter-spacing:-.025em;margin-bottom:24px}
   .info__text{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted)}
   .caps{position:relative}
+  .caps::after{content:'';display:block;height:54vh}
   .cap{position:sticky;top:46vh;z-index:2;background:var(--bg);display:flex;align-items:flex-start;justify-content:space-between;
        gap:60px;padding:40px 4px;min-height:54vh;border-top:1px solid rgba(255,255,255,.14)}
   .cap__title{font-family:var(--font);font-weight:500;font-size:clamp(1.9rem,4.4vw,3.6rem);letter-spacing:-.03em;line-height:1;
@@ -235,23 +231,10 @@
        text-align:center;font-size:19vw;overflow:hidden}
 
   /* ===== LIGHTBOX (fan) ===== */
-  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.93);display:flex;align-items:center;justify-content:center;
-       padding:5vh 5vw;opacity:0;pointer-events:none;transition:opacity .3s ease;cursor:zoom-out}
-  .lb.on{opacity:1;pointer-events:auto}
-  .lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 90px rgba(0,0,0,.6);transform:scale(.96);transition:transform .3s ease}
-  .lb.on img{transform:scale(1)}
-  .lb__close{position:absolute;top:28px;right:32px;font-family:var(--font-mono);font-size:.8rem;color:var(--muted)}
-  .lb__arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:100px;
-       display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);
-       border:1px solid rgba(255,255,255,.2);color:var(--text);cursor:pointer;z-index:2;
-       transition:background .25s,border-color .25s}
-  .lb__arrow:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4)}
-  .lb__arrow svg{width:16px;height:16px}
-  .lb__arrow--prev{left:24px}
-  .lb__arrow--next{right:24px}
 
   @media(max-width:860px){
     .cap{flex-direction:column;gap:22px;position:static;top:auto;min-height:0}
+    .caps::after{height:0}
     .cap__tags{max-width:100%}
     .others__grid{grid-template-columns:1fr 1fr}
   }
@@ -260,8 +243,9 @@
     .row{flex-direction:column;align-items:flex-start;gap:24px}
     .hero .cta{align-items:flex-start}
     .cursor-preview{display:none} .crow__disc{display:none}
-    .lb__arrow{display:none}
     .others__grid{grid-template-columns:1fr}
+    .pgallery__scroll,.pgallery__sticky{display:none}
+    .pgallery__mobile{display:flex}
     .footer__top{grid-template-columns:1fr;gap:40px}
     .footer__bigname{font-size:24vw}
     .hero__bg img{object-position:46% center}
@@ -289,9 +273,10 @@
         <div class="hero-left">
           <div class="kick"><span class="kick__avail"><span class="dot"></span> <span data-i18n="hero_avail">Disponible</span></span></div>
           <div class="titleblock">
-            <h1 class="title" data-i18n="hero_title">Diseño brand y productos digitales.</h1>
+            <h1 class="title" data-i18n="hero_title">Product & Brand Designer</h1>
             <div class="titlerule"></div>
-            <p class="lede" data-i18n="hero_lede">14 años en dirección creativa → últimos 4 en productos digitales.</p>
+            <p class="lede" data-i18n="hero_lede">I design products where brand and function are one. Founder-stage to scale. Fintech, Web3, health tech.</p>
+            <p class="lede" data-i18n="hero_stat" style="margin-top:10px">14 años en dirección creativa → últimos 4 en productos digitales.</p>
           </div>
         </div>
         <div class="cta">
@@ -306,15 +291,14 @@
   <section class="cases" id="casos">
     <div class="cases__head">
       <h2 class="cases__title" data-i18n="cases_title">Casos de estudio</h2>
-      <span class="cases__meta" data-i18n="cases_meta">02 · 06 PROYECTOS</span>
+      <span class="cases__meta" data-i18n="cases_meta">02 · 05 PROYECTOS</span>
     </div>
     <ul class="cases__list" id="casesList">
-      <a class="crow" href="chaincerts.html"><span class="crow__num">01</span><span class="crow__name">Chaincerts</span><span class="crow__disc">Fintech · Web3 · 2023</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="okdose.html"><span class="crow__num">02</span><span class="crow__name">OKdose</span><span class="crow__disc">Health Product · 2022</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="podcast.html"><span class="crow__num">03</span><span class="crow__name">Podnation</span><span class="crow__disc">Product & Brand · 2022</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="passage.html"><span class="crow__num">04</span><span class="crow__name">Passage</span><span class="crow__disc">Product & Branding · 2023</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="worklogs.html"><span class="crow__num">05</span><span class="crow__name">Portal Kommit</span><span class="crow__disc">Internal Tools · 2026</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="portal-kommit.html"><span class="crow__num">06</span><span class="crow__name">Kommit V5 Design System</span><span class="crow__disc">Product Systems · 2022–26</span><span class="crow__arrow">↗</span></a>
+      <a class="crow" href="chaincerts.html"><span class="crow__num">01</span><span class="crow__name">Chaincerts</span><span class="crow__disc">Fintech & Web3 · Design System & Product · 2023</span><span class="crow__arrow">↗</span></a>
+      <a class="crow" href="okdose.html"><span class="crow__num">02</span><span class="crow__name">OKdose</span><span class="crow__disc">Health Tech · Product Design & UX/UI · 2022</span><span class="crow__arrow">↗</span></a>
+      <a class="crow" href="podcast.html"><span class="crow__num">03</span><span class="crow__name">Podnation</span><span class="crow__disc">Product & Brand Strategy · 2022</span><span class="crow__arrow">↗</span></a>
+      <a class="crow" href="worklogs.html"><span class="crow__num">04</span><span class="crow__name">Portal Kommit</span><span class="crow__disc">Internal Tools & Design System · 2026</span><span class="crow__arrow">↗</span></a>
+      <a class="crow" href="portal-kommit.html"><span class="crow__num">05</span><span class="crow__name">Kommit V5 Design System</span><span class="crow__disc">Product Systems · Design Governance · 2022–2026</span><span class="crow__arrow">↗</span></a>
     </ul>
   </section>
 
@@ -323,7 +307,7 @@
     <div class="info__intro">
       <p class="info__kicker" data-i18n="info_kicker">Sobre mí</p>
       <h2 class="info__statement" data-i18n="info_statement">De la dirección de arte a los sistemas de producto.</h2>
-      <p class="info__text" data-i18n="info_text">14 años dándole orden y criterio visual a las cosas: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.</p>
+      <p class="info__text" data-i18n="info_text">14 años aportando orden y criterio visual a los proyectos: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.</p>
     </div>
     <div class="caps" id="caps">
       <div class="cap">
@@ -353,19 +337,24 @@
     </div>
   </section>
 
-  <!-- ===== SECCIÓN 4 · CARD FAN ===== -->
-  <section class="fan" id="trabajo">
+  <!-- ===== SECCIÓN 4 · PARALLAX GALLERY ===== -->
+  <section class="pgallery" id="trabajo">
     <div class="fan__head">
       <div class="fan__idx" data-i18n="fan_idx">04 — Trabajo &amp; exploración</div>
       <h2 class="fan__title" data-i18n="fan_title">Algo de lo que diseño.</h2>
     </div>
-    <div class="stage" id="stage"></div>
-    <div class="fan__ctrl">
-      <button class="fbtn" id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <div class="fdots" id="dots"></div>
-      <button class="fbtn" id="next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <div class="pgallery__scroll" id="pgScroll">
+      <div class="pgallery__sticky">
+        <div class="pgallery__grid" id="pgGrid">
+          <div class="pgallery__col" id="pgCol1"></div>
+          <div class="pgallery__col" id="pgCol2"></div>
+          <div class="pgallery__col" id="pgCol3"></div>
+          <div class="pgallery__col" id="pgCol4"></div>
+        </div>
+        <div class="pgallery__mask"></div>
+      </div>
     </div>
-    <p class="fan__hint" data-i18n="fan_hint">Clic en una card para ampliar</p>
+    <div class="pgallery__mobile" id="pgMobile"></div>
   </section>
 
   <!-- ===== OTROS PROYECTOS ===== -->
@@ -395,7 +384,7 @@
     <div class="footer__top">
       <div class="footer__col footer__col--brand">
         <div class="footer__logo">Alan Buenhombre</div>
-        <p class="footer__role">Lead Designer &amp; Art Director</p>
+        <p class="footer__role">Product &amp; Brand Designer</p>
         <p class="footer__tagline">Bogotá, Colombia</p>
         <p class="footer__copy" data-i18n="footer_copy">© 2026 Alan Buenhombre</p>
       </div>
@@ -431,12 +420,6 @@
     <div class="footer__bigname" aria-hidden="true">Buenhombre</div>
   </footer>
 
-  <div class="lb" id="lb">
-    <span class="lb__close">Cerrar ✕</span>
-    <button class="lb__arrow lb__arrow--prev" id="lbPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-    <img id="lbimg" src="" alt="">
-    <button class="lb__arrow lb__arrow--next" id="lbNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-  </div>
   <figure class="cursor-preview" id="cp"><img id="cpimg" src="" alt=""></figure>
 
 <script>
@@ -445,13 +428,14 @@
     es:{
       nav_inicio:'Inicio',nav_trabajo:'Trabajo',nav_casos:'Casos',nav_contacto:'Contacto',
       hero_avail:'Disponible',
-      hero_title:'Diseño brand y productos digitales.',
-      hero_lede:'14 años en dirección creativa → últimos 4 en productos digitales.',
+      hero_title:'Diseñador de Producto y Marca',
+      hero_lede:'Diseño productos donde marca y funcionalidad son uno. De etapa fundacional a escala. Fintech, Web3, health tech.',
+      hero_stat:'14 años en dirección creativa → últimos 4 en productos digitales.',
       hero_cta_about:'Sobre mí →',hero_cta_cases:'Casos de estudio →',
-      fan_idx:'04 — Trabajo & exploración',fan_title:'Algo de lo que diseño.',fan_hint:'Clic en una card para ampliar',
+      fan_idx:'04 — Trabajo & exploración',fan_title:'Algo de lo que diseño.',
       info_kicker:'Sobre mí',info_statement:'De la dirección de arte a los sistemas de producto.',
-      info_text:'14 años dándole orden y criterio visual a las cosas: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.',
-      cases_title:'Casos de estudio',cases_meta:'02 · 06 PROYECTOS',
+      info_text:'14 años aportando orden y criterio visual a los proyectos: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.',
+      cases_title:'Casos de estudio',cases_meta:'02 · 05 PROYECTOS',
       others_label:'Otros proyectos · Dirección de arte & branding de campañas — Behance',
       closer_title:'Busco mi próximo<br>equipo de producto',closer_btn:'Escríbeme →',
       footer_menu:'Menú',footer_contact:'Contacto',footer_copy:'© 2026 Alan Buenhombre',
@@ -460,13 +444,14 @@
     en:{
       nav_inicio:'Home',nav_trabajo:'Work',nav_casos:'Cases',nav_contacto:'Contact',
       hero_avail:'Available',
-      hero_title:'I design brand and digital products.',
-      hero_lede:'14 years in creative direction → last 4 in digital product.',
+      hero_title:'Product & Brand Designer',
+      hero_lede:'I design products where brand and function are one. Founder-stage to scale. Fintech, Web3, health tech.',
+      hero_stat:'14 years in creative direction → last 4 in digital product.',
       hero_cta_about:'About →',hero_cta_cases:'Case studies →',
-      fan_idx:'04 — Work & exploration',fan_title:'Some of what I design.',fan_hint:'Click a card to enlarge',
+      fan_idx:'04 — Work & exploration',fan_title:'Some of what I design.',
       info_kicker:'About',info_statement:'From art direction to product systems.',
       info_text:'14 years bringing order and visual judgment to things: first in brand and campaigns, now in digital product — interfaces, component libraries, design systems and cross-functional collaboration with engineering and product.',
-      cases_title:'Case studies',cases_meta:'02 · 06 PROJECTS',
+      cases_title:'Case studies',cases_meta:'02 · 05 PROJECTS',
       others_label:'Other projects · Art direction & campaign branding — Behance',
       closer_title:'Looking for my next<br>product team',closer_btn:'Write me →',
       footer_menu:'Menu',footer_contact:'Contact',footer_copy:'© 2026 Alan Buenhombre',
@@ -539,66 +524,76 @@
   copyBtn&&copyBtn.addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText('alangtres@gmail.com');
     toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1600);});
 
-  /* ---- FAN ---- */
+  /* ---- PARALLAX GALLERY ---- */
   (function(){
     const IMGS=['assets/brands/01-norvell.png','assets/brands/02-lumea.jpg','assets/brands/03-roselilab.png',
       'assets/brands/04-voxen.jpg','assets/brands/05-cardinova.png','assets/brands/06-bonemesh.png',
       'assets/brands/07-aptest.png','assets/brands/08-ikkaros.jpg','assets/brands/09-sounda.jpg','assets/brands/10-solartrade.jpg'];
-    const N=IMGS.length;
-    const POS=[{x:0,y:0,rot:0,s:1,z:10},{x:150,y:14,rot:7,s:.94,z:3},{x:288,y:44,rot:14,s:.86,z:2},{x:410,y:88,rot:21,s:.78,z:1}];
-    const HALF=3;
-    const mult=()=>{const w=innerWidth;return w<480?.42:w<640?.55:w<768?.7:w<1024?.85:1;};
-    const stage=document.getElementById('stage'), dotsWrap=document.getElementById('dots');
-    const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
-    let center=Math.floor(N/2);
-    const cards=IMGS.map((src,i)=>{const c=document.createElement('div');c.className='fcard';
-      c.innerHTML='<img src="'+src+'" alt="">';
-      c.addEventListener('click',()=>{ if(i===center){lbimg.src=src;lb.classList.add('on');} else {center=i;render();} });
-      stage.appendChild(c);return c;});
-    const dots=IMGS.map((_,i)=>{const d=document.createElement('span');d.className='fdot';
-      d.addEventListener('click',()=>{center=i;render();});dotsWrap.appendChild(d);return d;});
-    function render(){const m=mult();cards.forEach((c,i)=>{let off=i-center;if(off>N/2)off-=N;if(off<-N/2)off+=N;
-      const dist=Math.abs(off);
-      if(dist>HALF){c.style.opacity=0;c.style.pointerEvents='none';c.style.transform='translate(-50%,-50%) scale(.6)';c.style.zIndex=0;c.dataset.center=0;return;}
-      const p=POS[dist],sign=off<0?-1:1,x=sign*p.x*m;
-      c.style.opacity=1;c.style.pointerEvents='auto';c.style.zIndex=p.z;c.dataset.center=dist===0?1:0;
-      c.style.transform='translate(calc(-50% + '+x+'px), calc(-50% + '+p.y+'px)) rotate('+(sign*p.rot)+'deg) scale('+p.s+')';});
-      dots.forEach((d,i)=>d.classList.toggle('on',i===center));}
-    document.getElementById('prev').addEventListener('click',()=>{center=(center-1+N)%N;render();});
-    document.getElementById('next').addEventListener('click',()=>{center=(center+1)%N;render();});
-    addEventListener('resize',render);
-    function lbStep(dir){center=(center+dir+N)%N;render();lbimg.src=IMGS[center];}
-    addEventListener('keydown',e=>{
-      if(e.key==='Escape'){lb.classList.remove('on');return;}
-      if(!lb.classList.contains('on'))return;
-      if(e.key==='ArrowRight')lbStep(1);
-      else if(e.key==='ArrowLeft')lbStep(-1);
+
+    // cada imagen toma su proporción real (evita recortes forzados)
+    function fitNativeRatio(img){
+      const apply=()=>{ if(img.naturalWidth&&img.naturalHeight) img.style.aspectRatio=img.naturalWidth+'/'+img.naturalHeight; };
+      if(img.complete) apply(); else img.addEventListener('load',apply);
+    }
+
+    // desktop: 4 columnas en perspectiva 3D, movidas por scroll
+    const cols=[[],[],[],[]];
+    IMGS.forEach((src,i)=>cols[i%4].push(src));
+    const colEls=['pgCol1','pgCol2','pgCol3','pgCol4'].map(id=>document.getElementById(id));
+    colEls.forEach((el,i)=>{
+      const list=cols[i].concat(cols[i]); // duplicado para dar recorrido al parallax
+      el.innerHTML=list.map(src=>'<img src="'+src+'" alt="" loading="lazy">').join('');
+      el.querySelectorAll('img').forEach(fitNativeRatio);
     });
-    const lbPrev=document.getElementById('lbPrev'),lbNext=document.getElementById('lbNext');
-    lbPrev.addEventListener('click',e=>{e.stopPropagation();lbStep(-1);});
-    lbNext.addEventListener('click',e=>{e.stopPropagation();lbStep(1);});
-    let touchX=0,swiped=false;
-    lb.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;swiped=false;},{passive:true});
-    lb.addEventListener('touchmove',e=>{
-      if(Math.abs(e.changedTouches[0].clientX-touchX)>10)e.preventDefault();
-    },{passive:false});
-    lb.addEventListener('touchend',e=>{
-      const dx=e.changedTouches[0].clientX-touchX;
-      if(Math.abs(dx)>40){swiped=true;lbStep(dx<0?1:-1);}
-    });
-    lb.addEventListener('click',()=>{if(swiped){swiped=false;return;}lb.classList.remove('on');});
-    render();
+
+    const scrollEl=document.getElementById('pgScroll');
+    const grid=document.getElementById('pgGrid');
+    let progress=0, smooth=0;
+
+    function calcProgress(){
+      const r=scrollEl.getBoundingClientRect();
+      const total=r.height-innerHeight;
+      progress = total<=0 ? 0 : Math.min(Math.max(-r.top/total,0),1);
+    }
+    addEventListener('resize',calcProgress);
+    calcProgress();
+
+    function mapR(v,a,b,c,d){const t=Math.min(Math.max((v-a)/(b-a),0),1);return c+(d-c)*t;}
+
+    let rafId=null, active=false;
+    function tick(){
+      smooth+=(progress-smooth)*0.08;
+      const p=smooth;
+      const rx=mapR(p,0,1,18,4), ry=mapR(p,0,1,-30,-6), rz=mapR(p,0,1,8,1), tz=mapR(p,0,1,-500,0);
+      grid.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg) rotateZ('+rz+'deg) translateZ('+tz+'px)';
+
+      colEls[0].style.transform='translateY('+mapR(p,0,1,0,-30)+'%)';
+      colEls[1].style.transform='translateY('+mapR(p,0,1,-30,10)+'%)';
+      colEls[2].style.transform='translateY('+mapR(p,0,1,0,-25)+'%)';
+      colEls[3].style.transform='translateY('+mapR(p,0,1,-20,15)+'%)';
+      rafId=requestAnimationFrame(tick);
+    }
+    // el loop de animación solo corre mientras la sección está cerca del viewport
+    function start(){ if(active)return; active=true; calcProgress(); addEventListener('scroll',calcProgress,{passive:true}); rafId=requestAnimationFrame(tick); }
+    function stop(){ if(!active)return; active=false; removeEventListener('scroll',calcProgress); if(rafId)cancelAnimationFrame(rafId); }
+    new IntersectionObserver(entries=>{
+      entries.forEach(e=> e.isIntersecting ? start() : stop());
+    },{rootMargin:'40% 0px 40% 0px'}).observe(scrollEl);
+
+    // mobile: tira horizontal simple, sin scroll-jack
+    const mobileEl=document.getElementById('pgMobile');
+    mobileEl.innerHTML=IMGS.map(src=>'<img src="'+src+'" alt="" loading="lazy">').join('');
+    mobileEl.querySelectorAll('img').forEach(fitNativeRatio);
   })();
 
   /* ---- CASES ---- */
   (function(){
     const CASES=[
-      ['Chaincerts','Fintech · Web3 · 2023','chaincerts.html','assets/chaincerts-hero.jpg'],
-      ['OKdose','Health Product · 2022','okdose.html','assets/okdose-hero.jpg'],
-      ['Podnation','Product & Brand · 2022','podcast.html','assets/podcast-hero.jpg'],
-      ['Passage','Product & Branding · 2023','passage.html','assets/passage-hero.jpg'],
-      ['Portal Kommit','Internal Tools · 2026','worklogs.html','assets/portal-kommit-2026-hero.jpg'],
-      ['Kommit V5 Design System','Product Systems · 2022–26','portal-kommit.html','assets/portal-kommit-hero.jpg'],
+      ['Chaincerts','Fintech & Web3 · Design System & Product · 2023','chaincerts.html','assets/chaincerts-hero.jpg'],
+      ['OKdose','Health Tech · Product Design & UX/UI · 2022','okdose.html','assets/okdose-hero.jpg'],
+      ['Podnation','Product & Brand Strategy · 2022','podcast.html','assets/podcast-hero.jpg'],
+      ['Portal Kommit','Internal Tools & Design System · 2026','worklogs.html','assets/portal-kommit-2026-hero.jpg'],
+      ['Kommit V5 Design System','Product Systems · Design Governance · 2022–2026','portal-kommit.html','assets/portal-kommit-hero.jpg'],
     ];
     const list=document.getElementById('casesList'),cp=document.getElementById('cp'),cpimg=document.getElementById('cpimg');
     list.innerHTML='';
