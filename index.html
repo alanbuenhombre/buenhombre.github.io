@@ -116,24 +116,39 @@
        text-decoration:none;transition:color .25s}
   .cta-link:hover{color:#fff}
 
-  /* ===== SECCIÓN 4 · PARALLAX GALLERY ===== */
-  .pgallery{position:relative;padding:120px 0 60px}
-  .fan__head{text-align:center;margin-bottom:36px;padding:0 var(--pad);position:relative;z-index:2}
+  /* ===== SECCIÓN 4 · INFINITE SLIDER ===== */
+  .pgallery{position:relative;padding:120px 0 100px;overflow:hidden}
+  .fan__head{text-align:center;margin-bottom:60px;padding:0 var(--pad);position:relative;z-index:2}
   .fan__idx{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .fan__title{font-family:var(--font);font-weight:300;font-size:clamp(1.9rem,3.4vw,2.8rem);letter-spacing:-.025em;margin-top:12px}
-  .pgallery__scroll{position:relative;height:300vh}
-  .pgallery__sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;background:#0c0c0d;perspective:1400px}
-  .pgallery__grid{position:absolute;left:-15%;top:-25%;width:130%;height:150%;display:flex;gap:16px;justify-content:center;align-items:center;
-       transform-style:preserve-3d;will-change:transform}
-  .pgallery__col{display:flex;flex-direction:column;gap:16px;width:24%;min-width:240px;flex:none;will-change:transform}
-  .pgallery__col img{width:100%;object-fit:cover;border-radius:6px;background:#111;display:block;opacity:.85}
-  .pgallery__mask{position:absolute;inset:0;pointer-events:none;
-       box-shadow:inset 0 90px 110px -40px rgba(0,0,0,.95),inset 0 -90px 110px -40px rgba(0,0,0,.95),
-                  inset 110px 0 110px -40px rgba(0,0,0,.9),inset -110px 0 110px -40px rgba(0,0,0,.9)}
-  .pgallery__mobile{display:none;gap:14px;overflow-x:auto;padding:0 var(--pad);scrollbar-width:none}
-  .pgallery__mobile::-webkit-scrollbar{display:none}
-  .pgallery__mobile img{flex:none;height:56vh;width:auto;max-width:80vw;object-fit:cover;border-radius:10px;
-       border:1px solid rgba(255,255,255,.1);background:#111}
+  @keyframes pgSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .pgallery__viewport{width:100%;overflow:hidden;
+       -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+               mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+  .pgallery__track{display:flex;gap:24px;width:max-content;animation:pgSlide 60s linear infinite;will-change:transform}
+  .pgallery__viewport:hover .pgallery__track{animation-play-state:paused}
+  .pgallery__frame{flex:none;height:min(52vh,460px);width:auto;border-radius:10px;overflow:hidden;
+       border:1px solid rgba(255,255,255,.08);background:#111;box-shadow:0 20px 50px rgba(0,0,0,.45);cursor:zoom-in;
+       transition:transform .3s ease,border-color .3s ease}
+  .pgallery__frame:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.24)}
+  .pgallery__frame img{height:100%;width:auto;display:block;object-fit:cover;pointer-events:none}
+
+  /* ===== LIGHTBOX ===== */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.94);display:flex;align-items:center;justify-content:center;
+       padding:5vh 5vw;opacity:0;pointer-events:none;transition:opacity .3s ease;cursor:zoom-out}
+  .lb.on{opacity:1;pointer-events:auto}
+  .lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 90px rgba(0,0,0,.6);
+       transform:scale(.96);transition:transform .3s ease}
+  .lb.on img{transform:scale(1)}
+  .lb__close{position:absolute;top:28px;right:32px;font-family:var(--font-mono);font-size:.8rem;color:var(--muted)}
+  .lb__arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:100px;
+       display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);
+       border:1px solid rgba(255,255,255,.2);color:var(--text);cursor:pointer;z-index:2;
+       transition:background .25s,border-color .25s}
+  .lb__arrow:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4)}
+  .lb__arrow svg{width:16px;height:16px}
+  .lb__arrow--prev{left:24px}
+  .lb__arrow--next{right:24px}
 
   /* ===== SECCIÓN 3 · INFO STICKY ===== */
   .info{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad)}
@@ -244,8 +259,9 @@
     .hero .cta{align-items:flex-start}
     .cursor-preview{display:none} .crow__disc{display:none}
     .others__grid{grid-template-columns:1fr}
-    .pgallery__scroll,.pgallery__sticky{display:none}
-    .pgallery__mobile{display:flex}
+    .pgallery{padding:80px 0 60px}
+    .pgallery__frame{height:min(38vh,320px)}
+    .lb__arrow{display:none}
     .footer__top{grid-template-columns:1fr;gap:40px}
     .footer__bigname{font-size:24vw}
     .hero__bg img{object-position:46% center}
@@ -337,24 +353,15 @@
     </div>
   </section>
 
-  <!-- ===== SECCIÓN 4 · PARALLAX GALLERY ===== -->
+  <!-- ===== SECCIÓN 4 · INFINITE SLIDER ===== -->
   <section class="pgallery" id="trabajo">
     <div class="fan__head">
       <div class="fan__idx" data-i18n="fan_idx">04 — Trabajo &amp; exploración</div>
       <h2 class="fan__title" data-i18n="fan_title">Algo de lo que diseño.</h2>
     </div>
-    <div class="pgallery__scroll" id="pgScroll">
-      <div class="pgallery__sticky">
-        <div class="pgallery__grid" id="pgGrid">
-          <div class="pgallery__col" id="pgCol1"></div>
-          <div class="pgallery__col" id="pgCol2"></div>
-          <div class="pgallery__col" id="pgCol3"></div>
-          <div class="pgallery__col" id="pgCol4"></div>
-        </div>
-        <div class="pgallery__mask"></div>
-      </div>
+    <div class="pgallery__viewport">
+      <div class="pgallery__track" id="pgTrack"></div>
     </div>
-    <div class="pgallery__mobile" id="pgMobile"></div>
   </section>
 
   <!-- ===== OTROS PROYECTOS ===== -->
@@ -421,6 +428,13 @@
   </footer>
 
   <figure class="cursor-preview" id="cp"><img id="cpimg" src="" alt=""></figure>
+
+  <div class="lb" id="lb">
+    <span class="lb__close">Cerrar ✕</span>
+    <button class="lb__arrow lb__arrow--prev" id="lbPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <img id="lbimg" src="" alt="">
+    <button class="lb__arrow lb__arrow--next" id="lbNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </div>
 
 <script>
   /* ===== i18n ===== */
@@ -524,66 +538,52 @@
   copyBtn&&copyBtn.addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText('alangtres@gmail.com');
     toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1600);});
 
-  /* ---- PARALLAX GALLERY ---- */
+  /* ---- INFINITE SLIDER + LIGHTBOX ---- */
   (function(){
     const IMGS=['assets/brands/01-norvell.png','assets/brands/02-lumea.jpg','assets/brands/03-roselilab.png',
       'assets/brands/04-voxen.jpg','assets/brands/05-cardinova.png','assets/brands/06-bonemesh.png',
       'assets/brands/07-aptest.png','assets/brands/08-ikkaros.jpg','assets/brands/09-sounda.jpg','assets/brands/10-solartrade.jpg'];
 
-    // cada imagen toma su proporción real (evita recortes forzados)
-    function fitNativeRatio(img){
-      const apply=()=>{ if(img.naturalWidth&&img.naturalHeight) img.style.aspectRatio=img.naturalWidth+'/'+img.naturalHeight; };
-      if(img.complete) apply(); else img.addEventListener('load',apply);
-    }
+    const track=document.getElementById('pgTrack');
+    // duplicado para lograr scroll infinito con keyframe (-50%)
+    const list=IMGS.concat(IMGS);
+    track.innerHTML=list.map((src,i)=>
+      '<div class="pgallery__frame" data-idx="'+(i%IMGS.length)+'"><img src="'+src+'" alt="" loading="lazy"></div>'
+    ).join('');
 
-    // desktop: 4 columnas en perspectiva 3D, movidas por scroll
-    const cols=[[],[],[],[]];
-    IMGS.forEach((src,i)=>cols[i%4].push(src));
-    const colEls=['pgCol1','pgCol2','pgCol3','pgCol4'].map(id=>document.getElementById(id));
-    colEls.forEach((el,i)=>{
-      const list=cols[i].concat(cols[i]); // duplicado para dar recorrido al parallax
-      el.innerHTML=list.map(src=>'<img src="'+src+'" alt="" loading="lazy">').join('');
-      el.querySelectorAll('img').forEach(fitNativeRatio);
-    });
-
-    const scrollEl=document.getElementById('pgScroll');
-    const grid=document.getElementById('pgGrid');
-    let progress=0, smooth=0;
-
-    function calcProgress(){
-      const r=scrollEl.getBoundingClientRect();
-      const total=r.height-innerHeight;
-      progress = total<=0 ? 0 : Math.min(Math.max(-r.top/total,0),1);
-    }
-    addEventListener('resize',calcProgress);
-    calcProgress();
-
-    function mapR(v,a,b,c,d){const t=Math.min(Math.max((v-a)/(b-a),0),1);return c+(d-c)*t;}
-
-    let rafId=null, active=false;
-    function tick(){
-      smooth+=(progress-smooth)*0.08;
-      const p=smooth;
-      const rx=mapR(p,0,1,18,4), ry=mapR(p,0,1,-30,-6), rz=mapR(p,0,1,8,1), tz=mapR(p,0,1,-500,0);
-      grid.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg) rotateZ('+rz+'deg) translateZ('+tz+'px)';
-
-      colEls[0].style.transform='translateY('+mapR(p,0,1,0,-30)+'%)';
-      colEls[1].style.transform='translateY('+mapR(p,0,1,-30,10)+'%)';
-      colEls[2].style.transform='translateY('+mapR(p,0,1,0,-25)+'%)';
-      colEls[3].style.transform='translateY('+mapR(p,0,1,-20,15)+'%)';
-      rafId=requestAnimationFrame(tick);
-    }
-    // el loop de animación solo corre mientras la sección está cerca del viewport
-    function start(){ if(active)return; active=true; calcProgress(); addEventListener('scroll',calcProgress,{passive:true}); rafId=requestAnimationFrame(tick); }
-    function stop(){ if(!active)return; active=false; removeEventListener('scroll',calcProgress); if(rafId)cancelAnimationFrame(rafId); }
+    // pausar animación cuando la sección está fuera del viewport (ahorra CPU)
+    const viewport=track.parentElement;
     new IntersectionObserver(entries=>{
-      entries.forEach(e=> e.isIntersecting ? start() : stop());
-    },{rootMargin:'40% 0px 40% 0px'}).observe(scrollEl);
+      entries.forEach(e=>{ track.style.animationPlayState = e.isIntersecting ? 'running' : 'paused'; });
+    }).observe(viewport);
 
-    // mobile: tira horizontal simple, sin scroll-jack
-    const mobileEl=document.getElementById('pgMobile');
-    mobileEl.innerHTML=IMGS.map(src=>'<img src="'+src+'" alt="" loading="lazy">').join('');
-    mobileEl.querySelectorAll('img').forEach(fitNativeRatio);
+    // ---- LIGHTBOX ----
+    const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
+    let cur=0;
+    function open(i){ cur=i; lbimg.src=IMGS[i]; lb.classList.add('on'); }
+    function close(){ lb.classList.remove('on'); }
+    function step(dir){ cur=(cur+dir+IMGS.length)%IMGS.length; lbimg.src=IMGS[cur]; }
+
+    track.addEventListener('click',e=>{
+      const f=e.target.closest('.pgallery__frame'); if(!f) return;
+      open(parseInt(f.dataset.idx,10));
+    });
+    lb.addEventListener('click',e=>{ if(e.target===lb || e.target.classList.contains('lb__close')) close(); });
+    document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation();step(-1);});
+    document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation();step(1);});
+    addEventListener('keydown',e=>{
+      if(!lb.classList.contains('on')) return;
+      if(e.key==='Escape')close();
+      else if(e.key==='ArrowRight')step(1);
+      else if(e.key==='ArrowLeft')step(-1);
+    });
+    // swipe mobile
+    let touchX=0;
+    lb.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});
+    lb.addEventListener('touchend',e=>{
+      const dx=e.changedTouches[0].clientX-touchX;
+      if(Math.abs(dx)>40) step(dx<0?1:-1);
+    });
   })();
 
   /* ---- CASES ---- */
