@@ -167,6 +167,14 @@
   .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.78rem;color:rgba(255,255,255,.72);white-space:nowrap;transition:color .3s}
   .tag::before{content:"✛";color:var(--muted);font-size:.7rem}
   .cap:hover .tag{color:#fff}
+  /* variante "lista" para Formación & Premios: items en columna, más aire, hover clickable */
+  .cap__tags--list{flex-direction:column;flex-wrap:nowrap;gap:14px;max-width:520px}
+  .cap__tags--list .tag{white-space:normal}
+  .tag--link{text-decoration:none;cursor:pointer}
+  .tag--link:hover{color:#fff}
+  .tag--link .tag__ext{margin-left:6px;color:var(--muted);font-size:.75rem;transition:color .25s,transform .25s;display:inline-block}
+  .tag--link:hover .tag__ext{color:#fff;transform:translate(2px,-2px)}
+  .tag--award::before{content:"★"}
 
   /* ===== SECCIÓN 4 · CASOS ===== */
   .cases{max-width:var(--max-w);margin:0 auto;padding:130px var(--pad) 60px}
@@ -348,7 +356,16 @@
       </div>
       <div class="cap">
         <h3 class="cap__title">Formación & Premios</h3>
-        <div class="cap__tags"><span class="tag">Google UX Specialization · 2025</span><span class="tag">Build Dynamic UI · 2025</span><span class="tag">Lic. Diseño Gráfico · 2016–2020</span><span class="tag">UX con Don Norman · IxDF</span><span class="tag">MUPI JCDECAUX · Ganador</span><span class="tag">Premio Nacional Calzado · Finalista</span></div>
+        <div class="cap__tags cap__tags--list">
+          <a class="tag tag--link" href="#" target="_blank" rel="noopener">Google UX Design Specialization · Coursera · 2025 <span class="tag__ext">↗</span></a>
+          <a class="tag tag--link" href="#" target="_blank" rel="noopener">Digital Product Management · University of Virginia · 2022 <span class="tag__ext">↗</span></a>
+          <a class="tag tag--link" href="#" target="_blank" rel="noopener">Curso de Gestión de Equipos Ágiles · Platzi · 2022 <span class="tag__ext">↗</span></a>
+          <a class="tag tag--link" href="#" target="_blank" rel="noopener">Diseño UX/UI · Coderhouse · 2021–2022 <span class="tag__ext">↗</span></a>
+          <a class="tag tag--link" href="#" target="_blank" rel="noopener">UX con Don Norman · Interaction Design Foundation <span class="tag__ext">↗</span></a>
+          <span class="tag">Lic. Diseño Gráfico · F.U. Los Libertadores · 2017–2021</span>
+          <span class="tag tag--award">MUPI JCDECAUX Awards · Nuevos Talentos · Ganador</span>
+          <span class="tag tag--award">Premio Cinestecia · Mejor Corto Universitario · Ganador</span>
+        </div>
       </div>
     </div>
   </section>
@@ -472,6 +489,11 @@
       footer_invite:'More design to discover on my socials.',footer_copied:'Copied!'
     }
   };
+  /* tag shapes:
+     - 'texto plano'                      → span.tag
+     - {t:'texto', href:'https://...'}    → a.tag.tag--link (target=_blank)  [href TBD → '#']
+     - {t:'texto', award:true}            → span.tag.tag--award
+  */
   const CAPS_I18N={
     es:[
       ['Design Systems',['Design tokens','Component libraries','Documentación','Governance','Figma','Accesibilidad']],
@@ -479,7 +501,16 @@
       ['Brand & Art Direction',['Logo design','Typography & color','Brand guidelines','Art direction','Motion identity']],
       ['Herramientas',['Figma','Illustrator','Photoshop','After Effects','Framer','React / Remotion','Claude','Higgsfield','Gemini / Veo','Suno','ElevenLabs']],
       ['Experiencia',['Kommit · Lead Designer · 2022–Hoy','Ad Orange · Dir. de Arte · 2011–2022','Agencias · Sr. Designer · 2010–2013']],
-      ['Formación & Premios',['Google UX Specialization · 2025','Build Dynamic UI · 2025','Lic. Diseño Gráfico · 2016–2020','UX con Don Norman · IxDF','MUPI JCDECAUX · Ganador','Premio Nacional Calzado · Finalista']],
+      ['Formación & Premios',[
+        {t:'Google UX Design Specialization · Coursera · 2025', href:'#'},
+        {t:'Digital Product Management · University of Virginia · 2022', href:'#'},
+        {t:'Curso de Gestión de Equipos Ágiles · Platzi · 2022', href:'#'},
+        {t:'Diseño UX/UI · Coderhouse · 2021–2022', href:'#'},
+        {t:'UX con Don Norman · Interaction Design Foundation', href:'#'},
+        'Lic. Diseño Gráfico · F.U. Los Libertadores · 2017–2021',
+        {t:'MUPI JCDECAUX Awards · Nuevos Talentos · Ganador', award:true},
+        {t:'Premio Cinestecia · Mejor Corto Universitario · Ganador', award:true},
+      ]],
     ],
     en:[
       ['Design Systems',['Design tokens','Component libraries','Documentation','Governance','Figma','Accessibility']],
@@ -487,7 +518,16 @@
       ['Brand & Art Direction',['Logo design','Typography & color','Brand guidelines','Art direction','Motion identity']],
       ['Tools',['Figma','Illustrator','Photoshop','After Effects','Framer','React / Remotion','Claude','Higgsfield','Gemini / Veo','Suno','ElevenLabs']],
       ['Experience',['Kommit · Lead Designer · 2022–Now','Ad Orange · Art Director · 2011–2022','Agencies · Sr. Designer · 2010–2013']],
-      ['Education & Awards',['Google UX Specialization · 2025','Build Dynamic UI · 2025','BA Graphic Design · 2016–2020','UX with Don Norman · IxDF','MUPI JCDECAUX · Winner','National Footwear Design · Finalist']],
+      ['Education & Awards',[
+        {t:'Google UX Design Specialization · Coursera · 2025', href:'#'},
+        {t:'Digital Product Management · University of Virginia · 2022', href:'#'},
+        {t:'Agile Team Management Course · Platzi · 2022', href:'#'},
+        {t:'UX/UI Design · Coderhouse · 2021–2022', href:'#'},
+        {t:'UX with Don Norman · Interaction Design Foundation', href:'#'},
+        'BA Graphic Design · F.U. Los Libertadores · 2017–2021',
+        {t:'MUPI JCDECAUX Awards · New Talents · Winner', award:true},
+        {t:'Cinestecia Award · Best Student Short Film · Winner', award:true},
+      ]],
     ]
   };
   const OTHERS_I18N={
@@ -512,9 +552,19 @@
 
   function buildCaps(l){
     const wrap=document.getElementById('caps'); wrap.innerHTML='';
-    CAPS_I18N[l].forEach(([t,tags])=>{const r=document.createElement('div');r.className='cap';
-      r.innerHTML='<h3 class="cap__title">'+t+'</h3><div class="cap__tags">'+tags.map(x=>'<span class="tag">'+x+'</span>').join('')+'</div>';
-      wrap.appendChild(r);});
+    CAPS_I18N[l].forEach(([t,tags])=>{
+      const r=document.createElement('div');r.className='cap';
+      // detecta si algún tag es objeto (link/award) → variante "lista" (una columna, más aire)
+      const isRich = tags.some(x=>typeof x==='object');
+      const html = tags.map(x=>{
+        if(typeof x==='string') return '<span class="tag">'+x+'</span>';
+        if(x.href) return '<a class="tag tag--link" href="'+x.href+'" target="_blank" rel="noopener">'+x.t+' <span class="tag__ext">↗</span></a>';
+        if(x.award) return '<span class="tag tag--award">'+x.t+'</span>';
+        return '<span class="tag">'+x.t+'</span>';
+      }).join('');
+      r.innerHTML='<h3 class="cap__title">'+t+'</h3><div class="cap__tags'+(isRich?' cap__tags--list':'')+'">'+html+'</div>';
+      wrap.appendChild(r);
+    });
   }
   function buildOthers(l){
     const g=document.getElementById('othersGrid'); g.innerHTML='';
