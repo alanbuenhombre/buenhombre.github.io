@@ -176,6 +176,58 @@
   .tag--link:hover .tag__ext{color:#fff;transform:translate(2px,-2px)}
   .tag--award::before{content:"★"}
 
+  /* ===== SECCIÓN · PROCESS ===== */
+  .process-sec{max-width:var(--max-w);margin:0 auto;padding:60px var(--pad) 60px}
+  .process-sec__top{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-bottom:64px}
+  .process-sec__head .kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+  .process-sec__head h2{font-family:var(--font);font-weight:300;font-size:clamp(1.8rem,3.2vw,2.4rem);letter-spacing:-.025em;line-height:1.15}
+  .process-sec__head h2 strong{color:var(--accent);font-weight:400}
+  .process-sec__head p{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted);margin-top:18px;max-width:52ch}
+  .sphere{display:flex;justify-content:center;align-items:center}
+  .sphere svg{width:100%;max-width:420px;height:auto}
+  .sphere ellipse{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1}
+  .sphere text{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;fill:var(--muted)}
+  .sphere text.num{fill:var(--accent);font-size:7.5px}
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  .stage{border-top:1px solid rgba(255,255,255,.14);padding-top:22px;display:flex;flex-direction:column;gap:14px;min-height:290px}
+  .stage__num{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);letter-spacing:.1em}
+  .stage__name{font-family:var(--font);font-weight:500;font-size:1.7rem;letter-spacing:-.02em;line-height:1}
+  .stage__desc{font-family:var(--font);font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.72)}
+  .stage__viz{margin-top:auto;padding-top:14px;border-top:1px dotted rgba(255,255,255,.14)}
+  .stage__viz svg{width:100%;height:52px}
+  .stage__viz circle{fill:none;stroke:var(--muted);stroke-width:1}
+  .stage__viz circle.filled{fill:var(--accent);stroke:none}
+  .stage__viz line{stroke:var(--muted);stroke-width:1}
+
+  /* ===== esfera animada — cada anillo/step se ilumina por turno (loop 15s, 3s por paso) ===== */
+  .sphere svg{overflow:visible}
+  .sphere .ring{transform-box:fill-box;transform-origin:center}
+  @keyframes ringOn{
+    0%,20%{stroke:var(--accent);stroke-width:1.6;filter:drop-shadow(0 0 6px rgba(125,214,240,.55)) drop-shadow(0 0 14px rgba(125,214,240,.3))}
+    22%,100%{stroke:rgba(255,255,255,.14);stroke-width:1;filter:none}
+  }
+  @keyframes labelOn{
+    0%,20%{fill:#fff;filter:drop-shadow(0 0 8px rgba(125,214,240,.45))}
+    22%,100%{fill:var(--muted);filter:none}
+  }
+  @keyframes numOn{
+    0%,20%{fill:var(--accent);opacity:1}
+    22%,100%{fill:var(--accent);opacity:.55}
+  }
+  .sphere .ring{animation:ringOn 15s ease-in-out infinite}
+  .sphere .lbl{animation:labelOn 15s ease-in-out infinite}
+  .sphere .num{animation:numOn 15s ease-in-out infinite}
+  .sphere [data-step="1"]{animation-delay:0s}
+  .sphere [data-step="2"]{animation-delay:3s}
+  .sphere [data-step="3"]{animation-delay:6s}
+  .sphere [data-step="4"]{animation-delay:9s}
+  .sphere [data-step="5"]{animation-delay:12s}
+
+  @media (prefers-reduced-motion:reduce){
+    .sphere .ring,.sphere .lbl,.sphere .num{animation:none !important}
+    .sphere .lbl{fill:#fff}
+  }
+
   /* ===== SECCIÓN 4 · CASOS ===== */
   .cases{max-width:var(--max-w);margin:0 auto;padding:130px var(--pad) 60px}
   .cases__head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12)}
@@ -260,6 +312,8 @@
     .caps::after{height:0}
     .cap__tags{max-width:100%}
     .others__grid{grid-template-columns:1fr 1fr}
+    .process-sec__top{grid-template-columns:1fr;gap:40px}
+    .process-grid{grid-template-columns:1fr 1fr}
   }
   @media(max-width:760px){
     .top__nav{display:none}
@@ -270,6 +324,8 @@
     .pgallery{padding:80px 0 60px}
     .pgallery__frame{height:min(38vh,320px)}
     .lb__arrow{display:none}
+    .process-grid{grid-template-columns:1fr}
+    .process-sec{padding:80px var(--pad) 40px}
     .footer__top{grid-template-columns:1fr;gap:40px}
     .footer__bigname{font-size:24vw}
     .hero__bg img{object-position:46% center}
@@ -365,6 +421,106 @@
           <span class="tag">Lic. Diseño Gráfico · F.U. Los Libertadores · 2017–2021</span>
           <span class="tag tag--award">MUPI JCDECAUX Awards · Nuevos Talentos · Ganador</span>
           <span class="tag tag--award">Premio Cinestecia · Mejor Corto Universitario · Ganador</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN · PROCESS (con esfera) ===== -->
+  <section class="process-sec" id="proceso">
+    <div class="process-sec__top">
+      <div class="process-sec__head">
+        <div class="kicker">05 — Process</div>
+        <h2>Mi <strong>Proceso</strong>.</h2>
+        <p>Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.</p>
+      </div>
+      <div class="sphere" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <circle cx="200" cy="200" r="180" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1"/>
+          <ellipse class="ring" data-step="1" cx="200" cy="80"  rx="120" ry="18"/>
+          <ellipse class="ring" data-step="2" cx="200" cy="140" rx="165" ry="22"/>
+          <ellipse class="ring" data-step="3" cx="200" cy="200" rx="180" ry="26"/>
+          <ellipse class="ring" data-step="4" cx="200" cy="260" rx="165" ry="22"/>
+          <ellipse class="ring" data-step="5" cx="200" cy="320" rx="120" ry="18"/>
+          <text class="num" data-step="1" x="200" y="70" text-anchor="middle">{01}</text>
+          <text class="lbl" data-step="1" x="200" y="86" text-anchor="middle">PRODUCT &amp; UX</text>
+          <text class="num" data-step="2" x="200" y="130" text-anchor="middle">{02}</text>
+          <text class="lbl" data-step="2" x="200" y="146" text-anchor="middle">DESIGN SYSTEMS</text>
+          <text class="num" data-step="3" x="200" y="190" text-anchor="middle">{03}</text>
+          <text class="lbl" data-step="3" x="200" y="206" text-anchor="middle">BRAND IDENTITY</text>
+          <text class="num" data-step="4" x="200" y="250" text-anchor="middle">{04}</text>
+          <text class="lbl" data-step="4" x="200" y="266" text-anchor="middle">MOTION &amp; VIDEO</text>
+          <text class="num" data-step="5" x="200" y="310" text-anchor="middle">{05}</text>
+          <text class="lbl" data-step="5" x="200" y="326" text-anchor="middle">ART DIRECTION</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="process-grid">
+      <div class="stage">
+        <div><div class="stage__num">{01}</div><div class="stage__name">Discover</div></div>
+        <div class="stage__desc">Entrevistas con stakeholders, revisión de métricas existentes y auditoría del ecosistema. Entender el problema real antes de diseñar.</div>
+        <div class="stage__viz">
+          <!-- Discover: scanning / signal detection sobre un eje -->
+          <svg viewBox="0 0 220 60">
+            <line x1="20" y1="30" x2="200" y2="30" stroke-dasharray="2 4" opacity=".35"/>
+            <circle cx="40" cy="30" r="2.5"/>
+            <circle cx="70" cy="22" r="2.5"/>
+            <circle cx="110" cy="30" r="5" class="filled"/>
+            <circle cx="110" cy="30" r="13" opacity=".45"/>
+            <circle cx="150" cy="38" r="2.5"/>
+            <circle cx="180" cy="26" r="2.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stage">
+        <div><div class="stage__num">{02}</div><div class="stage__name">Define</div></div>
+        <div class="stage__desc">Journey maps, blueprints y priorización. La intersección entre lo que el usuario necesita, lo que el negocio requiere y lo que la tecnología permite.</div>
+        <div class="stage__viz">
+          <!-- Define: Venn de 3 (users · business · tech) con sweet spot al centro -->
+          <svg viewBox="0 0 220 60">
+            <circle cx="90" cy="36" r="19"/>
+            <circle cx="130" cy="36" r="19"/>
+            <circle cx="110" cy="20" r="19"/>
+            <circle cx="110" cy="30" r="4" class="filled"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stage">
+        <div><div class="stage__num">{03}</div><div class="stage__name">System</div></div>
+        <div class="stage__desc">Construcción de tokens, componentes y patrones. Prototipado en Figma. Validación con pruebas de usabilidad y experimentos MVP antes de escalar.</div>
+        <div class="stage__viz">
+          <!-- System: mesh de nodos conectados (tokens + componentes) -->
+          <svg viewBox="0 0 220 60">
+            <line x1="55" y1="14" x2="55" y2="46"/>
+            <line x1="165" y1="14" x2="165" y2="46"/>
+            <line x1="55" y1="14" x2="110" y2="30"/>
+            <line x1="55" y1="46" x2="110" y2="30"/>
+            <line x1="165" y1="14" x2="110" y2="30"/>
+            <line x1="165" y1="46" x2="110" y2="30"/>
+            <line x1="55" y1="30" x2="165" y2="30" opacity=".3"/>
+            <circle cx="55" cy="14" r="3"/>
+            <circle cx="55" cy="30" r="3"/>
+            <circle cx="55" cy="46" r="3"/>
+            <circle cx="165" cy="14" r="3"/>
+            <circle cx="165" cy="30" r="3"/>
+            <circle cx="165" cy="46" r="3"/>
+            <circle cx="110" cy="30" r="5" class="filled"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stage">
+        <div><div class="stage__num">{04}</div><div class="stage__name">Ship &amp; Measure</div></div>
+        <div class="stage__desc">Handoff con desarrollo, QA visual y seguimiento de adopción. Colaboro con analytics para leer conversión, engagement y NPS, e iterar el sistema.</div>
+        <div class="stage__viz">
+          <!-- Ship & Measure: radar concéntrico con signal desplazada -->
+          <svg viewBox="0 0 220 60">
+            <circle cx="110" cy="30" r="8"/>
+            <circle cx="110" cy="30" r="16" opacity=".7"/>
+            <circle cx="110" cy="30" r="24" opacity=".45"/>
+            <circle cx="110" cy="30" r="3" class="filled"/>
+            <circle cx="128" cy="20" r="2.5" class="filled" opacity=".85"/>
+          </svg>
         </div>
       </div>
     </div>
