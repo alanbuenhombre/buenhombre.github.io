@@ -430,9 +430,9 @@
   <section class="process-sec" id="proceso">
     <div class="process-sec__top">
       <div class="process-sec__head">
-        <div class="kicker">05 — Process</div>
-        <h2>Mi <strong>Proceso</strong>.</h2>
-        <p>Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.</p>
+        <div class="kicker" data-i18n="proc_kicker">05 — Process</div>
+        <h2 data-i18n-html="proc_title">Mi <strong>Proceso</strong>.</h2>
+        <p data-i18n="proc_sub">Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.</p>
       </div>
       <div class="sphere" aria-hidden="true">
         <svg viewBox="0 0 400 400">
@@ -458,8 +458,8 @@
 
     <div class="process-grid">
       <div class="stage">
-        <div><div class="stage__num">{01}</div><div class="stage__name">Discover</div></div>
-        <div class="stage__desc">Entrevistas con stakeholders, revisión de métricas existentes y auditoría del ecosistema. Entender el problema real antes de diseñar.</div>
+        <div><div class="stage__num">{01}</div><div class="stage__name" data-i18n="proc_s1_name">Discover</div></div>
+        <div class="stage__desc" data-i18n="proc_s1_desc">Entrevistas con stakeholders, revisión de métricas existentes y auditoría del ecosistema. Entender el problema real antes de diseñar.</div>
         <div class="stage__viz">
           <!-- Discover: scanning / signal detection sobre un eje -->
           <svg viewBox="0 0 220 60">
@@ -474,8 +474,8 @@
         </div>
       </div>
       <div class="stage">
-        <div><div class="stage__num">{02}</div><div class="stage__name">Define</div></div>
-        <div class="stage__desc">Journey maps, blueprints y priorización. La intersección entre lo que el usuario necesita, lo que el negocio requiere y lo que la tecnología permite.</div>
+        <div><div class="stage__num">{02}</div><div class="stage__name" data-i18n="proc_s2_name">Define</div></div>
+        <div class="stage__desc" data-i18n="proc_s2_desc">Journey maps, blueprints y priorización. La intersección entre lo que el usuario necesita, lo que el negocio requiere y lo que la tecnología permite.</div>
         <div class="stage__viz">
           <!-- Define: Venn de 3 (users · business · tech) con sweet spot al centro -->
           <svg viewBox="0 0 220 60">
@@ -487,8 +487,8 @@
         </div>
       </div>
       <div class="stage">
-        <div><div class="stage__num">{03}</div><div class="stage__name">System</div></div>
-        <div class="stage__desc">Construcción de tokens, componentes y patrones. Prototipado en Figma. Validación con pruebas de usabilidad y experimentos MVP antes de escalar.</div>
+        <div><div class="stage__num">{03}</div><div class="stage__name" data-i18n="proc_s3_name">System</div></div>
+        <div class="stage__desc" data-i18n="proc_s3_desc">Construcción de tokens, componentes y patrones. Prototipado en Figma. Validación con pruebas de usabilidad y experimentos MVP antes de escalar.</div>
         <div class="stage__viz">
           <!-- System: mesh de nodos conectados (tokens + componentes) -->
           <svg viewBox="0 0 220 60">
@@ -510,8 +510,8 @@
         </div>
       </div>
       <div class="stage">
-        <div><div class="stage__num">{04}</div><div class="stage__name">Ship &amp; Measure</div></div>
-        <div class="stage__desc">Handoff con desarrollo, QA visual y seguimiento de adopción. Colaboro con analytics para leer conversión, engagement y NPS, e iterar el sistema.</div>
+        <div><div class="stage__num">{04}</div><div class="stage__name" data-i18n="proc_s4_name">Ship &amp; Measure</div></div>
+        <div class="stage__desc" data-i18n="proc_s4_desc">Handoff con desarrollo, QA visual y seguimiento de adopción. Colaboro con analytics para leer conversión, engagement y NPS, e iterar el sistema.</div>
         <div class="stage__viz">
           <!-- Ship & Measure: radar concéntrico con signal desplazada -->
           <svg viewBox="0 0 220 60">
@@ -620,6 +620,17 @@
       hero_stat:'14 años en dirección creativa → últimos 4 en productos digitales.',
       hero_cta_about:'Sobre mí →',hero_cta_cases:'Casos de estudio →',
       fan_idx:'04 — Trabajo & exploración',fan_title:'Algo de lo que diseño.',
+      proc_kicker:'05 — Proceso',
+      proc_title:'Mi <strong>Proceso</strong>.',
+      proc_sub:'Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.',
+      proc_s1_name:'Descubrir',
+      proc_s1_desc:'Entrevistas con stakeholders, revisión de métricas existentes y auditoría del ecosistema. Entender el problema real antes de diseñar.',
+      proc_s2_name:'Definir',
+      proc_s2_desc:'Journey maps, blueprints y priorización. La intersección entre lo que el usuario necesita, lo que el negocio requiere y lo que la tecnología permite.',
+      proc_s3_name:'Sistema',
+      proc_s3_desc:'Construcción de tokens, componentes y patrones. Prototipado en Figma. Validación con pruebas de usabilidad y experimentos MVP antes de escalar.',
+      proc_s4_name:'Entrega y Medición',
+      proc_s4_desc:'Handoff con desarrollo, QA visual y seguimiento de adopción. Colaboro con analytics para leer conversión, engagement y NPS, e iterar el sistema.',
       info_kicker:'Sobre mí',info_statement:'De la dirección de arte a los sistemas de producto.',
       info_text:'14 años aportando orden y criterio visual a los proyectos: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.',
       cases_title:'Casos de estudio',cases_meta:'02 · 05 PROYECTOS',
@@ -636,6 +647,17 @@
       hero_stat:'14 years in creative direction → last 4 in digital product.',
       hero_cta_about:'About →',hero_cta_cases:'Case studies →',
       fan_idx:'04 — Work & exploration',fan_title:'Some of what I design.',
+      proc_kicker:'05 — Process',
+      proc_title:'My <strong>Process</strong>.',
+      proc_sub:'An iterative process between research, system, and ship. I collaborate with product, engineering, and data teams to translate insights into design decisions.',
+      proc_s1_name:'Discover',
+      proc_s1_desc:'Stakeholder interviews, review of existing metrics, and ecosystem audit. Understand the real problem before designing.',
+      proc_s2_name:'Define',
+      proc_s2_desc:'Journey maps, blueprints, and prioritization. The intersection between what the user needs, what the business requires, and what the technology allows.',
+      proc_s3_name:'System',
+      proc_s3_desc:'Building tokens, components, and patterns. Prototyping in Figma. Validation with usability tests and MVP experiments before scaling.',
+      proc_s4_name:'Ship & Measure',
+      proc_s4_desc:'Handoff with engineering, visual QA, and adoption tracking. I work with analytics to read conversion, engagement, and NPS, and iterate the system.',
       info_kicker:'About',info_statement:'From art direction to product systems.',
       info_text:'14 years bringing order and visual judgment to things: first in brand and campaigns, now in digital product — interfaces, component libraries, design systems and cross-functional collaboration with engineering and product.',
       cases_title:'Case studies',cases_meta:'02 · 05 PROJECTS',
