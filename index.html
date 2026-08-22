@@ -133,7 +133,7 @@
   .wcard:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.28);transform:translateY(-4px)}
   .wcard__cat{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
        transition:color .3s ease}
-  .wcard:hover .wcard__cat{color:var(--orange)}
+  .wcard:hover .wcard__cat{color:var(--accent)}
   .wcard__thumb{width:100%;border-radius:8px;overflow:hidden;background:#0e0e0e;
        border:1px solid rgba(255,255,255,.06);aspect-ratio:4/3}
   .wcard__thumb img{width:100%;height:100%;object-fit:cover;display:block;
@@ -143,7 +143,7 @@
   .wcard__name{font-family:var(--font);font-weight:400;font-size:1.1rem;letter-spacing:-.015em;color:#fff}
   .wcard__arrow{font-family:var(--font-mono);color:var(--muted);opacity:.7;
        transition:color .3s ease,opacity .3s ease,transform .3s ease;display:inline-block}
-  .wcard:hover .wcard__arrow{color:var(--orange);opacity:1;transform:translate(2px,-2px)}
+  .wcard:hover .wcard__arrow{color:var(--accent);opacity:1;transform:translate(2px,-2px)}
   .lb__caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:.72rem;
        letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;pointer-events:none}
   .lb__caption strong{color:#fff;font-weight:500;margin-left:10px}
@@ -332,7 +332,8 @@
        border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:22px;text-decoration:none;
        transition:background .25s,border-color .25s,transform .25s}
   .pcard:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.28);transform:translateY(-3px)}
-  .pcard__cat{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .pcard__cat{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .25s}
+  .pcard:hover .pcard__cat{color:var(--accent)}
   .pcard__name{font-family:var(--font);font-weight:400;font-size:1.3rem;letter-spacing:-.02em;color:#fff;
        display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
   .pcard__name svg{width:15px;height:15px;flex:none;opacity:.5;transition:opacity .25s}
