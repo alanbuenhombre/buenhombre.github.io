@@ -203,7 +203,12 @@
   .process-sec__top{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-bottom:64px}
   .process-sec__head .kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
   .process-sec__head h2{font-family:var(--font);font-weight:300;font-size:clamp(1.8rem,3.2vw,2.4rem);letter-spacing:-.025em;line-height:1.15}
-  .process-sec__head h2 strong{color:var(--accent);font-weight:400}
+  .process-sec__head h2 strong,
+  .title strong,
+  .cases__title strong,
+  .fan__title strong,
+  .info__statement strong,
+  .closer__title strong{color:var(--accent);font-weight:inherit}
   .process-sec__head p{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted);margin-top:18px;max-width:52ch}
   .sphere{display:flex;justify-content:center;align-items:center}
   .sphere svg{width:100%;max-width:420px;height:auto}
@@ -437,7 +442,7 @@
         <div class="hero-left">
           <div class="kick"><span class="kick__avail"><span class="dot"></span> <span data-i18n="hero_avail">Disponible</span></span></div>
           <div class="titleblock">
-            <h1 class="title" data-i18n="hero_title">Product & Brand Designer</h1>
+            <h1 class="title" data-i18n-html="hero_title">Product & <strong>Brand</strong> Designer</h1>
             <div class="titlerule"></div>
             <p class="lede" data-i18n="hero_lede">I design products where brand and function are one. Founder-stage to scale. Fintech, Web3, health tech.</p>
             <p class="lede" data-i18n="hero_stat" style="margin-top:10px">14 años en dirección creativa → últimos 4 en productos digitales.</p>
@@ -454,7 +459,7 @@
   <!-- ===== SECCIÓN 2 · CASOS ===== -->
   <section class="cases" id="casos">
     <div class="cases__head">
-      <h2 class="cases__title" data-i18n="cases_title">Casos de estudio</h2>
+      <h2 class="cases__title" data-i18n-html="cases_title">Casos de <strong>estudio</strong></h2>
       <span class="cases__meta" data-i18n="cases_meta">02 · 05 PROYECTOS</span>
     </div>
     <ul class="cases__list" id="casesList">
@@ -470,7 +475,7 @@
   <section class="info" id="sobre">
     <div class="info__intro">
       <p class="info__kicker" data-i18n="info_kicker">Sobre mí</p>
-      <h2 class="info__statement" data-i18n="info_statement">De la dirección de arte a los sistemas de producto.</h2>
+      <h2 class="info__statement" data-i18n-html="info_statement">De la dirección de arte a los sistemas de <strong>producto</strong>.</h2>
       <p class="info__text" data-i18n="info_text">14 años aportando orden y criterio visual a los proyectos: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.</p>
     </div>
     <div class="caps" id="caps">
@@ -675,7 +680,7 @@
   <section class="pgallery" id="trabajo">
     <div class="fan__head">
       <div class="fan__idx" data-i18n="fan_idx">04 — Trabajo &amp; exploración</div>
-      <h2 class="fan__title" data-i18n="fan_title">Algo de lo que diseño.</h2>
+      <h2 class="fan__title" data-i18n-html="fan_title">Algo de lo que <strong>diseño</strong>.</h2>
     </div>
     <div class="wgrid" id="wgrid">
       <a class="wcard" href="#"><span class="wcard__cat">Brand · Identity</span><div class="wcard__thumb"><img src="assets/brands/01-norvell.png" alt="Norvell"></div><div class="wcard__foot"><span class="wcard__name">Norvell</span><span class="wcard__arrow">↗</span></div></a>
@@ -708,7 +713,7 @@
   <section class="closer" id="contacto">
     <div class="closer__bg"><img src="assets/background-002.jpg" alt=""></div>
     <div class="closer__content">
-      <h2 class="closer__title" data-i18n-html="closer_title">Busco mi próximo<br>equipo de producto</h2>
+      <h2 class="closer__title" data-i18n-html="closer_title">Busco mi próximo<br>equipo de <strong>producto</strong></h2>
       <a href="mailto:alangtres@gmail.com" class="btn" data-i18n="closer_btn">Escríbeme →</a>
     </div>
   </section>
@@ -770,11 +775,11 @@
     es:{
       nav_inicio:'Inicio',nav_trabajo:'Trabajo',nav_casos:'Casos',nav_contacto:'Contacto',
       hero_avail:'Disponible',
-      hero_title:'Diseñador de Producto y Marca',
+      hero_title:'Diseñador de Producto y <strong>Marca</strong>',
       hero_lede:'Diseño productos donde marca y funcionalidad son uno. De etapa fundacional a escala. Fintech, Web3, health tech.',
       hero_stat:'14 años en dirección creativa → últimos 4 en productos digitales.',
       hero_cta_about:'Sobre mí →',hero_cta_cases:'Casos de estudio →',
-      fan_idx:'04 — Trabajo & exploración',fan_title:'Algo de lo que diseño.',
+      fan_idx:'04 — Trabajo & exploración',fan_title:'Algo de lo que <strong>diseño</strong>.',
       proc_kicker:'05 — Proceso',
       proc_title:'Mi <strong>Proceso</strong>.',
       proc_sub:'Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.',
@@ -786,22 +791,22 @@
       proc_s3_desc:'Construcción de tokens, componentes y patrones. Prototipado en Figma. Validación con pruebas de usabilidad y experimentos MVP antes de escalar.',
       proc_s4_name:'Entrega y Medición',
       proc_s4_desc:'Handoff con desarrollo, QA visual y seguimiento de adopción. Colaboro con analytics para leer conversión, engagement y NPS, e iterar el sistema.',
-      info_kicker:'Sobre mí',info_statement:'De la dirección de arte a los sistemas de producto.',
+      info_kicker:'Sobre mí',info_statement:'De la dirección de arte a los sistemas de <strong>producto</strong>.',
       info_text:'14 años aportando orden y criterio visual a los proyectos: primero en marca y campañas, ahora en producto digital — interfaces, component libraries, design systems y colaboración cross-functional con desarrollo y producto.',
-      cases_title:'Casos de estudio',cases_meta:'02 · 05 PROYECTOS',
+      cases_title:'Casos de <strong>estudio</strong>',cases_meta:'02 · 05 PROYECTOS',
       others_label:'Otros proyectos · Dirección de arte & branding de campañas — Behance',
-      closer_title:'Busco mi próximo<br>equipo de producto',closer_btn:'Escríbeme →',
+      closer_title:'Busco mi próximo<br>equipo de <strong>producto</strong>',closer_btn:'Escríbeme →',
       footer_menu:'Menú',footer_contact:'Contacto',footer_copy:'© 2026 Alan Buenhombre',
       footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
     },
     en:{
       nav_inicio:'Home',nav_trabajo:'Work',nav_casos:'Cases',nav_contacto:'Contact',
       hero_avail:'Available',
-      hero_title:'Product & Brand Designer',
+      hero_title:'Product & <strong>Brand</strong> Designer',
       hero_lede:'I design products where brand and function are one. Founder-stage to scale. Fintech, Web3, health tech.',
       hero_stat:'14 years in creative direction → last 4 in digital product.',
       hero_cta_about:'About →',hero_cta_cases:'Case studies →',
-      fan_idx:'04 — Work & exploration',fan_title:'Some of what I design.',
+      fan_idx:'04 — Work & exploration',fan_title:'Some of what I <strong>design</strong>.',
       proc_kicker:'05 — Process',
       proc_title:'My <strong>Process</strong>.',
       proc_sub:'An iterative process between research, system, and ship. I collaborate with product, engineering, and data teams to translate insights into design decisions.',
@@ -813,11 +818,11 @@
       proc_s3_desc:'Building tokens, components, and patterns. Prototyping in Figma. Validation with usability tests and MVP experiments before scaling.',
       proc_s4_name:'Ship & Measure',
       proc_s4_desc:'Handoff with engineering, visual QA, and adoption tracking. I work with analytics to read conversion, engagement, and NPS, and iterate the system.',
-      info_kicker:'About',info_statement:'From art direction to product systems.',
+      info_kicker:'About',info_statement:'From art direction to <strong>product</strong> systems.',
       info_text:'14 years bringing order and visual judgment to things: first in brand and campaigns, now in digital product — interfaces, component libraries, design systems and cross-functional collaboration with engineering and product.',
-      cases_title:'Case studies',cases_meta:'02 · 05 PROJECTS',
+      cases_title:'Case <strong>studies</strong>',cases_meta:'02 · 05 PROJECTS',
       others_label:'Other projects · Art direction & campaign branding — Behance',
-      closer_title:'Looking for my next<br>product team',closer_btn:'Write me →',
+      closer_title:'Looking for my next<br><strong>product</strong> team',closer_btn:'Write me →',
       footer_menu:'Menu',footer_contact:'Contact',footer_copy:'© 2026 Alan Buenhombre',
       footer_invite:'More design to discover on my socials.',footer_copied:'Copied!'
     }
