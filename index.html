@@ -209,7 +209,7 @@
   .sphere svg{width:100%;max-width:420px;height:auto}
   .sphere ellipse{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1}
   .sphere text{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;fill:var(--muted)}
-  .sphere text.num{fill:var(--accent);font-size:7.5px}
+  .sphere text.num{fill:var(--accent);font-size:9px;opacity:.85}
   .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
   .stage{border-top:1px solid rgba(255,255,255,.14);padding-top:22px;display:flex;flex-direction:column;gap:14px;min-height:290px}
   .stage__num{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);letter-spacing:.1em}
@@ -282,8 +282,8 @@
     22%,100%{fill:var(--muted);filter:none}
   }
   @keyframes numOn{
-    0%,20%{fill:var(--accent);opacity:1}
-    22%,100%{fill:var(--accent);opacity:.55}
+    0%,20%{fill:var(--accent);opacity:1;filter:drop-shadow(0 0 6px rgba(125,214,240,.6))}
+    22%,100%{fill:var(--accent);opacity:.9;filter:none}
   }
   .sphere .ring{animation:ringOn 15s ease-in-out infinite}
   .sphere .lbl{animation:labelOn 15s ease-in-out infinite}
