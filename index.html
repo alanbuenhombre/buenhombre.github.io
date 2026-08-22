@@ -210,15 +210,15 @@
   .info__statement strong,
   .closer__title strong{color:var(--accent);font-weight:inherit}
   .process-sec__head p{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted);margin-top:18px;max-width:52ch}
-  .sphere{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px}
-  .sphere svg{width:100%;max-width:360px;height:auto}
-  .caps-slider{position:relative;width:100%;max-width:420px;height:44px;overflow:hidden;
-       mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%);
-       -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%)}
-  .cap-item{position:absolute;top:50%;transform:translate(-50%,-50%);
-       font-family:var(--font-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  .sphere{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px}
+  .sphere svg{width:100%;max-width:320px;height:auto}
+  .caps-slider{position:relative;width:100%;max-width:520px;height:44px;overflow:hidden;
+       mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 82%,transparent 100%);
+       -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 82%,transparent 100%)}
+  .cap-item{position:absolute;top:50%;
+       font-family:var(--font-mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
        white-space:nowrap;color:rgba(255,255,255,.25);opacity:0;
-       animation:capSlide 15s linear infinite;will-change:left,opacity,color}
+       animation:capSlide 15s ease-in-out infinite;will-change:left,opacity,transform}
   .cap-item .num{color:var(--accent);font-weight:500;margin-right:10px}
   .cap-item[data-step="1"]{animation-delay:-6s}
   .cap-item[data-step="2"]{animation-delay:-3s}
@@ -226,12 +226,12 @@
   .cap-item[data-step="4"]{animation-delay:-12s}
   .cap-item[data-step="5"]{animation-delay:-9s}
   @keyframes capSlide{
-    0%,17%   {left:130%; opacity:0;  color:rgba(255,255,255,.15)}
-    20%,37%  {left:80%;  opacity:.35;color:rgba(255,255,255,.45)}
-    40%,57%  {left:50%;  opacity:1;  color:#fff}
-    60%,77%  {left:20%;  opacity:.35;color:rgba(255,255,255,.45)}
-    80%,97%  {left:-30%; opacity:0;  color:rgba(255,255,255,.15)}
-    100%     {left:130%; opacity:0;  color:rgba(255,255,255,.15)}
+    0%,17%   {left:130%; transform:translate(-50%,-50%) scale(.85); opacity:0;  color:rgba(255,255,255,.2)}
+    20%,37%  {left:88%;  transform:translate(-50%,-50%) scale(.85); opacity:.3; color:rgba(255,255,255,.4)}
+    40%,57%  {left:50%;  transform:translate(-50%,-50%) scale(1);   opacity:1;  color:#fff}
+    60%,77%  {left:12%;  transform:translate(-50%,-50%) scale(.85); opacity:.3; color:rgba(255,255,255,.4)}
+    80%,97%  {left:-30%; transform:translate(-50%,-50%) scale(.85); opacity:0;  color:rgba(255,255,255,.2)}
+    100%     {left:130%; transform:translate(-50%,-50%) scale(.85); opacity:0;  color:rgba(255,255,255,.2)}
   }
   @media (prefers-reduced-motion:reduce){
     .cap-item{animation:none;opacity:1;color:#fff;left:50%}
@@ -525,7 +525,7 @@
         <p data-i18n="proc_sub">Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.</p>
       </div>
       <div class="sphere" aria-hidden="true">
-        <svg viewBox="0 0 500 400">
+        <svg viewBox="0 0 340 400">
           <!-- 5 cubos concéntricos (profundidad interna) -->
           <!-- Cubo más grande = step 5 (último en highlight), interno = step 1 -->
           <g class="iso cube" data-step="5">
