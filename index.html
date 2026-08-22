@@ -65,7 +65,7 @@
   :root{
     --bg:#1A1A1A; --text:#fff; --muted:rgba(255,255,255,.5);
     --font:'Manrope',system-ui,sans-serif; --font-mono:'IBM Plex Mono',monospace;
-    --font-display:'Stack Sans Notch',Arial,sans-serif; --accent:#7DD6F0; --orange:#7DD6F0; --lime:#AAFF00;
+    --font-display:'Stack Sans Notch',Arial,sans-serif; --accent:#AAFF00; --orange:var(--accent); --lime:#AAFF00;
     --pad:48px; --max-w:1200px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -214,7 +214,7 @@
   .sphere svg{width:100%;max-width:420px;height:auto}
   .sphere ellipse{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1}
   .sphere text{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;fill:rgba(255,255,255,.7)}
-  .sphere text.num{fill:#7DD6F0;font-size:8px;opacity:1;font-weight:500;letter-spacing:.18em}
+  .sphere text.num{fill:var(--accent);font-size:8px;opacity:1;font-weight:500;letter-spacing:.18em}
   .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
   .stage{border-top:1px solid rgba(255,255,255,.14);padding-top:22px;display:flex;flex-direction:column;gap:14px;min-height:290px}
   .stage__num{font-family:var(--font-mono);font-size:.8rem;color:var(--accent);letter-spacing:.1em;font-weight:500;margin-bottom:8px}
@@ -226,10 +226,10 @@
   /* palette compartido halftone/wireframe */
   .stage__viz .wf-outline{fill:none;stroke:var(--muted);stroke-width:.8}
   .stage__viz .wf-outline-strong{fill:none;stroke:rgba(255,255,255,.85);stroke-width:1}
-  .stage__viz .halftone{fill:#7DD6F0;opacity:.85;r:2}
-  .stage__viz .halftone-accent{fill:#7DD6F0;opacity:1;r:2}
+  .stage__viz .halftone{fill:var(--accent);opacity:.85;r:2}
+  .stage__viz .halftone-accent{fill:var(--accent);opacity:1;r:2}
   .stage__viz .halftone-accent{fill:var(--accent)}
-  .stage__viz .focus-dot{fill:var(--accent);filter:drop-shadow(0 0 6px rgba(125,214,240,.55)) drop-shadow(0 0 12px rgba(125,214,240,.3))}
+  .stage__viz .focus-dot{fill:var(--accent);filter:drop-shadow(0 0 6px rgba(170,255,0,.55)) drop-shadow(0 0 12px rgba(170,255,0,.3))}
 
   /* 1. DISCOVER — scan + insight */
   @keyframes vizRotScan{to{transform:rotate(360deg)}}
@@ -261,7 +261,7 @@
     5%,15%{fill:var(--accent);opacity:1}
   }
   .viz-ship .sweep{transform-origin:100px 100px;animation:vizSweep 4s linear infinite}
-  .viz-ship .radar-dot{fill:#7DD6F0;opacity:.7;r:2.4;animation:vizBlinkDot 4s linear infinite}
+  .viz-ship .radar-dot{fill:var(--accent);opacity:.7;r:2.4;animation:vizBlinkDot 4s linear infinite}
   .viz-ship .radar-dot:nth-of-type(1){animation-delay:0s}
   .viz-ship .radar-dot:nth-of-type(2){animation-delay:.5s}
   .viz-ship .radar-dot:nth-of-type(3){animation-delay:1s}
@@ -280,16 +280,16 @@
   .sphere svg{overflow:visible}
   .sphere .ring{transform-box:fill-box;transform-origin:center}
   @keyframes ringOn{
-    0%,20%{stroke:var(--accent);stroke-width:1.6;filter:drop-shadow(0 0 6px rgba(125,214,240,.55)) drop-shadow(0 0 14px rgba(125,214,240,.3))}
+    0%,20%{stroke:var(--accent);stroke-width:1.6;filter:drop-shadow(0 0 6px rgba(170,255,0,.55)) drop-shadow(0 0 14px rgba(170,255,0,.3))}
     22%,100%{stroke:rgba(255,255,255,.14);stroke-width:1;filter:none}
   }
   @keyframes labelOn{
-    0%,20%{fill:#fff;filter:drop-shadow(0 0 8px rgba(125,214,240,.45))}
+    0%,20%{fill:#fff;filter:drop-shadow(0 0 8px rgba(170,255,0,.45))}
     22%,100%{fill:var(--muted);filter:none}
   }
   @keyframes numOn{
-    0%,20%{fill:#7DD6F0;opacity:1}
-    22%,100%{fill:#7DD6F0;opacity:.95}
+    0%,20%{fill:var(--accent);opacity:1}
+    22%,100%{fill:var(--accent);opacity:.95}
   }
   .sphere .ring{animation:ringOn 15s ease-in-out infinite}
   .sphere .lbl{animation:labelOn 15s ease-in-out infinite}
