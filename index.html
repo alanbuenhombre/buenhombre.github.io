@@ -221,59 +221,17 @@
   .stage__name{font-family:var(--font);font-weight:500;font-size:1.7rem;letter-spacing:-.02em;line-height:1}
   .stage__desc{font-family:var(--font);font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.72)}
   .stage__viz{order:-1;margin-top:0;padding-top:0;border-top:none;
-       padding-bottom:16px;margin-bottom:4px;border-bottom:1px dotted rgba(255,255,255,.14)}
-  .stage__viz svg{width:100%;height:auto;max-width:200px;margin:0 auto;overflow:visible;display:block}
-  /* palette compartido halftone/wireframe */
-  .stage__viz .wf-outline{fill:none;stroke:var(--muted);stroke-width:.8}
-  .stage__viz .wf-outline-strong{fill:none;stroke:rgba(255,255,255,.85);stroke-width:1}
-  .stage__viz .halftone{fill:var(--accent);opacity:.85;r:2}
-  .stage__viz .halftone-accent{fill:var(--accent);opacity:1;r:2}
-  .stage__viz .halftone-accent{fill:var(--accent)}
-  .stage__viz .focus-dot{fill:var(--accent);filter:drop-shadow(0 0 6px rgba(170,255,0,.55)) drop-shadow(0 0 12px rgba(170,255,0,.3))}
-
-  /* 1. DISCOVER — scan + insight */
-  @keyframes vizRotScan{to{transform:rotate(360deg)}}
-  @keyframes vizPulseInsight{0%,100%{r:3;opacity:1}50%{r:5;opacity:.75}}
-  .viz-discover .scan-line{transform-origin:100px 100px;animation:vizRotScan 8s linear infinite}
-  .viz-discover .insight{animation:vizPulseInsight 2.4s ease-in-out infinite}
-
-  /* 2. DEFINE — sweet spot breath */
-  @keyframes vizBreatheSweet{0%,100%{opacity:.9;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
-  .viz-define .sweet{transform-origin:100px 100px;transform-box:fill-box;animation:vizBreatheSweet 3s ease-in-out infinite}
-
-  /* 3. SYSTEM — draw links */
-  @keyframes vizDrawLine{to{stroke-dashoffset:0}}
-  .viz-system .link{stroke:var(--accent);stroke-width:.6;stroke-dasharray:80;stroke-dashoffset:80;
-       animation:vizDrawLine 4s ease-out infinite}
-  .viz-system .link:nth-of-type(1){animation-delay:0s}
-  .viz-system .link:nth-of-type(2){animation-delay:.4s}
-  .viz-system .link:nth-of-type(3){animation-delay:.8s}
-  .viz-system .link:nth-of-type(4){animation-delay:1.2s}
-  .viz-system .link:nth-of-type(5){animation-delay:1.6s}
-  .viz-system .link:nth-of-type(6){animation-delay:2.0s}
-  .viz-system .link:nth-of-type(7){animation-delay:2.4s}
-  .viz-system .link:nth-of-type(8){animation-delay:2.8s}
-
-  /* 4. SHIP — radar sweep + blinking dots */
-  @keyframes vizSweep{to{transform:rotate(360deg)}}
-  @keyframes vizBlinkDot{
-    0%,40%,100%{fill:var(--accent);opacity:.5}
-    5%,15%{fill:var(--accent);opacity:1}
-  }
-  .viz-ship .sweep{transform-origin:100px 100px;animation:vizSweep 4s linear infinite}
-  .viz-ship .radar-dot{fill:var(--accent);opacity:.7;r:2.4;animation:vizBlinkDot 4s linear infinite}
-  .viz-ship .radar-dot:nth-of-type(1){animation-delay:0s}
-  .viz-ship .radar-dot:nth-of-type(2){animation-delay:.5s}
-  .viz-ship .radar-dot:nth-of-type(3){animation-delay:1s}
-  .viz-ship .radar-dot:nth-of-type(4){animation-delay:1.5s}
-  .viz-ship .radar-dot:nth-of-type(5){animation-delay:2s}
-  .viz-ship .radar-dot:nth-of-type(6){animation-delay:2.5s}
-  .viz-ship .radar-dot:nth-of-type(7){animation-delay:3s}
-  .viz-ship .radar-dot:nth-of-type(8){animation-delay:3.5s}
-
+       padding-bottom:24px;margin-bottom:6px;border-bottom:1px dotted rgba(255,255,255,.14);
+       display:flex;flex-direction:column;gap:16px}
+  .stage__viz .fig-label{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.14em;
+       color:rgba(255,255,255,.35);text-transform:uppercase}
+  .stage__viz svg{width:100%;height:auto;max-width:180px;margin:0 auto;overflow:visible;display:block}
+  .stage__viz .iso{fill:none;stroke:rgba(255,255,255,.55);stroke-width:.6;stroke-linecap:round;stroke-linejoin:round}
+  .stage__viz .iso--soft{stroke:rgba(255,255,255,.22);stroke-width:.5}
+  .stage__viz .iso--accent{stroke:var(--accent);stroke-width:.8;animation:vizAccentBreathe 4s ease-in-out infinite}
+  @keyframes vizAccentBreathe{0%,100%{opacity:.6}50%{opacity:1}}
   @media (prefers-reduced-motion:reduce){
-    .viz-discover .scan-line,.viz-discover .insight,.viz-define .sweet,
-    .viz-system .link,.viz-ship .sweep,.viz-ship .radar-dot{animation:none !important}
+    .stage__viz .iso--accent{animation:none;opacity:.9}
   }
 
   /* ===== esfera animada — cada anillo/step se ilumina por turno (loop 15s, 3s por paso) ===== */
@@ -559,25 +517,19 @@
         <div><div class="stage__num">{01}</div><div class="stage__name" data-i18n="proc_s1_name">Discover</div></div>
         <div class="stage__desc" data-i18n="proc_s1_desc">Entrevistas con stakeholders, revisión de métricas existentes y auditoría del ecosistema. Entender el problema real antes de diseñar.</div>
         <div class="stage__viz">
-          <!-- Discover: scope + halftone dots + scan rotating + insight pulse -->
-          <svg class="viz-discover" viewBox="0 0 200 200" aria-hidden="true">
-            <circle class="wf-outline-strong" cx="100" cy="100" r="72"/>
-            <circle class="wf-outline" cx="100" cy="100" r="52" opacity=".4"/>
-            <circle class="wf-outline" cx="100" cy="100" r="32" opacity=".3"/>
-            <circle class="halftone" cx="60" cy="70" r="1.3"/>
-            <circle class="halftone" cx="82" cy="52" r="1.3"/>
-            <circle class="halftone" cx="130" cy="60" r="1.3"/>
-            <circle class="halftone" cx="145" cy="90" r="1.3"/>
-            <circle class="halftone" cx="140" cy="130" r="1.3"/>
-            <circle class="halftone" cx="115" cy="150" r="1.3"/>
-            <circle class="halftone" cx="70" cy="140" r="1.3"/>
-            <circle class="halftone" cx="52" cy="112" r="1.3"/>
-            <circle class="halftone" cx="88" cy="128" r="1.3"/>
-            <circle class="halftone" cx="118" cy="80" r="1.3"/>
-            <g class="scan-line" opacity=".35">
-              <line x1="28" y1="100" x2="172" y2="100" stroke="var(--accent)" stroke-width=".6" stroke-dasharray="4 3"/>
+          <span class="fig-label">Fig 0.1</span>
+          <!-- Discover · discos isométricos apilados (layers de research) -->
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <g class="iso">
+              <ellipse cx="100" cy="60"  rx="54" ry="14"/>
+              <ellipse cx="100" cy="82"  rx="54" ry="14" class="iso--soft"/>
+              <ellipse cx="100" cy="104" rx="54" ry="14" class="iso--soft"/>
+              <ellipse cx="100" cy="126" rx="54" ry="14" class="iso--soft"/>
+              <ellipse cx="100" cy="148" rx="54" ry="14"/>
+              <line x1="46"  y1="60"  x2="46"  y2="148"/>
+              <line x1="154" y1="60"  x2="154" y2="148"/>
             </g>
-            <circle class="focus-dot insight" cx="118" cy="80" r="3"/>
+            <ellipse class="iso iso--accent" cx="100" cy="60" rx="54" ry="14"/>
           </svg>
         </div>
       </div>
@@ -585,25 +537,24 @@
         <div><div class="stage__num">{02}</div><div class="stage__name" data-i18n="proc_s2_name">Define</div></div>
         <div class="stage__desc" data-i18n="proc_s2_desc">Journey maps, blueprints y priorización. La intersección entre lo que el usuario necesita, lo que el negocio requiere y lo que la tecnología permite.</div>
         <div class="stage__viz">
-          <!-- Define: Venn de 3 con dots concentrados en la intersección + sweet spot -->
-          <svg class="viz-define" viewBox="0 0 200 200" aria-hidden="true">
-            <circle class="wf-outline" cx="82" cy="112" r="38"/>
-            <circle class="wf-outline" cx="118" cy="112" r="38"/>
-            <circle class="wf-outline" cx="100" cy="80" r="38"/>
-            <circle class="halftone" cx="55" cy="130" r="1"/>
-            <circle class="halftone" cx="70" cy="145" r="1"/>
-            <circle class="halftone" cx="140" cy="140" r="1"/>
-            <circle class="halftone" cx="150" cy="120" r="1"/>
-            <circle class="halftone" cx="100" cy="45" r="1"/>
-            <circle class="halftone" cx="130" cy="58" r="1"/>
-            <circle class="halftone" cx="72" cy="60" r="1"/>
-            <circle class="halftone-accent" cx="94" cy="98" r="1.2" opacity=".9"/>
-            <circle class="halftone-accent" cx="100" cy="94" r="1.2" opacity=".9"/>
-            <circle class="halftone-accent" cx="106" cy="98" r="1.2" opacity=".9"/>
-            <circle class="halftone-accent" cx="100" cy="102" r="1.2" opacity=".9"/>
-            <circle class="halftone-accent" cx="96" cy="105" r="1.2" opacity=".8"/>
-            <circle class="halftone-accent" cx="104" cy="105" r="1.2" opacity=".8"/>
-            <circle class="focus-dot sweet" cx="100" cy="100" r="4"/>
+          <span class="fig-label">Fig 0.2</span>
+          <!-- Define · cubo isométrico wireframe con arista superior en acento -->
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <g class="iso">
+              <!-- cara superior (rombo iso) -->
+              <path d="M100 60 L154 90 L100 120 L46 90 Z"/>
+              <!-- verticales -->
+              <line x1="46"  y1="90"  x2="46"  y2="150"/>
+              <line x1="100" y1="120" x2="100" y2="180"/>
+              <line x1="154" y1="90"  x2="154" y2="150"/>
+              <!-- cara inferior visible -->
+              <path d="M46 150 L100 180 L154 150" fill="none"/>
+              <!-- diagonales internas suaves -->
+              <line class="iso--soft" x1="100" y1="60"  x2="100" y2="120"/>
+              <line class="iso--soft" x1="46"  y1="90"  x2="154" y2="90"/>
+            </g>
+            <!-- arista superior destacada -->
+            <path class="iso iso--accent" d="M100 60 L154 90"/>
           </svg>
         </div>
       </div>
@@ -611,33 +562,42 @@
         <div><div class="stage__num">{03}</div><div class="stage__name" data-i18n="proc_s3_name">System</div></div>
         <div class="stage__desc" data-i18n="proc_s3_desc">Construcción de tokens, componentes y patrones. Prototipado en Figma. Validación con pruebas de usabilidad y experimentos MVP antes de escalar.</div>
         <div class="stage__viz">
-          <!-- System: grid 3x3 + líneas dibujándose una a una -->
-          <svg class="viz-system" viewBox="0 0 200 200" aria-hidden="true">
-            <circle class="halftone" cx="60" cy="60" r="1.2"/>
-            <circle class="halftone" cx="100" cy="60" r="1.2"/>
-            <circle class="halftone" cx="140" cy="60" r="1.2"/>
-            <circle class="halftone" cx="60" cy="100" r="1.2"/>
-            <circle class="halftone" cx="140" cy="100" r="1.2"/>
-            <circle class="halftone" cx="60" cy="140" r="1.2"/>
-            <circle class="halftone" cx="100" cy="140" r="1.2"/>
-            <circle class="halftone" cx="140" cy="140" r="1.2"/>
-            <line class="link" x1="60" y1="60" x2="100" y2="100"/>
-            <line class="link" x1="140" y1="60" x2="100" y2="100"/>
-            <line class="link" x1="60" y1="140" x2="100" y2="100"/>
-            <line class="link" x1="140" y1="140" x2="100" y2="100"/>
-            <line class="link" x1="100" y1="60" x2="100" y2="100"/>
-            <line class="link" x1="60" y1="100" x2="100" y2="100"/>
-            <line class="link" x1="140" y1="100" x2="100" y2="100"/>
-            <line class="link" x1="100" y1="140" x2="100" y2="100"/>
-            <circle class="wf-outline" cx="60" cy="60" r="4"/>
-            <circle class="wf-outline" cx="140" cy="60" r="4"/>
-            <circle class="wf-outline" cx="60" cy="140" r="4"/>
-            <circle class="wf-outline" cx="140" cy="140" r="4"/>
-            <circle class="wf-outline" cx="100" cy="60" r="3"/>
-            <circle class="wf-outline" cx="100" cy="140" r="3"/>
-            <circle class="wf-outline" cx="60" cy="100" r="3"/>
-            <circle class="wf-outline" cx="140" cy="100" r="3"/>
-            <circle class="focus-dot" cx="100" cy="100" r="5"/>
+          <span class="fig-label">Fig 0.3</span>
+          <!-- System · 4 mini-cubos iso conectados en grid (design tokens) -->
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <g class="iso" transform="translate(0 10)">
+              <!-- cubo 1 (arriba izq) -->
+              <path d="M60 60 L82 71 L60 82 L38 71 Z"/>
+              <line x1="38" y1="71" x2="38" y2="87"/>
+              <line x1="60" y1="82" x2="60" y2="98"/>
+              <line x1="82" y1="71" x2="82" y2="87"/>
+              <path d="M38 87 L60 98 L82 87"/>
+              <!-- cubo 2 (arriba der) -->
+              <path d="M140 60 L162 71 L140 82 L118 71 Z"/>
+              <line x1="118" y1="71" x2="118" y2="87"/>
+              <line x1="140" y1="82" x2="140" y2="98"/>
+              <line x1="162" y1="71" x2="162" y2="87"/>
+              <path d="M118 87 L140 98 L162 87"/>
+              <!-- cubo 3 (abajo izq) -->
+              <path d="M60 118 L82 129 L60 140 L38 129 Z"/>
+              <line x1="38" y1="129" x2="38" y2="145"/>
+              <line x1="60" y1="140" x2="60" y2="156"/>
+              <line x1="82" y1="129" x2="82" y2="145"/>
+              <path d="M38 145 L60 156 L82 145"/>
+              <!-- cubo 4 (abajo der) -->
+              <path d="M140 118 L162 129 L140 140 L118 129 Z"/>
+              <line x1="118" y1="129" x2="118" y2="145"/>
+              <line x1="140" y1="140" x2="140" y2="156"/>
+              <line x1="162" y1="129" x2="162" y2="145"/>
+              <path d="M118 145 L140 156 L162 145"/>
+              <!-- conexiones -->
+              <line class="iso--soft" x1="82" y1="79" x2="118" y2="79"/>
+              <line class="iso--soft" x1="82" y1="137" x2="118" y2="137"/>
+              <line class="iso--soft" x1="60" y1="98" x2="60" y2="118"/>
+              <line class="iso--soft" x1="140" y1="98" x2="140" y2="118"/>
+            </g>
+            <!-- cubo 1 arista destacada -->
+            <path class="iso iso--accent" transform="translate(0 10)" d="M60 60 L82 71"/>
           </svg>
         </div>
       </div>
@@ -645,31 +605,41 @@
         <div><div class="stage__num">{04}</div><div class="stage__name" data-i18n="proc_s4_name">Ship &amp; Measure</div></div>
         <div class="stage__desc" data-i18n="proc_s4_desc">Handoff con desarrollo, QA visual y seguimiento de adopción. Colaboro con analytics para leer conversión, engagement y NPS, e iterar el sistema.</div>
         <div class="stage__viz">
-          <!-- Ship & Measure: radar + sweep rotating + dots blinking en secuencia -->
-          <svg class="viz-ship" viewBox="0 0 200 200" aria-hidden="true">
-            <circle class="wf-outline-strong" cx="100" cy="100" r="72"/>
-            <circle class="wf-outline" cx="100" cy="100" r="50" opacity=".5"/>
-            <circle class="wf-outline" cx="100" cy="100" r="28" opacity=".35"/>
-            <line x1="28" y1="100" x2="172" y2="100" class="wf-outline" opacity=".25"/>
-            <line x1="100" y1="28" x2="100" y2="172" class="wf-outline" opacity=".25"/>
-            <circle class="radar-dot" cx="150" cy="80" r="1.5"/>
-            <circle class="radar-dot" cx="140" cy="140" r="1.5"/>
-            <circle class="radar-dot" cx="100" cy="160" r="1.5"/>
-            <circle class="radar-dot" cx="60" cy="140" r="1.5"/>
-            <circle class="radar-dot" cx="40" cy="100" r="1.5"/>
-            <circle class="radar-dot" cx="55" cy="65" r="1.5"/>
-            <circle class="radar-dot" cx="100" cy="45" r="1.5"/>
-            <circle class="radar-dot" cx="135" cy="55" r="1.5"/>
-            <g class="sweep">
-              <defs>
-                <linearGradient id="vizSweepGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stop-color="var(--accent)" stop-opacity="0"/>
-                  <stop offset="1" stop-color="var(--accent)" stop-opacity=".6"/>
-                </linearGradient>
-              </defs>
-              <line x1="100" y1="100" x2="172" y2="100" stroke="url(#vizSweepGrad)" stroke-width="1.5"/>
+          <span class="fig-label">Fig 0.4</span>
+          <!-- Ship & Measure · barras iso ascendentes (chart de adopción) -->
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <g class="iso">
+              <!-- 5 barras isométricas de altura creciente, base común -->
+              <!-- b1 -->
+              <path d="M40 150 L52 156 L52 140 L40 134 Z"/>
+              <path d="M40 134 L52 140 L64 134 L52 128 Z"/>
+              <line x1="64" y1="134" x2="64" y2="150"/>
+              <path d="M52 156 L64 150"/>
+              <!-- b2 -->
+              <path d="M68 150 L80 156 L80 128 L68 122 Z"/>
+              <path d="M68 122 L80 128 L92 122 L80 116 Z"/>
+              <line x1="92" y1="122" x2="92" y2="150"/>
+              <path d="M80 156 L92 150"/>
+              <!-- b3 -->
+              <path d="M96 150 L108 156 L108 116 L96 110 Z"/>
+              <path d="M96 110 L108 116 L120 110 L108 104 Z"/>
+              <line x1="120" y1="110" x2="120" y2="150"/>
+              <path d="M108 156 L120 150"/>
+              <!-- b4 -->
+              <path d="M124 150 L136 156 L136 104 L124 98 Z"/>
+              <path d="M124 98 L136 104 L148 98 L136 92 Z"/>
+              <line x1="148" y1="98" x2="148" y2="150"/>
+              <path d="M136 156 L148 150"/>
+              <!-- b5 -->
+              <path d="M152 150 L164 156 L164 90 L152 84 Z"/>
+              <path d="M152 84 L164 90 L176 84 L164 78 Z"/>
+              <line x1="176" y1="84" x2="176" y2="150"/>
+              <path d="M164 156 L176 150"/>
+              <!-- línea base iso -->
+              <line class="iso--soft" x1="40" y1="150" x2="176" y2="150"/>
             </g>
-            <circle class="focus-dot" cx="100" cy="100" r="3.5"/>
+            <!-- cara superior barra más alta destacada -->
+            <path class="iso iso--accent" d="M152 84 L164 90 L176 84 L164 78 Z"/>
           </svg>
         </div>
       </div>
