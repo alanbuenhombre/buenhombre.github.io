@@ -825,7 +825,9 @@ function applyLang(lang) {
     if (val !== undefined) el.innerHTML = val;
   });
   document.querySelectorAll('.nav__lang').forEach(btn => {
-    btn.textContent = T[lang]?.['lang.toggle'] || (lang === 'es' ? 'EN' : 'ES');
+    const label = T[lang]?.['lang.toggle'] || (lang === 'es' ? 'EN' : 'ES');
+    const span = btn.querySelector('span');
+    if (span) span.textContent = label; else btn.textContent = label;
     btn.dataset.lang = lang;
   });
 }
