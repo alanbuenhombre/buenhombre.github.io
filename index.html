@@ -210,8 +210,33 @@
   .info__statement strong,
   .closer__title strong{color:var(--accent);font-weight:inherit}
   .process-sec__head p{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted);margin-top:18px;max-width:52ch}
-  .sphere{display:flex;justify-content:center;align-items:center}
-  .sphere svg{width:100%;max-width:520px;height:auto}
+  .sphere{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px}
+  .sphere svg{width:100%;max-width:360px;height:auto}
+  .caps-slider{position:relative;width:100%;max-width:420px;height:44px;overflow:hidden;
+       mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%);
+       -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%,#000 80%,transparent 100%)}
+  .cap-item{position:absolute;top:50%;transform:translate(-50%,-50%);
+       font-family:var(--font-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+       white-space:nowrap;color:rgba(255,255,255,.25);opacity:0;
+       animation:capSlide 15s linear infinite;will-change:left,opacity,color}
+  .cap-item .num{color:var(--accent);font-weight:500;margin-right:10px}
+  .cap-item[data-step="1"]{animation-delay:-6s}
+  .cap-item[data-step="2"]{animation-delay:-3s}
+  .cap-item[data-step="3"]{animation-delay:0s}
+  .cap-item[data-step="4"]{animation-delay:-12s}
+  .cap-item[data-step="5"]{animation-delay:-9s}
+  @keyframes capSlide{
+    0%   {left:130%; opacity:0;  color:rgba(255,255,255,.15)}
+    20%  {left:80%;  opacity:.35;color:rgba(255,255,255,.45)}
+    40%  {left:50%;  opacity:1;  color:#fff}
+    60%  {left:20%;  opacity:.35;color:rgba(255,255,255,.45)}
+    80%  {left:-30%; opacity:0;  color:rgba(255,255,255,.15)}
+    100% {left:130%; opacity:0;  color:rgba(255,255,255,.15)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .cap-item{animation:none;opacity:1;color:#fff;left:50%}
+    .cap-item:not([data-step="1"]){display:none}
+  }
   .sphere .iso{fill:none;stroke:rgba(255,255,255,.4);stroke-width:.6;stroke-linecap:round;stroke-linejoin:round}
   .sphere .iso--dashed{stroke:rgba(255,255,255,.28);stroke-dasharray:3 3;stroke-linecap:butt}
   .sphere .vx{fill:rgba(255,255,255,.85)}
@@ -497,23 +522,21 @@
       <div class="sphere" aria-hidden="true">
         <svg viewBox="0 0 500 400">
           <!-- 5 cubos concéntricos (profundidad interna) -->
-          <!-- cubo 1 · outer L=180 -->
-          <g class="iso cube" data-step="1">
+          <!-- Cubo más grande = step 5 (último en highlight), interno = step 1 -->
+          <g class="iso cube" data-step="5">
             <path d="M170 20 L326 110 L170 200 L14 110 Z"/>
             <line x1="326" y1="110" x2="326" y2="290"/>
             <line x1="170" y1="200" x2="170" y2="380"/>
             <line x1="14"  y1="110" x2="14"  y2="290"/>
             <path d="M326 290 L170 380 L14 290"/>
           </g>
-          <!-- cubo 2 · L=144 -->
-          <g class="iso cube" data-step="2">
+          <g class="iso cube" data-step="4">
             <path d="M170 56 L295 128 L170 200 L45 128 Z"/>
             <line x1="295" y1="128" x2="295" y2="272"/>
             <line x1="170" y1="200" x2="170" y2="344"/>
             <line x1="45"  y1="128" x2="45"  y2="272"/>
             <path d="M295 272 L170 344 L45 272"/>
           </g>
-          <!-- cubo 3 · L=108 -->
           <g class="iso cube" data-step="3">
             <path d="M170 92 L264 146 L170 200 L76 146 Z"/>
             <line x1="264" y1="146" x2="264" y2="254"/>
@@ -521,40 +544,28 @@
             <line x1="76"  y1="146" x2="76"  y2="254"/>
             <path d="M264 254 L170 308 L76 254"/>
           </g>
-          <!-- cubo 4 · L=72 -->
-          <g class="iso cube" data-step="4">
+          <g class="iso cube" data-step="2">
             <path d="M170 128 L232 164 L170 200 L108 164 Z"/>
             <line x1="232" y1="164" x2="232" y2="236"/>
             <line x1="170" y1="200" x2="170" y2="272"/>
             <line x1="108" y1="164" x2="108" y2="236"/>
             <path d="M232 236 L170 272 L108 236"/>
           </g>
-          <!-- cubo 5 · inner L=36 -->
-          <g class="iso cube" data-step="5">
+          <g class="iso cube" data-step="1">
             <path d="M170 164 L201 182 L170 200 L139 182 Z"/>
             <line x1="201" y1="182" x2="201" y2="218"/>
             <line x1="170" y1="200" x2="170" y2="236"/>
             <line x1="139" y1="182" x2="139" y2="218"/>
             <path d="M201 218 L170 236 L139 218"/>
           </g>
-          <!-- vértices top-back de cada cubo -->
-          <circle class="vx" cx="170" cy="20"  r="2"/>
-          <circle class="vx" cx="170" cy="56"  r="1.8"/>
-          <circle class="vx" cx="170" cy="92"  r="1.6"/>
-          <circle class="vx" cx="170" cy="128" r="1.5"/>
-          <circle class="vx" cx="170" cy="164" r="1.4"/>
-          <!-- leyenda alineada a top-back de cada cubo -->
-          <text class="num" data-step="1" x="360" y="16">{01}</text>
-          <text class="lbl" data-step="1" x="360" y="28">PRODUCT &amp; UX</text>
-          <text class="num" data-step="2" x="360" y="52">{02}</text>
-          <text class="lbl" data-step="2" x="360" y="64">DESIGN SYSTEMS</text>
-          <text class="num" data-step="3" x="360" y="88">{03}</text>
-          <text class="lbl" data-step="3" x="360" y="100">BRAND IDENTITY</text>
-          <text class="num" data-step="4" x="360" y="124">{04}</text>
-          <text class="lbl" data-step="4" x="360" y="136">MOTION &amp; VIDEO</text>
-          <text class="num" data-step="5" x="360" y="160">{05}</text>
-          <text class="lbl" data-step="5" x="360" y="172">ART DIRECTION</text>
         </svg>
+        <div class="caps-slider">
+          <div class="cap-item" data-step="1"><span class="num">{01}</span>PRODUCT &amp; UX</div>
+          <div class="cap-item" data-step="2"><span class="num">{02}</span>DESIGN SYSTEMS</div>
+          <div class="cap-item" data-step="3"><span class="num">{03}</span>BRAND IDENTITY</div>
+          <div class="cap-item" data-step="4"><span class="num">{04}</span>MOTION &amp; VIDEO</div>
+          <div class="cap-item" data-step="5"><span class="num">{05}</span>ART DIRECTION</div>
+        </div>
       </div>
     </div>
 
