@@ -211,10 +211,12 @@
   .closer__title strong{color:var(--accent);font-weight:inherit}
   .process-sec__head p{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted);margin-top:18px;max-width:52ch}
   .sphere{display:flex;justify-content:center;align-items:center}
-  .sphere svg{width:100%;max-width:420px;height:auto}
-  .sphere ellipse{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1}
-  .sphere text{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;fill:rgba(255,255,255,.7)}
-  .sphere text.num{fill:var(--accent);font-size:8px;opacity:1;font-weight:500;letter-spacing:.18em}
+  .sphere svg{width:100%;max-width:520px;height:auto}
+  .sphere .iso{fill:none;stroke:rgba(255,255,255,.4);stroke-width:.6;stroke-linecap:round;stroke-linejoin:round}
+  .sphere .iso--dashed{stroke:rgba(255,255,255,.28);stroke-dasharray:3 3;stroke-linecap:butt}
+  .sphere .vx{fill:rgba(255,255,255,.85)}
+  .sphere text{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;fill:rgba(255,255,255,.7)}
+  .sphere text.num{fill:var(--accent);font-size:7.5px;opacity:1;font-weight:500;letter-spacing:.18em}
   .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
   .stage{border-top:1px solid rgba(255,255,255,.14);padding-top:22px;display:flex;flex-direction:column;gap:14px;min-height:290px}
   .stage__num{display:none}
@@ -237,22 +239,21 @@
     .stage__viz .iso--accent{animation:none;opacity:.9}
   }
 
-  /* ===== esfera animada — cada anillo/step se ilumina por turno (loop 15s, 3s por paso) ===== */
+  /* ===== cubos anidados — cada capa se ilumina por turno (loop 15s, 3s por paso) ===== */
   .sphere svg{overflow:visible}
-  .sphere .ring{transform-box:fill-box;transform-origin:center}
-  @keyframes ringOn{
-    0%,20%{stroke:var(--accent);stroke-width:1.6}
-    22%,100%{stroke:rgba(255,255,255,.14);stroke-width:1;filter:none}
+  @keyframes cubeOn{
+    0%,20%{stroke:var(--accent);stroke-width:1}
+    22%,100%{stroke:rgba(255,255,255,.4);stroke-width:.6}
   }
   @keyframes labelOn{
     0%,20%{fill:#fff}
-    22%,100%{fill:var(--muted);filter:none}
+    22%,100%{fill:var(--muted)}
   }
   @keyframes numOn{
     0%,20%{fill:var(--accent);opacity:1}
-    22%,100%{fill:var(--accent);opacity:.95}
+    22%,100%{fill:var(--accent);opacity:.7}
   }
-  .sphere .ring{animation:ringOn 15s ease-in-out infinite}
+  .sphere .cube{animation:cubeOn 15s ease-in-out infinite}
   .sphere .lbl{animation:labelOn 15s ease-in-out infinite}
   .sphere .num{animation:numOn 15s ease-in-out infinite}
   .sphere [data-step="1"]{animation-delay:0s}
@@ -262,7 +263,7 @@
   .sphere [data-step="5"]{animation-delay:12s}
 
   @media (prefers-reduced-motion:reduce){
-    .sphere .ring,.sphere .lbl,.sphere .num{animation:none !important}
+    .sphere .cube,.sphere .lbl,.sphere .num{animation:none !important}
     .sphere .lbl{fill:#fff}
   }
 
@@ -494,23 +495,65 @@
         <p data-i18n="proc_sub">Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.</p>
       </div>
       <div class="sphere" aria-hidden="true">
-        <svg viewBox="0 0 400 400">
-          <circle cx="200" cy="200" r="180" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1"/>
-          <ellipse class="ring" data-step="1" cx="200" cy="80"  rx="120" ry="18"/>
-          <ellipse class="ring" data-step="2" cx="200" cy="140" rx="165" ry="22"/>
-          <ellipse class="ring" data-step="3" cx="200" cy="200" rx="180" ry="26"/>
-          <ellipse class="ring" data-step="4" cx="200" cy="260" rx="165" ry="22"/>
-          <ellipse class="ring" data-step="5" cx="200" cy="320" rx="120" ry="18"/>
-          <text class="num" data-step="1" x="200" y="70" text-anchor="middle">{01}</text>
-          <text class="lbl" data-step="1" x="200" y="86" text-anchor="middle">PRODUCT &amp; UX</text>
-          <text class="num" data-step="2" x="200" y="130" text-anchor="middle">{02}</text>
-          <text class="lbl" data-step="2" x="200" y="146" text-anchor="middle">DESIGN SYSTEMS</text>
-          <text class="num" data-step="3" x="200" y="190" text-anchor="middle">{03}</text>
-          <text class="lbl" data-step="3" x="200" y="206" text-anchor="middle">BRAND IDENTITY</text>
-          <text class="num" data-step="4" x="200" y="250" text-anchor="middle">{04}</text>
-          <text class="lbl" data-step="4" x="200" y="266" text-anchor="middle">MOTION &amp; VIDEO</text>
-          <text class="num" data-step="5" x="200" y="310" text-anchor="middle">{05}</text>
-          <text class="lbl" data-step="5" x="200" y="326" text-anchor="middle">ART DIRECTION</text>
+        <svg viewBox="0 0 500 400">
+          <!-- 5 cubos concéntricos (profundidad interna) -->
+          <!-- cubo 1 · outer L=180 -->
+          <g class="iso cube" data-step="1">
+            <path d="M170 20 L326 110 L170 200 L14 110 Z"/>
+            <line x1="326" y1="110" x2="326" y2="290"/>
+            <line x1="170" y1="200" x2="170" y2="380"/>
+            <line x1="14"  y1="110" x2="14"  y2="290"/>
+            <path d="M326 290 L170 380 L14 290"/>
+          </g>
+          <!-- cubo 2 · L=144 -->
+          <g class="iso cube" data-step="2">
+            <path d="M170 56 L295 128 L170 200 L45 128 Z"/>
+            <line x1="295" y1="128" x2="295" y2="272"/>
+            <line x1="170" y1="200" x2="170" y2="344"/>
+            <line x1="45"  y1="128" x2="45"  y2="272"/>
+            <path d="M295 272 L170 344 L45 272"/>
+          </g>
+          <!-- cubo 3 · L=108 -->
+          <g class="iso cube" data-step="3">
+            <path d="M170 92 L264 146 L170 200 L76 146 Z"/>
+            <line x1="264" y1="146" x2="264" y2="254"/>
+            <line x1="170" y1="200" x2="170" y2="308"/>
+            <line x1="76"  y1="146" x2="76"  y2="254"/>
+            <path d="M264 254 L170 308 L76 254"/>
+          </g>
+          <!-- cubo 4 · L=72 -->
+          <g class="iso cube" data-step="4">
+            <path d="M170 128 L232 164 L170 200 L108 164 Z"/>
+            <line x1="232" y1="164" x2="232" y2="236"/>
+            <line x1="170" y1="200" x2="170" y2="272"/>
+            <line x1="108" y1="164" x2="108" y2="236"/>
+            <path d="M232 236 L170 272 L108 236"/>
+          </g>
+          <!-- cubo 5 · inner L=36 -->
+          <g class="iso cube" data-step="5">
+            <path d="M170 164 L201 182 L170 200 L139 182 Z"/>
+            <line x1="201" y1="182" x2="201" y2="218"/>
+            <line x1="170" y1="200" x2="170" y2="236"/>
+            <line x1="139" y1="182" x2="139" y2="218"/>
+            <path d="M201 218 L170 236 L139 218"/>
+          </g>
+          <!-- vértices top-back de cada cubo -->
+          <circle class="vx" cx="170" cy="20"  r="2"/>
+          <circle class="vx" cx="170" cy="56"  r="1.8"/>
+          <circle class="vx" cx="170" cy="92"  r="1.6"/>
+          <circle class="vx" cx="170" cy="128" r="1.5"/>
+          <circle class="vx" cx="170" cy="164" r="1.4"/>
+          <!-- leyenda alineada a top-back de cada cubo -->
+          <text class="num" data-step="1" x="360" y="16">{01}</text>
+          <text class="lbl" data-step="1" x="360" y="28">PRODUCT &amp; UX</text>
+          <text class="num" data-step="2" x="360" y="52">{02}</text>
+          <text class="lbl" data-step="2" x="360" y="64">DESIGN SYSTEMS</text>
+          <text class="num" data-step="3" x="360" y="88">{03}</text>
+          <text class="lbl" data-step="3" x="360" y="100">BRAND IDENTITY</text>
+          <text class="num" data-step="4" x="360" y="124">{04}</text>
+          <text class="lbl" data-step="4" x="360" y="136">MOTION &amp; VIDEO</text>
+          <text class="num" data-step="5" x="360" y="160">{05}</text>
+          <text class="lbl" data-step="5" x="360" y="172">ART DIRECTION</text>
         </svg>
       </div>
     </div>
