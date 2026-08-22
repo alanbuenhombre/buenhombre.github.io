@@ -226,12 +226,12 @@
   .cap-item[data-step="4"]{animation-delay:-12s}
   .cap-item[data-step="5"]{animation-delay:-9s}
   @keyframes capSlide{
-    0%   {left:130%; opacity:0;  color:rgba(255,255,255,.15)}
-    20%  {left:80%;  opacity:.35;color:rgba(255,255,255,.45)}
-    40%  {left:50%;  opacity:1;  color:#fff}
-    60%  {left:20%;  opacity:.35;color:rgba(255,255,255,.45)}
-    80%  {left:-30%; opacity:0;  color:rgba(255,255,255,.15)}
-    100% {left:130%; opacity:0;  color:rgba(255,255,255,.15)}
+    0%,17%   {left:130%; opacity:0;  color:rgba(255,255,255,.15)}
+    20%,37%  {left:80%;  opacity:.35;color:rgba(255,255,255,.45)}
+    40%,57%  {left:50%;  opacity:1;  color:#fff}
+    60%,77%  {left:20%;  opacity:.35;color:rgba(255,255,255,.45)}
+    80%,97%  {left:-30%; opacity:0;  color:rgba(255,255,255,.15)}
+    100%     {left:130%; opacity:0;  color:rgba(255,255,255,.15)}
   }
   @media (prefers-reduced-motion:reduce){
     .cap-item{animation:none;opacity:1;color:#fff;left:50%}
@@ -279,13 +279,18 @@
     22%,100%{fill:var(--accent);opacity:.7}
   }
   .sphere .cube{animation:cubeOn 15s ease-in-out infinite}
+  .sphere .cube-vx{fill:var(--accent);opacity:0;animation:vxOn 15s ease-in-out infinite}
+  @keyframes vxOn{
+    0%,20%{opacity:1}
+    22%,100%{opacity:0}
+  }
   .sphere .lbl{animation:labelOn 15s ease-in-out infinite}
   .sphere .num{animation:numOn 15s ease-in-out infinite}
-  .sphere [data-step="1"]{animation-delay:0s}
-  .sphere [data-step="2"]{animation-delay:3s}
-  .sphere [data-step="3"]{animation-delay:6s}
-  .sphere [data-step="4"]{animation-delay:9s}
-  .sphere [data-step="5"]{animation-delay:12s}
+  .sphere svg [data-step="1"],.sphere svg [data-step="1"] .cube-vx{animation-delay:0s}
+  .sphere svg [data-step="2"],.sphere svg [data-step="2"] .cube-vx{animation-delay:3s}
+  .sphere svg [data-step="3"],.sphere svg [data-step="3"] .cube-vx{animation-delay:6s}
+  .sphere svg [data-step="4"],.sphere svg [data-step="4"] .cube-vx{animation-delay:9s}
+  .sphere svg [data-step="5"],.sphere svg [data-step="5"] .cube-vx{animation-delay:12s}
 
   @media (prefers-reduced-motion:reduce){
     .sphere .cube,.sphere .lbl,.sphere .num{animation:none !important}
@@ -557,6 +562,37 @@
             <line x1="170" y1="200" x2="170" y2="236"/>
             <line x1="139" y1="182" x2="139" y2="218"/>
             <path d="M201 218 L170 236 L139 218"/>
+          </g>
+          <!-- vértices por cubo, aparecen solo en su ventana de highlight -->
+          <g data-step="5">
+            <circle class="cube-vx" cx="170" cy="20"  r="2"/><circle class="cube-vx" cx="326" cy="110" r="2"/>
+            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="14"  cy="110" r="2"/>
+            <circle class="cube-vx" cx="326" cy="290" r="2"/><circle class="cube-vx" cx="170" cy="380" r="2"/>
+            <circle class="cube-vx" cx="14"  cy="290" r="2"/>
+          </g>
+          <g data-step="4">
+            <circle class="cube-vx" cx="170" cy="56"  r="2"/><circle class="cube-vx" cx="295" cy="128" r="2"/>
+            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="45"  cy="128" r="2"/>
+            <circle class="cube-vx" cx="295" cy="272" r="2"/><circle class="cube-vx" cx="170" cy="344" r="2"/>
+            <circle class="cube-vx" cx="45"  cy="272" r="2"/>
+          </g>
+          <g data-step="3">
+            <circle class="cube-vx" cx="170" cy="92"  r="2"/><circle class="cube-vx" cx="264" cy="146" r="2"/>
+            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="76"  cy="146" r="2"/>
+            <circle class="cube-vx" cx="264" cy="254" r="2"/><circle class="cube-vx" cx="170" cy="308" r="2"/>
+            <circle class="cube-vx" cx="76"  cy="254" r="2"/>
+          </g>
+          <g data-step="2">
+            <circle class="cube-vx" cx="170" cy="128" r="2"/><circle class="cube-vx" cx="232" cy="164" r="2"/>
+            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="108" cy="164" r="2"/>
+            <circle class="cube-vx" cx="232" cy="236" r="2"/><circle class="cube-vx" cx="170" cy="272" r="2"/>
+            <circle class="cube-vx" cx="108" cy="236" r="2"/>
+          </g>
+          <g data-step="1">
+            <circle class="cube-vx" cx="170" cy="164" r="2"/><circle class="cube-vx" cx="201" cy="182" r="2"/>
+            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="139" cy="182" r="2"/>
+            <circle class="cube-vx" cx="201" cy="218" r="2"/><circle class="cube-vx" cx="170" cy="236" r="2"/>
+            <circle class="cube-vx" cx="139" cy="218" r="2"/>
           </g>
         </svg>
         <div class="caps-slider">
