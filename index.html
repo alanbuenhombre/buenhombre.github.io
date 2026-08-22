@@ -212,7 +212,7 @@
   .sphere text.num{fill:var(--accent);font-size:9px;opacity:.85}
   .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
   .stage{border-top:1px solid rgba(255,255,255,.14);padding-top:22px;display:flex;flex-direction:column;gap:14px;min-height:290px}
-  .stage__num{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);letter-spacing:.1em}
+  .stage__num{font-family:var(--font-mono);font-size:.8rem;color:var(--accent);letter-spacing:.1em;font-weight:500;margin-bottom:8px}
   .stage__name{font-family:var(--font);font-weight:500;font-size:1.7rem;letter-spacing:-.02em;line-height:1}
   .stage__desc{font-family:var(--font);font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.72)}
   .stage__viz{order:-1;margin-top:0;padding-top:0;border-top:none;
@@ -221,7 +221,7 @@
   /* palette compartido halftone/wireframe */
   .stage__viz .wf-outline{fill:none;stroke:var(--muted);stroke-width:.8}
   .stage__viz .wf-outline-strong{fill:none;stroke:rgba(255,255,255,.85);stroke-width:1}
-  .stage__viz .halftone{fill:var(--muted);opacity:.6}
+  .stage__viz .halftone{fill:var(--accent);opacity:.55}
   .stage__viz .halftone-accent{fill:var(--accent)}
   .stage__viz .focus-dot{fill:var(--accent);filter:drop-shadow(0 0 6px rgba(125,214,240,.55)) drop-shadow(0 0 12px rgba(125,214,240,.3))}
 
@@ -251,7 +251,7 @@
   /* 4. SHIP — radar sweep + blinking dots */
   @keyframes vizSweep{to{transform:rotate(360deg)}}
   @keyframes vizBlinkDot{
-    0%,40%,100%{fill:var(--muted);opacity:.5}
+    0%,40%,100%{fill:var(--accent);opacity:.5}
     5%,15%{fill:var(--accent);opacity:1}
   }
   .viz-ship .sweep{transform-origin:100px 100px;animation:vizSweep 4s linear infinite}
