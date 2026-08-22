@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 — Alan Buenhombre</title>
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0e0e; --text:#fff; --muted:rgba(255,255,255,.5); --hair:rgba(255,255,255,.1);
+    --accent:#7DD6F0;
+    --font:'Manrope',system-ui,sans-serif; --font-mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;
+       display:flex;flex-direction:column;overflow-x:hidden}
+
+  /* nav mínima */
+  .top{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+       padding:24px 48px;max-width:1200px;margin:0 auto;width:100%}
+  .top__name{font-weight:600;font-size:.95rem;letter-spacing:-.01em;color:#fff;text-decoration:none}
+  .top__meta{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+
+  /* stage */
+  .wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:120px 32px 80px;position:relative}
+  .grid{position:absolute;inset:0;
+        background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+        background-size:56px 56px;
+        mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+        -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);pointer-events:none}
+
+  .card{position:relative;text-align:center;max-width:640px;padding:24px}
+  .kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+  .kicker::before{content:'';display:inline-block;width:22px;height:1px;background:var(--accent);vertical-align:middle;margin-right:12px;opacity:.6}
+  .big{font-weight:300;font-size:clamp(6rem,18vw,12rem);line-height:1;letter-spacing:-.06em;
+       background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.35) 55%,rgba(255,255,255,0) 90%);
+       -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+  .title{font-weight:400;font-size:clamp(1.2rem,2.6vw,1.8rem);letter-spacing:-.02em;color:#fff;margin-bottom:14px}
+  .desc{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted);max-width:44ch;margin:0 auto 36px}
+
+  /* botones — mismo estilo que .top__lang (pill + hover) */
+  .actions{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .btn{cursor:pointer;display:inline-flex;align-items:center;gap:8px;color:var(--text);text-decoration:none;
+       font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;
+       background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);border-radius:100px;
+       padding:10px 18px 10px 16px;
+       transition:background .25s,border-color .25s,color .25s,transform .25s}
+  .btn svg{width:14px;height:14px;opacity:.8;transition:opacity .25s}
+  .btn:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4);transform:translateY(-1px)}
+  .btn:hover svg{opacity:1}
+  .btn--primary{background:rgba(125,214,240,.12);border-color:rgba(125,214,240,.5);color:var(--accent)}
+  .btn--primary:hover{background:rgba(125,214,240,.2);border-color:var(--accent);color:#fff}
+
+  /* footer mínimo */
+  .foot{padding:24px 48px;display:flex;justify-content:space-between;align-items:center;
+        font-family:var(--font-mono);font-size:.7rem;color:rgba(255,255,255,.35);letter-spacing:.08em;
+        border-top:1px solid var(--hair);max-width:1200px;margin:0 auto;width:100%}
+  .foot a{color:var(--muted);text-decoration:none;transition:color .25s}
+  .foot a:hover{color:#fff}
+
+  @media(max-width:600px){
+    .top,.foot{padding-left:24px;padding-right:24px}
+    .foot{flex-direction:column;gap:8px;text-align:center}
+  }
+</style>
+</head>
+<body>
+  <header class="top">
+    <a class="top__name" href="/">Alan Buenhombre</a>
+    <span class="top__meta">ERR · 404</span>
+  </header>
+
+  <main class="wrap">
+    <div class="grid" aria-hidden="true"></div>
+    <div class="card">
+      <div class="kicker">Página no encontrada</div>
+      <div class="big">404</div>
+      <h1 class="title">Este enlace se perdió en el sistema.</h1>
+      <p class="desc">La ruta que buscas puede haberse movido o ya no existe. Vuelve al inicio o explora los casos publicados.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+          Ir al inicio
+        </a>
+        <a class="btn" href="/#trabajo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          Explorar trabajo
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <span>© Alan Buenhombre · Product &amp; Brand Designer</span>
+    <a href="mailto:alangtres@gmail.com">alangtres@gmail.com</a>
+  </footer>
+</body>
+</html>
