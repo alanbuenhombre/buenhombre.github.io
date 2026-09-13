@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alan Buenhombre · Lead Designer · CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#1A1A1A;
+    --ink:#fff;
+    --muted:rgba(255,255,255,.5);
+    --hair:rgba(255,255,255,.14);
+    --accent:#AAFF00;
+    --font:'Manrope',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;font-size:10pt;line-height:1.45}
+
+  /* página A4 */
+  .page{max-width:210mm;min-height:297mm;margin:0 auto;padding:16mm 18mm;position:relative}
+
+  /* header */
+  .hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;border-bottom:1px solid var(--hair);padding-bottom:16px;margin-bottom:18px}
+  .hdr__left h1{font-family:var(--font);font-weight:300;font-size:24pt;letter-spacing:-.03em;line-height:1;margin-bottom:8px}
+  .hdr__role{font-family:var(--mono);font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  .hdr__meta{font-family:var(--mono);font-size:8pt;text-align:right;line-height:1.9;letter-spacing:.02em}
+  .hdr__meta a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:0.5px;text-decoration-color:rgba(170,255,0,.5);transition:color .2s}
+  .hdr__meta a:hover{color:#fff}
+
+  /* secciones */
+  section{margin-bottom:16px;page-break-inside:avoid}
+  .sec__title{font-family:var(--mono);font-size:7.6pt;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;padding-bottom:5px;border-bottom:1px dotted var(--hair)}
+
+  .lede{font-size:10pt;line-height:1.55;color:rgba(255,255,255,.82)}
+  .lede strong{color:var(--accent);font-weight:500}
+
+  /* entradas de experiencia y educación */
+  .entry{margin-bottom:11px}
+  .entry:last-child{margin-bottom:0}
+  .entry__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:3px}
+  .entry__title{font-family:var(--font);font-weight:500;font-size:10.5pt;letter-spacing:-.01em;color:#fff}
+  .entry__title em{color:var(--muted);font-style:normal;font-weight:300}
+  .entry__date{font-family:var(--mono);font-size:7.2pt;letter-spacing:.06em;color:var(--muted);white-space:nowrap;text-transform:uppercase}
+  .entry__body{font-size:9.5pt;line-height:1.5;color:rgba(255,255,255,.75)}
+  .entry__body strong{color:var(--accent);font-weight:500}
+  .entry__meta{font-family:var(--mono);font-size:7.6pt;color:var(--muted);margin-top:4px;letter-spacing:.02em}
+  .entry__meta strong{color:rgba(255,255,255,.7);font-weight:500}
+
+  /* competencias */
+  .skills{display:grid;grid-template-columns:1fr 1fr;gap:7px 30px}
+  .skill{font-size:9pt;line-height:1.45;color:rgba(255,255,255,.72)}
+  .skill strong{color:var(--accent);font-weight:500;font-family:var(--mono);font-size:7.8pt;letter-spacing:.02em;display:inline-block;margin-right:6px}
+
+  /* proyectos */
+  .proj{margin-bottom:8px}
+  .proj:last-child{margin-bottom:0}
+  .proj__name{font-family:var(--font);font-weight:500;font-size:10pt;color:#fff;margin-bottom:2px}
+  .proj__desc{font-size:9pt;line-height:1.45;color:rgba(255,255,255,.72)}
+  .proj__desc a{color:var(--accent);text-decoration:none;border-bottom:1px dotted rgba(170,255,0,.5)}
+
+  /* impresión */
+  @page{size:A4;margin:0}
+  @media print{
+    body,html{background:var(--bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .page{padding:14mm 16mm;box-shadow:none;min-height:auto}
+    a{color:var(--accent)}
+    section{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="hdr">
+      <div class="hdr__left">
+        <h1>Alan Buenhombre</h1>
+        <div class="hdr__role">Lead Designer · Brand Strategy · Systems · Product B2B</div>
+      </div>
+      <div class="hdr__meta">
+        <div><a href="mailto:alangtres@gmail.com">alangtres@gmail.com</a></div>
+        <div><a href="https://buenhombre.design">buenhombre.design</a></div>
+        <div><a href="https://linkedin.com/in/buenhombre/">linkedin.com/in/buenhombre</a></div>
+      </div>
+    </header>
+
+    <!-- PERFIL -->
+    <section>
+      <h2 class="sec__title">Perfil</h2>
+      <p class="lede">14 años entre agencia estratégica y staff-augmentation LATAM: 10 como Director de Arte en AdO Latam (Bogotá) y 4 como <strong>Design Owner</strong> en Kommit (ISO 27001:2022). Único diseñador del equipo Kommit: manual de marca de 45 páginas, Design System V5 (v1→v5), Portal interno con adopción 100%, y aplicaciones en producción. Diseño para dominios B2B regulados donde una marca coherente y un sistema escalable son el mismo trabajo.</p>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section>
+      <h2 class="sec__title">Experiencia</h2>
+
+      <div class="entry">
+        <div class="entry__head">
+          <div class="entry__title">Design Owner · Lead Designer <em>· Kommit (staff-aug LATAM, ISO 27001:2022)</em></div>
+          <div class="entry__date">2022 · Presente</div>
+        </div>
+        <div class="entry__body">
+          Único diseñador del equipo, reportando a CEO, tech lead, Directora de Operaciones y Directora de Marketing según etapa. Escribí el <strong>manual de marca de 45 páginas</strong> (vision, mission, values, tone of voice, dos identidades paralelas) y diseñé el <strong>logo con concepto human ↔ digital</strong>. Owner del <strong>Kommit Design System v1→v5</strong>: Foundation completo (Typography, Spacing, Radii, Elevation), ~50 componentes core en Light Base y Dark Elevated. Diseño end-to-end de <strong>Portal Kommit</strong>, herramienta interna con 12+ módulos adoptada por el 100% del equipo. Para clientes: identidad y producto de <strong>Chaincerts</strong> (receptor del Stellar Community Fund #13, US$75K 2023; destacado por la Stellar Development Foundation).
+        </div>
+        <div class="entry__meta"><strong>Ownership:</strong> Brand strategy · Design system governance · Product design · Applications</div>
+        <div class="entry__meta"><strong>Stack:</strong> Figma (library + Claude Design docs) · Manrope · Lit web components en producción</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry__head">
+          <div class="entry__title">Art Director <em>· AdO Latam / Ad Orange (Bogotá)</em></div>
+          <div class="entry__date">2011 · 2021</div>
+        </div>
+        <div class="entry__body">
+          Dirección creativa en cuentas corporativas Tier-1 de Colombia: <strong>Grupo Energía de Bogotá (GEB)</strong>, <strong>Enel-Codensa</strong>, <strong>Mario Hernández</strong>, <strong>Antillana</strong> (rediseño de logo + campañas + material de POS + marketing), <strong>Masisa</strong> (Chile) y <strong>Continente / LEGO Colombia</strong>. Comunicación estratégica, identidad visual, campañas ATL y digital para procurement multi-stakeholder y brand guidelines heredados.
+        </div>
+        <div class="entry__meta"><strong>Verticales:</strong> Utilities · retail premium · manufactura industrial · distribución consumer</div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS DESTACADOS -->
+    <section>
+      <h2 class="sec__title">Proyectos destacados</h2>
+
+      <div class="proj">
+        <div class="proj__name">Kommit · Design Ownership (2022-2026)</div>
+        <div class="proj__desc">Manual de marca 45 pág, Design System v1→v5 (~50 componentes), Portal interno (12+ módulos, adopción 100%) y aplicaciones en producción. <a href="https://buenhombre.design/kommit-ownership.html">Case study</a></div>
+      </div>
+
+      <div class="proj">
+        <div class="proj__name">Chaincerts <em style="color:var(--muted);font-style:normal;font-weight:300">· Stellar Community Fund #13, US$75K 2023</em></div>
+        <div class="proj__desc">Diseño de identidad, producto (Vault) y sitio para plataforma de credenciales verificables sobre Soroban/Stellar. Destacada por la Stellar Development Foundation en blog oficial de desarrolladores. <a href="https://buenhombre.design/chaincerts.html">Case study</a></div>
+      </div>
+
+      <div class="proj">
+        <div class="proj__name">Antillana · Rediseño de marca <em style="color:var(--muted);font-style:normal;font-weight:300">· AdO Latam</em></div>
+        <div class="proj__desc">Rediseño de logo, campañas de marca y visuales de POS para una de las mayores marcas colombianas de agroindustria (adquirida por Grupo Bios).</div>
+      </div>
+    </section>
+
+    <!-- COMPETENCIAS -->
+    <section>
+      <h2 class="sec__title">Competencias</h2>
+      <div class="skills">
+        <div class="skill"><strong>Brand strategy</strong> Vision, mission, values, tone of voice, arquitectura de marca</div>
+        <div class="skill"><strong>Identity</strong> Logo, sistema visual, tipografía, iconografía, aplicaciones</div>
+        <div class="skill"><strong>Design systems</strong> Tokens, componentes, versionado, governance, documentación</div>
+        <div class="skill"><strong>Product design</strong> Flujos B2B, dashboards, tooling interno, admin panels</div>
+        <div class="skill"><strong>Art direction</strong> Campañas, retail, digital, motion, sistema fotográfico</div>
+        <div class="skill"><strong>Colaboración</strong> Reporte directo a C-level, coordinación con tech lead y producto</div>
+      </div>
+    </section>
+
+    <!-- EDUCACIÓN -->
+    <section>
+      <h2 class="sec__title">Educación &amp; certificaciones</h2>
+
+      <div class="entry">
+        <div class="entry__head">
+          <div class="entry__title">Diseño Gráfico <em>· Fundación Universitaria Los Libertadores</em></div>
+          <div class="entry__date">2016 · 2020</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry__head">
+          <div class="entry__title">Google UX Design Certificate <em>· Coursera</em></div>
+          <div class="entry__date">2022</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry__head">
+          <div class="entry__title">Digital Product Management <em>· University of Virginia / Coursera</em></div>
+          <div class="entry__date">2022</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry__head">
+          <div class="entry__title">Interaction Design Course <em>· Interaction Design Foundation</em></div>
+          <div class="entry__date">2023</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
