@@ -371,19 +371,10 @@
   .closer__pulse i:first-child{animation:closerPing 1.8s ease-out infinite;opacity:.55}
   @keyframes closerPing{0%{transform:scale(1);opacity:.55}80%,100%{transform:scale(2.8);opacity:0}}
 
-  .closer__trigger{position:relative;display:inline-flex;align-items:center;gap:0;
-       background:none;border:0;padding:0;color:inherit;cursor:pointer;
+  .closer__trigger{position:relative;display:flex;flex-direction:column;align-items:center;
+       gap:32px;background:none;border:0;padding:0;color:inherit;cursor:pointer;text-align:center;
        font-family:var(--font);transition:opacity .55s cubic-bezier(.2,.7,.2,1),
        transform .55s cubic-bezier(.2,.7,.2,1)}
-  .closer__sideline{display:none}
-  @media(min-width:900px){
-    .closer__sideline{display:block;flex:0 0 auto;height:1px;background:rgba(255,255,255,.22);
-         transition:transform .5s ease,width .5s ease,opacity .5s ease;
-         transform-origin:center}
-    .closer__sideline--l{width:56px;margin-right:32px;transform-origin:right center}
-    .closer__sideline--r{width:56px;margin-left:32px;transform-origin:left center}
-    .closer__trigger:hover .closer__sideline{width:84px;opacity:.55}
-  }
   .closer__titleblock{display:flex;flex-direction:column;gap:0;overflow:hidden}
   .closer__line{display:block;font-family:var(--font);font-weight:300;
        font-size:clamp(2.6rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.035em;
@@ -392,16 +383,24 @@
   .closer__line--muted strong{color:var(--accent);font-weight:inherit}
   .closer__trigger:hover .closer__line{transform:translateY(-4%)}
 
-  .closer__arrow{display:inline-flex;align-items:center;justify-content:center;
-       margin-left:26px;width:64px;height:64px;border:1px solid rgba(255,255,255,.22);
-       border-radius:50%;color:var(--ink);
-       transition:background .4s ease,border-color .4s ease,transform .4s ease,color .4s ease}
-  .closer__arrow svg{width:26px;height:26px;transition:transform .4s ease}
-  .closer__trigger:hover .closer__arrow{background:var(--ink);color:#000;border-color:var(--ink);transform:scale(1.06)}
-  .closer__trigger:hover .closer__arrow svg{transform:translate(2px,-2px)}
-
-  .closer__note{max-width:44ch;font-family:var(--font-mono);font-size:.82rem;line-height:1.6;
+  .closer__hint{max-width:44ch;font-family:var(--font-mono);font-size:.82rem;line-height:1.6;
        color:rgba(255,255,255,.55);transition:opacity .5s ease,transform .5s ease}
+
+  .closer__arrowline{display:flex;align-items:center;justify-content:center;gap:0;width:100%;
+       margin-top:4px}
+  .closer__sideline{flex:0 0 auto;height:1px;background:rgba(255,255,255,.22);width:80px;
+       transition:width .5s ease,opacity .5s ease,background .5s ease}
+  .closer__sideline--l{margin-right:26px}
+  .closer__sideline--r{margin-left:26px}
+  .closer__trigger:hover .closer__sideline{width:120px;background:rgba(255,255,255,.45)}
+
+  .closer__arrow{display:inline-flex;align-items:center;justify-content:center;
+       width:72px;height:72px;border:1px solid rgba(255,255,255,.28);
+       border-radius:50%;color:var(--ink);flex:0 0 auto;
+       transition:background .4s ease,border-color .4s ease,transform .4s ease,color .4s ease}
+  .closer__arrow svg{width:28px;height:28px;transition:transform .4s ease}
+  .closer__trigger:hover .closer__arrow{background:var(--accent);color:#000;border-color:var(--accent);transform:scale(1.06)}
+  .closer__trigger:hover .closer__arrow svg{transform:translate(2px,-2px)}
 
   /* estado reveal */
   .closer__reveal{position:absolute;inset:0;display:flex;flex-direction:column;
@@ -425,8 +424,7 @@
 
   /* state switch */
   .closer__stage[data-state="open"] .closer__avail,
-  .closer__stage[data-state="open"] .closer__trigger,
-  .closer__stage[data-state="open"] .closer__note{
+  .closer__stage[data-state="open"] .closer__trigger{
     opacity:0;transform:translateY(-14px);pointer-events:none
   }
   .closer__stage[data-state="open"] .closer__reveal{
@@ -436,8 +434,13 @@
   @media(max-width:640px){
     .closer{min-height:auto;padding:100px var(--pad)}
     .closer__stage{gap:26px}
-    .closer__arrow{width:52px;height:52px;margin-left:18px}
-    .closer__arrow svg{width:22px;height:22px}
+    .closer__trigger{gap:24px}
+    .closer__arrow{width:60px;height:60px}
+    .closer__arrow svg{width:24px;height:24px}
+    .closer__sideline{width:44px}
+    .closer__sideline--l{margin-right:18px}
+    .closer__sideline--r{margin-left:18px}
+    .closer__trigger:hover .closer__sideline{width:64px}
     .closer__reveal{position:relative;padding:20px 0}
   }
 
@@ -542,10 +545,10 @@
         <div class="hero-left">
           <div class="kick"><img class="kick__avatar" src="assets/Alan.png" alt="Alan Buenhombre"><span class="kick__avail"><span class="dot"></span> <span data-i18n="hero_avail">Disponible</span></span></div>
           <div class="titleblock">
-            <h1 class="title" data-i18n-html="hero_title">Lead Designer · <strong>brand strategy</strong>, systems y producto B2B.</h1>
+            <h1 class="title" data-i18n-html="hero_title">Lead Designer · <strong>Brand, Systems &amp; Product</strong>.</h1>
             <div class="titlerule"></div>
-            <p class="lede" data-i18n="hero_lede">Diseño estrategia de marca, sistemas y productos para equipos B2B en dominios regulados (fintech, Web3, utilities) donde una marca coherente y un sistema escalable son el mismo trabajo.</p>
-            <p class="lede" data-i18n="hero_stat" style="margin-top:10px">14 años entre agencia estratégica y staff-aug LATAM: 10 como Director de Arte en AdO Latam, últimos 4 como Design Owner en Kommit.</p>
+            <p class="lede" data-i18n="hero_lede">La coherencia de marca es un problema de sistemas. Diseño marca, sistemas y producto digital para equipos B2B en LATAM.</p>
+            <p class="lede" data-i18n="hero_stat" style="margin-top:10px">14 años entre agencias y producto digital: 10 como Director de Arte en AdO Latam, últimos 4 como Lead Designer y Design Owner en Kommit.</p>
           </div>
         </div>
         <div class="cta">
@@ -566,7 +569,7 @@
       <a class="crow" href="kommit-ownership.html"><span class="crow__num">01</span><span class="crow__name">Kommit · Design Ownership</span><span class="crow__disc">Brand Strategy · Systems · Product · 2022–2026</span><span class="crow__arrow">↗</span></a>
       <a class="crow" href="chaincerts.html"><span class="crow__num">02</span><span class="crow__name">Chaincerts</span><span class="crow__disc">Fintech · Web3 · Stellar Community Fund #13 · 2023</span><span class="crow__arrow">↗</span></a>
       <a class="crow" href="portal-kommit.html"><span class="crow__num">03</span><span class="crow__name">Kommit V5 Design System</span><span class="crow__disc">Product Systems · Design Governance · 2022–2026</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="worklogs.html"><span class="crow__num">04</span><span class="crow__name">Portal Kommit</span><span class="crow__disc">Internal Tools & Design System · 2026</span><span class="crow__arrow">↗</span></a>
+      <a class="crow" href="worklogs.html"><span class="crow__num">04</span><span class="crow__name">Company Portal</span><span class="crow__disc">Portal interno B2B · 12+ módulos · Adopción 100% · 2023–2025</span><span class="crow__arrow">↗</span></a>
       <a class="crow" href="okdose.html"><span class="crow__num">05</span><span class="crow__name">OKdose</span><span class="crow__disc">Health Tech · Product Design & UX/UI · 2022</span><span class="crow__arrow">↗</span></a>
     </ul>
   </section>
@@ -576,7 +579,9 @@
     <div class="info__intro">
       <p class="info__kicker" data-i18n="info_kicker">Sobre mí</p>
       <h2 class="info__statement" data-i18n-html="info_statement">De director de arte a <strong>Design Owner</strong> en producto y marca.</h2>
-      <p class="info__text" data-i18n="info_text">10 años como Director de Arte en AdO Latam (Bogotá), diseñando marca e identidad para clientes corporativos como Grupo Energía de Bogotá, Enel-Codensa y Mario Hernández, y como consultor de marca freelance para emprendimientos y startups en LATAM. Los últimos 4 en Kommit (staff-augmentation LATAM certificada ISO 27001:2022) como Design Owner y único diseñador del equipo: escribí el manual de marca de 45 páginas, el Design System V5 (v1→v5), el Portal Kommit interno (adopción 100% del equipo) y las aplicaciones en producción. Para clientes de Kommit, la identidad y el producto de Chaincerts, receptora del Stellar Community Fund #13 (US$75K, 2023) y destacada por la Stellar Development Foundation.</p>
+      <p class="info__text" data-i18n="info_text_p1">Pasé diez años como Director de Arte en AdO Latam (Bogotá), diseñando identidad, campañas y comunicación para marcas corporativas como Grupo Energía de Bogotá, Enel-Codensa y Mario Hernández, y como consultor de marca freelance para startups y emprendimientos en LATAM.</p>
+      <p class="info__text" data-i18n="info_text_p2" style="margin-top:14px">En los últimos cuatro años llevé esa mirada al producto digital. En Kommit (staff-augmentation LATAM ISO 27001:2022) fui Lead Designer y Design Owner del equipo: escribí el manual de marca de 45 páginas, diseñé y sostuve el Design System v1→v5, y llevé el Company Portal interno (12+ módulos, adoptado por todo el equipo) a producción.</p>
+      <p class="info__text" data-i18n="info_text_p3" style="margin-top:14px">Para clientes de Kommit diseñé la identidad y el producto de Chaincerts, receptora del Stellar Community Fund #13 (US$75K, 2023) y destacada por la Stellar Development Foundation.</p>
     </div>
     <div class="caps" id="caps">
       <div class="cap">
@@ -731,28 +736,28 @@
       </div>
 
       <button class="closer__trigger" id="closerTrigger" type="button" aria-label="Contactar">
-        <span class="closer__sideline closer__sideline--l" aria-hidden="true"></span>
         <span class="closer__titleblock">
           <span class="closer__line" data-i18n="closer_l1">Busco mi próximo</span>
           <span class="closer__line closer__line--muted" data-i18n-html="closer_l2">equipo de <strong>producto</strong></span>
         </span>
-        <span class="closer__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <span class="closer__hint" data-i18n="closer_note">¿Estás armando un equipo de producto o brand system? Hablemos.</span>
+        <span class="closer__arrowline" aria-hidden="true">
+          <span class="closer__sideline closer__sideline--l"></span>
+          <span class="closer__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </span>
+          <span class="closer__sideline closer__sideline--r"></span>
         </span>
-        <span class="closer__sideline closer__sideline--r" aria-hidden="true"></span>
       </button>
 
-      <p class="closer__note" data-i18n="closer_note">¿Estás armando un equipo de producto o brand system? Hablemos.</p>
-
       <div class="closer__reveal" aria-hidden="true">
-        <span class="closer__kicker" data-i18n="closer_kicker">Listo</span>
-        <h3 class="closer__reveal-title" data-i18n="closer_reveal_title">Hablemos.</h3>
+        <h3 class="closer__reveal-title" data-i18n="closer_reveal_title">Cuéntame del rol.</h3>
         <a class="closer__cta" href="mailto:alangtres@gmail.com?subject=Oportunidad%20Lead%20Designer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="3 8 12 14 21 8"/></svg>
           <span data-i18n="closer_reveal_cta">Escríbeme</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </a>
-        <span class="closer__reveal-sub" data-i18n="closer_reveal_sub">Respondo en 24 horas</span>
+        <span class="closer__reveal-sub" data-i18n="closer_reveal_sub">Bogotá · LATAM & remoto</span>
       </div>
 
     </div>
@@ -815,9 +820,9 @@
     es:{
       nav_inicio:'Inicio',nav_trabajo:'Trabajo',nav_casos:'Casos',nav_contacto:'Contacto',
       hero_avail:'Disponible',
-      hero_title:'Lead Designer · <strong>brand strategy</strong>, systems y producto B2B.',
-      hero_lede:'Diseño estrategia de marca, sistemas y productos para equipos B2B en dominios regulados (fintech, Web3, utilities) donde una marca coherente y un sistema escalable son el mismo trabajo.',
-      hero_stat:'14 años entre agencia estratégica y staff-aug LATAM: 10 como Director de Arte en AdO Latam, últimos 4 como Design Owner en Kommit.',
+      hero_title:'Lead Designer · <strong>Brand, Systems &amp; Product</strong>.',
+      hero_lede:'La coherencia de marca es un problema de sistemas. Diseño marca, sistemas y producto digital para equipos B2B en LATAM.',
+      hero_stat:'14 años entre agencias y producto digital: 10 como Director de Arte en AdO Latam, últimos 4 como Lead Designer y Design Owner en Kommit.',
       hero_cta_about:'Sobre mí →',hero_cta_cases:'Casos de estudio →',
       fan_idx:'04 · Trabajo & exploración',fan_title:'Algo de lo que <strong>diseño</strong>.',
       proc_kicker:'05 · Proceso',
@@ -832,7 +837,9 @@
       proc_s4_name:'Entrega y Medición',
       proc_s4_desc:'Handoff con desarrollo, QA visual y seguimiento de adopción. Colaboro con analytics para leer conversión, engagement y NPS, e iterar el sistema.',
       info_kicker:'Sobre mí',info_statement:'De director de arte a <strong>Design Owner</strong> en producto y marca.',
-      info_text:'10 años como Director de Arte en AdO Latam (Bogotá), diseñando marca e identidad para clientes corporativos como Grupo Energía de Bogotá, Enel-Codensa y Mario Hernández, y como consultor de marca freelance para emprendimientos y startups en LATAM. Los últimos 4 en Kommit (staff-augmentation LATAM certificada ISO 27001:2022) como Design Owner y único diseñador del equipo: escribí el manual de marca de 45 páginas, el Design System V5 (v1→v5), el Portal Kommit interno (adopción 100% del equipo) y las aplicaciones en producción. Para clientes de Kommit, la identidad y el producto de Chaincerts, receptora del Stellar Community Fund #13 (US$75K, 2023) y destacada por la Stellar Development Foundation.',
+      info_text_p1:'Pasé diez años como Director de Arte en AdO Latam (Bogotá), diseñando identidad, campañas y comunicación para marcas corporativas como Grupo Energía de Bogotá, Enel-Codensa y Mario Hernández, y como consultor de marca freelance para startups y emprendimientos en LATAM.',
+      info_text_p2:'En los últimos cuatro años llevé esa mirada al producto digital. En Kommit (staff-augmentation LATAM ISO 27001:2022) fui Lead Designer y Design Owner del equipo: escribí el manual de marca de 45 páginas, diseñé y sostuve el Design System v1→v5, y llevé el Company Portal interno (12+ módulos, adoptado por todo el equipo) a producción.',
+      info_text_p3:'Para clientes de Kommit diseñé la identidad y el producto de Chaincerts, receptora del Stellar Community Fund #13 (US$75K, 2023) y destacada por la Stellar Development Foundation.',
       cases_title:'Casos de <strong>estudio</strong>',cases_meta:'02 · 05 PROYECTOS',
       others_label:'Otros proyectos · Dirección de arte & branding de campañas · Behance',
       closer_title:'Busco mi próximo<br>equipo de <strong>producto</strong>',closer_btn:'Escríbeme →',
@@ -840,19 +847,18 @@
       closer_l1:'Busco mi próximo',
       closer_l2:'equipo de <strong>producto</strong>',
       closer_note:'¿Estás armando un equipo de producto o brand system? Hablemos.',
-      closer_kicker:'Listo',
-      closer_reveal_title:'Hablemos.',
+      closer_reveal_title:'Cuéntame del rol.',
       closer_reveal_cta:'Escríbeme',
-      closer_reveal_sub:'Respondo en 24 horas',
+      closer_reveal_sub:'Bogotá · LATAM & remoto',
       footer_menu:'Menú',footer_contact:'Contacto',footer_copy:'© 2026 Alan Buenhombre',
       footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
     },
     en:{
       nav_inicio:'Home',nav_trabajo:'Work',nav_casos:'Cases',nav_contacto:'Contact',
       hero_avail:'Available',
-      hero_title:'Lead Designer · <strong>brand strategy</strong>, systems and B2B product.',
-      hero_lede:'I design brand strategy, systems and product for B2B teams in regulated domains (fintech, Web3, utilities) where a coherent brand and a scalable system are the same job.',
-      hero_stat:'14 years between strategic agency and LATAM staff-aug: 10 as Art Director at AdO Latam, last 4 as Design Owner at Kommit.',
+      hero_title:'Lead Designer · <strong>Brand, Systems &amp; Product</strong>.',
+      hero_lede:'Brand coherence is a systems problem. I design brand, systems and digital product for B2B teams across LATAM.',
+      hero_stat:'14 years between agencies and digital product: 10 as Art Director at AdO Latam, last 4 as Lead Designer &amp; Design Owner at Kommit.',
       hero_cta_about:'About →',hero_cta_cases:'Case studies →',
       fan_idx:'04 · Work & exploration',fan_title:'Some of what I <strong>design</strong>.',
       proc_kicker:'05 · Process',
@@ -867,7 +873,9 @@
       proc_s4_name:'Ship & Measure',
       proc_s4_desc:'Handoff with engineering, visual QA, and adoption tracking. I work with analytics to read conversion, engagement, and NPS, and iterate the system.',
       info_kicker:'About',info_statement:'From art director to <strong>Design Owner</strong> in product and brand.',
-      info_text:'10 years as Art Director at AdO Latam (Bogotá), designing brand and identity for corporate clients including Grupo Energía de Bogotá, Enel-Codensa, and Mario Hernández, and as a freelance brand consultant for startups and ventures across LATAM. The last 4 at Kommit (ISO 27001:2022 certified LATAM staff-augmentation) as Design Owner and sole designer on the team: wrote the 45-page brand manual, the V5 Design System (v1→v5), the internal Portal Kommit (100% adoption), and the applications in production. For Kommit clients, the identity and product of Chaincerts, recipient of Stellar Community Fund #13 (US$75K, 2023) and featured by the Stellar Development Foundation.',
+      info_text_p1:'Ten years as Art Director at AdO Latam (Bogotá), designing identity, campaigns and communication for corporate brands like Grupo Energía de Bogotá, Enel-Codensa and Mario Hernández, and as a freelance brand consultant for startups and ventures across LATAM.',
+      info_text_p2:'In the last four years I brought that lens into digital product. At Kommit (ISO 27001:2022 certified LATAM staff-augmentation) I was Lead Designer and Design Owner of the team: wrote the 45-page brand manual, designed and sustained the Design System v1→v5, and shipped the internal Company Portal (12+ modules, adopted by the entire team) to production.',
+      info_text_p3:'For Kommit clients I designed the identity and product of Chaincerts, recipient of the Stellar Community Fund #13 (US$75K, 2023) and featured by the Stellar Development Foundation.',
       cases_title:'Case <strong>studies</strong>',cases_meta:'02 · 05 PROJECTS',
       others_label:'Other projects · Art direction & campaign branding · Behance',
       closer_title:'Looking for my next<br><strong>product</strong> team',closer_btn:'Write me →',
@@ -875,10 +883,9 @@
       closer_l1:'Looking for my next',
       closer_l2:'<strong>product</strong> team',
       closer_note:'Building a product team or a brand system? Let\'s talk.',
-      closer_kicker:'Ready',
-      closer_reveal_title:'Let\'s talk.',
+      closer_reveal_title:'Tell me about the role.',
       closer_reveal_cta:'Write me',
-      closer_reveal_sub:'I reply within 24 hours',
+      closer_reveal_sub:'Bogotá · LATAM & remote',
       footer_menu:'Menu',footer_contact:'Contact',footer_copy:'© 2026 Alan Buenhombre',
       footer_invite:'More design to discover on my socials.',footer_copied:'Copied!'
     }
@@ -1046,7 +1053,7 @@
       ['Kommit · Design Ownership','Brand Strategy · Systems · Product · 2022–2026','kommit-ownership.html','assets/portal-kommit-hero.jpg'],
       ['Chaincerts','Fintech · Web3 · Stellar Community Fund #13 · 2023','chaincerts.html','assets/chaincerts-hero.jpg'],
       ['Kommit V5 Design System','Product Systems · Design Governance · 2022–2026','portal-kommit.html','assets/portal-kommit-hero.jpg'],
-      ['Portal Kommit','Internal Tools & Design System · 2026','worklogs.html','assets/portal-kommit-2026-hero.jpg'],
+      ['Company Portal','Portal interno B2B · 12+ módulos · Adopción 100% · 2023–2025','worklogs.html','assets/portal-kommit-2026-hero.jpg'],
       ['OKdose','Health Tech · Product Design & UX/UI · 2022','okdose.html','assets/okdose-hero.jpg'],
     ];
     const list=document.getElementById('casesList'),cp=document.getElementById('cp'),cpimg=document.getElementById('cpimg');
