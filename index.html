@@ -98,9 +98,17 @@
   /* ===== HERO ===== */
   .hero{position:relative;height:100vh;min-height:680px;overflow:hidden}
   .hero__bg{position:absolute;inset:0;background:#000}
-  .hero__bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;
-       opacity:0;transition:opacity 1.2s ease}
-  .hero__bg video.is-on{opacity:1}
+  .hero__bg video,.hero__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;
+       opacity:0;transition:opacity 1.2s ease;display:block}
+  .hero__bg video.is-on,.hero__bg img.is-on{opacity:1}
+  .hero__bg img.ken-burns.is-on{animation:kenBurns 7.2s ease-out both}
+  @keyframes kenBurns{
+    0%   {transform:scale(1.06) translate(0,0)}
+    100% {transform:scale(1.18) translate(-2%,-1.5%)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero__bg img.ken-burns.is-on{animation:none;transform:scale(1.05)}
+  }
   .kick__avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.25);margin-bottom:6px}
   .hero__veil{position:absolute;inset:0;background:
      linear-gradient(100deg, rgba(26,26,26,.72) 0%, rgba(26,26,26,.30) 42%, rgba(26,26,26,0) 68%),
@@ -801,38 +809,6 @@
     </div>
   </section>
 
-  <!-- ===== SECCIÓN 4 · WORK CARDS ===== -->
-  <section class="pgallery" id="trabajo">
-    <div class="fan__head">
-      <div class="fan__idx" data-i18n="fan_idx">04 · Trabajo &amp; exploración</div>
-      <h2 class="fan__title" data-i18n-html="fan_title">Algo de lo que <strong>diseño</strong>.</h2>
-    </div>
-    <div class="wgrid" id="wgrid">
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Identity</span><div class="wcard__thumb"><img src="assets/brands/01-norvell.png" alt="Norvell"></div><div class="wcard__foot"><span class="wcard__name">Norvell</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Packaging</span><div class="wcard__thumb"><img src="assets/brands/02-lumea.jpg" alt="Lumea"></div><div class="wcard__foot"><span class="wcard__name">Lumea</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Lab</span><div class="wcard__thumb"><img src="assets/brands/03-roselilab.png" alt="Roselilab"></div><div class="wcard__foot"><span class="wcard__name">Roselilab</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Retail</span><div class="wcard__thumb"><img src="assets/brands/04-voxen.jpg" alt="Voxen"></div><div class="wcard__foot"><span class="wcard__name">Voxen</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Health</span><div class="wcard__thumb"><img src="assets/brands/05-cardinova.png" alt="Cardinova"></div><div class="wcard__foot"><span class="wcard__name">Cardinova</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Packaging</span><div class="wcard__thumb"><img src="assets/brands/06-bonemesh.png" alt="Bonemesh"></div><div class="wcard__foot"><span class="wcard__name">Bonemesh</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Tech</span><div class="wcard__thumb"><img src="assets/brands/07-aptest.png" alt="Apptest"></div><div class="wcard__foot"><span class="wcard__name">Apptest</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Architecture</span><div class="wcard__thumb"><img src="assets/brands/08-ikkaros.jpg" alt="Ikkaros"></div><div class="wcard__foot"><span class="wcard__name">Ikkaros</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Audio</span><div class="wcard__thumb"><img src="assets/brands/09-sounda.jpg" alt="Sounda"></div><div class="wcard__foot"><span class="wcard__name">Sounda</span><span class="wcard__arrow">↗</span></div></a>
-      <a class="wcard" href="#"><span class="wcard__cat">Brand · Energy</span><div class="wcard__thumb"><img src="assets/brands/10-solartrade.jpg" alt="SolarTrade"></div><div class="wcard__foot"><span class="wcard__name">SolarTrade</span><span class="wcard__arrow">↗</span></div></a>
-    </div>
-  </section>
-
-  <!-- ===== OTROS PROYECTOS ===== -->
-  <section class="others">
-    <p class="others__label" data-i18n="others_label">Otros proyectos · Dirección de arte &amp; branding de campañas · Behance</p>
-    <div class="others__grid" id="othersGrid">
-      <a class="pcard" href="https://www.behance.net/gallery/134824769/CACIQUES-HH" target="_blank" rel="noopener"><span class="pcard__cat">Branding · Campaña</span><span class="pcard__name">Caciques HH<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-      <a class="pcard" href="https://www.behance.net/gallery/134821849/CoParching-Hackathon" target="_blank" rel="noopener"><span class="pcard__cat">Estrategia · Diseño</span><span class="pcard__name">CoParching Hackathon<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-      <a class="pcard" href="https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald" target="_blank" rel="noopener"><span class="pcard__cat">Branding · Social</span><span class="pcard__name">Casa Ronald McDonald<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-      <a class="pcard" href="https://www.behance.net/gallery/92806223/ESPECTROMIA" target="_blank" rel="noopener"><span class="pcard__cat">Dirección de arte</span><span class="pcard__name">Espectromia<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-      <a class="pcard" href="https://www.behance.net/gallery/113654193/En-modo-IN" target="_blank" rel="noopener"><span class="pcard__cat">Campaña</span><span class="pcard__name">En modo IN<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-      <a class="pcard" href="https://www.behance.net/gallery/80419227/FESTIVAL-RENACER" target="_blank" rel="noopener"><span class="pcard__cat">Identidad · Evento</span><span class="pcard__name">Festival Renacer<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-    </div>
-  </section>
 
   <!-- ===== CLOSER · CTA + FOTO ===== -->
   <section class="closer" id="contacto">
@@ -1041,7 +1017,8 @@
     });
   }
   function buildOthers(l){
-    const g=document.getElementById('othersGrid'); g.innerHTML='';
+    const g=document.getElementById('othersGrid'); if(!g) return;
+    g.innerHTML='';
     OTHERS_I18N[l].forEach(([cat,name,href])=>{const a=document.createElement('a');a.className='pcard';a.href=href;a.target='_blank';a.rel='noopener';
       a.innerHTML='<span class="pcard__cat">'+cat+'</span><span class="pcard__name">'+name+ARROW+'</span>';
       g.appendChild(a);});
@@ -1132,7 +1109,7 @@
   /* ---- INIT idioma ---- */
   applyLang('es');
 
-  /* ---- HERO video: 1 full-bleed que va cambiando random del pool (patrón gritt) ---- */
+  /* ---- HERO slider: mezcla videos + foto con ken burns (patrón gritt) ---- */
   (function(){
     const slider = document.getElementById('heroSlider');
     if (!slider || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -1141,15 +1118,23 @@
       'videos/0_Purple_Flare_Magenta_1280x720.mp4',
       'videos/GettyImages-1289396152.mp4',
       'videos/GettyImages-1354070139.mp4',
-      'videos/GettyImages-985569494.mp4'
+      'videos/GettyImages-985569494.mp4',
+      'assets/foto-perfil.jpg'
     ];
-    let current = slider.querySelector('video').getAttribute('src');
+    const isImg = src => /\.(jpg|jpeg|png|webp|avif)(\?|$)/i.test(src);
+    let current = slider.querySelector('video, img').getAttribute('src');
     setInterval(() => {
       const not = pool.filter(p => p !== current);
       const next = not[Math.floor(Math.random() * not.length)];
-      const old = slider.querySelector('video.is-on');
-      const nv = document.createElement('video');
-      nv.src = next; nv.muted = true; nv.loop = true; nv.autoplay = true; nv.playsInline = true;
+      const old = slider.querySelector('.is-on');
+      let nv;
+      if (isImg(next)){
+        nv = document.createElement('img');
+        nv.src = next; nv.alt = ''; nv.className = 'ken-burns';
+      } else {
+        nv = document.createElement('video');
+        nv.src = next; nv.muted = true; nv.loop = true; nv.autoplay = true; nv.playsInline = true;
+      }
       slider.appendChild(nv);
       requestAnimationFrame(() => nv.classList.add('is-on'));
       setTimeout(() => {
