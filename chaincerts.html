@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chaincerts — Alan Buenhombre</title>
-<meta name="description" content="Caso de estudio: Chaincerts — credenciales verificables en blockchain Stellar. Identidad de marca y UI/UX para hacer comprensible la tecnología." />
+<title>Chaincerts · SCF #13 — Alan Buenhombre</title>
+<meta name="description" content="Chaincerts: credenciales verificables sobre Soroban/Stellar. Diseño de marca, producto (Vault) y sitio para un primitivo cripto validado por Stellar Community Fund #13 (US$75K, 2023)." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
@@ -25,80 +25,86 @@
   </nav>
 
   <header class="chead">
-    <div class="chead__kicker" data-i18n="c.tag">Web3 · Branding · UI/UX</div>
-    <h1 class="chead__title" data-i18n="c.title">Chaincerts</h1>
-    <p class="chead__sub" data-i18n="c.sub"></p>
+    <div class="chead__kicker">Fintech · Web3 · Brand + Product</div>
+    <h1 class="chead__title">Chaincerts</h1>
+    <p class="chead__sub">Credenciales verificables sobre Soroban/Stellar. Diseño de marca, producto (Vault) y sitio para un primitivo cripto que necesitaba volverse legible fuera del nicho técnico.</p>
     <div class="chead__links">
-      <div><div class="cmeta__k" data-i18n="c.link.site.label">Sitio</div><a class="chead__link" href="https://chaincerts.co" target="_blank" rel="noopener" data-i18n="c.link.site">chaincerts.co ↗</a></div>
-      <div><div class="cmeta__k" data-i18n="c.link.demo.label">Demo</div><a class="chead__link" href="https://vault.chaincerts.co/presentations/uonpbrwcppwlojtxk6vp3i67" target="_blank" rel="noopener" data-i18n="c.link.demo">Certificado digital ↗</a></div>
+      <a href="https://chaincerts.co" target="_blank" rel="noopener" class="chead__link">chaincerts.co ↗</a>
+      <a href="https://vault.chaincerts.co" target="_blank" rel="noopener" class="chead__link">vault.chaincerts.co ↗</a>
+      <a href="https://stellar.org/blog/developers/building-on-soroban-three-teams-journeys-smart-contracts" target="_blank" rel="noopener" class="chead__link">Stellar blog ↗</a>
     </div>
   </header>
 
   <div class="cmeta">
-    <div><div class="cmeta__k" data-i18n="work.meta.role">Rol</div><div class="cmeta__v" data-i18n="c.meta.role">Lead Designer</div></div>
-    <div><div class="cmeta__k" data-i18n="work.meta.company">Empresa</div><div class="cmeta__v" data-i18n="c.meta.company">Kommit</div></div>
-    <div><div class="cmeta__k" data-i18n="work.meta.year">Año</div><div class="cmeta__v" data-i18n="c.meta.year">2023 — Presente</div></div>
-    <div><div class="cmeta__k" data-i18n="work.meta.disciplines">Disciplinas</div><div class="cmeta__v" data-i18n="c.meta.disc">Branding, UI/UX, Web3</div></div>
+    <div><div class="cmeta__k">Rol</div><div class="cmeta__v">Lead Designer · Sole Designer</div></div>
+    <div><div class="cmeta__k">Empresa</div><div class="cmeta__v">Kommit</div></div>
+    <div><div class="cmeta__k">Año</div><div class="cmeta__v">2022 — 2023</div></div>
+    <div><div class="cmeta__k">Disciplinas</div><div class="cmeta__v">Brand · Product Design · Systems</div></div>
   </div>
 
-  <div class="cmediawrap"><div class="cshot cshot--hero"><img src="assets/chaincerts-hero.jpg" alt="Chaincerts"></div></div>
+  <div class="cmediawrap"><div class="cshot cshot--hero"><img src="assets/chaincerts-hero.jpg" alt="Chaincerts brand + product"></div></div>
 
   <section class="cbody">
+
     <div class="cblock">
-      <h2 class="cblock__title" data-i18n="c.ctx.title">Contexto</h2>
-      <p class="cblock__text" data-i18n="c.ctx.p1">Chaincerts necesitaba modernizar su imagen y construir una experiencia de usuario clara alrededor de la emisión y validación de credenciales en blockchain Stellar. El reto principal: hacer accesible y comprensible una tecnología compleja (transacciones blockchain) para usuarios no técnicos que quisieran emitir, solicitar o compartir certificados digitales verificables.</p>
-      <p class="cblock__text" data-i18n="c.ctx.p2">La propuesta debía reflejar credibilidad, innovación y seguridad, sin abrumar al usuario con la complejidad técnica subyacente.</p>
+      <div class="cblock__label">Contexto</div>
+      <h2 class="cblock__title">Traducir un smart contract en un producto comprensible.</h2>
+      <p class="cblock__text">Kommit venía construyendo sobre Stellar y planteó Chaincerts como una plataforma de credenciales verificables tipo <strong>Soulbound Token</strong> sobre Soroban. El primitivo era potente pero abstracto: un smart contract emitiendo certificados no transferibles no significa nada para un issuer que solo quiere entregar un diploma, ni para un holder que quiere mostrarlo en LinkedIn.</p>
+      <p class="cblock__text">Como <strong>único diseñador del proyecto</strong>, mi trabajo fue traducir ese primitivo cripto en una <strong>marca, un producto y un sitio comprensibles para gente no técnica</strong>, sin diluir la promesa de verificabilidad on-chain. El scope cubrió identidad, sistema visual, manual de marca de 401 páginas, UI del vault (desktop + mobile), sitio del producto y piezas de marketing.</p>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label">Decisión · 01</div>
+      <h2 class="cblock__title">Identidad que suena a infraestructura, no a hype cripto.</h2>
+      <p class="cblock__text">Construí la identidad completa: <strong>logo con marca angular</strong> (chevrones apilados + estrella superior, sugiriendo cadena de verificación ascendente), <strong>wordmark con "E" abierta</strong> como firmante tipográfico único, paleta dark-first con violeta/cobalto como acentos, y sistema de tipografía dual: sans para display + monospace para elementos técnicos (Stellar accounts, DIDs, hashes).</p>
+      <p class="cblock__text">La meta era sonar a <em>infraestructura confiable de credenciales institucionales</em>, más cerca de un producto tipo notarial que de un NFT drop. El sistema tenía que aguantar dos audiencias muy distintas: un issuer buscando legitimidad (universidad, empresa) y un holder queriendo compartir su credencial. El manual de marca resultante quedó documentado en 401 páginas.</p>
     </div>
 
     <div class="cimgs">
-      <img src="assets/chaincerts-col1.jpg" alt="">
-      <img src="assets/chaincerts-col2.jpg" alt="">
+      <img src="assets/chaincerts-col1.jpg" alt="Chaincerts brand system">
+      <img src="assets/chaincerts-col2.jpg" alt="Chaincerts vault UI">
     </div>
 
     <div class="cblock">
-      <h2 class="cblock__title" data-i18n="c.dec.title">Decisión</h2>
-      <p class="cblock__text" data-i18n="c.dec.intro">Como Lead Designer, simplifiqué la experiencia en tres capas:</p>
-      <div class="cblock__sub">
-        <div class="cblock__subhead" data-i18n="c.dec.s1.h">01 — Marca moderna</div>
-        <p class="cblock__text" data-i18n="c.dec.s1.p">Creé una identidad visual que comunicara innovación y confianza, alejada del estereotipo "tech complejo". Logo, paleta y tipografía reflejaban la naturaleza forward-thinking del proyecto.</p>
-      </div>
-      <div class="cblock__sub">
-        <div class="cblock__subhead" data-i18n="c.dec.s2.h">02 — Dashboard intuitivo</div>
-        <p class="cblock__text" data-i18n="c.dec.s2.p">Diseñé una interfaz donde cualquier usuario pudiera emitir o solicitar un certificado sin entender blockchain. Componentes reconocibles, flujos claros, validación paso a paso.</p>
-      </div>
-      <div class="cblock__sub">
-        <div class="cblock__subhead" data-i18n="c.dec.s3.h">03 — Visualización 3D de transacción</div>
-        <p class="cblock__text" data-i18n="c.dec.s3.p">Creé una representación visual 3D que mostrara la transacción digital en red Stellar. Esto hacía tangible algo abstracto, permitiendo que el usuario comprendiera que su certificado estaba siendo registrado de manera permanente y verificable. El cliente podía compartir esta visualización en redes sociales, convirtiendo la transacción en evidencia social.</p>
-      </div>
+      <div class="cblock__label">Decisión · 02</div>
+      <h2 class="cblock__title">Vault — esconder la mecánica del contrato.</h2>
+      <p class="cblock__text">Diseñé el flujo del <strong>Vault</strong>: la app donde el holder recibe, guarda y comparte sus credenciales, y el lado del issuer para emitir. La decisión clave fue esconder toda la mecánica del smart contract: nada de <em>"firma esta transacción"</em>, ningún gas visible, ninguna wallet en primer plano.</p>
+      <p class="cblock__text">La credencial se presenta como <strong>un objeto claro</strong>: emisor, título, fecha, verificación, link público compartible. La navegación lateral integra los targets de compartir (LinkedIn, Facebook, verificación directa). El botón <em>Verify</em> ancla la promesa de la marca en la interacción diaria. Se diseñaron versiones desktop y mobile del vault; ambas están en producción en <code>vault.chaincerts.co</code>.</p>
     </div>
 
-    <div class="cshot cshot--wide"><img src="assets/chaincerts-inset.jpg" alt=""></div>
-
     <div class="cblock">
-      <h2 class="cblock__title" data-i18n="c.res.title">Resultado</h2>
-      <p class="cblock__text" data-i18n="c.res.p1">Chaincerts ganó funding y visibilidad en la red Stellar frente a equipos del mundo. La plataforma fue presentada como innovación en credenciales verificables.</p>
-      <p class="cblock__text" data-i18n-html="c.res.p2"><strong>Observación importante:</strong> El proyecto se adelantó a su época. Aunque la tecnología era sólida, la adopción fue limitada porque la emisión de certificaciones legales/documentivas aún no se realiza principalmente vía blockchain. El nivel técnico seguía siendo elevado para usuarios no especializados, y el desconocimiento general sobre Web3 limitó el interés real. Con el auge posterior de IA, la atención en blockchain se desvió.</p>
-      <p class="cblock__text" data-i18n-html="c.res.p3"><strong>Status hoy:</strong> El proyecto sigue en funcionamiento como ejemplo de innovación temprana, pero no alcanzó adopción masiva.</p>
+      <div class="cblock__label">Decisión · 03</div>
+      <h2 class="cblock__title">Sitio del producto — el propio Vault como demo.</h2>
+      <p class="cblock__text">Diseñé <code>chaincerts.co</code> como puerta de entrada: qué son las credenciales verificables, para quién sirven, cómo empezar. Prioricé <strong>lenguaje directo sobre jerga blockchain</strong> ("Immutable credential storage", "Decentralized credential issuance", "Easy credential verification") y usé la propia credencial pública demo como <strong>prueba viva del producto</strong>, en vez de screenshots decorativos.</p>
+      <p class="cblock__text">El sistema visual del sitio se extendió a piezas de marketing y a un infographic comercial ("Unlock the future of credentials") que estructura el argumento en tres columnas: challenges of traditional credentials, unlocking Chaincerts' benefits, how to use it.</p>
     </div>
 
-    <div class="cshot cshot--wide"><img src="assets/chaincerts-full.jpg" alt="Chaincerts — Dashboard &amp; Vault"></div>
+    <div class="cshot cshot--wide"><img src="assets/chaincerts-inset.jpg" alt="Chaincerts marketing pieces"></div>
 
     <div class="cblock">
-      <h2 class="cblock__title" data-i18n="c.learn.title">Aprendizajes transferibles</h2>
+      <div class="cblock__label">Resultado</div>
+      <h2 class="cblock__title">Validación institucional temprana verificable.</h2>
+      <p class="cblock__text">Chaincerts recibió el <strong>Stellar Community Fund #13</strong> — <strong>US$75,000</strong>, categoría "Legacy v4.0", en <strong>2023</strong>. Además fue destacado en el blog oficial de Stellar Developers <em>"Building on Soroban: Three Teams' Journeys with Smart Contracts"</em> (marzo 2023), como <strong>uno de solo tres equipos</strong> featureados públicamente por la Stellar Development Foundation. La cuenta oficial <strong>@StellarOrg</strong> citó al equipo en X ese mismo día.</p>
+      <p class="cblock__text">El producto sigue en beta pública (<code>chaincerts.co</code>, <code>vault.chaincerts.co</code>) con desarrollo activo en el repositorio de Kommit. <strong>No tengo métricas públicas de adopción que reportar</strong> — el valor demostrable acá es el reconocimiento del ecosistema Stellar sobre la tesis y la ejecución, no una historia de tracción de mercado. Es la señal más honesta que este caso puede sostener, y probablemente la más útil: reconocimiento institucional externo verificable en tres fuentes SDF.</p>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label">Aprendizajes transferibles</div>
       <ul class="cblock__list">
-        <li data-i18n-html="c.learn.li1"><strong>UX para tecnología compleja:</strong> La claridad visual no sustituye la complejidad técnica, pero la simplifica. Componentes reconocibles + flujos lineales = accesibilidad.</li>
-        <li data-i18n-html="c.learn.li2"><strong>Brand en Web3:</strong> En espacios tecnológicamente densos, la identidad visual es el diferenciador de confianza. El branding no es decorativo, es funcional.</li>
-        <li data-i18n-html="c.learn.li3"><strong>Abstracción visual:</strong> Hacer tangible lo digital — visualizar transacciones, representar procesos — aumenta comprensión y engagement.</li>
-        <li data-i18n-html="c.learn.li4"><strong>Timing de mercado:</strong> Innovación técnica ≠ adopción. La mejor UX no vence al mercado que aún no está listo.</li>
+        <li><strong>Traducir un primitivo cripto a UI humana es diseño de reducción, no de decoración.</strong> La mayor parte del trabajo fue decidir qué del smart contract nunca debía asomar en pantalla.</li>
+        <li><strong>Reconocimiento institucional ≠ tracción de mercado.</strong> SCF + blog SDF validan la tesis y la ejecución técnica; no equivalen a usuarios activos. Son señales distintas y conviene no confundirlas al contar el caso.</li>
+        <li><strong>Diseñar identidad y producto para algo en beta exige un sistema flexible.</strong> La marca tiene que sobrevivir a pivots de posicionamiento sin rediseñarse cada vez que cambia la narrativa del producto.</li>
+        <li><strong>Un manual de 401 páginas no es sobrediseño si el producto lo va a consumir en producción.</strong> Documentar profundo es governance para el equipo que sigue; economizar páginas cuando hay decisiones fuertes es dejar cabos sueltos.</li>
       </ul>
     </div>
+
   </section>
 
   <section class="cnext">
-    <div class="cnext__label" data-i18n="work.next.label">Siguiente proyecto</div>
-    <a href="okdose.html" class="cnext__row">
-      <span class="cnext__name">OKdose</span>
-      <span class="cnext__disc">Health Product · 2022</span>
+    <div class="cnext__label">Siguiente proyecto</div>
+    <a href="kommit-ownership.html" class="cnext__row">
+      <span class="cnext__name">Kommit</span>
+      <span class="cnext__disc">Design Ownership · Brand + Systems + Product · 2022–2026</span>
     </a>
   </section>
 
@@ -106,9 +112,9 @@
     <div class="footer__top">
       <div>
         <div class="footer__logo">Alan Buenhombre</div>
-        <p class="footer__role">Product &amp; Brand Designer</p>
+        <p class="footer__role">Lead Designer · Brand Strategy · Systems · Product B2B</p>
         <p class="footer__tagline">Bogotá, Colombia</p>
-        <p class="footer__copy" data-i18n="footer.copy">© 2026 Alan Buenhombre</p>
+        <p class="footer__copy">© 2026 Alan Buenhombre</p>
       </div>
       <div>
         <div class="footer__col-title" data-i18n="footer.menu">Menú</div>

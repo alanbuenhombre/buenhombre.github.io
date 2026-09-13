@@ -157,6 +157,7 @@ const T = {
     'c.learn.li2': '<strong>Brand en Web3:</strong> En espacios tecnológicamente densos, la identidad visual es el diferenciador de confianza. El branding no es decorativo, es funcional.',
     'c.learn.li3': '<strong>Abstracción visual:</strong> Hacer tangible lo digital — visualizar transacciones, representar procesos — aumenta comprensión y engagement.',
     'c.learn.li4': '<strong>Timing de mercado:</strong> Innovación técnica ≠ adopción. La mejor UX no vence al mercado que aún no está listo.',
+    'c.learn.li5': '<strong>Confianza en producto financiero:</strong> Simplificar transacciones verificables en Web3 es el mismo problema de fondo que diseñar crédito o lending: reducir fricción y ansiedad en decisiones donde el usuario arriesga algo real.',
     /* OKDOSE */
     'ok.tag': 'Healthcare · UX · UI',
     'ok.year': '2022',
@@ -559,6 +560,7 @@ const T = {
     'c.learn.li2': '<strong>Brand in Web3:</strong> In technically dense spaces, visual identity is the trust differentiator. Branding isn\'t decorative — it\'s functional.',
     'c.learn.li3': '<strong>Visual abstraction:</strong> Making the digital tangible — visualizing transactions, representing processes — increases understanding and engagement.',
     'c.learn.li4': '<strong>Market timing:</strong> Technical innovation ≠ adoption. The best UX doesn\'t beat a market that isn\'t ready yet.',
+    'c.learn.li5': '<strong>Trust in financial products:</strong> Simplifying verifiable transactions in Web3 is the same underlying problem as designing credit or lending: reducing friction and anxiety in decisions where the user is risking something real.',
     /* OKDOSE */
     'ok.tag': 'Healthcare · UX · UI',
     'ok.year': '2022',
