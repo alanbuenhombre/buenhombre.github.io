@@ -353,14 +353,11 @@
   .pcard__name svg{width:15px;height:15px;flex:none;opacity:.5;transition:opacity .25s}
   .pcard:hover .pcard__name svg{opacity:1}
 
-  /* ===== CLOSER · CTA con foto de fondo ===== */
-  .closer{position:relative;min-height:min(78vh,640px);display:flex;flex-direction:column;
-       align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:100px var(--pad)}
-  .closer__bg{position:absolute;inset:0;z-index:0}
-  .closer__bg img,.closer__bg video{width:100%;height:100%;object-fit:cover;object-position:center 40%}
-  .closer__bg::after{content:"";position:absolute;inset:0;
-       background:linear-gradient(to bottom, rgba(26,26,26,.55) 0%, rgba(26,26,26,.4) 45%, rgba(26,26,26,.85) 100%)}
-  .closer__content{position:relative;z-index:2}
+  /* ===== CLOSER · CTA plano ===== */
+  .closer{position:relative;display:flex;flex-direction:column;
+       align-items:center;justify-content:center;text-align:center;padding:140px var(--pad) 120px;
+       border-top:1px solid rgba(255,255,255,.06)}
+  .closer__content{position:relative}
   .closer__title{font-family:var(--font);font-weight:300;font-size:clamp(2.4rem,6vw,5rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:34px}
 
   /* ===== FOOTER (original) ===== */
@@ -639,7 +636,6 @@
 
   <!-- ===== CLOSER · CTA + FOTO ===== -->
   <section class="closer" id="contacto">
-    <div class="closer__bg"><video src="assets/bloques.mp4" poster="assets/background-002.jpg" autoplay muted loop playsinline></video></div>
     <div class="closer__content">
       <h2 class="closer__title" data-i18n-html="closer_title">Busco mi próximo<br>equipo de <strong>producto</strong></h2>
       <a href="mailto:alangtres@gmail.com" class="btn" data-i18n="closer_btn">Escríbeme →</a>
@@ -651,7 +647,7 @@
     <div class="footer__top">
       <div class="footer__col footer__col--brand">
         <div class="footer__logo">Alan Buenhombre</div>
-        <p class="footer__role">Product &amp; Brand Designer</p>
+        <p class="footer__role">Lead Designer · Brand Strategy · Systems · Product B2B</p>
         <p class="footer__tagline">Bogotá, Colombia</p>
         <p class="footer__copy" data-i18n="footer_copy">© 2026 Alan Buenhombre</p>
       </div>
