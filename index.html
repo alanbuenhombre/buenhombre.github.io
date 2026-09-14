@@ -493,7 +493,7 @@
   <!-- ===== HERO ===== -->
   <section class="hero" id="inicio">
     <div class="hero__bg" id="heroSlider">
-      <video src="videos/hero-2.mp4" autoplay muted playsinline class="is-on" preload="auto"></video>
+      <video src="videos/alan-buenhombre.mp4" autoplay muted playsinline class="is-on" preload="auto"></video>
     </div>
     <div class="hero__veil"></div>
     <nav class="top">
@@ -1032,7 +1032,7 @@
   /* ---- INIT idioma ---- */
   applyLang('es');
 
-  /* ---- HERO: single video loop with fade-to-black between cycles ---- */
+  /* ---- HERO: single video loop with fade-to-black + first-frame hold ---- */
   (function(){
     const slider = document.getElementById('heroSlider');
     if (!slider) return;
@@ -1045,7 +1045,17 @@
     v.removeAttribute('loop');
     v.loop = false;
     const FADE_S = 0.9;
+    const HOLD_MS = 900;
     let fading = false;
+    const holdThenPlay = () => {
+      try { v.pause(); v.currentTime = 0; } catch(_) {}
+      setTimeout(() => {
+        const p = v.play();
+        if (p && p.catch) p.catch(()=>{});
+      }, HOLD_MS);
+    };
+    if (v.readyState >= 1) holdThenPlay();
+    else v.addEventListener('loadedmetadata', holdThenPlay, {once:true});
     v.addEventListener('timeupdate', () => {
       if (!v.duration || !isFinite(v.duration)) return;
       const remaining = v.duration - v.currentTime;
@@ -1055,9 +1065,7 @@
       }
     });
     v.addEventListener('ended', () => {
-      v.currentTime = 0;
-      const p = v.play();
-      if (p && p.catch) p.catch(()=>{});
+      holdThenPlay();
       setTimeout(() => {
         slider.classList.remove('is-fading');
         fading = false;
