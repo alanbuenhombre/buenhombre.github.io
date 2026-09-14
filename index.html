@@ -65,7 +65,7 @@
   :root{
     --bg:#1A1A1A; --text:#fff; --muted:rgba(255,255,255,.5);
     --font:'Manrope',system-ui,sans-serif; --font-mono:'IBM Plex Mono',monospace;
-    --font-display:'Stack Sans Notch',Arial,sans-serif; --accent:#AAFF00; --orange:var(--accent); --lime:#AAFF00;
+    --font-display:'Stack Sans Notch',Arial,sans-serif; --accent:#C89B5C; --orange:var(--accent); --lime:#C89B5C;
     --pad:48px; --max-w:1200px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -73,7 +73,7 @@
   body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
   img{display:block}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);display:inline-block;
-       box-shadow:0 0 8px rgba(170,255,0,.5);animation:dotpulse 2.4s ease-in-out infinite}
+       box-shadow:0 0 8px rgba(200,155,92,.5);animation:dotpulse 2.4s ease-in-out infinite}
   @keyframes dotpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.75;transform:scale(.92)}}
   .btn{display:inline-block;white-space:nowrap;font-family:var(--font-mono);font-size:.78rem;letter-spacing:.02em;
        color:var(--text);text-decoration:none;border:1px solid rgba(255,255,255,.28);
@@ -99,8 +99,9 @@
   .hero{position:relative;height:100vh;min-height:680px;overflow:hidden}
   .hero__bg{position:absolute;inset:0;background:#000}
   .hero__bg video,.hero__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;
-       opacity:0;transition:opacity 1.2s ease;display:block}
+       opacity:0;transition:opacity 1.2s ease;display:block;filter:brightness(.62) saturate(.9)}
   .hero__bg video.is-on,.hero__bg img.is-on{opacity:1}
+  .hero__bg.is-fading video.is-on,.hero__bg.is-fading img.is-on{opacity:0;transition:opacity .85s ease}
   .hero__bg img.ken-burns.is-on{animation:kenBurns 7.2s ease-out both}
   @keyframes kenBurns{
     0%   {transform:scale(1.06) translate(0,0)}
@@ -213,7 +214,7 @@
   .process-sec{position:relative;padding:60px var(--pad) 60px;overflow:hidden}
   .process-sec__inner{max-width:var(--max-w);margin:0 auto;position:relative;z-index:2}
   .process-sec__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-  .process-sec__bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.55;filter:contrast(1.05)}
+  .process-sec__bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.42;filter:sepia(.9) hue-rotate(-14deg) saturate(1.15) contrast(1.05) brightness(.85)}
   .process-sec__bg::after{content:"";position:absolute;inset:0;
        background:linear-gradient(180deg,var(--bg) 0,rgba(26,26,26,.5) 15%,rgba(26,26,26,.25) 50%,rgba(26,26,26,.6) 85%,var(--bg) 100%)}
   .process-sec__top{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-bottom:64px}
@@ -519,15 +520,15 @@
   <!-- ===== HERO ===== -->
   <section class="hero" id="inicio">
     <div class="hero__bg" id="heroSlider">
-      <video src="videos/GettyImages-1289396152.mp4" poster="assets/foto-perfil.jpg" autoplay muted loop playsinline class="is-on"></video>
+      <video src="videos/hero-2.mp4" poster="assets/foto-perfil.jpg" autoplay muted playsinline class="is-on"></video>
     </div>
     <div class="hero__veil"></div>
     <nav class="top">
       <a href="#inicio" class="top__name">Alan Buenhombre</a>
       <div class="top__nav">
         <a href="#inicio" data-i18n="nav_inicio">Inicio</a>
-        <a href="#trabajo" data-i18n="nav_trabajo">Trabajo</a>
         <a href="#casos" data-i18n="nav_casos">Casos</a>
+        <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
         <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
       </div>
       <button class="top__lang" id="lang" aria-label="Cambiar idioma">
@@ -776,8 +777,8 @@
         <h6 class="footer__col-title" data-i18n="footer_menu">Menú</h6>
         <ul class="footer__links">
           <li><a href="#inicio" data-i18n="nav_inicio">Inicio</a></li>
-          <li><a href="#trabajo" data-i18n="nav_trabajo">Trabajo</a></li>
           <li><a href="#casos" data-i18n="nav_casos">Casos</a></li>
+          <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
           <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
         </ul>
       </div>
@@ -818,7 +819,7 @@
   /* ===== i18n ===== */
   const T={
     es:{
-      nav_inicio:'Inicio',nav_trabajo:'Trabajo',nav_casos:'Casos',nav_contacto:'Contacto',
+      nav_inicio:'Inicio',nav_casos:'Casos',nav_sobre:'Sobre',nav_contacto:'Contacto',
       hero_avail:'Disponible',
       hero_title:'Lead Designer · <strong>Brand, Systems &amp; Product</strong>.',
       hero_lede:'La coherencia de marca es un problema de sistemas. Diseño marca, sistemas y producto digital para equipos B2B en LATAM.',
@@ -854,7 +855,7 @@
       footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
     },
     en:{
-      nav_inicio:'Home',nav_trabajo:'Work',nav_casos:'Cases',nav_contacto:'Contact',
+      nav_inicio:'Home',nav_casos:'Cases',nav_sobre:'About',nav_contacto:'Contact',
       hero_avail:'Available',
       hero_title:'Lead Designer · <strong>Brand, Systems &amp; Product</strong>.',
       hero_lede:'Brand coherence is a systems problem. I design brand, systems and digital product for B2B teams across LATAM.',
@@ -1087,40 +1088,37 @@
     });
   })();
 
-  /* ---- HERO slider: mezcla videos + foto con ken burns (patrón gritt) ---- */
+  /* ---- HERO: single video loop with fade-to-black between cycles ---- */
   (function(){
     const slider = document.getElementById('heroSlider');
-    if (!slider || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const pool = [
-      'videos/0_Arrow_Up_1280x720.mp4',
-      'videos/0_Purple_Flare_Magenta_1280x720.mp4',
-      'videos/GettyImages-1289396152.mp4',
-      'videos/GettyImages-1354070139.mp4',
-      'videos/GettyImages-985569494.mp4',
-      'assets/foto-perfil.jpg'
-    ];
-    const isImg = src => /\.(jpg|jpeg|png|webp|avif)(\?|$)/i.test(src);
-    let current = slider.querySelector('video, img').getAttribute('src');
-    setInterval(() => {
-      const not = pool.filter(p => p !== current);
-      const next = not[Math.floor(Math.random() * not.length)];
-      const old = slider.querySelector('.is-on');
-      let nv;
-      if (isImg(next)){
-        nv = document.createElement('img');
-        nv.src = next; nv.alt = ''; nv.className = 'ken-burns';
-      } else {
-        nv = document.createElement('video');
-        nv.src = next; nv.muted = true; nv.loop = true; nv.autoplay = true; nv.playsInline = true;
+    if (!slider) return;
+    const v = slider.querySelector('video');
+    if (!v) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      v.loop = true;
+      return;
+    }
+    v.removeAttribute('loop');
+    v.loop = false;
+    const FADE_S = 0.9;
+    let fading = false;
+    v.addEventListener('timeupdate', () => {
+      if (!v.duration || !isFinite(v.duration)) return;
+      const remaining = v.duration - v.currentTime;
+      if (remaining < FADE_S && !fading){
+        fading = true;
+        slider.classList.add('is-fading');
       }
-      slider.appendChild(nv);
-      requestAnimationFrame(() => nv.classList.add('is-on'));
+    });
+    v.addEventListener('ended', () => {
+      v.currentTime = 0;
+      const p = v.play();
+      if (p && p.catch) p.catch(()=>{});
       setTimeout(() => {
-        old && old.classList.remove('is-on');
-        setTimeout(() => old && old.remove(), 1300);
-      }, 200);
-      current = next;
-    }, 6500);
+        slider.classList.remove('is-fading');
+        fading = false;
+      }, 60);
+    });
   })();
 </script>
 </body>
