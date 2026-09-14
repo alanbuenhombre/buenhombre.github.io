@@ -65,7 +65,7 @@
   :root{
     --bg:#1A1A1A; --text:#fff; --muted:rgba(255,255,255,.5);
     --font:'Manrope',system-ui,sans-serif; --font-mono:'IBM Plex Mono',monospace;
-    --font-display:'Stack Sans Notch',Arial,sans-serif; --accent:#C89B5C; --orange:var(--accent); --lime:#C89B5C;
+    --font-display:'Stack Sans Notch',Arial,sans-serif; --accent:#C89B5C; --accent-rgb:200,155,92; --orange:var(--accent); --lime:var(--accent);
     --pad:48px; --max-w:1200px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -73,7 +73,7 @@
   body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
   img{display:block}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);display:inline-block;
-       box-shadow:0 0 8px rgba(200,155,92,.5);animation:dotpulse 2.4s ease-in-out infinite}
+       box-shadow:0 0 8px rgba(var(--accent-rgb),.5);animation:dotpulse 2.4s ease-in-out infinite}
   @keyframes dotpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.75;transform:scale(.92)}}
   .btn{display:inline-block;white-space:nowrap;font-family:var(--font-mono);font-size:.78rem;letter-spacing:.02em;
        color:var(--text);text-decoration:none;border:1px solid rgba(255,255,255,.28);
@@ -484,6 +484,21 @@
        linear-gradient(to top, #1A1A1A 0%, rgba(26,26,26,.9) 6%, rgba(26,26,26,.5) 22%, rgba(26,26,26,.15) 45%)}
   }
 </style>
+<script>
+  /* Random accent per visit — runs pre-paint, no flash */
+  (function(){
+    var palette = [
+      {hex:'#AAFF00', rgb:'170,255,0'},   /* lime */
+      {hex:'#C89B5C', rgb:'200,155,92'},  /* bronze */
+      {hex:'#5FDCE0', rgb:'95,220,224'},  /* cyan */
+      {hex:'#C8A2FF', rgb:'200,162,255'}  /* lavender */
+    ];
+    var p = palette[Math.floor(Math.random() * palette.length)];
+    var s = document.documentElement.style;
+    s.setProperty('--accent', p.hex);
+    s.setProperty('--accent-rgb', p.rgb);
+  })();
+</script>
 </head>
 <body>
 
