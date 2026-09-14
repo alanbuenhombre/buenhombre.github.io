@@ -213,10 +213,6 @@
   /* ===== SECCIÓN · PROCESS ===== */
   .process-sec{position:relative;padding:60px var(--pad) 60px;overflow:hidden}
   .process-sec__inner{max-width:var(--max-w);margin:0 auto;position:relative;z-index:2}
-  .process-sec__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-  .process-sec__bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.42;filter:sepia(.9) hue-rotate(-14deg) saturate(1.15) contrast(1.05) brightness(.85)}
-  .process-sec__bg::after{content:"";position:absolute;inset:0;
-       background:linear-gradient(180deg,var(--bg) 0,rgba(26,26,26,.5) 15%,rgba(26,26,26,.25) 50%,rgba(26,26,26,.6) 85%,var(--bg) 100%)}
   .process-sec__top{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-bottom:64px}
   .process-sec__head .kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
   .process-sec__head h2{font-family:var(--font);font-weight:300;font-size:clamp(1.8rem,3.2vw,2.4rem);letter-spacing:-.025em;line-height:1.15}
@@ -497,7 +493,7 @@
   <!-- ===== HERO ===== -->
   <section class="hero" id="inicio">
     <div class="hero__bg" id="heroSlider">
-      <video src="videos/hero-2.mp4" poster="assets/foto-perfil.jpg" autoplay muted playsinline class="is-on"></video>
+      <video src="videos/hero-2.mp4" autoplay muted playsinline class="is-on" preload="auto"></video>
     </div>
     <div class="hero__veil"></div>
     <nav class="top">
@@ -609,9 +605,6 @@
 
   <!-- ===== SECCIÓN · PROCESS (con esfera) ===== -->
   <section class="process-sec" id="proceso">
-    <div class="process-sec__bg" aria-hidden="true">
-      <video src="videos/GettyImages-1289396152.mp4" autoplay muted loop playsinline></video>
-    </div>
     <div class="process-sec__inner">
     <div class="process-sec__top">
       <div class="process-sec__head">
