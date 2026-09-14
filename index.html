@@ -357,10 +357,15 @@
   /* ===== CLOSER · CTA interactivo ===== */
   .closer{position:relative;display:flex;align-items:center;justify-content:center;
        min-height:min(90vh,720px);padding:120px var(--pad);
-       border-top:1px solid rgba(255,255,255,.06)}
-  .closer__stage{position:relative;display:flex;flex-direction:column;align-items:center;
-       gap:36px;max-width:960px;width:100%;text-align:center;
-       transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+       border-top:1px solid rgba(255,255,255,.06);overflow:hidden}
+  .closer__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+       object-position:center;z-index:0;opacity:.55;
+       filter:hue-rotate(90deg) sepia(.55) saturate(1.15) brightness(.7) contrast(1.05)}
+  .closer__veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+       background:radial-gradient(ellipse at 50% 50%,rgba(26,26,26,.35) 0,rgba(26,26,26,.75) 65%,var(--bg) 100%),
+                  linear-gradient(180deg,var(--bg) 0,rgba(26,26,26,.5) 15%,rgba(26,26,26,.2) 50%,rgba(26,26,26,.75) 100%)}
+  .closer__stage{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;
+       gap:36px;max-width:960px;width:100%;text-align:center}
 
   /* estado default */
   .closer__avail{display:inline-flex;align-items:center;gap:10px;
@@ -374,8 +379,8 @@
 
   .closer__trigger{position:relative;display:flex;flex-direction:column;align-items:center;
        gap:32px;background:none;border:0;padding:0;color:inherit;cursor:pointer;text-align:center;
-       font-family:var(--font);transition:opacity .55s cubic-bezier(.2,.7,.2,1),
-       transform .55s cubic-bezier(.2,.7,.2,1)}
+       text-decoration:none;
+       font-family:var(--font);transition:transform .55s cubic-bezier(.2,.7,.2,1)}
   .closer__titleblock{display:flex;flex-direction:column;gap:0;overflow:hidden}
   .closer__line{display:block;font-family:var(--font);font-weight:300;
        font-size:clamp(2.6rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.035em;
@@ -385,7 +390,9 @@
   .closer__trigger:hover .closer__line{transform:translateY(-4%)}
 
   .closer__hint{max-width:44ch;font-family:var(--font-mono);font-size:.82rem;line-height:1.6;
-       color:rgba(255,255,255,.55);transition:opacity .5s ease,transform .5s ease}
+       color:rgba(255,255,255,.6)}
+  .closer__meta{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;
+       text-transform:uppercase;color:rgba(255,255,255,.4)}
 
   .closer__arrowline{display:flex;align-items:center;justify-content:center;gap:0;width:100%;
        margin-top:4px}
@@ -403,35 +410,6 @@
   .closer__trigger:hover .closer__arrow{background:var(--accent);color:#000;border-color:var(--accent);transform:scale(1.06)}
   .closer__trigger:hover .closer__arrow svg{transform:translate(2px,-2px)}
 
-  /* estado reveal */
-  .closer__reveal{position:absolute;inset:0;display:flex;flex-direction:column;
-       align-items:center;justify-content:center;gap:22px;
-       opacity:0;transform:translateY(18px) scale(.98);pointer-events:none;
-       transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
-  .closer__kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.28em;
-       text-transform:uppercase;color:var(--accent)}
-  .closer__reveal-title{font-family:var(--font);font-weight:300;
-       font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:-.03em;line-height:1;color:var(--ink)}
-  .closer__cta{display:inline-flex;align-items:center;gap:14px;
-       padding:16px 28px;border:1px solid rgba(255,255,255,.28);border-radius:100px;
-       font-family:var(--font);font-weight:500;font-size:.98rem;color:var(--ink);text-decoration:none;
-       transition:background .3s ease,border-color .3s ease,color .3s ease,transform .3s ease}
-  .closer__cta svg{width:20px;height:20px;transition:transform .3s ease}
-  .closer__cta svg:last-child{width:16px;height:16px}
-  .closer__cta:hover{background:var(--accent);border-color:var(--accent);color:#000;transform:translateY(-1px)}
-  .closer__cta:hover svg:last-child{transform:translate(2px,-2px)}
-  .closer__reveal-sub{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;
-       text-transform:uppercase;color:rgba(255,255,255,.4)}
-
-  /* state switch */
-  .closer__stage[data-state="open"] .closer__avail,
-  .closer__stage[data-state="open"] .closer__trigger{
-    opacity:0;transform:translateY(-14px);pointer-events:none
-  }
-  .closer__stage[data-state="open"] .closer__reveal{
-    opacity:1;transform:translateY(0) scale(1);pointer-events:auto
-  }
-
   @media(max-width:640px){
     .closer{min-height:auto;padding:100px var(--pad)}
     .closer__stage{gap:26px}
@@ -442,7 +420,6 @@
     .closer__sideline--l{margin-right:18px}
     .closer__sideline--r{margin-left:18px}
     .closer__trigger:hover .closer__sideline{width:64px}
-    .closer__reveal{position:relative;padding:20px 0}
   }
 
   @media(prefers-reduced-motion:reduce){
@@ -727,16 +704,18 @@
   </section>
 
 
-  <!-- ===== CLOSER · CTA interactivo ===== -->
+  <!-- ===== CLOSER · CTA directo a mail ===== -->
   <section class="closer" id="contacto">
-    <div class="closer__stage" id="closerStage" data-state="idle">
+    <video class="closer__bg" src="videos/0_Purple_Flare_Magenta_1280x720.mp4" autoplay muted loop playsinline></video>
+    <div class="closer__veil" aria-hidden="true"></div>
+    <div class="closer__stage">
 
       <div class="closer__avail">
         <span class="closer__pulse" aria-hidden="true"><i></i><i></i></span>
         <span data-i18n="closer_avail">Disponible para roles lead</span>
       </div>
 
-      <button class="closer__trigger" id="closerTrigger" type="button" aria-label="Contactar">
+      <a class="closer__trigger" href="mailto:alangtres@gmail.com?subject=Oportunidad%20Lead%20Designer" aria-label="Escribime a alangtres@gmail.com">
         <span class="closer__titleblock">
           <span class="closer__line" data-i18n="closer_l1">Un equipo donde</span>
           <span class="closer__line closer__line--muted" data-i18n-html="closer_l2"><strong>marca, sistemas y producto</strong> sean uno.</span>
@@ -749,17 +728,9 @@
           </span>
           <span class="closer__sideline closer__sideline--r"></span>
         </span>
-      </button>
+      </a>
 
-      <div class="closer__reveal" aria-hidden="true">
-        <h3 class="closer__reveal-title" data-i18n="closer_reveal_title">Cuéntame del rol.</h3>
-        <a class="closer__cta" href="mailto:alangtres@gmail.com?subject=Oportunidad%20Lead%20Designer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="3 8 12 14 21 8"/></svg>
-          <span data-i18n="closer_reveal_cta">Escríbeme</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-        <span class="closer__reveal-sub" data-i18n="closer_reveal_sub">Bogotá · LATAM & remoto</span>
-      </div>
+      <span class="closer__meta" data-i18n="closer_meta">Bogotá · LATAM & remoto</span>
 
     </div>
   </section>
@@ -848,9 +819,7 @@
       closer_l1:'Un equipo donde',
       closer_l2:'<strong>marca, sistemas y producto</strong> sean uno.',
       closer_note:'¿Estás construyendo un equipo de producto, una marca o un sistema de diseño? Hablemos.',
-      closer_reveal_title:'Cuéntame del rol.',
-      closer_reveal_cta:'Escríbeme',
-      closer_reveal_sub:'Bogotá · LATAM & remoto',
+      closer_meta:'Bogotá · LATAM & remoto',
       footer_menu:'Menú',footer_contact:'Contacto',footer_copy:'© 2026 Alan Buenhombre',
       footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
     },
@@ -884,9 +853,7 @@
       closer_l1:'A team where',
       closer_l2:'<strong>brand, systems and product</strong> are one.',
       closer_note:'Building a product team, a brand or a design system? Let\'s talk.',
-      closer_reveal_title:'Tell me about the role.',
-      closer_reveal_cta:'Write me',
-      closer_reveal_sub:'Bogotá · LATAM & remote',
+      closer_meta:'Bogotá · LATAM & remote',
       footer_menu:'Menu',footer_contact:'Contact',footer_copy:'© 2026 Alan Buenhombre',
       footer_invite:'More design to discover on my socials.',footer_copied:'Copied!'
     }
@@ -1071,22 +1038,6 @@
 
   /* ---- INIT idioma ---- */
   applyLang('es');
-
-  /* ---- CLOSER · toggle reveal ---- */
-  (function(){
-    const stage=document.getElementById('closerStage');
-    const trigger=document.getElementById('closerTrigger');
-    if(!stage||!trigger) return;
-    trigger.addEventListener('click',e=>{
-      e.preventDefault();
-      stage.setAttribute('data-state','open');
-    });
-    document.addEventListener('keydown',e=>{
-      if(e.key==='Escape' && stage.getAttribute('data-state')==='open'){
-        stage.setAttribute('data-state','idle');
-      }
-    });
-  })();
 
   /* ---- HERO: single video loop with fade-to-black between cycles ---- */
   (function(){
