@@ -10,17 +10,21 @@
 <!-- Open Graph -->
 <meta property="og:type" content="profile" />
 <meta property="og:site_name" content="Alan Buenhombre" />
-<meta property="og:title" content="Alan Buenhombre · Lead Designer · Systems & Brand" />
-<meta property="og:description" content="Lead Designer & Art Director. 14 años: dirección de arte + 4 liderando design systems, UI/UX y branding de producto en fintech, salud y Web3. Bogotá, Colombia." />
+<meta property="og:title" content="Alan Buenhombre · Lead Designer · Brand, Systems & Product" />
+<meta property="og:description" content="Me gusta trabajar con marcas que piensan en sistemas. Diseño marca, sistemas y producto digital para equipos B2B en LATAM. 14 años entre agencias y producto." />
 <meta property="og:url" content="https://buenhombre.design/" />
-<meta property="og:image" content="https://buenhombre.design/assets/foto-perfil.jpg" />
+<meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Alan Buenhombre — Lead Designer · Brand, Systems & Product" />
 <meta property="og:locale" content="es_ES" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Alan Buenhombre · Lead Designer · Systems & Brand" />
-<meta name="twitter:description" content="Lead Designer & Art Director. 14 años: dirección de arte + 4 liderando design systems, UI/UX y branding de producto en fintech, salud y Web3." />
-<meta name="twitter:image" content="https://buenhombre.design/assets/foto-perfil.jpg" />
+<meta name="twitter:title" content="Alan Buenhombre · Lead Designer · Brand, Systems & Product" />
+<meta name="twitter:description" content="Me gusta trabajar con marcas que piensan en sistemas. Diseño marca, sistemas y producto digital para equipos B2B en LATAM." />
+<meta name="twitter:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta name="twitter:image:alt" content="Alan Buenhombre — Lead Designer · Brand, Systems & Product" />
 
 <!-- JSON-LD: Person -->
 <script type="application/ld+json">
@@ -493,7 +497,11 @@
       {hex:'#5FDCE0', rgb:'95,220,224'},  /* cyan */
       {hex:'#C8A2FF', rgb:'200,162,255'}  /* lavender */
     ];
-    var p = palette[Math.floor(Math.random() * palette.length)];
+    var forced = (location.search.match(/[?&]accent=([a-z]+)/i) || [])[1];
+    var byName = {lime:0, bronze:1, cyan:2, lavender:3};
+    var p = (forced && byName[forced.toLowerCase()] != null)
+      ? palette[byName[forced.toLowerCase()]]
+      : palette[Math.floor(Math.random() * palette.length)];
     var s = document.documentElement.style;
     s.setProperty('--accent', p.hex);
     s.setProperty('--accent-rgb', p.rgb);
