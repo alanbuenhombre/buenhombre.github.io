@@ -1,4 +1,26 @@
+# buenhombre.design
+# Alan Buenhombre — Lead Designer
+
 User-agent: *
 Allow: /
+
+# Bloqueo de mocks y experimentos internos
+Disallow: /experiments/
+Disallow: /case-mock.html
+Disallow: /cases-mock.html
+Disallow: /hero-mock.html
+Disallow: /hero-new.html
+Disallow: /info-mock.html
+Disallow: /fan-mock.html
+Disallow: /list-mock.html
+Disallow: /carousel-mock.html
+Disallow: /scatter-mock.html
+Disallow: /sidebar-mock.html
+Disallow: /site-mock.html
+Disallow: /mockup-secciones.html
+Disallow: /mockup-work-cards.html
+Disallow: /mockup-process-viz.html
+Disallow: /hud.html
+Disallow: /marketing-kommit.html
 
 Sitemap: https://buenhombre.design/sitemap.xml
