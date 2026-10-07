@@ -3908,8 +3908,10 @@
         small.width = cols; small.height = rows;
         const sc = small.getContext('2d');
         // Recorte centrado de la foto al formato de la ventana
-        const r = Math.max(cols / img.width, rows / img.height);
-        const dw = img.width * r, dh = img.height * r;
+        // Las celdas no son cuadradas (9 × 15): la escala se calcula en píxeles reales y luego se pasa a celdas,
+        // para que la foto no salga estirada
+        const r = Math.max(w / img.width, h / img.height);
+        const dw = img.width * r / cw, dh = img.height * r / ch;
         sc.drawImage(img, (cols - dw) / 2, (rows - dh) / 2, dw, dh);
         const px = sc.getImageData(0, 0, cols, rows).data;
         const out = document.createElement('canvas');
