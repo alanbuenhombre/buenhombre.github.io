@@ -460,7 +460,10 @@
     border-bottom: 1px solid var(--err);
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
   }
-  #victory { border-color: var(--blue-hi); }
+  /* Victoria: el mensaje va arriba y sin banda, para que la nave se vea volar debajo */
+  #victory { top: 9%; padding: 0 16px; background: none; border: 0; box-shadow: none; }
+  #victory h2 { font-size: min(8.4vw, 108px); text-shadow: 0.045em 0.045em 0 var(--blue), 0 0 28px var(--bg); }
+  #victory p { text-shadow: 0 0 10px var(--bg), 0 0 4px var(--bg); }
   #gameover p {
     font-variant-numeric: tabular-nums;
     overflow-wrap: anywhere;
@@ -478,9 +481,11 @@
     font-size: 13px;
   }
   #intro dt { color: var(--ink); }
+  /* Icono de cada control: línea fina del color del sector */
+  #intro dt svg { width: 14px; height: 14px; margin-right: 8px; vertical-align: -2px; fill: none; stroke: var(--blue-hi); stroke-width: 1.5; stroke-linecap: square; }
   #intro dd { min-width: 0; }
 
-  #start, #resume, #reset, #donate-link, #card-btn, #fuel-btn, #fuel-close {
+  #start, #resume, #reset, #donate-link, #card-btn, #fuel-btn, #fuel-close, #board-btn, #board-save, #board-skip, #board-close {
     align-self: flex-start;
     padding: 12px 22px;
     font: 700 14px var(--font-code);
@@ -563,6 +568,81 @@
     .sector-data { font-size: 11px; letter-spacing: 0.06em; }
   }
 
+  /* Contador de pilotos en la pantalla de arranque */
+  #press .count { font-size: 12px; letter-spacing: 0.26em; color: var(--ink); }
+  #press .count b { font-family: var(--font-display); font-size: 1.3em; letter-spacing: 0.08em; color: var(--blue-hi); }
+
+  /* Ranking: lista de los mejores y formulario para guardar el puntaje */
+  #board {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.78);
+    cursor: default;
+    overflow: auto;
+  }
+  .board-card {
+    --c: 18px;
+    --edge: var(--blue-hi);
+    --fill: var(--panel);
+    position: relative;
+    width: min(560px, 100%);
+    padding: 20px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    filter: drop-shadow(0 0 14px var(--blue-hi));
+    animation: fuel-in 0.35s steps(5) both;
+  }
+  .board-card:focus { outline: none; }
+  .board-head { display: flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: 0.2em; color: var(--blue-hi); }
+  .board-head .chip { padding: 2px 8px; font-weight: 700; color: #000000; background: var(--blue-hi); }
+  .board-head .dots { flex: 1; height: 0; border-top: 2px dotted var(--blue-hi); opacity: 0.6; }
+  #board h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(20px, 3.4vw, 30px);
+    line-height: 1.05;
+    color: var(--ink);
+    text-shadow: 0.05em 0.05em 0 var(--blue);
+  }
+  #board-sum { color: var(--ink); font-variant-numeric: tabular-nums; }
+  /* Formulario: apodo obligatorio, correo opcional detrás de la casilla de avisos */
+  #board-form { display: grid; gap: 10px; }
+  #board-form label.field { display: grid; gap: 4px; font-size: 10px; letter-spacing: 0.18em; color: var(--dim); text-transform: uppercase; }
+  #board-form input[type="text"], #board-form input[type="email"] {
+    width: 100%;
+    padding: 10px 12px;
+    font: 400 14px var(--font-code);
+    color: var(--ink);
+    background: #000000;
+    border: 1px solid var(--hair);
+    border-radius: 0;
+  }
+  #board-form input:focus { outline: none; border-color: var(--blue-hi); }
+  #board-form .check { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text); cursor: pointer; }
+  #board-form .check input { margin-top: 3px; accent-color: var(--blue-hi); }
+  #board-form .fine { font-size: 11px; color: var(--dim); }
+  #board-form .fine a { color: var(--blue-hi); }
+  #board-form .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  #board-msg { font-size: 12px; color: var(--dim); min-height: 1em; }
+  #board-msg.err { color: var(--err); }
+  /* Lista: posición, apodo, sector y puntos */
+  #board-list { display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+  #board-list .r { display: grid; grid-template-columns: 34px 1fr auto auto; gap: 10px; align-items: baseline; padding: 6px 8px; border-bottom: 1px dotted var(--hair); font-size: 13px; }
+  #board-list .r .n { color: var(--dim); font-size: 11px; }
+  #board-list .r .a { color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #board-list .r .s { color: var(--dim); font-size: 11px; letter-spacing: 0.1em; }
+  #board-list .r .p { font-family: var(--font-display); color: var(--ink); }
+  #board-list .r.me { background: rgba(255, 255, 255, 0.06); border-left: 2px solid var(--blue-hi); }
+  #board-list .r.me .a, #board-list .r.me .p { color: var(--blue-hi); }
+  #board-list .empty { padding: 10px 8px; color: var(--dim); font-size: 12px; }
+  #board-mine { font-size: 12px; color: var(--blue-hi); letter-spacing: 0.08em; }
+  #board .row.end { display: flex; flex-wrap: wrap; gap: 10px; }
+
   /* Tarjeta de piloto: la foto del jugador en caracteres, dentro de una tarjeta que se inclina con el mouse */
   #card-stage {
     position: absolute;
@@ -644,7 +724,7 @@
 
   /* Acabado de botones y paneles: dos esquinas cortadas en diagonal, con el borde siguiendo el corte.
      El elemento pinta el borde y un relleno interior, recortado igual, pinta el fondo. */
-  #controls button, #start, #resume, #reset, #donate-link, #intro, #paused, #monitor, #crash, .sector-card, #card-controls button, #card-controls label, #fuel-btn, #fuel-close, .fuel-card, #share .sh {
+  #controls button, #start, #resume, #reset, #donate-link, #intro, #paused, #monitor, #crash, .sector-card, #card-controls button, #card-controls label, #fuel-btn, #fuel-close, .fuel-card, #share .sh, #board-btn, #board-save, #board-skip, #board-close, .board-card {
     --c: 7px;
     --edge: var(--dim);
     --fill: var(--panel);
@@ -653,7 +733,7 @@
     isolation: isolate;
     clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
   }
-  #controls button::before, #start::before, #resume::before, #reset::before, #donate-link::before, #fuel-btn::before, #fuel-close::before, .fuel-card::before, #share .sh::before,
+  #controls button::before, #start::before, #resume::before, #reset::before, #donate-link::before, #fuel-btn::before, #fuel-close::before, .fuel-card::before, #share .sh::before, #board-btn::before, #board-save::before, #board-skip::before, #board-close::before, .board-card::before,
   #intro::before, #paused::before, #monitor::before, #crash::before, .sector-card::before, #card-controls button::before, #card-controls label::before {
     content: "";
     position: absolute;
@@ -662,7 +742,7 @@
     background: var(--fill);
     clip-path: polygon(calc(var(--c) - 0.6px) 0, 100% 0, 100% calc(100% - var(--c) + 0.6px), calc(100% - var(--c) + 0.6px) 100%, 0 100%, 0 calc(var(--c) - 0.6px));
   }
-  #controls button, #start, #resume, #reset, #donate-link, #card-controls button, #fuel-btn, #fuel-close, #share .sh { position: relative; }
+  #controls button, #start, #resume, #reset, #donate-link, #card-controls button, #fuel-btn, #fuel-close, #share .sh, #board-btn, #board-save, #board-skip, #board-close { position: relative; }
   #card-controls button.main { --edge: var(--ink); --fill: var(--ink); color: #000000; }
   #card-controls button.main:hover { --fill: var(--panel); color: var(--ink); }
   #card-btn { --edge: var(--hair); --fill: var(--panel); background: var(--edge); color: var(--line); }
@@ -681,25 +761,33 @@
   }
   #donate-link:hover, #donate-link:focus-visible { --fill: var(--panel); color: var(--ink); outline: none; }
   .fuel-card:focus { outline: none; }
-  #fuel-btn, #fuel-close { --edge: var(--hair); --fill: var(--panel); background: var(--edge); color: var(--line); }
-  #fuel-btn:hover, #fuel-close:hover, #fuel-btn:focus-visible, #fuel-close:focus-visible { --edge: var(--ink); color: var(--ink); outline: none; }
+  #fuel-btn, #fuel-close, #board-btn, #board-skip, #board-close { --edge: var(--hair); --fill: var(--panel); background: var(--edge); color: var(--line); }
+  #fuel-btn:hover, #fuel-close:hover, #board-btn:hover, #board-skip:hover, #board-close:hover, #fuel-btn:focus-visible, #fuel-close:focus-visible, #board-btn:focus-visible, #board-skip:focus-visible, #board-close:focus-visible { --edge: var(--ink); color: var(--ink); outline: none; }
+  #board-save { --edge: var(--blue-hi); --fill: var(--blue-hi); background: var(--edge); color: #000000; }
+  #board-save:hover, #board-save:focus-visible { --fill: var(--panel); color: var(--ink); outline: none; }
+  #board-save[disabled] { opacity: 0.5; cursor: wait; }
   /* Fila de compartir: enlaces directos a cada red y copiar enlace */
-  #share { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 4px; border-top: 1px dotted var(--hair); }
-  #share .k { margin-right: 4px; font-size: 10px; letter-spacing: 0.18em; color: var(--dim); }
+  /* Compartir: solo iconos, sin caja, para que la fila no compita con los botones del juego */
+  #share { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; padding-top: 4px; border-top: 1px dotted var(--hair); }
+  #share .k { margin-right: 8px; font-size: 10px; letter-spacing: 0.18em; color: var(--dim); }
   #share .sh {
-    --edge: var(--hair);
-    --fill: var(--panel);
-    padding: 7px 11px;
-    font: 700 11px var(--font-code);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--line);
-    background: var(--edge);
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    color: var(--dim);
+    background: none;
+    clip-path: none;
     cursor: pointer;
   }
-  #share .sh:hover, #share .sh:focus-visible { --edge: var(--blue-hi); color: var(--ink); outline: none; }
-  #share .sh.done { --edge: var(--blue-hi); color: var(--blue-hi); }
+  #share .sh::before { display: none; }
+  #share .sh svg { width: 17px; height: 17px; fill: currentColor; pointer-events: none; }
+  #share .sh:hover, #share .sh:focus-visible { color: var(--ink); outline: none; }
+  #share .sh:focus-visible { box-shadow: inset 0 0 0 1px var(--blue-hi); }
+  #share .sh.done { color: var(--blue-hi); }
+  #share-msg { margin-left: 6px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-hi); }
 
   /* Ventana de apoyo, centrada sobre todo */
   #fuel {
@@ -882,6 +970,7 @@
   <div id="press" aria-hidden="true">
     <span class="enter">PRESS START</span>
     <span class="credit">1 PLAYER · <b>1 CREDIT</b> · NO PARES</span>
+    <span class="count" id="press-count" hidden>PILOTOS <b id="press-total">000000</b> / 1.000.000</span>
   </div>
   <div id="attract-world" aria-hidden="true"><i></i><span id="attract-name">SECTOR 01 · CUBOS</span><i></i></div>
 
@@ -915,23 +1004,25 @@
     <p id="result" hidden></p>
     <p id="intro-text">Pilotea la nave por cinco sectores, cada uno más difícil. Pasar rozando un obstáculo da puntos extra. Entre un sector y otro hay un túnel de descanso que repara una nave. Tienes tres: al tercer choque el juego comienza de nuevo.</p>
     <dl>
-      <dt>Mouse, WASD o flechas</dt><dd>Girar la nave</dd>
-      <dt>Clic sostenido o Espacio</dt><dd>Turbo: puntos ×2</dd>
-      <dt>Clic derecho o Shift</dt><dd>Turbo máximo: puntos ×3</dd>
-      <dt>Teclas C, P y M</dt><dd>Vista de cabina, pausa (también Esc) y silencio</dd>
-      <dt>Pantalla táctil</dt><dd>Arrastra para girar; dos dedos turbo ×2, tres dedos ×3</dd>
+      <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M1 8h14M6 3l2-2 2 2M6 13l2 2 2-2M3 6L1 8l2 2M13 6l2 2-2 2"/></svg>Mouse, WASD o flechas</dt><dd>Girar la nave</dd>
+      <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l5 5-5 5M9 3l5 5-5 5"/></svg>Clic sostenido o Espacio</dt><dd>Turbo: puntos ×2</dd>
+      <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3l4 5-4 5M6 3l4 5-4 5M11 3l4 5-4 5"/></svg>Clic derecho o Shift</dt><dd>Turbo máximo: puntos ×3</dd>
+      <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 2.5h13v11h-13zM4.5 5.5h7v5h-7z"/></svg>Teclas C, P y M</dt><dd>Vista de cabina, pausa (también Esc) y silencio</dd>
+      <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 1.5h7v13h-7zM7 12.5h2"/></svg>Pantalla táctil</dt><dd>Arrastra para girar; dos dedos turbo ×2, tres dedos ×3</dd>
     </dl>
     <div class="row">
       <button id="start" type="button">Despegar</button>
+      <button id="board-btn" type="button">Ranking</button>
       <button id="card-btn" type="button" hidden>Mi tarjeta de piloto</button>
       <button id="fuel-btn" type="button" hidden>Tanquear la nave</button>
     </div>
     <div id="share" aria-label="Compartir el juego">
       <span class="k">COMPARTIR</span>
-      <a class="sh" data-net="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="sh" data-net="x" href="#" target="_blank" rel="noopener">X</a>
-      <a class="sh" data-net="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
-      <button id="share-btn" class="sh" type="button">Copiar enlace</button>
+      <a class="sh" data-net="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6c.6-1.1 2-1.9 3.9-1.9 3.6 0 4.3 2.3 4.3 5.4V21h-4v-5.4c0-1.4-.3-2.6-1.9-2.6s-2.1 1.2-2.1 2.6V21h-4z"/></svg></a>
+      <a class="sh" data-net="x" href="#" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h4.6l4.9 6.9L18.4 3H21l-7.3 8.5L21.5 21h-4.6l-5.3-7.4L5.3 21H2.7l7.7-9z"/></svg></a>
+      <a class="sh" data-net="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.8c0-.9.3-1.6 1.6-1.6h1.7V3.3c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.4H7.5V13h2.7v8z"/></svg></a>
+      <button id="share-btn" class="sh" type="button" aria-label="Copiar enlace" title="Copiar enlace"><svg viewBox="0 0 24 24" aria-hidden="true"><path style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:square" d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></button>
+      <span id="share-msg" role="status" hidden></span>
     </div>
   </section>
 
@@ -950,7 +1041,7 @@
   </div>
 
   <div id="victory" role="status" hidden>
-    <h2>NO PARASTE</h2>
+    <h2>YOU WIN</h2>
     <p id="victory-line">Cinco sectores despejados</p>
     <p id="victory-score"></p>
   </div>
@@ -980,6 +1071,29 @@
     <p id="gameover-hit"></p>
     <p id="gameover-score"></p>
     <p>vuelve a despegar</p>
+  </div>
+
+  <!-- Ranking: los cien mejores puntajes y, al terminar una partida, el formulario para guardar el tuyo -->
+  <div id="board" role="dialog" aria-labelledby="board-title" hidden>
+    <div class="board-card" tabindex="-1">
+      <div class="board-head"><span class="chip">RANKING</span><i class="dots"></i><span id="board-tag">TOP 10</span></div>
+      <h2 id="board-title">Guarda tu puntaje</h2>
+      <p id="board-sum" hidden></p>
+      <form id="board-form" hidden autocomplete="off">
+        <label class="field">Apodo<input id="board-nick" type="text" maxlength="20" minlength="2" required placeholder="Piloto 4070" spellcheck="false"></label>
+        <label class="check"><input id="board-opt" type="checkbox"><span>Avísame si hay premios o nuevos sectores</span></label>
+        <label class="field" id="board-mail-field" hidden>Correo<input id="board-mail" type="email" maxlength="120" placeholder="tu@correo.com"></label>
+        <p class="fine">Tu apodo y tu puntaje salen en el ranking. El correo solo se usa para avisarte y no se muestra ni se comparte. <a href="privacidad.html" target="_blank" rel="noopener">Aviso de privacidad</a></p>
+        <div class="row">
+          <button id="board-save" type="submit">Guardar</button>
+          <button id="board-skip" type="button">Ahora no</button>
+          <span id="board-msg"></span>
+        </div>
+      </form>
+      <div id="board-list" hidden></div>
+      <p id="board-mine" hidden></p>
+      <div class="row end" id="board-end" hidden><button id="board-close" type="button">Cerrar</button></div>
+    </div>
   </div>
 
   <!-- Ventana de apoyo: aparece sola al terminar la partida, con el botón de un dólar -->
@@ -1055,7 +1169,7 @@
         'COMPARTIR': 'SHARE', 'Copiar enlace': 'Copy link',
         'Pausa': 'Paused', 'Continuar': 'Resume', 'Reiniciar': 'Restart',
         'NIVEL 2': 'LEVEL 2', 'Planetas y asteroides': 'Planets and asteroids',
-        'NO PARASTE': "YOU DIDN'T STOP", 'Cinco sectores despejados': 'Five sectors cleared',
+        'Cinco sectores despejados': 'Five sectors cleared',
         'TÚNEL DE ENLACE': 'LINK TUNNEL', 'SECTOR 02 · PLANETAS': 'SECTOR 02 · PLANETS',
         'ESTADO': 'STATUS', 'SECTOR 01 DESPEJADO': 'SECTOR 01 CLEARED', 'PUNTOS': 'POINTS', 'ARMAS': 'WEAPONS', 'SIN SEÑAL': 'NO SIGNAL',
         'vuelve a despegar': 'take off again',
@@ -1063,7 +1177,11 @@
         'Apoya el juego con Buy Me a Coffee. El juego es gratis. El dólar es opcional.': 'Support the game on Buy Me a Coffee. The game is free. The dollar is optional.',
         'Tanquear la nave · $1': 'Refuel the ship · $1', 'Seguir sin tanquear': 'Continue without refueling',
         'Subir mi foto': 'Upload my photo', 'Compartir': 'Share', 'Descargar': 'Download', 'Cerrar': 'Close',
-        'La foto se convierte en caracteres aquí mismo, en tu dispositivo. No se sube a ningún lado.': 'Your photo is turned into characters right here, on your device. It is not uploaded anywhere.'
+        'La foto se convierte en caracteres aquí mismo, en tu dispositivo. No se sube a ningún lado.': 'Your photo is turned into characters right here, on your device. It is not uploaded anywhere.',
+        'Guarda tu puntaje': 'Save your score', 'Apodo': 'Nickname', 'Correo': 'Email',
+        'Avísame si hay premios o nuevos sectores': 'Let me know about prizes or new sectors',
+        'Tu apodo y tu puntaje salen en el ranking. El correo solo se usa para avisarte y no se muestra ni se comparte.': 'Your nickname and score appear on the leaderboard. Your email is only used to reach you and is never shown or shared.',
+        'Aviso de privacidad': 'Privacy notice', 'Guardar': 'Save', 'Ahora no': 'Not now', 'PILOTOS': 'PILOTS'
       };
       const walker = document.createTreeWalker(document.getElementById('game'), NodeFilter.SHOW_TEXT);
       for (let node = walker.nextNode(); node; node = walker.nextNode()) {
@@ -1072,7 +1190,12 @@
       }
       document.documentElement.lang = 'en';
       document.getElementById('share').setAttribute('aria-label', 'Share the game');
+      document.getElementById('share-btn').setAttribute('aria-label', 'Copy link');
+      document.getElementById('share-btn').title = 'Copy link';
       document.getElementById('card-stage').setAttribute('aria-label', 'Pilot card');
+      document.getElementById('board-nick').placeholder = 'Pilot 4070';
+      document.getElementById('board-mail').placeholder = 'you@email.com';
+      document.getElementById('press-total').nextSibling.nodeValue = ' / 1,000,000';
       const desc = document.querySelector('meta[name="description"]');
       if (desc) desc.content = "One ship, five sectors, one rule: don't stop. Can a one-dollar game reach a million players?";
     }
@@ -1088,6 +1211,14 @@
     const livesEl = $('lives'), resultEl = $('result');
     const donateNote = $('donate-note'), donateLink = $('donate-link');
     const fuelEl = $('fuel'), fuelBtn = $('fuel-btn'), fuelClose = $('fuel-close'), fuelTag = $('fuel-tag');
+    const boardEl = $('board'), boardBtn = $('board-btn'), boardTitle = $('board-title'), boardTag = $('board-tag'), boardSum = $('board-sum');
+    const boardForm = $('board-form'), boardNick = $('board-nick'), boardOpt = $('board-opt'), boardMailField = $('board-mail-field'), boardMail = $('board-mail');
+    const boardSave = $('board-save'), boardSkip = $('board-skip'), boardMsg = $('board-msg'), boardList = $('board-list'), boardMine = $('board-mine');
+    const boardEnd = $('board-end'), boardClose = $('board-close'), pressCount = $('press-count'), pressTotal = $('press-total');
+    // Base de datos en línea (Supabase): contador de pilotos, ranking y registro opcional.
+    // La clave es pública por diseño; las reglas de la base de datos deciden qué puede hacer el juego con ella.
+    const API = { url: 'https://gnozltwezpivrqtrazbi.supabase.co', key: 'sb_publishable_nuikHF-6PAfnqpM2FKl-bA_r0o7vdFo' };
+    const GAME_VERSION = '1.0';
     if (DONATE_URL) donateLink.href = DONATE_URL;
     const levelEl = $('level'), levelupEl = $('levelup'), levelupTitle = $('levelup-title'), levelupSub = $('levelup-sub');
     const sectorEl = $('sector'), killsStat = $('kills-stat'), killsEl = $('kills');
@@ -1136,7 +1267,6 @@
     const WORLD_LEN = [0, 4000, 6000, 7000, 8000];
     const KILLS_TO_WIN = 20;       // naves enemigas que hay que derribar en el sector 5
     const TUNNEL_TIME = 7;         // segundos que dura el túnel entre sectores
-    const WIN_AFTER = 7;           // segundos que dura la pantalla de victoria
     const GATE_POINTS = 200;       // puntos por cruzar un anillo
     const KILL_POINTS = 150;       // puntos por derribo
     const PLANET_COUNT = 230, ROCK_MAX = 60;
@@ -2896,14 +3026,14 @@
       game.classList.remove('ready', 'play', 'dead', 'win');
       game.classList.add(next);
       state = next;
-      ship.visible = !cockpit && state !== 'dead';
+      ship.visible = (!cockpit || state === 'win') && state !== 'dead';   // el final siempre se ve desde fuera
     }
 
     function setView(inside) {
       cockpit = inside;
       game.classList.toggle('cockpit', cockpit);
       viewBtn.textContent = cockpit ? L('C · Exterior', 'C · Outside') : L('C · Cabina', 'C · Cockpit');
-      ship.visible = !cockpit && state !== 'dead';
+      ship.visible = (!cockpit || state === 'win') && state !== 'dead';
       try { localStorage.setItem(VIEW_KEY, cockpit ? 'cabina' : 'exterior'); } catch (e) { /* la vista dura esta sesión */ }
     }
 
@@ -3045,6 +3175,7 @@
 
     window.addEventListener('keydown', (e) => {
       if (Card.isOpen()) { if (e.code === 'Escape') Card.hide(); return; }
+      if (Board.isOpen()) { if (e.code === 'Escape') Board.hide(); return; }
       if (!fuelEl.hidden) { if (e.code === 'Escape') closeFuel(); if (e.code === 'Space') return; }
       if (e.code === 'KeyC' && !e.repeat && !e.ctrlKey && !e.metaKey) {
         Sound.unlock();
@@ -3142,7 +3273,7 @@
       startBtn.focus({ preventScroll: true });
     }
     window.addEventListener('keydown', (e) => {
-      if (!attract || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (!attract || Board.isOpen() || e.ctrlKey || e.metaKey || e.altKey) return;
       if (e.code === 'Enter' || e.code === 'Space' || e.code === 'NumpadEnter') { e.preventDefault(); leaveAttract(); }
     }, true);
     stage.addEventListener('pointerdown', () => { if (attract) leaveAttract(); });
@@ -3260,14 +3391,16 @@
       { name: L('FLOTA', 'FLEET'), sub: L('Todo a la vez, y la flota', 'Everything at once, plus the fleet'), hex: RED, ground: 0x8a0020 }
     ];
     WORLDS.forEach((w) => { if (w) w.css = '#' + w.hex.toString(16).padStart(6, '0'); });
-    const hashWorld = /^#nivel([1-5])$/.exec(location.hash);
+    const hashWin = location.hash === '#victoria';   // atajo para revisar el final: arranca en el sector 5 y gana a los 3 segundos
+    const hashWorld = hashWin ? ['', '5'] : /^#nivel([1-5])$/.exec(location.hash);
     const startWorld = hashWorld ? Number(hashWorld[1]) : 1;
     let world = 1, worldT = 0, worldBase = 0, activeRocks = 0, activeMeteors = 0, levelupTimer = 0;
     let kills = 0, shownKills = -1, fired = false, fireHinted = false, winT = 0;
-    const lastRun = { score: 0, sector: 1, lives: 0, grazes: 0, kills: 0, won: false };
+    const lastRun = { score: 0, sector: 1, lives: 0, grazes: 0, kills: 0, won: false, seconds: 0, saved: false };
     function recordRun(won) {
       lastRun.score = score; lastRun.sector = world; lastRun.lives = Math.max(0, lives);
       lastRun.grazes = grazes; lastRun.kills = kills; lastRun.won = won;
+      lastRun.seconds = Math.max(1, Math.round(runT)); lastRun.saved = false;
     }
 
     function flashNow() {
@@ -3523,6 +3656,7 @@
         fireT = FIRE_EVERY;
         fired = true;
       }
+      if (hashWin && worldT > 3) { win(); return; }
       if (!fired && !fireHinted && worldT > 6) {
         // Si pasa un rato sin descubrirlo, una pista al pie
         fireHinted = true;
@@ -3535,6 +3669,101 @@
     }
 
     // Veinte derribos: fin del viaje
+    // ---------- Final: la nave atraviesa el cartel de GAME OVER y lo rompe ----------
+    // Al ganar aparece un GAME OVER enorme delante de la nave. La nave lo cruza, el cartel estalla en partículas
+    // y sale el YOU WIN. Luego la cámara se queda quieta y la nave sigue de largo hasta perderse.
+    const Finale = (function () {
+      const COLS = 18, ROWS = 6, W = 1080, H = 300, AHEAD = 2100;
+      const group = new THREE.Group();
+      group.visible = false;
+      scene.add(group);
+      const shards = [], e = new THREE.Euler(), v = new THREE.Vector3();
+      let mat = null, active = false, broken = false, brokenAt = 0;
+      function build() {
+        const c = document.createElement('canvas');
+        c.width = 1440; c.height = 400;
+        const x = c.getContext('2d');
+        x.fillStyle = 'rgba(0, 0, 0, 0.82)';
+        x.fillRect(0, 0, c.width, c.height);
+        x.strokeStyle = '#ff3355';
+        x.lineWidth = 6;
+        x.strokeRect(9, 9, c.width - 18, c.height - 18);
+        let size = 200;
+        x.font = '700 ' + size + 'px "Silkscreen", "Courier New", monospace';
+        size = Math.floor(size * Math.min(1, 1280 / x.measureText('GAME OVER').width));
+        x.font = '700 ' + size + 'px "Silkscreen", "Courier New", monospace';
+        x.textAlign = 'center';
+        x.textBaseline = 'middle';
+        x.fillStyle = '#ff3355';
+        x.fillText('GAME OVER', c.width / 2 + 8, c.height / 2 + 12);
+        x.fillStyle = '#eef0ff';
+        x.fillText('GAME OVER', c.width / 2, c.height / 2 + 4);
+        mat = new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), transparent: true, side: THREE.DoubleSide, fog: false, depthWrite: false });
+        const w = W / COLS, h = H / ROWS;
+        for (let r = 0; r < ROWS; r++) {
+          for (let col = 0; col < COLS; col++) {
+            // Cada pedazo es un rectángulo con su trozo del cartel
+            const g = new THREE.PlaneGeometry(w, h);
+            const uv = g.attributes.uv, u0 = col / COLS, u1 = (col + 1) / COLS, v1 = 1 - r / ROWS, v0 = 1 - (r + 1) / ROWS;
+            uv.setXY(0, u0, v1); uv.setXY(1, u1, v1); uv.setXY(2, u0, v0); uv.setXY(3, u1, v0);
+            const mesh = new THREE.Mesh(g, mat);
+            group.add(mesh);
+            shards.push({ mesh: mesh, hx: (col + 0.5) * w - W / 2, hy: H / 2 - (r + 0.5) * h, vel: new THREE.Vector3(), spin: new THREE.Vector3() });
+          }
+        }
+      }
+      function shatter(t) {
+        broken = true;
+        brokenAt = t;
+        for (let i = 0; i < shards.length; i++) {
+          const sh = shards[i];
+          const d = Math.hypot(sh.hx, sh.hy) || 1, push = 160 + Math.random() * 640;
+          sh.vel.set(sh.hx / d * push + (Math.random() - 0.5) * 160, sh.hy / d * push + (Math.random() - 0.5) * 160, -(120 + Math.random() * 460));
+          sh.spin.set((Math.random() - 0.5) * 9, (Math.random() - 0.5) * 9, (Math.random() - 0.5) * 9);
+        }
+        burst(group.position, forward, speed, 3.2);
+        burst(ship.position, forward, speed, 1.6);
+        flashNow();
+        Sound.win();
+      }
+      return {
+        start: function () {
+          if (!mat) build();
+          for (let i = 0; i < shards.length; i++) {
+            shards[i].mesh.position.set(shards[i].hx, shards[i].hy, 0);
+            shards[i].mesh.rotation.set(0, 0, 0);
+          }
+          mat.opacity = 1;
+          e.set(pitch, yaw, 0, 'YXZ');
+          group.quaternion.setFromEuler(e);
+          group.position.copy(ship.position).addScaledVector(forward, AHEAD);
+          group.visible = true;
+          active = true;
+          broken = false;
+        },
+        update: function (dt, t) {
+          if (!active) return;
+          if (!broken) {
+            v.copy(group.position).sub(ship.position);
+            if (v.dot(forward) <= 30 || t > 6) shatter(t);
+            return;
+          }
+          if (!group.visible) return;
+          for (let i = 0; i < shards.length; i++) {
+            const sh = shards[i];
+            sh.mesh.position.addScaledVector(sh.vel, dt);
+            sh.mesh.rotation.x += sh.spin.x * dt; sh.mesh.rotation.y += sh.spin.y * dt; sh.mesh.rotation.z += sh.spin.z * dt;
+          }
+          mat.opacity = Math.max(0, 1 - (t - brokenAt) / 2.8);
+          if (mat.opacity <= 0) group.visible = false;
+        },
+        // Segundos desde que se rompió el cartel; -1 si todavía está entero
+        since: function (t) { return active && broken ? t - brokenAt : -1; },
+        hide: function () { active = false; group.visible = false; }
+      };
+    })();
+    const WIN_MSG_FROM = 0.35, WIN_MSG_TO = 6.8, WIN_END = 9.6;   // tras romper el cartel: YOU WIN, despedida y vuelta al inicio
+
     function win() {
       setState('win');
       winT = 0;
@@ -3551,12 +3780,10 @@
       resultEl.textContent = L('Completaste los cinco sectores · ', 'You cleared all five sectors · ') + tail;
       fuelTag.textContent = '12 %';
       fuelEl.querySelectorAll('.fuel-gauge i').forEach((c, i) => c.classList.toggle('on', i === 0));
-      victoryEl.hidden = false;
       recordRun(true);
       hint.hidden = true;
       Sound.silence();
-      Sound.win();
-      flashNow();
+      Finale.start();
     }
 
     // Tras un choque con naves de sobra: se conservan los puntos, baja un poco el ritmo y hay inmunidad breve
@@ -3594,6 +3821,8 @@
     // Tercer choque: el juego vuelve a la pantalla de inicio
     function backToTitle() {
       cancelTunnel();
+      Finale.hide();
+      victoryEl.hidden = true;
       setWorld(1);
       levelupEl.hidden = true;
       resetWorld();
@@ -3606,13 +3835,11 @@
       $('intro-text').hidden = true;
       // Al terminar una partida es cuando se invita a donar
       cardBtn.hidden = false;
-      // La ventana de apoyo aparece sola la primera vez en cada sesión; después queda en su botón
-      if (DONATE_URL) {
-        fuelBtn.hidden = false;
-        if (!fuelShown) { fuelShown = true; openFuel(); }
-      }
+      if (DONATE_URL) fuelBtn.hidden = false;
       intro.hidden = false;
       placeCamera(true);
+      // Primero se ofrece guardar el puntaje; la ventana de apoyo sale al cerrar esa, una vez por sesión
+      Board.offer();
     }
 
     function collide() {
@@ -3692,7 +3919,7 @@
 
     function placeCamera(snap, dt) {
       // Cabina: la cámara va dentro de la nave. Al chocar, sale a la vista exterior para ver el impacto.
-      if (cockpit && state !== 'dead') {
+      if (cockpit && state !== 'dead' && state !== 'win') {
         camera.position.copy(ship.position);
         look.copy(ship.position).add(forward);
         camera.lookAt(look);
@@ -3709,6 +3936,8 @@
         camera.lookAt(look);
         return;
       }
+      // Despedida: la cámara se queda quieta y mira cómo la nave se aleja
+      if (state === 'win' && Finale.since(winT) > WIN_MSG_TO) { camera.lookAt(ship.position); return; }
       euler.set(pitch, yaw, 0, 'YXZ');
       quat.setFromEuler(euler);
       desired.set(0, 92, 228).applyQuaternion(quat).add(ship.position);
@@ -3851,7 +4080,7 @@
     }
 
     // ---------- Compartir el juego desde el inicio ----------
-    const shareBtn = $('share-btn');
+    const shareBtn = $('share-btn'), shareMsg = $('share-msg');
     const GAME_URL = location.href.split('#')[0];
     const SHARE_MSG = L('DRIFTWAY. Una nave, cinco sectores, una regla: no pares. ¿Puede un juego de un dólar llegar a un millón de jugadores?', "DRIFTWAY. One ship, five sectors, one rule: don't stop. Can a one-dollar game reach a million players?");
     const SHARE_TEXT = SHARE_MSG + ' ' + GAME_URL;
@@ -3870,13 +4099,208 @@
       Sound.blip();
       try {
         await navigator.clipboard.writeText(SHARE_TEXT);
-        shareBtn.textContent = L('Copiado', 'Copied');
+        shareMsg.textContent = L('Copiado', 'Copied');
       } catch (e) {
-        shareBtn.textContent = L('Copia la barra', 'Copy the address bar');
+        shareMsg.textContent = L('Copia la barra', 'Copy the address bar');
       }
       shareBtn.classList.add('done');
-      setTimeout(() => { shareBtn.textContent = L('Copiar enlace', 'Copy link'); shareBtn.classList.remove('done'); }, 2200);
+      shareMsg.hidden = false;
+      setTimeout(() => { shareMsg.hidden = true; shareBtn.classList.remove('done'); }, 2200);
     });
+
+    // ---------- Base de datos: visitas, ranking y pilotos ----------
+    const Net = (function () {
+      const headers = { apikey: API.key, Authorization: 'Bearer ' + API.key, 'Content-Type': 'application/json' };
+      function call(path, options) {
+        if (!window.fetch || !API.url) return Promise.reject(new Error('sin red'));
+        const ctl = window.AbortController ? new AbortController() : null;
+        const timer = ctl ? setTimeout(() => ctl.abort(), 8000) : 0;
+        const init = Object.assign({}, options || {}, { headers: Object.assign({}, headers, options && options.headers || {}), signal: ctl && ctl.signal });
+        return fetch(API.url + path, init)
+          .then((r) => {
+            clearTimeout(timer);
+            if (!r.ok) return r.text().then((t) => { throw new Error(r.status + ' ' + t.slice(0, 200)); });
+            return r.text().then((t) => (t ? JSON.parse(t) : null));
+          });
+      }
+      return {
+        rpc: (name, args) => call('/rest/v1/rpc/' + name, { method: 'POST', body: JSON.stringify(args || {}) }),
+        insert: (table, row) => call('/rest/v1/' + table, { method: 'POST', body: JSON.stringify(row), headers: { Prefer: 'return=minimal' } }),
+        select: (path) => call('/rest/v1/' + path)
+      };
+    })();
+
+    // Contador de pilotos: una visita por dispositivo (navegador), no por sesión. La marca queda en localStorage y no caduca
+    (function countVisit() {
+      let counted = false;
+      try { counted = localStorage.getItem('driftway-contado') === '1'; } catch (e) { counted = false; }
+      const show = (total) => {
+        if (typeof total !== 'number') return;
+        pressTotal.textContent = pad(Math.min(total, 999999999), 6);
+        pressCount.hidden = false;
+      };
+      // Ya contado: solo se lee el total. Sin marca: se suma, y la marca se guarda solo si la suma llegó
+      (counted
+        ? Net.rpc('total_visitas')
+        : Net.rpc('registrar_visita').then((total) => { try { localStorage.setItem('driftway-contado', '1'); } catch (e) { /* sin almacenamiento: se muestra el total igual */ } return total; }))
+        .then(show)
+        .catch(() => { /* sin red: la pantalla queda sin contador */ });
+    })();
+
+    const Board = (function () {
+      const NICK_KEY = 'driftway-apodo', PILOT_KEY = 'driftway-piloto-id', OPT_KEY = 'driftway-avisos', BEST_SAVED_KEY = 'driftway-mejor-guardado';
+      let open = false, mode = 'list', busy = false;
+      const uuid = () => (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+        : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 3 | 8)).toString(16); });
+      const stored = (k) => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
+      const store = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* dura la sesión */ } };
+      const clean = (t) => t.replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, 20);
+      function msg(text, bad) { boardMsg.textContent = text; boardMsg.classList.toggle('err', !!bad); }
+
+      function show(kind) {
+        mode = kind;
+        open = true;
+        const saving = kind === 'save';
+        boardTitle.textContent = saving ? L('Guarda tu puntaje', 'Save your score') : L('Los mejores pilotos', 'Top pilots');
+        boardTag.textContent = saving ? L('NUEVA PARTIDA', 'NEW RUN') : 'TOP 10';
+        boardSum.hidden = !saving;
+        if (saving) boardSum.textContent = fmt(lastRun.score) + L(' puntos · sector ', ' points · sector ') + lastRun.sector + '/5' + (lastRun.won ? L(' · no paraste', " · you didn't stop") : '');
+        boardForm.hidden = !saving;
+        boardList.hidden = saving;
+        boardMine.hidden = true;
+        boardEnd.hidden = saving;
+        msg('');
+        if (saving) {
+          boardNick.value = stored(NICK_KEY);
+          const already = stored(OPT_KEY) === '1';
+          boardOpt.checked = false;
+          boardOpt.parentElement.hidden = already;      // quien ya dejó su correo no lo vuelve a ver
+          boardMailField.hidden = true;
+          boardMail.value = '';
+          boardSave.disabled = false;
+        } else {
+          loadList(null);
+        }
+        boardEl.hidden = false;
+        (saving ? boardNick : boardEl.firstElementChild).focus({ preventScroll: true });
+      }
+
+      function hide() {
+        open = false;
+        boardEl.hidden = true;
+        startBtn.focus({ preventScroll: true });
+        // Después del ranking, la invitación a apoyar, una vez por sesión
+        if (mode === 'save' && DONATE_URL && !fuelShown) { fuelShown = true; openFuel(); }
+      }
+
+      function row(r, i, mine) {
+        const d = document.createElement('div');
+        d.className = 'r' + (mine ? ' me' : '');
+        d.innerHTML = '<span class="n">' + pad(i + 1, 2) + '</span><span class="a"></span><span class="s">S' + r.sector + (r.gano ? ' ★' : '') + '</span><span class="p">' + pad(r.puntos, 6) + '</span>';
+        d.querySelector('.a').textContent = r.apodo;
+        return d;
+      }
+
+      function loadList(mine) {
+        boardList.innerHTML = '<div class="empty">' + L('Cargando…', 'Loading…') + '</div>';
+        boardList.hidden = false;
+        Net.select('ranking?select=apodo,puntos,sector,gano,creado&limit=10').then((rows) => {
+          boardList.innerHTML = '';
+          if (!rows || !rows.length) { boardList.innerHTML = '<div class="empty">' + L('Todavía no hay partidas guardadas. Sé el primero.', 'No saved runs yet. Be the first.') + '</div>'; return; }
+          let marked = false;
+          rows.forEach((r, i) => {
+            const isMine = !marked && mine && r.apodo === mine.apodo && r.puntos === mine.puntos;
+            if (isMine) marked = true;
+            boardList.appendChild(row(r, i, isMine));
+          });
+        }).catch(() => { boardList.innerHTML = '<div class="empty">' + L('No se pudo cargar el ranking. Revisa tu conexión.', 'The leaderboard could not be loaded. Check your connection.') + '</div>'; });
+      }
+
+      boardOpt.addEventListener('change', () => {
+        boardMailField.hidden = !boardOpt.checked;
+        if (boardOpt.checked) boardMail.focus({ preventScroll: true });
+      });
+
+      boardForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (busy || lastRun.saved) return;
+        const apodo = clean(boardNick.value);
+        if (apodo.length < 2) { msg(L('El apodo necesita al menos 2 letras.', 'The nickname needs at least 2 letters.'), true); boardNick.focus(); return; }
+        const wantsMail = boardOpt.checked && !boardOpt.parentElement.hidden;
+        const correo = wantsMail ? boardMail.value.trim().toLowerCase() : '';
+        if (wantsMail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) { msg(L('Revisa el correo.', 'Check the email address.'), true); boardMail.focus(); return; }
+        busy = true;
+        boardSave.disabled = true;
+        msg(L('Guardando…', 'Saving…'));
+        try {
+          let pilotId = stored(PILOT_KEY);
+          // Piloto nuevo, o uno conocido que ahora deja su correo
+          if (!pilotId || wantsMail) {
+            pilotId = pilotId || uuid();
+            await Net.insert('pilotos', {
+              id: wantsMail && stored(PILOT_KEY) ? uuid() : pilotId,
+              apodo: apodo,
+              correo: wantsMail ? correo : null,
+              acepta_avisos: wantsMail,
+              idioma: LANG + ' · ' + (navigator.language || '').slice(0, 8),
+              dispositivo: /Mobi|Android/i.test(navigator.userAgent) ? 'móvil' : 'escritorio'
+            });
+            store(PILOT_KEY, pilotId);
+            if (wantsMail) store(OPT_KEY, '1');
+          }
+          await Net.insert('partidas', {
+            piloto_id: pilotId,
+            apodo: apodo,
+            puntos: Math.floor(lastRun.score),
+            sector: lastRun.sector,
+            derribos: lastRun.kills,
+            roces: lastRun.grazes,
+            duracion_s: lastRun.seconds,
+            gano: lastRun.won,
+            version: GAME_VERSION
+          });
+          store(NICK_KEY, apodo);
+          lastRun.saved = true;
+          msg('');
+          boardForm.hidden = true;
+          boardTitle.textContent = L('Guardado', 'Saved');
+          boardTag.textContent = 'TOP 10';
+          boardEnd.hidden = false;
+          const mine = { apodo: apodo, puntos: Math.floor(lastRun.score) };
+          loadList(mine);
+          // La posición se pide con el mejor puntaje guardado de este piloto, igual que el ranking:
+          // así una partida floja no lo baja de puesto ni lo hace contarse a sí mismo
+          const topSaved = Math.max(mine.puntos, Number(stored(BEST_SAVED_KEY)) || 0);
+          store(BEST_SAVED_KEY, String(topSaved));
+          Net.rpc('posicion', { p: topSaved }).then((pos) => {
+            if (typeof pos !== 'number') return;
+            boardMine.textContent = L('Eres el piloto n.º ' + fmt(pos) + ' entre todos los pilotos', 'You are pilot no. ' + fmt(pos) + ' among all pilots');
+            boardMine.hidden = false;
+          }).catch(() => { /* sin posición */ });
+          Sound.record();
+        } catch (err) {
+          if (window.console) console.warn('ranking:', err && err.message);
+          msg(L('No se pudo guardar. Revisa tu conexión e intenta de nuevo.', 'Could not save. Check your connection and try again.'), true);
+          boardSave.disabled = false;
+        }
+        busy = false;
+      });
+
+      boardSkip.addEventListener('click', hide);
+      boardClose.addEventListener('click', hide);
+      boardEl.addEventListener('click', (e) => { if (e.target === boardEl) hide(); });
+      boardBtn.addEventListener('click', () => { Sound.unlock(); Sound.blip(); show('list'); });
+
+      return {
+        // Al terminar una partida: ofrece guardar si hubo puntos
+        offer: function () {
+          if (lastRun.score < 1 || lastRun.saved) { if (DONATE_URL && !fuelShown) { fuelShown = true; openFuel(); } return; }
+          show('save');
+        },
+        hide: hide,
+        isOpen: function () { return open; }
+      };
+    })();
 
     // ---------- Ventana de apoyo ----------
     let fuelShown = false;
@@ -4248,13 +4672,17 @@
           }
         }
       } else if (state === 'win') {
-        // Victoria: la nave sigue de largo, sola, mientras se lee el cartel
+        // Victoria: la nave rompe el GAME OVER, sale el YOU WIN y luego se aleja hasta perderse
         winT += dt;
-        speed += (700 - speed) * Math.min(1, dt * 2);
+        Finale.update(dt, winT);
+        const since = Finale.since(winT);
+        // Al final la nave acelera y se pierde a lo lejos
+        speed += ((since > WIN_MSG_TO ? 1500 : 700) - speed) * Math.min(1, dt * 2);
         roll += (0 - roll) * Math.min(1, dt * 4);
         ship.position.addScaledVector(forward, speed * dt);
         ship.rotation.set(pitch, yaw, roll, 'YXZ');
-        if (winT > WIN_AFTER) backToTitle();
+        victoryEl.hidden = !(since > WIN_MSG_FROM && since < WIN_MSG_TO);
+        if (since > WIN_END) backToTitle();
       } else if (state === 'dead') {
         deadT += dt;
         for (let i = 0; i < BITS * 3; i++) bitPos[i] += bitVel[i] * dt;
