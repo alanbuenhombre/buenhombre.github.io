@@ -5,6 +5,9 @@
 'use strict';
 
 const path = require('path');
+// pdf.js intenta preparar el dibujo en canvas; aquí solo se lee texto e imágenes, así que basta un sustituto vacío
+if (!globalThis.DOMMatrix) globalThis.DOMMatrix = function DOMMatrix() {};
+if (!globalThis.Path2D) globalThis.Path2D = function Path2D() {};
 const pdfjs = require('pdfjs-dist/legacy/build/pdf.js');
 
 const SERIF = /garamond|serif|times|georgia|cormorant|instrument|playfair|minion|caslon|bodoni/i;
@@ -103,7 +106,7 @@ function pageStructure(pg) {
     const ent = [];
     let y = h1.y;
     body.filter(function (s) { return s.kind === 'text' && s.y > h1.y && s.x < pg.width * 0.3; }).sort(function (a, b) { return a.y - b.y; }).forEach(function (s) {
-      if (s.y - y < 15 && s.size >= 8.5) { ent.push(s.text); s.used = true; y = s.y; }
+      if (s.y - y <= 18 && s.size >= 8.5) { ent.push(s.text); s.used = true; y = s.y; }
     });
     if (ent.length) out.entradilla = ent.join(' ');
   }
@@ -192,7 +195,9 @@ function blocks(segs, width) {
     const best = cand[0];
     // Texto que cruza varias columnas (p. ej. cierre centrado) va suelto a nivel de página
     // Texto que cruza varias columnas (cierre centrado, notas al pie de tabla) va suelto a nivel de página
-    if (!best || s.x < best.colStart - 4 || s.x1 > best.colEnd + 20) sueltos.push(s);
+    // una frase serif que empieza antes que su rótulo o casi llena la columna es un cierre de página
+    const wideSerif = best && s.kind === 'serif' && (s.x < best.x - 8 || (s.x1 - s.x) > (Math.min(best.colEnd, width) - best.colStart) * 0.8);
+    if (!best || wideSerif || s.x < best.colStart - 4 || s.x1 > best.colEnd + 20) sueltos.push(s);
     else best.content.push(s);
   });
   const out = labels.map(function (l) {

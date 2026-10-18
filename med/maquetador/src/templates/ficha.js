@@ -1,5 +1,5 @@
 // Ficha técnica MED · 7 páginas en carta vertical (816 × 1056 px).
-// Composición medida sobre la ficha AXIFORM™ BRA 4022 aprobada (el sistema base de todas las fichas).
+// Composición medida sobre la ficha de referencia aprobada (el sistema base de todas las fichas).
 // El contenido llega literal desde el PDF guía (src/ficha.js); aquí solo se diagrama.
 // Única transformación de texto permitida: mayúsculas/tipo título en títulos.
 'use strict';
@@ -41,8 +41,8 @@ function rect(x, y, w, h, bg, extra) { return '<div class="deco" style="position
 
 // Logo: archivo marca/logo si existe; si no, ondas + MED tipográfico
 function logo(k, x, y, light) {
-  const file = k.catalog.marca && k.catalog.marca.logo_ficha;
-  if (file && k.catalog._images && k.catalog._images[file]) return k.logo(x, y, 104, 26, 'logo_ficha', !light);
+  // Logo real del proyecto (marca → logo_ficha, versión clara para el bloque teal) si está cargado
+  if (k.catalog.marca && k.catalog.marca.logo_ficha) return k.logo(x - 4, y - 8, 112, 30, 'logo_ficha', false);
   const c = C.ivory;
   return svgLayer('<g stroke="' + c + '" stroke-width="1.3" stroke-linecap="round">' +
     [0, 6, 12].map(function (d) { return '<path d="M' + x + ' ' + (y + 6 + d) + 'c4 -4 8 -4 12 0s8 4 12 0s8 -4 12 0"/>'; }).join('') + '</g>') +

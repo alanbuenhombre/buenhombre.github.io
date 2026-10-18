@@ -15,7 +15,7 @@ module.exports = {
     bodySize: 14, bodyLine: 1.6, monoTracking: 1.6, kickerTracking: 2.4
   },
   titles: { chapter: 54, page: 40, poster: 88, productRef: 96 },
-  // Ficha técnica (proceso 4022): carta vertical, colores de stage propios
+  // Ficha técnica (ficha de referencia aprobada): carta vertical, colores de stage propios
   ficha: {
     width: 816, height: 1056, top: 44, side: 56, bottom: 36,
     stage: '#3B5163', stageDeep: '#22333F', xray: '#0D1B22', figure: '#19303F', white: '#FFFFFF'

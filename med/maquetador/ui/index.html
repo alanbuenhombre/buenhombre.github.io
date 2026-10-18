@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MED · Maquetador local</title>
+<link rel="stylesheet" href="/ui/app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><b>MED</b><span>Maquetador local</span></div>
+  <div class="proj">
+    <select id="proyectos"><option value="">— Proyectos —</option></select>
+    <label class="btn"><input type="file" id="guia" accept=".pdf" hidden>Importar PDF guía…</label>
+  </div>
+  <div class="lock" title="El servidor solo escucha en 127.0.0.1 y bloquea toda conexión saliente.">● Local · sin red · sin IA</div>
+</header>
+
+<main class="work" id="work" hidden>
+  <aside class="pages">
+    <h3>Páginas</h3>
+    <div id="thumbs"></div>
+    <div class="actions">
+      <button class="btn ghost" id="undo">Deshacer</button>
+      <label class="chk"><input type="checkbox" id="wire"> Wireframe</label>
+    </div>
+  </aside>
+
+  <section class="canvas">
+    <div class="toolbar">
+      <span id="page-title"></span>
+      <div class="zoom"><button id="z-out">−</button><span id="z-val">90%</span><button id="z-in">+</button></div>
+    </div>
+    <div class="stage" id="stage"><iframe id="view" title="Vista de la página"></iframe></div>
+  </section>
+
+  <aside class="props">
+    <div class="tabs">
+      <button data-tab="datos" class="on">Contenido</button>
+      <button data-tab="fotos">Imágenes</button>
+      <button data-tab="pend">Pendientes <em id="pend-n"></em></button>
+      <button data-tab="export">Exportar</button>
+    </div>
+    <div class="tab on" id="t-datos"></div>
+    <div class="tab" id="t-fotos"></div>
+    <div class="tab" id="t-pend"></div>
+    <div class="tab" id="t-export">
+      <p class="hint">Los archivos se guardan dentro de la carpeta del proyecto: <code>proyectos/&lt;nombre&gt;/exports/</code>.</p>
+      <button class="btn" id="x-pdf">Exportar PDF</button>
+      <button class="btn ghost" id="x-png">PNG por página (300 dpi)</button>
+      <div id="x-out"></div>
+    </div>
+  </aside>
+</main>
+
+<section class="empty" id="empty">
+  <h1>De PDF guía a ficha técnica MED, sin salir de este computador.</h1>
+  <ol>
+    <li>Importa el PDF guía del producto (la plantilla genérica que entrega el cliente).</li>
+    <li>Revisa el contenido extraído: el copy se toma literal; lo que falta se marca como pendiente.</li>
+    <li>Carga las ilustraciones y fotos finales en cada ranura.</li>
+    <li>Exporta el PDF y el reporte de pendientes.</li>
+  </ol>
+</section>
+<div class="toast" id="toast" hidden></div>
+<script src="/ui/app.js"></script>
+</body>
+</html>
