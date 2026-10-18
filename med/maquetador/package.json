@@ -1,0 +1,23 @@
+{
+  "name": "med-maquetador",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Maquetador local de catálogos MED: offline, sin IA, por reglas y plantillas.",
+  "scripts": {
+    "setup": "npm install && npx playwright install chromium",
+    "start": "node src/server.js",
+    "clasificar": "node src/cli.js clasificar",
+    "exportar": "node src/cli.js exportar",
+    "ejemplo": "node tools/generar-ejemplo.js",
+    "test": "node --test tests/"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "js-yaml": "4.1.0",
+    "pdf-lib": "1.17.1",
+    "playwright": "1.56.1",
+    "qrcode-generator": "1.4.4",
+    "sharp": "0.33.5",
+    "xlsx": "0.18.5"
+  }
+}
