@@ -1,0 +1,10 @@
+/* Tipografías del sistema MED, empaquetadas localmente (SIL Open Font License). */
+@font-face{font-family:"Instrument Serif";font-weight:400;font-style:normal;font-display:block;src:url("InstrumentSerif_400Regular.ttf") format("truetype");}
+@font-face{font-family:"Instrument Serif";font-weight:400;font-style:italic;font-display:block;src:url("InstrumentSerif_400Regular_Italic.ttf") format("truetype");}
+@font-face{font-family:"Manrope";font-weight:300;font-style:normal;font-display:block;src:url("Manrope_300Light.ttf") format("truetype");}
+@font-face{font-family:"Manrope";font-weight:400;font-style:normal;font-display:block;src:url("Manrope_400Regular.ttf") format("truetype");}
+@font-face{font-family:"Manrope";font-weight:500;font-style:normal;font-display:block;src:url("Manrope_500Medium.ttf") format("truetype");}
+@font-face{font-family:"Manrope";font-weight:600;font-style:normal;font-display:block;src:url("Manrope_600SemiBold.ttf") format("truetype");}
+@font-face{font-family:"Manrope";font-weight:700;font-style:normal;font-display:block;src:url("Manrope_700Bold.ttf") format("truetype");}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;font-style:normal;font-display:block;src:url("IBMPlexMono_400Regular.ttf") format("truetype");}
+@font-face{font-family:"IBM Plex Mono";font-weight:500;font-style:normal;font-display:block;src:url("IBMPlexMono_500Medium.ttf") format("truetype");}

@@ -1,0 +1,216 @@
+{
+  "esquema": "med.ficha.v1",
+  "idioma": "es",
+  "linea": "clinical",
+  "modulos": [
+    "cover",
+    "materials",
+    "sizes"
+  ],
+  "producto": {
+    "nombre": "CONTOURA™ BRA",
+    "referencia": "9001",
+    "categoria": "Brasier de compresión post-quirúrgico",
+    "bajada": "Soporte anatómico continuo para cada etapa de la recuperación.",
+    "descripcion": "Diseñado para acompañar la recuperación después de procedimientos de busto. Su banda inferior distribuye la compresión de forma uniforme, mientras las copas sin costuras evitan puntos de presión sobre zonas sensibles. El cierre frontal facilita ponerlo y quitarlo sin levantar los brazos.",
+    "url": "https://example.com/productos/9001"
+  },
+  "cobertura": {
+    "figuras": [
+      {
+        "imagen": "figura-frente.svg",
+        "vista": "Frente",
+        "recorte": {
+          "arriba": 0,
+          "abajo": 0.62
+        }
+      },
+      {
+        "imagen": "figura-espalda.svg",
+        "vista": "Espalda",
+        "recorte": {
+          "arriba": 0,
+          "abajo": 0.62
+        }
+      }
+    ],
+    "zonas": [
+      {
+        "nombre": "Tirantes acolchados",
+        "texto": "Reparten la carga sobre los hombros.",
+        "figura": 0,
+        "x": 0.3,
+        "y": 0.2
+      },
+      {
+        "nombre": "Copas sin costuras",
+        "texto": "Contacto suave sin puntos de presión.",
+        "figura": 0,
+        "x": 0.3,
+        "y": 0.42
+      },
+      {
+        "nombre": "Banda inferior de soporte",
+        "texto": "Compresión uniforme bajo el busto.",
+        "figura": 0,
+        "x": 0.22,
+        "y": 0.52
+      },
+      {
+        "nombre": "Cierre frontal",
+        "texto": "Ganchos en tres posiciones.",
+        "figura": 0,
+        "x": 0.5,
+        "y": 0.5
+      },
+      {
+        "nombre": "Espalda cruzada",
+        "texto": "Estabiliza la postura durante el día.",
+        "figura": 1,
+        "x": 0.62,
+        "y": 0.3
+      },
+      {
+        "nombre": "Banda posterior",
+        "texto": "Mantiene la prenda en su lugar.",
+        "figura": 1,
+        "x": 0.76,
+        "y": 0.5
+      }
+    ]
+  },
+  "materiales": {
+    "lista": [
+      {
+        "nombre": "FLEXWEAVE™",
+        "principal": true,
+        "textura": "textura-flexweave.jpg",
+        "composicion": [
+          {
+            "fibra": "Poliamida",
+            "pct": 72
+          },
+          {
+            "fibra": "Elastano",
+            "pct": 28
+          }
+        ],
+        "descripcion": "Tejido de punto de compresión con elasticidad en cuatro direcciones. Mantiene la presión estable a lo largo del día y recupera su forma después de cada lavado.",
+        "propiedades": [
+          "Compresión media uniforme",
+          "Secado rápido",
+          "Recuperación elástica"
+        ]
+      },
+      {
+        "nombre": "Malla Respira",
+        "principal": false,
+        "textura": "textura-malla.jpg",
+        "composicion": [
+          {
+            "fibra": "Poliéster",
+            "pct": 85
+          },
+          {
+            "fibra": "Elastano",
+            "pct": 15
+          }
+        ],
+        "descripcion": "Paneles de ventilación en la espalda.",
+        "propiedades": []
+      },
+      {
+        "nombre": "Felpa interior",
+        "principal": false,
+        "textura": "textura-felpa.jpg",
+        "composicion": [
+          {
+            "fibra": "Algodón",
+            "pct": 90
+          },
+          {
+            "fibra": "Elastano",
+            "pct": 10
+          }
+        ],
+        "descripcion": "Forro suave en contacto con la piel.",
+        "propiedades": []
+      }
+    ],
+    "rayos_x": "rayos-x.svg",
+    "rayos_x_nota": "Capas de la banda inferior y de las copas vistas en transparencia."
+  },
+  "tallas": {
+    "unidad": "cm",
+    "tallas": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "medidas": [
+      {
+        "nombre": "Contorno bajo busto",
+        "valores": [
+          "63–67",
+          "68–72",
+          "73–77",
+          "78–82",
+          "83–87",
+          "88–92"
+        ],
+        "cinta": {
+          "y": 0.535,
+          "x1": 0.08,
+          "x2": 0.92
+        }
+      },
+      {
+        "nombre": "Contorno de busto",
+        "valores": [
+          "78–82",
+          "83–87",
+          "88–92",
+          "93–97",
+          "98–102",
+          "103–107"
+        ],
+        "cinta": {
+          "y": 0.43,
+          "x1": 0.1,
+          "x2": 0.9
+        }
+      },
+      {
+        "nombre": "Contorno de cintura",
+        "valores": [
+          "60–64",
+          "65–69",
+          "70–74",
+          "75–79",
+          "80–84",
+          "85–89"
+        ],
+        "cinta": {
+          "y": 0.66,
+          "x1": 0.2,
+          "x2": 0.8
+        }
+      }
+    ],
+    "figura": "figura-tallas.svg",
+    "nota": "Si tus medidas quedan entre dos tallas, elige la talla según el contorno bajo busto.",
+    "como_medir": {
+      "ilustracion": "como-medir.svg",
+      "pasos": [
+        "Usa una cinta métrica flexible, sin apretar, y mide sobre la piel o sobre ropa delgada.",
+        "Rodea el torso justo debajo del busto, con la cinta paralela al piso.",
+        "Mide el contorno de busto en la parte más prominente, con los brazos relajados."
+      ]
+    }
+  },
+  "imagenes": {},
+  "revisar": []
+}

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<!-- Cero red: sin conexiones salientes, sin CDNs, sin fuentes remotas, sin analítica. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'none'; worker-src 'self' blob:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>MED · Fichas técnicas</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><b>MED</b><span>Fichas técnicas · local</span></div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="ingesta" class="on"><i>1</i>Ingesta</button>
+      <button data-tab="revision" disabled><i>2</i>Revisión de datos <em id="flag-count" hidden></em></button>
+      <button data-tab="diseno" disabled><i>3</i>Diseño</button>
+      <button data-tab="exportar" disabled><i>4</i>Exportar</button>
+    </nav>
+    <div class="lock" title="Content-Security-Policy: connect-src 'none'. La página no puede hacer peticiones de red.">● Sin red · sin IA</div>
+  </header>
+
+  <!-- 1 · Ingesta -->
+  <section class="view on" id="v-ingesta">
+    <div class="ingest">
+      <h1>Carga la información del producto</h1>
+      <p class="sub">Arrastra juntos la ficha original (PDF), las fotos de textura, las ilustraciones (SVG/PNG) y la tabla de tallas (CSV). También puedes abrir un producto guardado (.json). Todo se procesa en este computador.</p>
+      <label class="drop" id="drop">
+        <input type="file" id="files" multiple accept=".pdf,.csv,.tsv,.json,.svg,.png,.jpg,.jpeg,.webp">
+        <strong>Arrastra los archivos aquí</strong>
+        <span>o haz clic para elegirlos · PDF · CSV · SVG · PNG · JPG · JSON</span>
+      </label>
+      <div class="row">
+        <button class="btn ghost" id="demo">Cargar producto de ejemplo (datos ficticios)</button>
+        <button class="btn ghost" id="blank">Empezar en blanco</button>
+      </div>
+      <div class="report" id="report"></div>
+      <div class="naming">
+        <h3>Nombres de archivo que se reconocen solos</h3>
+        <p><code>…frente…</code>, <code>…espalda…</code>, <code>…lateral…</code> → figuras de portada · <code>…textura…</code> (+ nombre del material) → texturas · <code>…rayos…</code> → rayos X · <code>…tallas…</code> → figura de tallas · <code>…medir…</code> → cómo medir. Lo demás se asigna en Revisión.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Revisión -->
+  <section class="view" id="v-revision">
+    <div class="review">
+      <div class="review-head">
+        <div>
+          <h1>Revisión de datos</h1>
+          <p class="sub">Corrige y completa antes de diagramar. Los campos <span class="flag">revisar</span> son suposiciones de la extracción: confírmalos o edítalos. El copy se usa palabra por palabra.</p>
+        </div>
+        <div class="row">
+          <button class="btn ghost" id="raw-toggle">Ver JSON</button>
+          <button class="btn" id="to-design">Diagramar →</button>
+        </div>
+      </div>
+      <div id="form"></div>
+      <div id="raw" hidden>
+        <textarea id="raw-text" spellcheck="false"></textarea>
+        <div class="row"><button class="btn" id="raw-apply">Aplicar JSON</button><span class="hint" id="raw-msg"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Diseño -->
+  <section class="view" id="v-diseno">
+    <div class="design">
+      <aside class="panel">
+        <h3>Línea de producto</h3>
+        <div class="lines" id="lines"></div>
+        <h3>Rótulos del sistema</h3>
+        <div class="seg" id="lang"><button data-l="es">Español</button><button data-l="en">English</button></div>
+        <h3>Páginas y orden</h3>
+        <div class="mods" id="mods"></div>
+        <h3>Imágenes</h3>
+        <div class="slots" id="slots"></div>
+        <h3>Avisos</h3>
+        <div class="warns" id="warns"></div>
+      </aside>
+      <div class="preview" id="preview"></div>
+    </div>
+  </section>
+
+  <!-- 4 · Exportar -->
+  <section class="view" id="v-exportar">
+    <div class="export">
+      <h1>Exportar</h1>
+      <p class="sub">Los archivos se guardan solo en este computador. Elige una carpeta (recomendado) o se descargarán a Descargas.</p>
+      <div class="row"><button class="btn ghost" id="folder">Elegir carpeta de destino…</button><span class="hint" id="folder-name">Sin carpeta: se descargarán.</span></div>
+      <div class="xgrid">
+        <div class="xcard"><h3>PDF de impresión</h3><p>Vectorial, texto real, imágenes a resolución original. Carta.</p><button class="btn" id="x-pdf">Generar PDF</button></div>
+        <div class="xcard"><h3>PDF digital liviano</h3><p>Para correo e iPad: mismas páginas con imágenes reducidas.</p><button class="btn" id="x-pdf-light">Generar PDF liviano</button></div>
+        <div class="xcard"><h3>PNG por página</h3><p>Raster de alta resolución con las tipografías exactas.</p><div class="row"><button class="btn" id="x-png-600">600 dpi</button><button class="btn ghost" id="x-png-300">300 dpi</button></div></div>
+        <div class="xcard"><h3>SVG por página</h3><p>Para Figma o Illustrator: texto editable, ilustraciones en vectores.</p><button class="btn" id="x-svg">Exportar SVG</button></div>
+        <div class="xcard"><h3>Producto (.json)</h3><p>Datos revisados con sus imágenes, para retomar o versionar.</p><button class="btn ghost" id="x-json">Guardar producto</button></div>
+      </div>
+      <p class="hint">PDF: en el diálogo elige <b>Guardar como PDF</b>, tamaño <b>Carta</b>, márgenes <b>Ninguno</b> y activa <b>Gráficos de fondo</b>.</p>
+      <div class="log" id="log"></div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="vendor/pdf.min.js"></script>
+<script src="vendor/pdf.worker.min.js"></script>
+<script src="vendor/qrcode.js"></script>
+<script src="js/fonts-data.js"></script>
+<script src="js/schema.js"></script>
+<script src="js/svgkit.js"></script>
+<script src="js/pages/p01-portada.js"></script>
+<script src="js/pages/p02-materiales.js"></script>
+<script src="js/pages/p05-tallas.js"></script>
+<script src="js/render.js"></script>
+<script src="js/extract.js"></script>
+<script src="js/export.js"></script>
+<script src="samples/demo.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
