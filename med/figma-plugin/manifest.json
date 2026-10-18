@@ -1,0 +1,13 @@
+{
+  "name": "Med · Importador",
+  "id": "med-importador-local",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["none"],
+    "reasoning": "Med procesa información confidencial: el plugin no se conecta a internet."
+  }
+}

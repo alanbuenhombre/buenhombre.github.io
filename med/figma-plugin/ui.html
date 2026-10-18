@@ -1,0 +1,54 @@
+<style>
+  body { font: 12px/1.45 Inter, system-ui, sans-serif; margin: 0; padding: 16px; color: var(--figma-color-text, #222); background: var(--figma-color-bg, #fff); }
+  h1 { font-size: 14px; margin: 0 0 2px; }
+  h2 { font-size: 12px; margin: 18px 0 6px; }
+  p { margin: 4px 0; color: var(--figma-color-text-secondary, #666); }
+  .drop { display: block; border: 1.5px dashed var(--figma-color-border, #ccc); border-radius: 8px; padding: 18px 10px; text-align: center; cursor: pointer; margin-top: 8px; }
+  .drop:hover { border-color: var(--figma-color-text, #222); }
+  input[type=file] { display: none; }
+  button { font: inherit; font-weight: 600; padding: 8px 12px; border-radius: 6px; border: 0; background: var(--figma-color-bg-brand, #0d99ff); color: #fff; cursor: pointer; width: 100%; margin-top: 6px; }
+  .msg { margin-top: 12px; padding: 8px 10px; border-radius: 6px; background: var(--figma-color-bg-secondary, #f3f3f3); display: none; }
+  .msg.err { background: #fde8e8; color: #9b1c1c; }
+  .lock { font-size: 11px; color: #1e7a46; }
+  code { font-size: 11px; }
+</style>
+<h1>Med · Importador</h1>
+<div class="lock">● Sin conexión a internet: todo ocurre en este archivo.</div>
+
+<h2>1. Importar diagramación</h2>
+<p>Carga el paquete <code>.med.json</code> exportado desde Med. Se crea una página nueva con frames editables, estilos de texto y de color.</p>
+<label class="drop"><input type="file" id="pkg" accept=".json"><b>Elegir paquete .med.json</b></label>
+
+<h2>2. Crear plantilla desde un frame</h2>
+<p>Selecciona un frame con textos nombrados <code>portada</code>, <code>capitulo</code>, <code>seccion</code>, <code>subseccion</code>, <code>entradilla</code>, <code>cuerpo</code>, <code>cita</code>, <code>pie</code>, <code>etiqueta</code> (y un rectángulo <code>acento</code>). Su retícula de columnas define columnas y márgenes.</p>
+<button id="tpl">Exportar plantilla para Med</button>
+
+<div class="msg" id="msg"></div>
+
+<script>
+  const msg = document.getElementById('msg');
+  function show(text, err) { msg.textContent = text; msg.className = 'msg' + (err ? ' err' : ''); msg.style.display = 'block'; }
+  document.getElementById('pkg').onchange = async e => {
+    const f = e.target.files[0]; if (!f) return;
+    show('Leyendo ' + f.name + '…');
+    try {
+      const data = JSON.parse(await f.text());
+      parent.postMessage({ pluginMessage: { type: 'import', data } }, '*');
+    } catch (err) { show('No es un JSON válido: ' + err.message, true); }
+    e.target.value = '';
+  };
+  document.getElementById('tpl').onclick = () => parent.postMessage({ pluginMessage: { type: 'export-template' } }, '*');
+  onmessage = e => {
+    const m = e.data.pluginMessage; if (!m) return;
+    if (m.type === 'progress' || m.type === 'done') show(m.text);
+    if (m.type === 'error') show(m.text, true);
+    if (m.type === 'template') {
+      const blob = new Blob([JSON.stringify(m.data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = (m.data.name || 'plantilla').replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-').toLowerCase() + '.med-template.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      show(m.text + ' Descargada: cárgala en Med → «Importar plantilla de Figma».');
+    }
+  };
+</script>

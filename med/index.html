@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<!-- Nada sale de este equipo: sin conexiones salientes, sin CDNs, sin analítica. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; worker-src 'self' blob:; frame-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Med · Diagramador local</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="layout.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><span class="logo">Med</span><span class="brand-sub">Diagramador local</span></div>
+    <div class="privacy" title="Todo el procesamiento ocurre en este navegador. La página bloquea cualquier conexión de red (Content-Security-Policy: connect-src 'none').">
+      <span class="dot"></span> 100% local · sin nube · sin IA externa
+    </div>
+  </header>
+
+  <aside class="side">
+    <section class="step" id="step-doc">
+      <h2><span class="n">1</span> Documento</h2>
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept=".docx,.pdf,.txt,.md,.markdown">
+        <strong>Arrastra un Word, PDF o texto</strong>
+        <span>o haz clic para elegirlo · DOCX · PDF · TXT · MD</span>
+      </label>
+      <div class="docinfo" id="docinfo" hidden></div>
+      <button class="link" id="sample">Probar con un documento de ejemplo</button>
+    </section>
+
+    <section class="step" id="step-struct" hidden>
+      <h2><span class="n">2</span> Jerarquía reconocida <button class="link small" id="toggle-struct">ver / editar</button></h2>
+      <p class="hint">Revisa cómo se leyó cada bloque. Puedes cambiar su rol u omitirlo; el texto nunca se modifica.</p>
+      <div class="struct" id="struct" hidden></div>
+    </section>
+
+    <section class="step" id="step-format" hidden>
+      <h2><span class="n">3</span> Formato de salida</h2>
+      <div class="formats" id="formats"></div>
+    </section>
+
+    <section class="step" id="step-tpl" hidden>
+      <h2><span class="n">4</span> Plantilla de diseño</h2>
+      <div class="tpls" id="tpls"></div>
+      <div class="row gap">
+        <label class="btn ghost small"><input type="file" id="tpl-file" accept=".json" hidden>Importar plantilla de Figma</label>
+        <label class="btn ghost small"><input type="file" id="palette-file" accept="image/*" hidden>Paleta desde imagen</label>
+      </div>
+      <div class="palette" id="palette" hidden></div>
+    </section>
+
+    <section class="step" id="step-opts" hidden>
+      <h2><span class="n">5</span> Ajustes</h2>
+      <div class="opts">
+        <label class="chk"><input type="checkbox" id="o-cover" checked> Portada</label>
+        <label class="chk"><input type="checkbox" id="o-chapter" checked> Capítulos en página nueva</label>
+        <label class="chk"><input type="checkbox" id="o-numbers" checked> Numerar capítulos</label>
+        <label class="chk"><input type="checkbox" id="o-ph" checked> Marco de imagen en portada</label>
+        <label class="fld"><span>Columnas</span>
+          <select id="o-cols"><option value="auto">Automático</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+        </label>
+        <label class="fld"><span>Antetítulo</span><input id="o-kicker" value="Documento"></label>
+        <label class="fld"><span>Área / autor</span><input id="o-author" placeholder="Equipo, área o autor"></label>
+        <label class="fld"><span>Fecha</span><input id="o-date"></label>
+        <label class="btn ghost small"><input type="file" id="cover-file" accept="image/*" hidden><span id="cover-label">Imagen de portada…</span></label>
+      </div>
+    </section>
+
+    <section class="step" id="step-spec" hidden>
+      <h2><span class="n">6</span> Ficha tipográfica</h2>
+      <div class="spec" id="spec"></div>
+    </section>
+
+    <section class="step" id="step-export" hidden>
+      <h2><span class="n">7</span> Exportar</h2>
+      <div class="exports">
+        <button class="btn" id="x-pdf">PDF para imprimir</button>
+        <button class="btn" id="x-figma">Paquete para Figma</button>
+      </div>
+      <p class="hint" id="x-hint">El PDF se genera con el diálogo de impresión del navegador: elige <b>Guardar como PDF</b>, márgenes <b>Ninguno</b> y activa <b>Gráficos de fondo</b>. El paquete de Figma se abre con el plugin <b>Med · Importador</b> (carpeta <code>figma-plugin</code>).</p>
+    </section>
+  </aside>
+
+  <main class="main">
+    <div class="toolbar" id="toolbar" hidden>
+      <div class="seg" id="view">
+        <button data-v="design" class="on">Diseño</button>
+        <button data-v="wire">Wireframe</button>
+      </div>
+      <div class="seg">
+        <button id="z-out" title="Alejar">−</button>
+        <button id="z-fit" title="Ajustar">Ajustar</button>
+        <button id="z-in" title="Acercar">+</button>
+      </div>
+      <div class="status" id="status"></div>
+    </div>
+    <div class="stage" id="stage">
+      <div class="empty" id="empty">
+        <h1>Del documento del equipo a una diagramación editorial, sin que la información salga de este computador.</h1>
+        <ol>
+          <li>Carga un Word, PDF o texto.</li>
+          <li>Med reconoce títulos, entradillas, listas, tablas, citas e imágenes.</li>
+          <li>Elige formato (carta, media carta, tabloide, widescreen, mobile) y plantilla.</li>
+          <li>Exporta el PDF o el paquete editable para Figma, y termina el detalle allá.</li>
+        </ol>
+      </div>
+      <div class="pages" id="pages"></div>
+    </div>
+  </main>
+</div>
+
+<dialog id="ask">
+  <form method="dialog">
+    <h2>¿En qué formato lo diagramamos?</h2>
+    <p class="hint" id="ask-sum"></p>
+    <div class="formats big" id="ask-formats"></div>
+    <h3>Estilo</h3>
+    <div class="tpls" id="ask-tpls"></div>
+    <div class="row end"><button class="btn" value="ok">Diagramar</button></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="vendor/pdf.min.js"></script>
+<script src="vendor/pdf.worker.min.js"></script>
+<script src="vendor/mammoth.browser.min.js"></script>
+<script src="js/templates.js"></script>
+<script src="js/extract.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/figma-export.js"></script>
+<script src="js/sample.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
