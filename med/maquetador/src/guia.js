@@ -87,7 +87,8 @@ function pageStructure(pg) {
 
   // Rótulos: negrita en mayúsculas de tamaño pequeño/mediano, o serif grande (H1)
   body.forEach(function (s) {
-    s.kind = s.serif ? 'serif' : s.bold && isUpper(s.text) && s.size <= 9 ? 'label' : s.italic ? 'italic' : s.bold ? 'bold' : 'text';
+    // texto grande sin serif (p. ej. «ISO 9001:2015» a 15 px) se trata como valor destacado
+    s.kind = s.serif || (!s.bold && s.size >= 13) ? 'serif' : s.bold && isUpper(s.text) && s.size <= 9 ? 'label' : s.italic ? 'italic' : s.bold ? 'bold' : 'text';
   });
   // H1 = serif más grande de la página; eyebrow = rótulo justo encima; entradilla = texto justo debajo
   const serifs = body.filter(function (s) { return s.kind === 'serif'; });
@@ -133,12 +134,14 @@ function sizeTable(body) {
   if (!cols.length || !sizes.length) return null;
   hdr.used = true; cols.forEach(function (c) { c.used = true; });
   const centers = cols.map(function (c) { return (c.x + c.x1) / 2; });
+  // una celda nunca es más ancha que la separación entre columnas (así una nota al pie no entra en la tabla)
+  const span = centers.slice(1).reduce(function (m, c, i) { return Math.min(m, c - centers[i]); }, 1e9);
   const rows = sizes.map(function (sz, i) {
     sz.used = true;
     const next = sizes[i + 1] ? sizes[i + 1].y : sz.y + 14;
     const cells = cols.map(function () { return []; });
     body.forEach(function (s) {
-      if (s.used || s.bold || s.y < sz.y - 2 || s.y >= next - 2) return;
+      if (s.used || s.bold || s.y < sz.y - 2 || s.y >= next - 2 || s.x1 - s.x > span * 0.9) return;
       const cx = (s.x + s.x1) / 2;
       let best = 0;
       centers.forEach(function (c, j) { if (Math.abs(c - cx) < Math.abs(centers[best] - cx)) best = j; });
@@ -169,7 +172,8 @@ function blocks(segs, width) {
     const left = row.filter(function (o) { return o.x < l.x; }).sort(function (a, b) { return b.x - a.x; })[0];
     const right = row.filter(function (o) { return o.x > l.x; }).sort(function (a, b) { return a.x - b.x; })[0];
     l.colStart = left ? ((left.x + left.x1) / 2 + c) / 2 : Math.min(l.x - 30, c - 120);
-    l.colEnd = right ? ((right.x + right.x1) / 2 + c) / 2 : width;
+    // el límite derecho es el mayor entre el punto medio (textos centrados) y el inicio del vecino (textos alineados a la izquierda)
+    l.colEnd = right ? Math.max(((right.x + right.x1) / 2 + c) / 2, right.x - 4) : width;
     if (!left && right) l.colStart = Math.min(l.x - 30, 2 * c - l.colEnd);
     l.content = [];
   });
@@ -187,7 +191,8 @@ function blocks(segs, width) {
     }).sort(function (a, b) { return b.y - a.y || b.x - a.x; });
     const best = cand[0];
     // Texto que cruza varias columnas (p. ej. cierre centrado) va suelto a nivel de página
-    if (!best || (s.x < best.colStart - 2 || s.x1 > best.colEnd + 6) && s.kind === 'serif') sueltos.push(s);
+    // Texto que cruza varias columnas (cierre centrado, notas al pie de tabla) va suelto a nivel de página
+    if (!best || s.x < best.colStart - 4 || s.x1 > best.colEnd + 20) sueltos.push(s);
     else best.content.push(s);
   });
   const out = labels.map(function (l) {
@@ -208,7 +213,7 @@ function joinLines(segs) {
     const tipo = /^[•·▪\-–]\s/.test(s.text) ? 'vineta' : s.kind === 'serif' ? 'serif' : s.kind === 'italic' ? 'italica' : s.kind === 'bold' ? 'destacado' : 'texto';
     const near = prev && Math.abs(s.size - prev.size) < 0.6 && s.y - prev.y < s.size * 1.9 && Math.abs(s.x - prev.x) < 60;
     // continuación de párrafo, o segunda línea de una viñeta
-    const cont = near && ((tipo === prev.tipo && tipo !== 'vineta' && tipo !== 'serif') || (prev.tipo === 'vineta' && tipo === 'texto'));
+    const cont = near && ((tipo === prev.tipo && tipo !== 'vineta' && tipo !== 'serif') || (prev.tipo === 'vineta' && tipo === 'texto' && Math.abs(s.size - prev.size) < 0.3));
     if (cont) {
       prev.texto = /[a-z]-$/i.test(prev.texto) && /^[a-z]/.test(s.text) ? prev.texto + s.text : prev.texto + ' ' + s.text;
       prev.y = s.y;

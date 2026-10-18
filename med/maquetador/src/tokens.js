@@ -15,6 +15,11 @@ module.exports = {
     bodySize: 14, bodyLine: 1.6, monoTracking: 1.6, kickerTracking: 2.4
   },
   titles: { chapter: 54, page: 40, poster: 88, productRef: 96 },
+  // Ficha técnica (proceso 4022): carta vertical, colores de stage propios
+  ficha: {
+    width: 816, height: 1056, top: 44, side: 56, bottom: 36,
+    stage: '#3B5163', stageDeep: '#22333F', xray: '#0D1B22', figure: '#19303F', white: '#FFFFFF'
+  },
   // Fuentes empaquetadas (sin Google Fonts)
   fonts: [
     ['Instrument Serif', 400, 'normal', 'instrument-serif-latin-400-normal.woff2'],
@@ -23,6 +28,7 @@ module.exports = {
     ['Manrope', 400, 'normal', 'manrope-latin-400-normal.woff2'],
     ['Manrope', 500, 'normal', 'manrope-latin-500-normal.woff2'],
     ['Manrope', 600, 'normal', 'manrope-latin-600-normal.woff2'],
+    ['Manrope', 700, 'normal', 'manrope-latin-700-normal.woff2'],
     ['IBM Plex Mono', 400, 'normal', 'ibm-plex-mono-latin-400-normal.woff2'],
     ['IBM Plex Mono', 500, 'normal', 'ibm-plex-mono-latin-500-normal.woff2']
   ]

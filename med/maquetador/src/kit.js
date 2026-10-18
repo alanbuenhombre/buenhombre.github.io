@@ -101,7 +101,15 @@ function kit(ctx) {
         '<img src="' + url + '" alt="' + alt + '" style="width: 100%; height: 100%; object-fit: contain' + (o.filter ? '; filter: ' + o.filter : '') + '"></div>\n';
     }
     let box;
-    if (meta.persona) {
+    const crop = enc.crop || o.crop;
+    if (crop) {
+      // Recorte de una zona de la foto (x, y, w, h en fracciones), centrada y cubriendo el marco
+      const cw = crop.w * meta.w, ch = crop.h * meta.h;
+      const sc = Math.max(w / cw, h / ch) * (enc.z || 1);
+      box = { width: meta.w * sc, height: meta.h * sc };
+      box.left = -crop.x * meta.w * sc + (w - cw * sc) / 2;
+      box.top = -crop.y * meta.h * sc + (h - ch * sc) / 2;
+    } else if (meta.persona) {
       box = jawCrop(meta, { W: w, H: h }, {
         jawY: enc.jawY != null ? enc.jawY : (o.fy != null ? o.fy : meta.jawY),
         subjectX: enc.subjectX != null ? enc.subjectX : meta.subjectX,
@@ -116,8 +124,21 @@ function kit(ctx) {
       '<img src="' + url + '" alt="' + alt + '" style="position: absolute; left: ' + r(box.left) + 'px; top: ' + r(box.top) + 'px; width: ' + r(box.width) + 'px; height: ' + r(box.height) + 'px; max-width: none' + (o.filter ? '; filter: ' + o.filter : '') + '"></div>\n';
   }
 
-  function root(bg, c) {
-    return '<div class="med-page" style="position: relative; width: 1056px; height: 816px; overflow: hidden; background: ' + bg + '; font-family: Manrope, sans-serif; color: ' + (c || C.text) + '">\n';
+  function root(bg, c, w, h) {
+    return '<div class="med-page" style="position: relative; width: ' + (w || 1056) + 'px; height: ' + (h || 816) + 'px; overflow: hidden; background: ' + bg + '; font-family: Manrope, sans-serif; color: ' + (c || C.text) + '">\n';
+  }
+  // Caja posicionada con contenido en flujo normal (listas y párrafos de largo variable)
+  function box(id, x, y, w, inner, style) {
+    const pl = place(id, x, y, w, style || '');
+    return '<div data-el="' + id + '" style="position: absolute; left: ' + pl.x + 'px; top: ' + pl.y + 'px; width: ' + pl.w + 'px; ' + pl.style + '">' + inner + '</div>\n';
+  }
+  // Cruces de registro en las cuatro esquinas
+  function regMarks(w, h, color, inset, size) {
+    inset = inset || 20; size = size || 9;
+    const hs = size / 2;
+    let d = '';
+    [[inset, inset], [w - inset, inset], [inset, h - inset], [w - inset, h - inset]].forEach(function (q) { d += 'M' + (q[0] - hs) + ' ' + q[1] + 'h' + size + 'M' + q[0] + ' ' + (q[1] - hs) + 'v' + size; });
+    return '<svg class="deco" style="position: absolute; left: 0; top: 0; pointer-events: none" width="' + w + '" height="' + h + '"><path d="' + d + '" stroke="' + (color || C.line) + '" stroke-width="1"/></svg>\n';
   }
 
   // Logo o isotipo del proyecto (carpeta marca/). Si no existe, marca tipográfica.
@@ -200,7 +221,7 @@ function kit(ctx) {
 
   return {
     C: C, M: M, S: S, esc: esc, rich: rich, v: v, d: d, p: p, f: f, kicker: kicker, folio: folio, grad: grad, h2: h2, body: body, mono: mono, serif: serif,
-    rule: rule, vrule: vrule, ph: ph, img: img, root: root, logo: logo, qr: qr,
+    rule: rule, vrule: vrule, ph: ph, img: img, root: root, box: box, regMarks: regMarks, logo: logo, qr: qr,
     crosses: crosses, scanFrame: scanFrame, callout: callout, contours: contours, corners: corners, dots: dots,
     used: used, page: page, catalog: ctx.catalog
   };

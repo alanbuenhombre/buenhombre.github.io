@@ -6,7 +6,7 @@ const { kit } = require('./kit');
 
 const TEMPLATES = {};
 [require('./templates/apertura'), require('./templates/capitulo'), require('./templates/producto'),
-  require('./templates/generales'), require('./templates/pruebas')].forEach(function (list) {
+  require('./templates/generales'), require('./templates/pruebas'), require('./templates/ficha')].forEach(function (list) {
   list.forEach(function (t) { TEMPLATES[t.id] = t; });
 });
 
@@ -16,8 +16,7 @@ function fontCss(base) {
   }).join('\n');
 }
 
-const BASE_CSS = 'html,body{margin:0;padding:0;background:#fff}*{box-sizing:border-box}.med-page p{white-space:normal}' +
-  '@page{size:1056px 816px;margin:0}';
+const BASE_CSS = 'html,body{margin:0;padding:0;background:#fff}*{box-sizing:border-box}.med-page p{white-space:normal}';
 const EDIT_CSS = '.pend{background:rgba(217,194,154,.45);outline:1px dashed #B8975E}[data-field]{cursor:text}[data-field]:hover{outline:1px dashed rgba(91,114,130,.8)}' +
   '[data-slot]:hover{outline:2px solid rgba(184,151,94,.8);outline-offset:-2px}.sel{outline:2px solid #B8975E!important}';
 const WIRE_CSS = '.med-page{background:#E9ECEE!important}.med-page img,.med-page svg,.med-page .deco{visibility:hidden}' +
@@ -35,12 +34,16 @@ function renderPage(page, opts) {
 
 function documentFor(page, opts) {
   const r = renderPage(page, opts);
-  const css = fontCss(opts.fontBase) + BASE_CSS + (opts.edit ? EDIT_CSS : '') + (opts.wire ? WIRE_CSS : '');
+  const size = sizeOf(page);
+  const css = fontCss(opts.fontBase) + BASE_CSS + '@page{size:' + size[0] + 'px ' + size[1] + 'px;margin:0}' + (opts.edit ? EDIT_CSS : '') + (opts.wire ? WIRE_CSS : '');
   return {
     doc: '<!doctype html><html lang="es"><head><meta charset="utf-8"><title>' + page.id + '</title><style>' + css + '</style></head><body>' + r.html + '</body></html>',
     campos: r.campos, fotos: r.fotos
   };
 }
+
+// Tamaño de página de la plantilla (catálogo horizontal o ficha vertical)
+function sizeOf(page) { const t = TEMPLATES[page.plantilla]; return (t && t.size) || [1056, 816]; }
 
 // Número de folio de una página según su posición en el catálogo
 function folioOf(catalog, page) { return String(catalog.paginas.indexOf(page) + 1).padStart(2, '0'); }
@@ -49,4 +52,4 @@ function list() {
   return Object.keys(TEMPLATES).sort().map(function (id) { const t = TEMPLATES[id]; return { id: id, nombre: t.nombre, grupo: t.grupo, auto: !!t.auto }; });
 }
 
-module.exports = { TEMPLATES, renderPage, documentFor, folioOf, list, fontCss };
+module.exports = { TEMPLATES, renderPage, documentFor, folioOf, list, fontCss, sizeOf };
