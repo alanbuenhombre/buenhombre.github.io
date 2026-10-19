@@ -33,12 +33,23 @@ jobs:
         run: node --test tests/recorte.test.js tests/guia.test.js
       - name: Prueba de humo de la app (importar + exportar con Electron, sin red)
         run: npx electron app/smoke.js
-      - name: Empaquetar (zip, arm64 + x64)
+      - name: Empaquetar (app, arm64 + x64)
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
-        run: npx electron-builder --mac --arm64 --x64 --publish never
-      - name: Listar
-        run: ls -la dist/*.zip
+        run: npx electron-builder --mac dir --arm64 --x64 --publish never
+      # Firma ad hoc: sin ella los Mac con chip Apple rechazan la app como «dañada».
+      # No sustituye la firma de Apple (sigue pidiendo «Abrir de todos modos» la primera vez).
+      - name: Firmar (ad hoc) y comprimir
+        run: |
+          V="${{ steps.v.outputs.version }}"
+          for par in "mac-arm64:arm64" "mac:intel"; do
+            dir="${par%%:*}"; arq="${par##*:}"
+            app="dist/$dir/MED Maquetador.app"
+            codesign --force --deep --sign - "$app"
+            codesign --verify --deep --strict "$app"
+            ditto -c -k --sequesterRsrc --keepParent "$app" "dist/MED-Maquetador-$V-$arq.zip"
+          done
+          ls -la dist/*.zip
       - name: Publicar release
         uses: softprops/action-gh-release@v2
         with:
@@ -48,8 +59,8 @@ jobs:
           body: |
             App de escritorio local de MED Maquetador para macOS. Sin internet, sin IA.
 
-            **Descarga:** `MED Maquetador-${{ steps.v.outputs.version }}-arm64-mac.zip` para Mac con chip Apple (M1, M2, M3, M4);
-            `MED Maquetador-${{ steps.v.outputs.version }}-mac.zip` para Mac con Intel.
+            **Descarga:** `MED-Maquetador-${{ steps.v.outputs.version }}-arm64.zip` para Mac con chip Apple (M1, M2, M3, M4);
+            `MED-Maquetador-${{ steps.v.outputs.version }}-intel.zip` para Mac con Intel.
 
             **Primera apertura:** doble clic en el zip; arrastra «MED Maquetador» a Aplicaciones;
             clic derecho → Abrir. Si macOS dice que no puede verificar la app: Ajustes del Sistema →
