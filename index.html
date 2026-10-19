@@ -336,6 +336,10 @@
   .crow:hover .crow__arrow{opacity:1;transform:translateX(0)}
   .cases__list:hover .crow .crow__name{color:rgba(255,255,255,.3)}
   .cases__list:hover .crow:hover .crow__name{color:#fff}
+  .games{padding-top:40px}
+  .games__lede{max-width:560px;margin:22px 0 4px;font-size:.95rem;line-height:1.6;color:var(--muted)}
+  .crow__badge{display:inline-block;vertical-align:middle;margin-left:16px;padding:5px 9px;border:1px solid var(--orange);border-radius:999px;
+       font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);line-height:1}
   .cursor-preview{position:fixed;top:0;left:0;z-index:60;width:340px;aspect-ratio:3/2;border-radius:8px;overflow:hidden;
        border:1px solid rgba(255,255,255,.18);box-shadow:0 24px 70px rgba(0,0,0,.55);pointer-events:none;
        opacity:0;transform:translate(-50%,-50%) scale(.94);transition:opacity .22s ease,transform .22s ease}
@@ -524,6 +528,7 @@
       <div class="top__nav">
         <a href="#inicio" data-i18n="nav_inicio">Inicio</a>
         <a href="#casos" data-i18n="nav_casos">Casos</a>
+        <a href="#juegos" data-i18n="nav_juegos">Juegos</a>
         <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
         <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
       </div>
@@ -568,6 +573,19 @@
       <a class="crow" href="portal-kommit.html"><span class="crow__num">03</span><span class="crow__name">Kommit V5 Design System</span><span class="crow__disc">Product Systems · Design Governance · 2022–2026</span><span class="crow__arrow">↗</span></a>
       <a class="crow" href="worklogs.html"><span class="crow__num">04</span><span class="crow__name">Company Portal</span><span class="crow__disc">Portal interno B2B · 12+ módulos · Adoptado por todo el equipo · 2023–2025</span><span class="crow__arrow">↗</span></a>
       <a class="crow" href="okdose.html"><span class="crow__num">05</span><span class="crow__name">OKdose</span><span class="crow__disc">Health Tech · Product Design & UX/UI · 2022</span><span class="crow__arrow">↗</span></a>
+    </ul>
+  </section>
+
+  <!-- ===== SECCIÓN · JUEGOS ===== -->
+  <section class="cases games" id="juegos">
+    <div class="cases__head">
+      <h2 class="cases__title" data-i18n-html="games_title">Juegos en el <strong>navegador</strong></h2>
+      <span class="cases__meta" data-i18n="games_meta">SIDE PROJECTS · 02 JUEGOS · THREE.JS</span>
+    </div>
+    <p class="games__lede" data-i18n="games_lede">Proyectos propios donde pruebo ideas de interacción, sistema visual y game feel. Se juegan aquí mismo, sin instalar nada.</p>
+    <ul class="cases__list" id="gamesList">
+      <a class="crow" href="driftway/" data-preview="assets/games/driftway.jpg"><span class="crow__num">01</span><span class="crow__name">DRIFTWAY</span><span class="crow__disc" data-i18n="game1_disc">Arcade 3D · Ranking por piloto · ES/EN · 2026</span><span class="crow__arrow">↗</span></a>
+      <a class="crow" href="traceline/" data-preview="assets/games/traceline.jpg"><span class="crow__num">02</span><span class="crow__name">TRACELINE<span class="crow__badge" data-i18n="games_dev">En desarrollo</span></span><span class="crow__disc" data-i18n="game2_disc">Time trial blueprint · Circuitos que se transforman · 2026</span><span class="crow__arrow">↗</span></a>
     </ul>
   </section>
 
@@ -767,6 +785,7 @@
         <ul class="footer__links">
           <li><a href="#inicio" data-i18n="nav_inicio">Inicio</a></li>
           <li><a href="#casos" data-i18n="nav_casos">Casos</a></li>
+          <li><a href="#juegos" data-i18n="nav_juegos">Juegos</a></li>
           <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
           <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
         </ul>
@@ -807,7 +826,10 @@
   /* ===== i18n ===== */
   const T={
     es:{
-      nav_inicio:'Inicio',nav_casos:'Casos',nav_sobre:'Sobre',nav_contacto:'Contacto',
+      nav_inicio:'Inicio',nav_casos:'Casos',nav_sobre:'Sobre',nav_contacto:'Contacto',nav_juegos:'Juegos',
+      games_title:'Juegos en el <strong>navegador</strong>',games_meta:'SIDE PROJECTS · 02 JUEGOS · THREE.JS',
+      games_lede:'Proyectos propios donde pruebo ideas de interacción, sistema visual y game feel. Se juegan aquí mismo, sin instalar nada.',
+      games_dev:'En desarrollo',game1_disc:'Arcade 3D · Ranking por piloto · ES/EN · 2026',game2_disc:'Time trial blueprint · Circuitos que se transforman · 2026',
       hero_avail:'Disponible',
       hero_title:'Lead Designer · <strong>Brand, Systems &amp; Product</strong>.',
       hero_lede:'Me gusta trabajar con marcas que piensan en sistemas. Diseño marca, sistemas y producto digital para equipos B2B en LATAM.',
@@ -841,7 +863,10 @@
       footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
     },
     en:{
-      nav_inicio:'Home',nav_casos:'Cases',nav_sobre:'About',nav_contacto:'Contact',
+      nav_inicio:'Home',nav_casos:'Cases',nav_sobre:'About',nav_contacto:'Contact',nav_juegos:'Games',
+      games_title:'Games in the <strong>browser</strong>',games_meta:'SIDE PROJECTS · 02 GAMES · THREE.JS',
+      games_lede:'Personal projects where I test interaction ideas, visual systems and game feel. Playable right here, nothing to install.',
+      games_dev:'In development',game1_disc:'3D arcade · Pilot ranking · ES/EN · 2026',game2_disc:'Blueprint time trial · Circuits that transform · 2026',
       hero_avail:'Available',
       hero_title:'Lead Designer · <strong>Brand, Systems &amp; Product</strong>.',
       hero_lede:'I like working with brands that think in systems. I design brand, systems and digital product for B2B teams across LATAM.',
@@ -1048,6 +1073,10 @@
       a.addEventListener('mouseenter',()=>{cpimg.src=src;cp.classList.add('on');});
       a.addEventListener('mouseleave',()=>cp.classList.remove('on'));
       list.appendChild(a);});
+    document.querySelectorAll('#gamesList .crow').forEach((a)=>{
+      a.addEventListener('mouseenter',()=>{cpimg.src=a.dataset.preview;cp.classList.add('on');});
+      a.addEventListener('mouseleave',()=>cp.classList.remove('on'));
+    });
     let tx=0,ty=0,cx=0,cy=0;
     addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});
     (function loop(){cx+=(tx-cx)*.16;cy+=(ty-cy)*.16;cp.style.left=cx+'px';cp.style.top=cy+'px';requestAnimationFrame(loop);})();

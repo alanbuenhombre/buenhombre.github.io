@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>TRACELINE</title>
+    <meta name="description" content="TRACELINE — carreras contrarreloj a escala 1:87 dibujadas como un plano técnico." />
+    <meta property="og:title" content="TRACELINE — blueprint time trial" />
+    <meta property="og:description" content="Carreras a escala 1:87 dibujadas como un plano técnico. Circuitos que se transforman en plena carrera. En desarrollo." />
+    <meta property="og:image" content="https://buenhombre.design/traceline/og.jpg" />
+    <meta property="og:url" content="https://buenhombre.design/traceline/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="./assets/main-CjZbJriN.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/carSpec-CrfYuL7t.js">
+    <link rel="stylesheet" crossorigin href="./assets/main-Dp9-E-ee.css">
+  </head>
+  <body>
+    <div id="stage"></div>
+    <div id="vignette" aria-hidden="true"></div>
+
+    <div id="hud" class="hud">
+      <header class="hud-top">
+        <div class="hud-top-left">
+          <button id="brand" class="brand" type="button" title="Garage (Esc)">Traceline</button>
+          <dl id="telemetry" class="telemetry" aria-label="Telemetría">
+            <div><dt>G LAT</dt><dd id="tm-g">0.0</dd></div>
+            <div><dt>BANK</dt><dd id="tm-bank">0°</dd></div>
+            <div><dt>ALT</dt><dd id="tm-alt">0 mm</dd></div>
+            <div><dt>ROCES</dt><dd id="tm-graze">000</dd></div>
+            <div><dt>TURBO</dt><dd id="tm-turbo">×1</dd></div>
+            <div class="tm-energy"><dt>ENERGY</dt><dd><span id="tm-energy" class="energy-bar"></span><kbd>SHIFT</kbd></dd></div>
+          </dl>
+        </div>
+        <div class="hud-top-right">
+          <div class="laps">
+            <div id="hud-head" class="laps-head">LAP <span>1</span>/3</div>
+            <div id="race-time" class="laps-time">00:00.00</div>
+            <div id="lap-split" class="laps-split" hidden></div>
+          </div>
+          <button class="sound-toggle" type="button" data-sound aria-label="Sonido (M)" title="Sonido (M)">SOUND · <b>OFF</b></button>
+        </div>
+      </header>
+
+      <div id="countdown" class="countdown" hidden>
+        <div class="countdown-lights">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div id="countdown-label" class="countdown-label"></div>
+      </div>
+
+      <div id="turbo-tag" class="turbo-tag" hidden></div>
+      <div id="link-card" class="link-card" role="status" hidden></div>
+      <div id="trazo-hud" class="trazo-hud" role="status" hidden></div>
+
+      <footer class="hud-bottom">
+        <div id="trace-map-host"></div>
+        <div id="speedo-host" class="speedo"></div>
+      </footer>
+
+      <div id="touch" class="touch" hidden>
+        <div class="touch-group">
+          <button type="button" data-key="left" aria-label="Izquierda">◀</button>
+          <button type="button" data-key="right" aria-label="Derecha">▶</button>
+        </div>
+        <div class="touch-group">
+          <button type="button" data-key="brake" aria-label="Frenar">S</button>
+          <button type="button" data-key="drift" aria-label="Derrapar">DR</button>
+          <button type="button" data-tap="spend" aria-label="Turbo de energía">TB</button>
+          <button type="button" data-key="throttle" aria-label="Acelerar">W</button>
+        </div>
+      </div>
+    </div>
+
+    <aside id="garage" class="garage-dock" aria-labelledby="garage-title">
+      <header class="dock-head">
+        <div class="kicker">{00} — Select circuit · 3 laps · 1:87</div>
+        <h1 id="garage-title" class="display">TRACELINE</h1>
+        <span class="dev-tag">IN DEVELOPMENT · BETA</span>
+      </header>
+
+      <div id="track-posters" class="track-list" role="list"></div>
+
+      <section class="dock-block">
+        <div class="kicker">View</div>
+        <div class="cams" id="cam-pills"></div>
+      </section>
+
+      <section class="dock-block">
+        <div class="kicker">Car</div>
+        <a id="btn-car" class="btn-ghost dock-car" href="editor.html"><span>DESIGN YOUR CAR</span><kbd>E</kbd></a>
+      </section>
+
+      <details class="dock-block controls">
+        <summary class="kicker">Controls</summary>
+        <dl class="keys">
+          <div><dt>W</dt><dd>Accelerate</dd></div>
+          <div><dt>A · D</dt><dd>Steer</dd></div>
+          <div><dt>S</dt><dd>Brake</dd></div>
+          <div><dt>SPACE</dt><dd>Hold to drift → turbo ×2 / ×3</dd></div>
+          <div><dt>SHIFT</dt><dd>Spend roces energy</dd></div>
+          <div><dt>T</dt><dd>ASCII view</dd></div>
+          <div><dt>G</dt><dd>Show / hide your ghost (best run)</dd></div>
+          <div><dt>R · ESC</dt><dd>Restart · garage</dd></div>
+          <div><dt>M</dt><dd><button class="sound-toggle is-inline" type="button" data-sound>SOUND · <b>OFF</b></button></dd></div>
+        </dl>
+      </details>
+
+      <button id="btn-start" class="btn-primary dock-start" type="button">
+        <span>START TIME TRIAL</span><kbd>ENTER ↵</kbd>
+      </button>
+    </aside>
+
+    <div id="finish" class="sheet-overlay" hidden>
+      <section class="sheet finish" role="dialog" aria-labelledby="finish-title">
+        <div id="finish-kicker" class="kicker"></div>
+        <h2 id="finish-title" class="display">FINISH</h2>
+        <div id="finish-time" class="finish-time">00:00.00</div>
+        <div id="finish-medal" class="finish-medal"></div>
+        <dl id="finish-targets" class="finish-targets"></dl>
+        <ol id="finish-laps" class="finish-laps"></ol>
+        <div class="finish-actions">
+          <button id="btn-again" class="btn-primary" type="button"><span>RACE AGAIN</span><kbd>ENTER ↵</kbd></button>
+          <button id="btn-garage" class="btn-ghost" type="button"><span>GARAGE</span><kbd>ESC</kbd></button>
+        </div>
+      </section>
+    </div>
+
+  </body>
+</html>
