@@ -12,6 +12,11 @@ Herramienta local para diagramar con el sistema visual de MED:
 
 ## Instalación (una sola vez, con internet)
 
+**Camino corto (macOS):** instala Node.js LTS desde nodejs.org y haz doble clic en `Iniciar MED.command`. La primera vez instala lo que falta; después arranca la herramienta y abre el navegador. Si macOS lo bloquea, clic derecho → Abrir.
+
+**Camino manual:**
+
+
 Requisitos: Node.js 20 o superior (macOS: `brew install node` o el instalador de nodejs.org).
 
 ```bash
