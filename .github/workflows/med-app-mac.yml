@@ -3,12 +3,10 @@
 name: MED Maquetador · app de Mac
 
 on:
+  push:
+    branches: [claude/med-local-document-processor-1kkt88]
+    paths: ['med/maquetador/**', '.github/workflows/med-app-mac.yml']
   workflow_dispatch:
-    inputs:
-      version:
-        description: Versión (por ejemplo 0.2.0)
-        required: true
-        default: '0.2.0'
 
 permissions:
   contents: write
@@ -28,8 +26,9 @@ jobs:
         run: |
           npm ci
           npm install --no-save --os=darwin --cpu=x64 sharp
-      - name: Versión
-        run: npm version "${{ inputs.version }}" --no-git-tag-version
+      - name: Versión (package.json)
+        id: v
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
       - name: Pruebas rápidas (sin navegador)
         run: node --test tests/recorte.test.js tests/guia.test.js tests/red.test.js
       - name: Empaquetar (zip, arm64 + x64)
@@ -41,14 +40,14 @@ jobs:
       - name: Publicar release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: med-app-v${{ inputs.version }}
-          name: MED Maquetador ${{ inputs.version }} (macOS)
+          tag_name: med-app-v${{ steps.v.outputs.version }}
+          name: MED Maquetador ${{ steps.v.outputs.version }} (macOS)
           files: med/maquetador/dist/*.zip
           body: |
             App de escritorio local de MED Maquetador para macOS. Sin internet, sin IA.
 
-            **Descarga:** `MED Maquetador-${{ inputs.version }}-arm64-mac.zip` para Mac con chip Apple (M1, M2, M3, M4);
-            `MED Maquetador-${{ inputs.version }}-mac.zip` para Mac con Intel.
+            **Descarga:** `MED Maquetador-${{ steps.v.outputs.version }}-arm64-mac.zip` para Mac con chip Apple (M1, M2, M3, M4);
+            `MED Maquetador-${{ steps.v.outputs.version }}-mac.zip` para Mac con Intel.
 
             **Primera apertura:** doble clic en el zip; arrastra «MED Maquetador» a Aplicaciones;
             clic derecho → Abrir. Si macOS dice que no puede verificar la app: Ajustes del Sistema →
