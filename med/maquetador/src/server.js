@@ -11,6 +11,7 @@ const yaml = require('js-yaml');
 const P = require('./project');
 const R = require('./render');
 const ficha = require('./ficha');
+const catalogo = require('./catalogo');
 const exporter = require('./exporter');
 
 const PORT = +process.env.PORT || 4321;
@@ -49,16 +50,17 @@ function editInfo(name, cat, images) {
   });
 }
 
-// Crea un proyecto de ficha técnica a partir del PDF guía
-async function importar(pdf, nombre) {
+// Crea un proyecto a partir del PDF guía: tipo 'ficha' (carta vertical, 7 páginas) o 'catalogo' (páginas horizontales de catálogo)
+async function importar(pdf, nombre, tipo) {
+  tipo = tipo === 'catalogo' ? 'catalogo' : 'ficha';
   const name = safeName(nombre);
   let dir = path.join(P.ROOT, name), i = 2;
   while (fs.existsSync(dir)) dir = path.join(P.ROOT, name + '-' + (i++));
   fs.mkdirSync(path.join(dir, 'entrada', 'fotos'), { recursive: true });
   fs.mkdirSync(path.join(dir, 'entrada', 'ilustraciones'), { recursive: true });
   fs.writeFileSync(path.join(dir, 'entrada', 'guia.pdf'), pdf);
-  fs.writeFileSync(path.join(dir, 'rules.yaml'), yaml.dump({ tipo: 'ficha', fotos: { personas: [], prefijos: {} } }));
-  const res = await ficha.fromPdf(path.join(dir, 'entrada', 'guia.pdf'), dir);
+  fs.writeFileSync(path.join(dir, 'rules.yaml'), yaml.dump({ tipo: tipo, fotos: { personas: [], prefijos: {} } }));
+  const res = await (tipo === 'catalogo' ? catalogo : ficha).fromPdf(path.join(dir, 'entrada', 'guia.pdf'), dir);
   const pname = path.basename(dir);
   fs.writeFileSync(path.join(dir, 'catalog.json'), JSON.stringify(res.ficha, null, 2));
   await P.scanImages(pname);
@@ -78,8 +80,8 @@ const server = http.createServer(async function (req, res) {
     if (seg[0] === 'api' && seg[1] === 'importar' && req.method === 'POST') {
       const pdf = await body(req);
       if (pdf.slice(0, 4).toString() !== '%PDF') return send(res, 400, { error: 'El archivo no es un PDF.' });
-      const n = await importar(pdf, u.searchParams.get('nombre') || 'ficha');
-      log('ficha importada');
+      const n = await importar(pdf, u.searchParams.get('nombre') || 'proyecto', u.searchParams.get('tipo'));
+      log('PDF guía importado (' + (u.searchParams.get('tipo') || 'ficha') + ')');
       return send(res, 200, { nombre: n });
     }
     if (seg[0] === 'api' && seg[1] === 'p' && seg[2]) {

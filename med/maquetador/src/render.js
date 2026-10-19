@@ -6,7 +6,7 @@ const { kit } = require('./kit');
 
 const TEMPLATES = {};
 [require('./templates/apertura'), require('./templates/capitulo'), require('./templates/producto'),
-  require('./templates/generales'), require('./templates/pruebas'), require('./templates/ficha')].forEach(function (list) {
+  require('./templates/generales'), require('./templates/pruebas'), require('./templates/ficha'), require('./templates/flujo')].forEach(function (list) {
   list.forEach(function (t) { TEMPLATES[t.id] = t; });
 });
 

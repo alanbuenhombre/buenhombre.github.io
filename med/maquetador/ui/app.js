@@ -14,9 +14,11 @@
     nota: 'Nota', detalles: 'Vistas de detalle', features: 'Features', relacion: 'Relación de componentes', credenciales: 'Credenciales', sistema: 'Material system',
     uso: 'Uso profesional', aplicaciones: 'Aplicaciones', aplicaciones_nota: 'Nota de aplicaciones', medidas: 'Medidas del paciente', tabla: 'Tabla de tallas', tabla_nota: 'Nota de la tabla',
     medir: 'Cómo medir', cintas: 'Insignias de las cintas (y, x de 0 a 1)', pasos: 'Pasos de colocación', fitcheck: 'Fit check', precauciones: 'Precauciones',
-    cuidados: 'Íconos de cuidado', metodo: 'Care method', proteccion: 'Material protection', regulatorio: 'Bloque regulatorio', desempeno: 'Desempeño del producto'
+    cuidados: 'Íconos de cuidado', metodo: 'Care method', proteccion: 'Material protection', regulatorio: 'Bloque regulatorio', desempeno: 'Desempeño del producto',
+    kicker: 'Kicker', titulo: 'Titular', filas: 'Filas de columnas', columnas: 'Columnas', grupo: 'Grupo (rótulo de la fila)', rotulo: 'Rótulo', items: 'Contenido', texto: 'Texto', span: 'Ancho (1 o 2 columnas)',
+    numero: 'Número del paso', linea: 'Línea de producto (pie)', continuacion: 'Continuación (si/no: oculta el titular)', con_fotos: 'Con fotos (si/no)', datos_extra: 'Datos de portada', valor: 'Valor', etiqueta: 'Etiqueta'
   };
-  const NUEVO = { cuidados: { icono: 'lavar_mano', texto: '' }, callouts: { titulo: '', texto: '', x: 0.5, y: 0.5 }, aplicaciones: '', fitcheck: '', precauciones: '' };
+  const NUEVO = { filas: { columnas: [{ rotulo: '', items: [{ tipo: 'texto', texto: '' }] }] }, columnas: { rotulo: '', items: [{ tipo: 'texto', texto: '' }] }, items: { tipo: 'texto', texto: '' }, datos_extra: { rotulo: '', texto: '' }, cuidados: { icono: 'lavar_mano', texto: '' }, callouts: { titulo: '', texto: '', x: 0.5, y: 0.5 }, aplicaciones: '', fitcheck: '', precauciones: '' };
 
   const st = { n: null, cat: null, imgs: {}, ed: [], sel: 0, zoom: 0.9, wire: false, timer: null };
 
@@ -290,8 +292,8 @@
     const f = e.target.files[0]; if (!f) return;
     toast('Leyendo el PDF guía en este equipo…', 8000);
     try {
-      const r = await api('POST', '/api/importar?nombre=' + encodeURIComponent(f.name.replace(/\.pdf$/i, '')), await f.arrayBuffer(), true);
-      toast('Ficha creada.'); listar(r.nombre);
+      const r = await api('POST', '/api/importar?nombre=' + encodeURIComponent(f.name.replace(/\.pdf$/i, '')) + '&tipo=' + $('#tipo').value, await f.arrayBuffer(), true);
+      toast($('#tipo').value === 'catalogo' ? 'Catálogo creado.' : 'Ficha creada.'); listar(r.nombre);
     } catch (err) { toast('Error: ' + err.message, 6000); }
     e.target.value = '';
   });

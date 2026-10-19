@@ -36,7 +36,7 @@ test('T01–T20, S01–S10 y F01–F07 miden su tamaño y nada se desborda', asy
       if (r.fuera.length) fallas.push(id + ' desborda: ' + r.fuera.join(', '));
     }
     assert.deepStrictEqual(fallas, []);
-    assert.ok(ids.length >= 37);
+    assert.ok(ids.length >= 43);
     assert.strictEqual(intentos.length, 0);
   } finally { await b.close(); }
 });
