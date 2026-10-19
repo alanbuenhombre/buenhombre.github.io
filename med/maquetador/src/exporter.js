@@ -15,6 +15,8 @@ function stamp() { return new Date().toISOString().slice(0, 16).replace(/[:T]/g,
 function fileUrl(p) { return 'file://' + p.split(path.sep).map(encodeURIComponent).join('/').replace(/^%3A/, ':'); }
 
 async function browser() {
+  // dentro de la app de escritorio se usa el motor de Electron (misma interfaz)
+  if (process.versions.electron) return require('./exporter-electron').browser();
   const { chromium } = require('playwright');
   const opts = { args: ['--host-resolver-rules=MAP * ~NOTFOUND', '--disable-background-networking', '--no-pings', '--disable-component-update', '--disable-sync'] };
   if (process.env.MED_CHROMIUM) opts.executablePath = process.env.MED_CHROMIUM;
@@ -64,7 +66,7 @@ async function run(name, opts) {
   const cat = P.catalog(name);
   const images = P.images(name);
   const base = path.join(P.dirOf(name), 'exports', stamp());
-  const tmp = path.join(base, '.html');
+  const tmp = path.join(base, 'html-tmp');
   fs.mkdirSync(tmp, { recursive: true });
   const pages = writePages(name, cat, images, tmp, opts.paginas);
   const nombre = (cat.producto && (cat.producto.ref ? 'MED_' + cat.producto.ref : cat.producto.nombre)) || name;

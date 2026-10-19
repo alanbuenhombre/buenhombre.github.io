@@ -10,7 +10,19 @@ Herramienta local para diagramar con el sistema visual de MED:
 - Las fuentes, librerías y el navegador de exportación quedan instalados en local.
 - Los datos del cliente viven solo en `proyectos/<nombre>/`.
 
-## Instalación (una sola vez, con internet)
+## App de escritorio (la forma fácil)
+
+Hay una app de Mac con todo incluido (no necesita Node.js ni instalación por Terminal). Se construye con la acción **MED Maquetador · app de Mac** en la pestaña *Actions* de GitHub y queda publicada en *Releases*:
+
+1. Descarga el zip: `…-arm64-mac.zip` para Mac con chip Apple (M1 a M4) o `…-mac.zip` para Intel.
+2. Doble clic en el zip y arrastra **MED Maquetador** a *Aplicaciones*.
+3. Primera apertura: clic derecho → **Abrir**. Si macOS dice que no puede verificar la app: *Ajustes del Sistema → Privacidad y seguridad → Abrir de todos modos* (una sola vez; la app no está firmada con un certificado de Apple).
+
+Los proyectos quedan en *Documentos/MED maquetador/proyectos*. La app bloquea toda conexión de red igual que la versión de Terminal, y exporta con su propio motor (no usa Playwright).
+
+Para desarrolladores: `npm run app` abre la app desde el código; `npm run app:humo` ejecuta la prueba de humo (importar + exportar PDF y PNG, sin red); `npm run dist:mac` empaqueta (en macOS).
+
+## Instalación por Terminal (alternativa)
 
 **Camino corto (macOS):** instala Node.js LTS desde nodejs.org y haz doble clic en `Iniciar MED.command`. La primera vez instala lo que falta; después arranca la herramienta y abre el navegador. Si macOS lo bloquea, clic derecho → Abrir.
 
@@ -99,7 +111,9 @@ src/templates/     flujo.js (C01–C06, contenido variable) · ficha.js (F01–F
 src/kit.js         componentes comunes y capa técnica (cruces, marcos de escaneo, llamados, curvas de nivel)
 src/crop.js        regla «corte en la mandíbula»
 src/render.js      catálogo/ficha + plantilla → HTML de página
-src/exporter.js    PDF / PNG / pendientes con Chromium local
+src/exporter.js    PDF / PNG / pendientes con Chromium local (Playwright)
+src/exporter-electron.js  mismo flujo dentro de la app de escritorio
+app/               app de escritorio (Electron): main.js, prueba de humo, ícono
 src/server.js      servidor 127.0.0.1 + API de edición
 src/netguard.js    bloqueo de red
 ui/                interfaz de revisión
