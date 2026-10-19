@@ -29,8 +29,10 @@ jobs:
       - name: Versión (package.json)
         id: v
         run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
-      - name: Pruebas rápidas (sin navegador)
-        run: node --test tests/recorte.test.js tests/guia.test.js tests/red.test.js
+      - name: Pruebas rápidas (sin Playwright)
+        run: node --test tests/recorte.test.js tests/guia.test.js
+      - name: Prueba de humo de la app (importar + exportar con Electron, sin red)
+        run: npx electron app/smoke.js
       - name: Empaquetar (zip, arm64 + x64)
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
