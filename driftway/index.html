@@ -481,6 +481,9 @@
     font-size: 13px;
   }
   #intro dt { color: var(--ink); }
+  /* TV: margen seguro para que nada quede cortado en los bordes de la pantalla */
+  html.tv body { background: #000; }
+  html.tv #game { position: fixed; inset: 3vh 3vw; width: auto; height: auto; }
   /* Icono de cada control: línea fina del color del sector */
   #intro dt svg { width: 14px; height: 14px; margin-right: 8px; vertical-align: -2px; fill: none; stroke: var(--blue-hi); stroke-width: 1.5; stroke-linecap: square; }
   #intro dd { min-width: 0; }
@@ -1008,6 +1011,7 @@
       <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l5 5-5 5M9 3l5 5-5 5"/></svg>Clic sostenido o Espacio</dt><dd>Turbo: puntos ×2</dd>
       <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3l4 5-4 5M6 3l4 5-4 5M11 3l4 5-4 5"/></svg>Clic derecho o Shift</dt><dd>Turbo máximo: puntos ×3</dd>
       <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 2.5h13v11h-13zM4.5 5.5h7v5h-7z"/></svg>Teclas C, P y M</dt><dd>Vista de cabina, pausa (también Esc) y silencio</dd>
+      <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 5h9a2.5 2.5 0 0 1 2.4 3.1l-.9 3.4a1.4 1.4 0 0 1-2.4.6L9.8 10.5H6.2L4.4 12.1a1.4 1.4 0 0 1-2.4-.6l-.9-3.4A2.5 2.5 0 0 1 3.5 5zM4.5 7.2v2M3.5 8.2h2M11.5 7.5h.01M10.5 8.8h.01"/></svg>Control de TV o mando</dt><dd>Flechas o stick: girar; OK o A: turbo (mantén para ×3); Atrás o Start: pausa</dd>
       <dt><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 1.5h7v13h-7zM7 12.5h2"/></svg>Pantalla táctil</dt><dd>Arrastra para girar; dos dedos turbo ×2, tres dedos ×3</dd>
     </dl>
     <div class="row">
@@ -1149,7 +1153,17 @@
       return /^es\b/i.test(prefs[0] || '') ? 'es' : 'en';
     })();
     const EN = LANG === 'en';
+    // Modo tráiler: solo con ?trailer=1 en el enlace. El grabador del tráiler elige la cámara,
+    // acelera un poco el tiempo y evita los choques. El juego normal no lo usa nunca.
+    // Televisor: navegador de Smart TV o Google TV (o ?tv=1 para probarlo en el computador).
+    // Se juega con el control remoto o con un mando, se dibuja a 720p y la interfaz deja margen en los bordes.
+    const TV = /[?&]tv=1\b/.test(location.search) || /Android TV|GoogleTV|Google TV|BRAVIA|AFT[A-Z]|SmartTV|SMART-TV|Tizen|Web0S|webOS|CrKey|HbbTV/i.test(navigator.userAgent);
+    if (TV) {
+      document.documentElement.classList.add('tv');
+    }
+    const TRAILER = /[?&]trailer=1\b/.test(location.search) ? { cam: null, speed: 1, god: false, fov: 0, t: 0, anchor: null } : null;
     const L = (es, en) => (EN ? en : es);
+    if (TV) document.getElementById('hint').textContent = L('Flechas: girar · OK: turbo (mantén para ×3) · Atrás: pausa', 'Arrows: steer · OK: turbo (hold for ×3) · Back: pause');
     // Los textos fijos de la página están escritos en español; en inglés se cambian aquí, antes de que el juego los lea
     if (EN) {
       const T = {
@@ -1164,6 +1178,7 @@
         'Clic sostenido o Espacio': 'Hold click or Space', 'Turbo: puntos ×2': 'Turbo: points ×2',
         'Clic derecho o Shift': 'Right click or Shift', 'Turbo máximo: puntos ×3': 'Max turbo: points ×3',
         'Teclas C, P y M': 'C, P and M keys', 'Vista de cabina, pausa (también Esc) y silencio': 'Cockpit view, pause (also Esc) and mute',
+        'Control de TV o mando': 'TV remote or gamepad', 'Flechas o stick: girar; OK o A: turbo (mantén para ×3); Atrás o Start: pausa': 'Arrows or stick: steer; OK or A: turbo (hold for ×3); Back or Start: pause',
         'Pantalla táctil': 'Touch screen', 'Arrastra para girar; dos dedos turbo ×2, tres dedos ×3': 'Drag to steer; two fingers turbo ×2, three fingers ×3',
         'Despegar': 'Take off', 'Mi tarjeta de piloto': 'My pilot card', 'Tanquear la nave': 'Refuel the ship',
         'COMPARTIR': 'SHARE', 'Copiar enlace': 'Copy link',
@@ -1533,7 +1548,8 @@
       fail(L('Este navegador no pudo iniciar WebGL, así que el juego no puede mostrarse aquí.', 'This browser could not start WebGL, so the game cannot be shown here.'));
       return;
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // En TV se dibuja a unos 1280 px de ancho y el televisor lo escala: va fluido en procesadores modestos
+    renderer.setPixelRatio(TV ? Math.min(1, 1280 / Math.max(1, window.innerWidth)) : Math.min(window.devicePixelRatio, 2));
     stage.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
@@ -3170,32 +3186,41 @@
     const keyMap = {
       KeyA: 'l', ArrowLeft: 'l', KeyD: 'r', ArrowRight: 'r',
       KeyW: 'u', ArrowUp: 'u', KeyS: 'd', ArrowDown: 'd',
-      Space: 'turbo', ShiftLeft: 'boost', ShiftRight: 'boost'
+      Space: 'turbo', ShiftLeft: 'boost', ShiftRight: 'boost',
+      Enter: 'turbo', NumpadEnter: 'turbo'          // el OK del control remoto
     };
+    // Los controles remotos no siempre mandan e.code: se completa con e.key, y "Atrás" cuenta como Escape
+    function codeOf(e) {
+      if (['GoBack', 'BrowserBack', 'Back'].includes(e.key) || [4, 461, 10009].includes(e.keyCode)) return 'Escape';
+      if (e.code) return e.code;
+      return { ArrowLeft: 'ArrowLeft', ArrowRight: 'ArrowRight', ArrowUp: 'ArrowUp', ArrowDown: 'ArrowDown', Enter: 'Enter', ' ': 'Space', Escape: 'Escape' }[e.key] || '';
+    }
+    let okSince = 0;                   // mantener OK más de 1,2 s pasa a turbo ×3
 
     window.addEventListener('keydown', (e) => {
-      if (Card.isOpen()) { if (e.code === 'Escape') Card.hide(); return; }
-      if (Board.isOpen()) { if (e.code === 'Escape') Board.hide(); return; }
-      if (!fuelEl.hidden) { if (e.code === 'Escape') closeFuel(); if (e.code === 'Space') return; }
-      if (e.code === 'KeyC' && !e.repeat && !e.ctrlKey && !e.metaKey) {
+      const code = codeOf(e);
+      if (Card.isOpen()) { if (code === 'Escape') Card.hide(); return; }
+      if (Board.isOpen()) { if (code === 'Escape') Board.hide(); return; }
+      if (!fuelEl.hidden) { if (code === 'Escape') closeFuel(); if (code === 'Space') return; }
+      if (code === 'KeyC' && !e.repeat && !e.ctrlKey && !e.metaKey) {
         Sound.unlock();
         Sound.blip();
         setView(!cockpit);
         placeCamera(true);
         return;
       }
-      if (e.code === 'KeyT' && !e.repeat && !e.ctrlKey && !e.metaKey) {
+      if (code === 'KeyT' && !e.repeat && !e.ctrlKey && !e.metaKey) {
         Sound.unlock();
         Sound.blip();
         ascii = !ascii;
         return;
       }
-      if (e.code === 'KeyM' && !e.repeat && !e.ctrlKey && !e.metaKey) {
+      if (code === 'KeyM' && !e.repeat && !e.ctrlKey && !e.metaKey) {
         Sound.unlock();
         setMuted(!Sound.isMuted());
         return;
       }
-      if (e.code === 'KeyP' || e.code === 'Escape') {
+      if (code === 'KeyP' || code === 'Escape') {
         if (!e.repeat && state === 'play') {
           e.preventDefault();
           if (paused) resume(); else pause();
@@ -3204,18 +3229,21 @@
       }
       // En pausa, Espacio y Enter quedan para los botones del panel
       if (paused) return;
-      const k = keyMap[e.code];
+      const k = keyMap[code];
       if (!k) return;
       if (state === 'ready') {
-        if (e.code === 'Space' && !e.repeat && document.activeElement !== startBtn) { e.preventDefault(); keySteer = true; mouseTravel = 0; start(); }
+        if (code === 'Space' && !e.repeat && document.activeElement !== startBtn) { e.preventDefault(); keySteer = true; mouseTravel = 0; start(); }
         return;
       }
       e.preventDefault();
       keys[k] = true;
+      if ((code === 'Enter' || code === 'NumpadEnter') && !e.repeat) okSince = performance.now();
       if (k === 'l' || k === 'r' || k === 'u' || k === 'd') { keySteer = true; mouseTravel = 0; }
     });
     window.addEventListener('keyup', (e) => {
-      const k = keyMap[e.code];
+      const code = codeOf(e);
+      if (code === 'Enter' || code === 'NumpadEnter') okSince = 0;
+      const k = keyMap[code];
       if (k) keys[k] = false;
     });
     window.addEventListener('blur', () => {
@@ -3225,6 +3253,41 @@
     });
 
     startBtn.addEventListener('click', start);
+
+    // ---------- Mando ----------
+    // Stick o cruceta: girar · A o gatillo derecho: turbo · B o bumper derecho: turbo ×3
+    // Start: empezar o pausar · Y: vista de cabina. Se lee en cada cuadro y se traduce a las mismas teclas.
+    let padPrev = {};
+    function pollPad() {
+      if (!navigator.getGamepads) return;
+      let gp = null;
+      for (const g of navigator.getGamepads()) if (g && g.connected) { gp = g; break; }
+      if (!gp) return;
+      const b = (i) => Boolean(gp.buttons[i] && gp.buttons[i].pressed);
+      const ax = gp.axes[0] || 0, ay = gp.axes[1] || 0;
+      const now = {
+        l: ax < -0.35 || b(14), r: ax > 0.35 || b(15), u: ay < -0.35 || b(12), d: ay > 0.35 || b(13),
+        turbo: b(0) || b(7), boost: b(1) || b(5), start: b(9), view: b(3)
+      };
+      for (const k of ['l', 'r', 'u', 'd', 'turbo', 'boost']) {
+        if (now[k] === padPrev[k]) continue;
+        keys[k] = now[k];
+        if (now[k] && 'lrud'.includes(k)) { keySteer = true; mouseTravel = 0; }
+      }
+      const pressed = (k) => now[k] && !padPrev[k];
+      const dialogs = Card.isOpen() || Board.isOpen() || !fuelEl.hidden;
+      if ((pressed('start') || pressed('turbo')) && dialogs) {
+        // En una ventana, A o Start pulsan el botón que tenga el foco
+        if (document.activeElement && document.activeElement.click) document.activeElement.click();
+      } else if (pressed('start') || (pressed('turbo') && state === 'ready')) {
+        Sound.unlock();
+        if (attract) leaveAttract();
+        else if (state === 'ready') start();
+        else if (state === 'play') { if (paused) resume(); else pause(); }
+      }
+      if (pressed('view')) { setView(!cockpit); placeCamera(true); }
+      padPrev = now;
+    }
 
     // ---------- Partida ----------
     // ----- Arranque: la nave gira mientras los cinco mundos pasan detrás; cualquier tecla o toque abre el menú -----
@@ -3274,7 +3337,8 @@
     }
     window.addEventListener('keydown', (e) => {
       if (!attract || Board.isOpen() || e.ctrlKey || e.metaKey || e.altKey) return;
-      if (e.code === 'Enter' || e.code === 'Space' || e.code === 'NumpadEnter') { e.preventDefault(); leaveAttract(); }
+      const code = codeOf(e);
+      if (code === 'Enter' || code === 'Space' || code === 'NumpadEnter') { e.preventDefault(); leaveAttract(); }
     }, true);
     stage.addEventListener('pointerdown', () => { if (attract) leaveAttract(); });
 
@@ -3917,7 +3981,38 @@
       Sound.graze();
     }
 
+    // Cámaras del tráiler: planos de cine alrededor de la nave (solo en modo tráiler)
+    const tcRight = new THREE.Vector3(), tcUp = new THREE.Vector3(), tcTmp = new THREE.Vector3();
+    function trailerCam(dt) {
+      TRAILER.t += dt || 0;
+      euler.set(pitch, yaw, 0, 'YXZ');
+      quat.setFromEuler(euler);
+      tcRight.set(1, 0, 0).applyQuaternion(quat);
+      tcUp.set(0, 1, 0).applyQuaternion(quat);
+      const t = TRAILER.t, P = ship.position;
+      const put = (f, r, u) => camera.position.copy(P).addScaledVector(forward, f).addScaledVector(tcRight, r).addScaledVector(tcUp, u);
+      switch (TRAILER.cam) {
+        case 'orbit': { const a = 0.6 + t * 1.1; put(Math.cos(a) * 150, Math.sin(a) * 150, 32); look.copy(P); break; }
+        case 'front': put(175 - t * 25, 34, 16); look.copy(P).addScaledVector(forward, -30); break;
+        case 'side': put(10 + t * 18, 145, 8); look.copy(P).addScaledVector(forward, 70); break;
+        case 'low': put(-105, -28, -40); look.copy(P).addScaledVector(forward, 260); break;
+        case 'close': put(48, 34, 10); look.copy(P).addScaledVector(forward, -14); break;
+        case 'top': put(-40, 0, 240 - t * 30); look.copy(P).addScaledVector(forward, 70); break;
+        case 'flyby':
+          if (!TRAILER.anchor || tcTmp.copy(P).sub(TRAILER.anchor).dot(forward) > 260) {
+            TRAILER.anchor = new THREE.Vector3().copy(P).addScaledVector(forward, 720).addScaledVector(tcRight, 75).addScaledVector(tcUp, 22);
+          }
+          camera.position.copy(TRAILER.anchor);
+          look.copy(P);
+          break;
+        default: return false;
+      }
+      camera.lookAt(look);
+      return true;
+    }
+
     function placeCamera(snap, dt) {
+      if (TRAILER && TRAILER.cam && (state === 'play' || state === 'win') && trailerCam(dt)) return;
       // Cabina: la cámara va dentro de la nave. Al chocar, sale a la vista exterior para ver el impacto.
       if (cockpit && state !== 'dead' && state !== 'win') {
         camera.position.copy(ship.position);
@@ -4589,8 +4684,9 @@
 
     function frame() {
       requestAnimationFrame(frame);
-      const dt = Math.min(clock.getDelta(), 0.05);
+      const dt = Math.min(clock.getDelta(), 0.05) * (TRAILER ? TRAILER.speed : 1);
       if (document.hidden) return;
+      pollPad();
       if (paused) {
         // Todo queda congelado, pero se sigue dibujando para poder cambiar de vista
         draw();
@@ -4625,7 +4721,7 @@
 
         // En el túnel no hay turbo: es el descanso
         const warping = warpT >= 0;
-        const boost = !warping && (keys.boost || mouseSuper || touches.size >= 3);
+        const boost = !warping && (keys.boost || mouseSuper || touches.size >= 3 || (keys.turbo && okSince > 0 && performance.now() - okSince > 1200));
         turbo = !warping && (boost || keys.turbo || mouseTurbo || touches.size >= 2);
         level = boost ? 3 : turbo ? 2 : 1;
 
@@ -4664,7 +4760,7 @@
             ship.visible = !cockpit && (reduceMotion || shield <= 0 || Math.floor(elapsed * 10) % 2 === 0);
           } else {
             const hit = collide();
-            if (hit) { turbo = false; level = 1; grazed = false; gate = null; crash(hit); }
+            if (hit && !(TRAILER && TRAILER.god)) { turbo = false; level = 1; grazed = false; gate = null; crash(hit); }
             else {
               if (grazed) { grazed = false; onGraze(level); }
               if (gate) { onGate(gate, level); gate = null; }
@@ -4714,7 +4810,7 @@
       wrapAround();
 
       if (!reduceMotion) {
-        const fov = level === 3 ? 96 : level === 2 ? 86 : 72;
+        const fov = (TRAILER && TRAILER.fov) || (level === 3 ? 96 : level === 2 ? 86 : 72);
         if (Math.abs(camera.fov - fov) > 0.05) {
           camera.fov += (fov - camera.fov) * Math.min(1, dt * 5);
           camera.updateProjectionMatrix();
@@ -4745,6 +4841,14 @@
     placeCamera(true);
     updateHud(1);
     frame();
+    if (TRAILER) {
+      window.__driftway = {
+        cam: (mode) => { TRAILER.cam = mode || null; TRAILER.t = 0; TRAILER.anchor = null; ship.visible = state !== 'dead' && (!cockpit || Boolean(TRAILER.cam)); },
+        speed: (k) => { TRAILER.speed = k; },
+        god: (on) => { TRAILER.god = Boolean(on); },
+        fov: (v) => { TRAILER.fov = v || 0; }
+      };
+    }
   })();
 </script>
 

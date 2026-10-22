@@ -42,6 +42,14 @@ El juego guarda tres cosas en una base de datos de Supabase: el contador de pilo
 - Ranking: la vista `ranking` muestra una fila por piloto con su mejor partida (las partidas sin piloto se agrupan por apodo), y `posicion(p)` cuenta pilotos, no partidas.
 - Para ver los datos: Supabase → Table Editor → `partidas`, `pilotos`, `visitas`.
 
+## En el televisor
+
+El juego detecta los navegadores de Smart TV y Google TV (o se fuerza con `?tv=1`):
+
+- Control remoto: flechas para girar, OK para turbo (mantenido más de 1,2 s pasa a ×3), Atrás para pausar.
+- Mando (Xbox, PlayStation o Bluetooth): stick o cruceta para girar, A o gatillo derecho turbo, B o bumper derecho turbo ×3, Start empezar o pausar, Y vista de cabina.
+- Se dibuja a unos 1280 px de ancho y deja un margen del 3 % en los bordes para que nada quede cortado.
+
 ## Archivos
 
 - `index.html` — todo el juego: estilos, lógica, nave, sectores, interfaz, ranking.
