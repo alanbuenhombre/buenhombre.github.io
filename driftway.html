@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Driftway · Arcade 3D · Alan Buenhombre</title>
+<meta name="description" content="Driftway: arcade 3D para navegador. Una nave, cinco sectores, una regla — no pares. Three.js + Supabase, soporte para teclado, mouse, touch, gamepad y Smart TV. Jugable en https://buenhombre.design/driftway/" />
+<link rel="canonical" href="https://buenhombre.design/driftway.html" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta property="og:title" content="Driftway · Arcade 3D · Alan Buenhombre" />
+<meta property="og:description" content="Arcade 3D en el navegador. Cinco sectores, una regla: no pares. Three.js, un solo archivo, sin build." />
+<meta property="og:url" content="https://buenhombre.design/driftway.html" />
+<meta property="og:image" content="https://buenhombre.design/driftway/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="case.css" />
+<style>
+  /* ===== PLAY CTA ===== */
+  .play-cta{display:inline-flex;align-items:center;gap:14px;background:var(--accent,#C89B5C);color:#000;
+       font-family:'Manrope',sans-serif;font-weight:500;font-size:1rem;letter-spacing:-.01em;
+       padding:16px 26px;border-radius:100px;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease;
+       border:1px solid transparent;margin-top:14px}
+  .play-cta:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+  .play-cta__label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.2em;
+       text-transform:uppercase;opacity:.65;margin-right:4px}
+  .play-cta__arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+       background:#000;color:var(--accent,#C89B5C);border-radius:50%;font-size:.78rem;line-height:1;font-weight:600}
+
+  .chead__play-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:22px}
+  .chead__play-row a:not(.play-cta){font-family:'IBM Plex Mono',monospace;font-size:.74rem;
+       letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;
+       padding:6px 2px;border-bottom:1px dotted rgba(255,255,255,.3)}
+  .chead__play-row a:not(.play-cta):hover{color:#fff;border-color:#fff}
+
+  /* ===== SPEC TABLE ===== */
+  .dw-specs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.08);
+       border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden;margin-top:16px}
+  .dw-specs__row{background:#121212;padding:14px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .dw-specs__k{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.18em;
+       text-transform:uppercase;color:rgba(255,255,255,.45)}
+  .dw-specs__v{font-family:'Manrope',sans-serif;font-size:.88rem;color:rgba(255,255,255,.9);
+       font-weight:400;letter-spacing:-.005em;text-align:right}
+  @media(max-width:720px){.dw-specs{grid-template-columns:1fr}}
+
+  /* ===== SECTORS ===== */
+  .dw-sectors{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}
+  .dw-sectors__item{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);
+       border-radius:10px;padding:16px 14px;display:flex;flex-direction:column;gap:8px;
+       transition:background .3s ease,border-color .3s ease}
+  .dw-sectors__item:hover{background:rgba(255,255,255,.045);border-color:var(--accent,#C89B5C)}
+  .dw-sectors__num{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.2em;
+       text-transform:uppercase;color:var(--accent,#C89B5C)}
+  .dw-sectors__name{font-family:'Manrope',sans-serif;font-weight:500;font-size:.92rem;color:#fff;
+       letter-spacing:-.01em}
+  .dw-sectors__hint{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:rgba(255,255,255,.5);
+       letter-spacing:.04em;line-height:1.4}
+  @media(max-width:860px){.dw-sectors{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.dw-sectors{grid-template-columns:1fr}}
+
+  /* ===== INPUT MATRIX ===== */
+  .dw-inputs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+  .dw-inputs__item{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);
+       border-radius:10px;padding:14px;text-align:center}
+  .dw-inputs__ico{font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:var(--accent,#C89B5C);
+       margin-bottom:8px;letter-spacing:-.02em}
+  .dw-inputs__name{font-family:'Manrope',sans-serif;font-weight:500;font-size:.86rem;color:#fff;
+       margin-bottom:4px;letter-spacing:-.01em}
+  .dw-inputs__hint{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.5);
+       letter-spacing:.04em;line-height:1.4}
+  @media(max-width:720px){.dw-inputs{grid-template-columns:repeat(2,1fr)}}
+
+  /* ===== PROGRESSIVE DISCLOSURE ===== */
+  .cblock__more{margin-top:14px;border-top:1px dotted rgba(255,255,255,.1);padding-top:12px}
+  .cblock__more > summary{list-style:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+       font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);
+       display:inline-flex;align-items:center;gap:8px;padding:4px 0;transition:color .25s ease;user-select:none}
+  .cblock__more > summary::-webkit-details-marker{display:none}
+  .cblock__more > summary::before{content:"+";display:inline-flex;align-items:center;justify-content:center;
+       width:16px;height:16px;border:1px solid rgba(255,255,255,.3);border-radius:50%;
+       font-family:'Manrope',sans-serif;font-size:.78rem;line-height:1;color:rgba(255,255,255,.6);
+       transition:transform .3s ease,border-color .25s ease,color .25s ease}
+  .cblock__more[open] > summary::before{content:"−"}
+  .cblock__more > summary:hover{color:rgba(255,255,255,.8)}
+  .cblock__more > summary:hover::before{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.9)}
+  .cblock__more-body{padding-top:14px;animation:dw-in .35s ease both}
+  .cblock__more-body > *:first-child{margin-top:0}
+  .cblock__more-body .cblock__text{color:rgba(255,255,255,.68)}
+  @keyframes dw-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ===== PLAY CARD AT END ===== */
+  .dw-play-card{background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,rgba(255,255,255,.01) 100%);
+       border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:40px 32px;text-align:center;
+       margin:50px 0 30px}
+  .dw-play-card__eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.24em;
+       text-transform:uppercase;color:var(--accent,#C89B5C);margin-bottom:14px}
+  .dw-play-card__title{font-family:'Manrope',sans-serif;font-weight:200;font-size:clamp(1.8rem,4vw,3rem);
+       letter-spacing:-.03em;line-height:1.05;color:#fff;margin-bottom:14px}
+  .dw-play-card__sub{font-family:'Manrope',sans-serif;font-size:.95rem;color:rgba(255,255,255,.68);
+       line-height:1.5;max-width:46ch;margin:0 auto 24px}
+</style>
+</head>
+<body>
+
+  <nav class="top">
+    <a href="index.html" class="top__name">Alan Buenhombre</a>
+    <div class="top__nav">
+      <a href="index.html#inicio" data-i18n="nav.home">Inicio</a>
+      <a href="index.html#casos" data-i18n="nav.cases">Casos</a>
+      <a href="index.html#sobre" data-i18n="nav.about">Sobre</a>
+      <a href="index.html#contacto" data-i18n="nav.contact">Contacto</a>
+    </div>
+    <button class="top__lang nav__lang" aria-label="Cambiar idioma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 3 3.5 6 3.5 9s-1 6-3.5 9"/><path d="M12 3c-2.5 3-3.5 6-3.5 9s1 6 3.5 9"/></svg><span>EN</span></button>
+  </nav>
+
+  <header class="chead">
+    <div class="chead__kicker">Game · Three.js · Side Project · 2026</div>
+    <h1 class="chead__title">Driftway</h1>
+    <p class="chead__sub">Una nave, cinco sectores, una regla: <strong>no pares</strong>. Arcade 3D jugable directamente en el navegador — teclado, mouse, touch, gamepad o remoto de Smart TV. Un solo archivo HTML, sin build pipeline.</p>
+    <div class="chead__play-row">
+      <a href="driftway/" class="play-cta">
+        <span class="play-cta__label">Jugar</span>
+        <span>Driftway</span>
+        <span class="play-cta__arrow">↗</span>
+      </a>
+      <a href="driftway/privacidad.html">Privacidad</a>
+      <a href="https://github.com/alanbuenhombre/buenhombre.github.io/tree/main/driftway" target="_blank" rel="noopener">Código ↗</a>
+    </div>
+  </header>
+
+  <div class="cmeta">
+    <div><div class="cmeta__k">Rol</div><div class="cmeta__v">Director creativo · Developer</div></div>
+    <div><div class="cmeta__k">Stack</div><div class="cmeta__v">Three.js r128 · Vanilla JS · Supabase</div></div>
+    <div><div class="cmeta__k">Año</div><div class="cmeta__v">2026</div></div>
+    <div><div class="cmeta__k">Estado</div><div class="cmeta__v">Shipped · buenhombre.design/driftway</div></div>
+  </div>
+
+  <div class="cmediawrap"><div class="cshot cshot--hero"><img src="driftway/og.png" alt="Driftway — arcade 3D en el navegador"></div></div>
+
+  <section class="cbody">
+
+    <div class="cblock">
+      <div class="cblock__label">Contexto</div>
+      <h2 class="cblock__title">Un juego en el portafolio de un Lead Designer.</h2>
+      <p class="cblock__text">Driftway no es un trabajo cliente ni un demo técnico. Es un ejercicio para probar lo contrario de lo que normalmente diseño: un producto <strong>sin usuario target</strong>, sin brief, sin KPI de negocio. La restricción fue construir algo que se cargue instantáneo, se juegue sin tutorial y funcione en cualquier pantalla — desde el celular en el bus hasta un Smart TV con el remoto. Three.js sobre un solo HTML, Supabase para ranking, sin dependencias que instalar.</p>
+
+      <details class="cblock__more">
+        <summary>Más contexto · por qué un side project de juego</summary>
+        <div class="cblock__more-body">
+          <p class="cblock__text">Un juego obliga a resolver <em>game feel</em>, un problema que no aparece en productos B2B: cómo se siente mover la nave, qué tanto responde el input, cuándo acelera, cuándo frena. Trabajar esto directamente — sin PM, sin research, sin discovery — es gimnasia pura de criterio de producto. Si no se siente bien, no hay excusa que valga: el jugador cierra la pestaña.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label">Decisión · 01</div>
+      <h2 class="cblock__title">Un solo archivo, cero build pipeline.</h2>
+      <p class="cblock__text">Rechazo deliberado del stack moderno: no hay React, no hay Vite, no hay bundler. Solo <code>index.html</code>, <code>three.min.js</code> y una carpeta <code>audio/</code>. El juego se carga de un deploy a GitHub Pages y arranca sin tocar nada más. La restricción fuerza a escribir código legible, no herramientas sobre herramientas.</p>
+
+      <details class="cblock__more">
+        <summary>Más detalle · estructura del archivo</summary>
+        <div class="cblock__more-body">
+          <ul class="cblock__list">
+            <li><code>index.html</code> — <strong>todo el juego</strong>: estilos, lógica de nave, sectores, interfaz y ranking.</li>
+            <li><code>three.min.js</code> — Three.js r128 pineado localmente, sin CDN que caiga.</li>
+            <li><code>audio/</code> — música y SFX en MP3.</li>
+            <li><code>privacidad.html</code> — aviso Ley 1581 de 2012 + RGPD.</li>
+            <li><code>supabase/schema.sql</code> — tablas, vistas y funciones del backend. Pegar en Supabase y correr.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label">Decisión · 02</div>
+      <h2 class="cblock__title">Cinco sectores con mecánica distinta.</h2>
+      <p class="cblock__text">La estructura no es un túnel infinito. Son <strong>cinco sectores</strong> con lógica propia y escalamiento de dificultad. Entre sectores hay transición visual, no cortes abruptos. En el sector 5 se desbloquea disparo. El cambio de mecánica mantiene la atención sin agregar botones nuevos: la misma tecla hace cosas distintas según el sector.</p>
+
+      <div class="dw-sectors">
+        <div class="dw-sectors__item"><div class="dw-sectors__num">01</div><div class="dw-sectors__name">Entrada</div><div class="dw-sectors__hint">Giro + turbo. Aprender la nave.</div></div>
+        <div class="dw-sectors__item"><div class="dw-sectors__num">02</div><div class="dw-sectors__name">Densidad</div><div class="dw-sectors__hint">Más obstáculos. Pide reflejos.</div></div>
+        <div class="dw-sectors__item"><div class="dw-sectors__num">03</div><div class="dw-sectors__name">Ritmo</div><div class="dw-sectors__hint">Patrones. Pide lectura.</div></div>
+        <div class="dw-sectors__item"><div class="dw-sectors__num">04</div><div class="dw-sectors__name">Caos</div><div class="dw-sectors__hint">Mezcla. Pide decisión rápida.</div></div>
+        <div class="dw-sectors__item"><div class="dw-sectors__num">05</div><div class="dw-sectors__name">Final</div><div class="dw-sectors__hint">Se desbloquea disparo.</div></div>
+      </div>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label">Decisión · 03</div>
+      <h2 class="cblock__title">Multi-input: lo mismo con teclado, touch, mando o remoto de TV.</h2>
+      <p class="cblock__text">El juego detecta el entorno y adapta controles. En Smart TV se dibuja a 1280 px con 3% de margen para evitar overscan. El gamepad soporta Xbox, PlayStation y genéricos Bluetooth. En touch, dos y tres dedos escalan el turbo. <strong>El mismo diseño sirve en todos lados</strong>.</p>
+
+      <div class="dw-inputs">
+        <div class="dw-inputs__item"><div class="dw-inputs__ico">⌨</div><div class="dw-inputs__name">Teclado + mouse</div><div class="dw-inputs__hint">WASD / flechas · click</div></div>
+        <div class="dw-inputs__item"><div class="dw-inputs__ico">◉</div><div class="dw-inputs__name">Touch</div><div class="dw-inputs__hint">Drag · 2 y 3 dedos turbo</div></div>
+        <div class="dw-inputs__item"><div class="dw-inputs__ico">▣</div><div class="dw-inputs__name">Gamepad</div><div class="dw-inputs__hint">Xbox · PS · Bluetooth</div></div>
+        <div class="dw-inputs__item"><div class="dw-inputs__ico">⌧</div><div class="dw-inputs__name">Smart TV</div><div class="dw-inputs__hint">Remoto · OK hold = turbo</div></div>
+      </div>
+
+      <details class="cblock__more">
+        <summary>Más detalle · atajos y debug</summary>
+        <div class="cblock__more-body">
+          <p class="cblock__text">URLs mágicas para iterar sin jugar: <code>#nivel2</code>…<code>#nivel5</code> arrancan en un sector específico, <code>#victoria</code> va directo al final, <code>#menu</code> salta la pantalla de arranque, <code>#bn</code> conmuta a blanco y negro para ver sombras. <code>?lang=en</code> o <code>?lang=es</code> fuerzan idioma; por defecto detecta el navegador.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label">Decisión · 04</div>
+      <h2 class="cblock__title">Backend mínimo: Supabase hace lo justo.</h2>
+      <p class="cblock__text">Tres tablas: <code>visitas</code>, <code>pilotos</code>, <code>partidas</code>. El contador suma por navegador (localStorage), no por sesión — el número se acerca a personas. El ranking agrupa por piloto y muestra la mejor partida. Los emails son opcionales y nunca se exponen al cliente: la clave <em>publishable</em> solo puede insertar y leer el ranking, no leer correos.</p>
+
+      <details class="cblock__more">
+        <summary>Más detalle · seguridad y privacidad</summary>
+        <div class="cblock__more-body">
+          <p class="cblock__text">La clave <code>service_role</code> jamás vive en el repo. Las RLS policies de Supabase se escriben para que la clave pública pueda: contar visitas, insertar pilotos, insertar partidas, leer el ranking. Nada más. El aviso de privacidad en <code>driftway/privacidad.html</code> cumple Ley 1581 de 2012 (Colombia) + RGPD; el contacto es <code>hola@buenhombre.design</code>.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label">Specs</div>
+      <h2 class="cblock__title">Tech stack · un vistazo.</h2>
+      <div class="dw-specs">
+        <div class="dw-specs__row"><span class="dw-specs__k">Render</span><span class="dw-specs__v">Three.js r128</span></div>
+        <div class="dw-specs__row"><span class="dw-specs__k">Lenguaje</span><span class="dw-specs__v">Vanilla JS · ES6+</span></div>
+        <div class="dw-specs__row"><span class="dw-specs__k">Backend</span><span class="dw-specs__v">Supabase · SQL + RLS</span></div>
+        <div class="dw-specs__row"><span class="dw-specs__k">Hosting</span><span class="dw-specs__v">GitHub Pages</span></div>
+        <div class="dw-specs__row"><span class="dw-specs__k">Peso</span><span class="dw-specs__v">~2.5 MB total con audio</span></div>
+        <div class="dw-specs__row"><span class="dw-specs__k">Build</span><span class="dw-specs__v">Ninguno · git push</span></div>
+        <div class="dw-specs__row"><span class="dw-specs__k">Audio</span><span class="dw-specs__v">Web Audio API · MP3</span></div>
+        <div class="dw-specs__row"><span class="dw-specs__k">i18n</span><span class="dw-specs__v">ES / EN · auto-detect</span></div>
+      </div>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label">Aprendizajes transferibles</div>
+      <ul class="cblock__list">
+        <li><strong>Un side project sin brief es gimnasia de criterio.</strong> Sin stakeholders, sin métricas de negocio, lo único que decide si algo queda o se va es si <em>se siente bien</em>. Buena práctica para después pelear defensibilidad con PMs.</li>
+        <li><strong>Build pipelines modernos son opcionales.</strong> Para 2.5 MB de juego, un bundler es overhead. El HTML suelto cargó más rápido, deployó en segundos y nunca rompió.</li>
+        <li><strong>El mismo producto en 4 inputs distintos exige diseñar al mínimo denominador común.</strong> Si el touch no puede, nadie puede. Simplifica drásticamente las decisiones.</li>
+      </ul>
+    </div>
+
+    <div class="dw-play-card">
+      <div class="dw-play-card__eyebrow">Live · buenhombre.design/driftway</div>
+      <h2 class="dw-play-card__title">Carga en 2 segundos.<br>Jugá un sector.</h2>
+      <p class="dw-play-card__sub">No requiere registro ni instalar nada. Funciona desde el celular, el notebook, un Smart TV o un control de PlayStation. Si te enganchás, guardá tu puntaje en el ranking.</p>
+      <a href="driftway/" class="play-cta">
+        <span class="play-cta__label">Jugar</span>
+        <span>Driftway</span>
+        <span class="play-cta__arrow">↗</span>
+      </a>
+    </div>
+
+  </section>
+
+  <section class="cnext">
+    <div class="cnext__label">Siguiente proyecto</div>
+    <a href="traceline.html" class="cnext__row">
+      <span class="cnext__name">Traceline</span>
+      <span class="cnext__disc">Time trial blueprint · Three.js · En desarrollo · 2026</span>
+    </a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div>
+        <div class="footer__logo">Alan Buenhombre</div>
+        <p class="footer__role">Lead Designer · Brand, Systems &amp; Product</p>
+        <p class="footer__tagline">Bogotá, Colombia</p>
+        <p class="footer__copy">© 2026 Alan Buenhombre</p>
+      </div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.menu">Menú</div>
+        <ul class="footer__links">
+          <li><a href="index.html#inicio" data-i18n="nav.home">Inicio</a></li>
+          <li><a href="index.html#casos" data-i18n="nav.cases">Casos</a></li>
+          <li><a href="index.html#sobre" data-i18n="nav.about">Sobre</a></li>
+          <li><a href="index.html#contacto" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.contact">Contacto</div>
+        <div class="footer__social">
+          <a class="footer__social-btn" href="mailto:alangtres@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
+          <a class="footer__social-btn" href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a class="footer__social-btn" href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener" aria-label="Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+</body>
+</html>
