@@ -56,9 +56,96 @@
   .gritt-mock__kpi-spark{margin-top:10px;height:22px}
   .gritt-mock__kpi-spark svg{width:100%;height:100%}
 
-  .gritt-mock__chart-area{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+  /* platform badge pequeñito sobre cada KPI card */
+  .gritt-mock__kpi{position:relative;transition:background .3s ease,border-color .3s ease,transform .3s ease}
+  .gritt-mock__kpi:hover{background:rgba(255,255,255,.045);border-color:rgba(212,255,61,.2);transform:translateY(-2px)}
+  .gritt-mock__kpi-badge{position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;
+       gap:4px;font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.14em;
+       text-transform:uppercase;color:rgba(255,255,255,.4);padding:3px 7px;border-radius:3px;
+       background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+  .gritt-mock__kpi-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.3);
+       letter-spacing:.04em;margin-top:4px}
+
+  .gritt-mock__chart-area{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:28px}
   .gritt-mock__chart,.gritt-mock__globe{background:rgba(255,255,255,.025);
        border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px 22px}
+
+  /* ---- Logo Gritt en el header del reporte ---- */
+  .gritt-mock__brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;
+       padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.05)}
+  .gritt-mock__brand-mark{width:28px;height:28px;border-radius:50%;background:#D4FF3D;
+       display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;
+       font-weight:700;color:#1d1d1b;font-size:.95rem;letter-spacing:-.03em}
+  .gritt-mock__brand-name{font-family:'Manrope',sans-serif;font-weight:500;font-size:.88rem;
+       letter-spacing:-.01em;color:#fff;line-height:1}
+  .gritt-mock__brand-sub{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+       text-transform:uppercase;color:rgba(255,255,255,.4);line-height:1.3;margin-top:2px}
+  .gritt-mock__brand-right{margin-left:auto;display:flex;gap:6px}
+  .gritt-mock__brand-btn{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;
+       text-transform:uppercase;color:rgba(255,255,255,.5);padding:5px 10px;border-radius:4px;
+       background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);cursor:default}
+
+  /* ---- Top publicaciones ---- */
+  .gritt-mock__section-head{display:flex;justify-content:space-between;align-items:baseline;
+       margin:34px 0 14px}
+  .gritt-mock__section-title{font-family:'IBM Plex Mono',monospace;font-size:.68rem;
+       letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  .gritt-mock__section-meta{font-family:'IBM Plex Mono',monospace;font-size:.62rem;
+       letter-spacing:.12em;color:#D4FF3D}
+  .gritt-mock__posts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .gritt-mock__post{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+       border-radius:10px;overflow:hidden;transition:transform .3s ease,border-color .3s ease}
+  .gritt-mock__post:hover{transform:translateY(-2px);border-color:rgba(212,255,61,.2)}
+  .gritt-mock__post-thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#2a2a26 0%,#1a1a18 100%);
+       position:relative;overflow:hidden}
+  .gritt-mock__post-thumb::after{content:"";position:absolute;inset:0;
+       background:radial-gradient(circle at 30% 40%,rgba(212,255,61,.08) 0%,transparent 50%)}
+  .gritt-mock__post-thumb--2::after{background:radial-gradient(circle at 70% 50%,rgba(255,180,80,.08) 0%,transparent 50%)}
+  .gritt-mock__post-thumb--3::after{background:radial-gradient(circle at 50% 30%,rgba(120,200,255,.06) 0%,transparent 50%)}
+  .gritt-mock__post-thumb-icon{position:absolute;top:10px;left:10px;font-family:'IBM Plex Mono',monospace;
+       font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;padding:3px 6px;
+       background:rgba(0,0,0,.5);border-radius:3px;backdrop-filter:blur(4px);z-index:1}
+  .gritt-mock__post-body{padding:12px 14px}
+  .gritt-mock__post-cap{font-family:'Manrope',sans-serif;font-size:.76rem;color:rgba(255,255,255,.82);
+       line-height:1.4;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+       overflow:hidden}
+  .gritt-mock__post-metrics{display:flex;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
+       color:rgba(255,255,255,.5);letter-spacing:.04em}
+  .gritt-mock__post-metrics strong{color:#D4FF3D;font-weight:500;margin-right:3px}
+
+  /* ---- Insights + Budget row ---- */
+  .gritt-mock__insight-row{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin-top:14px}
+  .gritt-mock__insights,.gritt-mock__budget{background:rgba(255,255,255,.025);
+       border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px 22px}
+  .gritt-mock__insight-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px dotted rgba(255,255,255,.07)}
+  .gritt-mock__insight-item:last-child{border-bottom:none;padding-bottom:0}
+  .gritt-mock__insight-item:first-child{padding-top:0}
+  .gritt-mock__insight-num{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:.68rem;
+       color:#D4FF3D;letter-spacing:.08em;padding-top:3px}
+  .gritt-mock__insight-text{font-family:'Manrope',sans-serif;font-size:.82rem;line-height:1.45;
+       color:rgba(255,255,255,.82)}
+  .gritt-mock__insight-text strong{color:#fff;font-weight:500}
+
+  .gritt-mock__budget-value{font-family:'Manrope',sans-serif;font-weight:200;font-size:1.9rem;
+       letter-spacing:-.03em;color:#fff;margin:12px 0 4px;line-height:1}
+  .gritt-mock__budget-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;
+       color:rgba(255,255,255,.45);text-transform:uppercase}
+  .gritt-mock__budget-bar{height:6px;background:rgba(255,255,255,.06);border-radius:100px;
+       overflow:hidden;margin:16px 0 10px}
+  .gritt-mock__budget-fill{height:100%;background:linear-gradient(90deg,#D4FF3D 0%,#B8E434 100%);
+       border-radius:100px;position:relative}
+  .gritt-mock__budget-fill::after{content:"";position:absolute;right:0;top:0;bottom:0;width:2px;
+       background:#fff;opacity:.8}
+  .gritt-mock__budget-split{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;
+       font-size:.68rem;color:rgba(255,255,255,.6);letter-spacing:.04em}
+  .gritt-mock__budget-split strong{color:#D4FF3D;font-weight:500}
+
+  /* ---- Report footer ---- */
+  .gritt-mock__report-foot{display:flex;justify-content:space-between;align-items:center;
+       margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);
+       font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;
+       text-transform:uppercase;color:rgba(255,255,255,.35)}
+  .gritt-mock__report-foot strong{color:#D4FF3D;font-weight:500}
   .gritt-mock__chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
   .gritt-mock__chart-title{font-family:'IBM Plex Mono',monospace;font-size:.6rem;
        letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)}
@@ -73,8 +160,11 @@
     .gritt-mock__client{font-size:2.2rem}
     .gritt-mock__kpis{grid-template-columns:repeat(2,1fr)}
     .gritt-mock__kpi-value{font-size:1.6rem}
-    .gritt-mock__chart-area{grid-template-columns:1fr}
+    .gritt-mock__chart-area,.gritt-mock__insight-row{grid-template-columns:1fr}
+    .gritt-mock__posts{grid-template-columns:1fr}
     .gritt-mock__url{display:none}
+    .gritt-mock__brand-right{display:none}
+    .gritt-mock__report-foot{flex-direction:column;gap:8px;text-align:center}
   }
 
   /* ===== STACK PILLS ===== */
@@ -82,6 +172,68 @@
   .gritt-stack__pill{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.04em;
        padding:5px 10px;border-radius:4px;background:rgba(255,255,255,.04);
        border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
+
+  /* ===== ARCH DIAGRAM ===== */
+  .gritt-arch{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:0;
+       margin-top:28px;padding:28px 24px;background:rgba(255,255,255,.025);
+       border:1px solid rgba(255,255,255,.08);border-radius:12px;position:relative;overflow:hidden}
+  .gritt-arch__node,.gritt-arch__ui,.gritt-arch__future{display:flex;flex-direction:column;gap:5px;
+       padding:14px 18px;border-radius:8px;text-align:center;
+       background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}
+  .gritt-arch__ui{background:rgba(212,255,61,.08);border-color:rgba(212,255,61,.25)}
+  .gritt-arch__future{background:transparent;border:1px dashed rgba(255,255,255,.18);opacity:.75}
+  .gritt-arch__tag{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.22em;
+       text-transform:uppercase;color:rgba(255,255,255,.4)}
+  .gritt-arch__ui .gritt-arch__tag{color:#D4FF3D}
+  .gritt-arch__name{font-family:'Manrope',sans-serif;font-weight:500;font-size:.98rem;color:#fff;
+       letter-spacing:-.01em}
+  .gritt-arch__sub{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.45);
+       letter-spacing:.04em}
+  .gritt-arch__flow{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 12px}
+  .gritt-arch__arrow{font-family:'IBM Plex Mono',monospace;color:rgba(255,255,255,.3);font-size:1.1rem;line-height:1}
+  .gritt-arch__interface{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;
+       color:rgba(255,255,255,.55);background:rgba(0,0,0,.3);padding:4px 10px;border-radius:4px;
+       white-space:nowrap}
+  @media(max-width:800px){
+    .gritt-arch{grid-template-columns:1fr;gap:12px;padding:20px 16px}
+    .gritt-arch__flow{flex-direction:row;padding:4px 0}
+    .gritt-arch__arrow{transform:rotate(90deg)}
+  }
+
+  /* ===== ROADMAP ===== */
+  .gritt-roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:20px}
+  .gritt-roadmap__step{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+       border-radius:8px;padding:16px 14px;font-family:'Manrope',sans-serif;font-size:.86rem;
+       line-height:1.4;color:rgba(255,255,255,.78);display:flex;flex-direction:column;gap:8px;
+       transition:background .3s ease,border-color .3s ease}
+  .gritt-roadmap__step:hover{background:rgba(212,255,61,.05);border-color:rgba(212,255,61,.2)}
+  .gritt-roadmap__num{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;
+       color:#D4FF3D}
+  @media(max-width:800px){
+    .gritt-roadmap{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:480px){
+    .gritt-roadmap{grid-template-columns:1fr}
+  }
+
+  /* ===== PROGRESSIVE DISCLOSURE ===== */
+  .cblock__more{margin-top:14px;border-top:1px dotted rgba(255,255,255,.1);padding-top:12px}
+  .cblock__more > summary{list-style:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+       font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);
+       display:inline-flex;align-items:center;gap:8px;padding:4px 0;
+       transition:color .25s ease;user-select:none}
+  .cblock__more > summary::-webkit-details-marker{display:none}
+  .cblock__more > summary::before{content:"+";display:inline-flex;align-items:center;justify-content:center;
+       width:16px;height:16px;border:1px solid rgba(255,255,255,.3);border-radius:50%;
+       font-family:'Manrope',sans-serif;font-size:.78rem;line-height:1;color:rgba(255,255,255,.6);
+       transition:transform .3s ease,border-color .25s ease,color .25s ease}
+  .cblock__more[open] > summary::before{content:"−";transform:rotate(0deg)}
+  .cblock__more > summary:hover{color:rgba(255,255,255,.8)}
+  .cblock__more > summary:hover::before{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.9)}
+  .cblock__more-body{padding-top:14px;animation:gritt-detail-in .35s ease both}
+  .cblock__more-body > *:first-child{margin-top:0}
+  .cblock__more-body .cblock__text{color:rgba(255,255,255,.68)}
+  @keyframes gritt-detail-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 
   /* ===== STATUS BLOCK ===== */
   .gritt-status{background:rgba(212,255,61,.04);border:1px solid rgba(212,255,61,.18);
@@ -114,7 +266,7 @@
   <header class="chead">
     <div class="chead__kicker">SaaS · Side Project · 2026</div>
     <h1 class="chead__title">Gritt Reports</h1>
-    <p class="chead__sub">SaaS de reportes automáticos de redes sociales para estudios creativos. Un reporte web animado y compartible por link, no otro PDF más — con la marca del estudio y pensado para que el cliente final lo lea desde el celular. Primer caso de referencia: <strong>Lanz World</strong> (con datos ficticios inspirados en el caso real).</p>
+    <p class="chead__sub">Reportes automáticos de redes sociales para estudios creativos. Un link, no un PDF. Primer caso de referencia: <strong>Lanz World</strong>.</p>
     <div class="chead__links">
       <a href="#" class="chead__link" aria-disabled="true" style="opacity:.6;pointer-events:none">Live demo próximamente ↗</a>
       <a href="#status" class="chead__link">Estado actual ↓</a>
@@ -137,6 +289,20 @@
         <div class="gritt-mock__badge">MVP · Mockup</div>
       </div>
       <div class="gritt-mock__body">
+        <!-- Brand bar -->
+        <div class="gritt-mock__brand">
+          <div class="gritt-mock__brand-mark">g</div>
+          <div>
+            <div class="gritt-mock__brand-name">Gritt Reports</div>
+            <div class="gritt-mock__brand-sub">para Lanz World</div>
+          </div>
+          <div class="gritt-mock__brand-right">
+            <span class="gritt-mock__brand-btn">Compartir</span>
+            <span class="gritt-mock__brand-btn">Imprimir</span>
+          </div>
+        </div>
+
+        <!-- Header -->
         <div class="gritt-mock__header">
           <div>
             <div class="gritt-mock__client-meta">Reporte semanal · Cliente</div>
@@ -148,33 +314,44 @@
           </div>
         </div>
 
+        <!-- KPI cards -->
         <div class="gritt-mock__kpis">
           <div class="gritt-mock__kpi">
+            <div class="gritt-mock__kpi-badge">IG · TK · FB</div>
             <div class="gritt-mock__kpi-label">Alcance</div>
             <div class="gritt-mock__kpi-value">184K</div>
             <div class="gritt-mock__kpi-delta">↑ +12.4% vs sem 41</div>
             <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,15 15,12 30,14 45,8 60,9 75,5 90,6 100,3" fill="none" stroke="#D4FF3D" stroke-width="1.5"/></svg></div>
+            <div class="gritt-mock__kpi-sub">Promedio 26.3K/día</div>
           </div>
           <div class="gritt-mock__kpi">
+            <div class="gritt-mock__kpi-badge">IG · TK</div>
             <div class="gritt-mock__kpi-label">Views</div>
             <div class="gritt-mock__kpi-value">92.7K</div>
             <div class="gritt-mock__kpi-delta">↑ +8.1%</div>
             <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,14 15,11 30,13 45,10 60,7 75,8 90,6 100,5" fill="none" stroke="#D4FF3D" stroke-width="1.5"/></svg></div>
+            <div class="gritt-mock__kpi-sub">Avg. retention 48%</div>
           </div>
           <div class="gritt-mock__kpi">
+            <div class="gritt-mock__kpi-badge">All</div>
             <div class="gritt-mock__kpi-label">Interacciones</div>
             <div class="gritt-mock__kpi-value">6.3K</div>
             <div class="gritt-mock__kpi-delta down">↓ −3.2%</div>
             <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,8 15,10 30,9 45,12 60,13 75,14 90,15 100,17" fill="none" stroke="#ff6b6b" stroke-width="1.5"/></svg></div>
+            <div class="gritt-mock__kpi-sub">Likes · Comments · Shares</div>
           </div>
           <div class="gritt-mock__kpi">
+            <div class="gritt-mock__kpi-badge">IG · TK · FB</div>
             <div class="gritt-mock__kpi-label">Seguidores</div>
             <div class="gritt-mock__kpi-value">+412</div>
             <div class="gritt-mock__kpi-delta">↑ +22.5%</div>
-            <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,16 15,14 30,13 45,11 60,8 75,9 90,5 100,4" fill="none" stroke="#D4FF3D" stroke-width="1.5"/></svg></div>
+            <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,16 15,14 30,13 45,11 60,8 75,9 90,5 100,4" fill="none" stroke="#D4FF3D" stroke-width="1.5"/></svg>
+            </div>
+            <div class="gritt-mock__kpi-sub">Base total 48.2K</div>
           </div>
         </div>
 
+        <!-- Chart + globe -->
         <div class="gritt-mock__chart-area">
           <div class="gritt-mock__chart">
             <div class="gritt-mock__chart-head">
@@ -213,6 +390,73 @@
             </div>
           </div>
         </div>
+
+        <!-- Top publicaciones -->
+        <div class="gritt-mock__section-head">
+          <span class="gritt-mock__section-title">Top publicaciones</span>
+          <span class="gritt-mock__section-meta">↑ 3 de 24 posts</span>
+        </div>
+        <div class="gritt-mock__posts">
+          <div class="gritt-mock__post">
+            <div class="gritt-mock__post-thumb"><span class="gritt-mock__post-thumb-icon">IG · Reel</span></div>
+            <div class="gritt-mock__post-body">
+              <div class="gritt-mock__post-cap">Última milla en 24h: así entregamos antes del almuerzo</div>
+              <div class="gritt-mock__post-metrics"><span><strong>84K</strong>views</span><span><strong>3.2K</strong>likes</span></div>
+            </div>
+          </div>
+          <div class="gritt-mock__post">
+            <div class="gritt-mock__post-thumb gritt-mock__post-thumb--2"><span class="gritt-mock__post-thumb-icon">TK · Video</span></div>
+            <div class="gritt-mock__post-body">
+              <div class="gritt-mock__post-cap">Behind the scenes: cómo rutamos 400 paquetes en Bogotá</div>
+              <div class="gritt-mock__post-metrics"><span><strong>52K</strong>views</span><span><strong>1.8K</strong>likes</span></div>
+            </div>
+          </div>
+          <div class="gritt-mock__post">
+            <div class="gritt-mock__post-thumb gritt-mock__post-thumb--3"><span class="gritt-mock__post-thumb-icon">IG · Carousel</span></div>
+            <div class="gritt-mock__post-body">
+              <div class="gritt-mock__post-cap">Nuevo centro de operaciones en Medellín. Fotos del equipo.</div>
+              <div class="gritt-mock__post-metrics"><span><strong>31K</strong>views</span><span><strong>1.1K</strong>likes</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights + Budget -->
+        <div class="gritt-mock__insight-row">
+          <div class="gritt-mock__insights">
+            <div class="gritt-mock__chart-head">
+              <span class="gritt-mock__chart-title">Insights · 3 hallazgos</span>
+              <span class="gritt-mock__chart-title" style="color:#D4FF3D">Auto-generados</span>
+            </div>
+            <div class="gritt-mock__insight-item">
+              <span class="gritt-mock__insight-num">01</span>
+              <span class="gritt-mock__insight-text">Los <strong>reels de operaciones</strong> ganan 2.3× más views que los posts estáticos. Vale la pena duplicar producción.</span>
+            </div>
+            <div class="gritt-mock__insight-item">
+              <span class="gritt-mock__insight-num">02</span>
+              <span class="gritt-mock__insight-text">La <strong>audiencia 25-34</strong> creció 18% esta semana. Es tu segmento de contratación B2B.</span>
+            </div>
+            <div class="gritt-mock__insight-item">
+              <span class="gritt-mock__insight-num">03</span>
+              <span class="gritt-mock__insight-text">Las interacciones bajaron porque pausaste <strong>stories</strong> 3 días. Normal.</span>
+            </div>
+          </div>
+          <div class="gritt-mock__budget">
+            <div class="gritt-mock__chart-head">
+              <span class="gritt-mock__chart-title">Inversión · Pauta</span>
+              <span class="gritt-mock__chart-title">Semana 42</span>
+            </div>
+            <div class="gritt-mock__budget-label">Gastado esta semana</div>
+            <div class="gritt-mock__budget-value">$ 1.2M</div>
+            <div class="gritt-mock__budget-bar"><div class="gritt-mock__budget-fill" style="width:68%"></div></div>
+            <div class="gritt-mock__budget-split"><span><strong>68%</strong> del presupuesto</span><span>$ 1.76M total</span></div>
+          </div>
+        </div>
+
+        <!-- Report footer -->
+        <div class="gritt-mock__report-foot">
+          <span>Generado por <strong>Gritt Reports</strong> · 20 oct 2026</span>
+          <span>Próximo reporte · Lun 27 oct · 9 AM</span>
+        </div>
       </div>
     </div>
   </div>
@@ -222,75 +466,125 @@
     <div class="cblock">
       <div class="cblock__label">Contexto</div>
       <h2 class="cblock__title">El reporte semanal que arruina las semanas de los estudios.</h2>
-      <p class="cblock__text">En estudios chicos y agencias boutique, el reporte semanal de redes sociales se arma a mano: capturas de Meta Business Suite, Excel con fórmulas frágiles, un PDF exportado que se ve amateur y se abre poco. Hay competencia:  <strong>Looker Studio</strong> es potente pero frío y necesita un data engineer; <strong>Metricool</strong> y los demás son genéricos y no cargan la marca del estudio. El reporte termina siendo o complejo, o un pdf templatizado.</p>
-      <p class="cblock__text">Gritt Reports apunta a ese hueco: <strong>un reporte web bonito, animado y compartible por link</strong>, con la identidad del estudio, pensado para que el cliente lo abra desde el celular los lunes a la mañana sin descargar nada. El estudio deja de perder una tarde cada semana componiendo capturas en PowerPoint.</p>
-    </div>
+      <p class="cblock__text">Capturas de Meta Business Suite, Excel frágil, un PDF que se ve amateur y se abre poco. <strong>Looker Studio</strong> es frío y necesita un data engineer. <strong>Metricool</strong> es genérico y no carga la marca del estudio. Hay un hueco: un reporte web animado, con la identidad del estudio, pensado para abrir desde el celular.</p>
 
-    <div class="cblock">
-      <div class="cblock__label">Posicionamiento</div>
-      <h2 class="cblock__title">Entre Looker Studio y Metricool, un hueco con identidad.</h2>
-      <p class="cblock__text">La hipótesis es simple: hay un segmento intermedio —estudios creativos con 3-20 clientes, demasiado chicos para montar BI serio y demasiado premium para entregar un dashboard genérico— que paga por tener reportes que <strong>se vean como su marca</strong> sin tener que diseñarlos a mano cada semana.</p>
-      <p class="cblock__text">Gritt no compite con Looker. Compite con <strong>la tarde del viernes</strong> que el estudio pierde preparando el reporte, y con la impresión que deja un PDF genérico cuando el cliente paga 3M al mes por un servicio premium.</p>
+      <details class="cblock__more">
+        <summary>Más contexto · posicionamiento</summary>
+        <div class="cblock__more-body">
+          <p class="cblock__text">Gritt Reports no compite con Looker. Compite con <strong>la tarde del viernes</strong> que el estudio pierde preparando el reporte, y con la impresión que deja un PDF genérico cuando el cliente paga millones mensuales por un servicio premium.</p>
+          <p class="cblock__text">El segmento intermedio son estudios con 3-20 clientes, demasiado chicos para montar BI serio y demasiado premium para entregar un dashboard genérico. Pagan por reportes que <strong>se vean como su marca</strong>, sin diseñarlos a mano cada semana.</p>
+        </div>
+      </details>
     </div>
 
     <div class="cblock">
       <div class="cblock__label">Decisión · 01</div>
       <h2 class="cblock__title">Reporte editorial, no dashboard admin.</h2>
-      <p class="cblock__text">La dirección visual arranca de un rechazo deliberado al <em>admin template genérico</em> (Material, shadcn por defecto, Chakra). Gritt Reports se diseña como una <strong>pieza editorial premium</strong>: paleta negra cálida <code>#1d1d1b</code>, acento lima/amarillo eléctrico, blanco. Modo oscuro como principal y modo claro como alternativo. Mucho aire, jerarquía tipográfica clara y <strong>números grandes como protagonistas</strong>.</p>
-      <p class="cblock__text">Las animaciones son cortas y con propósito: entrada escalonada de las KPI cards, conteo de números al cargar, transición suave en hover. Nada que estorbe la lectura. Framer Motion con respeto por <code>prefers-reduced-motion</code>. El criterio es: si el cliente abre el link desde el celular en el bus, lo tiene que entender en 15 segundos.</p>
+      <p class="cblock__text">Rechazo deliberado al admin template genérico. Negro cálido <code>#1d1d1b</code>, acento lima, blanco. Mucho aire, jerarquía clara, <strong>números grandes como protagonistas</strong>. Animaciones cortas con propósito, no decorativas.</p>
+
+      <details class="cblock__more">
+        <summary>Más detalle · sistema de motion</summary>
+        <div class="cblock__more-body">
+          <p class="cblock__text">Entrada escalonada de las KPI cards, conteo de números al cargar, transición suave en hover. Framer Motion respetando <code>prefers-reduced-motion</code>. El criterio es: si el cliente abre el link desde el celular en el bus, lo tiene que entender en 15 segundos.</p>
+        </div>
+      </details>
     </div>
 
     <div class="cblock">
       <div class="cblock__label">Decisión · 02</div>
-      <h2 class="cblock__title">Capa de datos abstraída: construir el producto antes que la API.</h2>
-      <p class="cblock__text">La UI entera se desarrolla contra una interfaz <code>MetricsProvider</code> tipada en TypeScript. La implementación actual, <code>MockMetricsProvider</code>, sirve datos ficticios inspirados en el caso Lanz. La futura <code>MetaMetricsProvider</code> va a consumir Meta Graph API sin tocar un solo componente de la UI.</p>
-      <p class="cblock__text">Decisión de scope: <strong>las integraciones reales están fuera del MVP</strong>. Se diseñan como interfaz, se documentan en el README y se dejan listas para implementarse. El MVP demuestra <em>criterio de producto y diseño</em>; no es necesario pelearme con OAuth de Meta esta semana para probar que el reporte convence al cliente.</p>
-      <ul class="cblock__list">
-        <li><strong>Modelo:</strong> <code>Client</code>, <code>Report</code>, <code>Metric</code> (serie diaria), <code>Campaign</code>, <code>AudienceBreakdown</code> (edad, género, ubicación), <code>Insight</code>.</li>
-        <li><strong>Ruta estrella:</strong> <code>/r/[slug]</code> — reporte público, estática, sin auth, compartible por link.</li>
-        <li><strong>Admin:</strong> <code>/admin</code> con mock de auth, lista de clientes, historial y formulario de creación de reporte.</li>
-        <li><strong>Email preview:</strong> <code>/admin/email-preview/[slug]</code> para iterar sobre el email semanal antes del render real.</li>
-      </ul>
+      <h2 class="cblock__title">Capa de datos abstraída: diseñar antes que integrar.</h2>
+      <p class="cblock__text">La UI se construye contra una interfaz <code>MetricsProvider</code> tipada. <code>MockMetricsProvider</code> sirve datos ficticios de Lanz hoy; <code>MetaMetricsProvider</code> conectará Meta Graph API mañana sin tocar un componente.</p>
+
+      <div class="gritt-arch" aria-label="Arquitectura de la capa de datos">
+        <div class="gritt-arch__node">
+          <div class="gritt-arch__tag">Hoy</div>
+          <div class="gritt-arch__name">MockMetricsProvider</div>
+          <div class="gritt-arch__sub">seed · Lanz</div>
+        </div>
+        <div class="gritt-arch__flow">
+          <span class="gritt-arch__arrow">→</span>
+          <div class="gritt-arch__interface">interface MetricsProvider</div>
+          <span class="gritt-arch__arrow">→</span>
+        </div>
+        <div class="gritt-arch__ui">
+          <div class="gritt-arch__tag">Siempre</div>
+          <div class="gritt-arch__name">UI</div>
+          <div class="gritt-arch__sub">no se entera</div>
+        </div>
+        <div class="gritt-arch__future">
+          <div class="gritt-arch__tag">Mañana</div>
+          <div class="gritt-arch__name">MetaMetricsProvider</div>
+          <div class="gritt-arch__sub">Meta Graph API</div>
+        </div>
+      </div>
+
+      <details class="cblock__more">
+        <summary>Más detalle · modelo y rutas</summary>
+        <div class="cblock__more-body">
+          <p class="cblock__text">Decisión de scope: <strong>las integraciones reales están fuera del MVP</strong>. Se diseñan como interfaz y se dejan listas para implementarse. El MVP demuestra criterio de producto y diseño; no es necesario pelearme con OAuth de Meta esta semana para probar que el reporte convence al cliente.</p>
+          <ul class="cblock__list">
+            <li><strong>Modelo:</strong> <code>Client</code>, <code>Report</code>, <code>Metric</code> (serie diaria), <code>Campaign</code>, <code>AudienceBreakdown</code> (edad, género, ubicación), <code>Insight</code>.</li>
+            <li><strong>Ruta estrella:</strong> <code>/r/[slug]</code> — reporte público, sin auth, compartible por link.</li>
+            <li><strong>Admin:</strong> <code>/admin</code> con mock de auth, lista de clientes, historial y creación de reporte.</li>
+            <li><strong>Email preview:</strong> <code>/admin/email-preview/[slug]</code> para iterar sobre el render del email semanal.</li>
+          </ul>
+        </div>
+      </details>
     </div>
 
     <div class="cblock">
       <div class="cblock__label">Decisión · 03</div>
-      <h2 class="cblock__title">Mini design system como primer entregable.</h2>
-      <p class="cblock__text">Antes de construir el reporte, construyo el sistema. Tokens en CSS variables con Tailwind: color, tipografía, espaciado, radios, sombras, motion (duraciones y easings). Componentes base reutilizables: <code>KpiCard</code>, <code>ChartCard</code>, <code>Delta</code>, <code>Badge</code>, <code>Skeleton</code>, <code>EmptyState</code>, <code>Button</code>.</p>
-      <p class="cblock__text">La ruta <code>/system</code> expone tokens y componentes como demo navegable. <strong>Es parte del case study, no un anexo técnico</strong>: para una vacante de Design Engineer, el design system es la prueba más honesta de cómo pienso un producto antes de pintarlo.</p>
+      <h2 class="cblock__title">Primero el sistema, después el reporte.</h2>
+      <p class="cblock__text">Tokens Tailwind + componentes base (<code>KpiCard</code>, <code>ChartCard</code>, <code>Delta</code>, <code>Badge</code>, <code>Skeleton</code>) viven en <code>/system</code> como demo navegable. Para una vacante de Design Engineer, el design system es la prueba más honesta.</p>
       <div class="gritt-stack">
         <span class="gritt-stack__pill">Next.js 14 · App Router</span>
         <span class="gritt-stack__pill">TypeScript strict</span>
         <span class="gritt-stack__pill">Tailwind + tokens</span>
         <span class="gritt-stack__pill">Framer Motion</span>
         <span class="gritt-stack__pill">Recharts</span>
-        <span class="gritt-stack__pill">COBE (globo 3D)</span>
-        <span class="gritt-stack__pill">Phosphor Icons</span>
+        <span class="gritt-stack__pill">COBE</span>
+        <span class="gritt-stack__pill">Phosphor</span>
         <span class="gritt-stack__pill">Vercel</span>
       </div>
+
+      <details class="cblock__more">
+        <summary>Más detalle · componentes del sistema</summary>
+        <div class="cblock__more-body">
+          <p class="cblock__text">La ruta <code>/system</code> expone tokens y componentes como demo navegable. Es parte del case study, no un anexo técnico — el design system es la evidencia de cómo pienso un producto antes de pintarlo.</p>
+          <ul class="cblock__list">
+            <li><strong>Tokens:</strong> color, tipografía, espaciado, radios, sombras, motion (duraciones y easings).</li>
+            <li><strong>Primitivos:</strong> <code>Button</code>, <code>Badge</code>, <code>Delta</code>, <code>Skeleton</code>, <code>EmptyState</code>.</li>
+            <li><strong>Compuestos:</strong> <code>KpiCard</code>, <code>ChartCard</code>, <code>InsightCard</code>, <code>BudgetBar</code>.</li>
+          </ul>
+        </div>
+      </details>
     </div>
 
     <div id="status" class="gritt-status">
-      <div class="gritt-status__label">Estado actual · En construcción</div>
-      <h3>MVP en implementación. No hay URL pública todavía.</h3>
-      <p>El scaffolding de Next.js está en pie, tokens Tailwind inicializados y la interfaz <code>MetricsProvider</code> tipada. En trabajo activo: componentes base del design system y la ruta estrella <code>/r/[slug]</code> con datos del seed de Lanz.</p>
-      <p>El deploy a Vercel está planeado en el subdominio <code>gritt.buenhombre.design</code> una vez que el reporte público llegue a estado demostrable. Esta página se va a actualizar con screenshots reales del producto deployado y el link activo. <em>Decido mostrar el proceso en construcción porque la honestidad del estado vale más que una captura falsa.</em></p>
+      <div class="gritt-status__label">Estado · En construcción</div>
+      <h3>MVP en implementación. URL pública próximamente.</h3>
+      <p>Scaffolding Next.js en pie, tokens inicializados, interfaz <code>MetricsProvider</code> tipada. En trabajo activo: componentes base y ruta <code>/r/[slug]</code> con seed de Lanz. Deploy planeado en <code>gritt.buenhombre.design</code>.</p>
     </div>
 
     <div class="cblock">
       <div class="cblock__label">Hipótesis en validación</div>
       <ul class="cblock__list">
-        <li><strong>Un estudio creativo pequeño paga por reportes bonitos sin código.</strong> A validar: entregar la V1 a Lanz y a 2-3 estudios amigos y medir cuántos preferirían pagar antes que seguir componiendo PDFs.</li>
-        <li><strong>El link compartible gana al PDF.</strong> A validar: comparar tasa de apertura de un email con link vs un email con PDF adjunto cuando se envíen reportes reales.</li>
-        <li><strong>El reporte editorial se percibe más premium.</strong> A validar: contrastar reacciones de clientes finales (CEOs, marketing managers) entre Looker/Metricool y Gritt Reports con el mismo set de datos.</li>
+        <li><strong>Un estudio chico paga por reportes bonitos sin código.</strong> Validación: entregar V1 a Lanz y 2-3 estudios amigos.</li>
+        <li><strong>El link compartible gana al PDF.</strong> Validación: comparar tasa de apertura link vs. PDF adjunto.</li>
+        <li><strong>El reporte editorial se percibe más premium.</strong> Validación: contrastar reacciones de clientes finales entre Looker/Metricool y Gritt con los mismos datos.</li>
       </ul>
     </div>
 
     <div class="cblock">
       <div class="cblock__label">Roadmap</div>
       <h2 class="cblock__title">Qué viene después del MVP.</h2>
-      <p class="cblock__text">El MVP cubre el reporte público, el admin mínimo y el preview del email, todo con datos mock. El producto completo pide integraciones reales (<strong>Meta Graph API</strong>, TikTok Business, YouTube Analytics), <strong>cron semanal</strong> (lunes 9 AM), <strong>emails automáticos</strong> con links tokenizados y expiración, <strong>tracking de visitas</strong> al reporte, exportación a PDF, <strong>branding por cliente</strong> (logo, colores, dominios custom) y planes SaaS multi-tier (Starter / Professional / Enterprise con white-label).</p>
-      <p class="cblock__text">Nada de eso entra en el scope de esta primera iteración. El objetivo del MVP es responder una pregunta: <em>¿la hipótesis de posicionamiento se sostiene cuando el reporte está vivo?</em></p>
+      <div class="gritt-roadmap">
+        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">01</span>Meta Graph API · TikTok · YouTube</div>
+        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">02</span>Cron semanal · lunes 9 AM</div>
+        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">03</span>Emails con token + expiración</div>
+        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">04</span>Branding por cliente</div>
+        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">05</span>Multi-tenant · white-label</div>
+      </div>
     </div>
 
   </section>
