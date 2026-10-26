@@ -66,7 +66,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .hero h1 .line:nth-child(2) > span{animation-delay:.12s}
 .hero .lede{margin:34px 0 0;max-width:360px;font-size:17px;line-height:1.45;color:#eef2ff;animation:fade 1.2s .35s both}
 .hero .btn{margin-top:34px;animation:fade 1.2s .5s both}
-.hero .profile{right:7%;bottom:0;height:84%;width:auto;z-index:2;transform-origin:50% 100%;animation:fadeO 1.6s .2s both}
+.hero .profile{right:7%;bottom:0;height:84%;aspect-ratio:386/634;z-index:2;transform-origin:50% 100%;animation:fadeO 1.6s .2s both}
+.hero .profile img{position:relative;height:100%;width:100%;display:block}
+.hero .halo{position:absolute;left:54%;top:25%;width:110%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;border:2px solid rgba(240,244,255,.75);box-shadow:0 0 40px 8px rgba(214,226,255,.38),inset 0 0 46px 6px rgba(214,226,255,.26);background:radial-gradient(circle,rgba(190,206,255,.16) 0 58%,transparent 72%);filter:blur(.6px);animation:halo 7s ease-in-out infinite}
+@keyframes halo{50%{scale:1.035;opacity:.82}}
 @keyframes fadeO{from{opacity:0}to{opacity:1}}
 .hero .leaf{left:-50px;bottom:-120px;width:320px;z-index:7}
 .hero .leaf img{width:100%;filter:blur(4px);opacity:.85;rotate:-18deg}
@@ -82,14 +85,14 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 @keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 /* ---------- why ---------- */
-.why{background:var(--mist);color:var(--ink);min-height:1080px}
+.why{background:var(--mist);color:var(--ink);min-height:1080px;display:flex;flex-direction:column}
 .why .hills{left:0;bottom:0;width:100%;height:640px;object-fit:cover;object-position:center 30%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 38%);mask-image:linear-gradient(to bottom,transparent 0,#000 38%)}
 .why .inner{padding-top:280px;max-width:calc(640px + 7vw);padding-left:max(7vw,var(--gut))}
 .why h2{font-size:clamp(40px,5vw,76px)}
 .why .text{max-width:380px;display:flex;flex-direction:column;gap:14px;margin-top:36px}
 .why .text p{margin:0}
 .why .meditate{right:12%;bottom:170px;height:560px;width:auto;z-index:2}
-.why .breathe{position:absolute;z-index:6;left:max(7vw,var(--gut));bottom:200px;font-size:clamp(36px,4vw,60px);color:var(--paper)}
+.why .breathe{position:relative;z-index:6;margin:auto 0 200px;padding:80px 0 0 max(7vw,var(--gut));font-size:clamp(36px,4vw,60px);color:var(--paper)}
 
 /* ---------- formula ---------- */
 .formula{background:var(--cobalt);padding-block:270px 230px}
@@ -192,6 +195,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .badge i{width:22px;height:22px;border-radius:50%;background:var(--coral);display:grid;place-items:center;font-style:normal;color:var(--ink);font-weight:500;font-size:11px}
 
 /* ---------- phone ---------- */
+@media (max-width:1180px) and (min-width:761px){.why .meditate{right:3%;height:440px}}
 @media (max-width:760px){
   :root{--seam:100px;--seamH:110px}
   .rim{width:140%}
@@ -208,7 +212,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .why h2{font-size:36px}
   .why .meditate{position:relative;display:block;margin:30px auto 0;height:340px;right:auto;bottom:auto}
   .why .hills{height:560px}
-  .why .breathe{position:relative;left:auto;bottom:auto;padding-left:var(--gut);margin-top:40px;font-size:32px}
+  .why .breathe{padding:0 0 0 var(--gut);margin:40px 0 0;font-size:32px}
   .formula{padding-block:170px 150px}
   .formula .inner{gap:40px}
   .formula .head{flex-direction:column;gap:14px}
@@ -253,7 +257,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .socials a{justify-content:space-between;padding:0 18px}
 }
 @media (prefers-reduced-motion: reduce){
-  .hero h1 .line > span,.hero .lede,.hero .btn,.hero .profile{animation:none}
+  .hero h1 .line > span,.hero .lede,.hero .btn,.hero .profile,.hero .halo{animation:none}
   .layer,.ing .pic,.stack,.hand,.care .pair img{transform:none!important}
 }
 </style>
@@ -268,7 +272,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 <section class="sec hero" style="z-index:1">
   <img class="layer bg" src="img/bg-hero.webp" alt="" data-y="54" data-z="1.16,1.16">
   <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
-  <img class="layer profile" src="img/woman-profile.webp" alt="A woman in profile, eyes closed, taking a slow breath" data-y="70" data-z="0.95,1.08" data-down>
+  <div class="layer profile" data-y="70" data-z="0.95,1.08" data-down><span class="halo" aria-hidden="true"></span><img src="img/woman-profile.webp" alt="A woman in profile, eyes closed, taking a slow breath"></div>
   <div class="layer leaf" data-y="40" aria-hidden="true"><img src="img/botanical-1.webp" alt=""></div>
   <header>
     <span class="mark">HALORA LABS</span>
