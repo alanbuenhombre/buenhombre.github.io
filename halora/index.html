@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Halora — concept landing for a fictional calm-supplement brand. AI-generated illustrations (Google Flow), layered parallax, designed and built with Claude Code and reviewed in Figma by Alan Buenhombre.">
+<link rel="canonical" href="https://buenhombre.design/halora/">
+<meta property="og:title" content="Halora · AI concept landing · Alan Buenhombre">
+<meta property="og:description" content="Concept landing for a fictional brand: AI illustrations, layered parallax, desktop + mobile.">
+<meta property="og:url" content="https://buenhombre.design/halora/">
+<meta property="og:image" content="https://buenhombre.design/halora/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Halora · AI concept landing</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,200..500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500&display=swap">
+<style>
+/* Layout: full-bleed stacked folds, each cut by a grainy wave mask that overlaps the previous one; layers move at their own depth. Single deliberate look (cobalt + coral rim light), not theme-switched. */
+:root{
+  --ink:#13238a; --night:#0e1a6b; --cobalt:#13207a; --mist:#d4e2f8; --mist2:#dce7fa;
+  --paper:#e8edff; --soft:#c9d3ff; --peri:#8fa4ff; --coral:#ffc4b6; --coral-deep:#c4553f; --mid:#3a50c8;
+  --display:'Roboto Serif',Georgia,'Times New Roman',serif;
+  --accent-face:'Instrument Serif',Georgia,serif;
+  --body:'Inter Tight',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --gut:max(24px, env(safe-area-inset-left, 0px));
+  --gutR:max(24px, env(safe-area-inset-right, 0px));
+  --seam:150px; --seamH:180px;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html{background:var(--night)}
+body{background:var(--night);color:var(--paper);font-family:var(--body);font-size:15px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+.display{font-family:var(--display);font-variation-settings:'wdth' 52,'opsz' 144;font-weight:300;text-transform:uppercase;letter-spacing:-0.01em;line-height:.92;margin:0;text-wrap:balance}
+.hl{font-family:var(--accent-face);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-0.01em;font-variation-settings:normal}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;background:var(--paper);color:var(--ink);text-decoration:none;font-weight:500;font-size:13px;letter-spacing:.1em;border:0;cursor:pointer;transition:transform .3s ease, background .3s ease}
+.btn:hover{transform:translateY(-2px);background:#fff}
+.ghost{background:none;border:1px solid rgba(201,211,255,.45);color:#fff;letter-spacing:0;font-size:15px;font-weight:400}
+.ghost:hover{background:rgba(255,255,255,.08)}
+
+/* ---------- folds & seams ---------- */
+.sec{position:relative;overflow:hidden;isolation:isolate}
+.sec + .sec{margin-top:calc(var(--seam) * -1)}
+.sec.cut{-webkit-mask-size:110% var(--seamH),100% calc(100% - var(--seamH) + 2px);mask-size:110% var(--seamH),100% calc(100% - var(--seamH) + 2px);-webkit-mask-position:0% 0,0 100%;mask-position:0% 0,0 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.cut-a{-webkit-mask-image:url(img/seam-a.png),linear-gradient(#000,#000);mask-image:url(img/seam-a.png),linear-gradient(#000,#000)}
+.cut-b{-webkit-mask-image:url(img/seam-b.png),linear-gradient(#000,#000);mask-image:url(img/seam-b.png),linear-gradient(#000,#000)}
+.cut-c{-webkit-mask-image:url(img/seam-c.png),linear-gradient(#000,#000);mask-image:url(img/seam-c.png),linear-gradient(#000,#000)}
+.rim{position:absolute;top:0;left:0;width:110%;max-width:none;height:var(--seamH);z-index:8;pointer-events:none;opacity:.55}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:overlay;opacity:.3;z-index:5}
+.layer{position:absolute;will-change:transform}
+.bg{inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.inner{position:relative;z-index:6;padding-left:var(--gut);padding-right:var(--gutR)}
+
+/* ---------- hero ---------- */
+.hero{min-height:900px;background:#111d74}
+.hero header{position:relative;z-index:7;display:flex;align-items:center;justify-content:space-between;padding:28px max(40px,env(safe-area-inset-right,0px)) 0 max(40px,env(safe-area-inset-left,0px))}
+.hero header .mark{font-size:12px;letter-spacing:.18em}
+.menu{background:none;border:0;color:var(--paper);font:500 12px var(--body);letter-spacing:.18em;min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer}
+.hero .copy{position:relative;z-index:6;padding:150px 0 0 7%;max-width:780px}
+.hero h1{font-size:clamp(62px,10vw,156px);color:#e3e9ff}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line > span{display:inline-block;animation:rise 1.4s cubic-bezier(.2,.7,.1,1) both}
+.hero h1 .line:nth-child(2) > span{animation-delay:.12s}
+.hero .lede{margin:34px 0 0;max-width:360px;font-size:17px;line-height:1.45;color:#eef2ff;animation:fade 1.2s .35s both}
+.hero .btn{margin-top:34px;animation:fade 1.2s .5s both}
+.hero .profile{right:7%;bottom:0;height:84%;width:auto;z-index:2;transform-origin:50% 100%;animation:fadeO 1.6s .2s both}
+@keyframes fadeO{from{opacity:0}to{opacity:1}}
+.hero .leaf{left:-50px;bottom:-120px;width:320px;z-index:7}
+.hero .leaf img{width:100%;filter:blur(4px);opacity:.85;rotate:-18deg}
+.scroll-cue{position:absolute;z-index:7;left:50%;bottom:190px;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;text-decoration:none;min-height:44px;display:flex;align-items:center;gap:8px}
+.scroll-cue .arrow{display:inline-block;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.menu-panel{position:fixed;inset:0;z-index:60;background:rgba(14,26,107,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;flex-direction:column;justify-content:center;gap:10px;padding:calc(90px + env(safe-area-inset-top,0px)) max(7vw,var(--gutR)) calc(60px + env(safe-area-inset-bottom,0px)) max(7vw,var(--gut));animation:fadeO .35s ease both}
+.menu-panel a{font-family:var(--display);font-variation-settings:'wdth' 52,'opsz' 144;font-weight:300;text-transform:uppercase;font-size:clamp(44px,8vw,104px);line-height:1;color:var(--paper);text-decoration:none;display:flex;align-items:baseline;gap:18px;width:fit-content}
+.menu-panel a small{font-family:var(--body);font-size:12px;letter-spacing:.18em;color:var(--peri)}
+.menu-panel a:hover{color:var(--coral)}
+.menu-close{position:absolute;top:calc(28px + env(safe-area-inset-top,0px));right:max(40px,env(safe-area-inset-right,0px));background:none;border:1px solid rgba(201,211,255,.45);border-radius:999px;color:var(--paper);font:500 12px var(--body);letter-spacing:.18em;min-height:44px;padding:0 18px;cursor:pointer}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ---------- why ---------- */
+.why{background:var(--mist);color:var(--ink);min-height:1080px}
+.why .hills{left:0;bottom:0;width:100%;height:640px;object-fit:cover;object-position:center 30%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 38%);mask-image:linear-gradient(to bottom,transparent 0,#000 38%)}
+.why .inner{padding-top:280px;max-width:calc(640px + 7vw);padding-left:max(7vw,var(--gut))}
+.why h2{font-size:clamp(40px,5vw,76px)}
+.why .text{max-width:380px;display:flex;flex-direction:column;gap:14px;margin-top:36px}
+.why .text p{margin:0}
+.why .meditate{right:12%;bottom:170px;height:560px;width:auto;z-index:2}
+.why .breathe{position:absolute;z-index:6;left:max(7vw,var(--gut));bottom:200px;font-size:clamp(36px,4vw,60px);color:var(--paper)}
+
+/* ---------- formula ---------- */
+.formula{background:var(--cobalt);padding-block:270px 230px}
+.formula .head{display:flex;gap:32px;align-items:flex-start}
+.formula .head .eyebrow{padding-top:18px;color:var(--soft);white-space:nowrap}
+.formula h2{font-size:clamp(46px,7vw,108px);color:#b9c6ff}
+.formula .inner{padding-left:max(7vw,var(--gut));padding-right:max(7vw,var(--gutR));display:flex;flex-direction:column;gap:72px}
+.ingredients{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px}
+.ing{display:flex;flex-direction:column;gap:14px;min-width:0}
+.ing .pic{height:230px;display:flex;align-items:flex-end;justify-content:center;will-change:transform}
+.ing .pic img{max-height:220px}
+.ing .txt{border-top:1px solid rgba(232,237,255,.4);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.ing h3{font-size:32px;margin:0}
+.ing p{margin:0;font-size:14px;color:#dfe5ff}
+.formula .closer{margin:0 0 0 auto;max-width:420px}
+.formula .root{left:-150px;bottom:-190px;width:460px;z-index:7}
+.formula .root img{width:100%;filter:blur(5px);opacity:.75;rotate:-72deg}
+
+/* ---------- ritual ---------- */
+.ritual{background:var(--mist2);color:var(--ink);display:flex;flex-wrap:wrap;align-items:stretch;min-height:1050px}
+.ritual .figure{position:relative;z-index:2;flex:1 1 560px;min-height:900px;display:flex;align-items:flex-end;justify-content:center;padding-left:var(--gut)}
+.ritual .stack{position:relative;width:100%;max-width:720px;transform-origin:50% 100%;will-change:transform}
+.ritual .stack img{display:block;width:100%;height:auto}
+.ritual .stack .hand{position:absolute;inset:0;height:100%;transform-origin:40% 96%;will-change:transform}
+.ritual .copy{position:relative;z-index:6;flex:1 1 520px;min-width:0;padding:270px max(7vw,var(--gutR)) 220px 3%;display:flex;flex-direction:column;gap:44px}
+.ritual h2{font-size:clamp(46px,5.4vw,88px)}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:grid;grid-template-columns:72px 1fr;gap:16px;padding:22px 0;border-top:1px solid rgba(19,35,138,.25)}
+.steps li:last-child{border-bottom:1px solid rgba(19,35,138,.25)}
+.steps .num{font-size:44px;color:#4a5fd0}
+.steps h3{margin:0 0 6px;font-size:19px;font-weight:500}
+.steps h3 .hl{font-size:22px}
+.steps p{margin:0;font-size:14px}
+
+/* ---------- beach ---------- */
+.beach{background:#e7dcec;color:var(--ink);min-height:1020px}
+.beach .walk{left:51.5%;bottom:-70px;height:min(760px,70vw);width:auto;z-index:2}
+.beach .dune{left:-6%;bottom:-150px;width:112%;max-width:none;height:auto;z-index:7}
+.beach .inner{padding-top:270px;padding-left:max(7vw,var(--gut));max-width:calc(760px + 7vw)}
+.beach h2{font-size:clamp(52px,7.4vw,120px);margin-top:22px}
+.beach p{max-width:360px;margin:22px 0 0}
+
+/* ---------- shop ---------- */
+.shop{background:#0f1a66;min-height:1030px;display:flex;align-items:center;justify-content:flex-end;padding-top:150px}
+.shop .scene{inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:80% center;transform-origin:28% 60%}
+.shop .scrim{position:absolute;inset:0;z-index:3;background:linear-gradient(to left,rgba(15,26,102,.82) 0%,rgba(15,26,102,.55) 30%,rgba(15,26,102,0) 58%)}
+.shop .copy{position:relative;z-index:6;width:460px;max-width:100%;margin-right:max(6vw,var(--gutR));padding:64px 0;display:flex;flex-direction:column;gap:26px}
+.shop .copy .eyebrow{color:var(--soft)}
+.shop h2{font-size:clamp(46px,5.6vw,92px)}
+.shop p{margin:0}
+.shop .ctas{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.shop .ctas a:not(.btn){font-size:13px;letter-spacing:.08em;min-height:44px;display:flex;align-items:center}
+
+/* ---------- care ---------- */
+.care{background:var(--mist);color:var(--ink);text-align:center;padding-block:260px 150px}
+.care .inner{display:flex;flex-direction:column;align-items:center;gap:36px}
+.care h2{font-size:clamp(40px,5.4vw,84px);max-width:980px}
+.care p{margin:0;max-width:440px}
+.care .pair{position:relative;width:820px;max-width:100%;aspect-ratio:1101/768;-webkit-mask-image:linear-gradient(to bottom,#000 58%,rgba(0,0,0,.55) 78%,transparent 97%);mask-image:linear-gradient(to bottom,#000 58%,rgba(0,0,0,.55) 78%,transparent 97%)}
+.care .pair img{position:absolute;inset:0;width:100%;height:100%;will-change:transform}
+.care .pair .back{opacity:.6}
+
+/* ---------- footer ---------- */
+.foot{background:var(--night);color:var(--soft);padding-block:240px 40px}
+.foot .inner{padding-left:max(7vw,var(--gut));padding-right:max(7vw,var(--gutR));display:flex;flex-direction:column;gap:64px}
+.foot .top{display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start}
+.foot .brand{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:32px}
+.foot .word{font-size:clamp(84px,13vw,200px);color:var(--peri);line-height:.82}
+.notice{max-width:720px;border:1px solid rgba(201,211,255,.35);border-radius:14px;padding:24px 28px;display:grid;grid-template-columns:44px 1fr;gap:18px;background:rgba(255,255,255,.04)}
+.notice .lab{font-size:11px;font-weight:500;letter-spacing:.18em;color:var(--coral)}
+.notice p{margin:0;font-size:13px;line-height:1.55}
+.notice p.lead{font-size:14px;color:#e3e9ff}
+.notice .txt{display:flex;flex-direction:column;gap:10px}
+.news{flex:1 1 340px;max-width:420px;display:flex;flex-direction:column;gap:14px;padding-top:12px}
+.news h3{font-size:40px;color:var(--paper)}
+.news p{margin:0;font-size:14px}
+.news .row{display:flex;gap:8px;flex-wrap:wrap}
+.news input{flex:1 1 200px;min-height:52px;padding:0 18px;border-radius:999px;border:1px solid rgba(201,211,255,.5);background:rgba(255,255,255,.06);color:#fff;font:400 15px var(--body)}
+.news input::placeholder{color:#aab8f0}
+.news .done{font-size:13px;color:var(--coral)}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:40px;border-top:1px solid rgba(201,211,255,.25);padding-top:48px}
+.links nav{display:flex;flex-direction:column;gap:14px;font-size:15px}
+.links nav a{text-decoration:none;color:var(--paper)}
+.links nav a:hover{color:#fff;text-decoration:underline}
+.links .h{font-size:11px;font-weight:500;letter-spacing:.18em;color:var(--peri)}
+.follow{grid-column:1/-1;display:flex;flex-direction:column;gap:18px}
+.socials{display:flex;flex-wrap:wrap;gap:10px}
+.socials a{gap:10px}
+.socials a span{color:var(--coral)}
+.chips{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:11px;letter-spacing:.12em}
+.chips li{padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.07)}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid rgba(201,211,255,.25);padding-top:24px;font-size:12px}
+.legal nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+.legal nav a{color:var(--paper)}
+.credit{font-size:12px;line-height:1.6;color:#aab8f0;max-width:760px;margin:0}
+.credit strong{color:var(--paper);font-weight:500}
+
+/* portfolio badge */
+.badge{position:fixed;z-index:50;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:rgba(14,26,107,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(201,211,255,.25);font-size:12px;color:var(--paper);text-decoration:none}
+.badge i{width:22px;height:22px;border-radius:50%;background:var(--coral);display:grid;place-items:center;font-style:normal;color:var(--ink);font-weight:500;font-size:11px}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  :root{--seam:100px;--seamH:110px}
+  .rim{width:140%}
+  .sec.cut{-webkit-mask-size:140% var(--seamH),100% calc(100% - var(--seamH) + 2px);mask-size:140% var(--seamH),100% calc(100% - var(--seamH) + 2px)}
+  .hero{min-height:800px}
+  .hero header{padding-left:var(--gut);padding-right:var(--gutR)}
+  .hero .copy{padding:70px var(--gutR) 0 var(--gut)}
+  .hero .lede{max-width:250px;font-size:15px}
+  .hero .profile{right:-40px;height:400px}
+  .hero .leaf{width:190px;left:-70px}
+  .scroll-cue{display:none}
+  .why{min-height:0;padding-bottom:140px}
+  .why .inner{padding-top:170px;padding-right:var(--gutR)}
+  .why h2{font-size:36px}
+  .why .meditate{position:relative;display:block;margin:30px auto 0;height:340px;right:auto;bottom:auto}
+  .why .hills{height:560px}
+  .why .breathe{position:relative;left:auto;bottom:auto;padding-left:var(--gut);margin-top:40px;font-size:32px}
+  .formula{padding-block:170px 150px}
+  .formula .inner{gap:40px}
+  .formula .head{flex-direction:column;gap:14px}
+  .formula .head .eyebrow{padding-top:0}
+  .formula h2{font-size:44px}
+  .ingredients{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}
+  .ing .pic{height:120px}.ing .pic img{max-height:112px}
+  .ing h3{font-size:22px}.ing p{font-size:13px}
+  .formula .root{width:200px;top:120px;right:-60px}
+  .ritual{flex-direction:column-reverse;min-height:0}
+  .ritual .copy{padding:170px var(--gutR) 10px var(--gut);gap:26px}
+  .ritual h2{font-size:44px}
+  .steps li{grid-template-columns:44px 1fr;gap:12px;padding:16px 0}
+  .steps .num{font-size:30px}
+  .ritual .figure{min-height:0;flex:none;padding:0}
+  .beach{min-height:820px}
+  .beach .inner{padding-top:170px;padding-right:var(--gutR)}
+  .beach h2{font-size:50px}
+  .beach .walk{left:150px;bottom:-40px;height:340px}
+  .formula .root{width:260px;left:-70px;bottom:-110px}
+  .hero .leaf{bottom:-90px}
+  .beach .dune{left:-60%;width:220%;bottom:-30px}
+  .shop{display:block;min-height:0;padding-top:0}
+  .shop .scene{position:relative;display:block;left:0;width:100%;height:520px;object-position:42% center;-webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 100%);mask-image:linear-gradient(to bottom,#000 70%,transparent 100%)}
+  .shop .scrim{display:none}
+  .shop .copy{width:auto;margin:-60px 0 0;padding:0 var(--gutR) 160px var(--gut);gap:18px}
+  .shop h2{font-size:46px}
+  .shop .ctas{flex-direction:column;align-items:stretch}
+  .shop .ctas a:not(.btn){justify-content:center}
+  .care{padding-block:170px 120px}
+  .care .inner{gap:20px}
+  .care h2{font-size:40px}
+  .care .pair{width:120%;max-width:none}
+  .foot{padding-block:160px 90px}
+  .foot .inner{gap:40px}
+  .foot .word{font-size:96px}
+  .notice{grid-template-columns:1fr;padding:18px}
+  .notice svg{display:none}
+  .news h3{font-size:32px}
+  .links{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+  .socials{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .socials a{justify-content:space-between;padding:0 18px}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero h1 .line > span,.hero .lede,.hero .btn,.hero .profile{animation:none}
+  .layer,.ing .pic,.stack,.hand,.care .pair img{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter></svg>
+
+<main>
+<!-- 01 HERO -->
+<section class="sec hero" style="z-index:1">
+  <img class="layer bg" src="img/bg-hero.webp" alt="" data-y="54" data-z="1.16,1.16">
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
+  <img class="layer profile" src="img/woman-profile.webp" alt="A woman in profile, eyes closed, taking a slow breath" data-y="70" data-z="0.95,1.08" data-down>
+  <div class="layer leaf" data-y="40" aria-hidden="true"><img src="img/botanical-1.webp" alt=""></div>
+  <header>
+    <span class="mark">HALORA LABS</span>
+    <svg width="44" height="44" viewBox="0 0 44 44" role="img" aria-label="Halora logo"><circle cx="22" cy="22" r="15" fill="none" stroke="#e8edff" stroke-width="5"></circle><circle cx="22" cy="22" r="5" fill="#e8edff"></circle><circle cx="34" cy="9" r="3.5" fill="#e8edff"></circle></svg>
+    <button class="menu" id="menu-open" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-panel">MENU <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="2" r="1.3" fill="#e8edff"></circle><circle cx="2" cy="7" r="1.3" fill="#e8edff"></circle><circle cx="12" cy="7" r="1.3" fill="#e8edff"></circle><circle cx="7" cy="12" r="1.3" fill="#e8edff"></circle></svg></button>
+  </header>
+  <div class="copy" data-exit>
+    <h1 class="display"><span class="line"><span>Quiet mind,</span></span><span class="line"><span><span class="hl" style="color:var(--coral)">clear</span> days</span></span></h1>
+    <p class="lede">Botanical capsules for emotional balance — made for the people who <span class="hl" style="font-size:21px">carry</span> everyone else.</p>
+    <a class="btn" href="#shop">START YOUR RITUAL</a>
+  </div>
+  <a class="scroll-cue" href="#why">SCROLL DOWN <span class="arrow" aria-hidden="true">↓</span></a>
+</section>
+
+<!-- 02 WHY -->
+<section id="why" class="sec cut cut-a why" style="z-index:2">
+  <img class="layer hills" src="img/bg-hills.webp" alt="" data-y="50" data-z="1.12,1.12">
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
+  <img class="rim" src="img/rim-a.png" alt="">
+  <img class="layer meditate" src="img/woman-meditate.webp" alt="The same woman seated cross-legged in meditation, a soft halo behind her" data-y="70" data-z="1.08,0.95">
+  <div class="inner">
+    <h2 class="display" data-rise>Stress can’t be switched off, but it can be <span class="hl" style="color:var(--mid)">softened</span>, understood and met with care.</h2>
+    <div class="text">
+      <p>That’s where we come in. Halora is a daily ritual for nervous systems running on overtime — a calm baseline you build one morning at a time, without the fog.</p>
+      <p>Because looking after your mind isn’t a luxury. It’s what lets you keep showing up for the people and the work you love.</p>
+    </div>
+  </div>
+  <p class="display breathe">Breathe first.<br><span class="hl" style="color:var(--coral)">Always.</span></p>
+</section>
+
+<!-- 03 FORMULA -->
+<section id="formula" class="sec cut cut-b formula" style="z-index:3">
+  <img class="layer bg" src="img/bg-deep.webp" alt="" data-y="60" data-z="1.16,1.16">
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
+  <img class="rim" src="img/rim-b.png" alt="">
+  <div class="layer root" data-y="50" aria-hidden="true"><img src="img/botanical-0.webp" alt=""></div>
+  <div class="inner">
+    <div class="head" data-rise><span class="eyebrow">— 01</span><h2 class="display">The formula: a <span class="hl" style="color:var(--coral)">gentle</span> system for a restless mind</h2></div>
+    <div class="ingredients">
+      <article class="ing"><div class="pic" data-y="110"><img src="img/botanical-0.webp" alt="Ashwagandha root"></div><div class="txt"><h3 class="display">Ashwagandha</h3><p>An adaptogenic root used for centuries to help the body meet everyday stress with more steadiness.</p></div></article>
+      <article class="ing"><div class="pic" data-y="50"><img src="img/botanical-1.webp" alt="Green tea leaves"></div><div class="txt"><h3 class="display">L-Theanine</h3><p>The amino acid found in green tea, chosen for calm focus — relaxed, never drowsy.</p></div></article>
+      <article class="ing"><div class="pic" data-y="110"><img src="img/botanical-2.webp" alt="Saffron crocus"></div><div class="txt"><h3 class="display">Saffron</h3><p>A small dose of the world’s most precious spice, traditionally linked to a brighter mood.</p></div></article>
+      <article class="ing"><div class="pic" data-y="50"><img src="img/botanical-3.webp" alt="Magnesium crystal"></div><div class="txt"><h3 class="display">Magnesium</h3><p>Glycinate form, gentle on the stomach, supporting muscle relaxation and restful evenings.</p></div></article>
+    </div>
+    <p class="closer">Nothing to hide behind. Every ingredient is third-party tested, vegan and free of stimulants — so the only thing you notice is <span class="hl" style="font-size:19px">the quiet</span>.</p>
+  </div>
+</section>
+
+<!-- 04 RITUAL -->
+<section id="ritual" class="sec cut cut-c ritual" style="z-index:4">
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
+  <img class="rim" src="img/rim-c.png" alt="">
+  <div class="figure">
+    <div class="stack" data-y="90" data-z="0.95,1.05" data-down>
+      <img src="img/ritual-body.webp" alt="The woman smiles, holding the Halora bottle">
+      <img class="hand" src="img/ritual-hand.webp" alt="Her open hand offering a single blue capsule" data-hand>
+    </div>
+  </div>
+  <div class="copy">
+    <div data-rise style="display:flex;flex-direction:column;gap:18px">
+      <span class="eyebrow">— 02 · The ritual</span>
+      <h2 class="display">Thirty mornings to a <span class="hl" style="color:var(--mid)">calmer</span> baseline</h2>
+    </div>
+    <ol class="steps">
+      <li><span class="display num">I</span><div><h3>Arrive <span class="hl">· week one</span></h3><p>One capsule with breakfast. Notice where tension lives in your day — no fixing yet, just noticing.</p></div></li>
+      <li><span class="display num">II</span><div><h3>Settle <span class="hl">· weeks two–three</span></h3><p>Adaptogens build gradually. Pair your capsule with three slow breaths and let the routine do the work.</p></div></li>
+      <li><span class="display num">III</span><div><h3>Sustain <span class="hl">· week four</span></h3><p>A steadier baseline, not a different you. Keep going, pause or adjust — your rhythm, your call.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 05 HOW IT FEELS -->
+<section class="sec cut cut-a beach" style="z-index:5">
+  <img class="layer bg" src="img/loc-beach.webp" alt="" style="object-position:center 62%" data-y="18" data-z="1.24,1.06">
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
+  <img class="rim" src="img/rim-a.png" alt="">
+  <img class="layer walk" src="img/woman-walk.webp" alt="The woman walking along the beach at sunrise, arms wide open, shirt moving in the wind" data-y="30" data-x="50">
+  <img class="layer dune" src="img/dune-b.webp" alt="" data-y="80" data-down>
+  <div class="inner" data-rise>
+    <span class="eyebrow">— 03 · How it feels</span>
+    <h2 class="display">Lighter, <span class="hl" style="color:var(--coral-deep)">one</span> sunrise at a time.</h2>
+    <p>Not numb, not wired. Just more room to breathe — and to enjoy the things that ask for you.</p>
+  </div>
+</section>
+
+<!-- 06 SHOP -->
+<section id="shop" class="sec cut cut-b shop" style="z-index:6">
+  <img class="layer scene" src="img/scene-product.webp" alt="The Halora bottle on a stone pedestal between soft blue rocks" data-y="20" data-z="1.18,1.03">
+  <div class="scrim"></div>
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
+  <img class="rim" src="img/rim-b.png" alt="">
+  <div class="copy" data-rise>
+    <span class="eyebrow">— 04 · Daily calm</span>
+    <h2 class="display">One capsule. Every morning. <span class="hl" style="color:var(--coral)">That’s it.</span></h2>
+    <p>A 30-day supply delivered monthly. Pause, skip or cancel whenever you like — calm shouldn’t come with fine print.</p>
+    <div class="ctas"><a class="btn" href="#shop">START — $42 / MONTH</a><a href="#formula">See the formula</a></div>
+  </div>
+</section>
+
+<!-- 07 CARE -->
+<section class="sec cut cut-c care" style="z-index:7">
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
+  <img class="rim" src="img/rim-c.png" alt="">
+  <div class="inner">
+    <h2 class="display" data-rise>Care for the ones who <span class="hl" style="color:var(--mid)">care</span> for everyone.</h2>
+    <p>Nurses, parents, founders, friends on call. Halora is the small, steady thing you do for yourself first.</p>
+    <div class="pair">
+      <img class="back" src="img/care-back.webp" alt="" data-y="40">
+      <img src="img/care-hands.webp" alt="Two cupped hands holding a single glowing capsule" data-y="80" data-z="0.95,1.06">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="sec cut cut-a foot" style="z-index:8">
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"></rect></svg>
+  <img class="rim" src="img/rim-a.png" alt="">
+  <div class="inner">
+    <div class="top">
+      <div class="brand">
+        <p class="display word">Halora<span class="hl" style="color:var(--coral)">.</span></p>
+        <div class="notice" role="note" aria-label="Health notice">
+          <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="none" stroke="#ffc4b6" stroke-width="1.5"></circle><path d="M22 13v12" stroke="#ffc4b6" stroke-width="2" stroke-linecap="round"></path><circle cx="22" cy="31" r="1.6" fill="#ffc4b6"></circle></svg>
+          <div class="txt">
+            <span class="lab">HEALTH NOTICE</span>
+            <p class="lead">These statements have not been evaluated by the Food and Drug Administration. Halora is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease, and it is not a substitute for therapy or prescribed medication.</p>
+            <p>Talk to your doctor before use if you are pregnant or nursing, under 18, or taking any medication — especially antidepressants, anti-anxiety or sleep medication.</p>
+            <p>In crisis or thinking about harming yourself? In the US, call or text <strong style="color:#fff">988</strong> any time, or contact your local emergency number.</p>
+          </div>
+        </div>
+      </div>
+      <form class="news" id="news">
+        <h3 class="display">Calm <span class="hl" style="color:var(--coral)">notes</span></h3>
+        <p>One gentle email a month: rituals, research and early access. No noise.</p>
+        <label for="news-email" style="font-size:12px">Email address</label>
+        <div class="row"><input id="news-email" type="email" placeholder="you@example.com" autocomplete="email" required><button class="btn" type="submit">SUBSCRIBE</button></div>
+        <p class="done" id="news-done" hidden>Thanks — this is a concept page, so nothing was sent.</p>
+      </form>
+    </div>
+    <div class="links">
+      <nav aria-label="Shop"><span class="h">SHOP</span><a href="#shop">Daily Calm</a><a href="#shop">Subscribe &amp; save</a><a href="#shop">Gift a ritual</a><a href="#shop">Refills</a></nav>
+      <nav aria-label="Learn"><span class="h">LEARN</span><a href="#formula">The formula</a><a href="#ritual">The ritual</a><a href="#formula">Ingredients &amp; testing</a><a href="#why">Journal</a></nav>
+      <nav aria-label="Support"><span class="h">SUPPORT</span><a href="#shop">FAQ</a><a href="#shop">Shipping &amp; returns</a><a href="#shop">Manage subscription</a><a href="#shop">Contact us</a></nav>
+      <nav aria-label="Company"><span class="h">COMPANY</span><a href="#why">About Halora</a><a href="#formula">Our standards</a><a href="#why">Careers</a><a href="#why">Press</a></nav>
+      <div class="follow">
+        <span class="h" style="font-size:11px;font-weight:500;letter-spacing:.18em;color:var(--peri)">FOLLOW THE CALM</span>
+        <div class="socials"><a class="btn ghost" href="#news">Instagram <span aria-hidden="true">↗</span></a><a class="btn ghost" href="#news">TikTok <span aria-hidden="true">↗</span></a><a class="btn ghost" href="#news">YouTube <span aria-hidden="true">↗</span></a><a class="btn ghost" href="#news">Pinterest <span aria-hidden="true">↗</span></a></div>
+        <p style="margin:0;font-size:14px">Share your morning with <span class="hl" style="font-size:18px;color:var(--coral)">#OneCalmMorning</span></p>
+        <ul class="chips"><li>THIRD-PARTY TESTED</li><li>VEGAN</li><li>NON-GMO</li><li>STIMULANT-FREE</li></ul>
+      </div>
+    </div>
+    <p class="credit"><strong>About this page.</strong> Halora is a fictional brand created as a concept landing. Art direction &amp; design by Alan Buenhombre. Illustrations generated with Google Flow (Nano Banana Pro) from a single character reference; layered for parallax and built with Claude.</p>
+    <div class="legal">
+      <span>© 2026 Halora Labs · concept</span>
+      <nav aria-label="Legal"><a href="#why">Privacy</a><a href="#why">Terms</a><a href="#why">Accessibility</a><a href="#why">Cookie settings</a><a href="#formula">Supplement facts &amp; warnings</a></nav>
+      <button class="btn ghost" type="button" style="min-height:40px;font-size:12px;padding:0 16px">United States · USD</button>
+    </div>
+  </div>
+</footer>
+</main>
+
+<nav class="menu-panel" id="menu-panel" aria-label="Main menu" hidden>
+  <button class="menu-close" id="menu-close" type="button">CLOSE ✕</button>
+  <a href="#why"><small>01</small>Why Halora</a>
+  <a href="#formula"><small>02</small>The formula</a>
+  <a href="#ritual"><small>03</small>The ritual</a>
+  <a href="#shop"><small>04</small>Shop <span class="hl" style="color:var(--coral);text-transform:none">daily calm</span></a>
+</nav>
+
+<a class="badge" href="../halora.html"><i>AI</i>Concept landing · Alan Buenhombre</a>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('news').addEventListener('submit', function(e){ e.preventDefault(); document.getElementById('news-done').hidden = false; });
+
+  let lenis = null;
+  if (!reduce) { try { if (window.Lenis) { lenis = new Lenis({ lerp: 0.09, smoothWheel: true }); } } catch (e) { lenis = null; } }
+
+  const panel = document.getElementById('menu-panel');
+  const openBtn = document.getElementById('menu-open');
+  const closeBtn = document.getElementById('menu-close');
+  function openMenu(){ panel.hidden = false; openBtn.setAttribute('aria-expanded','true'); if (lenis) lenis.stop(); document.documentElement.style.overflow = 'hidden'; closeBtn.focus(); }
+  function closeMenu(){ panel.hidden = true; openBtn.setAttribute('aria-expanded','false'); if (lenis) lenis.start(); document.documentElement.style.overflow = ''; }
+  openBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', () => { closeMenu(); openBtn.focus(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { closeMenu(); openBtn.focus(); } });
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    closeMenu();
+    if (target) { e.preventDefault(); if (lenis) lenis.scrollTo(target); else target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+  }));
+
+  if (reduce) return;
+
+  const secs = [...document.querySelectorAll('.sec')];
+  const items = secs.map(sec => ({
+    sec,
+    cut: sec.classList.contains('cut'),
+    rim: sec.querySelector('.rim'),
+    layers: [...sec.querySelectorAll('[data-y],[data-z],[data-x]')].map(el => ({
+      el, y: +(el.dataset.y || 0), x: +(el.dataset.x || 0), down: el.hasAttribute('data-down'),
+      z: (el.dataset.z || '').split(',').map(Number)
+    })),
+    hand: sec.querySelector('[data-hand]'),
+    rise: [...sec.querySelectorAll('[data-rise]')],
+    exit: sec.querySelector('[data-exit]')
+  }));
+
+  function frame(){
+    const vh = window.innerHeight;
+    const k = window.innerWidth < 760 ? 0.45 : 1;
+    for (const it of items){
+      const r = it.sec.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) continue;
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      const t = p * 2 - 1;
+      for (const L of it.layers){
+        const s = L.z.length === 2 && !isNaN(L.z[0]) ? L.z[0] + (L.z[1] - L.z[0]) * p : 1;
+        const ty = L.down ? L.y * Math.max(0, 1 - p * 1.6) * k : -L.y * t * k;
+        L.el.style.transform = 'translate3d(' + (L.x * t * k).toFixed(1) + 'px,' + ty.toFixed(1) + 'px,0) scale(' + s.toFixed(4) + ')';
+      }
+      if (it.hand){
+        const hs = 0.96 + 0.1 * p;
+        it.hand.style.transform = 'translate3d(' + (18 * t * k).toFixed(1) + 'px,' + (-22 * t * k).toFixed(1) + 'px,0) scale(' + hs.toFixed(4) + ')';
+      }
+      if (it.cut){
+        const mp = (p * 100).toFixed(2) + '% 0, 0 100%';
+        it.sec.style.webkitMaskPosition = mp; it.sec.style.maskPosition = mp;
+        if (it.rim) it.rim.style.transform = 'translateX(' + (-9.09 * p).toFixed(2) + '%)';
+      }
+      const enter = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.55)));
+      for (const el of it.rise){ el.style.transform = 'translateY(' + ((1 - enter) * 48).toFixed(1) + 'px)'; }
+      if (it.exit){ const e = Math.max(0, -r.top / r.height); it.exit.style.transform = 'translateY(' + (-140 * e).toFixed(1) + 'px)'; it.exit.style.opacity = (1 - 0.8 * e).toFixed(3); }
+    }
+  }
+
+  function loop(time){ if (lenis) lenis.raf(time); frame(); requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); const target = id.length > 1 && document.querySelector(id);
+    if (target && lenis){ e.preventDefault(); lenis.scrollTo(target, { offset: 0 }); }
+  }));
+})();
+</script>
+
+</body>
+</html>
