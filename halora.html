@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Halora · Landing animada · Alan Buenhombre</title>
-<meta name="description" content="Halora: concepto de marca y landing animada — dirección de arte, diseño en Figma, parallax por capas y desarrollo con Claude Code, en un flujo de diseño a código." />
+<meta name="description" content="Halora: concepto de marca y landing animada, hecha con un proceso propio con Claude — dirección de arte, assets, revisión en Claude o Figma, animación y publicación desde GitHub." />
 <link rel="canonical" href="https://buenhombre.design/halora.html" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta property="og:title" content="Halora · Landing animada · Alan Buenhombre" />
@@ -36,6 +36,12 @@
   .chead__play-row a:not(.play-cta):hover{color:#fff;border-color:#fff}
 
   .cbody .cmediawrap{margin:64px 0}
+  .hl-steps{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:0}
+  .hl-step{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-top:1px dotted rgba(255,255,255,.14)}
+  .hl-step:last-child{border-bottom:1px dotted rgba(255,255,255,.14)}
+  .hl-step__n{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.18em;color:var(--accent,#C89B5C);padding-top:4px}
+  .hl-step h3{font-family:'Manrope',sans-serif;font-weight:400;font-size:1.08rem;letter-spacing:-.01em;color:#fff;margin:0 0 6px}
+  .hl-step p{font-family:'Manrope',sans-serif;font-size:.93rem;line-height:1.6;color:rgba(255,255,255,.72);margin:0}
   .hl-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
   .hl-tools span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
        color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:7px 14px}
@@ -55,62 +61,62 @@
   </nav>
 
   <header class="chead">
-    <div class="chead__kicker">Landing animada · Concepto de marca · 2026</div>
+    <div class="chead__kicker" data-i18n-html="hl.kicker">Landing animada · Concepto de marca · 2026</div>
     <h1 class="chead__title">Halora</h1>
-    <p class="chead__sub">Una marca de bienestar creada como <strong>ejercicio de diseño</strong>: de la dirección de arte al sitio animado, en un solo <strong>flujo de diseño a código</strong>.</p>
+    <p class="chead__sub" data-i18n-html="hl.sub">Una marca de bienestar creada como <strong>ejercicio de diseño</strong>, y la prueba de un proceso propio: de la dirección de arte al sitio publicado, trabajando <strong>directamente con Claude</strong>.</p>
     <div class="chead__play-row">
       <a href="halora/" class="play-cta">
         <span class="play-cta__label">Live</span>
-        <span>Ver landing</span>
+        <span data-i18n-html="hl.cta">Ver landing</span>
         <span class="play-cta__arrow">↗</span>
       </a>
     </div>
   </header>
 
   <div class="cmeta">
-    <div><div class="cmeta__k">Rol</div><div class="cmeta__v">Dirección de arte · Diseño · Motion · Desarrollo</div></div>
-    <div><div class="cmeta__k">Herramientas</div><div class="cmeta__v">Figma · Claude Code</div></div>
-    <div><div class="cmeta__k">Año</div><div class="cmeta__v">2026</div></div>
-    <div><div class="cmeta__k">Tipo</div><div class="cmeta__v">Concepto de marca · Ejercicio de diseño</div></div>
+    <div><div class="cmeta__k" data-i18n-html="hl.m.role.k">Rol</div><div class="cmeta__v" data-i18n-html="hl.m.role">Dirección de arte · Diseño · Motion · Desarrollo</div></div>
+    <div><div class="cmeta__k" data-i18n-html="hl.m.tools.k">Herramientas</div><div class="cmeta__v" data-i18n-html="hl.m.tools">Claude · Figma · GitHub</div></div>
+    <div><div class="cmeta__k" data-i18n-html="hl.m.year.k">Año</div><div class="cmeta__v">2026</div></div>
+    <div><div class="cmeta__k" data-i18n-html="hl.m.type.k">Tipo</div><div class="cmeta__v" data-i18n-html="hl.m.type">Concepto de marca · Ejercicio de diseño</div></div>
   </div>
 
-  <div class="cmediawrap"><div class="cshot cshot--hero"><img src="halora/og.jpg" alt="Halora — hero de la landing"></div></div>
+  <div class="cmediawrap"><div class="cshot cshot--hero"><img src="halora/og.jpg" alt="Halora — hero"></div></div>
 
   <section class="cbody">
 
     <div class="cblock">
-      <div class="cblock__label">La idea</div>
-      <h2 class="cblock__title">Del brief a una web viva, en un solo flujo.</h2>
-      <p class="cblock__text">Un ejercicio para mostrar cómo trabajo hoy una landing: <strong>dirección de arte, sistema visual, revisión con cliente y un sitio animado funcionando</strong>, sin perder el control del diseño en ningún paso.</p>
-      <div class="hl-tools"><span>Figma</span><span>Claude Code</span><span>Parallax</span><span>Motion</span></div>
+      <div class="cblock__label" data-i18n-html="hl.idea.l">La idea</div>
+      <h2 class="cblock__title" data-i18n-html="hl.idea.t">Un proceso para diseñar y construir landings con Claude.</h2>
+      <p class="cblock__text" data-i18n-html="hl.idea.p">Halora es el caso de prueba de un flujo de trabajo que armé para producir landings completas — <strong>dirección de arte, diseño, revisión con cliente, animación y publicación</strong> — con Claude en el centro y sin perder el control del diseño en ningún paso.</p>
+      <div class="hl-tools"><span>Claude</span><span>Claude Code</span><span>Figma</span><span>GitHub</span><span>Google Flow</span></div>
     </div>
 
     <div class="cblock">
-      <div class="cblock__label">01 · Dirección de arte</div>
-      <h2 class="cblock__title">Una protagonista, escenas pensadas en capas.</h2>
-      <p class="cblock__text">Un mismo personaje en planos cercanos y lejanos, el producto como pieza central y fondos sutiles. Cada escena se <strong>prepara en capas</strong> desde el diseño para que la animación tenga profundidad.</p>
+      <div class="cblock__label" data-i18n-html="hl.proc.l">El proceso</div>
+      <h2 class="cblock__title" data-i18n-html="hl.proc.t">De las referencias al sitio publicado.</h2>
+      <ol class="hl-steps">
+        <li class="hl-step"><span class="hl-step__n">01</span><div><h3 data-i18n-html="hl.s1.t">Dirección de arte</h3><p data-i18n-html="hl.s1.p">Defino el look a partir de referencias y fotos: paleta, tipografía, tratamiento de la ilustración y la protagonista.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">02</span><div><h3 data-i18n-html="hl.s2.t">Assets</h3><p data-i18n-html="hl.s2.p">Para la creación de imágenes, el flujo puede conectarse a Google Flow y generar los assets del sitio con la misma dirección de arte, ya separados en capas. También admite ilustración hecha a mano o piezas de un artista.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">03</span><div><h3 data-i18n-html="hl.s3.t">Diseño en Claude</h3><p data-i18n-html="hl.s3.p">Claude arma los artboards completos de desktop y mobile, más un pack con todos los assets.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">04</span><div><h3 data-i18n-html="hl.s4.t">Revisión</h3><p data-i18n-html="hl.s4.p">El cliente revisa en un artifact de Claude compartido y deja sus notas ahí, o en un proyecto de Figma con frames de desktop, mobile y assets, si lo prefiere.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">05</span><div><h3 data-i18n-html="hl.s5.t">Animación y desarrollo</h3><p data-i18n-html="hl.s5.p">Con Claude Code: parallax por capas, transiciones entre secciones y scroll suave. El sitio vive en un repositorio de GitHub y se publica desde ahí.</p></div></li>
+      </ol>
     </div>
 
-    <div class="cmediawrap"><div class="cshot"><img src="halora/shot-beach.jpg" alt="Halora — sección How it feels"></div></div>
+    <div class="cmediawrap"><div class="cshot"><img src="halora/shot-beach.jpg" alt="Halora — How it feels"></div></div>
+
+    <div class="cmediawrap"><div class="cshot"><img src="halora/shot-shop.jpg" alt="Halora — Daily Calm"></div></div>
 
     <div class="cblock">
-      <div class="cblock__label">02 · Diseño y revisión</div>
-      <h2 class="cblock__title">Desktop y mobile, listos para el cliente en Figma.</h2>
-      <p class="cblock__text">El diseño se itera primero como proyecto y se entrega en Figma para revisión, antes de pasar a animación.</p>
-    </div>
-
-    <div class="cmediawrap"><div class="cshot"><img src="halora/shot-shop.jpg" alt="Halora — sección de producto Daily Calm"></div></div>
-
-    <div class="cblock">
-      <div class="cblock__label">03 · Animación y desarrollo</div>
-      <h2 class="cblock__title">Parallax por capas y transiciones que conectan.</h2>
-      <p class="cblock__text">Construida con Claude Code: secciones que se funden con ondas animadas, profundidad por capas y scroll suave. <strong>Marca y producto son un concepto creado para este ejercicio.</strong></p>
+      <div class="cblock__label" data-i18n-html="hl.res.l">Resultado</div>
+      <h2 class="cblock__title" data-i18n-html="hl.res.t">Iteraciones mucho más rápidas, con un solo flujo.</h2>
+      <p class="cblock__text" data-i18n-html="hl.res.p">Cada ajuste pasa del comentario al sitio publicado sin cambiar de herramienta: solo Claude, y Figma cuando el cliente lo necesita. Hice todo el proyecto: dirección de arte, diseño, motion y desarrollo. <strong>Marca y producto son un concepto creado para este ejercicio.</strong></p>
     </div>
 
   </section>
 
   <section class="cnext">
-    <div class="cnext__label">Siguiente proyecto</div>
+    <div class="cnext__label" data-i18n-html="hl.next">Siguiente proyecto</div>
     <a href="traceline.html" class="cnext__row">
       <span class="cnext__name">Traceline</span>
       <span class="cnext__disc">Time trial blueprint · Three.js · 2026</span>
