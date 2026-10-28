@@ -340,6 +340,73 @@
   .games__lede{max-width:560px;margin:22px 0 4px;font-size:.95rem;line-height:1.6;color:var(--muted)}
   .crow__badge{display:inline-block;vertical-align:middle;margin-left:16px;padding:5px 9px;border:1px solid var(--orange);border-radius:999px;
        font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);line-height:1}
+
+  /* ===== NOVEDADES (bento) ===== */
+  .news{max-width:var(--max-w);margin:0 auto;padding:110px var(--pad) 0}
+  .news__grid{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;gap:16px;margin-top:28px}
+  .ncard{position:relative;display:flex;flex-direction:column;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.12);
+       border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02);transition:border-color .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
+  .ncard:hover{border-color:rgba(var(--accent-rgb),.6);transform:translateY(-3px)}
+  .ncard--big{grid-row:1 / span 2}
+  .ncard__cover{position:relative;flex:1;min-height:180px;overflow:hidden;background:#111}
+  .ncard__cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1);filter:saturate(.92)}
+  .ncard:hover .ncard__cover img{transform:scale(1.04)}
+  .ncard__type{position:absolute;top:14px;left:14px;z-index:2;display:flex;gap:8px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-family:var(--font-mono);
+       font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;line-height:1;background:rgba(0,0,0,.55);
+       backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);color:#fff}
+  .pill--new{background:var(--accent);border-color:var(--accent);color:#111;font-weight:500}
+  .pill--new::before{content:"";width:5px;height:5px;border-radius:50%;background:#111;animation:npulse 2s ease-in-out infinite}
+  @keyframes npulse{50%{opacity:.25}}
+  .ncard__body{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:20px 22px 22px}
+  .ncard__date{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .ncard__title{font-weight:300;font-size:clamp(1.25rem,2vw,1.7rem);letter-spacing:-.02em;line-height:1.1}
+  .ncard--big .ncard__title{font-size:clamp(1.6rem,2.8vw,2.4rem)}
+  .ncard__desc{margin-top:8px;font-size:.88rem;line-height:1.5;color:var(--muted);max-width:44ch}
+  .ncard__arrow{flex:none;font-family:var(--font-mono);color:var(--accent);transition:transform .3s}
+  .ncard:hover .ncard__arrow{transform:translate(3px,-3px)}
+  /* portada tipográfica del playbook */
+  .pbcover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:56px 30px 28px;
+       background:radial-gradient(120% 90% at 85% 10%,rgba(125,214,240,.16),transparent 60%),#141414}
+  .pbcover__q{font-weight:300;font-size:clamp(1.8rem,3.6vw,3.1rem);line-height:1.02;letter-spacing:-.035em;max-width:13ch}
+  .pbcover__q em{font-style:normal;color:#7DD6F0}
+  .pbcover__steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px dotted rgba(255,255,255,.24)}
+  .pbcover__steps span{padding:12px 10px 0 0;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .pbcover__steps b{display:block;color:#7DD6F0;font-weight:400;margin-bottom:4px}
+  @media(max-width:860px){.news__grid{grid-template-columns:1fr;grid-template-rows:auto}.ncard--big{grid-row:auto}.ncard__cover{min-height:220px}.ncard--big .ncard__cover{min-height:340px}}
+
+  /* ===== LAB (grid con portadas) ===== */
+  .lab__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:30px}
+  .lcard{grid-column:span 2;display:flex;flex-direction:column;text-decoration:none;color:#fff}
+  .lcard--wide{grid-column:span 3}
+  .lcard__img{position:relative;aspect-ratio:3/2;border-radius:12px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.1);transition:border-color .35s}
+  .lcard__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .lcard:hover .lcard__img{border-color:rgba(var(--accent-rgb),.6)}
+  .lcard:hover .lcard__img img{transform:scale(1.04)}
+  .lcard--wide .lcard__img{aspect-ratio:2/1}
+  .lcard__img .pill{position:absolute;top:12px;left:12px}
+  .lcard__row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 2px 4px}
+  .lcard__name{font-weight:300;font-size:1.35rem;letter-spacing:-.01em}
+  .lcard__arrow{font-family:var(--font-mono);color:var(--accent);opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s}
+  .lcard:hover .lcard__arrow{opacity:1;transform:none}
+  .lcard__disc{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.6;padding:0 2px}
+  /* portada Gritt Reports — dirección de arte propia de la marca */
+  .grcover{position:absolute;inset:0;background:#9AEF7A;color:#111110;overflow:hidden;font-family:var(--font)}
+  .grcover__brand{position:absolute;top:56px;left:24px;display:flex;align-items:center;gap:12px;font-weight:600;font-size:1.25rem;letter-spacing:-.02em}
+  .grcover__brand i{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;
+       background:#111110;color:#9AEF7A;font-style:normal;font-weight:700;font-size:1.4rem;letter-spacing:-.03em}
+  .grcover__kpi{position:absolute;top:22px;right:26px;text-align:right;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase}
+  .grcover__kpi b{display:block;font-family:var(--font);font-weight:600;font-size:2.6rem;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+  .grcover__chart{position:absolute;left:0;right:0;bottom:0;height:62%;width:100%}
+  .lcard:hover .grcover__chart .bar{transform:scaleY(1.06)}
+  @media(max-width:1024px){.grcover__kpi{display:none}.grcover__chart{height:52%}}
+  .grcover__chart .bar{transform-origin:bottom;transform-box:fill-box;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  @media(max-width:860px){.lab__grid{grid-template-columns:1fr 1fr}.lcard,.lcard--wide{grid-column:span 1}}
+  @media(max-width:560px){.lab__grid{grid-template-columns:1fr}}
+
+  /* nav: marca de novedad */
+  .top__nav a.is-new{position:relative;color:#fff}
+  .top__nav a.is-new::after{content:"";position:absolute;top:-3px;right:-8px;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(var(--accent-rgb),.7)}
   .cursor-preview{position:fixed;top:0;left:0;z-index:60;width:340px;aspect-ratio:3/2;border-radius:8px;overflow:hidden;
        border:1px solid rgba(255,255,255,.18);box-shadow:0 24px 70px rgba(0,0,0,.55);pointer-events:none;
        opacity:0;transform:translate(-50%,-50%) scale(.94);transition:opacity .22s ease,transform .22s ease}
@@ -527,9 +594,10 @@
       <a href="#inicio" class="top__name">Alan Buenhombre</a>
       <div class="top__nav">
         <a href="#inicio" data-i18n="nav_inicio">Inicio</a>
+        <a href="#nuevo" data-i18n="nav_nuevo">Novedades</a>
         <a href="#casos" data-i18n="nav_casos">Casos</a>
-        <a href="#juegos" data-i18n="nav_juegos">Juegos</a>
-        <a href="#playbooks" data-i18n="nav_playbooks">Playbooks</a>
+        <a href="#juegos" data-i18n="nav_juegos">Lab</a>
+        <a href="#playbooks" class="is-new" data-i18n="nav_playbooks">Playbooks</a>
         <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
         <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
       </div>
@@ -562,6 +630,41 @@
     </div>
   </section>
 
+  <!-- ===== NOVEDADES ===== -->
+  <section class="news" id="nuevo">
+    <div class="cases__head">
+      <h2 class="cases__title" data-i18n-html="news_title">Lo <strong>nuevo</strong></h2>
+      <span class="cases__meta" data-i18n="news_meta">ÚLTIMOS INGRESOS · OCT 2026</span>
+    </div>
+    <div class="news__grid">
+      <a class="ncard ncard--big" href="playbook-conocimiento-tacito.html">
+        <div class="ncard__cover">
+          <div class="ncard__type"><span class="pill pill--new" data-i18n="new_tag">Nuevo</span><span class="pill">Playbook 01</span></div>
+          <div class="pbcover">
+            <div class="pbcover__q" data-i18n-html="news_pb_q">Sabemos más de <em>lo que podemos decir</em>.</div>
+            <div class="pbcover__steps"><span><b>01</b><i data-i18n="news_pb_s1" style="font-style:normal">Estímulo</i></span><span><b>02</b><i data-i18n="news_pb_s2" style="font-style:normal">Prompting dialéctico</i></span><span><b>03</b><i data-i18n="news_pb_s3" style="font-style:normal">Proceso visible</i></span></div>
+          </div>
+        </div>
+        <div class="ncard__body">
+          <div><div class="ncard__date" data-i18n="news_pb_date">Playbook · 28 oct 2026 · 10 min</div>
+          <div class="ncard__title" data-i18n="news_pb_t">IA generativa para revelar los supuestos ocultos de un PRD</div>
+          <p class="ncard__desc" data-i18n="news_pb_d">Framework de 3 pasos, prompts copiables y una matriz de buenas prácticas para el kickoff con producto.</p></div>
+          <span class="ncard__arrow">↗</span>
+        </div>
+      </a>
+      <a class="ncard" href="paper-trail.html">
+        <div class="ncard__cover"><img src="paper-trail/stage-bosque.jpg" alt="Paper Trail" loading="lazy">
+          <div class="ncard__type"><span class="pill pill--new" data-i18n="new_tag">Nuevo</span><span class="pill" data-i18n="games_beta">Beta</span></div></div>
+        <div class="ncard__body"><div><div class="ncard__date" data-i18n="news_pt_date">Playable de marca · Oct 2026</div><div class="ncard__title">Paper Trail</div></div><span class="ncard__arrow">↗</span></div>
+      </a>
+      <a class="ncard" href="halora.html">
+        <div class="ncard__cover"><img src="assets/games/halora.jpg" alt="Halora" loading="lazy">
+          <div class="ncard__type"><span class="pill pill--new" data-i18n="new_tag">Nuevo</span><span class="pill" data-i18n="ai_badge">Concepto</span></div></div>
+        <div class="ncard__body"><div><div class="ncard__date" data-i18n="news_hl_date">Landing animada · Oct 2026</div><div class="ncard__title">Halora</div></div><span class="ncard__arrow">↗</span></div>
+      </a>
+    </div>
+  </section>
+
   <!-- ===== SECCIÓN 2 · CASOS ===== -->
   <section class="cases" id="casos">
     <div class="cases__head">
@@ -580,17 +683,17 @@
   <!-- ===== SECCIÓN · SIDE PROJECTS · GAMES & SAAS ===== -->
   <section class="cases games" id="juegos">
     <div class="cases__head">
-      <h2 class="cases__title" data-i18n-html="games_title">Experimentos <strong>propios</strong></h2>
-      <span class="cases__meta" data-i18n="games_meta">SIDE PROJECTS · GAMES &amp; SAAS · 2026</span>
+      <h2 class="cases__title" data-i18n-html="games_title">El <strong>Lab</strong></h2>
+      <span class="cases__meta" data-i18n="games_meta">PROYECTOS PROPIOS · JUEGOS · SAAS · 2026</span>
     </div>
     <p class="games__lede" data-i18n="games_lede">Proyectos propios donde pruebo ideas de producto, interacción y sistema visual: juegos de navegador, un playable para marcas, una landing animada de diseño a código y un SaaS de reportes para estudios creativos.</p>
-    <ul class="cases__list" id="gamesList">
-      <a class="crow" href="driftway.html" data-preview="assets/games/driftway.jpg"><span class="crow__num">01</span><span class="crow__name">DRIFTWAY</span><span class="crow__disc" data-i18n="game1_disc">Arcade 3D · Ranking por piloto · ES/EN · 2026</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="traceline.html" data-preview="assets/games/traceline.jpg"><span class="crow__num">02</span><span class="crow__name">TRACELINE<span class="crow__badge" data-i18n="games_dev">En desarrollo</span></span><span class="crow__disc" data-i18n="game2_disc">Time trial blueprint · Circuitos que se transforman · 2026</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="paper-trail.html" data-preview="assets/games/paper-trail.jpg"><span class="crow__num">03</span><span class="crow__name">PAPER TRAIL<span class="crow__badge" data-i18n="games_beta">Beta</span></span><span class="crow__disc" data-i18n="game3_disc">Playable de marca · Diorama 3D papercraft · 2026</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="halora.html" data-preview="assets/games/halora.jpg"><span class="crow__num">04</span><span class="crow__name">HALORA<span class="crow__badge" data-i18n="ai_badge">Concepto</span></span><span class="crow__disc" data-i18n="ai1_disc">Landing animada · Parallax · Figma · Claude Code · 2026</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="gritt-reports.html"><span class="crow__num">05</span><span class="crow__name">GRITT REPORTS<span class="crow__badge" data-i18n="saas_badge">Prototipo</span></span><span class="crow__disc" data-i18n="saas1_disc">SaaS · Reportes de redes · Prototipo · 2026</span><span class="crow__arrow">↗</span></a>
-    </ul>
+    <div class="lab__grid" id="gamesList">
+      <a class="lcard" href="driftway.html"><div class="lcard__img"><img src="assets/games/driftway.jpg" alt="DRIFTWAY" loading="lazy"></div><div class="lcard__row"><span class="lcard__name">DRIFTWAY</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="game1_disc">Arcade 3D · Ranking por piloto · ES/EN · 2026</div></a>
+      <a class="lcard" href="traceline.html"><div class="lcard__img"><img src="assets/games/traceline.jpg" alt="TRACELINE" loading="lazy"><span class="pill" data-i18n="games_dev">En desarrollo</span></div><div class="lcard__row"><span class="lcard__name">TRACELINE</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="game2_disc">Time trial blueprint · Circuitos que se transforman · 2026</div></a>
+      <a class="lcard" href="paper-trail.html"><div class="lcard__img"><img src="assets/games/paper-trail.jpg" alt="PAPER TRAIL" loading="lazy"><span class="pill pill--new" data-i18n="games_beta">Beta</span></div><div class="lcard__row"><span class="lcard__name">PAPER TRAIL</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="game3_disc">Playable de marca · Diorama 3D papercraft · 2026</div></a>
+      <a class="lcard lcard--wide" href="halora.html"><div class="lcard__img"><img src="assets/games/halora.jpg" alt="HALORA" loading="lazy"><span class="pill" data-i18n="ai_badge">Concepto</span></div><div class="lcard__row"><span class="lcard__name">HALORA</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="ai1_disc">Landing animada · Parallax · Figma · Claude Code · 2026</div></a>
+      <a class="lcard lcard--wide" href="gritt-reports.html"><div class="lcard__img"><div class="grcover" aria-label="Gritt Reports"><div class="grcover__brand"><i>g</i><span>Gritt Reports</span></div><div class="grcover__kpi"><b>+38%</b>Alcance · 30d</div><svg class="grcover__chart" viewBox="0 0 500 200" preserveAspectRatio="none" aria-hidden="true"><rect class="bar" x="20" y="160" width="34" height="40" rx="4" fill="#111110" opacity="0.35"/><rect class="bar" x="68" y="138" width="34" height="62" rx="4" fill="#111110" opacity="0.42"/><rect class="bar" x="116" y="150" width="34" height="50" rx="4" fill="#111110" opacity="0.49"/><rect class="bar" x="164" y="116" width="34" height="84" rx="4" fill="#111110" opacity="0.57"/><rect class="bar" x="212" y="128" width="34" height="72" rx="4" fill="#111110" opacity="0.64"/><rect class="bar" x="260" y="96" width="34" height="104" rx="4" fill="#111110" opacity="0.71"/><rect class="bar" x="308" y="104" width="34" height="96" rx="4" fill="#111110" opacity="0.78"/><rect class="bar" x="356" y="72" width="34" height="128" rx="4" fill="#111110" opacity="0.86"/><rect class="bar" x="404" y="50" width="34" height="150" rx="4" fill="#111110" opacity="0.93"/><rect class="bar" x="452" y="24" width="34" height="176" rx="4" fill="#111110" opacity="1.00"/><polyline points="37,150 85,132 133,140 181,110 229,118 277,88 325,94 373,66 421,48 469,22" fill="none" stroke="#111110" stroke-width="3" stroke-linejoin="round"/><circle cx="469" cy="22" r="7" fill="#9AEF7A" stroke="#111110" stroke-width="3"/></svg></div><span class="pill" data-i18n="saas_badge">Prototipo</span></div><div class="lcard__row"><span class="lcard__name">GRITT REPORTS</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="saas1_disc">SaaS · Reportes de redes · Prototipo · 2026</div></a>
+    </div>
   </section>
 
   <!-- ===== SECCIÓN · PLAYBOOKS ===== -->
@@ -599,9 +702,9 @@
       <h2 class="cases__title" data-i18n-html="pb_title">Playbooks <strong>de diseño</strong></h2>
       <span class="cases__meta" data-i18n="pb_meta">MÉTODO · IA · PRODUCTO · 2026</span>
     </div>
-    <p class="games__lede" data-i18n="pb_lede">Guías cortas y accionables sobre cómo trabajo: frameworks, prompts reutilizables y criterios que aplico con equipos de producto. Respaldadas en investigación, pensadas para usarse el lunes.</p>
+    <p class="games__lede" data-i18n="pb_lede">Guías cortas y accionables sobre cómo trabajo: frameworks, prompts reutilizables y criterios que aplico con equipos de producto. Respaldadas en investigación, listas para aplicar en tu próximo proyecto.</p>
     <ul class="cases__list" id="playbooksList">
-      <a class="crow" href="playbook-conocimiento-tacito.html"><span class="crow__num">01</span><span class="crow__name" data-i18n="pb1_name">Sabemos más de lo que podemos decir</span><span class="crow__disc" data-i18n="pb1_disc">IA generativa · PRD · Kickoff con stakeholders · 10 min</span><span class="crow__arrow">↗</span></a>
+      <a class="crow" href="playbook-conocimiento-tacito.html"><span class="crow__num">01</span><span class="crow__name" data-i18n="pb1_name">Alinear un PRD con IA</span><span class="crow__disc" data-i18n="pb1_disc">“Sabemos más de lo que podemos decir” · Kickoff · 10 min</span><span class="crow__arrow">↗</span></a>
     </ul>
   </section>
 
@@ -800,8 +903,9 @@
         <h6 class="footer__col-title" data-i18n="footer_menu">Menú</h6>
         <ul class="footer__links">
           <li><a href="#inicio" data-i18n="nav_inicio">Inicio</a></li>
+          <li><a href="#nuevo" data-i18n="nav_nuevo">Novedades</a></li>
           <li><a href="#casos" data-i18n="nav_casos">Casos</a></li>
-          <li><a href="#juegos" data-i18n="nav_juegos">Juegos</a></li>
+          <li><a href="#juegos" data-i18n="nav_juegos">Lab</a></li>
           <li><a href="#playbooks" data-i18n="nav_playbooks">Playbooks</a></li>
           <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
           <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
@@ -843,8 +947,8 @@
   /* ===== i18n ===== */
   const T={
     es:{
-      nav_inicio:'Inicio',nav_casos:'Casos',nav_sobre:'Sobre',nav_contacto:'Contacto',nav_juegos:'Juegos',nav_playbooks:'Playbooks',pb_title:'Playbooks <strong>de diseño</strong>',pb_meta:'MÉTODO · IA · PRODUCTO · 2026',pb_lede:'Guías cortas y accionables sobre cómo trabajo: frameworks, prompts reutilizables y criterios que aplico con equipos de producto. Respaldadas en investigación, pensadas para usarse el lunes.',pb1_name:'Sabemos más de lo que podemos decir',pb1_disc:'IA generativa · PRD · Kickoff con stakeholders · 10 min',
-      games_title:'Experimentos <strong>propios</strong>',games_meta:'SIDE PROJECTS · GAMES & SAAS · 2026',
+      nav_inicio:'Inicio',nav_casos:'Casos',nav_sobre:'Sobre',nav_contacto:'Contacto',nav_juegos:'Lab',nav_nuevo:'Novedades',new_tag:'Nuevo',news_title:'Lo <strong>nuevo</strong>',news_meta:'ÚLTIMOS INGRESOS · OCT 2026',news_pb_q:'Sabemos más de <em>lo que podemos decir</em>.',news_pb_s1:'Estímulo',news_pb_s2:'Prompting dialéctico',news_pb_s3:'Proceso visible',news_pb_date:'Playbook · 28 oct 2026 · 10 min',news_pb_t:'IA generativa para revelar los supuestos ocultos de un PRD',news_pb_d:'Framework de 3 pasos, prompts copiables y una matriz de buenas prácticas para el kickoff con producto.',news_pt_date:'Playable de marca · Oct 2026',news_hl_date:'Landing animada · Oct 2026',nav_playbooks:'Playbooks',pb_title:'Playbooks <strong>de diseño</strong>',pb_meta:'MÉTODO · IA · PRODUCTO · 2026',pb_lede:'Guías cortas y accionables sobre cómo trabajo: frameworks, prompts reutilizables y criterios que aplico con equipos de producto. Respaldadas en investigación, listas para aplicar en tu próximo proyecto.',pb1_name:'Alinear un PRD con IA',pb1_disc:'“Sabemos más de lo que podemos decir” · Kickoff · 10 min',
+      games_title:'El <strong>Lab</strong>',games_meta:'PROYECTOS PROPIOS · JUEGOS · SAAS · 2026',
       games_lede:'Proyectos propios donde pruebo ideas de producto, interacción y sistema visual: juegos de navegador, un playable para marcas, una landing animada de diseño a código y un SaaS de reportes para estudios creativos.',
       games_dev:'En desarrollo',games_wip:'En construcción',saas1_disc:'SaaS · Reportes de redes · Prototipo · 2026',saas_badge:'Prototipo',game3_disc:'Playable de marca · Diorama 3D papercraft · 2026',games_beta:'Beta',game1_disc:'Arcade 3D · Ranking por piloto · ES/EN · 2026',game2_disc:'Time trial blueprint · Circuitos que se transforman · 2026',ai_badge:'Concepto',ai1_disc:'Landing animada · Parallax · Figma · Claude Code · 2026',
       hero_avail:'Disponible',
@@ -880,8 +984,8 @@
       footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
     },
     en:{
-      nav_inicio:'Home',nav_casos:'Cases',nav_sobre:'About',nav_contacto:'Contact',nav_juegos:'Games',nav_playbooks:'Playbooks',pb_title:'Design <strong>playbooks</strong>',pb_meta:'METHOD · AI · PRODUCT · 2026',pb_lede:'Short, actionable guides on how I work: frameworks, reusable prompts and criteria I apply with product teams. Backed by research, made to use on Monday.',pb1_name:'We know more than we can tell',pb1_disc:'Generative AI · PRD · Stakeholder kickoff · 10 min',
-      games_title:'My own <strong>experiments</strong>',games_meta:'SIDE PROJECTS · GAMES & SAAS · 2026',
+      nav_inicio:'Home',nav_casos:'Cases',nav_sobre:'About',nav_contacto:'Contact',nav_juegos:'Lab',nav_nuevo:'What\'s new',new_tag:'New',news_title:'What\'s <strong>new</strong>',news_meta:'LATEST ADDITIONS · OCT 2026',news_pb_q:'We know more than <em>we can tell</em>.',news_pb_s1:'Stimulus',news_pb_s2:'Dialectic prompting',news_pb_s3:'Visible process',news_pb_date:'Playbook · Oct 28, 2026 · 10 min',news_pb_t:'Using generative AI to surface the hidden assumptions in a PRD',news_pb_d:'A 3-step framework, copy-ready prompts and a good-practice matrix for the product kickoff.',news_pt_date:'Brand playable · Oct 2026',news_hl_date:'Animated landing · Oct 2026',nav_playbooks:'Playbooks',pb_title:'Design <strong>playbooks</strong>',pb_meta:'METHOD · AI · PRODUCT · 2026',pb_lede:'Short, actionable guides on how I work: frameworks, reusable prompts and criteria I apply with product teams. Backed by research, ready to use on your next project.',pb1_name:'Aligning a PRD with AI',pb1_disc:'“We know more than we can tell” · Kickoff · 10 min',
+      games_title:'The <strong>Lab</strong>',games_meta:'SIDE PROJECTS · GAMES · SAAS · 2026',
       games_lede:'Personal projects where I test ideas on product, interaction and visual systems: browser games, a brand playable, an animated design-to-code landing page and a reporting SaaS for creative studios.',
       games_dev:'In development',games_wip:'In progress',saas1_disc:'SaaS · Social reports · Prototype · 2026',saas_badge:'Prototype',game3_disc:'Brand playable · 3D papercraft diorama · 2026',games_beta:'Beta',game1_disc:'3D arcade · Pilot ranking · ES/EN · 2026',game2_disc:'Blueprint time trial · Circuits that transform · 2026',ai_badge:'Concept',ai1_disc:'Animated landing · Parallax · Figma · Claude Code · 2026',
       hero_avail:'Available',
