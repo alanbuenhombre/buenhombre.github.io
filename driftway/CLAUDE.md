@@ -13,3 +13,4 @@
 - Para probar el ranking sin tocar la base real, apuntar `API.url` a un servidor local que imite PostgREST (`/rest/v1/rpc/registrar_visita`, `/rest/v1/ranking`, inserts en `pilotos` y `partidas`).
 - TV: la constante `TV` (navegador de Smart TV o `?tv=1`) baja la resolución y añade margen; `codeOf(e)` traduce las teclas del control remoto (Atrás = Escape) y `pollPad()` lee el mando en cada cuadro. Todo control nuevo debe funcionar también con control remoto y mando.
 - Modo tráiler: con `?trailer=1` el juego expone `window.__driftway` (cam, speed, god, fov) para el grabador del tráiler en `GRAFICA VITAL/driftway-trailer/grabador`. No afecta al juego normal.
+- Vista previa: con `?preview` el juego arranca solo, sin interfaz, la nave se mueve sola en modo invencible. La usa el hero del caso en `driftway.html`. No cuenta visitas ni guarda récord.

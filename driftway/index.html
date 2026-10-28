@@ -859,6 +859,7 @@
     #logo .dw-sweep { display: none; }
     #sector, .sector-data dd.on { animation: none; }
   }
+  html.preview #controls,html.preview #hint,html.preview #press,html.preview #attract-world,html.preview #title,html.preview #intro,html.preview #turbo,html.preview #bonus{display:none!important}
 </style>
 </head>
 <body>
@@ -1161,7 +1162,10 @@
     if (TV) {
       document.documentElement.classList.add('tv');
     }
-    const TRAILER = /[?&]trailer=1\b/.test(location.search) ? { cam: null, speed: 1, god: false, fov: 0, t: 0, anchor: null } : null;
+    // ?preview → vista previa del portafolio: arranca solo, sin interfaz, la nave esquiva sola y no choca
+    const PREVIEW = /[?&]preview\b/.test(location.search);
+    if (PREVIEW) document.documentElement.classList.add('preview');
+    const TRAILER = (PREVIEW || /[?&]trailer=1\b/.test(location.search)) ? { cam: null, speed: 1, god: false, fov: 0, t: 0, anchor: null } : null;
     const L = (es, en) => (EN ? en : es);
     if (TV) document.getElementById('hint').textContent = L('Flechas: girar · OK: turbo (mantén para ×3) · Atrás: pausa', 'Arrows: steer · OK: turbo (hold for ×3) · Back: pause');
     // Los textos fijos de la página están escritos en español; en inglés se cambian aquí, antes de que el juego los lea
@@ -3404,7 +3408,7 @@
         if (isRecord) {
           Sound.record();
           best = score;
-          try { localStorage.setItem(BEST_KEY, String(Math.floor(best))); } catch (e) { /* sin almacenamiento: el récord dura esta sesión */ }
+          if (!PREVIEW) try { localStorage.setItem(BEST_KEY, String(Math.floor(best))); } catch (e) { /* sin almacenamiento: el récord dura esta sesión */ }
         }
         gameoverHit.textContent = 'CollisionError: ' + L('chocaste con', 'you hit') + ' «' + cube.userData.title + '»';
         gameoverScore.textContent = L('puntos: ', 'points: ') + fmt(score) + (isRecord ? L(' · nuevo récord', ' · new record') : L(' · récord: ', ' · record: ') + fmt(best));
@@ -3837,7 +3841,7 @@
       const isRecord = score > best;
       if (isRecord) {
         best = score;
-        try { localStorage.setItem(BEST_KEY, String(Math.floor(best))); } catch (e) { /* sin almacenamiento: el récord dura esta sesión */ }
+        if (!PREVIEW) try { localStorage.setItem(BEST_KEY, String(Math.floor(best))); } catch (e) { /* sin almacenamiento: el récord dura esta sesión */ }
       }
       const tail = L('puntos: ', 'points: ') + fmt(score) + (isRecord ? L(' · nuevo récord', ' · new record') : L(' · récord: ', ' · record: ') + fmt(best));
       victoryScore.textContent = tail;
@@ -3884,6 +3888,7 @@
 
     // Tercer choque: el juego vuelve a la pantalla de inicio
     function backToTitle() {
+      if (PREVIEW) { cancelTunnel(); Finale.hide(); victoryEl.hidden = true; levelupEl.hidden = true; restart(); return; }
       cancelTunnel();
       Finale.hide();
       victoryEl.hidden = true;
@@ -4227,6 +4232,7 @@
 
     // Contador de pilotos: una visita por dispositivo (navegador), no por sesión. La marca queda en localStorage y no caduca
     (function countVisit() {
+      if (PREVIEW) return;   // la vista previa del portafolio no cuenta como visita
       let counted = false;
       try { counted = localStorage.getItem('driftway-contado') === '1'; } catch (e) { counted = false; }
       const show = (total) => {
@@ -4712,6 +4718,7 @@
         // Entrada: teclado, si no táctil, si no mouse
         let ix = (keys.r ? 1 : 0) - (keys.l ? 1 : 0);
         let iy = (keys.d ? 1 : 0) - (keys.u ? 1 : 0);
+        if (PREVIEW) { ix = Math.sin(playT * .9) * .75 + Math.sin(playT * 2.3) * .25; iy = Math.sin(playT * .55) * .35; }
         if (!ix && !iy) {
           if (steerTouch !== null) { ix = touchX; iy = touchY; }
           else if (!keySteer) { ix = mouseX; iy = mouseY; }
@@ -4841,6 +4848,11 @@
     placeCamera(true);
     updateHud(1);
     frame();
+    if (PREVIEW) {
+      attract = false; game.classList.remove('attract'); intro.hidden = true;
+      TRAILER.god = true; cockpit = false; game.classList.remove('cockpit');
+      start(); hint.hidden = true;
+    }
     if (TRAILER) {
       window.__driftway = {
         cam: (mode) => { TRAILER.cam = mode || null; TRAILER.t = 0; TRAILER.anchor = null; ship.visible = state !== 'dead' && (!cockpit || Boolean(TRAILER.cam)); },

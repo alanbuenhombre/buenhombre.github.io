@@ -52,7 +52,9 @@
   .pt-loop svg{width:30px;height:30px;color:var(--pt-paper);opacity:.85;margin-top:2px}
   .pt-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
   .pt-stage{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#211f1c}
-  .pt-stage svg{display:block;width:100%;height:auto}
+  .pt-stage img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .pt-stage{transition:border-color .3s ease,transform .3s ease}
+  .pt-stage:hover{border-color:rgba(224,83,58,.35);transform:translateY(-3px)}
   .pt-stage div{padding:14px 16px 16px}
   .pt-stage small{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)}
   .pt-stage h3{font-weight:400;font-size:1.05rem;margin:6px 0 4px}
@@ -111,9 +113,10 @@
 
   <!-- ===== HERO ===== -->
   <div class="cmediawrap">
-    <a class="pt-shot" href="paper-trail/" aria-label="Jugar Paper Trail">
-      <img src="paper-trail/shot-title.jpg" alt="Pantalla de inicio de Paper Trail: un 4x4 rojo de papel en un bosque de cartulina, con el selector de vehículo y el ranking del evento" width="1600" height="900">
-      <span class="pt-shot__play"><b>▶</b><span data-i18n-html="pt.cta.short">Jugar</span></span>
+    <a class="lt" href="paper-trail/" data-src="paper-trail/?trailer" aria-label="Jugar Paper Trail" style="--lt-accent:#E0533A">
+      <img src="paper-trail/trailer-poster.jpg" alt="Paper Trail en juego: el 4x4 rojo de papel recorre el bosque de cartulina" width="1280" height="720">
+      <span class="lt__tag" data-i18n-html="lt.live">En vivo · el juego corre solo</span>
+      <span class="lt__play"><b>▶</b><span data-i18n-html="pt.cta.short">Jugar</span></span>
     </a>
   </div>
 
@@ -143,19 +146,19 @@
       <p class="cblock__text" style="max-width:660px" data-i18n-html="pt.prod.p">No hay disparos ni enemigos: todo el reto es la habilidad del conductor y del 4x4. Subidas que muestran la tracción, saltos que muestran la suspensión y aterrizajes que premian el control. La ruta cruza cuatro paisajes y el día pasa de mañana a noche y otra vez a amanecer.</p>
       <div class="pt-stages">
         <div class="pt-stage">
-          <svg viewBox="0 0 320 120" aria-hidden="true"><rect width="320" height="120" fill="#E9DDBF"/><path d="M0 70 C60 40 120 52 170 62 S270 46 320 58 V120H0Z" fill="#8FA36B"/><path d="M0 92 C90 78 180 88 320 80 V120H0Z" fill="#41603A"/></svg>
+          <img src="paper-trail/stage-bosque.jpg" alt="" loading="lazy" width="720" height="540">
           <div><small>01</small><h3 data-i18n-html="pt.st1.t">Bosque</h3><p data-i18n-html="pt.st1.p">Colinas suaves, puentes colgantes y ríos. El primer tramo, para aprender a volar y aterrizar.</p></div>
         </div>
         <div class="pt-stage">
-          <svg viewBox="0 0 320 120" aria-hidden="true"><rect width="320" height="120" fill="#E6ECEF"/><path d="M0 70 C60 40 120 52 170 62 S270 46 320 58 V120H0Z" fill="#C9D3DA"/><path d="M0 92 C90 78 180 88 320 80 V120H0Z" fill="#6B7A86"/></svg>
+          <img src="paper-trail/stage-nieve.jpg" alt="" loading="lazy" width="720" height="540">
           <div><small>02</small><h3 data-i18n-html="pt.st2.t">Nieve</h3><p data-i18n-html="pt.st2.p">Picos blancos, pinos nevados y rocas con hielo. Más altura, más riesgo.</p></div>
         </div>
         <div class="pt-stage">
-          <svg viewBox="0 0 320 120" aria-hidden="true"><rect width="320" height="120" fill="#F6DDB6"/><path d="M0 70 C60 40 120 52 170 62 S270 46 320 58 V120H0Z" fill="#DBA36A"/><path d="M0 92 C90 78 180 88 320 80 V120H0Z" fill="#8A4B2C"/></svg>
+          <img src="paper-trail/stage-desierto.jpg" alt="" loading="lazy" width="720" height="540">
           <div><small>03</small><h3 data-i18n-html="pt.st3.t">Desierto</h3><p data-i18n-html="pt.st3.p">Mesas, cañones y cactus. El sol baja y el viaje entra en la noche.</p></div>
         </div>
         <div class="pt-stage">
-          <svg viewBox="0 0 320 120" aria-hidden="true"><rect width="320" height="120" fill="#EAF5F6"/><path d="M0 70 C60 40 120 52 170 62 S270 46 320 58 V120H0Z" fill="#F0DFB8"/><path d="M0 92 C90 78 180 88 320 80 V120H0Z" fill="#7DB3C3"/></svg>
+          <img src="paper-trail/stage-playa.jpg" alt="" loading="lazy" width="720" height="540">
           <div><small>04</small><h3 data-i18n-html="pt.st4.t">Playa</h3><p data-i18n-html="pt.st4.p">Acantilados, dunas y palmeras. Amanece justo antes de la meta.</p></div>
         </div>
       </div>
@@ -198,7 +201,7 @@
 
     <div class="cblock">
       <div class="cblock__label" data-i18n-html="pt.st.l">Estado</div>
-      <p class="cblock__text" data-i18n-html="pt.st.p">Beta jugable: el tramo Bosque está abierto en el navegador, con selector de vehículo, ranking del evento, sonido y controles de teclado, gamepad y pantalla táctil. Nieve, Desierto y Playa están en producción. Es un concepto propio, sin vínculo con ninguna marca; el uso de una marca real requiere su aprobación.</p>
+      <p class="cblock__text" data-i18n-html="pt.st.p">Beta jugable con la ruta completa: Bosque, Nieve, Desierto y Playa, del día a la noche y al amanecer. Tiene selector de vehículo, ranking del evento, sonido y controles de teclado, gamepad y pantalla táctil. Es un concepto propio, sin vínculo con ninguna marca; el uso de una marca real requiere su aprobación.</p>
     </div>
 
   </section>
@@ -240,5 +243,6 @@
   </footer>
 
   <script src="i18n.js"></script>
+  <script src="live-trailer.js"></script>
 </body>
 </html>
