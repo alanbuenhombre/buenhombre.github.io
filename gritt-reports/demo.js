@@ -418,7 +418,7 @@
     const top = posts(state.client).filter(x => activePlats().includes(x.p)).sort((a, b) => b.views - a.views).slice(0, 3);
     return `<div class="gr-report">
       <header class="gr-report__head">
-        <span class="gr-report__brand"><i>g</i>${T.preparedBy}</span>
+        <span class="gr-report__brand"><img src="gritt-reports/gritt-logo.png" alt="Gritt">${T.preparedBy}</span>
         <h3>${c.name}</h3>
         <p>${T.reportFor} · ${T.period[state.period]} · ${activePlats().map(p => PLAT[p]).join(' · ')}</p>
         <p class="gr-report__intro">${T.reportIntro(c.name, T.period[state.period])}</p>
@@ -448,7 +448,7 @@
           <span class="gr-demo">${T.demo}</span></div>
         <div class="gr-shell ${client ? 'is-client' : ''}">
           <aside class="gr-side">
-            <div class="gr-logo"><i>g</i><span>Gritt Reports</span></div>
+            <div class="gr-logo"><img src="gritt-reports/gritt-logo.png" alt="Gritt"><span>Reports</span></div>
             <nav class="gr-nav">${nav}</nav>
             <p class="gr-side__label">${T.clients}</p>
             <div class="gr-clients">${cl}</div>
