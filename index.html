@@ -401,21 +401,27 @@
   .deck__bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .6s cubic-bezier(.2,.75,.15,1)}
   .deck:focus-visible .deck__stage{outline:1px dashed rgba(255,255,255,.3);outline-offset:8px;border-radius:16px}
   @media(prefers-reduced-motion:reduce){.deck .ncard{transition:opacity .2s}}
-  /* ===== LAB (grid con portadas) ===== */
-  .lab__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 14px;margin-top:26px}
+  /* ===== LAB (fila de miniaturas sutiles) ===== */
+  .lab__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:30px;padding-top:26px;border-top:1px dotted rgba(255,255,255,.18)}
   .lcard{display:flex;flex-direction:column;text-decoration:none;color:#fff}
-  .lcard__img{position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.1);transition:border-color .35s}
-  .lcard__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-  .lcard:hover .lcard__img{border-color:rgba(var(--accent-rgb),.6)}
-  .lcard:hover .lcard__img img{transform:scale(1.04)}
-  .lcard__img .pill{position:absolute;top:10px;left:10px}
-  .lcard__row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 2px 2px}
-  .lcard__name{font-weight:400;font-size:1rem;letter-spacing:.01em}
-  .lcard__arrow{font-family:var(--font-mono);color:var(--accent);opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s}
+  .lcard__img{position:relative;aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:#151515}
+  .lcard__img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(.9) brightness(.62);opacity:.85;transform:scale(1.02);
+       transition:filter .6s ease,opacity .6s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+  .lcard__img::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+       background:linear-gradient(180deg,transparent 55%,rgba(20,20,20,.55));transition:opacity .5s}
+  .lcard[href="gritt-reports.html"] .lcard__img img{filter:grayscale(1) contrast(.85) brightness(.42)}
+  .lcard:hover .lcard__img img,.lcard:focus-visible .lcard__img img{filter:none;opacity:1;transform:scale(1.06)}
+  .lcard:hover .lcard__img::after{opacity:.3}
+  .lcard__img .pill{position:absolute;z-index:2;top:auto;bottom:8px;left:8px;padding:4px 7px;font-size:.52rem;background:rgba(0,0,0,.6)}
+  .lcard__img .pill--new{background:var(--accent)}
+  .lcard__row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 1px 2px}
+  .lcard__name{font-weight:400;font-size:.92rem;letter-spacing:.02em;color:rgba(255,255,255,.8);transition:color .3s}
+  .lcard:hover .lcard__name{color:#fff}
+  .lcard__arrow{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);opacity:0;transform:translateX(-4px);transition:opacity .3s,transform .3s}
   .lcard:hover .lcard__arrow{opacity:1;transform:none}
-  .lcard__disc{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.6;padding:0 2px}
-  @media(max-width:860px){.lab__grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:560px){.lab__grid{grid-template-columns:1fr}}
+  .lcard__disc{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.6;padding:0 1px}
+  @media(max-width:960px){.lab__grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.lab__grid{grid-template-columns:1fr 1fr;gap:14px}}
 
   /* nav: marca de novedad */
   .top__nav a.is-new{position:relative;color:#fff}
@@ -713,7 +719,7 @@
       <a class="lcard" href="traceline.html"><div class="lcard__img"><img src="assets/games/traceline.jpg" alt="TRACELINE" loading="lazy"><span class="pill" data-i18n="games_dev">En desarrollo</span></div><div class="lcard__row"><span class="lcard__name">TRACELINE</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="game2_disc">Time trial blueprint · Circuitos que se transforman · 2026</div></a>
       <a class="lcard" href="paper-trail.html"><div class="lcard__img"><img src="assets/games/paper-trail.jpg" alt="PAPER TRAIL" loading="lazy"><span class="pill pill--new" data-i18n="games_beta">Beta</span></div><div class="lcard__row"><span class="lcard__name">PAPER TRAIL</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="game3_disc">Playable de marca · Diorama 3D papercraft · 2026</div></a>
       <a class="lcard" href="halora.html"><div class="lcard__img"><img src="assets/games/halora.jpg" alt="HALORA" loading="lazy"><span class="pill" data-i18n="ai_badge">Concepto</span></div><div class="lcard__row"><span class="lcard__name">HALORA</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="ai1_disc">Landing animada · Parallax · Figma · Claude Code · 2026</div></a>
-      <a class="lcard" href="gritt-reports.html"><div class="lcard__img"><img src="assets/games/gritt-reports.jpg" alt="GRITT REPORTS" loading="lazy"><span class="pill" style="top:auto;bottom:12px" data-i18n="saas_badge">Prototipo</span></div><div class="lcard__row"><span class="lcard__name">GRITT REPORTS</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="saas1_disc">SaaS · Reportes de redes · Prototipo · 2026</div></a>
+      <a class="lcard" href="gritt-reports.html"><div class="lcard__img"><img src="assets/games/gritt-reports.jpg" alt="GRITT REPORTS" loading="lazy"><span class="pill" data-i18n="saas_badge">Prototipo</span></div><div class="lcard__row"><span class="lcard__name">GRITT REPORTS</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="saas1_disc">SaaS · Reportes de redes · Prototipo · 2026</div></a>
     </div>
   </section>
 
