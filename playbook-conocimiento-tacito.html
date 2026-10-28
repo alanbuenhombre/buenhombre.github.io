@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sabemos más de lo que podemos decir · Playbook 01 · Alan Buenhombre</title>
+<meta name="description" content="Playbook de diseño de producto: cómo usar la IA generativa para revelar los supuestos ocultos en un PRD antes de diseñar. Framework de 3 pasos, prompts reutilizables y matriz de buenas prácticas para el kickoff con PMs y stakeholders." />
+<meta name="keywords" content="playbook, product design, PRD, kickoff, stakeholder alignment, conocimiento tácito, IA generativa, AI-assisted design, design leadership, Alan Buenhombre" />
+<meta name="author" content="Alan Buenhombre" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://buenhombre.design/playbook-conocimiento-tacito.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Alan Buenhombre" />
+<meta property="og:title" content="Sabemos más de lo que podemos decir · Playbook 01" />
+<meta property="og:description" content="Cómo usar la IA generativa para revelar los supuestos ocultos en un PRD — antes de invertir dos sprints diseñando algo que nadie pidió." />
+<meta property="og:url" content="https://buenhombre.design/playbook-conocimiento-tacito.html" />
+<meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Sabemos más de lo que podemos decir — Playbook 01","alternativeHeadline":"We know more than we can tell","description":"Cómo usar la IA generativa para revelar los supuestos ocultos en un PRD antes de diseñar.","inLanguage":["es","en"],"datePublished":"2026-10-28","author":{"@type":"Person","name":"Alan Buenhombre","url":"https://buenhombre.design"},"keywords":"product design, PRD, kickoff, tacit knowledge, generative AI, stakeholder alignment","url":"https://buenhombre.design/playbook-conocimiento-tacito.html"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#1A1A1A;
+  --ink:#FFFFFF;
+  --muted:rgba(255,255,255,.5);
+  --hair:rgba(255,255,255,.14);
+  --hair-dot:rgba(255,255,255,.24);
+  --hair-strong:rgba(255,255,255,.28);
+  --accent:#7DD6F0;
+  --lime:#AAFF00;
+  --surface:rgba(255,255,255,.02);
+  --surface-2:rgba(255,255,255,.04);
+  --max-w:1200px;
+  --pad:48px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (max-width:720px){ :root{ --pad:24px; } }
+
+*{box-sizing:border-box;}
+html,body{background:var(--bg);color:var(--ink);}
+body{
+  font-family:"Manrope", ui-sans-serif, -apple-system, system-ui, "Segoe UI", sans-serif;
+  font-weight:400; font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  font-feature-settings:"kern","liga","ss01";
+  letter-spacing:-.005em;
+}
+.mono{
+  font-family:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-weight:400; letter-spacing:.02em;
+}
+.kicker{
+  font-family:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-weight:400; text-transform:uppercase;
+  letter-spacing:.14em; font-size:.72rem;
+  color:var(--accent);
+}
+.kicker.muted{color:var(--muted);}
+
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad);}
+hr.hair{border:0;border-top:1px solid var(--hair);margin:0;}
+hr.dot{border:0;border-top:1px dotted var(--hair-dot);margin:0;}
+
+/* ============ NAV ============ */
+nav.top{
+  position:sticky;top:0;z-index:20;
+  background:rgba(26,26,26,.82);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--hair);
+}
+.top-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:18px 0;
+}
+.logo{
+  display:flex;align-items:center;gap:12px;
+  font-family:"Manrope",system-ui,sans-serif;
+  font-weight:500;font-size:15px;letter-spacing:-.01em;
+  color:var(--ink);text-decoration:none;
+}
+.logo .dot-avail{
+  width:7px;height:7px;border-radius:99px;background:var(--lime);
+  box-shadow:0 0 8px rgba(170,255,0,.5);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+.logo .avail-txt{color:var(--muted);font-size:12px;letter-spacing:.02em;}
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:1;}
+  50%{transform:scale(.92);opacity:.75;}
+}
+@media (prefers-reduced-motion:reduce){
+  .logo .dot-avail{animation:none;}
+}
+.top-right{display:flex;align-items:center;gap:20px;}
+.top-meta{color:var(--muted);font-size:12px;letter-spacing:.02em;}
+.top-meta.back{text-decoration:none;transition:color .3s var(--ease);}
+.top-meta.back:hover{color:var(--ink);}
+@media (max-width:640px){.top-meta{display:none;}}
+.lang{
+  display:inline-flex;align-items:center;gap:0;
+  border:1px solid var(--hair);border-radius:99px;padding:3px;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;
+}
+.lang button{
+  background:transparent;border:0;color:var(--muted);
+  padding:6px 12px;border-radius:99px;cursor:pointer;
+  transition:color .3s var(--ease), background .3s var(--ease);
+  font-family:inherit;font-size:inherit;letter-spacing:inherit;
+  text-transform:uppercase;
+}
+.lang button.on{background:var(--surface-2);color:var(--ink);}
+.lang button:hover{color:var(--ink);}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+/* ============ HERO ============ */
+.hero{padding:clamp(80px,12vw,160px) 0 clamp(64px,10vw,120px);}
+.hero-kicker{display:flex;gap:14px;align-items:center;margin-bottom:36px;}
+.hero-kicker .bar{flex:0 0 40px;height:1px;background:var(--accent);}
+h1{
+  font-family:"Manrope",system-ui,sans-serif;
+  font-weight:300;
+  font-size:clamp(44px,7.6vw,96px);
+  line-height:1.05; letter-spacing:-.035em;
+  margin:0 0 32px;
+  text-wrap:balance;
+  max-width:18ch;
+}
+h1 .accent{color:var(--accent);}
+.hero-sub{
+  font-family:"Manrope",system-ui,sans-serif;
+  font-weight:300;
+  font-size:clamp(18px,1.8vw,22px);
+  line-height:1.55; color:var(--muted);
+  max-width:60ch; letter-spacing:-.005em;
+}
+.hero-sub em{font-style:normal;color:var(--ink);}
+
+.hero-meta{
+  margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border-top:1px dotted var(--hair-dot);
+}
+.hero-meta > div{
+  padding:26px 28px 0 28px;
+  border-right:1px dotted var(--hair-dot);
+}
+.hero-meta > div:first-child{padding-left:0;}
+.hero-meta > div:last-child{border-right:0;padding-right:0;}
+.hero-meta .k{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:10px;
+}
+.hero-meta .v{
+  font-family:"Manrope",system-ui,sans-serif;font-weight:400;
+  font-size:14.5px;line-height:1.45;color:var(--ink);
+}
+@media (max-width:820px){
+  .hero-meta{grid-template-columns:1fr 1fr;}
+  .hero-meta > div:nth-child(2){border-right:0;}
+  .hero-meta > div:nth-child(1),.hero-meta > div:nth-child(2){
+    border-bottom:1px dotted var(--hair-dot);padding-bottom:20px;
+  }
+}
+@media (max-width:520px){
+  .hero-meta{grid-template-columns:1fr;}
+  .hero-meta > div{border-right:0;border-bottom:1px dotted var(--hair-dot);padding-bottom:20px;}
+  .hero-meta > div:last-child{border-bottom:0;}
+}
+
+/* ============ SECTION ============ */
+section.chapter{padding:clamp(90px,12vw,130px) 0;border-top:1px solid var(--hair);}
+.chap-head{display:grid;grid-template-columns:180px 1fr;gap:clamp(24px,4vw,64px);align-items:baseline;margin-bottom:clamp(40px,6vw,72px);}
+.chap-num{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);
+}
+h2{
+  font-family:"Manrope",system-ui,sans-serif;
+  font-weight:300;
+  font-size:clamp(30px,4.2vw,52px);
+  line-height:1.1; letter-spacing:-.03em;
+  margin:0; text-wrap:balance; max-width:24ch;
+}
+@media (max-width:720px){ .chap-head{grid-template-columns:1fr;gap:12px;} }
+
+/* body + margin */
+.body-grid{display:grid;grid-template-columns:1fr minmax(200px,260px);gap:clamp(28px,5vw,72px);}
+.prose{max-width:64ch;}
+.prose p{margin:0 0 1.15em;color:rgba(255,255,255,.82);font-size:16.5px;line-height:1.75;}
+.prose strong{color:var(--ink);font-weight:500;}
+.margin-note{padding-top:6px;}
+.margin-note .label{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:12px;
+}
+.margin-note p{margin:0;color:var(--muted);font-size:14px;line-height:1.6;}
+@media (max-width:820px){
+  .body-grid{grid-template-columns:1fr;}
+  .margin-note{border-top:1px dotted var(--hair-dot);padding-top:20px;}
+}
+
+/* pull quote (Polanyi) */
+.pullquote{
+  margin:56px 0 0;
+  padding:36px 0;
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:baseline;
+}
+.pullquote .brace{font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:36px;line-height:1;}
+.pullquote q{
+  font-family:"Manrope",system-ui,sans-serif;font-weight:300;
+  font-size:clamp(22px,2.8vw,34px);line-height:1.25;letter-spacing:-.025em;
+  quotes:"" "";color:var(--ink);
+}
+.pullquote cite{
+  display:block;margin-top:16px;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-style:normal;
+}
+
+/* dialectic pair */
+.dialectic{
+  margin-top:56px;
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--hair);
+  border:1px solid var(--hair);
+}
+.dialectic > article{
+  background:var(--bg);
+  padding:clamp(28px,3.4vw,44px);
+  transition:background .4s var(--ease);
+}
+.dialectic > article:hover{background:var(--surface);}
+.dialectic .tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+.dialectic .tag .glyph{color:var(--accent);}
+.dialectic h3{
+  font-family:"Manrope",system-ui,sans-serif;font-weight:300;
+  font-size:clamp(22px,2.4vw,28px);line-height:1.15;letter-spacing:-.02em;
+  margin:0 0 14px;
+}
+.dialectic h3 em{font-style:normal;color:var(--accent);}
+.dialectic p{margin:0;color:var(--muted);font-size:15px;line-height:1.65;max-width:42ch;}
+@media (max-width:720px){ .dialectic{grid-template-columns:1fr;} }
+
+/* framework strip */
+.framework{
+  margin-top:56px;
+  border:1px solid var(--hair);
+  display:grid;grid-template-columns:repeat(3,1fr);
+}
+.framework .step{
+  padding:clamp(28px,3vw,40px);
+  border-right:1px dotted var(--hair-dot);
+  transition:background .4s var(--ease);
+}
+.framework .step:last-child{border-right:0;}
+.framework .step:hover{background:var(--surface);}
+.framework .step .n{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:16px;
+}
+.framework .step h4{
+  font-family:"Manrope",system-ui,sans-serif;font-weight:400;
+  font-size:20px;line-height:1.2;letter-spacing:-.015em;
+  margin:0 0 10px;
+}
+.framework .step p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+@media (max-width:820px){
+  .framework{grid-template-columns:1fr;}
+  .framework .step{border-right:0;border-bottom:1px dotted var(--hair-dot);}
+  .framework .step:last-child{border-bottom:0;}
+}
+
+/* numbered rules (steps) */
+.rules{margin-top:64px;display:grid;gap:0;border-top:1px solid var(--hair);}
+.rule-item{
+  padding:clamp(32px,4.5vw,56px) 0;
+  border-bottom:1px solid var(--hair);
+  display:grid;grid-template-columns:120px 1fr;gap:clamp(24px,4vw,56px);
+  transition:padding-left .4s var(--ease);
+}
+.rule-item:hover{padding-left:16px;}
+.rule-num{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:14px;color:var(--accent);letter-spacing:.06em;
+  align-self:start;padding-top:6px;
+}
+.rule-body h3{
+  font-family:"Manrope",system-ui,sans-serif;font-weight:300;
+  font-size:clamp(22px,2.6vw,30px);line-height:1.2;letter-spacing:-.025em;
+  margin:0 0 18px; max-width:36ch;
+}
+.rule-body h3 em{font-style:normal;color:var(--accent);}
+.rule-body p{margin:0 0 14px;color:var(--muted);font-size:15.5px;line-height:1.7;max-width:60ch;}
+.rule-body p strong{color:var(--ink);font-weight:500;}
+.rule-body .action{
+  margin-top:24px;padding:20px 24px;
+  border-left:1px solid var(--accent);
+  background:var(--surface);
+}
+.rule-body .action .lbl{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px;
+}
+.rule-body .action p{margin:0;color:rgba(255,255,255,.78);font-size:14.5px;line-height:1.65;}
+@media (max-width:640px){
+  .rule-item{grid-template-columns:1fr;gap:14px;}
+  .rule-item:hover{padding-left:0;}
+}
+
+/* matrix table */
+.matrix{
+  margin-top:56px;border:1px solid var(--hair);overflow-x:auto;
+}
+.matrix table{width:100%;border-collapse:collapse;min-width:720px;}
+.matrix th, .matrix td{
+  padding:24px 28px;vertical-align:top;text-align:left;
+  border-bottom:1px dotted var(--hair-dot);
+  border-right:1px dotted var(--hair-dot);
+}
+.matrix th:last-child, .matrix td:last-child{border-right:0;}
+.matrix tr:last-child td{border-bottom:0;}
+.matrix thead th{
+  background:var(--surface);
+  font-family:"IBM Plex Mono",monospace;font-weight:400;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.matrix td.moment{
+  font-family:"Manrope",system-ui,sans-serif;font-weight:400;
+  font-size:15px;color:var(--ink);width:22%;letter-spacing:-.005em;
+}
+.matrix td.cell{width:39%;color:var(--muted);font-size:14.5px;line-height:1.65;}
+.matrix .cell .lbl{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;display:block;margin-bottom:10px;
+}
+.matrix .cell.dont .lbl{color:var(--muted);opacity:.7;}
+.matrix .cell.dont .lbl::before{content:"✕  ";}
+.matrix .cell.doo  .lbl{color:var(--accent);}
+.matrix .cell.doo  .lbl::before{content:"→  ";}
+.matrix .cell.dont p{color:rgba(255,255,255,.4);}
+.matrix .cell.doo  p{color:rgba(255,255,255,.82);}
+.matrix p{margin:0;}
+
+/* bibliography */
+.biblio ol{list-style:none;padding:0;margin:0;counter-reset:ref;}
+.biblio li{
+  counter-increment:ref;
+  display:grid;grid-template-columns:64px 1fr auto;gap:24px;
+  padding:24px 0;border-top:1px solid var(--hair);align-items:baseline;
+  transition:padding-left .3s var(--ease);
+}
+.biblio li:last-child{border-bottom:1px solid var(--hair);}
+.biblio li:hover{padding-left:12px;}
+.biblio li::before{
+  content:"{" counter(ref,decimal-leading-zero) "}";
+  font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;
+  color:var(--accent);
+}
+.biblio .ref{color:rgba(255,255,255,.82);font-size:15.5px;line-height:1.55;max-width:70ch;}
+.biblio .ref .who{color:var(--ink);font-weight:500;}
+.biblio .ref em{color:var(--muted);font-style:italic;}
+.biblio .ref a{
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid rgba(125,214,240,.3);
+  transition:border-color .3s var(--ease);
+}
+.biblio .ref a:hover{border-bottom-color:var(--accent);}
+.biblio .link{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);
+  align-self:baseline;
+}
+.biblio .link a{color:var(--accent);text-decoration:none;}
+.biblio .link a:hover{filter:drop-shadow(0 0 6px rgba(125,214,240,.5));}
+@media (max-width:640px){
+  .biblio li{grid-template-columns:1fr;gap:8px;}
+  .biblio li::before{margin-bottom:0;}
+  .biblio .link{margin-top:4px;}
+}
+
+/* footer */
+footer.foot{
+  padding:56px 0 72px;border-top:1px solid var(--hair);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  color:var(--muted);font-size:12px;letter-spacing:.02em;
+}
+footer.foot .mono-l{font-family:"IBM Plex Mono",monospace;letter-spacing:.06em;}
+footer.foot a{color:var(--accent);text-decoration:none;}
+footer.foot a:hover{filter:drop-shadow(0 0 6px rgba(125,214,240,.5));}
+
+/* prompt block */
+.prompt{
+  margin-top:22px;
+  border:1px solid var(--hair);
+  border-left:2px solid var(--accent);
+  background:rgba(125,214,240,.03);
+  transition:background .4s var(--ease), border-color .4s var(--ease);
+}
+.prompt:hover{background:rgba(125,214,240,.05);border-color:var(--hair-strong);border-left-color:var(--accent);}
+.prompt header{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:14px 20px;border-bottom:1px dotted var(--hair-dot);
+}
+.prompt header .lbl{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+}
+.prompt header .lbl .sub{color:var(--muted);margin-left:8px;}
+.prompt .copy{
+  background:transparent;border:1px solid var(--hair);
+  color:var(--muted);cursor:pointer;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 12px;border-radius:2px;
+  transition:color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+}
+.prompt .copy:hover{color:var(--ink);border-color:var(--accent);background:rgba(125,214,240,.06);}
+.prompt .copy.done{color:var(--accent);border-color:var(--accent);}
+.prompt .copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.prompt .body{
+  padding:22px 24px;
+  font-family:"IBM Plex Mono",monospace;
+  font-weight:300;
+  font-size:13.5px; line-height:1.75;
+  color:rgba(255,255,255,.78);
+  letter-spacing:.005em;
+}
+.prompt .body .hash{color:var(--accent);font-weight:500;}
+.prompt .body .slot{
+  color:var(--ink);
+  border-bottom:1px dotted var(--accent);
+  padding:0 2px;
+}
+
+::selection{background:rgba(125,214,240,.28);color:#fff;}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap top-inner">
+    <a href="index.html" class="logo">
+      <span class="dot-avail" aria-hidden="true"></span>
+      <span>Alan Buenhombre</span>
+      <span class="avail-txt" data-i18n="avail">Disponible para proyectos</span>
+    </a>
+    <div class="top-right">
+      <a class="top-meta mono back" href="index.html#playbooks" data-i18n="back">← Playbooks</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="es" class="on" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-kicker">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker" data-i18n="hero.kicker">{ 01 } · Playbook · Diseño de producto</span>
+    </div>
+
+    <h1 data-i18n="hero.title">Sabemos más de <span class="accent">lo que podemos decir</span>.</h1>
+
+    <p class="hero-sub" data-i18n="hero.sub">Cómo usar la IA generativa para revelar los supuestos ocultos en un PRD — antes de invertir dos sprints diseñando algo que el stakeholder no había pedido.</p>
+
+    <dl class="hero-meta">
+      <div>
+        <div class="k" data-i18n="meta.for.k">Para</div>
+        <div class="v" data-i18n="meta.for.v">Product designers, design leads, PMs y equipos de producto en el momento del kickoff.</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.time.k">Duración</div>
+        <div class="v" data-i18n="meta.time.v">Lectura de 10 minutos. Se aplica en cada nuevo brief.</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.based.k">Basado en</div>
+        <div class="v" data-i18n="meta.based.v">He, Xiao &amp; Xie (DRS 2024). Polanyi (1966). Schön (1983).</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.stance.k">Postura</div>
+        <div class="v" data-i18n="meta.stance.v">La IA no acelera el diseño. Acelera el acuerdo sobre qué diseñar.</div>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<!-- CHAPTER 01 -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c1.num">{ 01 } — Diagnóstico</div>
+      <h2 data-i18n="c1.title">¿Qué es lo que un PRD no dice — y por qué te cuesta dos sprints descubrirlo?</h2>
+    </div>
+
+    <div class="body-grid">
+      <div class="prose">
+        <p data-i18n="c1.p1">El filósofo Michael Polanyi lo formuló con una frase incómoda: <em>“sabemos más de lo que podemos decir”</em>. En cada PRD que llega a un equipo de diseño hay dos documentos superpuestos: el que está escrito — con sus features, sus criterios de aceptación y sus mockups de referencia — y otro que nadie redactó, hecho de supuestos estéticos, expectativas de ritmo, referencias culturales y modelos mentales que el stakeholder no formalizó porque los da por obvios.</p>
+        <p data-i18n="c1.p2">Ese segundo documento es <strong>conocimiento tácito</strong>. Y por su naturaleza, es esquivo: cuando el PM escribe <em>“que se sienta moderno”</em>, <em>“algo tipo Linear pero para nuestro caso”</em> o <em>“limpio, sin fricciones”</em>, cada palabra carga un modelo interno que ni él mismo puede describir con precisión. Solo se hace visible cuando reacciona a algo concreto — un mockup, una referencia, una versión equivocada — con un <em>“no, así no me lo imaginaba”</em>.</p>
+        <p data-i18n="c1.p3">Ese momento, esa corrección viva, es lo que separa un diseño que cierra a la primera de uno que rebota tres veces. La IA generativa promete llegar a él más rápido — no diseñando el producto final, sino generando el <em>estímulo</em> que lo hace aflorar en el kickoff. Pero la promesa tiene dos caras — una ayuda y una trampa — y confundirlas es lo que convierte una alineación en una alucinación bien maquetada.</p>
+      </div>
+      <aside class="margin-note">
+        <div class="label" data-i18n="c1.note.k">Nota al margen</div>
+        <p data-i18n="c1.note.v">Polanyi propuso <em>tacit knowing</em> en 1958. No es información oculta esperando ser extraída: es una forma de saber que solo existe <em>en la acción</em>. Aplicado al PRD: los supuestos del stakeholder no se descubren preguntando, se descubren reaccionando.</p>
+      </aside>
+    </div>
+
+    <blockquote class="pullquote">
+      <span class="brace" aria-hidden="true">“</span>
+      <div>
+        <q data-i18n="c1.quote">Sabemos más de lo que podemos decir.</q>
+        <cite>— Michael Polanyi · The Tacit Dimension · 1966</cite>
+      </div>
+    </blockquote>
+
+    <div class="dialectic">
+      <article>
+        <div class="tag"><span class="glyph">◐</span> <span data-i18n="c1.mirror.tag">Efecto espejo · lo que ayuda</span></div>
+        <h3 data-i18n="c1.mirror.h">La IA como <em>objeto frontera</em>.</h3>
+        <p data-i18n="c1.mirror.p">Traduce las palabras del brief en imágenes concretas en minutos. Funciona como <em>boundary object</em> entre diseño y producto: fuerza al stakeholder a confrontar lo que realmente quiso decir con “moderno”, y a decirlo antes de que empieces a diseñar.</p>
+      </article>
+      <article>
+        <div class="tag"><span class="glyph">◑</span> <span data-i18n="c1.risk.tag">Sesgo de fascinación · lo que engaña</span></div>
+        <h3 data-i18n="c1.risk.h">La IA como <em>oráculo pulido</em>.</h3>
+        <p data-i18n="c1.risk.p">Escupe pantallas tan acabadas que producen una ilusión de acuerdo. El PM aprueba lo que ve porque parece profesional; nadie discute los supuestos que lleva adentro. Dos sprints después aparece el <em>“no era esto lo que pedí”</em>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 02 -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c2.num">{ 02 } — Framework</div>
+      <h2 data-i18n="c2.title">Tres pasos para aplicarlo en el kickoff de un PRD.</h2>
+    </div>
+
+    <div class="framework">
+      <div class="step">
+        <div class="n" data-i18n="c2.s1.n">Paso 01</div>
+        <h4 data-i18n="c2.s1.h">Estímulo inicial</h4>
+        <p data-i18n="c2.s1.p">Llegar al kickoff con 3 lecturas visuales opuestas del brief, no con una interpretación pulida.</p>
+      </div>
+      <div class="step">
+        <div class="n" data-i18n="c2.s2.n">Paso 02</div>
+        <h4 data-i18n="c2.s2.h">Prompting dialéctico</h4>
+        <p data-i18n="c2.s2.p">Co-construir el prompt en vivo con el PM, usando las palabras textuales del brief para materializarlas.</p>
+      </div>
+      <div class="step">
+        <div class="n" data-i18n="c2.s3.n">Paso 03</div>
+        <h4 data-i18n="c2.s3.h">Visibilizar el proceso</h4>
+        <p data-i18n="c2.s3.p">Mostrar los supuestos, las variantes descartadas y las decisiones abiertas — no solo la propuesta final.</p>
+      </div>
+    </div>
+
+    <div class="rules">
+      <article class="rule-item">
+        <div class="rule-num">{ 01 }</div>
+        <div class="rule-body">
+          <h3 data-i18n="c2.r1.h">Trata el output de la IA como <em>estímulo del kickoff</em>, no como propuesta.</h3>
+          <p data-i18n="c2.r1.p">Nunca llegues a la reunión con una interpretación pulida del brief — es la forma más rápida de comprometerte a supuestos que no discutiste. Llega con <strong>tres lecturas visuales opuestas</strong> del mismo PRD: una literal, una que fuerce el brief al extremo, una que probablemente esté equivocada. La incomodidad de elegir revela lo que el PM no había verbalizado.</p>
+          <div class="action">
+            <div class="lbl" data-i18n="c2.r1.lbl">Acción</div>
+            <p data-i18n="c2.r1.a">Antes del kickoff, genera tres direcciones deliberadamente distintas a partir de la frase más ambigua del brief. Preséntalas juntas, sin recomendar cuál prefieres. La discusión de por qué la #2 “no es”, es el brief real.</p>
+          </div>
+          <section class="prompt" aria-label="Prompt reutilizable">
+            <header>
+              <div class="lbl">Prompt · 01 <span class="sub" data-i18n="pr.hint">Copiar &amp; ajustar los [campos]</span></div>
+              <button class="copy" type="button" data-copy="pr.1.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.1.body"><span class="hash">#tarea</span> Genera tres interpretaciones visuales opuestas de esta línea del PRD: <span class="slot">"[frase textual del brief]"</span>. <span class="hash">#contexto</span> Voy al kickoff con el PM y el equipo de producto; necesito exponer los supuestos ocultos detrás de sus palabras antes de comprometerme a diseñar. <span class="hash">#ejecución</span> Devuelve tres direcciones deliberadamente distintas — una literal, una que fuerce la interpretación al extremo, una que probablemente esté equivocada — sin justificar cuál es la correcta ni pulir detalles.</p>
+          </section>
+        </div>
+      </article>
+      <article class="rule-item">
+        <div class="rule-num">{ 02 }</div>
+        <div class="rule-body">
+          <h3 data-i18n="c2.r2.h">Aplica el <em>prompting dialéctico</em> con el PM en la sala.</h3>
+          <p data-i18n="c2.r2.p">La dupla que importa no es Designer↔Usuario — es <strong>Designer ↔ PM/Product Owner</strong>. Co-construye el prompt en vivo con las palabras textuales del brief. El prompt deja de ser una consulta privada y se vuelve un artefacto de alineación: ver la máquina traducir “ágil” obliga al PM a decir qué quiso decir con “ágil”.</p>
+          <div class="action">
+            <div class="lbl" data-i18n="c2.r2.lbl">Acción</div>
+            <p data-i18n="c2.r2.a">Comparte pantalla en el kickoff. Escribe el prompt con el PM al lado, usando su vocabulario sin traducirlo. Observa qué corrige del output y qué defiende — ahí están los supuestos que no estaban en el PRD.</p>
+          </div>
+          <section class="prompt" aria-label="Prompt reutilizable">
+            <header>
+              <div class="lbl">Prompt · 02 <span class="sub" data-i18n="pr.hint">Copiar &amp; ajustar los [campos]</span></div>
+              <button class="copy" type="button" data-copy="pr.2.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.2.body"><span class="hash">#tarea</span> Materializa esta expresión textual del PM en una interfaz sin traducirla al lenguaje de producto: <span class="slot">"[frase exacta del stakeholder]"</span>. <span class="hash">#contexto</span> Estamos alineando el brief en vivo; quiero exponer si “que se sienta ágil” y “que se sienta rápido” significan lo mismo para él. <span class="hash">#ejecución</span> Preserva la ambigüedad del original. Si dijo “algo tipo Linear pero para nuestro contexto”, muéstrame qué de Linear tomaste y qué descartaste — sin resolverlo por tu cuenta.</p>
+          </section>
+        </div>
+      </article>
+      <article class="rule-item">
+        <div class="rule-num">{ 03 }</div>
+        <div class="rule-body">
+          <h3 data-i18n="c2.r3.h">Haz visible el proceso — el <em>labor perception bias</em> juega a favor.</h3>
+          <p data-i18n="c2.r3.p">Cuando un PM ve solo la propuesta final, la juzga como producto terminado. Cuando ve el mapa de supuestos, las variantes descartadas y las decisiones abiertas, la juzga como <em>trabajo en curso compartido</em>. Ese cambio de estado — de entrega a colaboración — es lo que evita el clásico rebote de review.</p>
+          <div class="action">
+            <div class="lbl" data-i18n="c2.r3.lbl">Acción</div>
+            <p data-i18n="c2.r3.a">No presentes solo pantallas. Presenta primero los supuestos que estás asumiendo del brief, después las variantes descartadas con su razón, y solo al final la propuesta. Da espacio a la <em>reflection-in-action</em> de Schön: pensar con el stakeholder, no para él.</p>
+          </div>
+          <section class="prompt" aria-label="Prompt reutilizable">
+            <header>
+              <div class="lbl">Prompt · 03 <span class="sub" data-i18n="pr.hint">Copiar &amp; ajustar los [campos]</span></div>
+              <button class="copy" type="button" data-copy="pr.3.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.3.body"><span class="hash">#tarea</span> Antes de proponer la solución visual, lista los supuestos que estás asumiendo del PRD. <span class="hash">#contexto</span> Necesito compartir con el PM y el equipo qué decisiones se están tomando sin discusión — para que se aprueben o se corrijan antes de invertir horas de diseño. <span class="hash">#ejecución</span> Devuelve primero 5–7 supuestos ocultos en formato lista, después una matriz de trade-offs de las decisiones abiertas, y solo al final una propuesta visual acotada por esos supuestos.</p>
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 03 -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c3.num">{ 03 } — Matriz de control</div>
+      <h2 data-i18n="c3.title">Buenas y malas prácticas en los tres momentos del PRD.</h2>
+    </div>
+
+    <div class="body-grid">
+      <div class="prose">
+        <p data-i18n="c3.p1">Esta matriz no es una checklist para cumplir — es un diagnóstico. Cada fila enfrenta dos versiones de la misma decisión en un punto concreto del ciclo del brief: una donde la IA <strong>sustituye</strong> la conversación con producto, y otra donde la <strong>cataliza</strong>. La diferencia es de intención, no de herramienta.</p>
+      </div>
+      <aside class="margin-note">
+        <div class="label" data-i18n="c3.note.k">Cómo leerla</div>
+        <p data-i18n="c3.note.v">La columna izquierda no es “lo prohibido”. Es el atajo que parece razonable cuando el PM te apura y necesitas mostrar algo mañana. Reconocerlo es el primer paso para no caer en él.</p>
+      </aside>
+    </div>
+
+    <div class="matrix">
+      <table>
+        <thead>
+          <tr>
+            <th data-i18n="c3.h1">Momento del PRD</th>
+            <th data-i18n="c3.h2">Atajo — IA como oráculo</th>
+            <th data-i18n="c3.h3">Práctica — IA como catalizador</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="moment" data-i18n="c3.m1">Lectura inicial del brief</td>
+            <td class="cell dont"><span class="lbl" data-i18n="c3.dont">No hacer</span><p data-i18n="c3.r1.bad">Empezar a diseñar apenas terminas de leer el PRD, confiando en tu propia interpretación de las palabras ambiguas.</p></td>
+            <td class="cell doo"><span class="lbl" data-i18n="c3.doo">Hacer</span><p data-i18n="c3.r1.good">Generar 3 lecturas visuales opuestas del brief antes de la primera reunión, y llegar con estímulos para calibrar con el PM.</p></td>
+          </tr>
+          <tr>
+            <td class="moment" data-i18n="c3.m2">Kickoff con stakeholders</td>
+            <td class="cell dont"><span class="lbl" data-i18n="c3.dont">No hacer</span><p data-i18n="c3.r2.bad">Mostrar tu propia interpretación pulida y preguntar “¿te gusta?”. La aprobación educada es enemiga del acuerdo real.</p></td>
+            <td class="cell doo"><span class="lbl" data-i18n="c3.doo">Hacer</span><p data-i18n="c3.r2.good">Compartir pantalla, co-construir el prompt en vivo con las palabras textuales del PM, y trabajar sobre lo que él corrige.</p></td>
+          </tr>
+          <tr>
+            <td class="moment" data-i18n="c3.m3">Presentación &amp; handoff</td>
+            <td class="cell dont"><span class="lbl" data-i18n="c3.dont">No hacer</span><p data-i18n="c3.r3.bad">Presentar solo la solución final, escondiendo las variantes descartadas y los supuestos que quedaron sin discutir.</p></td>
+            <td class="cell doo"><span class="lbl" data-i18n="c3.doo">Hacer</span><p data-i18n="c3.r3.good">Mostrar el mapa de supuestos, las variantes intermedias descartadas con su razón, y las decisiones que quedan abiertas.</p></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 04 -->
+<section class="chapter biblio">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c4.num">{ 04 } — Bibliografía</div>
+      <h2 data-i18n="c4.title">Respaldo académico y linaje.</h2>
+    </div>
+
+    <ol>
+      <li>
+        <div class="ref"><span class="who">He, W., Xiao, Y., &amp; Xie, Y.</span> (2024). <em data-i18n="c4.b1">Revealing user tacit knowledge: Generative-Image-AI helps create better design conversation.</em> Proceedings of DRS2024: Boston.</div>
+        <div class="link"><a href="https://doi.org/10.21606/drs.2024.1329" target="_blank" rel="noopener">doi.org ↗</a></div>
+      </li>
+      <li>
+        <div class="ref"><span class="who">Polanyi, M.</span> (1966). <em>The Tacit Dimension.</em> Doubleday &amp; Co.</div>
+        <div class="link"></div>
+      </li>
+      <li>
+        <div class="ref"><span class="who">Schön, D. A.</span> (1983). <em>The Reflective Practitioner: How Professionals Think in Action.</em> Basic Books.</div>
+        <div class="link"></div>
+      </li>
+      <li>
+        <div class="ref"><span class="who">Béguin, P.</span> (2003). <em data-i18n="c4.b4">Design as a mutual learning process between users and designers.</em> Interacting with Computers, 15(5), 709–730.</div>
+        <div class="link"></div>
+      </li>
+      <li>
+        <div class="ref"><span class="who">Growth.design.</span> <em data-i18n="c4.b5">Labor Perception Bias — Case Study.</em></div>
+        <div class="link"><a href="https://growth.design/case-studies/labor-perception-bias" target="_blank" rel="noopener">growth.design ↗</a></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap" style="max-width:var(--max-w);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;width:100%;">
+    <div class="mono-l" data-i18n="foot.l">Playbook 01 · Sabemos más de lo que podemos decir.</div>
+    <div>
+      <span class="mono-l">© Alan Buenhombre · </span>
+      <a href="index.html#playbooks" data-i18n="foot.more">Más playbooks →</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  es: {
+    "avail":"Disponible para proyectos",
+    "back":"← Playbooks",
+    "hero.kicker":"{ 01 } · Playbook · Diseño de producto",
+    "hero.title":"Sabemos más de <span class=\"accent\">lo que podemos decir</span>.",
+    "hero.sub":"Cómo usar la IA generativa para revelar los supuestos ocultos en un PRD — antes de invertir dos sprints diseñando algo que el stakeholder no había pedido.",
+    "meta.for.k":"Para","meta.for.v":"Product designers, design leads, PMs y equipos de producto en el momento del kickoff.",
+    "meta.time.k":"Duración","meta.time.v":"Lectura de 10 minutos. Se aplica en cada nuevo brief.",
+    "meta.based.k":"Basado en","meta.based.v":"He, Xiao &amp; Xie (DRS 2024). Polanyi (1966). Schön (1983).",
+    "meta.stance.k":"Postura","meta.stance.v":"La IA no acelera el diseño. Acelera el acuerdo sobre qué diseñar.",
+
+    "c1.num":"{ 01 } — Diagnóstico",
+    "c1.title":"¿Qué es lo que un PRD no dice — y por qué te cuesta dos sprints descubrirlo?",
+    "c1.p1":"El filósofo Michael Polanyi lo formuló con una frase incómoda: <em>“sabemos más de lo que podemos decir”</em>. En cada PRD que llega a un equipo de diseño hay dos documentos superpuestos: el que está escrito — con sus features, sus criterios de aceptación y sus mockups de referencia — y otro que nadie redactó, hecho de supuestos estéticos, expectativas de ritmo, referencias culturales y modelos mentales que el stakeholder no formalizó porque los da por obvios.",
+    "c1.p2":"Ese segundo documento es <strong>conocimiento tácito</strong>. Y por su naturaleza, es esquivo: cuando el PM escribe <em>“que se sienta moderno”</em>, <em>“algo tipo Linear pero para nuestro caso”</em> o <em>“limpio, sin fricciones”</em>, cada palabra carga un modelo interno que ni él mismo puede describir con precisión. Solo se hace visible cuando reacciona a algo concreto — un mockup, una referencia, una versión equivocada — con un <em>“no, así no me lo imaginaba”</em>.",
+    "c1.p3":"Ese momento, esa corrección viva, es lo que separa un diseño que cierra a la primera de uno que rebota tres veces. La IA generativa promete llegar a él más rápido — no diseñando el producto final, sino generando el <em>estímulo</em> que lo hace aflorar en el kickoff. Pero la promesa tiene dos caras — una ayuda y una trampa — y confundirlas es lo que convierte una alineación en una alucinación bien maquetada.",
+    "c1.note.k":"Nota al margen",
+    "c1.note.v":"Polanyi propuso <em>tacit knowing</em> en 1958. No es información oculta esperando ser extraída: es una forma de saber que solo existe <em>en la acción</em>. Aplicado al PRD: los supuestos del stakeholder no se descubren preguntando, se descubren reaccionando.",
+    "c1.quote":"Sabemos más de lo que podemos decir.",
+    "c1.mirror.tag":"Efecto espejo · lo que ayuda",
+    "c1.mirror.h":"La IA como <em>objeto frontera</em>.",
+    "c1.mirror.p":"Traduce las palabras del brief en imágenes concretas en minutos. Funciona como <em>boundary object</em> entre diseño y producto: fuerza al stakeholder a confrontar lo que realmente quiso decir con “moderno”, y a decirlo antes de que empieces a diseñar.",
+    "c1.risk.tag":"Sesgo de fascinación · lo que engaña",
+    "c1.risk.h":"La IA como <em>oráculo pulido</em>.",
+    "c1.risk.p":"Escupe pantallas tan acabadas que producen una ilusión de acuerdo. El PM aprueba lo que ve porque parece profesional; nadie discute los supuestos que lleva adentro. Dos sprints después aparece el <em>“no era esto lo que pedí”</em>.",
+
+    "c2.num":"{ 02 } — Framework",
+    "c2.title":"Tres pasos para aplicarlo en el kickoff de un PRD.",
+    "c2.s1.n":"Paso 01","c2.s1.h":"Estímulo inicial","c2.s1.p":"Llegar al kickoff con 3 lecturas visuales opuestas del brief, no con una interpretación pulida.",
+    "c2.s2.n":"Paso 02","c2.s2.h":"Prompting dialéctico","c2.s2.p":"Co-construir el prompt en vivo con el PM, usando las palabras textuales del brief para materializarlas.",
+    "c2.s3.n":"Paso 03","c2.s3.h":"Visibilizar el proceso","c2.s3.p":"Mostrar los supuestos, las variantes descartadas y las decisiones abiertas — no solo la propuesta final.",
+    "c2.r1.h":"Trata el output de la IA como <em>estímulo del kickoff</em>, no como propuesta.",
+    "c2.r1.p":"Nunca llegues a la reunión con una interpretación pulida del brief — es la forma más rápida de comprometerte a supuestos que no discutiste. Llega con <strong>tres lecturas visuales opuestas</strong> del mismo PRD: una literal, una que fuerce el brief al extremo, una que probablemente esté equivocada. La incomodidad de elegir revela lo que el PM no había verbalizado.",
+    "c2.r1.lbl":"Acción",
+    "c2.r1.a":"Antes del kickoff, genera tres direcciones deliberadamente distintas a partir de la frase más ambigua del brief. Preséntalas juntas, sin recomendar cuál prefieres. La discusión de por qué la #2 “no es”, es el brief real.",
+    "c2.r2.h":"Aplica el <em>prompting dialéctico</em> con el PM en la sala.",
+    "c2.r2.p":"La dupla que importa no es Designer↔Usuario — es <strong>Designer ↔ PM/Product Owner</strong>. Co-construye el prompt en vivo con las palabras textuales del brief. El prompt deja de ser una consulta privada y se vuelve un artefacto de alineación: ver la máquina traducir “ágil” obliga al PM a decir qué quiso decir con “ágil”.",
+    "c2.r2.lbl":"Acción",
+    "c2.r2.a":"Comparte pantalla en el kickoff. Escribe el prompt con el PM al lado, usando su vocabulario sin traducirlo. Observa qué corrige del output y qué defiende — ahí están los supuestos que no estaban en el PRD.",
+    "c2.r3.h":"Haz visible el proceso — el <em>labor perception bias</em> juega a favor.",
+    "c2.r3.p":"Cuando un PM ve solo la propuesta final, la juzga como producto terminado. Cuando ve el mapa de supuestos, las variantes descartadas y las decisiones abiertas, la juzga como <em>trabajo en curso compartido</em>. Ese cambio de estado — de entrega a colaboración — es lo que evita el clásico rebote de review.",
+    "c2.r3.lbl":"Acción",
+    "c2.r3.a":"No presentes solo pantallas. Presenta primero los supuestos que estás asumiendo del brief, después las variantes descartadas con su razón, y solo al final la propuesta. Da espacio a la <em>reflection-in-action</em> de Schön: pensar con el stakeholder, no para él.",
+
+    "pr.hint":"Copiar &amp; ajustar los [campos]",
+    "pr.copy":"Copiar",
+    "pr.1.body":"<span class=\"hash\">#tarea</span> Genera tres interpretaciones visuales opuestas de esta línea del PRD: <span class=\"slot\">\"[frase textual del brief]\"</span>. <span class=\"hash\">#contexto</span> Voy al kickoff con el PM y el equipo de producto; necesito exponer los supuestos ocultos detrás de sus palabras antes de comprometerme a diseñar. <span class=\"hash\">#ejecución</span> Devuelve tres direcciones deliberadamente distintas — una literal, una que fuerce la interpretación al extremo, una que probablemente esté equivocada — sin justificar cuál es la correcta ni pulir detalles.",
+    "pr.2.body":"<span class=\"hash\">#tarea</span> Materializa esta expresión textual del PM en una interfaz sin traducirla al lenguaje de producto: <span class=\"slot\">\"[frase exacta del stakeholder]\"</span>. <span class=\"hash\">#contexto</span> Estamos alineando el brief en vivo; quiero exponer si “que se sienta ágil” y “que se sienta rápido” significan lo mismo para él. <span class=\"hash\">#ejecución</span> Preserva la ambigüedad del original. Si dijo “algo tipo Linear pero para nuestro contexto”, muéstrame qué de Linear tomaste y qué descartaste — sin resolverlo por tu cuenta.",
+    "pr.3.body":"<span class=\"hash\">#tarea</span> Antes de proponer la solución visual, lista los supuestos que estás asumiendo del PRD. <span class=\"hash\">#contexto</span> Necesito compartir con el PM y el equipo qué decisiones se están tomando sin discusión — para que se aprueben o se corrijan antes de invertir horas de diseño. <span class=\"hash\">#ejecución</span> Devuelve primero 5–7 supuestos ocultos en formato lista, después una matriz de trade-offs de las decisiones abiertas, y solo al final una propuesta visual acotada por esos supuestos.",
+
+    "c3.num":"{ 03 } — Matriz de control",
+    "c3.title":"Buenas y malas prácticas en los tres momentos del PRD.",
+    "c3.p1":"Esta matriz no es una checklist para cumplir — es un diagnóstico. Cada fila enfrenta dos versiones de la misma decisión en un punto concreto del ciclo del brief: una donde la IA <strong>sustituye</strong> la conversación con producto, y otra donde la <strong>cataliza</strong>. La diferencia es de intención, no de herramienta.",
+    "c3.note.k":"Cómo leerla",
+    "c3.note.v":"La columna izquierda no es “lo prohibido”. Es el atajo que parece razonable cuando el PM te apura y necesitas mostrar algo mañana. Reconocerlo es el primer paso para no caer en él.",
+    "c3.h1":"Momento del PRD","c3.h2":"Atajo — IA como oráculo","c3.h3":"Práctica — IA como catalizador",
+    "c3.dont":"No hacer","c3.doo":"Hacer",
+    "c3.m1":"Lectura inicial del brief",
+    "c3.r1.bad":"Empezar a diseñar apenas terminas de leer el PRD, confiando en tu propia interpretación de las palabras ambiguas.",
+    "c3.r1.good":"Generar 3 lecturas visuales opuestas del brief antes de la primera reunión, y llegar con estímulos para calibrar con el PM.",
+    "c3.m2":"Kickoff con stakeholders",
+    "c3.r2.bad":"Mostrar tu propia interpretación pulida y preguntar “¿te gusta?”. La aprobación educada es enemiga del acuerdo real.",
+    "c3.r2.good":"Compartir pantalla, co-construir el prompt en vivo con las palabras textuales del PM, y trabajar sobre lo que él corrige.",
+    "c3.m3":"Presentación &amp; handoff",
+    "c3.r3.bad":"Presentar solo la solución final, escondiendo las variantes descartadas y los supuestos que quedaron sin discutir.",
+    "c3.r3.good":"Mostrar el mapa de supuestos, las variantes intermedias descartadas con su razón, y las decisiones que quedan abiertas.",
+
+    "c4.num":"{ 04 } — Bibliografía",
+    "c4.title":"Respaldo académico y linaje.",
+    "c4.b1":"Revealing user tacit knowledge: Generative-Image-AI helps create better design conversation.",
+    "c4.b4":"Design as a mutual learning process between users and designers.",
+    "c4.b5":"Labor Perception Bias — Case Study.",
+
+    "foot.l":"Playbook 01 · Sabemos más de lo que podemos decir.","foot.more":"Más playbooks →"
+  },
+  en: {
+    "avail":"Available for projects",
+    "back":"← Playbooks",
+    "hero.kicker":"{ 01 } · Playbook · Product design",
+    "hero.title":"We know more than <span class=\"accent\">we can tell</span>.",
+    "hero.sub":"How to use generative AI to surface the hidden assumptions inside a PRD — before spending two sprints designing something the stakeholder never asked for.",
+    "meta.for.k":"For","meta.for.v":"Product designers, design leads, PMs and product teams at the kickoff moment.",
+    "meta.time.k":"Length","meta.time.v":"10-minute read. Applied at every new brief.",
+    "meta.based.k":"Based on","meta.based.v":"He, Xiao &amp; Xie (DRS 2024). Polanyi (1966). Schön (1983).",
+    "meta.stance.k":"Stance","meta.stance.v":"AI doesn't speed up design. It speeds up agreement on what to design.",
+
+    "c1.num":"{ 01 } — Diagnosis",
+    "c1.title":"What a PRD doesn't say — and why it takes you two sprints to find out.",
+    "c1.p1":"Michael Polanyi put it in an uncomfortable sentence: <em>“we know more than we can tell”</em>. Every PRD that lands on a design team is actually two documents overlaid: the one that's written — with its features, acceptance criteria and reference mockups — and another that nobody drafted, made of aesthetic assumptions, expectations of pace, cultural references and mental models the stakeholder didn't formalise because they treat them as obvious.",
+    "c1.p2":"That second document is <strong>tacit knowledge</strong>. By its nature it's evasive: when the PM writes <em>“make it feel modern”</em>, <em>“something like Linear but for our case”</em> or <em>“clean, no friction”</em>, every word carries an internal model even they can't describe precisely. It only surfaces when they react to something concrete — a mockup, a reference, a wrong version — with <em>“no, that's not how I pictured it”</em>.",
+    "c1.p3":"That moment, that live correction, is what separates a design that lands the first time from one that bounces three times. Generative AI promises to reach it faster — not by designing the final product, but by producing the <em>stimulus</em> that makes it surface at the kickoff. But the promise has two faces — a help and a trap — and confusing them is what turns an alignment into a well-designed hallucination.",
+    "c1.note.k":"Margin note",
+    "c1.note.v":"Polanyi coined <em>tacit knowing</em> in 1958. It isn't hidden information waiting to be extracted: it's a way of knowing that only exists <em>in action</em>. Applied to the PRD: the stakeholder's assumptions aren't discovered by asking — they're discovered by reacting.",
+    "c1.quote":"We know more than we can tell.",
+    "c1.mirror.tag":"Mirror effect · what helps",
+    "c1.mirror.h":"AI as a <em>boundary object</em>.",
+    "c1.mirror.p":"It translates the brief's words into concrete images in minutes. It works as a <em>boundary object</em> between design and product: it forces the stakeholder to confront what they actually meant by “modern”, and to say it before you start designing.",
+    "c1.risk.tag":"Fascination bias · what deceives",
+    "c1.risk.h":"AI as a <em>polished oracle</em>.",
+    "c1.risk.p":"It spits out screens so finished they create an illusion of agreement. The PM approves what they see because it looks professional; nobody argues the assumptions baked inside. Two sprints later comes the <em>“this isn't what I asked for”</em>.",
+
+    "c2.num":"{ 02 } — Framework",
+    "c2.title":"Three steps to apply it at a PRD kickoff.",
+    "c2.s1.n":"Step 01","c2.s1.h":"Initial stimulus","c2.s1.p":"Show up at the kickoff with 3 opposing visual readings of the brief — not one polished interpretation.",
+    "c2.s2.n":"Step 02","c2.s2.h":"Dialectic prompting","c2.s2.p":"Co-construct the prompt live with the PM, using the verbatim words of the brief to materialise them.",
+    "c2.s3.n":"Step 03","c2.s3.h":"Make the process visible","c2.s3.p":"Show the assumptions, discarded variants and open decisions — not just the final proposal.",
+    "c2.r1.h":"Treat the AI output as a <em>kickoff stimulus</em>, not a proposal.",
+    "c2.r1.p":"Never walk into the meeting with a polished interpretation of the brief — it's the fastest way to lock in assumptions you never discussed. Walk in with <strong>three opposing visual readings</strong> of the same PRD: one literal, one that pushes the brief to the extreme, one that's probably wrong. The discomfort of choosing surfaces what the PM never verbalised.",
+    "c2.r1.lbl":"Action",
+    "c2.r1.a":"Before the kickoff, generate three deliberately different directions from the most ambiguous line of the brief. Present them together, without recommending which one you prefer. The debate over why #2 “isn't it” is the actual brief.",
+    "c2.r2.h":"Apply <em>dialectic prompting</em> with the PM in the room.",
+    "c2.r2.p":"The dyad that matters is not Designer↔User — it's <strong>Designer ↔ PM/Product Owner</strong>. Co-construct the prompt live with the verbatim words of the brief. The prompt stops being a private query and becomes an artefact of alignment: watching the machine translate “snappy” forces the PM to say what they meant by “snappy”.",
+    "c2.r2.lbl":"Action",
+    "c2.r2.a":"Share your screen at the kickoff. Write the prompt with the PM beside you, using their vocabulary without translating it. Watch what they correct in the output and what they defend — that's where the assumptions missing from the PRD live.",
+    "c2.r3.h":"Make the process visible — the <em>labor perception bias</em> plays in your favour.",
+    "c2.r3.p":"When a PM sees only the final proposal, they judge it as a finished product. When they see the map of assumptions, the discarded variants and the open decisions, they judge it as <em>shared work in progress</em>. That shift in status — from delivery to collaboration — is what prevents the classic review bounce.",
+    "c2.r3.lbl":"Action",
+    "c2.r3.a":"Don't present only screens. Present first the assumptions you're making from the brief, then the discarded variants with their reason, and only at the end the proposal. Make room for Schön's <em>reflection-in-action</em>: think <em>with</em> the stakeholder, not for them.",
+
+    "pr.hint":"Copy &amp; adjust the [fields]",
+    "pr.copy":"Copy",
+    "pr.1.body":"<span class=\"hash\">#task</span> Generate three opposing visual interpretations of this line from the PRD: <span class=\"slot\">\"[verbatim line from the brief]\"</span>. <span class=\"hash\">#context</span> I'm heading into the kickoff with the PM and product team; I need to surface the hidden assumptions behind their words before committing to a design. <span class=\"hash\">#execution</span> Return three deliberately different directions — one literal, one that pushes the interpretation to the extreme, one that's probably wrong — without justifying which is correct or polishing details.",
+    "pr.2.body":"<span class=\"hash\">#task</span> Materialise this verbatim expression from the PM into an interface without translating it into product language: <span class=\"slot\">\"[stakeholder's exact phrase]\"</span>. <span class=\"hash\">#context</span> We're aligning the brief live; I want to expose whether “feels snappy” and “feels fast” mean the same thing to them. <span class=\"hash\">#execution</span> Preserve the ambiguity of the original. If they said “something like Linear but for our context”, show me what you took from Linear and what you discarded — don't resolve it on your own.",
+    "pr.3.body":"<span class=\"hash\">#task</span> Before proposing the visual solution, list the assumptions you're making from the PRD. <span class=\"hash\">#context</span> I need to share with the PM and team which decisions are being taken without discussion — so they can be approved or corrected before I spend hours designing. <span class=\"hash\">#execution</span> Return first 5–7 hidden assumptions as a list, then a trade-off matrix of the open decisions, and only at the end a visual proposal bounded by those assumptions.",
+
+    "c3.num":"{ 03 } — Control matrix",
+    "c3.title":"Good and bad practice at each of the three PRD moments.",
+    "c3.p1":"This matrix isn't a checklist to comply with — it's a diagnosis. Each row pits two versions of the same decision at a specific point in the brief cycle: one where AI <strong>replaces</strong> the conversation with product, and one where it <strong>catalyses</strong> it. The difference is intent, not tool.",
+    "c3.note.k":"How to read it",
+    "c3.note.v":"The left column isn't “what's forbidden”. It's the shortcut that looks reasonable when the PM is rushing you and you need to show something tomorrow. Recognising it is the first step toward not taking it.",
+    "c3.h1":"PRD moment","c3.h2":"Shortcut — AI as oracle","c3.h3":"Practice — AI as catalyst",
+    "c3.dont":"Don't","c3.doo":"Do",
+    "c3.m1":"Initial reading of the brief",
+    "c3.r1.bad":"Start designing the moment you finish reading the PRD, trusting your own interpretation of the ambiguous words.",
+    "c3.r1.good":"Generate 3 opposing visual readings of the brief before the first meeting, and walk in with stimuli to calibrate with the PM.",
+    "c3.m2":"Kickoff with stakeholders",
+    "c3.r2.bad":"Show your own polished interpretation and ask “do you like it?”. Polite approval is the enemy of real agreement.",
+    "c3.r2.good":"Share your screen, co-construct the prompt live with the PM's verbatim words, and work on what they correct.",
+    "c3.m3":"Presentation &amp; handoff",
+    "c3.r3.bad":"Present only the final solution, hiding the discarded variants and the assumptions that were never discussed.",
+    "c3.r3.good":"Show the map of assumptions, the discarded intermediate variants with their reason, and the decisions that remain open.",
+
+    "c4.num":"{ 04 } — Bibliography",
+    "c4.title":"Academic backing and lineage.",
+    "c4.b1":"Revealing user tacit knowledge: Generative-Image-AI helps create better design conversation.",
+    "c4.b4":"Design as a mutual learning process between users and designers.",
+    "c4.b5":"Labor Perception Bias — Case Study.",
+
+    "foot.l":"Playbook 01 · We know more than we can tell.","foot.more":"More playbooks →"
+  }
+};
+
+(function(){
+  const buttons = document.querySelectorAll('.lang button');
+  const nodes = document.querySelectorAll('[data-i18n]');
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    nodes.forEach(n => {
+      const key = n.getAttribute('data-i18n');
+      const val = T[lang] && T[lang][key];
+      if (val !== undefined) n.innerHTML = val;
+    });
+    buttons.forEach(b => {
+      const on = b.dataset.lang === lang;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    try{ localStorage.setItem('portfolio-lang', lang); }catch(e){}
+  }
+  buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  // copy prompt buttons
+  const stripHtml = (html) => {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  };
+  document.querySelectorAll('.prompt .copy').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const lang = document.documentElement.lang || 'es';
+      const key = btn.getAttribute('data-copy');
+      const raw = (T[lang] && T[lang][key]) || '';
+      const text = stripHtml(raw).replace(/\s+/g,' ').trim();
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch(e) {
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch(_){}
+        document.body.removeChild(ta);
+      }
+      const original = T[lang]['pr.copy'] || 'Copy';
+      btn.textContent = lang === 'es' ? 'Copiado ✓' : 'Copied ✓';
+      btn.classList.add('done');
+      setTimeout(() => {
+        btn.classList.remove('done');
+        btn.textContent = original;
+      }, 1600);
+    });
+  });
+  let initial = 'es';
+  try{
+    const saved = localStorage.getItem('portfolio-lang');
+    if (saved === 'es' || saved === 'en') initial = saved;
+  }catch(e){}
+  setLang(initial);
+})();
+</script>
+</body>
+</html>

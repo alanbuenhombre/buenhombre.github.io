@@ -529,6 +529,7 @@
         <a href="#inicio" data-i18n="nav_inicio">Inicio</a>
         <a href="#casos" data-i18n="nav_casos">Casos</a>
         <a href="#juegos" data-i18n="nav_juegos">Juegos</a>
+        <a href="#playbooks" data-i18n="nav_playbooks">Playbooks</a>
         <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
         <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
       </div>
@@ -589,6 +590,18 @@
       <a class="crow" href="paper-trail.html" data-preview="assets/games/paper-trail.jpg"><span class="crow__num">03</span><span class="crow__name">PAPER TRAIL<span class="crow__badge" data-i18n="games_beta">Beta</span></span><span class="crow__disc" data-i18n="game3_disc">Playable de marca · Diorama 3D papercraft · 2026</span><span class="crow__arrow">↗</span></a>
       <a class="crow" href="halora.html" data-preview="assets/games/halora.jpg"><span class="crow__num">04</span><span class="crow__name">HALORA<span class="crow__badge" data-i18n="ai_badge">Concepto</span></span><span class="crow__disc" data-i18n="ai1_disc">Landing animada · Parallax · Figma · Claude Code · 2026</span><span class="crow__arrow">↗</span></a>
       <a class="crow" href="gritt-reports.html"><span class="crow__num">05</span><span class="crow__name">GRITT REPORTS<span class="crow__badge" data-i18n="saas_badge">Prototipo</span></span><span class="crow__disc" data-i18n="saas1_disc">SaaS · Reportes de redes · Prototipo · 2026</span><span class="crow__arrow">↗</span></a>
+    </ul>
+  </section>
+
+  <!-- ===== SECCIÓN · PLAYBOOKS ===== -->
+  <section class="cases games" id="playbooks">
+    <div class="cases__head">
+      <h2 class="cases__title" data-i18n-html="pb_title">Playbooks <strong>de diseño</strong></h2>
+      <span class="cases__meta" data-i18n="pb_meta">MÉTODO · IA · PRODUCTO · 2026</span>
+    </div>
+    <p class="games__lede" data-i18n="pb_lede">Guías cortas y accionables sobre cómo trabajo: frameworks, prompts reutilizables y criterios que aplico con equipos de producto. Respaldadas en investigación, pensadas para usarse el lunes.</p>
+    <ul class="cases__list" id="playbooksList">
+      <a class="crow" href="playbook-conocimiento-tacito.html"><span class="crow__num">01</span><span class="crow__name" data-i18n="pb1_name">Sabemos más de lo que podemos decir</span><span class="crow__disc" data-i18n="pb1_disc">IA generativa · PRD · Kickoff con stakeholders · 10 min</span><span class="crow__arrow">↗</span></a>
     </ul>
   </section>
 
@@ -789,6 +802,7 @@
           <li><a href="#inicio" data-i18n="nav_inicio">Inicio</a></li>
           <li><a href="#casos" data-i18n="nav_casos">Casos</a></li>
           <li><a href="#juegos" data-i18n="nav_juegos">Juegos</a></li>
+          <li><a href="#playbooks" data-i18n="nav_playbooks">Playbooks</a></li>
           <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
           <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
         </ul>
@@ -829,7 +843,7 @@
   /* ===== i18n ===== */
   const T={
     es:{
-      nav_inicio:'Inicio',nav_casos:'Casos',nav_sobre:'Sobre',nav_contacto:'Contacto',nav_juegos:'Juegos',
+      nav_inicio:'Inicio',nav_casos:'Casos',nav_sobre:'Sobre',nav_contacto:'Contacto',nav_juegos:'Juegos',nav_playbooks:'Playbooks',pb_title:'Playbooks <strong>de diseño</strong>',pb_meta:'MÉTODO · IA · PRODUCTO · 2026',pb_lede:'Guías cortas y accionables sobre cómo trabajo: frameworks, prompts reutilizables y criterios que aplico con equipos de producto. Respaldadas en investigación, pensadas para usarse el lunes.',pb1_name:'Sabemos más de lo que podemos decir',pb1_disc:'IA generativa · PRD · Kickoff con stakeholders · 10 min',
       games_title:'Experimentos <strong>propios</strong>',games_meta:'SIDE PROJECTS · GAMES & SAAS · 2026',
       games_lede:'Proyectos propios donde pruebo ideas de producto, interacción y sistema visual: juegos de navegador, un playable para marcas, una landing animada de diseño a código y un SaaS de reportes para estudios creativos.',
       games_dev:'En desarrollo',games_wip:'En construcción',saas1_disc:'SaaS · Reportes de redes · Prototipo · 2026',saas_badge:'Prototipo',game3_disc:'Playable de marca · Diorama 3D papercraft · 2026',games_beta:'Beta',game1_disc:'Arcade 3D · Ranking por piloto · ES/EN · 2026',game2_disc:'Time trial blueprint · Circuitos que se transforman · 2026',ai_badge:'Concepto',ai1_disc:'Landing animada · Parallax · Figma · Claude Code · 2026',
@@ -866,7 +880,7 @@
       footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
     },
     en:{
-      nav_inicio:'Home',nav_casos:'Cases',nav_sobre:'About',nav_contacto:'Contact',nav_juegos:'Games',
+      nav_inicio:'Home',nav_casos:'Cases',nav_sobre:'About',nav_contacto:'Contact',nav_juegos:'Games',nav_playbooks:'Playbooks',pb_title:'Design <strong>playbooks</strong>',pb_meta:'METHOD · AI · PRODUCT · 2026',pb_lede:'Short, actionable guides on how I work: frameworks, reusable prompts and criteria I apply with product teams. Backed by research, made to use on Monday.',pb1_name:'We know more than we can tell',pb1_disc:'Generative AI · PRD · Stakeholder kickoff · 10 min',
       games_title:'My own <strong>experiments</strong>',games_meta:'SIDE PROJECTS · GAMES & SAAS · 2026',
       games_lede:'Personal projects where I test ideas on product, interaction and visual systems: browser games, a brand playable, an animated design-to-code landing page and a reporting SaaS for creative studios.',
       games_dev:'In development',games_wip:'In progress',saas1_disc:'SaaS · Social reports · Prototype · 2026',saas_badge:'Prototype',game3_disc:'Brand playable · 3D papercraft diorama · 2026',games_beta:'Beta',game1_disc:'3D arcade · Pilot ranking · ES/EN · 2026',game2_disc:'Blueprint time trial · Circuits that transform · 2026',ai_badge:'Concept',ai1_disc:'Animated landing · Parallax · Figma · Claude Code · 2026',
