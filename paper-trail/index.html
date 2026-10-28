@@ -185,6 +185,7 @@
   .tune-btns{display:flex;gap:8px;margin-top:10px}
   .tune-btns button{all:unset;cursor:pointer;padding:6px 10px;background:var(--ink);color:var(--paper);font-weight:700;font-size:12px;border-radius:2px}
   #fx{pointer-events:none}
+  html.trailer #title,html.trailer #editChip,html.trailer #editBar,html.trailer #muteBtn,html.trailer #mute,html.trailer #hud,html.trailer #pedals,html.trailer #tune,html.trailer .copy-mark{display:none!important}
   #grain,#vig{position:fixed;inset:0;pointer-events:none}
   #grain{mix-blend-mode:multiply;opacity:.45;background-repeat:repeat}
   #vig{background:radial-gradient(ellipse at center,rgba(0,0,0,0) 55%,rgba(70,50,30,.28) 100%)}
@@ -289,6 +290,11 @@ const CONFIG = {
   fullRoute: false,     // beta: solo el tramo Bosque (los otros tramos esperan sus assets)
 };
 const RANK_KEY = 'papertrail.rank.v1';
+// ?trailer → vista de solo juego para el portafolio: sin interfaz, el 4x4 maneja solo.
+// ?trailer&at=2 arranca en el tramo 3 (0 = Bosque, 1 = Nieve, 2 = Desierto, 3 = Playa).
+const QS = new URLSearchParams(location.search), TRAILER = QS.has('trailer'), TRAILER_AT = +QS.get('at') || 0;
+if (TRAILER) document.documentElement.classList.add('trailer');
+const titleStartX = () => (TRAILER && world.stages[TRAILER_AT] ? world.stages[TRAILER_AT].x0 + 260 : 80);
 
 const $ = s => document.querySelector(s);
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
@@ -1600,11 +1606,13 @@ function show(id, on) { $(id).classList.toggle('hidden', !on); }
 
 function toTitle() {
   $('#pops').innerHTML = '';
-  state = 'title'; stateT = 0; resetWorldState(); run = newRun(); placeCar(80); particles = []; popups = [];
+  state = 'title'; stateT = 0; resetWorldState(); run = newRun(); placeCar(titleStartX()); particles = []; popups = [];
+  if (TRAILER) { cam.x = car.x; cam.y = car.y; }
   document.body.classList.add('on-title'); show('#title', true); show('#hud', false); show('#count', false); show('#results', false); show('#pedals', false);
   $('#presenter').textContent = CONFIG.presenter; renderRank();
 }
 function startGame() {
+  if (TRAILER) return;
   state = 'count'; stateT = 0; resetWorldState(); run = newRun(); placeCar(80); particles = []; popups = [];
   cam.x = car.x; cam.y = car.y;
   document.body.classList.remove('on-title'); if (typeof setEditing === 'function') setEditing(false); show('#title', false); show('#count', true); show('#hud', true); show('#pedals', isTouch); updateHud(true);
@@ -1729,8 +1737,8 @@ function update(dt) {
     for (let i = 0; i < n; i++) { const w = car.wheels[i % 2], wx = car.x + w.lx * Math.cos(car.a); particles.push({ x: wx - Math.sign(car.vx) * 30 + (Math.random() - .5) * 30, y: r.y - 2, vx: -car.vx * .45 + (Math.random() - .5) * 120, vy: -160 - Math.random() * 240, a: Math.random() * TAU, w: (Math.random() - .5) * 12, s: 6 + Math.random() * 9, c: 'drop', col: cols[i % 3], t: 0, life: .8 }); }
   }
   if (state === 'title') {
-    if (car.roofHit || car.y > world.killY || car.x > world.finishX) placeCar(80);
-    else if (car.vx < 5 && stateT > 4) { stateT = 0; placeCar(80); }
+    if (car.roofHit || car.y > world.killY || car.x > world.finishX) placeCar(titleStartX());
+    else if (car.vx < 5 && stateT > 4) { stateT = 0; placeCar(titleStartX()); }
   }
   if (state === 'play') {
     // timer
@@ -1780,11 +1788,11 @@ function update(dt) {
 
   // camera
   const sp = Math.hypot(car.vx, car.vy);
-  const tz = Math.min(H / 820, W / 1300) * (1 - clamp((sp - 300) / 1200, 0, 1) * .24) * (state === 'title' ? 1.05 : 1);
+  const tz = Math.min(H / 820, W / 1300) * (1 - clamp((sp - 300) / 1200, 0, 1) * .24) * (state === 'title' && !TRAILER ? 1.05 : 1);
   cam.shake = Math.max(0, (cam.shake || 0) - dt * 30);
   cam.z = lerp(cam.z, tz, Math.min(1, dt * 2));
-  const tx = car.x + clamp(car.vx * .45, -250, 520) - (state === 'title' && W > 820 ? 360 : 0);
-  const ty = car.y - 70 + clamp(car.vy * .12, -120, 160) - (state === 'title' ? H * .2 / cam.z : 0);
+  const tx = car.x + clamp(car.vx * .45, -250, 520) - (state === 'title' && !TRAILER && W > 820 ? 360 : 0);
+  const ty = car.y - 70 + clamp(car.vy * .12, -120, 160) - (state === 'title' && !TRAILER ? H * .2 / cam.z : 0);
   cam.x = lerp(cam.x, tx, Math.min(1, dt * 4)); cam.y = lerp(cam.y, ty, Math.min(1, dt * 3.2));
 }
 function land(vx, vy) {
