@@ -67,9 +67,38 @@
   .pt-model__box--skin{border-color:rgba(224,83,58,.35);background:rgba(224,83,58,.04)}
   .pt-model__box--skin li{border-color:rgba(224,83,58,.3)}
   .pt-model__plus{font-family:'Manrope',sans-serif;font-weight:200;font-size:2rem;color:rgba(255,255,255,.4)}
-  .pt-swatches{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
-  .pt-swatches span{display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.5)}
-  .pt-swatches i{width:58px;height:58px;border-radius:4px;box-shadow:3px 3px 0 rgba(0,0,0,.35)}
+  /* ===== dirección de arte ===== */
+  .pt-art{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin-top:6px;align-items:start}
+  .pt-art>figure:not(.pt-layers){align-self:stretch;display:flex;flex-direction:column}
+  .pt-art>figure:not(.pt-layers) figcaption{margin-top:auto;padding-top:16px}
+  .pt-art figure{margin:0;background:#EFE4CC;border-radius:14px;padding:22px;color:#2A2620;position:relative;overflow:hidden}
+  .pt-art figcaption{font-size:.86rem;line-height:1.5;color:#5b524a;margin-top:16px;max-width:52ch}
+  .pt-layers{grid-row:span 2;display:flex;flex-direction:column}
+  .pt-layers__stack{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .pt-layers__stack li{position:relative;background:#f7efdc;border-radius:10px;height:92px;overflow:hidden;display:flex;align-items:flex-end}
+  .pt-layers__stack li img{position:absolute;left:0;right:0;top:6px;width:100%;filter:drop-shadow(0 4px 4px rgba(60,40,15,.2));transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .pt-layers__stack li:hover img{transform:translateY(-6px)}
+  .pt-layers__stack li.ground img:first-child{top:-6px;z-index:2}
+  .pt-layers__stack li.ground img+img{top:30px}
+  .pt-layers__stack span{position:relative;z-index:3;margin:0 0 8px 10px;background:rgba(251,246,236,.92);padding:3px 8px;border-radius:4px;font-size:.74rem}
+  .pt-layers__stack b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.62rem;color:var(--pt-red)}
+  .pt-layers__stack em{font-style:normal}
+  .pt-layers__eq{text-align:center;font-family:'Manrope',sans-serif;font-weight:200;font-size:1.8rem;line-height:1;color:#a8997f;margin:8px 0 6px}
+  .pt-layers__result{width:100%;border-radius:10px;box-shadow:0 10px 24px rgba(60,40,15,.25)}
+  .pt-bank ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .pt-bank ul{flex:1;grid-auto-rows:1fr}
+  .pt-bank li:nth-child(n){aspect-ratio:auto;min-height:110px}
+  .pt-cars__parts{flex:1}
+  .pt-bank li{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;aspect-ratio:1;background:#f7efdc;border-radius:10px;padding:10px 6px 8px}
+  .pt-bank img{max-width:100%;max-height:72%;object-fit:contain;filter:drop-shadow(0 6px 6px rgba(60,40,15,.25));transition:transform .4s ease}
+  .pt-bank li:hover img{transform:translateY(-4px) rotate(-3deg)}
+  .pt-bank span,.pt-cars__parts span{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#7a6e60}
+  .pt-cars__row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-items:end}
+  .pt-cars__row img{width:100%;filter:drop-shadow(0 8px 8px rgba(60,40,15,.28));transition:transform .4s ease}
+  .pt-cars__row img:hover{transform:translateY(-5px) rotate(-2deg)}
+  .pt-cars__parts{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px dashed rgba(42,38,32,.2)}
+  .pt-cars__parts img{width:70px}.pt-cars__parts img.strut{width:16px}.pt-cars__parts img.body{width:190px}
+  .pt-cars__parts{justify-content:center;gap:16px;padding:22px 0 6px}
   .pt-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:1000px;margin:0 auto}
   .pt-gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.08)}
   .pt-gallery img.is-wide{grid-column:1/-1;aspect-ratio:2/1}
@@ -77,8 +106,8 @@
   .pt-measure li{padding:18px 16px 0 0;font-size:.9rem;line-height:1.5;color:rgba(255,255,255,.7)}
   .pt-measure strong{display:block;font-weight:300;font-size:1.6rem;letter-spacing:-.03em;color:#fff;margin-bottom:6px}
   .cbody .cblock--wide{max-width:none}
-  @media (max-width:860px){.pt-loop,.pt-measure{grid-template-columns:1fr 1fr}.pt-stages{grid-template-columns:1fr 1fr}.pt-model{grid-template-columns:1fr}.pt-model__plus{text-align:center}}
-  @media (max-width:520px){.pt-loop,.pt-measure{grid-template-columns:1fr}.pt-gallery{grid-template-columns:1fr}}
+  @media (max-width:860px){.pt-art{grid-template-columns:1fr}.pt-layers{grid-row:auto}.pt-loop,.pt-measure{grid-template-columns:1fr 1fr}.pt-stages{grid-template-columns:1fr 1fr}.pt-model{grid-template-columns:1fr}.pt-model__plus{text-align:center}}
+  @media (max-width:520px){.pt-bank ul{grid-template-columns:repeat(2,1fr)}.pt-bank li:nth-child(n){aspect-ratio:1}.pt-cars__parts img{width:44px}.pt-cars__parts img.strut{width:10px}.pt-cars__parts img.body{width:46%}.pt-cars__parts{gap:8px}.pt-loop,.pt-measure{grid-template-columns:1fr}.pt-gallery{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -168,12 +197,47 @@
       <div class="cblock__label" data-i18n-html="pt.art.l">Dirección de arte</div>
       <h2 class="cblock__title" data-i18n-html="pt.art.t">Un diorama de cartulina que se siente hecho a mano.</h2>
       <p class="cblock__text" data-i18n-html="pt.art.p">Cada paisaje tiene su propio set de papel: estratos, bordes, fondos en capas, árboles, rocas y señales. Generé el banco de piezas en Google Flow a partir de una referencia de estilo y lo armé como un diorama en Three.js, con profundidad real y luz que cambia con la hora del día. El 4x4 se arma por caras recortadas y tiene suspensión física, así que el papel también rebota. Hay tres modelos para elegir.</p>
-      <div class="pt-swatches">
-        <span><i style="background:#EAD9B6"></i>#EAD9B6</span>
-        <span><i style="background:#8FA36B"></i>#8FA36B</span>
-        <span><i style="background:#C46E3E"></i>#C46E3E</span>
-        <span><i style="background:#8C97A0"></i>#8C97A0</span>
-        <span><i style="background:#E0533A"></i>#E0533A</span>
+    </div>
+
+    <div class="cblock cblock--wide">
+      <div class="pt-art">
+        <figure class="pt-layers">
+          <ol class="pt-layers__stack">
+            <li><img src="paper-trail/art/bosque-montana-lejana.webp" alt="" loading="lazy"><span><b>01</b> <em data-i18n-html="pt.ly1">Montañas lejanas</em></span></li>
+            <li><img src="paper-trail/art/bosque-colinas-medias.webp" alt="" loading="lazy"><span><b>02</b> <em data-i18n-html="pt.ly2">Colinas medias</em></span></li>
+            <li><img src="paper-trail/art/bosque-colinas-cerca.webp" alt="" loading="lazy"><span><b>03</b> <em data-i18n-html="pt.ly3">Colinas cercanas</em></span></li>
+            <li class="ground"><img src="paper-trail/art/bosque-pasto.webp" alt="" loading="lazy"><img src="paper-trail/art/bosque-estratos.webp" alt="" loading="lazy"><span><b>04</b> <em data-i18n-html="pt.ly4">Pasto y estratos del camino</em></span></li>
+          </ol>
+          <div class="pt-layers__eq"><span>=</span></div>
+          <img class="pt-layers__result" src="paper-trail/stage-bosque.jpg" alt="Resultado en el juego: el tramo Bosque con el 4x4" loading="lazy">
+          <figcaption data-i18n-html="pt.ly.cap">Un paisaje se arma con cuatro capas de papel. Cada una se mueve a su propia distancia, y eso da la profundidad del diorama.</figcaption>
+        </figure>
+
+        <figure class="pt-bank">
+          <ul>
+            <li><img src="paper-trail/art/pino-1.webp" alt="" loading="lazy"><span data-i18n-html="pt.b1">Pino</span></li>
+            <li><img src="paper-trail/art/pino-2.webp" alt="" loading="lazy"><span data-i18n-html="pt.b2">Pino</span></li>
+            <li><img src="paper-trail/art/roca-1.webp" alt="" loading="lazy"><span data-i18n-html="pt.b3">Roca</span></li>
+            <li><img src="paper-trail/art/nube.webp" alt="" loading="lazy"><span data-i18n-html="pt.b4">Nube</span></li>
+            <li><img src="paper-trail/art/sol.webp" alt="" loading="lazy"><span data-i18n-html="pt.b5">Sol</span></li>
+            <li><img src="paper-trail/art/bandera.webp" alt="" loading="lazy"><span data-i18n-html="pt.b6">Control</span></li>
+            <li><img src="paper-trail/art/insignia.webp" alt="" loading="lazy"><span data-i18n-html="pt.b7">Insignia</span></li>
+            <li><img src="paper-trail/art/letrero.webp" alt="" loading="lazy"><span data-i18n-html="pt.b8">Letrero</span></li>
+          </ul>
+          <figcaption data-i18n-html="pt.bank.cap">Banco de piezas generado en Google Flow con una sola referencia de estilo: todo comparte el mismo papel, la misma luz y el mismo borde.</figcaption>
+        </figure>
+
+        <figure class="pt-cars">
+          <div class="pt-cars__row">
+            <img src="paper-trail/art/car-body-sm.webp" alt="4x4 rojo" loading="lazy">
+            <img src="paper-trail/art/bl-body-sm.webp" alt="4x4 blanco" loading="lazy">
+            <img src="paper-trail/art/na-body-sm.webp" alt="4x4 naranja" loading="lazy">
+          </div>
+          <div class="pt-cars__parts">
+            <img src="paper-trail/art/car-wheel.webp" alt="" loading="lazy"><span>+</span><img class="strut" src="paper-trail/art/car-strut.webp" alt="" loading="lazy"><span>+</span><img class="body" src="paper-trail/art/car-body.webp" alt="" loading="lazy">
+          </div>
+          <figcaption data-i18n-html="pt.cars.cap">Tres modelos para elegir. Cada 4x4 se arma con carrocería, ruedas y amortiguadores separados, y la suspensión física hace que el papel rebote.</figcaption>
+        </figure>
       </div>
     </div>
 
