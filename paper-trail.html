@@ -10,7 +10,7 @@
 <meta property="og:title" content="Paper Trail · Playable de marca · Alan Buenhombre" />
 <meta property="og:description" content="Juegos de navegador para activaciones de marca: un concepto con estética papercraft." />
 <meta property="og:url" content="https://buenhombre.design/paper-trail.html" />
-<meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta property="og:image" content="https://buenhombre.design/paper-trail/og.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,26 +20,23 @@
 <style>
   :root{--pt-red:#E0533A;--pt-paper:#EFE4CC;--pt-ink:#2A2620}
 
-  /* ===== escena papercraft ===== */
-  .pt-scene{position:relative;max-width:1080px;margin:0 auto;aspect-ratio:16/8.4;border-radius:14px;overflow:hidden;
-       background:#E9D9B8;border:1px solid rgba(255,255,255,.08);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
-  .pt-scene svg{position:absolute;inset:0;width:100%;height:100%}
-  .pt-layer{transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform}
-  .pt-jeep{animation:ptBounce 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-  .pt-wheel{animation:ptSpin 1.1s linear infinite;transform-box:fill-box;transform-origin:center}
-  .pt-cloud{animation:ptDrift 26s linear infinite alternate}
-  @keyframes ptBounce{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-3px) rotate(.6deg)}}
-  @keyframes ptSpin{to{transform:rotate(360deg)}}
-  @keyframes ptDrift{to{transform:translateX(60px)}}
-  @media (prefers-reduced-motion:reduce){.pt-jeep,.pt-wheel,.pt-cloud{animation:none}.pt-layer{transition:none}}
-  .pt-hud{position:absolute;inset:auto 0 0 0;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:18px 22px;pointer-events:none;
-       font-family:'IBM Plex Mono',monospace;color:var(--pt-ink)}
-  .pt-hud__l{display:flex;gap:22px}
-  .pt-hud b{display:block;font-weight:500;font-size:1.05rem;letter-spacing:.02em}
-  .pt-hud small{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
-  .pt-hud__tag{background:var(--pt-red);color:#fff;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;border-radius:4px;box-shadow:2px 2px 0 rgba(42,38,32,.35)}
-  .pt-title{position:absolute;top:22px;left:24px;font-family:'Manrope',sans-serif;font-weight:600;letter-spacing:.32em;font-size:clamp(.8rem,1.6vw,1rem);
-       color:var(--pt-ink);background:var(--pt-paper);padding:8px 14px 8px 16px;box-shadow:3px 3px 0 rgba(42,38,32,.25);transform:rotate(-1.5deg)}
+  /* ===== hero ===== */
+  .pt-play-row{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-top:28px}
+  .pt-cta{display:inline-flex;align-items:center;gap:14px;background:var(--pt-red);color:#fff;font-family:'Manrope',sans-serif;font-weight:600;
+       font-size:.98rem;padding:15px 24px;border-radius:100px;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease}
+  .pt-cta:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(224,83,58,.25)}
+  .pt-cta small{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;font-weight:500}
+  .pt-cta b{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--pt-red);font-size:.8rem}
+  .pt-note{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:rgba(255,255,255,.35)}
+  .pt-shot{position:relative;display:block;max-width:1080px;margin:0 auto;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);
+       box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
+  .pt-shot img{display:block;width:100%;height:auto;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .pt-shot:hover img{transform:scale(1.02)}
+  .pt-shot__play{position:absolute;right:20px;bottom:20px;display:inline-flex;align-items:center;gap:10px;background:rgba(251,246,236,.95);color:#26221f;
+       font-family:'Manrope',sans-serif;font-weight:700;font-size:.9rem;padding:10px 16px 10px 10px;border-radius:100px;box-shadow:0 10px 24px rgba(0,0,0,.3);
+       transition:transform .3s ease}
+  .pt-shot__play b{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--pt-red);color:#fff;font-size:.72rem;padding-left:2px}
+  .pt-shot:hover .pt-shot__play{transform:translateY(-3px)}
 
   /* ===== cuerpo ===== */
   .pt-badge{display:inline-flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
@@ -53,7 +50,7 @@
   .pt-loop h3{font-weight:400;font-size:1.1rem;letter-spacing:-.01em;margin:12px 0 6px}
   .pt-loop p{font-size:.88rem;line-height:1.55;color:rgba(255,255,255,.66)}
   .pt-loop svg{width:30px;height:30px;color:var(--pt-paper);opacity:.85;margin-top:2px}
-  .pt-stages{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+  .pt-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
   .pt-stage{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#211f1c}
   .pt-stage svg{display:block;width:100%;height:auto}
   .pt-stage div{padding:14px 16px 16px}
@@ -78,9 +75,8 @@
   .pt-measure li{padding:18px 16px 0 0;font-size:.9rem;line-height:1.5;color:rgba(255,255,255,.7)}
   .pt-measure strong{display:block;font-weight:300;font-size:1.6rem;letter-spacing:-.03em;color:#fff;margin-bottom:6px}
   .cbody .cblock--wide{max-width:none}
-  @media (max-width:860px){.pt-loop,.pt-measure{grid-template-columns:1fr 1fr}.pt-stages{grid-template-columns:1fr}.pt-model{grid-template-columns:1fr}.pt-model__plus{text-align:center}}
-  @media (max-width:620px){.pt-scene{aspect-ratio:4/3.4}.pt-hud{padding:12px 14px}.pt-hud b{font-size:.9rem}.pt-hud__tag{font-size:.5rem;padding:5px 7px}}
-  @media (max-width:520px){.pt-hud__l{display:none}.pt-loop,.pt-measure{grid-template-columns:1fr}.pt-gallery{grid-template-columns:1fr}.pt-hud__l div:nth-child(3){display:none}.pt-title{top:14px;left:14px}}
+  @media (max-width:860px){.pt-loop,.pt-measure{grid-template-columns:1fr 1fr}.pt-stages{grid-template-columns:1fr 1fr}.pt-model{grid-template-columns:1fr}.pt-model__plus{text-align:center}}
+  @media (max-width:520px){.pt-loop,.pt-measure{grid-template-columns:1fr}.pt-gallery{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -100,101 +96,25 @@
     <div class="chead__kicker" data-i18n-html="pt.kicker">Playable de marca · Concepto · 2026</div>
     <h1 class="chead__title">Paper Trail</h1>
     <p class="chead__sub" data-i18n-html="pt.sub">Un juego de navegador pensado para <strong>activaciones de marca</strong>: partidas de dos minutos en un kiosco, ranking en pantalla y registro al final. Este concepto lo diseñé para una marca de vehículos 4x4, con una estética de papel recortado.</p>
-    <span class="pt-badge" data-i18n-html="pt.badge">Prototipo jugable · Demo en evento</span>
+    <div class="pt-play-row">
+      <a href="paper-trail/" class="pt-cta"><small data-i18n-html="pt.cta.k">Beta</small><span data-i18n-html="pt.cta">Jugar en el navegador</span><b>↗</b></a>
+      <span class="pt-note" data-i18n-html="pt.cta.note">Teclado, gamepad o pantalla táctil</span>
+    </div>
   </header>
 
   <div class="cmeta">
     <div><div class="cmeta__k" data-i18n-html="pt.m.role.k">Rol</div><div class="cmeta__v" data-i18n-html="pt.m.role">Concepto · Dirección de arte · Game design · Desarrollo</div></div>
     <div><div class="cmeta__k" data-i18n-html="pt.m.fmt.k">Formato</div><div class="cmeta__v" data-i18n-html="pt.m.fmt">Juego web · Kiosco táctil · Gamepad</div></div>
-    <div><div class="cmeta__k" data-i18n-html="pt.m.tools.k">Herramientas</div><div class="cmeta__v">Google Flow · Claude Code · Canvas / JS</div></div>
+    <div><div class="cmeta__k" data-i18n-html="pt.m.tools.k">Herramientas</div><div class="cmeta__v" data-i18n-html="pt.m.tools">Google Flow · Three.js · Claude Code</div></div>
     <div><div class="cmeta__k" data-i18n-html="pt.m.type.k">Tipo</div><div class="cmeta__v" data-i18n-html="pt.m.type">Concepto propio · BTL / eventos</div></div>
   </div>
 
-  <!-- ===== ESCENA ===== -->
+  <!-- ===== HERO ===== -->
   <div class="cmediawrap">
-    <div class="pt-scene" id="ptScene" role="img" aria-label="Escena de Paper Trail: un 4x4 de papel recorre colinas de cartulina">
-      <svg viewBox="0 0 1600 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <filter id="ptPaper" x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="4" result="n"/>
-            <feColorMatrix in="n" type="matrix" values="0 0 0 0 .16  0 0 0 0 .13  0 0 0 0 .1  0 0 0 .09 0" result="g"/>
-            <feComposite in="g" in2="SourceGraphic" operator="in" result="gr"/>
-            <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gr"/></feMerge>
-          </filter>
-          <filter id="ptShadow" x="-5%" y="-10%" width="110%" height="130%">
-            <feDropShadow dx="0" dy="-6" stdDeviation="5" flood-color="#3a2a14" flood-opacity=".28"/>
-          </filter>
-          <filter id="ptShadowS" x="-10%" y="-10%" width="120%" height="140%">
-            <feDropShadow dx="3" dy="5" stdDeviation="3" flood-color="#2a1d0c" flood-opacity=".35"/>
-          </filter>
-        </defs>
-
-        <rect width="1600" height="840" fill="#EAD9B6" filter="url(#ptPaper)"/>
-        <g class="pt-layer" data-depth="4">
-          <circle cx="1230" cy="200" r="92" fill="#F1A24A" filter="url(#ptShadowS)"/>
-          <g class="pt-cloud"><path d="M180 190c10-40 70-52 96-20 20-34 84-30 92 14 40-6 60 30 40 50H170c-24-8-20-40 10-44z" fill="#F6EEDC" filter="url(#ptShadowS)"/></g>
-          <g class="pt-cloud" style="animation-duration:34s"><path d="M760 120c8-30 56-40 76-14 16-26 66-22 72 10 32-4 46 22 32 38H752c-18-6-16-30 8-34z" fill="#F6EEDC" filter="url(#ptShadowS)"/></g>
-        </g>
-        <g class="pt-layer" data-depth="8" filter="url(#ptShadow)">
-          <path d="M0 470 L170 330 L280 400 L430 250 L560 380 L700 290 L860 410 L1010 260 L1160 390 L1290 300 L1440 400 L1600 320 V840 H0Z" fill="#B9A786"/>
-          <path d="M430 250 L470 288 L452 290 L430 272 L410 292 L395 285Z M1010 260 L1048 296 L1030 298 L1010 280 L990 300 L975 293Z" fill="#F4EEE2"/>
-        </g>
-        <g class="pt-layer" data-depth="14" filter="url(#ptShadow)">
-          <path d="M0 560 C140 470 260 470 380 520 S640 600 780 520 S1040 430 1180 500 S1440 600 1600 520 V840 H0Z" fill="#8FA36B"/>
-          <g fill="#5E7A47">
-            <path d="M230 500 l26 -70 l26 70z"/><path d="M262 506 l20 -54 l20 54z"/>
-            <path d="M1120 488 l28 -76 l28 76z"/><path d="M1158 494 l20 -52 l20 52z"/><path d="M1380 540 l24 -64 l24 64z"/>
-          </g>
-        </g>
-        <g class="pt-layer" data-depth="22" filter="url(#ptShadow)">
-          <path d="M0 650 C180 600 300 560 470 600 S760 690 940 640 S1240 560 1420 610 1600 640 1600 640 V840 H0Z" fill="#6E8B4C"/>
-          <g fill="#41603A">
-            <path d="M90 640 l34 -96 l34 96z"/><path d="M140 646 l26 -70 l26 70z"/>
-            <path d="M1460 628 l36 -100 l36 100z"/><path d="M1508 634 l24 -66 l24 66z"/>
-          </g>
-          <!-- cartel de control -->
-          <g transform="translate(1250 560)"><rect x="-3" y="0" width="6" height="64" fill="#5A3D22"/><path d="M3 2 h52 l-10 14 l10 14 h-52z" fill="#E0533A"/></g>
-        </g>
-        <!-- camino -->
-        <g class="pt-layer" data-depth="30" filter="url(#ptShadow)">
-          <path d="M0 740 C220 700 380 690 560 712 S900 760 1100 720 S1420 680 1600 700 V840 H0Z" fill="#C9874E"/>
-          <path d="M0 772 C220 732 380 722 560 744 S900 792 1100 752 S1420 712 1600 732 V840 H0Z" fill="#A86B3A"/>
-          <path d="M40 754 C240 716 380 708 560 728 S900 776 1100 736 S1420 698 1580 716" fill="none" stroke="#F3E6C8" stroke-width="3" stroke-dasharray="14 16" opacity=".6"/>
-        </g>
-        <!-- 4x4 de papel -->
-        <g class="pt-layer" data-depth="30">
-          <g transform="translate(560 618)">
-            <g class="pt-jeep" filter="url(#ptShadowS)">
-              <rect x="-8" y="38" width="52" height="44" rx="10" fill="#2F3B2C"/>
-              <rect x="28" y="24" width="236" height="74" rx="12" fill="#D9C79E"/>
-              <path d="M70 24 L92 -26 H214 L234 24Z" fill="#D9C79E"/>
-              <path d="M104 18 L118 -16 H160 V18Z" fill="#9FC3C8"/><path d="M168 18 V-16 H206 L220 18Z" fill="#9FC3C8"/>
-              <rect x="28" y="56" width="236" height="8" fill="#B8A57A"/>
-              <rect x="246" y="38" width="22" height="14" rx="3" fill="#F2C14E"/>
-              <rect x="20" y="40" width="10" height="10" rx="2" fill="#E0533A"/>
-              <path d="M150 24 V96" stroke="#B8A57A" stroke-width="2"/>
-              <rect x="228" y="-34" width="8" height="12" fill="#2F3B2C"/>
-            </g>
-            <g transform="translate(78 100)"><g class="pt-wheel"><circle r="36" fill="#2A2620"/><circle r="16" fill="#C9B88E"/><path d="M0 -16 V16 M-16 0 H16" stroke="#2A2620" stroke-width="3"/></g></g>
-            <g transform="translate(220 100)"><g class="pt-wheel"><circle r="36" fill="#2A2620"/><circle r="16" fill="#C9B88E"/><path d="M0 -16 V16 M-16 0 H16" stroke="#2A2620" stroke-width="3"/></g></g>
-          </g>
-        </g>
-        <!-- insignias -->
-        <g class="pt-layer" data-depth="30" filter="url(#ptShadowS)">
-          <g transform="translate(960 640)"><circle r="16" fill="#F2C14E"/><path d="M-6 0 l4 5 l9 -10" stroke="#2A2620" stroke-width="3" fill="none"/></g>
-          <g transform="translate(1040 620)"><circle r="16" fill="#F2C14E"/><path d="M-6 0 l4 5 l9 -10" stroke="#2A2620" stroke-width="3" fill="none"/></g>
-        </g>
-      </svg>
-      <div class="pt-title">PAPER TRAIL</div>
-      <div class="pt-hud">
-        <div class="pt-hud__l">
-          <div><small data-i18n-html="pt.hud.t">Tiempo</small><b>00:41</b></div>
-          <div><small data-i18n-html="pt.hud.s">Puntos</small><b>12.850</b></div>
-          <div><small data-i18n-html="pt.hud.m">Multiplicador</small><b>×3</b></div>
-        </div>
-        <span class="pt-hud__tag" data-i18n-html="pt.hud.tag">Tramo 1 · Bosque</span>
-      </div>
-    </div>
+    <a class="pt-shot" href="paper-trail/" aria-label="Jugar Paper Trail">
+      <img src="paper-trail/shot-title.jpg" alt="Pantalla de inicio de Paper Trail: un 4x4 rojo de papel en un bosque de cartulina, con el selector de vehículo y el ranking del evento" width="1600" height="900">
+      <span class="pt-shot__play"><b>▶</b><span data-i18n-html="pt.cta.short">Jugar</span></span>
+    </a>
   </div>
 
   <section class="cbody">
@@ -220,27 +140,31 @@
     <div class="cblock cblock--wide">
       <div class="cblock__label" data-i18n-html="pt.prod.l">El producto como protagonista</div>
       <h2 class="cblock__title" data-i18n-html="pt.prod.t">Las mecánicas cuentan lo que el vehículo hace bien.</h2>
-      <p class="cblock__text" style="max-width:660px" data-i18n-html="pt.prod.p">No hay disparos ni enemigos: todo el reto es la habilidad del conductor y del 4x4. Subidas que muestran la tracción, saltos que muestran la suspensión y aterrizajes que premian el control. Tres tramos continuos llevan al jugador hasta la cumbre.</p>
+      <p class="cblock__text" style="max-width:660px" data-i18n-html="pt.prod.p">No hay disparos ni enemigos: todo el reto es la habilidad del conductor y del 4x4. Subidas que muestran la tracción, saltos que muestran la suspensión y aterrizajes que premian el control. La ruta cruza cuatro paisajes y el día pasa de mañana a noche y otra vez a amanecer.</p>
       <div class="pt-stages">
         <div class="pt-stage">
-          <svg viewBox="0 0 320 140" aria-hidden="true"><rect width="320" height="140" fill="#E9DDBF"/><path d="M0 90 C60 60 110 70 160 84 S260 70 320 80 V140H0Z" fill="#8FA36B"/><path d="M0 110 C80 96 160 104 320 98 V140H0Z" fill="#6E8B4C"/><path d="M60 84l14-38 14 38zM240 80l16-44 16 44z" fill="#41603A"/></svg>
-          <div><small>01</small><h3 data-i18n-html="pt.st1.t">Bosque</h3><p data-i18n-html="pt.st1.p">Tutorial con colinas suaves, primer salto y un puente colgante.</p></div>
+          <svg viewBox="0 0 320 120" aria-hidden="true"><rect width="320" height="120" fill="#E9DDBF"/><path d="M0 70 C60 40 120 52 170 62 S270 46 320 58 V120H0Z" fill="#8FA36B"/><path d="M0 92 C90 78 180 88 320 80 V120H0Z" fill="#41603A"/></svg>
+          <div><small>01</small><h3 data-i18n-html="pt.st1.t">Bosque</h3><p data-i18n-html="pt.st1.p">Colinas suaves, puentes colgantes y ríos. El primer tramo, para aprender a volar y aterrizar.</p></div>
         </div>
         <div class="pt-stage">
-          <svg viewBox="0 0 320 140" aria-hidden="true"><rect width="320" height="140" fill="#EBCFA6"/><path d="M0 60 L60 60 L80 140 H0Z M320 50 L250 50 L230 140 H320Z" fill="#C46E3E"/><path d="M0 80 L44 80 L60 140 H0Z M320 72 L268 72 L252 140 H320Z" fill="#9C5530"/><path d="M80 120 Q160 90 230 120" stroke="#5A3D22" stroke-width="4" fill="none" stroke-dasharray="8 6"/></svg>
-          <div><small>02</small><h3 data-i18n-html="pt.st2.t">Cañón</h3><p data-i18n-html="pt.st2.p">Rampas grandes, abismos y escalones de roca. Ruta alta para los que se arriesgan.</p></div>
+          <svg viewBox="0 0 320 120" aria-hidden="true"><rect width="320" height="120" fill="#E6ECEF"/><path d="M0 70 C60 40 120 52 170 62 S270 46 320 58 V120H0Z" fill="#C9D3DA"/><path d="M0 92 C90 78 180 88 320 80 V120H0Z" fill="#6B7A86"/></svg>
+          <div><small>02</small><h3 data-i18n-html="pt.st2.t">Nieve</h3><p data-i18n-html="pt.st2.p">Picos blancos, pinos nevados y rocas con hielo. Más altura, más riesgo.</p></div>
         </div>
         <div class="pt-stage">
-          <svg viewBox="0 0 320 140" aria-hidden="true"><rect width="320" height="140" fill="#DCE3E4"/><path d="M0 140 L120 40 L170 80 L230 20 L320 110 V140Z" fill="#8C97A0"/><path d="M230 20 L254 44 L240 46 L230 36 L218 48 L208 42Z M120 40 L138 56 L128 58 L120 50 L110 60 L104 54Z" fill="#F7F7F2"/><g transform="translate(228 14)"><rect width="3" height="22" fill="#2A2620" y="-22"/><path d="M3 -22 h16 l-4 5 l4 5 h-16z" fill="#E0533A"/></g></svg>
-          <div><small>03</small><h3 data-i18n-html="pt.st3.t">Cumbre</h3><p data-i18n-html="pt.st3.p">Subidas empinadas, el gran salto final y la meta en la cima.</p></div>
+          <svg viewBox="0 0 320 120" aria-hidden="true"><rect width="320" height="120" fill="#F6DDB6"/><path d="M0 70 C60 40 120 52 170 62 S270 46 320 58 V120H0Z" fill="#DBA36A"/><path d="M0 92 C90 78 180 88 320 80 V120H0Z" fill="#8A4B2C"/></svg>
+          <div><small>03</small><h3 data-i18n-html="pt.st3.t">Desierto</h3><p data-i18n-html="pt.st3.p">Mesas, cañones y cactus. El sol baja y el viaje entra en la noche.</p></div>
+        </div>
+        <div class="pt-stage">
+          <svg viewBox="0 0 320 120" aria-hidden="true"><rect width="320" height="120" fill="#EAF5F6"/><path d="M0 70 C60 40 120 52 170 62 S270 46 320 58 V120H0Z" fill="#F0DFB8"/><path d="M0 92 C90 78 180 88 320 80 V120H0Z" fill="#7DB3C3"/></svg>
+          <div><small>04</small><h3 data-i18n-html="pt.st4.t">Playa</h3><p data-i18n-html="pt.st4.p">Acantilados, dunas y palmeras. Amanece justo antes de la meta.</p></div>
         </div>
       </div>
     </div>
 
     <div class="cblock">
       <div class="cblock__label" data-i18n-html="pt.art.l">Dirección de arte</div>
-      <h2 class="cblock__title" data-i18n-html="pt.art.t">Cartulina, capas y sombra: un mundo que se siente hecho a mano.</h2>
-      <p class="cblock__text" data-i18n-html="pt.art.p">Cada tramo tiene su paleta y el rojo de los ganchos funciona como acento. Generé el banco de piezas en Google Flow a partir de una referencia de estilo, las separé en capas para el parallax y desarrollé el juego con Claude Code. Las piezas del 4x4 se mueven con una suspensión física, así que el papel también rebota.</p>
+      <h2 class="cblock__title" data-i18n-html="pt.art.t">Un diorama de cartulina que se siente hecho a mano.</h2>
+      <p class="cblock__text" data-i18n-html="pt.art.p">Cada paisaje tiene su propio set de papel: estratos, bordes, fondos en capas, árboles, rocas y señales. Generé el banco de piezas en Google Flow a partir de una referencia de estilo y lo armé como un diorama en Three.js, con profundidad real y luz que cambia con la hora del día. El 4x4 se arma por caras recortadas y tiene suspensión física, así que el papel también rebota. Hay tres modelos para elegir.</p>
       <div class="pt-swatches">
         <span><i style="background:#EAD9B6"></i>#EAD9B6</span>
         <span><i style="background:#8FA36B"></i>#8FA36B</span>
@@ -274,7 +198,7 @@
 
     <div class="cblock">
       <div class="cblock__label" data-i18n-html="pt.st.l">Estado</div>
-      <p class="cblock__text" data-i18n-html="pt.st.p">Prototipo jugable con los tres tramos, controles de teclado, gamepad y pantalla táctil, y panel de ajuste de manejo para el operador. Es un concepto propio, sin vínculo con ninguna marca; el uso de una marca real requiere su aprobación. <strong>La demo se muestra en vivo, a pedido.</strong></p>
+      <p class="cblock__text" data-i18n-html="pt.st.p">Beta jugable: el tramo Bosque está abierto en el navegador, con selector de vehículo, ranking del evento, sonido y controles de teclado, gamepad y pantalla táctil. Nieve, Desierto y Playa están en producción. Es un concepto propio, sin vínculo con ninguna marca; el uso de una marca real requiere su aprobación.</p>
     </div>
 
   </section>
@@ -316,18 +240,5 @@
   </footer>
 
   <script src="i18n.js"></script>
-  <script>
-  (function () {
-    var scene = document.getElementById('ptScene');
-    if (!scene || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
-    var layers = scene.querySelectorAll('.pt-layer');
-    scene.addEventListener('pointermove', function (e) {
-      var r = scene.getBoundingClientRect();
-      var dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
-      layers.forEach(function (l) { var d = +l.dataset.depth; l.style.transform = 'translate(' + (-dx * d) + 'px,' + (-dy * d * .4) + 'px)'; });
-    });
-    scene.addEventListener('pointerleave', function () { layers.forEach(function (l) { l.style.transform = ''; }); });
-  })();
-  </script>
 </body>
 </html>
