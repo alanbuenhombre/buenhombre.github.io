@@ -3,251 +3,322 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Gritt Reports · SaaS · Alan Buenhombre</title>
-<meta name="description" content="Gritt Reports: SaaS de reportes automáticos de redes sociales para estudios creativos. Reporte web animado y compartible por link con la marca del estudio, no otro PDF más. Side project en construcción, 2026." />
+<title>Gritt Reports · Producto SaaS · Alan Buenhombre</title>
+<meta name="description" content="Gritt Reports: plataforma SaaS para que estudios creativos conviertan los datos de redes de cada cliente en un reporte web claro, con su marca y compartible por link. Caso de producto con prototipo interactivo." />
 <link rel="canonical" href="https://buenhombre.design/gritt-reports.html" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta property="og:title" content="Gritt Reports · SaaS en construcción · Alan Buenhombre" />
-<meta property="og:description" content="SaaS de reportes automáticos de redes sociales para estudios creativos. Side project 2026." />
+<meta property="og:title" content="Gritt Reports · Producto SaaS · Alan Buenhombre" />
+<meta property="og:description" content="Reportes de redes para estudios creativos: un panel para el estudio y un reporte por link para el cliente. Prototipo interactivo." />
 <meta property="og:url" content="https://buenhombre.design/gritt-reports.html" />
 <meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="case.css" />
 <style>
-  /* ===== GRITT MOCK HERO ===== */
-  .gritt-mock{position:relative;background:#1d1d1b;border-radius:14px;overflow:hidden;
-       border:1px solid rgba(255,255,255,.07);box-shadow:0 40px 80px rgba(0,0,0,.4)}
-  .gritt-mock__chrome{display:flex;align-items:center;gap:10px;padding:12px 16px;
-       border-bottom:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.25)}
-  .gritt-mock__dots{display:flex;gap:6px}
-  .gritt-mock__dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.14)}
-  .gritt-mock__url{flex:1;background:rgba(255,255,255,.04);border-radius:6px;padding:6px 12px;
-       font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.5);
-       letter-spacing:.02em}
-  .gritt-mock__badge{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.22em;
-       text-transform:uppercase;color:#D4FF3D;padding:4px 10px;border:1px solid rgba(212,255,61,.3);
-       border-radius:100px;background:rgba(212,255,61,.05)}
+  :root{--gr-lime:#9AEF7A;--gr-cyan:#5CD2F5;--gr-sand:#E8C58A;--gr-bg:#111110;--gr-panel:#161615;--gr-card:#1B1B1A;
+        --gr-line:rgba(255,255,255,.07);--gr-line-2:rgba(255,255,255,.12);--gr-dim:rgba(255,255,255,.48);--gr-faint:rgba(255,255,255,.3)}
 
-  .gritt-mock__body{padding:48px 56px 56px;color:#fff;position:relative}
-  .gritt-mock__header{display:flex;justify-content:space-between;align-items:flex-end;
-       padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:32px}
-  .gritt-mock__client-meta{font-family:'IBM Plex Mono',monospace;font-size:.68rem;
-       letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px}
-  .gritt-mock__client{font-family:'Manrope',sans-serif;font-weight:200;font-size:3rem;
-       letter-spacing:-.035em;line-height:.95;color:#fff}
-  .gritt-mock__period{font-family:'IBM Plex Mono',monospace;font-size:.78rem;
-       color:rgba(255,255,255,.55);letter-spacing:.08em;text-align:right}
-  .gritt-mock__period strong{color:#D4FF3D;font-weight:400}
+  /* ===== cabecera ===== */
+  .gr-cta{display:inline-flex;align-items:center;gap:14px;background:var(--gr-lime);color:#111;font-family:'Manrope',sans-serif;
+       font-weight:600;font-size:.98rem;padding:15px 24px;border-radius:100px;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease}
+  .gr-cta:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(154,239,122,.18)}
+  .gr-cta small{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6;font-weight:500}
+  .gr-cta b{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#111;color:var(--gr-lime);font-size:.8rem}
+  .chead__play-row{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-top:28px}
+  .chead__note{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:var(--gr-faint)}
 
-  .gritt-mock__kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px}
-  .gritt-mock__kpi{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
-       border-radius:10px;padding:20px 22px}
-  .gritt-mock__kpi-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;
-       letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:12px}
-  .gritt-mock__kpi-value{font-family:'Manrope',sans-serif;font-weight:200;font-size:2.2rem;
-       letter-spacing:-.03em;line-height:1;color:#fff;margin-bottom:10px}
-  .gritt-mock__kpi-delta{display:inline-flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;
-       font-size:.68rem;color:#D4FF3D;letter-spacing:.04em}
-  .gritt-mock__kpi-delta.down{color:#ff6b6b}
-  .gritt-mock__kpi-spark{margin-top:10px;height:22px}
-  .gritt-mock__kpi-spark svg{width:100%;height:100%}
+  /* ===== stage del prototipo ===== */
+  .gr-stage{padding:0 var(--pad);scroll-margin-top:24px}
+  #grApp{max-width:1180px;margin:0 auto;font-family:'Manrope',sans-serif;color:#fff}
+  .gr-stage__cap{max-width:1180px;margin:18px auto 0;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+       font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gr-faint)}
+  .gr-win{position:relative;background:var(--gr-bg);border:1px solid var(--gr-line-2);border-radius:16px;overflow:hidden;
+       box-shadow:0 50px 120px -30px rgba(0,0,0,.7),0 0 0 1px rgba(0,0,0,.4)}
+  .gr-chrome{display:flex;align-items:center;gap:14px;padding:11px 16px;border-bottom:1px solid var(--gr-line);background:#0d0d0c}
+  .gr-dots{display:flex;gap:6px}.gr-dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.12)}
+  .gr-url{flex:1;max-width:460px;margin:0 auto;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--gr-dim);
+       background:rgba(255,255,255,.04);border-radius:7px;padding:5px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gr-demo{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gr-lime);
+       border:1px solid rgba(154,239,122,.3);border-radius:100px;padding:4px 10px;white-space:nowrap}
 
-  /* platform badge pequeñito sobre cada KPI card */
-  .gritt-mock__kpi{position:relative;transition:background .3s ease,border-color .3s ease,transform .3s ease}
-  .gritt-mock__kpi:hover{background:rgba(255,255,255,.045);border-color:rgba(212,255,61,.2);transform:translateY(-2px)}
-  .gritt-mock__kpi-badge{position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;
-       gap:4px;font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.14em;
-       text-transform:uppercase;color:rgba(255,255,255,.4);padding:3px 7px;border-radius:3px;
-       background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
-  .gritt-mock__kpi-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.3);
-       letter-spacing:.04em;margin-top:4px}
+  .gr-shell{display:grid;grid-template-columns:228px 1fr;min-height:600px}
+  .gr-shell.is-client{grid-template-columns:1fr}
+  .gr-shell.is-client .gr-side{display:none}
 
-  .gritt-mock__chart-area{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:28px}
-  .gritt-mock__chart,.gritt-mock__globe{background:rgba(255,255,255,.025);
-       border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px 22px}
+  /* sidebar */
+  .gr-side{background:var(--gr-panel);border-right:1px solid var(--gr-line);padding:20px 14px;display:flex;flex-direction:column;gap:6px}
+  .gr-logo{display:flex;align-items:center;gap:10px;padding:4px 8px 18px;font-weight:600;font-size:.92rem;letter-spacing:-.01em}
+  .gr-logo i,.gr-report__brand i{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;
+       background:var(--gr-lime);color:#111;font-style:normal;font-weight:700;font-size:.9rem;letter-spacing:-.03em}
+  .gr-nav{display:flex;flex-direction:column;gap:2px}
+  .gr-nav__item{display:flex;align-items:center;gap:11px;width:100%;padding:9px 10px;border:0;border-radius:9px;background:none;cursor:pointer;
+       color:var(--gr-dim);font:500 .86rem 'Manrope',sans-serif;text-align:left;transition:background .2s,color .2s}
+  .gr-nav__item svg{width:17px;height:17px;flex:none}
+  .gr-nav__item:hover{color:#fff;background:rgba(255,255,255,.03)}
+  .gr-nav__item.is-on{color:#fff;background:rgba(255,255,255,.06);box-shadow:inset 2px 0 0 var(--gr-lime)}
+  .gr-side__label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gr-faint);margin:22px 10px 8px}
+  .gr-clients{display:flex;flex-direction:column;gap:2px}
+  .gr-client{display:flex;align-items:center;gap:10px;padding:8px 10px;border:0;border-radius:9px;background:none;cursor:pointer;text-align:left;
+       color:var(--gr-dim);font:500 .82rem 'Manrope',sans-serif;transition:background .2s,color .2s}
+  .gr-client i{flex:none;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;
+       font-size:.7rem;font-weight:600;color:#fff;border:1px solid var(--gr-line-2);background:rgba(255,255,255,.03)}
+  .gr-client span{display:flex;flex-direction:column;line-height:1.25}
+  .gr-client small{font-size:.66rem;color:var(--gr-faint);font-weight:400}
+  .gr-client:hover{color:#fff;background:rgba(255,255,255,.03)}
+  .gr-client.is-on{color:#fff;background:rgba(255,255,255,.05)}
+  .gr-client.is-on i{border-color:var(--gr-lime);color:var(--gr-lime)}
+  .gr-side__foot{margin-top:auto;padding:14px 10px 2px;border-top:1px solid var(--gr-line);display:flex;flex-direction:column;gap:3px;font-size:.8rem;font-weight:500}
+  .gr-side__foot small{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--gr-faint);letter-spacing:.04em}
 
-  /* ---- Logo Gritt en el header del reporte ---- */
-  .gritt-mock__brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;
-       padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.05)}
-  .gritt-mock__brand-mark{width:28px;height:28px;border-radius:50%;background:#D4FF3D;
-       display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;
-       font-weight:700;color:#1d1d1b;font-size:.95rem;letter-spacing:-.03em}
-  .gritt-mock__brand-name{font-family:'Manrope',sans-serif;font-weight:500;font-size:.88rem;
-       letter-spacing:-.01em;color:#fff;line-height:1}
-  .gritt-mock__brand-sub{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;
-       text-transform:uppercase;color:rgba(255,255,255,.4);line-height:1.3;margin-top:2px}
-  .gritt-mock__brand-right{margin-left:auto;display:flex;gap:6px}
-  .gritt-mock__brand-btn{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;
-       text-transform:uppercase;color:rgba(255,255,255,.5);padding:5px 10px;border-radius:4px;
-       background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);cursor:default}
+  /* main */
+  .gr-main{min-width:0;padding:22px 26px 26px;display:flex;flex-direction:column;gap:18px}
+  .gr-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .gr-top__title h3{font-weight:300;font-size:1.6rem;letter-spacing:-.03em;line-height:1.1}
+  .gr-top__title small{display:block;margin-top:5px;font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gr-faint)}
+  .gr-top__ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .gr-seg{display:inline-flex;padding:3px;border:1px solid var(--gr-line-2);border-radius:10px;background:rgba(255,255,255,.02)}
+  .gr-seg button{border:0;background:none;color:var(--gr-dim);font:500 .72rem 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:6px 10px;border-radius:7px;cursor:pointer;transition:all .2s}
+  .gr-seg button.is-on{background:rgba(255,255,255,.09);color:#fff}
+  .gr-seg--sm button{font-size:.66rem;padding:5px 9px}
+  .gr-plats{display:inline-flex;gap:4px}
+  .gr-plat{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--gr-line-2);background:none;color:var(--gr-faint);
+       font:500 .68rem 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:7px 9px;border-radius:9px;cursor:pointer;transition:all .2s}
+  .gr-plat i{width:7px;height:7px;border-radius:50%;opacity:.35;transition:opacity .2s}
+  .gr-plat.is-on{color:#fff;border-color:rgba(255,255,255,.22)}
+  .gr-plat.is-on i{opacity:1}
+  .gr-c-ig{background:var(--gr-lime)}.gr-c-tk{background:var(--gr-cyan)}.gr-c-fb{background:var(--gr-sand)}
+  .gr-btn{border:1px solid var(--gr-line-2);background:rgba(255,255,255,.03);color:#fff;font:500 .78rem 'Manrope',sans-serif;
+       padding:8px 13px;border-radius:9px;cursor:pointer;transition:background .2s,transform .2s}
+  .gr-btn:hover{background:rgba(255,255,255,.08)}
+  .gr-btn--lime{background:var(--gr-lime);border-color:var(--gr-lime);color:#111;font-weight:600}
+  .gr-btn--lime:hover{background:#b2f59a}
+  .gr-sharewrap{position:relative}
+  .gr-pop{position:absolute;right:0;top:calc(100% + 8px);z-index:5;width:270px;background:#1f1f1e;border:1px solid var(--gr-line-2);border-radius:12px;
+       padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 24px 50px rgba(0,0,0,.5);animation:grIn .25s ease both}
+  .gr-pop p{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gr-faint)}
+  .gr-pop code{font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--gr-lime);background:rgba(154,239,122,.06);border:1px solid rgba(154,239,122,.18);padding:8px 10px;border-radius:8px}
+  .gr-pop label{display:flex;align-items:center;gap:8px;font-size:.78rem;color:rgba(255,255,255,.75)}
+  .gr-pop input{accent-color:var(--gr-lime)}
 
-  /* ---- Top publicaciones ---- */
-  .gritt-mock__section-head{display:flex;justify-content:space-between;align-items:baseline;
-       margin:34px 0 14px}
-  .gritt-mock__section-title{font-family:'IBM Plex Mono',monospace;font-size:.68rem;
-       letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)}
-  .gritt-mock__section-meta{font-family:'IBM Plex Mono',monospace;font-size:.62rem;
-       letter-spacing:.12em;color:#D4FF3D}
-  .gritt-mock__posts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .gritt-mock__post{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
-       border-radius:10px;overflow:hidden;transition:transform .3s ease,border-color .3s ease}
-  .gritt-mock__post:hover{transform:translateY(-2px);border-color:rgba(212,255,61,.2)}
-  .gritt-mock__post-thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#2a2a26 0%,#1a1a18 100%);
-       position:relative;overflow:hidden}
-  .gritt-mock__post-thumb::after{content:"";position:absolute;inset:0;
-       background:radial-gradient(circle at 30% 40%,rgba(212,255,61,.08) 0%,transparent 50%)}
-  .gritt-mock__post-thumb--2::after{background:radial-gradient(circle at 70% 50%,rgba(255,180,80,.08) 0%,transparent 50%)}
-  .gritt-mock__post-thumb--3::after{background:radial-gradient(circle at 50% 30%,rgba(120,200,255,.06) 0%,transparent 50%)}
-  .gritt-mock__post-thumb-icon{position:absolute;top:10px;left:10px;font-family:'IBM Plex Mono',monospace;
-       font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;padding:3px 6px;
-       background:rgba(0,0,0,.5);border-radius:3px;backdrop-filter:blur(4px);z-index:1}
-  .gritt-mock__post-body{padding:12px 14px}
-  .gritt-mock__post-cap{font-family:'Manrope',sans-serif;font-size:.76rem;color:rgba(255,255,255,.82);
-       line-height:1.4;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
-       overflow:hidden}
-  .gritt-mock__post-metrics{display:flex;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
-       color:rgba(255,255,255,.5);letter-spacing:.04em}
-  .gritt-mock__post-metrics strong{color:#D4FF3D;font-weight:500;margin-right:3px}
+  .gr-view{animation:grIn .35s ease both}
+  @keyframes grIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  /* ---- Insights + Budget row ---- */
-  .gritt-mock__insight-row{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin-top:14px}
-  .gritt-mock__insights,.gritt-mock__budget{background:rgba(255,255,255,.025);
-       border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px 22px}
-  .gritt-mock__insight-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px dotted rgba(255,255,255,.07)}
-  .gritt-mock__insight-item:last-child{border-bottom:none;padding-bottom:0}
-  .gritt-mock__insight-item:first-child{padding-top:0}
-  .gritt-mock__insight-num{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:.68rem;
-       color:#D4FF3D;letter-spacing:.08em;padding-top:3px}
-  .gritt-mock__insight-text{font-family:'Manrope',sans-serif;font-size:.82rem;line-height:1.45;
-       color:rgba(255,255,255,.82)}
-  .gritt-mock__insight-text strong{color:#fff;font-weight:500}
+  /* KPI */
+  .gr-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .gr-kpi{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;min-height:168px;
+       padding:16px 16px 14px;background:var(--gr-card);border:1px solid var(--gr-line);border-radius:12px;color:#fff;font-family:'Manrope',sans-serif;
+       transition:border-color .25s,transform .25s,background .25s}
+  button.gr-kpi{cursor:pointer}
+  button.gr-kpi:hover{border-color:var(--gr-line-2);transform:translateY(-2px)}
+  .gr-kpi.is-on{border-color:rgba(154,239,122,.45);background:linear-gradient(180deg,rgba(154,239,122,.06),var(--gr-card) 60%)}
+  .gr-deco{position:absolute;right:-46px;top:-46px;width:170px;height:170px;color:rgba(255,255,255,.07);pointer-events:none;transition:color .3s,transform .6s ease}
+  .gr-kpi.is-on .gr-deco{color:rgba(154,239,122,.22);transform:rotate(25deg)}
+  .gr-kpi__label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gr-dim)}
+  .gr-kpi__value{margin-top:auto;font-weight:200;font-size:2.35rem;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+  .gr-kpi.is-on .gr-kpi__value{color:var(--gr-lime)}
+  .gr-kpi__sub{font-size:.72rem;color:var(--gr-faint)}
+  .gr-kpi__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:8px;padding-top:10px;border-top:1px dotted var(--gr-line-2)}
+  .gr-kpi__foot em,.gr-tip em{font-style:normal;white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:.68rem}
+  .up{color:var(--gr-lime)}.down{color:#FF8A7A}
+  .gr-kpi__spark{width:70px;height:22px;color:rgba(255,255,255,.35)}
+  .gr-kpi.is-on .gr-kpi__spark{color:var(--gr-lime)}
+  .gr-kpi__spark svg{width:100%;height:100%}
 
-  .gritt-mock__budget-value{font-family:'Manrope',sans-serif;font-weight:200;font-size:1.9rem;
-       letter-spacing:-.03em;color:#fff;margin:12px 0 4px;line-height:1}
-  .gritt-mock__budget-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;
-       color:rgba(255,255,255,.45);text-transform:uppercase}
-  .gritt-mock__budget-bar{height:6px;background:rgba(255,255,255,.06);border-radius:100px;
-       overflow:hidden;margin:16px 0 10px}
-  .gritt-mock__budget-fill{height:100%;background:linear-gradient(90deg,#D4FF3D 0%,#B8E434 100%);
-       border-radius:100px;position:relative}
-  .gritt-mock__budget-fill::after{content:"";position:absolute;right:0;top:0;bottom:0;width:2px;
-       background:#fff;opacity:.8}
-  .gritt-mock__budget-split{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;
-       font-size:.68rem;color:rgba(255,255,255,.6);letter-spacing:.04em}
-  .gritt-mock__budget-split strong{color:#D4FF3D;font-weight:500}
+  /* cards */
+  .gr-row{display:grid;grid-template-columns:1.55fr 1fr;gap:12px;margin-top:12px}
+  .gr-row--3{grid-template-columns:repeat(3,1fr);margin-top:0}
+  .gr-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+  .gr-card{min-width:0;background:var(--gr-card);border:1px solid var(--gr-line);border-radius:12px;padding:16px 18px}
+  .gr-card__head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+  .gr-card__head--wrap{flex-wrap:wrap}
+  .gr-card__head h4{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gr-dim)}
+  .gr-tag{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gr-lime);border:1px solid rgba(154,239,122,.25);border-radius:5px;padding:2px 6px}
+  .gr-legend{display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--gr-faint);letter-spacing:.04em}
+  .gr-legend i{display:inline-block;width:14px;height:0;border-top:1.5px solid var(--gr-lime);margin-left:8px}
+  .gr-legend .gr-legend__prev{border-top:1.5px dashed rgba(255,255,255,.35)}
+  .gr-chartbox{position:relative}
+  .gr-ticks{display:flex;justify-content:space-between;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--gr-faint);letter-spacing:.04em}
+  .gr-chart{display:block;width:100%;height:210px;overflow:visible;cursor:crosshair;touch-action:pan-y}
+  .gr-grid{stroke:rgba(255,255,255,.06);stroke-width:1;stroke-dasharray:2 4}
+  .gr-prev{fill:none;stroke:rgba(255,255,255,.28);stroke-width:1.2;stroke-dasharray:4 4}
+  .gr-line{fill:none;stroke:var(--gr-lime);stroke-width:1.8;stroke-dasharray:1;stroke-dashoffset:1;animation:grDraw 1s ease forwards}
+  .gr-area{opacity:0;animation:grFade .8s .3s ease forwards}
+  @keyframes grDraw{to{stroke-dashoffset:0}} @keyframes grFade{to{opacity:1}}
+  .gr-cross{stroke:rgba(255,255,255,.25);stroke-dasharray:2 3;transition:opacity .2s}
+  .gr-dot{fill:#111;stroke:var(--gr-lime);stroke-width:2;transition:opacity .2s}
+  .gr-tip{position:absolute;top:-6px;transform:translateX(-50%);pointer-events:none;background:#232322;border:1px solid var(--gr-line-2);border-radius:9px;
+       padding:7px 10px;display:flex;align-items:baseline;gap:8px;white-space:nowrap;transition:opacity .2s,left .12s}
+  .gr-tip span{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--gr-faint);letter-spacing:.06em}
+  .gr-tip strong{font-weight:400;font-size:.95rem}
+  .gr-hint{margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--gr-faint);letter-spacing:.04em}
 
-  /* ---- Report footer ---- */
-  .gritt-mock__report-foot{display:flex;justify-content:space-between;align-items:center;
-       margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);
-       font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;
-       text-transform:uppercase;color:rgba(255,255,255,.35)}
-  .gritt-mock__report-foot strong{color:#D4FF3D;font-weight:500}
-  .gritt-mock__chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
-  .gritt-mock__chart-title{font-family:'IBM Plex Mono',monospace;font-size:.6rem;
-       letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-  .gritt-mock__chart-svg{width:100%;height:140px}
-  .gritt-mock__globe-wrap{display:flex;align-items:center;justify-content:center;height:150px;margin-top:10px;position:relative}
-  .gritt-mock__globe-wrap svg{width:140px;height:140px}
+  .gr-ins{list-style:none;display:flex;flex-direction:column}
+  .gr-ins li{display:flex;gap:12px;padding:10px 0;border-top:1px dotted var(--gr-line-2)}
+  .gr-ins li:first-child{border-top:0;padding-top:0}
+  .gr-ins span{font-family:'IBM Plex Mono',monospace;font-size:.64rem;color:var(--gr-lime);padding-top:3px}
+  .gr-ins p{font-size:.84rem;line-height:1.5;color:rgba(255,255,255,.75)}
+  .gr-ins strong{color:#fff;font-weight:600}
+  .gr-split__bar{display:flex;height:10px;border-radius:100px;overflow:hidden;gap:2px}
+  .gr-split__seg{transition:flex .5s ease}
+  .gr-split__legend{list-style:none;display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:.76rem;color:var(--gr-dim)}
+  .gr-split__legend li{display:flex;align-items:center;gap:6px}
+  .gr-split__legend i{width:7px;height:7px;border-radius:50%}
+  .gr-split__legend b{font-family:'IBM Plex Mono',monospace;font-weight:400;color:#fff;font-size:.72rem}
 
-  @media (max-width:900px){
-    .gritt-mock__body{padding:28px 24px 32px}
-    .gritt-mock__header{flex-direction:column;align-items:flex-start;gap:14px}
-    .gritt-mock__period{text-align:left}
-    .gritt-mock__client{font-size:2.2rem}
-    .gritt-mock__kpis{grid-template-columns:repeat(2,1fr)}
-    .gritt-mock__kpi-value{font-size:1.6rem}
-    .gritt-mock__chart-area,.gritt-mock__insight-row{grid-template-columns:1fr}
-    .gritt-mock__posts{grid-template-columns:1fr}
-    .gritt-mock__url{display:none}
-    .gritt-mock__brand-right{display:none}
-    .gritt-mock__report-foot{flex-direction:column;gap:8px;text-align:center}
+  /* contenido */
+  .gr-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .gr-chips{display:flex;gap:4px;flex-wrap:wrap}
+  .gr-chip{border:1px solid var(--gr-line-2);background:none;color:var(--gr-dim);font:500 .7rem 'Manrope',sans-serif;padding:5px 10px;border-radius:100px;cursor:pointer;transition:all .2s}
+  .gr-chip.is-on{background:#fff;color:#111;border-color:#fff}
+  .gr-posts{list-style:none;display:flex;flex-direction:column}
+  .gr-post{display:grid;grid-template-columns:52px 1fr 90px 150px;align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--gr-line);animation:grIn .35s ease both}
+  .gr-post:first-child{border-top:0}
+  .gr-post__thumb{position:relative;width:52px;height:52px;border-radius:9px;overflow:hidden;
+       background:radial-gradient(circle at 30% 30%,hsl(var(--h) 45% 46% / .9),hsl(calc(var(--h) + 40) 35% 18%) 70%)}
+  .gr-post__thumb b{position:absolute;left:4px;bottom:4px;font:500 .5rem 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.55);padding:2px 4px;border-radius:3px}
+  .gr-post__body{display:flex;flex-direction:column;min-width:0}
+  .gr-post__body strong{font-weight:500;font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gr-post__body small{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--gr-faint);letter-spacing:.06em;margin-top:2px}
+  .gr-post__num{font-weight:300;font-size:1.2rem;letter-spacing:-.02em;text-align:right;font-variant-numeric:tabular-nums}
+  .gr-post__num small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.56rem;color:var(--gr-faint);letter-spacing:.08em}
+  .gr-post__er i{display:block;height:4px;border-radius:4px;background:var(--gr-cyan);max-width:100%;transition:width .5s ease}
+  .gr-post__er{display:flex;flex-direction:column;gap:6px}
+  .gr-post__er small{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--gr-dim)}
+  .gr-posts--mini .gr-post{grid-template-columns:40px 1fr 70px}
+  .gr-posts--mini .gr-post__thumb{width:40px;height:40px}
+  .gr-posts--mini .gr-post__er{display:none}
+  .gr-empty{padding:20px 0;color:var(--gr-faint)}
+
+  /* audiencia */
+  .gr-bars{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .gr-bars li{display:grid;grid-template-columns:52px 1fr 36px;align-items:center;gap:10px;font-size:.74rem;color:var(--gr-dim)}
+  .gr-bars--city li{grid-template-columns:86px 1fr 36px}
+  .gr-bars i{height:8px;border-radius:8px;background:rgba(255,255,255,.05);overflow:hidden}
+  .gr-bars b{display:block;height:100%;background:var(--gr-lime);border-radius:8px;animation:grGrow .7s ease both;transform-origin:left}
+  .gr-bars--city b{background:var(--gr-cyan)}
+  .gr-bars em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:#fff;text-align:right}
+  @keyframes grGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .gr-donut{width:140px;height:140px;margin:6px auto 4px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+       background:conic-gradient(var(--gr-lime) 0 calc(var(--w)*1%),var(--gr-cyan) 0 calc((var(--w) + var(--m))*1%),var(--gr-sand) 0);
+       -webkit-mask:radial-gradient(circle,transparent 52%,#000 53%);mask:radial-gradient(circle,transparent 52%,#000 53%);position:relative}
+  .gr-donut div{display:none}
+
+  .gr-heat{margin-top:12px}
+  .gr-heat__grid{display:grid;grid-template-columns:34px repeat(9,1fr);gap:4px;align-items:center}
+  .gr-heat__grid small{font-family:'IBM Plex Mono',monospace;font-size:.56rem;color:var(--gr-faint);text-align:center}
+  .gr-heat__grid small:nth-child(10n+11),.gr-heat__grid>small:first-of-type{text-align:left}
+  .gr-heat__grid i{display:block;height:22px;border-radius:5px;background:rgba(154,239,122,calc(var(--v)*.85 + .04));transition:transform .2s}
+  .gr-heat__grid i:hover{transform:scale(1.08);outline:1px solid rgba(255,255,255,.4)}
+  .gr-heat__scale{width:56px !important;height:6px !important;border:0 !important;border-radius:4px;background:linear-gradient(90deg,rgba(154,239,122,.06),var(--gr-lime));margin:0 6px !important}
+  .gr-pvo{margin-top:16px;padding-top:14px;border-top:1px solid var(--gr-line)}
+  .gr-pvo h4{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gr-dim);margin-bottom:12px}
+  /* pauta */
+  .gr-money strong{font-weight:200;font-size:2.1rem;letter-spacing:-.04em}
+  .gr-money small{display:block;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--gr-faint);letter-spacing:.04em}
+  .gr-progress{height:8px;border-radius:8px;background:rgba(255,255,255,.06);margin-top:14px;overflow:hidden}
+  .gr-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gr-cyan),var(--gr-lime));border-radius:8px;animation:grGrow .8s ease both;transform-origin:left}
+  .gr-colbars{display:flex;align-items:flex-end;gap:6px;height:120px}
+  .gr-colbars span{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
+  .gr-colbars i{display:block;width:100%;max-width:26px;background:rgba(92,210,245,.6);border-radius:5px 5px 2px 2px;animation:grRise .6s ease both;transform-origin:bottom}
+  .gr-colbars span:hover i{background:var(--gr-cyan)}
+  .gr-colbars small{font-family:'IBM Plex Mono',monospace;font-size:.54rem;color:var(--gr-faint);height:10px}
+  @keyframes grRise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  .gr-camps{list-style:none;display:flex;flex-direction:column}
+  .gr-camps li{display:grid;grid-template-columns:1fr;gap:3px;padding:12px 0;border-top:1px solid var(--gr-line)}
+  .gr-camps li:first-child{border-top:0;padding-top:0}
+  .gr-camps strong{font-weight:500;font-size:.9rem}
+  .gr-camps span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:var(--gr-dim)}
+  .gr-camps span:nth-of-type(1){color:#fff;font-size:.8rem}
+
+  /* vista cliente */
+  .gr-report{display:flex;flex-direction:column;gap:12px;max-width:940px;margin:0 auto;width:100%}
+  .gr-report__head{padding:10px 0 16px;border-bottom:1px solid var(--gr-line);margin-bottom:6px}
+  .gr-report__brand{display:inline-flex;align-items:center;gap:9px;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gr-dim)}
+  .gr-report__brand i{width:22px;height:22px;font-size:.8rem;border-radius:6px;text-transform:none}
+  .gr-report__head h3{font-weight:200;font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.045em;line-height:1;margin:18px 0 10px}
+  .gr-report__head p{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gr-faint)}
+  .gr-report__head .gr-report__intro{font-family:'Manrope',sans-serif;text-transform:none;letter-spacing:0;font-size:.98rem;color:rgba(255,255,255,.75);margin-top:14px;max-width:56ch}
+  .gr-report .gr-row{margin-top:0;grid-template-columns:1fr 1fr}
+
+  .gr-next{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border:1px dashed var(--gr-line-2);border-radius:12px;font-size:.8rem;color:var(--gr-dim)}
+  .gr-next strong{color:#fff;font-weight:500}
+  .gr-pulse{width:7px;height:7px;border-radius:50%;background:var(--gr-lime);box-shadow:0 0 0 0 rgba(154,239,122,.5);animation:grPulse 2s infinite}
+  @keyframes grPulse{70%{box-shadow:0 0 0 8px rgba(154,239,122,0)}100%{box-shadow:0 0 0 0 rgba(154,239,122,0)}}
+
+  .gr-toast{position:absolute;left:50%;bottom:18px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:#fff;color:#111;
+       font:600 .78rem 'Manrope',sans-serif;padding:10px 16px;border-radius:100px;transition:all .3s ease}
+  .gr-toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+  button:focus-visible{outline:2px solid var(--gr-lime);outline-offset:2px}
+
+  @media (max-width:1020px){
+    .gr-kpis{grid-template-columns:repeat(2,1fr)}
+    .gr-row,.gr-row--3,.gr-report .gr-row{grid-template-columns:1fr}
   }
-
-  /* ===== STACK PILLS ===== */
-  .gritt-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-  .gritt-stack__pill{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.04em;
-       padding:5px 10px;border-radius:4px;background:rgba(255,255,255,.04);
-       border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
-
-  /* ===== ARCH DIAGRAM ===== */
-  .gritt-arch{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:0;
-       margin-top:28px;padding:28px 24px;background:rgba(255,255,255,.025);
-       border:1px solid rgba(255,255,255,.08);border-radius:12px;position:relative;overflow:hidden}
-  .gritt-arch__node,.gritt-arch__ui,.gritt-arch__future{display:flex;flex-direction:column;gap:5px;
-       padding:14px 18px;border-radius:8px;text-align:center;
-       background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}
-  .gritt-arch__ui{background:rgba(212,255,61,.08);border-color:rgba(212,255,61,.25)}
-  .gritt-arch__future{background:transparent;border:1px dashed rgba(255,255,255,.18);opacity:.75}
-  .gritt-arch__tag{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.22em;
-       text-transform:uppercase;color:rgba(255,255,255,.4)}
-  .gritt-arch__ui .gritt-arch__tag{color:#D4FF3D}
-  .gritt-arch__name{font-family:'Manrope',sans-serif;font-weight:500;font-size:.98rem;color:#fff;
-       letter-spacing:-.01em}
-  .gritt-arch__sub{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.45);
-       letter-spacing:.04em}
-  .gritt-arch__flow{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 12px}
-  .gritt-arch__arrow{font-family:'IBM Plex Mono',monospace;color:rgba(255,255,255,.3);font-size:1.1rem;line-height:1}
-  .gritt-arch__interface{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;
-       color:rgba(255,255,255,.55);background:rgba(0,0,0,.3);padding:4px 10px;border-radius:4px;
-       white-space:nowrap}
-  @media(max-width:800px){
-    .gritt-arch{grid-template-columns:1fr;gap:12px;padding:20px 16px}
-    .gritt-arch__flow{flex-direction:row;padding:4px 0}
-    .gritt-arch__arrow{transform:rotate(90deg)}
+  @media (max-width:820px){
+    .gr-shell{grid-template-columns:1fr}
+    .gr-side{border-right:0;border-bottom:1px solid var(--gr-line);padding:12px;flex-direction:row;align-items:center;gap:8px;overflow-x:auto}
+    .gr-logo{padding:0 6px 0 0}.gr-logo span{display:none}
+    .gr-nav{flex-direction:row}
+    .gr-nav__item{padding:8px 10px;white-space:nowrap}
+    .gr-nav__item.is-on{box-shadow:inset 0 -2px 0 var(--gr-lime)}
+    .gr-side__label,.gr-side__foot{display:none}
+    .gr-clients{flex-direction:row;padding-left:8px;border-left:1px solid var(--gr-line)}
+    .gr-client small{display:none}.gr-client span{white-space:nowrap}
+    .gr-main{padding:16px}
+    .gr-post{grid-template-columns:44px 1fr 70px}
+    .gr-post__er{display:none}
+    .gr-post__thumb{width:44px;height:44px}
   }
-
-  /* ===== ROADMAP ===== */
-  .gritt-roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:20px}
-  .gritt-roadmap__step{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
-       border-radius:8px;padding:16px 14px;font-family:'Manrope',sans-serif;font-size:.86rem;
-       line-height:1.4;color:rgba(255,255,255,.78);display:flex;flex-direction:column;gap:8px;
-       transition:background .3s ease,border-color .3s ease}
-  .gritt-roadmap__step:hover{background:rgba(212,255,61,.05);border-color:rgba(212,255,61,.2)}
-  .gritt-roadmap__num{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;
-       color:#D4FF3D}
-  @media(max-width:800px){
-    .gritt-roadmap{grid-template-columns:1fr 1fr}
+  @media (max-width:520px){
+    .gr-kpis{grid-template-columns:1fr 1fr;gap:8px}
+    .gr-kpi{min-height:140px;padding:12px}
+    .gr-kpi__value{font-size:1.7rem}
+    .gr-kpi__sub{display:none}
+    .gr-kpi__spark{width:48px}
+    .gr-demo{display:none}
+    .gr-pop{right:auto;left:0}
   }
-  @media(max-width:480px){
-    .gritt-roadmap{grid-template-columns:1fr}
-  }
+  @media (prefers-reduced-motion:reduce){.gr-line{stroke-dasharray:none;animation:none}.gr-area,.gr-view,.gr-post,.gr-bars b,.gr-colbars i,.gr-progress i{animation:none;opacity:1}}
 
-  /* ===== PROGRESSIVE DISCLOSURE ===== */
-  .cblock__more{margin-top:14px;border-top:1px dotted rgba(255,255,255,.1);padding-top:12px}
-  .cblock__more > summary{list-style:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-       font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);
-       display:inline-flex;align-items:center;gap:8px;padding:4px 0;
-       transition:color .25s ease;user-select:none}
-  .cblock__more > summary::-webkit-details-marker{display:none}
-  .cblock__more > summary::before{content:"+";display:inline-flex;align-items:center;justify-content:center;
-       width:16px;height:16px;border:1px solid rgba(255,255,255,.3);border-radius:50%;
-       font-family:'Manrope',sans-serif;font-size:.78rem;line-height:1;color:rgba(255,255,255,.6);
-       transition:transform .3s ease,border-color .25s ease,color .25s ease}
-  .cblock__more[open] > summary::before{content:"−";transform:rotate(0deg)}
-  .cblock__more > summary:hover{color:rgba(255,255,255,.8)}
-  .cblock__more > summary:hover::before{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.9)}
-  .cblock__more-body{padding-top:14px;animation:gritt-detail-in .35s ease both}
-  .cblock__more-body > *:first-child{margin-top:0}
-  .cblock__more-body .cblock__text{color:rgba(255,255,255,.68)}
-  @keyframes gritt-detail-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-
-  /* ===== STATUS BLOCK ===== */
-  .gritt-status{background:rgba(212,255,61,.04);border:1px solid rgba(212,255,61,.18);
-       border-radius:12px;padding:28px 32px;margin:40px 0}
-  .gritt-status__label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.22em;
-       text-transform:uppercase;color:#D4FF3D;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-  .gritt-status__label::before{content:"";width:8px;height:8px;border-radius:50%;background:#D4FF3D;
-       box-shadow:0 0 10px rgba(212,255,61,.6);animation:gritt-pulse 2s ease-in-out infinite}
-  @keyframes gritt-pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .gritt-status h3{font-family:'Manrope',sans-serif;font-weight:300;font-size:1.4rem;
-       letter-spacing:-.02em;line-height:1.3;color:#fff;margin-bottom:12px}
-  .gritt-status p{font-family:'Manrope',sans-serif;font-size:.95rem;line-height:1.6;
-       color:rgba(255,255,255,.78);margin-bottom:10px}
-  .gritt-status p:last-child{margin-bottom:0}
+  /* ===== cuerpo del caso ===== */
+  .gr-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+  .gr-surface{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:22px;background:rgba(255,255,255,.02)}
+  .gr-surface span{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gr-lime)}
+  .gr-surface h3{font-weight:400;font-size:1.15rem;letter-spacing:-.01em;margin:10px 0 8px}
+  .gr-surface p{font-size:.92rem;line-height:1.6;color:rgba(255,255,255,.68)}
+  .gr-flow{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:28px;counter-reset:f}
+  .gr-flow li{position:relative;border-top:1px solid rgba(154,239,122,.4);padding-top:14px;font-size:.88rem;line-height:1.45;color:rgba(255,255,255,.75)}
+  .gr-flow li::before{counter-increment:f;content:'0' counter(f);display:block;font-family:'IBM Plex Mono',monospace;font-size:.64rem;color:var(--gr-lime);margin-bottom:8px;letter-spacing:.1em}
+  .gr-flow li strong{display:block;color:#fff;font-weight:500;margin-bottom:4px}
+  .gr-sys{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:28px}
+  .gr-sys__box{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px}
+  .gr-sys__box h4{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gr-faint);margin-bottom:16px}
+  .gr-sw{display:flex;gap:8px;flex-wrap:wrap}
+  .gr-sw span{display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:.58rem;color:var(--gr-dim)}
+  .gr-sw i{width:54px;height:54px;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+  .gr-type p{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-top:1px dotted rgba(255,255,255,.14);padding:8px 0}
+  .gr-type p:first-child{border-top:0;padding-top:0}
+  .gr-type small{font-family:'IBM Plex Mono',monospace;font-size:.58rem;color:var(--gr-faint);letter-spacing:.06em}
+  .gr-comp{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .gr-comp code{font-family:'IBM Plex Mono',monospace;font-size:.7rem;padding:5px 9px;border-radius:5px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:rgba(255,255,255,.8)}
+  .gr-dec{list-style:none;margin-top:8px}
+  .gr-dec li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:22px 0;border-top:1px dotted rgba(255,255,255,.16)}
+  .gr-dec li:last-child{border-bottom:1px dotted rgba(255,255,255,.16)}
+  .gr-dec b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.7rem;color:var(--gr-lime);letter-spacing:.14em;padding-top:5px}
+  .gr-dec h3{font-weight:400;font-size:1.12rem;letter-spacing:-.01em;margin-bottom:6px}
+  .gr-dec p{font-size:.95rem;line-height:1.65;color:rgba(255,255,255,.7)}
+  .gr-dec code,.cblock__text code{font-family:'IBM Plex Mono',monospace;font-size:.82em;color:var(--gr-lime)}
+  .gr-state{border:1px solid rgba(154,239,122,.22);background:rgba(154,239,122,.035);border-radius:12px;padding:26px 28px}
+  .gr-state h3{font-weight:300;font-size:1.35rem;letter-spacing:-.02em;margin:10px 0 10px}
+  .gr-state p{font-size:.95rem;line-height:1.65;color:rgba(255,255,255,.72)}
+  .gr-state span{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gr-lime)}
+  .cbody .cblock--wide{max-width:none}
+  @media (max-width:800px){.gr-two,.gr-sys{grid-template-columns:1fr}.gr-flow{grid-template-columns:1fr 1fr}}
+  @media (max-width:480px){.gr-flow{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -264,333 +335,109 @@
   </nav>
 
   <header class="chead">
-    <div class="chead__kicker">SaaS · Side Project · 2026</div>
+    <div class="chead__kicker" data-i18n-html="gr.kicker">Producto SaaS · Iniciativa propia · 2026</div>
     <h1 class="chead__title">Gritt Reports</h1>
-    <p class="chead__sub">Reportes automáticos de redes sociales para estudios creativos. Un link, no un PDF. Primer caso de referencia: <strong>Lanz World</strong>.</p>
-    <div class="chead__links">
-      <a href="#" class="chead__link" aria-disabled="true" style="opacity:.6;pointer-events:none">Live demo próximamente ↗</a>
-      <a href="#status" class="chead__link">Estado actual ↓</a>
+    <p class="chead__sub" data-i18n-html="gr.sub">Una plataforma para que los estudios creativos conviertan los datos de redes de cada cliente en un <strong>reporte web claro, con su marca, que se comparte por link</strong>. Dos superficies: el panel del estudio y el reporte que abre el cliente.</p>
+    <div class="chead__play-row">
+      <a href="#demo" class="gr-cta"><small data-i18n-html="gr.cta.k">Interactivo</small><span data-i18n-html="gr.cta">Probar el prototipo</span><b>↓</b></a>
+      <span class="chead__note" data-i18n-html="gr.cta.note">Datos ficticios · sin integraciones reales</span>
     </div>
   </header>
 
   <div class="cmeta">
-    <div><div class="cmeta__k">Rol</div><div class="cmeta__v">Design Owner · Sole Builder</div></div>
-    <div><div class="cmeta__k">Estudio</div><div class="cmeta__v">Gritt (ex AWDAZ)</div></div>
-    <div><div class="cmeta__k">Estado</div><div class="cmeta__v">MVP en construcción · 2026</div></div>
-    <div><div class="cmeta__k">Disciplinas</div><div class="cmeta__v">Product · Design System · Frontend</div></div>
+    <div><div class="cmeta__k" data-i18n-html="gr.m.role.k">Rol</div><div class="cmeta__v" data-i18n-html="gr.m.role">Producto · UX/UI · Design system · Front-end</div></div>
+    <div><div class="cmeta__k" data-i18n-html="gr.m.for.k">Para</div><div class="cmeta__v" data-i18n-html="gr.m.for">Estudios y agencias con 3 a 20 clientes</div></div>
+    <div><div class="cmeta__k" data-i18n-html="gr.m.stack.k">Stack</div><div class="cmeta__v">Next.js · TypeScript · Tailwind · Claude Code</div></div>
+    <div><div class="cmeta__k" data-i18n-html="gr.m.state.k">Estado</div><div class="cmeta__v" data-i18n-html="gr.m.state">Prototipo funcional · 2026</div></div>
   </div>
 
-  <!-- HERO MOCK -->
-  <div class="cmediawrap">
-    <div class="gritt-mock" aria-label="Mockup del reporte Gritt para Lanz">
-      <div class="gritt-mock__chrome">
-        <div class="gritt-mock__dots"><span class="gritt-mock__dot"></span><span class="gritt-mock__dot"></span><span class="gritt-mock__dot"></span></div>
-        <div class="gritt-mock__url">gritt.reports/r/lanz-2026-10-weekly</div>
-        <div class="gritt-mock__badge">MVP · Mockup</div>
-      </div>
-      <div class="gritt-mock__body">
-        <!-- Brand bar -->
-        <div class="gritt-mock__brand">
-          <div class="gritt-mock__brand-mark">g</div>
-          <div>
-            <div class="gritt-mock__brand-name">Gritt Reports</div>
-            <div class="gritt-mock__brand-sub">para Lanz World</div>
-          </div>
-          <div class="gritt-mock__brand-right">
-            <span class="gritt-mock__brand-btn">Compartir</span>
-            <span class="gritt-mock__brand-btn">Imprimir</span>
-          </div>
-        </div>
-
-        <!-- Header -->
-        <div class="gritt-mock__header">
-          <div>
-            <div class="gritt-mock__client-meta">Reporte semanal · Cliente</div>
-            <div class="gritt-mock__client">Lanz World</div>
-          </div>
-          <div class="gritt-mock__period">
-            <strong>SEMANA 42</strong> · 2026<br>
-            13 oct → 19 oct
-          </div>
-        </div>
-
-        <!-- KPI cards -->
-        <div class="gritt-mock__kpis">
-          <div class="gritt-mock__kpi">
-            <div class="gritt-mock__kpi-badge">IG · TK · FB</div>
-            <div class="gritt-mock__kpi-label">Alcance</div>
-            <div class="gritt-mock__kpi-value">184K</div>
-            <div class="gritt-mock__kpi-delta">↑ +12.4% vs sem 41</div>
-            <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,15 15,12 30,14 45,8 60,9 75,5 90,6 100,3" fill="none" stroke="#D4FF3D" stroke-width="1.5"/></svg></div>
-            <div class="gritt-mock__kpi-sub">Promedio 26.3K/día</div>
-          </div>
-          <div class="gritt-mock__kpi">
-            <div class="gritt-mock__kpi-badge">IG · TK</div>
-            <div class="gritt-mock__kpi-label">Views</div>
-            <div class="gritt-mock__kpi-value">92.7K</div>
-            <div class="gritt-mock__kpi-delta">↑ +8.1%</div>
-            <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,14 15,11 30,13 45,10 60,7 75,8 90,6 100,5" fill="none" stroke="#D4FF3D" stroke-width="1.5"/></svg></div>
-            <div class="gritt-mock__kpi-sub">Avg. retention 48%</div>
-          </div>
-          <div class="gritt-mock__kpi">
-            <div class="gritt-mock__kpi-badge">All</div>
-            <div class="gritt-mock__kpi-label">Interacciones</div>
-            <div class="gritt-mock__kpi-value">6.3K</div>
-            <div class="gritt-mock__kpi-delta down">↓ −3.2%</div>
-            <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,8 15,10 30,9 45,12 60,13 75,14 90,15 100,17" fill="none" stroke="#ff6b6b" stroke-width="1.5"/></svg></div>
-            <div class="gritt-mock__kpi-sub">Likes · Comments · Shares</div>
-          </div>
-          <div class="gritt-mock__kpi">
-            <div class="gritt-mock__kpi-badge">IG · TK · FB</div>
-            <div class="gritt-mock__kpi-label">Seguidores</div>
-            <div class="gritt-mock__kpi-value">+412</div>
-            <div class="gritt-mock__kpi-delta">↑ +22.5%</div>
-            <div class="gritt-mock__kpi-spark"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,16 15,14 30,13 45,11 60,8 75,9 90,5 100,4" fill="none" stroke="#D4FF3D" stroke-width="1.5"/></svg>
-            </div>
-            <div class="gritt-mock__kpi-sub">Base total 48.2K</div>
-          </div>
-        </div>
-
-        <!-- Chart + globe -->
-        <div class="gritt-mock__chart-area">
-          <div class="gritt-mock__chart">
-            <div class="gritt-mock__chart-head">
-              <span class="gritt-mock__chart-title">Engagement diario</span>
-              <span class="gritt-mock__chart-title" style="color:#D4FF3D">7 días</span>
-            </div>
-            <svg class="gritt-mock__chart-svg" viewBox="0 0 400 140" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="gritt-chart-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#D4FF3D" stop-opacity=".35"/>
-                  <stop offset="100%" stop-color="#D4FF3D" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0,100 C50,95 70,70 110,72 C150,74 180,55 220,48 C260,41 290,65 330,52 C360,42 380,30 400,36 L400,140 L0,140 Z" fill="url(#gritt-chart-grad)"/>
-              <path d="M0,100 C50,95 70,70 110,72 C150,74 180,55 220,48 C260,41 290,65 330,52 C360,42 380,30 400,36" fill="none" stroke="#D4FF3D" stroke-width="1.8"/>
-            </svg>
-          </div>
-          <div class="gritt-mock__globe">
-            <div class="gritt-mock__chart-head">
-              <span class="gritt-mock__chart-title">Audiencia · Globo</span>
-              <span class="gritt-mock__chart-title">14 países</span>
-            </div>
-            <div class="gritt-mock__globe-wrap">
-              <svg viewBox="0 0 140 140">
-                <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-                <ellipse cx="70" cy="70" rx="60" ry="20" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                <ellipse cx="70" cy="70" rx="60" ry="40" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                <line x1="10" y1="70" x2="130" y2="70" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                <line x1="70" y1="10" x2="70" y2="130" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                <circle cx="85" cy="55" r="2.5" fill="#D4FF3D"/>
-                <circle cx="60" cy="80" r="2" fill="#D4FF3D"/>
-                <circle cx="95" cy="85" r="1.8" fill="#D4FF3D"/>
-                <circle cx="48" cy="60" r="1.5" fill="#D4FF3D"/>
-                <circle cx="78" cy="98" r="1.3" fill="#D4FF3D" opacity=".6"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- Top publicaciones -->
-        <div class="gritt-mock__section-head">
-          <span class="gritt-mock__section-title">Top publicaciones</span>
-          <span class="gritt-mock__section-meta">↑ 3 de 24 posts</span>
-        </div>
-        <div class="gritt-mock__posts">
-          <div class="gritt-mock__post">
-            <div class="gritt-mock__post-thumb"><span class="gritt-mock__post-thumb-icon">IG · Reel</span></div>
-            <div class="gritt-mock__post-body">
-              <div class="gritt-mock__post-cap">Última milla en 24h: así entregamos antes del almuerzo</div>
-              <div class="gritt-mock__post-metrics"><span><strong>84K</strong>views</span><span><strong>3.2K</strong>likes</span></div>
-            </div>
-          </div>
-          <div class="gritt-mock__post">
-            <div class="gritt-mock__post-thumb gritt-mock__post-thumb--2"><span class="gritt-mock__post-thumb-icon">TK · Video</span></div>
-            <div class="gritt-mock__post-body">
-              <div class="gritt-mock__post-cap">Behind the scenes: cómo rutamos 400 paquetes en Bogotá</div>
-              <div class="gritt-mock__post-metrics"><span><strong>52K</strong>views</span><span><strong>1.8K</strong>likes</span></div>
-            </div>
-          </div>
-          <div class="gritt-mock__post">
-            <div class="gritt-mock__post-thumb gritt-mock__post-thumb--3"><span class="gritt-mock__post-thumb-icon">IG · Carousel</span></div>
-            <div class="gritt-mock__post-body">
-              <div class="gritt-mock__post-cap">Nuevo centro de operaciones en Medellín. Fotos del equipo.</div>
-              <div class="gritt-mock__post-metrics"><span><strong>31K</strong>views</span><span><strong>1.1K</strong>likes</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Insights + Budget -->
-        <div class="gritt-mock__insight-row">
-          <div class="gritt-mock__insights">
-            <div class="gritt-mock__chart-head">
-              <span class="gritt-mock__chart-title">Insights · 3 hallazgos</span>
-              <span class="gritt-mock__chart-title" style="color:#D4FF3D">Auto-generados</span>
-            </div>
-            <div class="gritt-mock__insight-item">
-              <span class="gritt-mock__insight-num">01</span>
-              <span class="gritt-mock__insight-text">Los <strong>reels de operaciones</strong> ganan 2.3× más views que los posts estáticos. Vale la pena duplicar producción.</span>
-            </div>
-            <div class="gritt-mock__insight-item">
-              <span class="gritt-mock__insight-num">02</span>
-              <span class="gritt-mock__insight-text">La <strong>audiencia 25-34</strong> creció 18% esta semana. Es tu segmento de contratación B2B.</span>
-            </div>
-            <div class="gritt-mock__insight-item">
-              <span class="gritt-mock__insight-num">03</span>
-              <span class="gritt-mock__insight-text">Las interacciones bajaron porque pausaste <strong>stories</strong> 3 días. Normal.</span>
-            </div>
-          </div>
-          <div class="gritt-mock__budget">
-            <div class="gritt-mock__chart-head">
-              <span class="gritt-mock__chart-title">Inversión · Pauta</span>
-              <span class="gritt-mock__chart-title">Semana 42</span>
-            </div>
-            <div class="gritt-mock__budget-label">Gastado esta semana</div>
-            <div class="gritt-mock__budget-value">$ 1.2M</div>
-            <div class="gritt-mock__budget-bar"><div class="gritt-mock__budget-fill" style="width:68%"></div></div>
-            <div class="gritt-mock__budget-split"><span><strong>68%</strong> del presupuesto</span><span>$ 1.76M total</span></div>
-          </div>
-        </div>
-
-        <!-- Report footer -->
-        <div class="gritt-mock__report-foot">
-          <span>Generado por <strong>Gritt Reports</strong> · 20 oct 2026</span>
-          <span>Próximo reporte · Lun 27 oct · 9 AM</span>
-        </div>
-      </div>
+  <!-- ===== PROTOTIPO ===== -->
+  <section class="gr-stage" id="demo" aria-label="Prototipo interactivo de Gritt Reports">
+    <div id="grApp"></div>
+    <div class="gr-stage__cap">
+      <span data-i18n-html="gr.cap.l">Cambia de cliente, periodo y plataforma · abre la vista cliente · comparte el link</span>
+      <span data-i18n-html="gr.cap.r">Clientes y cifras inventados para el caso</span>
     </div>
-  </div>
+  </section>
 
   <section class="cbody">
 
     <div class="cblock">
-      <div class="cblock__label">Contexto</div>
-      <h2 class="cblock__title">El reporte semanal que arruina las semanas de los estudios.</h2>
-      <p class="cblock__text">Capturas de Meta Business Suite, Excel frágil, un PDF que se ve amateur y se abre poco. <strong>Looker Studio</strong> es frío y necesita un data engineer. <strong>Metricool</strong> es genérico y no carga la marca del estudio. Hay un hueco: un reporte web animado, con la identidad del estudio, pensado para abrir desde el celular.</p>
-
-      <details class="cblock__more">
-        <summary>Más contexto · posicionamiento</summary>
-        <div class="cblock__more-body">
-          <p class="cblock__text">Gritt Reports no compite con Looker. Compite con <strong>la tarde del viernes</strong> que el estudio pierde preparando el reporte, y con la impresión que deja un PDF genérico cuando el cliente paga millones mensuales por un servicio premium.</p>
-          <p class="cblock__text">El segmento intermedio son estudios con 3-20 clientes, demasiado chicos para montar BI serio y demasiado premium para entregar un dashboard genérico. Pagan por reportes que <strong>se vean como su marca</strong>, sin diseñarlos a mano cada semana.</p>
-        </div>
-      </details>
+      <div class="cblock__label" data-i18n-html="gr.prob.l">El problema</div>
+      <h2 class="cblock__title" data-i18n-html="gr.prob.t">El reporte mensual se come la tarde del viernes, y casi nadie lo lee.</h2>
+      <p class="cblock__text" data-i18n-html="gr.prob.p">Un estudio pequeño arma el reporte de cada cliente a mano: capturas de Meta Business Suite, una hoja de cálculo y un PDF que llega como adjunto. Las herramientas de BI son frías y piden a alguien técnico; las de redes son genéricas y no llevan la marca del estudio. <strong>El cliente quiere saber en un minuto si su inversión está funcionando.</strong></p>
     </div>
 
-    <div class="cblock">
-      <div class="cblock__label">Decisión · 01</div>
-      <h2 class="cblock__title">Reporte editorial, no dashboard admin.</h2>
-      <p class="cblock__text">Rechazo deliberado al admin template genérico. Negro cálido <code>#1d1d1b</code>, acento lima, blanco. Mucho aire, jerarquía clara, <strong>números grandes como protagonistas</strong>. Animaciones cortas con propósito, no decorativas.</p>
-
-      <details class="cblock__more">
-        <summary>Más detalle · sistema de motion</summary>
-        <div class="cblock__more-body">
-          <p class="cblock__text">Entrada escalonada de las KPI cards, conteo de números al cargar, transición suave en hover. Framer Motion respetando <code>prefers-reduced-motion</code>. El criterio es: si el cliente abre el link desde el celular en el bus, lo tiene que entender en 15 segundos.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="cblock">
-      <div class="cblock__label">Decisión · 02</div>
-      <h2 class="cblock__title">Capa de datos abstraída: diseñar antes que integrar.</h2>
-      <p class="cblock__text">La UI se construye contra una interfaz <code>MetricsProvider</code> tipada. <code>MockMetricsProvider</code> sirve datos ficticios de Lanz hoy; <code>MetaMetricsProvider</code> conectará Meta Graph API mañana sin tocar un componente.</p>
-
-      <div class="gritt-arch" aria-label="Arquitectura de la capa de datos">
-        <div class="gritt-arch__node">
-          <div class="gritt-arch__tag">Hoy</div>
-          <div class="gritt-arch__name">MockMetricsProvider</div>
-          <div class="gritt-arch__sub">seed · Lanz</div>
-        </div>
-        <div class="gritt-arch__flow">
-          <span class="gritt-arch__arrow">→</span>
-          <div class="gritt-arch__interface">interface MetricsProvider</div>
-          <span class="gritt-arch__arrow">→</span>
-        </div>
-        <div class="gritt-arch__ui">
-          <div class="gritt-arch__tag">Siempre</div>
-          <div class="gritt-arch__name">UI</div>
-          <div class="gritt-arch__sub">no se entera</div>
-        </div>
-        <div class="gritt-arch__future">
-          <div class="gritt-arch__tag">Mañana</div>
-          <div class="gritt-arch__name">MetaMetricsProvider</div>
-          <div class="gritt-arch__sub">Meta Graph API</div>
-        </div>
+    <div class="cblock cblock--wide">
+      <div class="cblock__label" data-i18n-html="gr.sol.l">La propuesta</div>
+      <h2 class="cblock__title" data-i18n-html="gr.sol.t">Un producto, dos superficies.</h2>
+      <div class="gr-two">
+        <div class="gr-surface"><span data-i18n-html="gr.s1.k">Estudio</span><h3 data-i18n-html="gr.s1.t">Panel de trabajo</h3><p data-i18n-html="gr.s1.p">Todos los clientes en un lugar. El equipo filtra por periodo y plataforma, revisa contenido, audiencia y pauta, y decide qué contar antes de enviar.</p></div>
+        <div class="gr-surface"><span data-i18n-html="gr.s2.k">Cliente</span><h3 data-i18n-html="gr.s2.t">Reporte por link</h3><p data-i18n-html="gr.s2.p">Una página con la marca del estudio, pensada para abrirse desde el celular: lo importante primero, una lectura en lenguaje simple y el detalle abajo. Sin cuentas ni PDF.</p></div>
       </div>
-
-      <details class="cblock__more">
-        <summary>Más detalle · modelo y rutas</summary>
-        <div class="cblock__more-body">
-          <p class="cblock__text">Decisión de scope: <strong>las integraciones reales están fuera del MVP</strong>. Se diseñan como interfaz y se dejan listas para implementarse. El MVP demuestra criterio de producto y diseño; no es necesario pelearme con OAuth de Meta esta semana para probar que el reporte convence al cliente.</p>
-          <ul class="cblock__list">
-            <li><strong>Modelo:</strong> <code>Client</code>, <code>Report</code>, <code>Metric</code> (serie diaria), <code>Campaign</code>, <code>AudienceBreakdown</code> (edad, género, ubicación), <code>Insight</code>.</li>
-            <li><strong>Ruta estrella:</strong> <code>/r/[slug]</code> — reporte público, sin auth, compartible por link.</li>
-            <li><strong>Admin:</strong> <code>/admin</code> con mock de auth, lista de clientes, historial y creación de reporte.</li>
-            <li><strong>Email preview:</strong> <code>/admin/email-preview/[slug]</code> para iterar sobre el render del email semanal.</li>
-          </ul>
-        </div>
-      </details>
     </div>
 
     <div class="cblock">
-      <div class="cblock__label">Decisión · 03</div>
-      <h2 class="cblock__title">Primero el sistema, después el reporte.</h2>
-      <p class="cblock__text">Tokens Tailwind + componentes base (<code>KpiCard</code>, <code>ChartCard</code>, <code>Delta</code>, <code>Badge</code>, <code>Skeleton</code>) viven en <code>/system</code> como demo navegable. Para una vacante de Design Engineer, el design system es la prueba más honesta.</p>
-      <div class="gritt-stack">
-        <span class="gritt-stack__pill">Next.js 14 · App Router</span>
-        <span class="gritt-stack__pill">TypeScript strict</span>
-        <span class="gritt-stack__pill">Tailwind + tokens</span>
-        <span class="gritt-stack__pill">Framer Motion</span>
-        <span class="gritt-stack__pill">Recharts</span>
-        <span class="gritt-stack__pill">COBE</span>
-        <span class="gritt-stack__pill">Phosphor</span>
-        <span class="gritt-stack__pill">Vercel</span>
-      </div>
-
-      <details class="cblock__more">
-        <summary>Más detalle · componentes del sistema</summary>
-        <div class="cblock__more-body">
-          <p class="cblock__text">La ruta <code>/system</code> expone tokens y componentes como demo navegable. Es parte del case study, no un anexo técnico — el design system es la evidencia de cómo pienso un producto antes de pintarlo.</p>
-          <ul class="cblock__list">
-            <li><strong>Tokens:</strong> color, tipografía, espaciado, radios, sombras, motion (duraciones y easings).</li>
-            <li><strong>Primitivos:</strong> <code>Button</code>, <code>Badge</code>, <code>Delta</code>, <code>Skeleton</code>, <code>EmptyState</code>.</li>
-            <li><strong>Compuestos:</strong> <code>KpiCard</code>, <code>ChartCard</code>, <code>InsightCard</code>, <code>BudgetBar</code>.</li>
-          </ul>
-        </div>
-      </details>
-    </div>
-
-    <div id="status" class="gritt-status">
-      <div class="gritt-status__label">Estado · En construcción</div>
-      <h3>MVP en implementación. URL pública próximamente.</h3>
-      <p>Scaffolding Next.js en pie, tokens inicializados, interfaz <code>MetricsProvider</code> tipada. En trabajo activo: componentes base y ruta <code>/r/[slug]</code> con seed de Lanz. Deploy planeado en <code>gritt.buenhombre.design</code>.</p>
-    </div>
-
-    <div class="cblock">
-      <div class="cblock__label">Hipótesis en validación</div>
-      <ul class="cblock__list">
-        <li><strong>Un estudio chico paga por reportes bonitos sin código.</strong> Validación: entregar V1 a Lanz y 2-3 estudios amigos.</li>
-        <li><strong>El link compartible gana al PDF.</strong> Validación: comparar tasa de apertura link vs. PDF adjunto.</li>
-        <li><strong>El reporte editorial se percibe más premium.</strong> Validación: contrastar reacciones de clientes finales entre Looker/Metricool y Gritt con los mismos datos.</li>
+      <div class="cblock__label" data-i18n-html="gr.dec.l">Decisiones de diseño</div>
+      <h2 class="cblock__title" data-i18n-html="gr.dec.t">Lo que guía cada pantalla.</h2>
+      <ul class="gr-dec">
+        <li><b>01</b><div><h3 data-i18n-html="gr.d1.t">Un número protagonista por tarjeta</h3><p data-i18n-html="gr.d1.p">Cifra grande y liviana, variación contra el periodo anterior y una tendencia mínima. La geometría de línea fina queda detrás y nunca compite con el dato. Tocar una tarjeta cambia la métrica del gráfico.</p></div></li>
+        <li><b>02</b><div><h3 data-i18n-html="gr.d2.t">Lectura antes que dashboard</h3><p data-i18n-html="gr.d2.p">Cada vista trae una lectura del periodo en frases cortas: qué subió, qué canal mueve la cuenta, qué formato funciona y qué día publicar. El cliente entiende sin interpretar gráficos.</p></div></li>
+        <li><b>03</b><div><h3 data-i18n-html="gr.d3.t">Comparar siempre contra algo</h3><p data-i18n-html="gr.d3.p">El periodo anterior aparece como línea punteada en el mismo gráfico. Un número suelto no dice si es bueno; la comparación sí.</p></div></li>
+        <li><b>04</b><div><h3 data-i18n-html="gr.d4.t">Diseñar la interfaz antes que las integraciones</h3><p data-i18n-html="gr.d4.p">La interfaz consume una capa de datos con un contrato tipado (<code>MetricsProvider</code>). Hoy la alimentan datos de prueba; mañana Meta y TikTok, sin tocar un componente.</p></div></li>
       </ul>
     </div>
 
-    <div class="cblock">
-      <div class="cblock__label">Roadmap</div>
-      <h2 class="cblock__title">Qué viene después del MVP.</h2>
-      <div class="gritt-roadmap">
-        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">01</span>Meta Graph API · TikTok · YouTube</div>
-        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">02</span>Cron semanal · lunes 9 AM</div>
-        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">03</span>Emails con token + expiración</div>
-        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">04</span>Branding por cliente</div>
-        <div class="gritt-roadmap__step"><span class="gritt-roadmap__num">05</span>Multi-tenant · white-label</div>
+    <div class="cblock cblock--wide">
+      <div class="cblock__label" data-i18n-html="gr.flow.l">Cómo funciona</div>
+      <h2 class="cblock__title" data-i18n-html="gr.flow.t">De los datos al link, sin pasos manuales.</h2>
+      <ol class="gr-flow">
+        <li><strong data-i18n-html="gr.f1.t">Conectar</strong><span data-i18n-html="gr.f1.p">Cuentas del cliente en Meta y TikTok.</span></li>
+        <li><strong data-i18n-html="gr.f2.t">Recolectar</strong><span data-i18n-html="gr.f2.p">Métricas diarias por plataforma y publicación.</span></li>
+        <li><strong data-i18n-html="gr.f3.t">Leer</strong><span data-i18n-html="gr.f3.p">Comparativa y lectura del periodo.</span></li>
+        <li><strong data-i18n-html="gr.f4.t">Revisar</strong><span data-i18n-html="gr.f4.p">El estudio ajusta y aprueba en el panel.</span></li>
+        <li><strong data-i18n-html="gr.f5.t">Compartir</strong><span data-i18n-html="gr.f5.p">Link con vencimiento y resumen por email.</span></li>
+      </ol>
+    </div>
+
+    <div class="cblock cblock--wide">
+      <div class="cblock__label" data-i18n-html="gr.sys.l">Sistema</div>
+      <h2 class="cblock__title" data-i18n-html="gr.sys.t">Tokens pocos y claros, componentes reutilizables.</h2>
+      <div class="gr-sys">
+        <div class="gr-sys__box">
+          <h4 data-i18n-html="gr.sys.c">Color</h4>
+          <div class="gr-sw">
+            <span><i style="background:#111110"></i>#111110</span>
+            <span><i style="background:#1B1B1A"></i>#1B1B1A</span>
+            <span><i style="background:#9AEF7A"></i>#9AEF7A</span>
+            <span><i style="background:#5CD2F5"></i>#5CD2F5</span>
+            <span><i style="background:#E8C58A"></i>#E8C58A</span>
+            <span><i style="background:#FF8A7A"></i>#FF8A7A</span>
+          </div>
+          <div class="gr-comp"><code>KpiCard</code><code>TrendChart</code><code>Delta</code><code>InsightList</code><code>PlatformSplit</code><code>PostRow</code><code>BudgetBar</code><code>SharePopover</code></div>
+        </div>
+        <div class="gr-sys__box gr-type">
+          <h4 data-i18n-html="gr.sys.ty">Tipografía</h4>
+          <p><span style="font-weight:200;font-size:2rem;letter-spacing:-.04em">184K</span><small>Manrope 200 · cifra</small></p>
+          <p><span style="font-weight:300;font-size:1.2rem;letter-spacing:-.02em">Atlas Outdoor</span><small>Manrope 300 · título</small></p>
+          <p><span style="font-size:.9rem;color:rgba(255,255,255,.75)">Lectura del periodo</span><small>Manrope 400 · texto</small></p>
+          <p><span style="font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5)">Alcance · 30D</span><small>Plex Mono · etiqueta</small></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cblock cblock--wide">
+      <div class="gr-state">
+        <span data-i18n-html="gr.st.k">Estado</span>
+        <h3 data-i18n-html="gr.st.t">Prototipo funcional de producto, con datos de prueba.</h3>
+        <p data-i18n-html="gr.st.p">La interfaz, el sistema y los flujos están resueltos y se pueden probar arriba. Las integraciones con Meta y TikTok, el envío automático y las cuentas de estudio están en el roadmap. Una iniciativa propia: hice el producto, el diseño y el front-end.</p>
       </div>
     </div>
 
   </section>
 
   <section class="cnext">
-    <div class="cnext__label">Siguiente proyecto</div>
+    <div class="cnext__label" data-i18n-html="hl.next">Siguiente proyecto</div>
     <a href="driftway.html" class="cnext__row">
       <span class="cnext__name">Driftway</span>
       <span class="cnext__disc">Arcade 3D · Three.js · Ranking por piloto · 2026</span>
@@ -626,5 +473,6 @@
   </footer>
 
   <script src="i18n.js"></script>
+  <script src="gritt-reports/demo.js"></script>
 </body>
 </html>
