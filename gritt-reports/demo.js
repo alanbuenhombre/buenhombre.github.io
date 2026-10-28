@@ -1,5 +1,5 @@
 /* Gritt Reports — prototipo interactivo para el caso de estudio.
-   Datos ficticios generados con semilla: no hay clientes reales detrás. */
+   Datos de prueba generados con semilla: no hay clientes reales detrás. */
 'use strict';
 (function () {
   const root = document.getElementById('grApp');
@@ -19,7 +19,7 @@
       clientView: 'Vista cliente', adminView: 'Vista estudio', share: 'Compartir',
       shareTitle: 'Link del reporte', expires: 'Expira en 30 días', password: 'Proteger con contraseña', copy: 'Copiar link', copied: 'Link copiado · demo',
       next: 'Próximo envío', nextTxt: 'Lunes · 9:00 a. m. · resumen por email a 2 contactos',
-      demo: 'Demo · datos ficticios',
+      demo: 'Demo · datos de prueba',
       posts: 'Publicaciones', all: 'Todas', sortViews: 'Más vistas', sortEr: 'Más interacción',
       er: 'interacción', viewsShort: 'vistas',
       age: 'Edad', gender: 'Género', women: 'Mujeres', men: 'Hombres', other: 'Otro', cities: 'Ciudades principales',
@@ -50,7 +50,7 @@
       clientView: 'Client view', adminView: 'Studio view', share: 'Share',
       shareTitle: 'Report link', expires: 'Expires in 30 days', password: 'Password protect', copy: 'Copy link', copied: 'Link copied · demo',
       next: 'Next send', nextTxt: 'Monday · 9:00 a.m. · email summary to 2 contacts',
-      demo: 'Demo · sample data',
+      demo: 'Demo · test data',
       posts: 'Posts', all: 'All', sortViews: 'Most viewed', sortEr: 'Most engaging',
       er: 'engagement', viewsShort: 'views',
       age: 'Age', gender: 'Gender', women: 'Women', men: 'Men', other: 'Other', cities: 'Top cities',
@@ -73,7 +73,7 @@
   const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'es');
   const t = () => L[lang()];
 
-  /* ---------- datos ficticios ---------- */
+  /* ---------- datos de prueba ---------- */
   const CLIENTS = {
     atlas: { name: 'Atlas Outdoor', sector: 'Outdoor gear', seed: 11, scale: 1.0, mix: { ig: 0.55, tk: 0.35, fb: 0.10 }, slug: 'atlas' },
     norte: { name: 'Norte Café', sector: 'Specialty coffee', seed: 29, scale: 0.42, mix: { ig: 0.62, tk: 0.18, fb: 0.20 }, slug: 'norte' },
@@ -171,10 +171,16 @@
     });
   }
 
-  function spark(arr, w = 120, h = 28) {
-    const mx = Math.max(...arr), mn = Math.min(...arr);
-    const pts = arr.map((v, i) => `${(i / (arr.length - 1)) * w},${h - 2 - ((v - mn) / (mx - mn || 1)) * (h - 4)}`).join(' ');
-    return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>`;
+  // mini cápsulas: últimos 10 tramos del periodo
+  function spark(arr, w = 78, h = 26) {
+    const src = arr.length > 10 ? arr.slice(-10) : arr;
+    const mx = Math.max(...src), mn = Math.min(...src) * 0.6;
+    const n = src.length, gap = 3, bw = (w - gap * (n - 1)) / n;
+    const hi = src.indexOf(Math.max(...src));
+    return `<svg viewBox="0 0 ${w} ${h}" aria-hidden="true">${src.map((v, i) => {
+      const bh = Math.max(4, ((v - mn) / (mx - mn || 1)) * h);
+      return `<rect class="${i === hi ? 'is-hi' : ''}" x="${(i * (bw + gap)).toFixed(1)}" y="${(h - bh).toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="${(bw / 2).toFixed(1)}" style="animation-delay:${i * 35}ms"/>`;
+    }).join('')}</svg>`;
   }
 
   function rings() {
@@ -195,37 +201,36 @@
     return arr.map((v, i) => (arr[Math.max(0, i - 1)] + v + arr[Math.min(arr.length - 1, i + 1)]) / 3);
   }
 
+  const CH = { W: 640, H: 200, t: 18, b: 2 };
+  function chartGeom(cur, prev) {
+    const a = bucket(cur), b = bucket(prev);
+    const mx = Math.max(...a, ...b) * 1.08;
+    const n = a.length, slot = CH.W / n, bw = Math.max(4, Math.min(30, slot * 0.62));
+    const x = i => i * slot + slot / 2;
+    const y = v => CH.t + (1 - v / mx) * (CH.H - CH.t - CH.b);
+    return { a, b, mx, n, slot, bw, x, y };
+  }
+
+  // cápsulas por tramo (periodo actual) + línea punteada (periodo anterior)
   function chart(cur, prev, metricLabel) {
-    const W = 640, H = 200, P = { l: 4, r: 4, t: 14, b: 4 };
-    const a = smooth(bucket(cur)), b = smooth(bucket(prev));
-    const mx = Math.max(...a, ...b) * 1.06, mn = Math.min(...a, ...b) * 0.7;
-    const x = i => P.l + (i / (a.length - 1)) * (W - P.l - P.r);
-    const y = v => P.t + (1 - (v - mn) / (mx - mn)) * (H - P.t - P.b);
-    const line = s => {
-      const pt = s.map((v, i) => [x(i), y(v)]);
-      let d = `M${pt[0][0].toFixed(1)},${pt[0][1].toFixed(1)}`;
-      for (let i = 0; i < pt.length - 1; i++) {
-        const p0 = pt[i - 1] || pt[i], p1 = pt[i], p2 = pt[i + 1], p3 = pt[i + 2] || p2;
-        const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
-        const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
-        d += `C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
-      }
-      return d;
-    };
-    const area = line(a) + `L${x(a.length - 1)},${H - P.b}L${x(0)},${H - P.b}Z`;
-    const grid = [0.25, 0.5, 0.75].map(g => `<line x1="${P.l}" x2="${W - P.r}" y1="${y(mn + (mx - mn) * g)}" y2="${y(mn + (mx - mn) * g)}" class="gr-grid"/>`).join('');
+    const g = chartGeom(cur, prev); const { a, b, n, bw, x, y } = g;
+    const iMax = a.indexOf(Math.max(...a));
+    const caps = a.map((v, i) => {
+      const top = y(v), h = CH.H - CH.b - top;
+      const cls = i === n - 1 ? 'is-last' : i === iMax ? 'is-max' : '';
+      const hatch = v < b[i] ? `<rect class="cap-hatch" x="${(x(i) - bw / 2).toFixed(1)}" y="${y(b[i]).toFixed(1)}" width="${bw.toFixed(1)}" height="${(top - y(b[i])).toFixed(1)}" rx="${(bw / 2).toFixed(1)}" style="animation-delay:${i * 18}ms"/>` : '';
+      return `${hatch}<rect class="cap ${cls}" data-i="${i}" x="${(x(i) - bw / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="${(bw / 2).toFixed(1)}" style="animation-delay:${i * 18}ms"/>`;
+    }).join('');
+    const pts = b.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+    const grid = [0.33, 0.66].map(k => `<line class="gr-grid" x1="0" x2="${CH.W}" y1="${(CH.t + k * (CH.H - CH.t)).toFixed(1)}" y2="${(CH.t + k * (CH.H - CH.t)).toFixed(1)}"/>`).join('');
     const ticks = [0, 1, 2].map(k => state.period === 7
       ? t().days[(k === 0 ? 3 : k === 1 ? 6 : 9) % 7].slice(0, 3)
       : (k === 0 ? `−${state.period}d` : k === 1 ? `−${Math.round(state.period / 2)}d` : (lang() === 'es' ? 'hoy' : 'today')));
     return `
-      <svg class="gr-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${metricLabel}">
-        <defs><linearGradient id="grFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--gr-lime)" stop-opacity=".28"/><stop offset="1" stop-color="var(--gr-lime)" stop-opacity="0"/></linearGradient></defs>
-        ${grid}
-        <path d="${line(b)}" class="gr-prev" vector-effect="non-scaling-stroke"/>
-        <path d="${area}" fill="url(#grFill)" class="gr-area"/>
-        <path d="${line(a)}" class="gr-line" vector-effect="non-scaling-stroke" pathLength="1"/>
-        <line class="gr-cross" x1="0" x2="0" y1="${P.t}" y2="${H - P.b}" style="opacity:0"/>
-        <circle class="gr-dot" r="3.5" cx="0" cy="0" style="opacity:0"/>
+      <svg class="gr-chart" viewBox="0 0 ${CH.W} ${CH.H}" preserveAspectRatio="none" role="img" aria-label="${metricLabel}">
+        <defs><pattern id="grHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="rgba(20,20,22,.04)"/><line x1="0" y1="0" x2="0" y2="6" stroke="rgba(20,20,22,.28)" stroke-width="1.6"/></pattern></defs>
+        ${grid}${caps}
+        <polyline points="${pts}" class="gr-prev" vector-effect="non-scaling-stroke"/>
       </svg>
       <div class="gr-ticks">${ticks.map(x => `<span>${x}</span>`).join('')}</div>
       <div class="gr-tip" role="status" aria-live="polite" style="opacity:0"></div>`;
@@ -234,25 +239,20 @@
   function bindChart(cur, prev) {
     const box = el('.gr-chartbox'); if (!box) return;
     const svg = box.querySelector('svg'); const tip = box.querySelector('.gr-tip');
-    const cross = svg.querySelector('.gr-cross'); const dot = svg.querySelector('.gr-dot');
-    const a = smooth(bucket(cur)), b = smooth(bucket(prev));
-    const mx = Math.max(...a, ...b) * 1.06, mn = Math.min(...a, ...b) * 0.7;
-    const W = 640, H = 200, P = { l: 4, r: 4, t: 14, b: 4 };
+    const g = chartGeom(cur, prev); const caps = svg.querySelectorAll('.cap');
     const move = ev => {
       const rect = svg.getBoundingClientRect();
-      const px = ((ev.touches ? ev.touches[0].clientX : ev.clientX) - rect.left) / rect.width * W;
-      const i = Math.max(0, Math.min(a.length - 1, Math.round((px - P.l) / (W - P.l - P.r) * (a.length - 1))));
-      const cx = P.l + (i / (a.length - 1)) * (W - P.l - P.r);
-      const cy = P.t + (1 - (a[i] - mn) / (mx - mn)) * (H - P.t - P.b);
-      cross.setAttribute('x1', cx); cross.setAttribute('x2', cx); cross.style.opacity = 1;
-      dot.setAttribute('cx', cx); dot.setAttribute('cy', cy); dot.style.opacity = 1;
-      const d = pct(a[i], b[i]);
-      const unit = a.length < cur.length ? (lang() === 'es' ? 'Semana ' : 'Week ') + (i + 1) : (lang() === 'es' ? 'Día ' : 'Day ') + (i + 1);
-      tip.innerHTML = `<span>${unit}</span><strong>${compact(a[i])}</strong><em class="${d >= 0 ? 'up' : 'down'}">${d >= 0 ? '↑' : '↓'} ${Math.abs(d).toFixed(0)}%</em>`;
+      const px = ((ev.touches ? ev.touches[0].clientX : ev.clientX) - rect.left) / rect.width * CH.W;
+      const i = Math.max(0, Math.min(g.n - 1, Math.floor(px / g.slot)));
+      caps.forEach(c => c.classList.toggle('is-hov', +c.dataset.i === i));
+      const d = pct(g.a[i], g.b[i]);
+      const unit = g.a.length < cur.length ? (lang() === 'es' ? 'Semana ' : 'Week ') + (i + 1) : (lang() === 'es' ? 'Día ' : 'Day ') + (i + 1);
+      tip.innerHTML = `<span>${unit}</span><strong>${compact(g.a[i])}</strong><em class="${d >= 0 ? 'up' : 'down'}">${d >= 0 ? '↑' : '↓'} ${Math.abs(d).toFixed(0)}%</em>`;
       tip.style.opacity = 1;
-      tip.style.left = Math.min(Math.max(cx / W * 100, 10), 88) + '%';
+      tip.style.top = Math.max(-10, g.y(g.a[i]) / CH.H * rect.height - 44) + 'px';
+      tip.style.left = Math.min(Math.max(g.x(i) / CH.W * 100, 12), 88) + '%';
     };
-    const leave = () => { cross.style.opacity = 0; dot.style.opacity = 0; tip.style.opacity = 0; };
+    const leave = () => { caps.forEach(c => c.classList.remove('is-hov')); tip.style.opacity = 0; };
     svg.addEventListener('mousemove', move); svg.addEventListener('touchmove', move, { passive: true });
     svg.addEventListener('mouseleave', leave); svg.addEventListener('touchend', leave);
   }
@@ -324,7 +324,7 @@
       <span class="gr-post__thumb" style="--h:${x.hue}"><b>${T.fmtOne[x.f]}</b></span>
       <span class="gr-post__body"><strong>${x.title}</strong><small>${PLAT[x.p]}</small></span>
       <span class="gr-post__num">${compact(x.views)}<small>${T.viewsShort}</small></span>
-      <span class="gr-post__er"><i style="width:${x.er / maxEr * 100}%"></i><small>${x.er.toString().replace('.', lang() === 'es' ? ',' : '.')}% ${T.er}</small></span>
+      <span class="gr-post__er"><span><i style="width:${x.er / maxEr * 100}%"></i></span><small>${x.er.toString().replace('.', lang() === 'es' ? ',' : '.')}% ${T.er}</small></span>
     </li>`).join('');
   }
 
@@ -351,15 +351,24 @@
     let left = 100; const cv = cities.map((n, i) => { const v = i === 0 ? 38 + r() * 14 : Math.max(3, (left - 10) * (0.28 + r() * 0.2)); left -= v; return { n, v }; });
     return `<div class="gr-row gr-row--3">
       <section class="gr-card"><header class="gr-card__head"><h4>${T.age}</h4></header>
-        <ul class="gr-bars">${ages.map((a, i) => `<li><span>${a}</span><i><b style="width:${agesP[i] / mxA * 100}%"></b></i><em>${agesP[i].toFixed(0)}%</em></li>`).join('')}</ul></section>
+        <ul class="gr-bars">${ages.map((a, i) => `<li class="${agesP[i] === mxA ? 'is-top' : ''}"><span>${a}</span><i><b style="width:${agesP[i] / mxA * 100}%"></b></i><em>${agesP[i].toFixed(0)}%</em></li>`).join('')}</ul></section>
       <section class="gr-card"><header class="gr-card__head"><h4>${T.gender}</h4></header>
-        <div class="gr-donut" style="--w:${w};--m:${m}"><div><strong data-count="${w}" data-kind="int">${w}</strong><small>% ${T.women}</small></div></div>
+        ${donut(w, m, o, T.women)}
         <ul class="gr-split__legend"><li><i class="gr-c-ig"></i>${T.women}<b>${w}%</b></li><li><i class="gr-c-tk"></i>${T.men}<b>${m}%</b></li><li><i class="gr-c-fb"></i>${T.other}<b>${o}%</b></li></ul></section>
       <section class="gr-card"><header class="gr-card__head"><h4>${T.cities}</h4></header>
-        <ul class="gr-bars gr-bars--city">${cv.map(x => `<li><span>${x.n}</span><i><b style="width:${x.v / cv[0].v * 100}%"></b></i><em>${x.v.toFixed(0)}%</em></li>`).join('')}</ul></section>
+        <ul class="gr-bars gr-bars--city">${cv.map((x, i) => `<li class="${i === 0 ? 'is-top' : ''}"><span>${x.n}</span><i><b style="width:${x.v / cv[0].v * 100}%"></b></i><em>${x.v.toFixed(0)}%</em></li>`).join('')}</ul></section>
     </div>
     <section class="gr-card gr-heat"><header class="gr-card__head"><h4>${T.active}</h4><span class="gr-legend">${T.less}<i class="gr-heat__scale"></i>${T.more}</span></header>
       <div class="gr-heat__grid">${heat(c)}</div></section>`;
+  }
+
+  function donut(w, m, o, label) {
+    const R = 60, C = 2 * Math.PI * R, gap = 6;
+    const seg = (p, off, stroke) => `<circle cx="75" cy="75" r="${R}" stroke="${stroke}" stroke-dasharray="${Math.max(0, p / 100 * C - gap).toFixed(1)} ${C.toFixed(1)}" stroke-dashoffset="${(-off / 100 * C).toFixed(1)}"/>`;
+    return `<div class="gr-donut"><svg viewBox="0 0 150 150" aria-hidden="true">
+      <circle cx="75" cy="75" r="${R}" stroke="rgba(20,20,22,.06)"/>
+      ${seg(w, 0, 'var(--lm-d)')}${seg(m, w, 'var(--k)')}${seg(o, w + m, 'rgba(20,20,22,.25)')}</svg>
+      <div><strong data-count="${w}" data-kind="int">${w}</strong><small>% ${label}</small></div></div>`;
   }
 
   function heat(c) {
@@ -371,7 +380,7 @@
       hours.forEach(h => {
         const peak = Math.exp(-Math.pow((h - 19) / 3.2, 2)) + 0.55 * Math.exp(-Math.pow((h - 12.5) / 1.8, 2));
         const v = Math.min(1, peak * (d === 0 || d === 6 ? 0.8 : 1) * (0.75 + r() * 0.45));
-        html += `<i style="--v:${v.toFixed(2)}" title="${t().days[d]} ${h}h"></i>`;
+        html += `<i class="${v > 0.93 ? 'is-peak' : ''}" style="--v:${v.toFixed(2)};animation-delay:${(order.indexOf(d) * 9 + hours.indexOf(h)) * 12}ms" title="${t().days[d]} ${h}h"></i>`;
       });
     });
     return html;
@@ -395,7 +404,7 @@
           <p class="gr-money"><strong data-count="${Math.round(used)}" data-kind="money">${money(used)}</strong> <small>${T.spent} ${T.of} ${money(budget)}</small></p>
           <div class="gr-progress"><i style="width:${used / budget * 100}%"></i></div></section>
         <section class="gr-card"><header class="gr-card__head"><h4>${T.weekly}</h4></header>
-          <div class="gr-colbars">${wk.map((v, i) => `<span title="${money(v)}"><i style="height:${v / mx * 100}%"></i><small>${weeks > 6 ? (i % 2 ? '' : 'S' + (i + 1)) : 'S' + (i + 1)}</small></span>`).join('')}</div></section>
+          <div class="gr-colbars">${wk.map((v, i) => `<span class="${v === mx ? 'is-max' : ''}" title="${money(v)}"><i style="height:${v / mx * 100}%;animation-delay:${i * 50}ms"></i><small>${weeks > 6 ? (i % 2 ? '' : 'S' + (i + 1)) : 'S' + (i + 1)}</small></span>`).join('')}</div></section>
       </div>
       <section class="gr-card"><header class="gr-card__head"><h4>${T.campaigns}</h4></header>
         <ul class="gr-camps">${camps.map(x => `<li><strong>${x.n}</strong><span>${money(x.s)}</span><span>${x.res.toLocaleString()} ${T.result}</span><span>${money(x.s / x.res)} ${T.perResult}</span></li>`).join('')}</ul>
