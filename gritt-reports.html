@@ -292,6 +292,30 @@
 
   #grApp button:focus-visible{outline:2px solid var(--k);outline-offset:2px}
 
+  /* ===== pasada minimal ===== */
+  .gr-deco{display:none}
+  .gr-kpi__label::after{display:none}
+  .gr-kpi__sub{display:none}
+  .gr-kpi{min-height:132px}
+  .gr-kpi__value{font-weight:500;font-size:2rem}
+  .gr-kpi__foot em.up,.gr-kpi__foot em.down{background:none;padding:0;color:var(--dim)}
+  .gr-kpi.is-on .gr-kpi__foot em,.gr-kpi.is-on .gr-kpi__foot em.up{background:none;color:var(--k)}
+  .gr-hint,.gr-card__head .gr-tag{display:none}
+  .gr-grid{display:none}
+  .gr-ticks span{background:none;border:0;padding:0;color:var(--faint)}
+  .gr-legend{font-size:.56rem}
+  .gr-side__foot{background:none;border:0;padding:12px;border-top:1px solid var(--rule);border-radius:0}
+  .gr-next{background:none;border-radius:0;padding:4px 2px;color:var(--dim);font-size:.76rem}
+  .gr-next strong{color:var(--ink)}
+  .gr-demo{background:none;border:1px solid var(--rule-2);color:var(--dim)}
+  .gr-card,.gr-kpi{box-shadow:none}
+  .gr-ins li{padding:9px 0}
+  .gr-ins span{width:20px;height:20px;background:none;border:1px solid var(--rule-2);color:var(--dim)}
+  .gr-split__bar{height:22px}
+  .gr-bars i{height:8px}
+  .gr-heat__grid i{background:rgba(20,20,22,calc(.08 + var(--v)*.5))}
+  .gr-heat__grid i.is-peak{box-shadow:none}
+  .gr-progress{height:18px}
   @media (max-width:1020px){
     .gr-kpis{grid-template-columns:repeat(2,1fr)}
     .gr-row,.gr-row--3,.gr-report .gr-row{grid-template-columns:1fr}
