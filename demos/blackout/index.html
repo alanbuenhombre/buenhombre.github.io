@@ -1138,7 +1138,7 @@
         <label class="check"><input id="reg-promos" type="checkbox"><span>Quiero recibir novedades y promociones de Black Out.</span></label>
         <div class="row">
           <button id="reg-save" type="submit">Registrarme e invadir</button>
-          <button id="reg-skip" type="button">Ahora no</button>
+          <button id="reg-skip" type="button">Jugar sin registrarme</button>
           <span id="reg-msg"></span>
         </div>
       </form>
@@ -1251,7 +1251,7 @@
         'Guarda tu puntaje': 'Save your score', 'Apodo': 'Nickname', 'Correo': 'Email',
         'Avísame si hay premios o nuevos sectores': 'Let me know about prizes or new sectors',
         'Tu apodo y tu puntaje salen en el ranking. El correo solo se usa para avisarte y no se muestra ni se comparte.': 'Your nickname and score appear on the leaderboard. Your email is only used to reach you and is never shown or shared.',
-        'Aviso de privacidad': 'Privacy notice', 'Guardar': 'Save', 'Ahora no': 'Not now', 'PILOTOS': 'PILOTS'
+        'Aviso de privacidad': 'Privacy notice', 'Guardar': 'Save', 'Ahora no': 'Not now', 'Jugar sin registrarme': 'Play without signing up', 'PILOTOS': 'PILOTS'
       };
       const walker = document.createTreeWalker(document.getElementById('game'), NodeFilter.SHOW_TEXT);
       for (let node = walker.nextNode(); node; node = walker.nextNode()) {
@@ -3505,7 +3505,7 @@
     function start() {
       if (state !== 'ready' || attract) return;
       // Demo de marca: sin registro no se juega; al registrarse, la partida arranca sola
-      if (!Board.registered()) { Board.register(start); return; }
+      if (!Board.registered() && !Board.guest()) { Board.register(start); return; }
       Sound.unlock();
       Sound.takeoff();
       Sound.music(MUSIC_PLAY);
@@ -4422,7 +4422,7 @@
       const resultEl = $('bo-result'), resultStatus = $('bo-status'), rewardCanvas = $('bo-reward'), rewardSave = $('bo-reward-save');
       const stored = (k) => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
       const store = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* dura la sesión */ } };
-      let open = false, busy = false, after = null, runId = null, runPending = null;
+      let open = false, busy = false, after = null, runId = null, runPending = null, guest = false;
 
       function msg(text, bad) { regMsg.textContent = text; regMsg.classList.toggle('err', !!bad); }
       function layout(kind) {
@@ -4493,7 +4493,8 @@
           busy = false;
         }
       });
-      regSkip.addEventListener('click', () => { after = null; hide(); });
+      // Sin registro se juega igual como invitado durante la sesión: la partida no entra al ranking ni al CRM
+      regSkip.addEventListener('click', () => { const go = after; after = null; guest = true; hide(); if (go) go(); });
 
       // ----- Partida: el servidor la abre al despegar -----
       function begin() {
@@ -4688,6 +4689,7 @@
       }
       return {
         registered: () => Boolean(stored(PLAYER_KEY)),
+        guest: () => guest,
         register: register,
         begin: begin,
         offer: offer,
