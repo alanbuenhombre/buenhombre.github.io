@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel · Driftway × Black Out</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap">
+<style>
+  :root { --bg: #0b0b0e; --ink: #eef0ff; --dim: rgba(238,240,255,0.55); --hair: rgba(238,240,255,0.16); --red: #ea1e26; --acc: #39d66e; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font: 400 14px/1.5 "Space Mono", monospace; padding: 32px 16px 64px; }
+  main { max-width: 1200px; margin: 0 auto; display: grid; gap: 24px; }
+  h1 { font: 700 28px "Anton", Impact, sans-serif; letter-spacing: 0.04em; }
+  h1 { letter-spacing: 0.02em; }
+  h1 span { color: #fff; background: #000; border: 2px solid #fff; padding: 0 10px; }
+  p.lead { color: var(--dim); max-width: 70ch; }
+  form { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  input { font: inherit; color: var(--ink); background: #000; border: 1px solid var(--hair); padding: 10px 12px; min-width: 260px; }
+  button { font: 700 12px "Space Mono", monospace; letter-spacing: 0.12em; text-transform: uppercase; padding: 11px 16px; border: 1px solid var(--acc); background: var(--acc); color: #000; cursor: pointer; }
+  button.ghost { background: none; color: var(--ink); border-color: var(--hair); }
+  #msg { color: var(--dim); }
+  #msg.err { color: #ff5a6e; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .kpi { border: 1px solid var(--hair); padding: 14px 16px; }
+  .kpi b { display: block; font: 700 30px "Anton", Impact, sans-serif; }
+  .kpi span { color: var(--dim); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .wrap { overflow-x: auto; border: 1px solid var(--hair); }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; white-space: nowrap; }
+  th, td { padding: 8px 10px; border-bottom: 1px solid var(--hair); text-align: left; }
+  th { color: var(--dim); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; font-size: 10px; position: sticky; top: 0; background: var(--bg); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.podio td { background: rgba(215, 38, 46, 0.14); }
+  .note { color: var(--dim); font-size: 12px; border-left: 2px solid var(--acc); padding-left: 12px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>DRIFTWAY × <span>BLACK OUT</span> · panel</h1>
+  <p class="lead">Jugadores registrados, partidas validadas por el servidor y ranking. Descarga el CSV para cargarlo en el CRM o para validar ganadores. Demo de propuesta.</p>
+  <form id="login">
+    <input id="key" type="password" placeholder="Clave de administrador" autocomplete="current-password" required>
+    <button type="submit">Ver datos</button>
+    <span id="msg"></span>
+  </form>
+  <section id="data" hidden>
+    <div class="kpis">
+      <div class="kpi"><b id="k-jug">0</b><span>Jugadores</span></div>
+      <div class="kpi"><b id="k-par">0</b><span>Partidas jugadas</span></div>
+      <div class="kpi"><b id="k-val">0</b><span>Partidas válidas</span></div>
+      <div class="kpi"><b id="k-gan">0</b><span>Partidas ganadas</span></div>
+      <div class="kpi"><b id="k-gal">0</b><span>Galletas abducidas</span></div>
+      <div class="kpi"><b id="k-cod">0</b><span>Códigos de empaque</span></div>
+      <div class="kpi"><b id="k-pro">0</b><span>Aceptan promociones</span></div>
+    </div>
+    <form id="tools" style="margin-top:16px">
+      <button type="button" id="csv">Descargar CSV para el CRM</button>
+      <button type="button" class="ghost" id="reload">Actualizar</button>
+    </form>
+    <div class="wrap" style="margin-top:16px"><table id="table"></table></div>
+    <p class="note" style="margin-top:16px">Para que el CRM reciba cada partida al instante, se configura un webhook en Supabase (Database → Webhooks) sobre la tabla <code>bo_partidas</code> apuntando a la URL que dé el CRM (HubSpot, Salesforce, Zoho u otro).</p>
+  </section>
+</main>
+<script>
+(() => {
+  const API = { url: 'https://gnozltwezpivrqtrazbi.supabase.co', key: 'sb_publishable_nuikHF-6PAfnqpM2FKl-bA_r0o7vdFo' };
+  const $ = (id) => document.getElementById(id);
+  const COLS = [
+    ['puesto', 'Puesto'], ['nombre', 'Nombre'], ['dni', 'DNI'], ['correo', 'Correo'], ['whatsapp', 'WhatsApp'],
+    ['partidas_jugadas', 'Jugadas'], ['partidas_validas', 'Válidas'], ['partidas_ganadas', 'Ganadas'],
+    ['mejor_puntaje', 'Mejor puntaje'], ['mejor_sector', 'Mejor sector'], ['galletas_abducidas', 'Galletas'], ['codigos_empaque', 'Códigos'], ['acepta_promos', 'Promos'],
+    ['fecha_registro', 'Registro'], ['ultima_partida', 'Última partida'], ['dispositivo', 'Dispositivo']
+  ];
+  let rows = [], key = '';
+  const fmtDate = (v) => v ? new Date(v).toLocaleString('es-PE', { dateStyle: 'short', timeStyle: 'short' }) : '';
+
+  async function load() {
+    $('msg').textContent = 'Cargando…';
+    $('msg').className = '';
+    try {
+      const r = await fetch(API.url + '/rest/v1/rpc/bo_exportar', {
+        method: 'POST',
+        headers: { apikey: API.key, Authorization: 'Bearer ' + API.key, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_clave: key })
+      });
+      if (!r.ok) throw new Error(r.status === 400 || r.status === 500 ? 'Clave incorrecta.' : 'Error ' + r.status);
+      rows = await r.json();
+      render();
+      $('msg').textContent = '';
+      $('data').hidden = false;
+    } catch (e) {
+      $('msg').textContent = e.message || 'No se pudo cargar.';
+      $('msg').className = 'err';
+    }
+  }
+
+  function render() {
+    const sum = (k) => rows.reduce((a, r) => a + (Number(r[k]) || 0), 0);
+    $('k-jug').textContent = rows.length;
+    $('k-par').textContent = sum('partidas_jugadas');
+    $('k-val').textContent = sum('partidas_validas');
+    $('k-gan').textContent = sum('partidas_ganadas');
+    $('k-gal').textContent = sum('galletas_abducidas');
+    $('k-cod').textContent = sum('codigos_empaque');
+    $('k-pro').textContent = rows.filter((r) => r.acepta_promos).length;
+    const t = $('table');
+    t.innerHTML = '';
+    const head = t.createTHead().insertRow();
+    COLS.forEach(([, label]) => { const th = document.createElement('th'); th.textContent = label; head.appendChild(th); });
+    const body = t.createTBody();
+    rows.forEach((r) => {
+      const tr = body.insertRow();
+      if (r.puesto && r.puesto <= 3) tr.className = 'podio';
+      COLS.forEach(([k]) => {
+        const td = tr.insertCell();
+        let v = r[k];
+        if (k === 'fecha_registro' || k === 'ultima_partida') v = fmtDate(v);
+        if (k === 'acepta_promos') v = v ? 'Sí' : 'No';
+        td.textContent = v === null || v === undefined ? '' : v;
+        if (typeof r[k] === 'number') td.className = 'num';
+      });
+    });
+  }
+
+  function csv() {
+    const keys = Object.keys(rows[0] || {});
+    const esc = (v) => { const s = v === null || v === undefined ? '' : String(v); return /[",;\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const text = '﻿' + [keys.join(','), ...rows.map((r) => keys.map((k) => esc(r[k])).join(','))].join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'blackout-jugadores-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
+
+  $('login').addEventListener('submit', (e) => { e.preventDefault(); key = $('key').value; load(); });
+  $('csv').addEventListener('click', csv);
+  $('reload').addEventListener('click', load);
+})();
+</script>
+</body>
+</html>

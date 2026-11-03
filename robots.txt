@@ -6,6 +6,7 @@ Allow: /
 
 # Bloqueo de mocks y experimentos internos
 Disallow: /experiments/
+Disallow: /demos/
 Disallow: /case-mock.html
 Disallow: /cases-mock.html
 Disallow: /hero-mock.html
