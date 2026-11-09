@@ -137,7 +137,7 @@
   .hx__count{position:absolute;right:clamp(22px,3vw,44px);bottom:clamp(26px,3.4vw,56px);z-index:3;color:#fff;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-align:right}
   .hx__count a{display:inline-block;margin-top:10px;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:2px}
   /* device */
-  .hx__dev{position:absolute;z-index:5;left:clamp(16px,24%,520px);top:calc(-1 * clamp(140px,15vw,290px));width:clamp(300px,31vw,560px);aspect-ratio:1/1;pointer-events:none}
+  .hx__dev{position:absolute;z-index:5;left:clamp(16px,22%,480px);top:calc(-1 * clamp(160px,17vw,320px));width:clamp(320px,35vw,640px);aspect-ratio:1/1;pointer-events:none}
   .hx__dev img{position:absolute;left:50%;top:50%;width:var(--w,78%);transform:translate(-50%,-50%);transition:transform 1s cubic-bezier(.22,.8,.2,1),opacity .7s ease;
       filter:drop-shadow(0 40px 34px rgba(14,15,18,.28)) drop-shadow(0 8px 10px rgba(14,15,18,.18))}
   .hx__dev img.in{opacity:0;transform:translate(10%,-46%) rotate(6deg)}
@@ -174,6 +174,30 @@
     .hx__intro{grid-template-columns:1fr}
   }
   @media (prefers-reduced-motion:reduce){.hx__slide,.hx__slide img,.hx__dev img{transition:none}.hx__info.swap *,.hx__intro.swap *{animation:none}.hx__term .cur{animation:none}}
+
+
+  /* ===== HERO 1 · statement ===== */
+  .h1x{--paper:#F4F4F5;--ink:#0E0F12;--mute:#6B6F78;--k:#1F45D6;--line:rgba(14,15,18,.12);background:var(--paper);color:var(--ink);font-family:'Inter Tight',var(--font);min-height:100vh;display:flex;flex-direction:column}
+  .h1x__in{flex:1;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;max-width:1680px;width:100%;margin:0 auto;padding:clamp(40px,6vw,90px) clamp(16px,2.2vw,32px) clamp(40px,5vw,72px)}
+  .h1x__meta{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--mute);margin-bottom:clamp(20px,2.4vw,36px)}
+  .h1x__live{display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+  .h1x__live i{width:7px;height:7px;border-radius:50%;background:var(--k);box-shadow:0 0 0 4px rgba(31,69,214,.12);animation:dotpulse 2.4s ease-in-out infinite}
+  .h1x__title{text-align:center;font-weight:600;letter-spacing:-.065em;line-height:.88;font-size:clamp(52px,10.6vw,200px)}
+  .h1x__title .ln{display:block;white-space:nowrap}
+  .h1x__title .k{color:var(--k)}
+  .h1x__ava{display:inline-block;width:.86em;height:.86em;border-radius:50%;overflow:hidden;vertical-align:-.06em;margin:0 .02em;
+      box-shadow:0 0 0 .045em var(--paper),0 0 0 .07em var(--k);transform:rotate(-8deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .h1x__ava:hover{transform:rotate(0) scale(1.06)}
+  .h1x__ava img{width:100%;height:100%;object-fit:cover;display:block}
+  .h1x__foot{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-top:clamp(36px,4.4vw,72px);padding:0 clamp(8px,2vw,40px)}
+  .h1x__foot p{max-width:46ch;font-size:15px;line-height:1.55;color:var(--mute)}
+  .h1x__btns{display:flex;gap:10px;flex-wrap:wrap}
+  .hx--work{padding-top:clamp(40px,5vw,80px)}
+  .h1x__bar{width:100%;box-sizing:border-box}
+  .hx__btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;font-size:14px;text-decoration:none;transition:all .25s;font-family:'Inter Tight',var(--font)}
+  .hx__btn--p{background:#0E0F12;color:#fff} .hx__btn--p:hover{background:#1F45D6}
+  .hx__btn--g{color:#0E0F12;box-shadow:inset 0 0 0 1px rgba(14,15,18,.2)} .hx__btn--g:hover{box-shadow:inset 0 0 0 1px #1F45D6;color:#1F45D6}
+  @media (max-width:900px){.h1x__title{font-size:clamp(44px,13vw,96px)}.h1x__title .ln{white-space:normal}.h1x__foot{flex-direction:column;align-items:flex-start}}
 
   /* ===== HERO ===== */
   .hero{position:relative;height:100vh;min-height:680px;overflow:hidden}
@@ -678,8 +702,8 @@
 <body>
 
   <!-- ===== HERO ===== -->
-  <section class="hx" id="inicio">
-    <header class="hx__bar">
+  <section class="h1x" id="inicio">
+    <header class="hx__bar h1x__bar">
       <span class="l">Lead Designer — Brand, Systems &amp; Product</span>
       <a class="c" href="#inicio">Alan Buenhombre</a>
       <nav class="hx__nav">
@@ -693,10 +717,28 @@
       </button>
       </nav>
     </header>
-    <h1 class="hx__title" aria-label="Sistemas que hacen crecer marcas.">
-      <span class="ln">Sistemas que hacen</span>
-      <span class="ln">crecer <span class="k">marcas.</span></span>
-    </h1>
+    <div class="h1x__in">
+      <div class="h1x__meta"><span>(01)</span><span class="h1x__live"><i></i> <span data-i18n="hero_avail">Disponible</span></span><span>Lead Designer · Brand, Systems &amp; Product</span></div>
+      <h1 class="h1x__title" aria-label="Sistemas que hacen crecer marcas.">
+        <span class="ln">Sistemas que hacen</span>
+        <span class="ln">crecer <span class="h1x__ava"><img src="assets/hero-avatar.jpg" alt="Alan Buenhombre" width="520" height="520"></span> <span class="k">marcas.</span></span>
+      </h1>
+      <div class="h1x__foot">
+        <p data-i18n="hero_lede">Me gusta trabajar con marcas que piensan en sistemas. Llevo la marca a todos los puntos de contacto: impreso, campañas, motion, comunicación interna y externa, y producto digital.</p>
+        <div class="h1x__btns">
+          <a class="hx__btn hx__btn--p" href="#destacados">Ver trabajo ↓</a>
+          <a class="hx__btn hx__btn--g" href="#sobre" data-i18n="hero_cta_about">Sobre mí →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hx hx--work" id="destacados">
+
+    <h2 class="hx__title" aria-label="Trabajo seleccionado.">
+      <span class="ln">Trabajo</span>
+      <span class="ln">seleccionado<span class="k">.</span></span>
+    </h2>
     <div class="hx__stage">
       <div class="hx__dev" id="hxDev" aria-hidden="true"></div>
       <div class="hx__frame" id="hxFrame">
@@ -1309,13 +1351,13 @@
     const P=[
       {n:'Kommit V5',sup:'DS',d:'Design system para todo el producto: tokens, componentes y gobernanza.',dev:'ds',w:'96%',href:'portal-kommit.html',
        lead:'Un sistema que el equipo de producto reutiliza, no reinventa.',over:'Lideré Kommit V5 end-to-end: fundamentos, tokens, librería de componentes en Figma, documentación y gobernanza con desarrollo. Hoy es la base de todos los productos internos y de cliente.'},
-      {n:'Chaincerts',sup:'',d:'Credenciales digitales verificables en Web3. Marca e interfaz.',dev:'chaincerts',w:'86%',href:'chaincerts.html',
+      {n:'Chaincerts',sup:'',d:'Credenciales digitales verificables en Web3. Marca e interfaz.',dev:'chaincerts',w:'92%',href:'chaincerts.html',
        lead:'Diplomas y certificados que se verifican en segundos.',over:'Diseñé la identidad y la experiencia de Chaincerts: emisión, wallet y verificación de credenciales sobre blockchain, pensado para universidades y sus egresados.'},
-      {n:'Driftway',sup:'',d:'Juego arcade en el navegador. Esquiva el código, no pares.',dev:'game',w:'90%',href:'driftway.html',
+      {n:'Driftway',sup:'',d:'Juego arcade en el navegador. Esquiva el código, no pares.',dev:'game',w:'96%',href:'driftway.html',
        lead:'Un juego propio para explorar ritmo, sonido y feedback.',over:'Driftway es un proyecto del Lab: una nave que esquiva cubos de código en Three.js. Lo uso para experimentar con game feel, motion y diseño de interacción en tiempo real.'},
-      {n:'OKdose',sup:'',d:'Dosificación veterinaria precisa, en segundos.',dev:'okdose',w:'78%',href:'okdose.html',
-       lead:'Calcular una dosis no debería generar dudas.',over:'Producto y UX/UI para una herramienta health-tech que guía al veterinario por categoría, patología y peso hasta la dosis correcta, con una interfaz clara y sin fricción.'},
-      {n:'Company Portal',sup:'',d:'Portal interno B2B: 12+ módulos adoptados por todo el equipo.',dev:'portal',w:'86%',href:'worklogs.html',
+      {n:'OKdose',sup:'',d:'Dosificación médica precisa, en segundos.',dev:'okdose',w:'100%',href:'okdose.html',
+       lead:'Calcular una dosis no debería generar dudas.',over:'Producto y UX/UI para una herramienta health-tech que guía al médico por categoría, patología y peso hasta la dosis correcta, con una interfaz clara y sin fricción.'},
+      {n:'Company Portal',sup:'',d:'Portal interno B2B: 12+ módulos adoptados por todo el equipo.',dev:'portal',w:'92%',href:'worklogs.html',
        lead:'Un portal que el equipo usa todos los días.',over:'Diseñé el portal interno de la compañía: registro de horas, tareas, vacaciones y objetivos en un solo lugar. 12+ módulos adoptados por todo el equipo entre 2023 y 2025.'}
     ];
     const frame=document.getElementById('hxFrame'),dev=document.getElementById('hxDev'),menu=document.getElementById('hxMenu');
