@@ -104,85 +104,76 @@
   .top__lang:hover svg{opacity:1}
 
 
-  /* ===== HERO v5 · showcase frame + floating screen ===== */
-  .hx{--paper:#F4F5F7;--ink:#121418;--mute:#6A7180;--k:#1F45D6;--line:rgba(18,20,24,.12);
-      position:relative;background:var(--paper);color:var(--ink);padding:0 0 110px;overflow:hidden;font-family:'Inter Tight',var(--font)}
+  /* ===== HERO v6 · product showcase (Flow art direction) ===== */
+  .hx{--paper:#F4F4F5;--ink:#0E0F12;--mute:#6B6F78;--k:#1F45D6;--line:rgba(14,15,18,.12);
+      position:relative;background:var(--paper);color:var(--ink);padding:0 0 120px;overflow:hidden;font-family:'Inter Tight',var(--font)}
   .hx__bar{position:relative;z-index:10;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
-      max-width:1680px;margin:0 auto;padding:20px clamp(16px,2.2vw,32px) 0;font-size:13px}
-  .hx__bar .l{color:var(--mute)} .hx__bar .c{font-weight:600;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+      max-width:1680px;margin:0 auto;padding:22px clamp(16px,2.2vw,32px) 0;font-size:13px}
+  .hx__bar .l{color:var(--ink)} .hx__bar .c{font-weight:500;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
   .hx__nav{justify-self:end;display:flex;align-items:center;gap:2px}
   .hx__nav a{color:var(--ink);text-decoration:none;padding:7px 11px;border-radius:999px;transition:background .2s}
   .hx__nav a:hover{background:#fff;box-shadow:0 0 0 1px var(--line)}
   .hx__nav a.is-new::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--k);margin-left:5px;vertical-align:3px}
   .hx__lang{all:unset;cursor:pointer;margin-left:6px;padding:7px 13px;border-radius:999px;background:var(--ink);color:#fff;font-size:12px;letter-spacing:.04em;transition:background .2s}
   .hx__lang:hover{background:var(--k)}
-  .hx__title{position:relative;z-index:1;text-align:center;font-weight:600;letter-spacing:-.06em;line-height:.86;
-      font-size:clamp(54px,10.4vw,196px);margin:clamp(30px,3.6vw,64px) 0 0;padding:0 12px}
+  .hx__title{position:relative;z-index:1;text-align:center;font-weight:600;letter-spacing:-.065em;line-height:.84;
+      font-size:clamp(56px,11.8vw,220px);margin:clamp(40px,5.4vw,92px) 0 0;padding:0 12px}
   .hx__title .ln{display:block;white-space:nowrap}
   .hx__title .k{color:var(--k)}
-  .hx__stage{position:relative;max-width:1680px;margin:clamp(28px,3.2vw,60px) auto 0;padding:0 clamp(16px,2.2vw,32px)}
-  .hx__frame{position:relative;z-index:2;height:clamp(420px,36vw,620px);border-radius:clamp(24px,3vw,44px);overflow:hidden;background:#C9D0DC;isolation:isolate}
-  .hx__slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+  .hx__stage{position:relative;max-width:1680px;margin:clamp(28px,4vw,72px) auto 0;padding:0 clamp(16px,2.2vw,32px)}
+  .hx__frame{position:relative;z-index:2;height:clamp(420px,36vw,640px);border-radius:clamp(26px,3.4vw,52px);overflow:hidden;background:#3E6BD8;isolation:isolate}
+  .hx__slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
   .hx__slide.on{opacity:1}
-  .hx__slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6.5s ease-out}
+  .hx__slide img{width:100%;height:100%;object-fit:cover;object-position:60% 28%;transform:scale(1.08);transition:transform 7s cubic-bezier(.2,.6,.2,1)}
   .hx__slide.on img{transform:scale(1)}
-  .hx__frame::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-      background:linear-gradient(to top,rgba(10,12,20,.62) 0%,rgba(10,12,20,.18) 38%,rgba(10,12,20,0) 60%)}
-  .hx__info{position:absolute;left:clamp(24px,3.6vw,60px);right:clamp(24px,3.6vw,60px);bottom:clamp(24px,3.2vw,52px);z-index:3;color:#fff;
-      display:grid;grid-template-columns:auto 1fr;align-items:end;gap:12px 28px}
-  .hx__name{font-weight:600;letter-spacing:-.045em;line-height:.9;font-size:clamp(40px,5.4vw,92px);white-space:nowrap}
-  .hx__rule{grid-column:1/-1;height:1px;background:rgba(255,255,255,.35);order:-1;position:relative;overflow:hidden}
-  .hx__rule i{position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
-  .hx__desc{font-size:13px;line-height:1.55;color:rgba(255,255,255,.82);max-width:38ch;justify-self:end;text-align:right}
-  .hx__desc a{display:inline-block;margin-top:10px;color:#fff;text-decoration:none;font-family:var(--font-mono);font-size:12px;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px}
-  .hx__info.swap .hx__name,.hx__info.swap .hx__desc{animation:hxUp .7s cubic-bezier(.2,.7,.2,1) both}
-  @keyframes hxUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  .hx__tag{position:absolute;top:clamp(18px,2.4vw,32px);right:clamp(18px,2.4vw,32px);z-index:3;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
-      color:#fff;background:rgba(18,20,24,.35);backdrop-filter:blur(8px);padding:7px 12px;border-radius:999px;white-space:pre}
-  /* floating screen */
-  .hx__screen{position:absolute;z-index:5;left:clamp(16px,7%,150px);top:calc(-1 * clamp(56px,5.4vw,100px));width:clamp(280px,27vw,460px);
-      perspective:1200px;pointer-events:none}
-  .hx__win{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px rgba(18,20,24,.08),0 50px 90px -30px rgba(18,20,24,.45);
-      transform:rotateX(14deg) rotateY(18deg) rotateZ(-9deg);transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .5s;transform-origin:50% 60%}
-  .hx__win.out{opacity:0;transform:translateY(40px) rotateX(24deg) rotateY(28deg) rotateZ(-14deg)}
-  .hx__winbar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#F2F3F6;border-bottom:1px solid var(--line)}
-  .hx__winbar i{width:8px;height:8px;border-radius:50%;background:#D5D9E0}
-  .hx__winbar span{margin-left:10px;font-family:var(--font-mono);font-size:10px;color:var(--mute)}
-  .hx__win img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;object-position:top}
-  /* project menu */
-  .hx__menu{display:flex;gap:clamp(10px,1.6vw,28px);margin-top:18px;padding:0 4px;overflow-x:auto;scrollbar-width:none}
-  .hx__menu button{all:unset;cursor:pointer;flex:1 1 0;min-width:130px;padding-top:12px;position:relative;color:var(--mute);transition:color .25s}
+  .hx__frame::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(20,45,140,.38),rgba(20,45,140,0) 55%)}
+  .hx__info{position:absolute;left:clamp(26px,3.8vw,64px);bottom:clamp(26px,3.4vw,56px);z-index:3;color:#fff;max-width:40ch}
+  .hx__name{font-weight:500;letter-spacing:-.045em;line-height:.9;font-size:clamp(44px,5.6vw,100px);white-space:nowrap}
+  .hx__name sup{font-size:.36em;vertical-align:.95em;margin-left:.04em;font-weight:500}
+  .hx__desc{margin-top:16px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.88)}
+  .hx__info.swap .hx__name,.hx__info.swap .hx__desc{animation:hxUp .8s cubic-bezier(.2,.7,.2,1) both}
+  .hx__info.swap .hx__desc{animation-delay:.08s}
+  @keyframes hxUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .hx__count{position:absolute;right:clamp(22px,3vw,44px);bottom:clamp(26px,3.4vw,56px);z-index:3;color:#fff;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-align:right}
+  .hx__count a{display:inline-block;margin-top:10px;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:2px}
+  /* device */
+  .hx__dev{position:absolute;z-index:5;left:clamp(16px,24%,520px);top:calc(-1 * clamp(140px,15vw,290px));width:clamp(300px,31vw,560px);aspect-ratio:1/1;pointer-events:none}
+  .hx__dev img{position:absolute;left:50%;top:50%;width:var(--w,78%);transform:translate(-50%,-50%);transition:transform 1s cubic-bezier(.22,.8,.2,1),opacity .7s ease;
+      filter:drop-shadow(0 40px 34px rgba(14,15,18,.28)) drop-shadow(0 8px 10px rgba(14,15,18,.18))}
+  .hx__dev img.in{opacity:0;transform:translate(10%,-46%) rotate(6deg)}
+  .hx__dev img.out{opacity:0;transform:translate(-110%,-58%) rotate(-8deg)}
+  .hx__dev::after{content:"";position:absolute;left:18%;right:10%;bottom:-6%;height:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(14,15,18,.22),rgba(14,15,18,0));filter:blur(14px);z-index:-1}
+  /* progress */
+  .hx__menu{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.6vw,28px);margin-top:20px;padding:0 4px}
+  .hx__menu button{all:unset;cursor:pointer;padding-top:12px;position:relative;color:var(--mute);transition:color .25s}
   .hx__menu button::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--line);border-radius:2px}
-  .hx__menu button::after{content:"";position:absolute;left:0;top:0;height:2px;width:calc(var(--p,0) * 100%);background:var(--k);border-radius:2px}
+  .hx__menu button::after{content:"";position:absolute;left:0;top:0;height:2px;width:calc(var(--p,0) * 100%);background:var(--ink);border-radius:2px}
   .hx__menu button.on{color:var(--ink)}
   .hx__menu b{display:block;font-family:var(--font-mono);font-size:11px;font-weight:400;letter-spacing:.06em;margin-bottom:4px}
   .hx__menu span{font-size:14px;letter-spacing:-.01em}
   .hx__menu button:hover{color:var(--ink)}
   .hx__menu button:focus-visible{outline:2px solid var(--k);outline-offset:4px;border-radius:4px}
-  /* intro */
-  .hx__intro{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,6vw,120px);max-width:1680px;margin:clamp(64px,7vw,110px) auto 0;padding:0 clamp(24px,5vw,96px)}
-  .hx__intro h2{font-weight:300;font-size:clamp(24px,2.3vw,38px);line-height:1.15;letter-spacing:-.03em;max-width:28ch;text-wrap:balance}
-  .hx__over small{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;margin-bottom:14px}
-  .hx__over p{font-size:14px;line-height:1.6;color:var(--mute);max-width:52ch}
+  /* overview */
+  .hx__intro{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,120px);max-width:1680px;margin:clamp(64px,7vw,110px) auto 0;padding:0 clamp(24px,5vw,96px)}
+  .hx__intro h2{font-weight:400;font-size:clamp(24px,2.3vw,38px);line-height:1.15;letter-spacing:-.025em;max-width:22ch;text-wrap:balance}
+  .hx__over small{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;margin-bottom:12px}
+  .hx__over p{font-size:13px;line-height:1.6;color:var(--mute);max-width:56ch}
   .hx__term{margin:22px 0 0;font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--k);white-space:pre}
   .hx__term .p{color:var(--mute)} .hx__term .cur{animation:blink 1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
-  .hx__btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-  .hx__btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;font-size:14px;text-decoration:none;transition:all .25s}
-  .hx__btn--p{background:var(--ink);color:#fff} .hx__btn--p:hover{background:var(--k)}
-  .hx__btn--g{color:var(--ink);box-shadow:inset 0 0 0 1px rgba(18,20,24,.2)} .hx__btn--g:hover{box-shadow:inset 0 0 0 1px var(--k);color:var(--k)}
-  .hx__btn .dot{background:#22C55E;box-shadow:0 0 6px rgba(34,197,94,.6)}
+  .hx__intro.swap h2,.hx__intro.swap .hx__over p{animation:hxUp .8s cubic-bezier(.2,.7,.2,1) both}
   @media (max-width:900px){
     .hx__bar{grid-template-columns:1fr auto}.hx__bar .l,.hx__nav a{display:none}
-    .hx__title{font-size:clamp(44px,13.4vw,96px);margin-top:48px}
+    .hx__title{font-size:clamp(46px,13.6vw,100px);margin-top:48px}
     .hx__title .ln{white-space:normal}
-    .hx__stage{margin-top:72px}
-    .hx__screen{left:50%;top:-56px;width:min(70vw,300px);margin-left:calc(-1 * min(35vw,150px))}
-    .hx__frame{height:480px}
-    .hx__info{grid-template-columns:1fr}.hx__desc{justify-self:start;text-align:left}
+    .hx__stage{margin-top:150px}
+    .hx__dev{left:50%;margin-left:calc(-1 * min(38vw,170px));width:min(76vw,340px);top:-190px}
+    .hx__frame{height:520px}
+    .hx__count{display:none}
+    .hx__menu{grid-template-columns:repeat(5,minmax(110px,1fr));overflow-x:auto;scrollbar-width:none}
     .hx__intro{grid-template-columns:1fr}
   }
-  @media (prefers-reduced-motion:reduce){.hx__slide,.hx__slide img,.hx__win{transition:none}.hx__info.swap *{animation:none}.hx__term .cur{animation:none}}
+  @media (prefers-reduced-motion:reduce){.hx__slide,.hx__slide img,.hx__dev img{transition:none}.hx__info.swap *,.hx__intro.swap *{animation:none}.hx__term .cur{animation:none}}
 
   /* ===== HERO ===== */
   .hero{position:relative;height:100vh;min-height:680px;overflow:hidden}
@@ -707,34 +698,24 @@
       <span class="ln">crecer <span class="k">marcas.</span></span>
     </h1>
     <div class="hx__stage">
-      <div class="hx__screen" aria-hidden="true">
-        <div class="hx__win"><div class="hx__winbar"><i></i><i></i><i></i><span id="hxUrl">chaincerts.app</span></div><img id="hxShot" src="assets/chaincerts-col1.jpg" alt=""></div>
-      </div>
+      <div class="hx__dev" id="hxDev" aria-hidden="true"></div>
       <div class="hx__frame" id="hxFrame">
-        <div class="hx__tag" id="hxTag" aria-hidden="true"></div>
-        <div class="hx__info" id="hxInfo">
-          <div class="hx__rule"><i id="hxBar"></i></div>
-          <div class="hx__name" id="hxName"></div>
-          <div class="hx__desc"><span id="hxDesc"></span><br><a id="hxLink" href="#casos">Ver caso ↗</a></div>
-        </div>
+        <div class="hx__info" id="hxInfo"><div class="hx__name" id="hxName"></div><div class="hx__desc" id="hxDesc"></div></div>
+        <div class="hx__count"><span id="hxCount"></span><br><a id="hxLink" href="#casos">Ver caso ↗</a></div>
       </div>
-      <div class="hx__menu" id="hxMenu" role="tablist" aria-label="Casos destacados"></div>
+      <div class="hx__menu" id="hxMenu" role="tablist" aria-label="Proyectos destacados"></div>
     </div>
-    <div class="hx__intro">
-      <h2 data-i18n="hero_lede">Me gusta trabajar con marcas que piensan en sistemas. Llevo la marca a todos los puntos de contacto: impreso, campañas, motion, comunicación interna y externa, y producto digital.</h2>
+    <div class="hx__intro" id="hxIntro">
+      <h2 id="hxLead"></h2>
       <div class="hx__over">
-        <small>[TRAYECTORIA]</small>
-        <p data-i18n="hero_stat">14 años de la publicidad al producto digital. Hoy lidero el diseño de una marca del sector salud (NDA); antes, Lead Designer y Design Owner en Kommit y Director de Arte en AdO Latam.</p>
+        <small>[OVERVIEW]</small>
+        <p id="hxOver"></p>
         <pre class="hx__term" aria-hidden="true"><span class="p">&gt;</span> brand.system()
   ├─ identidad
   ├─ tokens
   ├─ componentes
   └─ producto
 <span class="p">&gt;</span> status: <b>growing</b><span class="cur">_</span></pre>
-        <div class="hx__btns">
-          <a class="hx__btn hx__btn--p" href="#casos" data-i18n="hero_cta_cases">Casos de estudio →</a>
-          <a class="hx__btn hx__btn--g" href="#contacto"><span class="dot"></span><span data-i18n="hero_avail">Disponible</span></a>
-        </div>
       </div>
     </div>
   </section>
@@ -1321,44 +1302,50 @@
   })();
 
 
-  /* ---- HERO v5: showcase de casos con pantalla flotante ---- */
+  /* ---- HERO v6: showcase de 5 proyectos ---- */
   (function(){
     const hx=document.querySelector('.hx'); if(!hx) return;
+    const A='assets/showcase/';
     const P=[
-      {n:'Chaincerts',d:'Fintech · Web3 — marca e interfaz para credenciales digitales verificables.',u:'chaincerts.app',hero:'assets/chaincerts-hero.jpg',shot:'assets/chaincerts-col1.jpg',href:'chaincerts.html'},
-      {n:'Kommit V5',d:'Design system — tokens, componentes y gobernanza para todo el producto.',u:'figma.com/kommit-v5',hero:'assets/portal-kommit-hero.jpg',shot:'assets/portal-kommit-col1.jpg',href:'portal-kommit.html'},
-      {n:'Company Portal',d:'Portal interno B2B — 12+ módulos adoptados por todo el equipo.',u:'portal.kommit.co',hero:'assets/portal-kommit-2026-hero.jpg',shot:'assets/worklogs-col1.jpg',href:'worklogs.html'},
-      {n:'OKdose',d:'Health tech — producto y UX/UI para dosificación médica.',u:'okdose.app',hero:'assets/okdose-hero.jpg',shot:'assets/okdose-col1.jpg',href:'okdose.html'},
-      {n:'Kommit',d:'Design ownership — estrategia de marca, sistemas y producto, 2022–2026.',u:'kommit.co',hero:'assets/portal-kommit-hero.jpg',shot:'assets/portal-kommit-inset.jpg',href:'kommit-ownership.html'}
+      {n:'Kommit V5',sup:'DS',d:'Design system para todo el producto: tokens, componentes y gobernanza.',dev:'ds',w:'96%',href:'portal-kommit.html',
+       lead:'Un sistema que el equipo de producto reutiliza, no reinventa.',over:'Lideré Kommit V5 end-to-end: fundamentos, tokens, librería de componentes en Figma, documentación y gobernanza con desarrollo. Hoy es la base de todos los productos internos y de cliente.'},
+      {n:'Chaincerts',sup:'',d:'Credenciales digitales verificables en Web3. Marca e interfaz.',dev:'chaincerts',w:'86%',href:'chaincerts.html',
+       lead:'Diplomas y certificados que se verifican en segundos.',over:'Diseñé la identidad y la experiencia de Chaincerts: emisión, wallet y verificación de credenciales sobre blockchain, pensado para universidades y sus egresados.'},
+      {n:'Driftway',sup:'',d:'Juego arcade en el navegador. Esquiva el código, no pares.',dev:'game',w:'90%',href:'driftway.html',
+       lead:'Un juego propio para explorar ritmo, sonido y feedback.',over:'Driftway es un proyecto del Lab: una nave que esquiva cubos de código en Three.js. Lo uso para experimentar con game feel, motion y diseño de interacción en tiempo real.'},
+      {n:'OKdose',sup:'',d:'Dosificación veterinaria precisa, en segundos.',dev:'okdose',w:'78%',href:'okdose.html',
+       lead:'Calcular una dosis no debería generar dudas.',over:'Producto y UX/UI para una herramienta health-tech que guía al veterinario por categoría, patología y peso hasta la dosis correcta, con una interfaz clara y sin fricción.'},
+      {n:'Company Portal',sup:'',d:'Portal interno B2B: 12+ módulos adoptados por todo el equipo.',dev:'portal',w:'86%',href:'worklogs.html',
+       lead:'Un portal que el equipo usa todos los días.',over:'Diseñé el portal interno de la compañía: registro de horas, tareas, vacaciones y objetivos en un solo lugar. 12+ módulos adoptados por todo el equipo entre 2023 y 2025.'}
     ];
-    const frame=document.getElementById('hxFrame'), menu=document.getElementById('hxMenu'), info=document.getElementById('hxInfo');
-    const nm=document.getElementById('hxName'), ds=document.getElementById('hxDesc'), ln=document.getElementById('hxLink'), tag=document.getElementById('hxTag');
-    const win=hx.querySelector('.hx__win'), shot=document.getElementById('hxShot'), url=document.getElementById('hxUrl'), bar=document.getElementById('hxBar');
-    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, DUR=6500;
-    const slides=P.map(p=>{const d=document.createElement('div');d.className='hx__slide';d.innerHTML=`<img src="${p.hero}" alt="" loading="lazy">`;frame.prepend(d);return d;});
-    const btns=P.map((p,k)=>{const b=document.createElement('button');b.setAttribute('role','tab');b.innerHTML=`<b>${String(k+1).padStart(2,'0')}</b><span>${p.n}</span>`;
-      b.addEventListener('click',()=>go(k,true));menu.appendChild(b);return b;});
-    P.forEach(p=>{const i=new Image();i.src=p.shot});
-    let cur=-1,t0=0,paused=false;
-    const ascii=k=>{const n=P.length;return `[${String(k+1).padStart(2,'0')}/${String(n).padStart(2,'0')}] `+'▮'.repeat(k+1)+'▯'.repeat(n-k-1);};
-    function go(k,user){
-      if(k===cur) return; cur=k; t0=performance.now();
+    const frame=document.getElementById('hxFrame'),dev=document.getElementById('hxDev'),menu=document.getElementById('hxMenu');
+    const info=document.getElementById('hxInfo'),nm=document.getElementById('hxName'),ds=document.getElementById('hxDesc'),ct=document.getElementById('hxCount'),ln=document.getElementById('hxLink');
+    const intro=document.getElementById('hxIntro'),lead=document.getElementById('hxLead'),over=document.getElementById('hxOver');
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, DUR=6000;
+    const slides=P.map(p=>{const d=document.createElement('div');d.className='hx__slide';d.innerHTML=`<img src="${A}frame-${p.dev}.jpg" alt="" loading="lazy">`;frame.prepend(d);return d;});
+    const btns=P.map((p,k)=>{const b=document.createElement('button');b.setAttribute('role','tab');b.innerHTML=`<b>${String(k+1).padStart(2,'0')}</b><span>${p.n}</span>`;b.addEventListener('click',()=>go(k));menu.appendChild(b);return b;});
+    P.forEach(p=>{const i=new Image();i.src=A+'dev-'+p.dev+'.webp'});
+    let cur=-1,t0=0,paused=false,devImg=null;
+    function go(k){
+      if(k===cur) return; const first=cur<0; cur=k; t0=performance.now(); const p=P[k];
       slides.forEach((s,i)=>s.classList.toggle('on',i===k));
       btns.forEach((b,i)=>{b.classList.toggle('on',i===k);b.setAttribute('aria-selected',i===k);b.style.setProperty('--p',i<k?1:0)});
-      nm.textContent=P[k].n; ds.textContent=P[k].d; ln.href=P[k].href; tag.textContent=ascii(k);
-      info.classList.remove('swap'); void info.offsetWidth; info.classList.add('swap');
-      win.classList.add('out');
-      setTimeout(()=>{shot.src=P[k].shot;url.textContent=P[k].u;win.classList.remove('out')},reduce?0:420);
+      nm.innerHTML=p.n+(p.sup?`<sup>${p.sup}</sup>`:''); ds.textContent=p.d; ln.href=p.href; ct.textContent=`${String(k+1).padStart(2,'0')} / ${String(P.length).padStart(2,'0')}`;
+      lead.textContent=p.lead; over.textContent=p.over;
+      [info,intro].forEach(el=>{el.classList.remove('swap');void el.offsetWidth;el.classList.add('swap')});
+      const old=devImg, ni=document.createElement('img'); ni.src=A+'dev-'+p.dev+'.webp'; ni.alt=''; ni.style.setProperty('--w',p.w);
+      if(!first&&!reduce) ni.className='in'; dev.appendChild(ni); devImg=ni;
+      requestAnimationFrame(()=>requestAnimationFrame(()=>ni.classList.remove('in')));
+      if(old){ if(reduce) old.remove(); else {old.classList.add('out'); setTimeout(()=>old.remove(),1000);} }
     }
     function tick(now){
-      if(!paused&&!reduce){const p=Math.min(1,(now-t0)/DUR);btns[cur].style.setProperty('--p',p);bar.style.transform=`scaleX(${p})`;if(p>=1)go((cur+1)%P.length);}
-      else if(paused) t0=now-(parseFloat(btns[cur].style.getPropertyValue('--p'))||0)*DUR;
+      if(!reduce){ if(paused) t0=now-(parseFloat(btns[cur].style.getPropertyValue('--p'))||0)*DUR;
+        else {const p=Math.min(1,(now-t0)/DUR);btns[cur].style.setProperty('--p',p);if(p>=1)go((cur+1)%P.length);} }
       requestAnimationFrame(tick);
     }
     [frame,menu].forEach(el=>{el.addEventListener('mouseenter',()=>paused=true);el.addEventListener('mouseleave',()=>paused=false)});
     go(0); requestAnimationFrame(tick);
-    // subtle parallax of the floating screen
-    if(!reduce){const sc=hx.querySelector('.hx__screen');addEventListener('scroll',()=>{const y=Math.min(scrollY,900);sc.style.transform=`translateY(${(y*.12).toFixed(1)}px)`},{passive:true});}
+    if(!reduce) addEventListener('scroll',()=>{dev.style.translate=`0 ${(Math.min(scrollY,900)*.1).toFixed(1)}px`},{passive:true});
   })();
 
   /* ---- INIT idioma ---- */
