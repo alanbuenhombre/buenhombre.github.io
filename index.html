@@ -67,6 +67,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
@@ -101,6 +102,74 @@
   .top__lang svg{width:13px;height:13px;opacity:.8;transition:opacity .25s}
   .top__lang:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4)}
   .top__lang:hover svg{opacity:1}
+
+
+  /* ===== HERO v2 · Klein editorial ===== */
+  .hx{--hx-bg:#DFE3EC;--hx-ink:#111318;--hx-mute:#5D6574;--hx-k:#1F45D6;--hx-line:rgba(17,19,24,.14);
+      position:relative;height:100vh;min-height:720px;overflow:hidden;color:var(--hx-ink);
+      background:radial-gradient(ellipse 60% 70% at 50% 45%,#EEF1F6 0%,#E2E6EE 45%,#D6DBE5 100%)}
+  .hx::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .12 0 0 0 0 .18 0 0 0 .25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .hx .top{color:var(--hx-ink)}
+  .hx .top__name{color:var(--hx-ink)}
+  .hx .top__nav a{color:var(--hx-mute)} .hx .top__nav a:hover{color:var(--hx-ink)}
+  .hx .top__nav a.is-new{color:var(--hx-ink)}
+  .hx .top__nav a.is-new::after{background:var(--hx-k);box-shadow:0 0 8px rgba(31,69,214,.6)}
+  .hx .top__lang{color:var(--hx-ink);border-color:var(--hx-line);background:rgba(255,255,255,.45)}
+  .hx .top__lang:hover{background:#fff;border-color:rgba(17,19,24,.3)}
+  .hx__rule{position:absolute;left:var(--pad);right:var(--pad);top:78px;height:1px;background:var(--hx-line);z-index:1}
+  .hx__axis{position:absolute;left:50%;top:78px;bottom:0;width:1px;background:var(--hx-line);z-index:1}
+  .hx__title{position:absolute;inset:0;z-index:2;pointer-events:none;font-family:'Inter Tight',var(--font);font-weight:600;
+      letter-spacing:-.055em;line-height:.9;font-size:clamp(54px,9.2vw,168px)}
+  .hx__l1{position:absolute;left:0;right:0;top:14vh;text-align:center;white-space:nowrap}
+  .hx__l1 .lt{font-weight:300;color:#8A93A3}
+  .hx__l2{position:absolute;left:var(--pad);right:var(--pad);top:calc(14vh + 1.02em);display:flex;justify-content:space-between;color:var(--hx-k)}
+  .hx__l2 .lt{font-weight:300}
+  .hx__fig{position:absolute;left:50%;bottom:0;height:min(71vh,800px);width:auto;transform:translateX(-50%);z-index:3;
+      filter:drop-shadow(0 30px 40px rgba(17,19,24,.12));user-select:none;-webkit-user-drag:none}
+  .hx__orbit{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .hx__orbit.front{z-index:4}
+  .hx__chip{position:absolute;left:0;top:0;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;
+      display:grid;place-items:center;pointer-events:auto;cursor:pointer;
+      background:rgba(255,255,255,.88);box-shadow:0 0 0 .7px rgba(17,19,24,.16),0 6px 14px rgba(17,19,24,.10);
+      font-family:'Inter Tight',var(--font);font-size:15px;color:#2B313C;text-decoration:none;transition:background .25s,color .25s,box-shadow .25s;will-change:transform}
+  .hx__chip:hover{background:var(--hx-k);color:#fff;box-shadow:0 0 0 1px var(--hx-k),0 10px 24px rgba(31,69,214,.35)}
+  .hx__chip span{transition:opacity .35s}
+  .hx__chip[data-tip]:hover::after{content:attr(data-tip);position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+      white-space:nowrap;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--hx-ink);
+      background:#fff;padding:5px 10px;border-radius:999px;box-shadow:0 0 0 .7px var(--hx-line)}
+  .hx__toggle{position:absolute;left:50%;top:60px;transform:translateX(-50%);z-index:6;display:flex;gap:2px;padding:3px;border-radius:999px;
+      background:rgba(255,255,255,.7);box-shadow:0 0 0 .7px var(--hx-line);backdrop-filter:blur(6px)}
+  .hx__toggle button{all:unset;cursor:pointer;padding:7px 18px;border-radius:999px;font-family:'Inter Tight',var(--font);font-size:14px;color:#7A8291;transition:all .25s}
+  .hx__toggle button.on{background:#fff;color:var(--hx-ink);box-shadow:0 0 0 .7px rgba(17,19,24,.2)}
+  .hx__note{position:absolute;z-index:5;font-family:var(--font-mono);font-size:11px;line-height:1.45;letter-spacing:.08em;text-transform:uppercase;color:var(--hx-k);max-width:200px}
+  .hx__note--l{left:max(var(--pad),calc(50% - 40vw));bottom:30vh}
+  .hx__note--r{right:max(var(--pad),calc(50% - 40vw));bottom:30vh;text-align:right}
+  .hx__idx{position:absolute;left:var(--pad);top:96px;z-index:5;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--hx-mute)}
+  .hx__bottom{position:absolute;left:0;right:0;bottom:0;z-index:5;max-width:var(--max-w);margin:0 auto;padding:0 var(--pad) 40px;
+      display:flex;justify-content:space-between;align-items:flex-end;gap:40px;pointer-events:none}
+  .hx__bottom > *{pointer-events:auto}
+  .hx__lede{max-width:300px;font-family:var(--font-mono);font-size:.78rem;line-height:1.6;color:var(--hx-mute)}
+  .hx__avail{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;color:var(--hx-ink);font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em}
+  .hx__avail .dot{background:var(--hx-k);box-shadow:0 0 8px rgba(31,69,214,.5)}
+  .hx__cta{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+  .hx__cta a{font-family:var(--font-mono);font-size:.78rem;color:var(--hx-ink);text-decoration:none;border-bottom:1px solid var(--hx-line);padding-bottom:3px;transition:color .25s,border-color .25s}
+  .hx__cta a:hover{color:var(--hx-k);border-color:var(--hx-k)}
+  @media (max-width:900px){
+    .hx{min-height:760px}
+    .hx__title{font-size:clamp(40px,11vw,90px)}
+    .hx__l1{top:130px;white-space:normal;padding:0 20px;line-height:.92}
+    .hx__l2{top:calc(130px + 2.05em);justify-content:center;gap:.25em}
+    .hx__fig{height:min(52vh,520px)}
+    .hx__note,.hx__idx,.hx__lede{display:none}
+    .hx__toggle{top:92px}
+    .hx__l1{top:150px} .hx__l2{top:calc(150px + 2.05em)}
+    .hx__bottom{padding:0 16px 18px;justify-content:center}
+    .hx__bottom > div:first-child{display:none}
+    .hx__cta{flex-direction:row;gap:8px}
+    .hx__cta a{background:rgba(255,255,255,.85);border:0;padding:9px 14px;border-radius:999px;box-shadow:0 0 0 .7px var(--hx-line)}
+  }
+  @media (prefers-reduced-motion:reduce){.hx__chip{transition:none}}
 
   /* ===== HERO ===== */
   .hero{position:relative;height:100vh;min-height:680px;overflow:hidden}
@@ -605,11 +674,7 @@
 <body>
 
   <!-- ===== HERO ===== -->
-  <section class="hero" id="inicio">
-    <div class="hero__bg" id="heroSlider">
-      <video src="videos/secuencia-01.mp4" autoplay muted playsinline class="is-on" preload="auto"></video>
-    </div>
-    <div class="hero__veil"></div>
+  <section class="hx" id="inicio">
     <nav class="top">
       <a href="#inicio" class="top__name">Alan Buenhombre</a>
       <div class="top__nav">
@@ -631,21 +696,29 @@
         <span>EN</span>
       </button>
     </nav>
-    <div class="wrap">
-      <div class="row">
-        <div class="hero-left">
-          <div class="kick"><img class="kick__avatar" src="assets/Alan.png" alt="Alan Buenhombre"><span class="kick__avail"><span class="dot"></span> <span data-i18n="hero_avail">Disponible</span></span></div>
-          <div class="titleblock">
-            <h1 class="title" data-i18n-html="hero_title">Lead Designer · <strong>Brand, Systems &amp; Product</strong>.</h1>
-            <div class="titlerule"></div>
-            <p class="lede" data-i18n="hero_lede">Me gusta trabajar con marcas que piensan en sistemas. Llevo la marca a todos los puntos de contacto: impreso, campañas, motion, comunicación interna y externa, y producto digital.</p>
-            <p class="lede" data-i18n="hero_stat" style="margin-top:10px">14 años de la publicidad al producto digital. Hoy lidero el diseño de una marca del sector salud (NDA); antes, Lead Designer y Design Owner en Kommit y Director de Arte en AdO Latam.</p>
-          </div>
-        </div>
-        <div class="cta">
-          <a href="#sobre" class="cta-link" data-i18n="hero_cta_about">Sobre mí →</a>
-          <a href="#casos" class="cta-link" data-i18n="hero_cta_cases">Casos de estudio →</a>
-        </div>
+    <div class="hx__rule"></div><div class="hx__axis"></div>
+    <div class="hx__toggle" role="tablist" aria-label="Disciplinas">
+      <button class="on" data-set="marca" role="tab" aria-selected="true">Marca</button>
+      <button data-set="producto" role="tab" aria-selected="false">Producto</button>
+    </div>
+    <div class="hx__idx">(01) — Lead Designer · Brand, Systems &amp; Product</div>
+    <div class="hx__orbit back" id="hxBack" aria-hidden="true"></div>
+    <h1 class="hx__title" aria-label="Sistemas que hacen crecer marcas.">
+      <span class="hx__l1">Sistemas <span class="lt">que hacen</span></span>
+      <span class="hx__l2"><span>crecer</span><span class="lt">marcas.</span></span>
+    </h1>
+    <img class="hx__fig" src="assets/hero-alan.webp" alt="Alan Buenhombre" width="739" height="1400" fetchpriority="high">
+    <div class="hx__orbit front" id="hxFront"></div>
+    <p class="hx__note hx__note--l">14 años<br>de la publicidad<br>al producto digital</p>
+    <p class="hx__note hx__note--r">Marca, design systems<br>y producto en un<br>mismo sistema</p>
+    <div class="hx__bottom">
+      <div>
+        <div class="hx__avail"><span class="dot"></span> <span data-i18n="hero_avail">Disponible</span></div>
+        <p class="hx__lede" data-i18n="hero_lede">Me gusta trabajar con marcas que piensan en sistemas. Llevo la marca a todos los puntos de contacto: impreso, campañas, motion, comunicación interna y externa, y producto digital.</p>
+      </div>
+      <div class="hx__cta">
+        <a href="#casos" data-i18n="hero_cta_cases">Casos de estudio →</a>
+        <a href="#sobre" data-i18n="hero_cta_about">Sobre mí →</a>
       </div>
     </div>
   </section>
@@ -1229,6 +1302,42 @@
     let tx=0,ty=0,cx=0,cy=0;
     addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});
     (function loop(){cx+=(tx-cx)*.16;cy+=(ty-cy)*.16;cp.style.left=cx+'px';cp.style.top=cy+'px';requestAnimationFrame(loop);})();
+  })();
+
+
+  /* ---- HERO v2: órbita de disciplinas ---- */
+  (function(){
+    const hx=document.querySelector('.hx'); if(!hx) return;
+    const back=document.getElementById('hxBack'), front=document.getElementById('hxFront'), fig=hx.querySelector('.hx__fig');
+    const SETS={
+      marca:[['Br','Branding'],['Ty','Tipografía'],['Ar','Dirección de arte'],['Mo','Motion'],['3D','3D'],['間','Ma · espacio'],['✳','Concepto'],['Ca','Campañas']],
+      producto:[['DS','Design systems'],['UX','UX'],['Ui','UI'],['Pr','Prototipado'],['IA','IA aplicada'],['Tk','Tokens'],['✳','Concepto'],['Pd','Producto']]
+    };
+    const N=8, chips=[];
+    for(let k=0;k<N;k++){const c=document.createElement('a');c.className='hx__chip';c.href='#casos';c.innerHTML='<span></span>';chips.push(c);back.appendChild(c);}
+    function setLabels(name){chips.forEach((c,k)=>{const sp=c.firstChild;sp.style.opacity=0;setTimeout(()=>{sp.textContent=SETS[name][k][0];c.dataset.tip=SETS[name][k][1];sp.style.opacity=1;},220);});}
+    setLabels('marca');
+    hx.querySelectorAll('.hx__toggle button').forEach(b=>b.addEventListener('click',()=>{
+      hx.querySelectorAll('.hx__toggle button').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)});
+      setLabels(b.dataset.set); speed=0.0022; setTimeout(()=>speed=base,900);
+    }));
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const base=reduce?0:0.0016; let speed=base, t=0, paused=false;
+    hx.addEventListener('mouseover',e=>{if(e.target.closest('.hx__chip'))paused=true});
+    hx.addEventListener('mouseout',e=>{if(e.target.closest('.hx__chip'))paused=false});
+    function frame(){
+      const W=hx.clientWidth,H=hx.clientHeight, r=fig.getBoundingClientRect(), h=hx.getBoundingClientRect();
+      const cx=W/2, cy=(r.top-h.top)+r.height*0.30, rx=Math.min(W*0.36,560), ry=Math.min(H*0.13,120);
+      if(!paused) t+=speed;
+      chips.forEach((c,k)=>{
+        const a=t+k*(Math.PI*2/N), x=cx+Math.cos(a)*rx, y=cy+Math.sin(a)*ry, d=(Math.sin(a)+1)/2; // 0 back · 1 front
+        const isFront=Math.sin(a)>0, parent=isFront?front:back; if(c.parentNode!==parent) parent.appendChild(c);
+        const sc=.72+.38*d; c.style.transform=`translate(${x}px,${y}px) scale(${sc})`;
+        c.style.opacity=(.45+.55*d).toFixed(2); c.style.filter=d<.35?`blur(${(1-d/.35)*2}px)`:'none';
+      });
+      requestAnimationFrame(frame);
+    }
+    if(fig.complete) frame(); else fig.addEventListener('load',frame,{once:true});
   })();
 
   /* ---- INIT idioma ---- */
