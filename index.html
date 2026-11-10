@@ -735,7 +735,7 @@
     <div class="h1x__in">
       <div class="h1x__left">
         <div class="h1x__tag"><b>01</b><span>Lead Designer</span><span class="h1x__live"><i></i> <span data-i18n="hero_avail">Disponible</span></span></div>
-        <h1 class="h1x__title">Sistemas que hacen crecer <span class="k">marcas.</span></h1>
+        <h1 class="h1x__title">Sistemas que hacen crecer <span class="k">marcas<span class="kdot">.</span></span></h1>
         <div class="h1x__ov">
           <h3>Brand, Systems &amp; Product</h3>
           <p data-i18n="hero_lede">Me gusta trabajar con marcas que piensan en sistemas. Llevo la marca a todos los puntos de contacto: impreso, campañas, motion, comunicación interna y externa, y producto digital.</p>
@@ -1513,5 +1513,146 @@
 })();
 </script>
 
+
+<!-- ===== HILO · conexiones al hacer scroll ===== -->
+<style>
+  .thread{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:6;overflow:visible}
+  .thread path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .thread .rail-bg{stroke:rgba(127,127,127,.18);stroke-width:1}
+  .thread .rail{stroke:url(#thGrad);stroke-width:1.6}
+  .thread .br{stroke:url(#thGrad);stroke-width:1.2;transition:stroke-dashoffset .7s cubic-bezier(.2,.7,.2,1)}
+  .thread .nd{fill:var(--bg,#1A1A1A);stroke:rgba(127,127,127,.45);stroke-width:1.2;transition:fill .35s,stroke .35s,r .35s}
+  .thread .nd.on{stroke:none}
+  .thread .lb{font:500 10px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;fill:rgba(127,127,127,.6);transition:fill .35s}
+  .thread .head{filter:drop-shadow(0 0 6px currentColor)}
+  .tdot{position:fixed;left:0;top:0;border-radius:50%;background:#1F45D6;pointer-events:none;z-index:60;will-change:transform;display:none}
+  .kdot.ghost,.hx__title .k.ghost{color:transparent!important}
+  .hx__title .k.hit{animation:kHit .9s cubic-bezier(.2,.7,.2,1)}
+  @keyframes kHit{0%{text-shadow:0 0 0 rgba(31,69,214,0)}30%{text-shadow:0 0 28px rgba(31,69,214,.55)}100%{text-shadow:0 0 0 rgba(31,69,214,0)}}
+  .th-on strong,.th-on .k{transition:color .4s}
+  .closer__arrow{transition:box-shadow .5s,border-color .5s,background .5s}
+  .closer__arrow.th-hit{border-color:var(--accent)!important;box-shadow:0 0 0 6px rgba(200,255,0,.08),0 0 32px rgba(200,255,0,.25)}
+  @media (max-width:900px){.thread{display:none}}
+</style>
+<script>
+(()=>{
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS='http://www.w3.org/2000/svg';
+  const $=s=>document.querySelector(s);
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  const pageRect=el=>{const r=el.getBoundingClientRect();return{x:r.left+scrollX,y:r.top+scrollY,w:r.width,h:r.height}};
+
+  /* ---------- 1 · Punto viajero: "marcas." -> "seleccionado." ---------- */
+  const src=$('.h1x__title .kdot'), tgt=$('#destacados .hx__title .k');
+  const ctx=document.createElement('canvas').getContext('2d');
+  function dotGeom(el){
+    // posición exacta del punto tipográfico: centro del glifo sobre la línea base
+    const cs=getComputedStyle(el);ctx.font=`${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const m=ctx.measureText('.');
+    const rg=document.createRange();rg.selectNodeContents(el);const r=rg.getBoundingClientRect();
+    const bl=document.createElement('i');bl.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';
+    el.appendChild(bl);const base=bl.getBoundingClientRect().top;bl.remove();
+    const h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
+    const w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight;
+    return{x:r.left+scrollX+m.actualBoundingBoxLeft*0+ (m.width-w)/2 + w/2,y:base+scrollY-m.actualBoundingBoxAscent+h/2,d:Math.max(w,h)};
+  }
+  const dot=document.createElement('div');dot.className='tdot';document.body.appendChild(dot);
+  let A,B,landed=false;
+  function measureDot(){if(!src||!tgt)return;A=dotGeom(src);B=dotGeom(tgt)}
+  function updDot(){
+    if(!A)return;
+    const vh=innerHeight, s0=40, s1=Math.max(s0+200,B.y-vh*.5);
+    const t=reduce?1:clamp((scrollY-s0)/(s1-s0));
+    if(t<=0||t>=1){dot.style.display='none';src.classList.remove('ghost');tgt.classList.remove('ghost');
+      if(t>=1&&!landed){landed=true;if(!reduce){tgt.classList.remove('hit');void tgt.offsetWidth;tgt.classList.add('hit')}}
+      if(t<=0)landed=false;return}
+    landed=false;
+    src.classList.add('ghost');tgt.classList.add('ghost');
+    const e=ease(t);
+    // curva: sale hacia la derecha, rodea el título y aterriza en su punto
+    const cx=Math.min(innerWidth-40,B.x+Math.max(160,innerWidth*.18)), cy=lerp(A.y,B.y,.42);
+    const x=(1-e)*(1-e)*A.x+2*(1-e)*e*cx+e*e*B.x;
+    const y=(1-e)*(1-e)*A.y+2*(1-e)*e*cy+e*e*B.y;
+    const d=lerp(A.d,B.d,e)*(1+Math.sin(Math.PI*t)*.35);
+    dot.style.display='block';dot.style.width=dot.style.height=d+'px';
+    dot.style.transform=`translate(${x-scrollX-d/2}px,${y-scrollY-d/2}px)`;
+  }
+
+  /* ---------- 2 · El hilo: une cada sección hasta el contacto ---------- */
+  const svg=document.createElementNS(NS,'svg');svg.classList.add('thread');svg.setAttribute('aria-hidden','true');
+  document.body.appendChild(svg);
+  const stops=[
+    ['#nuevo','#nuevo .cases__title'],['#casos','#casos .cases__title'],['#juegos','#juegos .cases__title'],
+    ['#playbooks','#playbooks .cases__title'],['#sobre','#sobre .info__statement'],['#proceso','#proceso h2']
+  ];
+  let L=null;
+  function build(){
+    const docH=document.documentElement.scrollHeight;svg.setAttribute('width',innerWidth);svg.setAttribute('height',docH);
+    svg.setAttribute('viewBox',`0 0 ${innerWidth} ${docH}`);svg.style.height=docH+'px';svg.innerHTML='';
+    const intro=$('#hxIntro'), nuevo=$('#nuevo'), arrow=$('.closer__arrow'), side=$('.closer__sideline--l');
+    if(!intro||!nuevo||!arrow)return;
+    const nodes=stops.map(([sec,sel],i)=>{const el=$(sel);if(!el)return null;const r=pageRect(el);
+      const strong=el.querySelector('strong');const rs=strong?pageRect(strong):r;
+      return{el,x:r.x,y:r.y+Math.min(r.h,parseFloat(getComputedStyle(el).fontSize)*1.1)/2+2,n:String(i+3).padStart(2,'0')}}).filter(Boolean);
+    const minX=Math.min(...nodes.filter(n=>!n.el.closest('#proceso')).map(n=>n.x));
+    const RX=Math.max(18,minX-132);
+    const y0=pageRect(intro).y+10;
+    const ar=pageRect(arrow), sl=side?pageRect(side):{x:ar.x-120,y:ar.y+ar.h/2};
+    const yEnd=ar.y+ar.h/2, xEnd=ar.x, R=28;
+    const darkY=pageRect(nuevo).y;
+    const defs=document.createElementNS(NS,'defs');
+    const accent=getComputedStyle(document.body).getPropertyValue('--accent').trim()||'#C8FF00';
+    defs.innerHTML=`<linearGradient id="thGrad" gradientUnits="userSpaceOnUse" x1="0" y1="${darkY-160}" x2="0" y2="${darkY+40}">
+      <stop offset="0" stop-color="#1F45D6"/><stop offset="1" style="stop-color:var(--accent)"/></linearGradient>`;
+    svg.appendChild(defs);
+    const d=`M${RX} ${y0} L${RX} ${yEnd-R} Q${RX} ${yEnd} ${RX+R} ${yEnd} L${xEnd} ${yEnd}`;
+    const mk=(cls,dd)=>{const p=document.createElementNS(NS,'path');p.setAttribute('class',cls);p.setAttribute('d',dd);svg.appendChild(p);return p};
+    mk('rail-bg',d);const rail=mk('rail',d);
+    const len=rail.getTotalLength();rail.style.strokeDasharray=len;rail.style.strokeDashoffset=len;
+    const start=document.createElementNS(NS,'circle');start.setAttribute('cx',RX);start.setAttribute('cy',y0);start.setAttribute('r',3.5);start.setAttribute('fill','#1F45D6');svg.appendChild(start);
+    const items=nodes.map(n=>{
+      const bx=n.x-16;const br=mk('br',`M${RX} ${n.y} L${bx} ${n.y}`);const bl=bx-RX;
+      br.style.strokeDasharray=bl;br.style.strokeDashoffset=bl;
+      const c=document.createElementNS(NS,'circle');c.setAttribute('class','nd');c.setAttribute('cx',RX);c.setAttribute('cy',n.y);c.setAttribute('r',4);svg.appendChild(c);
+      const t=document.createElementNS(NS,'text');t.setAttribute('class','lb');t.setAttribute('x',RX+12);t.setAttribute('y',n.y-8);t.textContent=n.n;svg.appendChild(t);
+      return{...n,br,bl,c,t,on:false}});
+    const head=document.createElementNS(NS,'circle');head.setAttribute('class','head');head.setAttribute('r',4);svg.appendChild(head);
+    // tabla largo -> y para mover la cabeza
+    const tab=[];for(let l=0;l<=len;l+=6){tab.push([l,rail.getPointAtLength(l)])}
+    L={rail,len,tab,items,head,yEnd,xEnd,y0,darkY,accent,arrow};
+    upd();
+  }
+  function upd(){
+    updDot();
+    if(!L)return;
+    const hy=scrollY+innerHeight*(reduce?10:.62);
+    let l;
+    const fy=L.yEnd-innerHeight*.3;
+    const lenAtY=y=>{let lo=0,hi=L.tab.length-1;while(lo<hi){const m=(lo+hi)>>1;if(L.tab[m][1].y<y)lo=m+1;else hi=m}return L.tab[lo][0]};
+    if(hy<=L.y0)l=0;
+    else if(hy>=fy){const l0=lenAtY(fy);l=lerp(l0,L.len,clamp((hy-fy)/(innerHeight*.3)))}
+    else l=lenAtY(hy);
+    L.rail.style.strokeDashoffset=L.len-l;
+    const p=L.rail.getPointAtLength(l);L.head.setAttribute('cx',p.x);L.head.setAttribute('cy',p.y);
+    const col=p.y<L.darkY-60?'#1F45D6':'var(--accent)';L.head.style.fill=col;L.head.style.color=col;
+    L.head.style.opacity=l>0&&l<L.len?1:0;
+    for(const it of L.items){const on=hy>=it.y;if(on!==it.on){it.on=on;
+      it.br.style.strokeDashoffset=on?0:it.bl;it.c.classList.toggle('on',on);
+      it.c.style.fill=on?(it.y<L.darkY?'#1F45D6':'var(--accent)'):'';it.c.setAttribute('r',on?4.5:4);
+      it.t.style.fill=on?(it.y<L.darkY?'#1F45D6':'var(--accent)'):''}}
+    L.arrow.classList.toggle('th-hit',l>=L.len-1);
+  }
+  let raf=0;const tick=()=>{raf=0;upd()};
+  addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(tick)},{passive:true});
+  let rt;const rebuild=()=>{clearTimeout(rt);rt=setTimeout(()=>{measureDot();build()},120)};
+  addEventListener('resize',rebuild);
+  new ResizeObserver(rebuild).observe(document.body);
+  (document.fonts?document.fonts.ready:Promise.resolve()).then(rebuild);
+  addEventListener('load',rebuild);
+  measureDot();build();
+})();
+</script>
 </body>
 </html>
