@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marca por WhatsApp · Experimento · Alan Buenhombre</title>
+<meta name="description" content="Experimento de Gritt Lab: pedir una pieza de marca con un audio de WhatsApp. La IA propone con las reglas de la marca y un diseñador aprueba." />
+<link rel="canonical" href="https://buenhombre.design/marca-whatsapp.html" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta property="og:title" content="Marca por WhatsApp · Experimento · Alan Buenhombre" />
+<meta property="og:description" content="Experimento de Gritt Lab: pedir una pieza de marca con un audio de WhatsApp. La IA propone con las reglas de la marca y un diseñador aprueba." />
+<meta property="og:url" content="https://buenhombre.design/marca-whatsapp.html" />
+<meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="case.css" />
+<style>
+  .chead__play-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:22px}
+  .play-cta{display:inline-flex;align-items:center;gap:14px;background:var(--k);color:#fff;font-family:'Inter',sans-serif;font-weight:500;font-size:1rem;letter-spacing:-.01em;padding:14px 22px;border-radius:100px;text-decoration:none;transition:transform .3s ease,background .3s ease}
+  .play-cta:hover{transform:translateY(-2px);background:var(--k-2)}
+  .play-cta__arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#fff;color:var(--k);border-radius:50%;font-size:.78rem}
+  .cbody .cmediawrap{margin:64px 0}
+  .hl-steps{list-style:none;margin:26px 0 0;padding:0;display:grid}
+  .hl-step{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+  .hl-step:last-child{border-bottom:1px solid var(--line)}
+  .hl-step__n{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.12em;color:var(--k);padding-top:4px}
+  .hl-step h3{font-weight:400;font-size:1.08rem;letter-spacing:-.02em;color:var(--ink);margin:0 0 6px}
+  .hl-step p{font-size:.93rem;line-height:1.6;color:var(--ink-2);margin:0}
+  .hl-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .hl-tools span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:7px 14px}
+  /* panel Klein para piezas verticales y el chat */
+  .kpanel{max-width:1000px;margin:0 auto;border-radius:20px;background:var(--k);padding:clamp(22px,4vw,48px);display:flex;justify-content:center;gap:clamp(12px,2vw,24px);scroll-margin-top:24px}
+  .kpanel video,.kpanel img{display:block;border-radius:14px;width:auto;height:min(72vh,640px);aspect-ratio:9/16;object-fit:cover;background:#0b1a5a}
+  .frames{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,18px);max-width:1000px;margin:0 auto}
+  .frames img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;border:6px solid var(--paper)}
+  .note-s{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:14px}
+  .chat-w{width:min(100%,400px);background:#EFEDE8;border-radius:18px;overflow:hidden;box-shadow:0 30px 50px -30px rgba(8,20,80,.6);align-self:center}
+  .chat-h{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border-bottom:1px solid var(--line)}
+  .chat-h i{width:28px;height:28px;border-radius:50%;background:var(--k);flex:none}
+  .chat-h b{display:block;font-weight:500;font-size:.86rem}
+  .chat-h small{display:block;font-size:.68rem;color:var(--muted)}
+  .chat-b{display:flex;flex-direction:column;gap:10px;padding:16px}
+  .bub{max-width:84%;padding:9px 13px;border-radius:12px;font-size:.84rem;line-height:1.45;background:#fff;color:var(--ink-2)}
+  .bub.me{align-self:flex-end;background:#DCE3F0;display:flex;align-items:center;gap:8px}
+  .wave{display:flex;gap:2px;align-items:center;height:16px}.wave i{width:2px;background:var(--k);border-radius:2px}
+  .bub.ok{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--k);background:transparent;padding:0 2px}
+  @media(max-width:760px){.kpanel{flex-direction:column;align-items:center}.kpanel video{height:auto;width:100%;max-width:340px}.frames{grid-template-columns:1fr 1fr 1fr;gap:8px}.frames img{border-width:3px}}
+</style>
+</head>
+<body>
+
+  <nav class="top">
+    <a href="index.html" class="top__name">Alan Buenhombre</a>
+    <div class="top__nav">
+      <a href="index.html#inicio" data-i18n="nav.home">Inicio</a>
+      <a href="index.html#casos" data-i18n="nav.cases">Casos</a>
+      <a href="index.html#sobre" data-i18n="nav.about">Sobre</a>
+      <a href="index.html#contacto" data-i18n="nav.contact">Contacto</a>
+    </div>
+    <button class="top__lang nav__lang" aria-label="Cambiar idioma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 3 3.5 6 3.5 9s-1 6-3.5 9"/><path d="M12 3c-2.5 3-3.5 6-3.5 9s1 6 3.5 9"/></svg><span>EN</span></button>
+  </nav>
+  <header class="chead">
+    <div class="chead__kicker" data-i18n-html="mw.kicker">Product &amp; AI · Experimento 01 · Explorando</div>
+    <h1 class="chead__title" data-i18n-html="mw.title">Marca por WhatsApp</h1>
+    <p class="chead__sub" data-i18n-html="mw.sub">¿Y si pedir una pieza de tu marca fuera tan fácil como <strong>mandar un audio</strong>? La IA propone siguiendo las reglas de la marca y un diseñador aprueba antes de entregar.</p>
+  </header>
+
+  <div class="cmeta">
+    <div><div class="cmeta__k" data-i18n-html="mw.m.state.k">Estado</div><div class="cmeta__v" data-i18n-html="mw.m.state">Explorando · sin cliente</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.type.k">Tipo</div><div class="cmeta__v" data-i18n-html="mw.m.type">Flujo de marca con IA</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.chan.k">Canal</div><div class="cmeta__v" data-i18n-html="mw.m.chan">WhatsApp</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.lab.k">Hecho en</div><div class="cmeta__v" data-i18n-html="mw.m.lab">Gritt Lab · 2026</div></div>
+  </div>
+
+  <div class="cmediawrap">
+    <div class="kpanel">
+      <div class="chat-w" aria-label="Ejemplo ilustrativo de la conversación">
+        <div class="chat-h"><i></i><div><b data-i18n-html="mw.chat.n">Marca por WhatsApp</b><small data-i18n-html="mw.chat.s">en línea · ejemplo ilustrativo</small></div></div>
+        <div class="chat-b">
+          <div class="bub me">▶ <span class="wave"><i style="height:6px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:15px"></i><i style="height:5px"></i><i style="height:11px"></i><i style="height:7px"></i><i style="height:13px"></i><i style="height:4px"></i></span> 0:14</div>
+          <div class="bub" data-i18n-html="mw.chat.a">Listo, armé una pieza para historia con tu paleta y tu tipografía. La está revisando el equipo.</div>
+          <div class="bub ok" data-i18n-html="mw.chat.ok">✓ Aprobada por un diseñador</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="cbody">
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="mw.how.l">Cómo funciona</div>
+      <h2 class="cblock__title" data-i18n-html="mw.how.t">Del audio a la pieza aprobada.</h2>
+      <ol class="hl-steps">
+        <li class="hl-step"><span class="hl-step__n">01</span><div><h3 data-i18n-html="mw.s1.t">Audio</h3><p data-i18n-html="mw.s1.p">Mandas un audio por WhatsApp contando qué necesitas.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">02</span><div><h3 data-i18n-html="mw.s2.t">Propuesta</h3><p data-i18n-html="mw.s2.p">La IA arma la pieza siguiendo las reglas de tu marca: colores, tipografías, tono y prompts de dirección visual.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">03</span><div><h3 data-i18n-html="mw.s3.t">Aprobación</h3><p data-i18n-html="mw.s3.p">Un diseñador la revisa, la ajusta y la aprueba. Solo entonces te llega.</p></div></li>
+      </ol>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="mw.why.l">La idea</div>
+      <h2 class="cblock__title" data-i18n-html="mw.why.t">La IA explora; el criterio decide qué sale.</h2>
+      <p class="cblock__text" data-i18n-html="mw.why.p">Parte de tener la marca como <strong>reglas vivas</strong> (tokens, tipografías y prompts en un solo lugar) en vez de un PDF. Con eso, la IA puede proponer rápido y una persona decide qué llega a la marca. Es un experimento en curso, todavía sin cliente.</p>
+    </div>
+
+  </section>
+
+  <section class="cnext">
+    <div class="cnext__label" data-i18n-html="mw.next">Siguiente proyecto</div>
+    <a href="gritt-reports.html" class="cnext__row">
+      <span class="cnext__name">Gritt Reports</span>
+      <span class="cnext__disc" data-i18n-html="mw.nextd">Producto SaaS · Prototipo interactivo · 2026</span>
+    </a>
+  </section>
+
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div>
+        <div class="footer__logo">Alan Buenhombre</div>
+        <p class="footer__role">Lead Designer · Brand, Systems &amp; Product</p>
+        <p class="footer__tagline">Bogotá, Colombia</p>
+        <p class="footer__copy">© 2026 Alan Buenhombre</p>
+      </div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.menu">Menú</div>
+        <ul class="footer__links">
+          <li><a href="index.html#inicio" data-i18n="nav.home">Inicio</a></li>
+          <li><a href="index.html#casos" data-i18n="nav.cases">Casos</a></li>
+          <li><a href="index.html#sobre" data-i18n="nav.about">Sobre</a></li>
+          <li><a href="index.html#contacto" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.contact">Contacto</div>
+        <div class="footer__social">
+          <a class="footer__social-btn" href="mailto:alangtres@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
+          <a class="footer__social-btn" href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a class="footer__social-btn" href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener" aria-label="Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+</body>
+</html>

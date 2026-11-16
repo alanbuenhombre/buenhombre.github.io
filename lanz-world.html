@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LANZ World · Contenido con IA · Alan Buenhombre</title>
+<meta name="description" content="LANZ World: contenido para redes con personajes propios, escenas con IA bajo dirección de arte y una parrilla semanal. Hecho en Gritt Lab." />
+<link rel="canonical" href="https://buenhombre.design/lanz-world.html" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta property="og:title" content="LANZ World · Contenido con IA · Alan Buenhombre" />
+<meta property="og:description" content="LANZ World: contenido para redes con personajes propios, escenas con IA bajo dirección de arte y una parrilla semanal. Hecho en Gritt Lab." />
+<meta property="og:url" content="https://buenhombre.design/lanz-world.html" />
+<meta property="og:image" content="https://buenhombre.design/assets/lanz/halloween-poster.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="case.css" />
+<style>
+  .chead__play-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:22px}
+  .play-cta{display:inline-flex;align-items:center;gap:14px;background:var(--k);color:#fff;font-family:'Inter',sans-serif;font-weight:500;font-size:1rem;letter-spacing:-.01em;padding:14px 22px;border-radius:100px;text-decoration:none;transition:transform .3s ease,background .3s ease}
+  .play-cta:hover{transform:translateY(-2px);background:var(--k-2)}
+  .play-cta__arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#fff;color:var(--k);border-radius:50%;font-size:.78rem}
+  .cbody .cmediawrap{margin:64px 0}
+  .hl-steps{list-style:none;margin:26px 0 0;padding:0;display:grid}
+  .hl-step{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+  .hl-step:last-child{border-bottom:1px solid var(--line)}
+  .hl-step__n{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.12em;color:var(--k);padding-top:4px}
+  .hl-step h3{font-weight:400;font-size:1.08rem;letter-spacing:-.02em;color:var(--ink);margin:0 0 6px}
+  .hl-step p{font-size:.93rem;line-height:1.6;color:var(--ink-2);margin:0}
+  .hl-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .hl-tools span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:7px 14px}
+  /* panel Klein para piezas verticales y el chat */
+  .kpanel{max-width:1000px;margin:0 auto;border-radius:20px;background:var(--k);padding:clamp(22px,4vw,48px);display:flex;justify-content:center;gap:clamp(12px,2vw,24px);scroll-margin-top:24px}
+  .kpanel video,.kpanel img{display:block;border-radius:14px;width:auto;height:min(72vh,640px);aspect-ratio:9/16;object-fit:cover;background:#0b1a5a}
+  .frames{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,18px);max-width:1000px;margin:0 auto}
+  .frames img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;border:6px solid var(--paper)}
+  .note-s{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:14px}
+  .chat-w{width:min(100%,400px);background:#EFEDE8;border-radius:18px;overflow:hidden;box-shadow:0 30px 50px -30px rgba(8,20,80,.6);align-self:center}
+  .chat-h{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border-bottom:1px solid var(--line)}
+  .chat-h i{width:28px;height:28px;border-radius:50%;background:var(--k);flex:none}
+  .chat-h b{display:block;font-weight:500;font-size:.86rem}
+  .chat-h small{display:block;font-size:.68rem;color:var(--muted)}
+  .chat-b{display:flex;flex-direction:column;gap:10px;padding:16px}
+  .bub{max-width:84%;padding:9px 13px;border-radius:12px;font-size:.84rem;line-height:1.45;background:#fff;color:var(--ink-2)}
+  .bub.me{align-self:flex-end;background:#DCE3F0;display:flex;align-items:center;gap:8px}
+  .wave{display:flex;gap:2px;align-items:center;height:16px}.wave i{width:2px;background:var(--k);border-radius:2px}
+  .bub.ok{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--k);background:transparent;padding:0 2px}
+  @media(max-width:760px){.kpanel{flex-direction:column;align-items:center}.kpanel video{height:auto;width:100%;max-width:340px}.frames{grid-template-columns:1fr 1fr 1fr;gap:8px}.frames img{border-width:3px}}
+</style>
+</head>
+<body>
+
+  <nav class="top">
+    <a href="index.html" class="top__name">Alan Buenhombre</a>
+    <div class="top__nav">
+      <a href="index.html#inicio" data-i18n="nav.home">Inicio</a>
+      <a href="index.html#casos" data-i18n="nav.cases">Casos</a>
+      <a href="index.html#sobre" data-i18n="nav.about">Sobre</a>
+      <a href="index.html#contacto" data-i18n="nav.contact">Contacto</a>
+    </div>
+    <button class="top__lang nav__lang" aria-label="Cambiar idioma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 3 3.5 6 3.5 9s-1 6-3.5 9"/><path d="M12 3c-2.5 3-3.5 6-3.5 9s1 6 3.5 9"/></svg><span>EN</span></button>
+  </nav>
+  <header class="chead">
+    <div class="chead__kicker" data-i18n-html="lw.kicker">Product &amp; AI · Contenido con IA · Oct 2026</div>
+    <h1 class="chead__title">LANZ World</h1>
+    <p class="chead__sub" data-i18n-html="lw.sub">Contenido para redes de una marca de envíos internacionales: <strong>personajes propios</strong>, escenas con IA bajo dirección de arte y una parrilla semanal que el equipo aprueba en minutos.</p>
+    <div class="chead__play-row">
+      <a href="#video" class="play-cta"><span data-i18n-html="lw.cta">Ver el video</span><span class="play-cta__arrow">↓</span></a>
+    </div>
+  </header>
+
+  <div class="cmeta">
+    <div><div class="cmeta__k" data-i18n-html="lw.m.client.k">Cliente</div><div class="cmeta__v" data-i18n-html="lw.m.client">LANZ World</div></div>
+    <div><div class="cmeta__k" data-i18n-html="lw.m.svc.k">Servicio</div><div class="cmeta__v" data-i18n-html="lw.m.svc">Contenido para redes e informes</div></div>
+    <div><div class="cmeta__k" data-i18n-html="lw.m.camp.k">Campaña</div><div class="cmeta__v" data-i18n-html="lw.m.camp">Halloween · octubre 2026</div></div>
+    <div><div class="cmeta__k" data-i18n-html="lw.m.lab.k">Hecho en</div><div class="cmeta__v" data-i18n-html="lw.m.lab">Gritt Lab</div></div>
+  </div>
+
+  <div class="cmediawrap">
+    <div class="kpanel" id="video">
+      <video src="assets/lanz/halloween.mp4" poster="assets/lanz/halloween-poster.jpg" controls playsinline preload="none"></video>
+    </div>
+    <p class="note-s" data-i18n-html="lw.vnote">Video vertical 9:16 · 36 s · guion, escenas con IA, voz y edición</p>
+  </div>
+
+  <section class="cbody">
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="lw.reto.l">El reto</div>
+      <h2 class="cblock__title" data-i18n-html="lw.reto.t">Publicar cada semana sin que se sienta repetido.</h2>
+      <p class="cblock__text" data-i18n-html="lw.reto.p">Una marca de envíos tiene poco que mostrar: cajas, guías y mensajeros. El contenido tenía que darle <strong>personalidad</strong>, salir cada semana y pasar por aprobación sin semanas de ida y vuelta.</p>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="lw.hice.l">Lo que hicimos</div>
+      <h2 class="cblock__title" data-i18n-html="lw.hice.t">Un sistema, no piezas sueltas.</h2>
+      <ol class="hl-steps">
+        <li class="hl-step"><span class="hl-step__n">01</span><div><h3 data-i18n-html="lw.s1.t">Personajes</h3><p data-i18n-html="lw.s1.p">Escribimos la idea y creamos personajes propios para la marca. El buzón se volvió el protagonista de la campaña de Halloween.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">02</span><div><h3 data-i18n-html="lw.s2.t">Video vertical con IA</h3><p data-i18n-html="lw.s2.p">Escenas generadas con IA bajo dirección de arte humana, editadas con voz y música y bajadas a piezas para la parrilla.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">03</span><div><h3 data-i18n-html="lw.s3.t">Banco de assets</h3><p data-i18n-html="lw.s3.p">Personajes, escenas y fondos quedan en un banco que se reutiliza mes a mes: cada campaña arranca con material listo.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">04</span><div><h3 data-i18n-html="lw.s4.t">Parrilla e informes</h3><p data-i18n-html="lw.s4.p">Parrilla semanal con video y piezas fijas que LANZ aprueba en minutos, y un informe de lo que funcionó para ajustar la siguiente.</p></div></li>
+      </ol>
+      <div class="hl-tools"><span>Guion</span><span>Escenas con IA</span><span data-i18n-html="lw.tool3">Dirección de arte</span><span data-i18n-html="lw.tool4">Voz</span><span data-i18n-html="lw.tool5">Edición</span></div>
+    </div>
+
+    <div class="cmediawrap">
+      <div class="frames">
+        <img src="assets/lanz/02_hola_soy_el_buzon.jpg" alt="Personaje: el buzón" loading="lazy">
+        <img src="assets/lanz/05_cartero_llega.jpg" alt="Escena: llega el cartero" loading="lazy">
+        <img src="assets/lanz/14_alegria_bruja_escoba.jpg" alt="Pieza para redes" loading="lazy">
+      </div>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="lw.res.l">Resultado</div>
+      <h2 class="cblock__title" data-i18n-html="lw.res.t">Contenido semanal con personajes propios, hecho con IA y aprobado sin fricción.</h2>
+      <p class="cblock__text" data-i18n-html="lw.res.p">Una parrilla semanal con video vertical y piezas fijas, y un banco de personajes y escenas que se reutiliza en cada campaña.</p>
+    </div>
+
+  </section>
+
+  <section class="cnext">
+    <div class="cnext__label" data-i18n-html="lw.next">Siguiente proyecto</div>
+    <a href="marca-whatsapp.html" class="cnext__row">
+      <span class="cnext__name">Marca por WhatsApp</span>
+      <span class="cnext__disc" data-i18n-html="lw.nextd">Experimento · Flujo de marca con IA · 2026</span>
+    </a>
+  </section>
+
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div>
+        <div class="footer__logo">Alan Buenhombre</div>
+        <p class="footer__role">Lead Designer · Brand, Systems &amp; Product</p>
+        <p class="footer__tagline">Bogotá, Colombia</p>
+        <p class="footer__copy">© 2026 Alan Buenhombre</p>
+      </div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.menu">Menú</div>
+        <ul class="footer__links">
+          <li><a href="index.html#inicio" data-i18n="nav.home">Inicio</a></li>
+          <li><a href="index.html#casos" data-i18n="nav.cases">Casos</a></li>
+          <li><a href="index.html#sobre" data-i18n="nav.about">Sobre</a></li>
+          <li><a href="index.html#contacto" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.contact">Contacto</div>
+        <div class="footer__social">
+          <a class="footer__social-btn" href="mailto:alangtres@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
+          <a class="footer__social-btn" href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a class="footer__social-btn" href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener" aria-label="Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+</body>
+</html>
