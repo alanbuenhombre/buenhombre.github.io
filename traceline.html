@@ -19,84 +19,84 @@
 <link rel="stylesheet" href="case.css" />
 <style>
   /* ===== PLAY CTA ===== */
-  .play-cta{display:inline-flex;align-items:center;gap:14px;background:var(--accent,#C89B5C);color:#000;
-       font-family:'Manrope',sans-serif;font-weight:500;font-size:1rem;letter-spacing:-.01em;
-       padding:16px 26px;border-radius:100px;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease;
+  .play-cta{display:inline-flex;align-items:center;gap:14px;background:var(--k);color:#fff;
+       font-family:'Inter',sans-serif;font-weight:500;font-size:1rem;letter-spacing:-.01em;
+       padding:16px 26px;border-radius:100px;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease,background .3s ease;
        border:1px solid transparent;margin-top:14px}
-  .play-cta:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+  .play-cta:hover{transform:translateY(-2px);background:var(--k-2);box-shadow:0 20px 40px -18px rgba(31,69,214,.45)}
   .play-cta__label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.2em;
-       text-transform:uppercase;opacity:.65;margin-right:4px}
+       text-transform:uppercase;opacity:.75;margin-right:4px}
   .play-cta__arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
-       background:#000;color:var(--accent,#C89B5C);border-radius:50%;font-size:.78rem;line-height:1;font-weight:600}
+       background:#fff;color:var(--k);border-radius:50%;font-size:.78rem;line-height:1;font-weight:600}
 
   .chead__play-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:22px}
   .chead__play-row a:not(.play-cta){font-family:'IBM Plex Mono',monospace;font-size:.74rem;
-       letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;
-       padding:6px 2px;border-bottom:1px dotted rgba(255,255,255,.3)}
-  .chead__play-row a:not(.play-cta):hover{color:#fff;border-color:#fff}
+       letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;
+       padding:6px 2px;border-bottom:1px dotted var(--faint)}
+  .chead__play-row a:not(.play-cta):hover{color:var(--k);border-color:var(--k)}
 
   /* ===== STATUS WIP ===== */
-  .tl-status{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);
+  .tl-status{background:var(--paper);border:1px solid var(--line);
        border-radius:12px;padding:28px 32px;margin:40px 0}
   .tl-status__label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.22em;
-       text-transform:uppercase;color:var(--accent,#C89B5C);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-  .tl-status__label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent,#C89B5C);
-       box-shadow:0 0 10px rgba(200,155,92,.5);animation:tl-pulse 2s ease-in-out infinite}
+       text-transform:uppercase;color:var(--k);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .tl-status__label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--k);
+       box-shadow:0 0 0 4px var(--k-soft);animation:tl-pulse 2s ease-in-out infinite}
   @keyframes tl-pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .tl-status h3{font-family:'Manrope',sans-serif;font-weight:300;font-size:1.4rem;
-       letter-spacing:-.02em;line-height:1.3;color:#fff;margin-bottom:12px}
-  .tl-status p{font-family:'Manrope',sans-serif;font-size:.95rem;line-height:1.6;
-       color:rgba(255,255,255,.78)}
+  .tl-status h3{font-family:'Inter',sans-serif;font-weight:300;font-size:1.4rem;
+       letter-spacing:-.02em;line-height:1.3;color:var(--ink);margin-bottom:12px}
+  .tl-status p{font-family:'Inter',sans-serif;font-size:.95rem;line-height:1.6;
+       color:var(--ink-2)}
 
   /* ===== PROGRESS CHECKLIST ===== */
   .tl-progress{display:grid;grid-template-columns:1fr;gap:8px;margin-top:18px}
   .tl-progress__item{display:flex;align-items:baseline;gap:14px;padding:10px 0;
-       border-bottom:1px dotted rgba(255,255,255,.08);font-family:'Manrope',sans-serif;font-size:.9rem;
-       color:rgba(255,255,255,.75);line-height:1.5}
+       border-bottom:1px dotted var(--line);font-family:'Inter',sans-serif;font-size:.9rem;
+       color:var(--ink-2);line-height:1.5}
   .tl-progress__item:last-child{border-bottom:none}
   .tl-progress__state{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;
        padding:3px 8px;border-radius:3px;text-transform:uppercase}
-  .tl-progress__state--done{background:rgba(74,222,128,.15);color:#4ade80;border:1px solid rgba(74,222,128,.3)}
-  .tl-progress__state--wip{background:rgba(200,155,92,.15);color:var(--accent,#C89B5C);border:1px solid rgba(200,155,92,.3)}
-  .tl-progress__state--todo{background:rgba(255,255,255,.03);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+  .tl-progress__state--done{background:var(--k);color:#fff;border:1px solid var(--k)}
+  .tl-progress__state--wip{background:var(--k-soft);color:var(--k);border:1px solid rgba(31,69,214,.3)}
+  .tl-progress__state--todo{background:var(--soft);color:var(--muted);border:1px solid var(--line)}
 
   /* ===== SPEC TABLE ===== */
-  .tl-specs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.08);
-       border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden;margin-top:16px}
-  .tl-specs__row{background:#121212;padding:14px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .tl-specs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+       border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:16px}
+  .tl-specs__row{background:var(--paper);padding:14px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:14px}
   .tl-specs__k{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.18em;
-       text-transform:uppercase;color:rgba(255,255,255,.45)}
-  .tl-specs__v{font-family:'Manrope',sans-serif;font-size:.88rem;color:rgba(255,255,255,.9);
+       text-transform:uppercase;color:var(--muted)}
+  .tl-specs__v{font-family:'Inter',sans-serif;font-size:.88rem;color:var(--ink);
        font-weight:400;letter-spacing:-.005em;text-align:right}
   @media(max-width:720px){.tl-specs{grid-template-columns:1fr}}
 
   /* ===== PROGRESSIVE DISCLOSURE ===== */
-  .cblock__more{margin-top:14px;border-top:1px dotted rgba(255,255,255,.1);padding-top:12px}
+  .cblock__more{margin-top:14px;border-top:1px dotted var(--line);padding-top:12px}
   .cblock__more > summary{list-style:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-       font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);
+       font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
        display:inline-flex;align-items:center;gap:8px;padding:4px 0;transition:color .25s ease;user-select:none}
   .cblock__more > summary::-webkit-details-marker{display:none}
   .cblock__more > summary::before{content:"+";display:inline-flex;align-items:center;justify-content:center;
-       width:16px;height:16px;border:1px solid rgba(255,255,255,.3);border-radius:50%;
-       font-family:'Manrope',sans-serif;font-size:.78rem;line-height:1;color:rgba(255,255,255,.6);
+       width:16px;height:16px;border:1px solid var(--faint);border-radius:50%;
+       font-family:'Inter',sans-serif;font-size:.78rem;line-height:1;color:var(--muted);
        transition:transform .3s ease,border-color .25s ease,color .25s ease}
   .cblock__more[open] > summary::before{content:"−"}
-  .cblock__more > summary:hover{color:rgba(255,255,255,.8)}
-  .cblock__more > summary:hover::before{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.9)}
+  .cblock__more > summary:hover{color:var(--k)}
+  .cblock__more > summary:hover::before{border-color:var(--k);color:var(--k)}
   .cblock__more-body{padding-top:14px;animation:tl-in .35s ease both}
   .cblock__more-body > *:first-child{margin-top:0}
-  .cblock__more-body .cblock__text{color:rgba(255,255,255,.68)}
+  .cblock__more-body .cblock__text{color:var(--ink-2)}
   @keyframes tl-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 
   /* ===== PREVIEW CARD ===== */
-  .tl-preview-card{background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,rgba(255,255,255,.01) 100%);
-       border:1px dashed rgba(255,255,255,.2);border-radius:14px;padding:40px 32px;text-align:center;
+  .tl-preview-card{background:var(--paper);
+       border:1px dashed var(--faint);border-radius:14px;padding:40px 32px;text-align:center;
        margin:50px 0 30px}
   .tl-preview-card__eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.24em;
-       text-transform:uppercase;color:var(--accent,#C89B5C);margin-bottom:14px}
-  .tl-preview-card__title{font-family:'Manrope',sans-serif;font-weight:200;font-size:clamp(1.6rem,3.8vw,2.6rem);
-       letter-spacing:-.03em;line-height:1.1;color:#fff;margin-bottom:14px}
-  .tl-preview-card__sub{font-family:'Manrope',sans-serif;font-size:.95rem;color:rgba(255,255,255,.68);
+       text-transform:uppercase;color:var(--k);margin-bottom:14px}
+  .tl-preview-card__title{font-family:'Inter',sans-serif;font-weight:200;font-size:clamp(1.6rem,3.8vw,2.6rem);
+       letter-spacing:-.03em;line-height:1.1;color:var(--ink);margin-bottom:14px}
+  .tl-preview-card__sub{font-family:'Inter',sans-serif;font-size:.95rem;color:var(--muted);
        line-height:1.5;max-width:46ch;margin:0 auto 24px}
 </style>
 </head>
@@ -135,7 +135,7 @@
   </div>
 
   <div class="cmediawrap">
-    <a class="lt" href="traceline/" data-src="traceline/preview.html?trailer" aria-label="Jugar" style="--lt-accent:#C89B5C">
+    <a class="lt" href="traceline/" data-src="traceline/preview.html?trailer" aria-label="Jugar" style="--lt-accent:#1F45D6">
       <img src="traceline/preview-poster.jpg" alt="Traceline en juego: carrera contrarreloj en piloto automático sobre el circuito Meridian" width="1280" height="720">
       <span class="lt__tag" data-i18n-html="lt.live">En vivo · el juego corre solo</span>
       <span class="lt__play"><b>▶</b><span data-i18n-html="lt.play">Jugar</span></span>

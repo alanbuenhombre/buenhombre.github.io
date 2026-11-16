@@ -64,1598 +64,751 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ── Look Gritt (claro, plano, minimal) con el azul Klein del portafolio. Sin bloques negros. ── */
   :root{
-    --bg:#F4F4F5; --text:#0E0F12; --muted:rgba(14,15,18,.58); --k:#1F45D6;
-    --font:'Manrope',system-ui,sans-serif; --font-mono:'IBM Plex Mono',monospace;
-    --font-display:'Stack Sans Notch',Arial,sans-serif; --accent:#1F45D6; --accent-rgb:31,69,214; --orange:var(--accent); --lime:var(--accent);
-    --pad:48px; --max-w:1200px;
+    --bg:#F2F2F0; --paper:#FFFFFF; --ink:#161616; --ink-2:#3A3A38; --muted:#6E6E6A; --faint:#A3A39E;
+    --line:#DEDDD8; --soft:#E7E6E2; --k:#1F45D6; --k-2:#1838B0; --k-soft:#E4E9FA; --mist:#DCE3F0;
+    --sans:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --pad:clamp(20px,4vw,48px); --max:1200px; --ease:cubic-bezier(.16,1,.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
-  img{display:block}
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);display:inline-block;
-       box-shadow:0 0 8px rgba(var(--accent-rgb),.5);animation:dotpulse 2.4s ease-in-out infinite}
-  @keyframes dotpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.75;transform:scale(.92)}}
-  .btn{display:inline-block;white-space:nowrap;font-family:var(--font-mono);font-size:.78rem;letter-spacing:.02em;
-       color:var(--text);text-decoration:none;border:1px solid rgba(14,15,18,.28);
-       border-radius:100px;padding:12px 22px;transition:background .25s,color .25s}
-  .btn:hover{background:#0E0F12;color:#E9EAEE}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:clip;line-height:1.55}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  ul{list-style:none}
+  section{scroll-margin-top:72px}
+  .anchor{position:relative;top:-72px;display:block;height:0}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  .sec{padding:clamp(96px,12vw,150px) 0 0}
+  .mono{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
 
-  /* ===== NAV (compartido) ===== */
-  .top{position:absolute;top:0;left:0;right:0;z-index:20;max-width:var(--max-w);margin:0 auto;
-       display:flex;align-items:center;justify-content:space-between;padding:24px var(--pad)}
-  .top__name{font-family:var(--font);font-weight:600;font-size:.95rem;letter-spacing:-.01em;color:#0E0F12;text-decoration:none}
-  .top__nav{display:flex;gap:30px;font-family:var(--font-mono);font-size:.74rem;margin-left:auto;margin-right:28px}
-  .top__nav a{color:var(--muted);text-decoration:none;transition:color .25s}
-  .top__nav a:hover{color:var(--text)}
-  .top__lang{cursor:pointer;display:inline-flex;align-items:center;gap:7px;color:var(--text);
-       font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;
-       background:rgba(14,15,18,.06);border:1px solid rgba(14,15,18,.22);border-radius:100px;padding:6px 12px 6px 10px;
-       transition:background .25s,border-color .25s,color .25s}
-  .top__lang svg{width:13px;height:13px;opacity:.8;transition:opacity .25s}
-  .top__lang:hover{background:rgba(14,15,18,.14);border-color:rgba(14,15,18,.4)}
-  .top__lang:hover svg{opacity:1}
+  /* Botones */
+  .pill{display:inline-flex;align-items:center;gap:14px;background:var(--k);color:#fff;border-radius:999px;padding:6px 6px 6px 20px;font-size:.86rem;white-space:nowrap;transition:background .25s}
+  .pill i{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--k);display:grid;place-items:center;font-style:normal;transition:transform .4s var(--ease)}
+  .pill:hover{background:var(--k-2)}.pill:hover i{transform:rotate(-45deg)}
+  .pill.lt{background:#fff;color:var(--k)}.pill.lt i{background:var(--k);color:#fff}.pill.lt:hover{background:var(--k-soft)}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font-size:.86rem;border:1px solid var(--ink);transition:background .25s,color .25s,border-color .25s}
+  .btn:hover{background:var(--k);border-color:var(--k);color:#fff}
+  .link{display:inline-flex;gap:8px;align-items:center;font-size:.9rem;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:color .2s,border-color .2s;white-space:nowrap}
+  .link:hover{color:var(--k);border-color:var(--k)}
 
+  /* Etiquetas */
+  .tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted);white-space:nowrap}
+  .tag.k{background:var(--k);border-color:var(--k);color:#fff}
+  .tag.o{border-color:var(--k);color:var(--k)}
 
-  /* ===== HERO v6 · product showcase (Flow art direction) ===== */
-  .hx{--paper:#F4F4F5;--ink:#0E0F12;--mute:#6B6F78;--k:#1F45D6;--line:rgba(14,15,18,.12);
-      position:relative;background:var(--paper);color:var(--ink);padding:0 0 120px;overflow:hidden;font-family:'Inter Tight',var(--font)}
-  .hx__bar{position:relative;z-index:10;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
-      max-width:1680px;margin:0 auto;padding:22px clamp(16px,2.2vw,32px) 0;font-size:13px}
-  .hx__bar .l{color:var(--ink)} .hx__bar .c{font-weight:500;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
-  .hx__nav{justify-self:end;display:flex;align-items:center;gap:2px}
-  .hx__nav a{color:var(--ink);text-decoration:none;padding:7px 11px;border-radius:999px;transition:background .2s}
-  .hx__nav a:hover{background:#fff;box-shadow:0 0 0 1px var(--line)}
-  .hx__nav a.is-new::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--k);margin-left:5px;vertical-align:3px}
-  .hx__lang{all:unset;cursor:pointer;margin-left:6px;padding:7px 13px;border-radius:999px;background:var(--ink);color:#fff;font-size:12px;letter-spacing:.04em;transition:background .2s}
-  .hx__lang:hover{background:var(--k)}
-  .hx__title{position:relative;z-index:1;text-align:center;font-weight:600;letter-spacing:-.065em;line-height:.84;
-      font-size:clamp(56px,11.8vw,220px);margin:clamp(40px,5.4vw,92px) 0 0;padding:0 12px}
-  .hx__title .ln{display:block;white-space:nowrap}
-  .hx__title .k{color:var(--k)}
-  .hx__stage{position:relative;max-width:1680px;margin:clamp(28px,4vw,72px) auto 0;padding:0 clamp(16px,2.2vw,32px)}
-  .hx__frame{position:relative;z-index:2;height:clamp(420px,36vw,640px);border-radius:clamp(26px,3.4vw,52px);overflow:hidden;background:#3E6BD8;isolation:isolate}
-  .hx__slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
-  .hx__slide.on{opacity:1}
-  .hx__slide img{width:100%;height:100%;object-fit:cover;object-position:60% 28%;transform:scale(1.08);transition:transform 7s cubic-bezier(.2,.6,.2,1)}
-  .hx__slide.on img{transform:scale(1)}
-  .hx__frame::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(20,45,140,.38),rgba(20,45,140,0) 55%)}
-  .hx__info{position:absolute;left:clamp(26px,3.8vw,64px);bottom:clamp(26px,3.4vw,56px);z-index:3;color:#fff;max-width:40ch}
-  .hx__name{font-weight:500;letter-spacing:-.045em;line-height:.9;font-size:clamp(44px,5.6vw,100px);white-space:nowrap}
-  .hx__name sup{font-size:.36em;vertical-align:.95em;margin-left:.04em;font-weight:500}
-  .hx__desc{margin-top:16px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.88)}
-  .hx__info.swap .hx__name,.hx__info.swap .hx__desc{animation:hxUp .8s cubic-bezier(.2,.7,.2,1) both}
-  .hx__info.swap .hx__desc{animation-delay:.08s}
-  @keyframes hxUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  .hx__count{position:absolute;right:clamp(22px,3vw,44px);bottom:clamp(26px,3.4vw,56px);z-index:3;color:#fff;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-align:right}
-  .hx__count a{display:inline-block;margin-top:10px;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:2px}
-  /* device */
-  .hx__dev{position:absolute;z-index:5;left:clamp(16px,22%,480px);top:calc(-1 * clamp(160px,17vw,320px));width:clamp(320px,35vw,640px);aspect-ratio:1/1;pointer-events:none}
-  .hx__dev img{position:absolute;left:50%;top:50%;width:var(--w,78%);transform:translate(-50%,-50%);transition:transform 1s cubic-bezier(.22,.8,.2,1),opacity .7s ease;
-      filter:drop-shadow(0 40px 34px rgba(14,15,18,.28)) drop-shadow(0 8px 10px rgba(14,15,18,.18))}
-  .hx__dev img.in{opacity:0;transform:translate(10%,-46%) rotate(6deg)}
-  .hx__dev img.out{opacity:0;transform:translate(-110%,-58%) rotate(-8deg)}
-  .hx__dev::after{content:"";position:absolute;left:18%;right:10%;bottom:-6%;height:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(14,15,18,.22),rgba(14,15,18,0));filter:blur(14px);z-index:-1}
-  /* progress */
-  .hx__menu{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.6vw,28px);margin-top:20px;padding:0 4px}
-  .hx__menu button{all:unset;cursor:pointer;padding-top:12px;position:relative;color:var(--mute);transition:color .25s}
-  .hx__menu button::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--line);border-radius:2px}
-  .hx__menu button::after{content:"";position:absolute;left:0;top:0;height:2px;width:calc(var(--p,0) * 100%);background:var(--ink);border-radius:2px}
-  .hx__menu button.on{color:var(--ink)}
-  .hx__menu b{display:block;font-family:var(--font-mono);font-size:11px;font-weight:400;letter-spacing:.06em;margin-bottom:4px}
-  .hx__menu span{font-size:14px;letter-spacing:-.01em}
-  .hx__menu button:hover{color:var(--ink)}
-  .hx__menu button:focus-visible{outline:2px solid var(--k);outline-offset:4px;border-radius:4px}
-  /* overview */
-  .hx__intro{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,120px);max-width:1680px;margin:clamp(64px,7vw,110px) auto 0;padding:0 clamp(24px,5vw,96px)}
-  .hx__intro h2{font-weight:400;font-size:clamp(24px,2.3vw,38px);line-height:1.15;letter-spacing:-.025em;max-width:22ch;text-wrap:balance}
-  .hx__over small{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;margin-bottom:12px}
-  .hx__over p{font-size:13px;line-height:1.6;color:var(--mute);max-width:56ch}
-  .hx__term{margin:22px 0 0;font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--k);white-space:pre}
-  .hx__term .p{color:var(--mute)} .hx__term .cur{animation:blink 1s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
-  .hx__intro.swap h2,.hx__intro.swap .hx__over p{animation:hxUp .8s cubic-bezier(.2,.7,.2,1) both}
-  @media (max-width:900px){
-    .hx__bar{grid-template-columns:1fr auto}.hx__bar .l,.hx__nav a{display:none}
-    .hx__title{font-size:clamp(46px,13.6vw,100px);margin-top:48px}
-    .hx__title .ln{white-space:normal}
-    .hx__stage{margin-top:150px}
-    .hx__dev{left:50%;margin-left:calc(-1 * min(38vw,170px));width:min(76vw,340px);top:-190px}
-    .hx__frame{height:520px}
-    .hx__count{display:none}
-    .hx__menu{grid-template-columns:repeat(5,minmax(110px,1fr));overflow-x:auto;scrollbar-width:none}
-    .hx__intro{grid-template-columns:1fr}
-  }
-  @media (prefers-reduced-motion:reduce){.hx__slide,.hx__slide img,.hx__dev img{transition:none}.hx__info.swap *,.hx__intro.swap *{animation:none}.hx__term .cur{animation:none}}
+  /* Punto "Disponible" */
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--k);box-shadow:0 0 0 4px rgba(31,69,214,.15);animation:pulse 2.4s ease-in-out infinite;flex:none}
+  @keyframes pulse{50%{transform:scale(.92);opacity:.75}}
 
+  /* ═══ NAV (sin logo: nombre en texto) ═══ */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad);background:rgba(242,242,240,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+  .nav.solid{border-color:var(--line)}
+  .brand{display:flex;align-items:center;gap:14px;font-weight:500;font-size:.95rem;letter-spacing:-.02em}
+  .brand span{font-family:var(--mono);font-size:.66rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-left:14px;border-left:1px solid var(--line)}
+  .navr{display:flex;gap:28px;align-items:center}
+  .navr a{font-size:.86rem;color:var(--ink-2);transition:color .2s}
+  .navr a:hover{color:var(--k)}
+  .navr .btn{padding:8px 16px;font-size:.8rem;color:var(--ink)}
+  .navr .btn:hover{color:#fff}
+  .lang{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--ink-2);background:none;border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer;margin-left:20px;transition:border-color .2s,color .2s}
+  .lang:hover{border-color:var(--k);color:var(--k)}
+  @media(max-width:860px){.lang{margin-left:auto;margin-right:8px}}
+  .ham{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:0;cursor:pointer;z-index:61}
+  .ham span{display:block;width:20px;height:1.5px;background:var(--ink);transition:transform .3s,opacity .25s}
+  .ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .ham.open span:nth-child(2){opacity:0}
+  .ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .mmenu{position:fixed;inset:0;z-index:49;background:var(--bg);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;overflow-y:auto;padding:96px var(--pad) 40px}
+  .mmenu.open{opacity:1;visibility:visible}
+  .mmenu a{display:grid;grid-template-columns:36px 1fr auto;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);font-size:1.6rem;font-weight:300;letter-spacing:-.04em}
+  .mmenu a i{font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--k);letter-spacing:.04em}
+  .mmenu a em{font-style:normal;font-size:1rem;color:var(--faint)}
+  .brand{white-space:nowrap}
+  @media(max-width:860px){.navr{display:none}.ham{display:flex}}
+  @media(max-width:560px){.brand span{display:none}}
 
-  /* ===== HERO 1 · case-study split ===== */
-  .h1x{--paper:#F4F4F5;--ink:#0E0F12;--mute:#6B6F78;--k:#1F45D6;--mist:#DCE3F0;--line:rgba(14,15,18,.12);background:var(--paper);color:var(--ink);font-family:'Inter Tight',var(--font);min-height:100vh;display:flex;flex-direction:column}
-  .h1x__in{flex:1;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:clamp(24px,4vw,72px);max-width:1680px;width:100%;box-sizing:border-box;margin:0 auto;padding:clamp(24px,3vw,48px) clamp(16px,2.2vw,32px) clamp(32px,4vw,64px) clamp(24px,5vw,96px)}
-  .h1x__tag{display:inline-flex;align-items:center;gap:10px;padding:5px 14px 5px 5px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:13px;background:#fff}
-  .h1x__tag b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-weight:500;font-size:11px}
-  .h1x__live{display:inline-flex;align-items:center;gap:7px;color:var(--mute);padding-left:10px;border-left:1px solid var(--line)}
-  .h1x__live i{width:7px;height:7px;border-radius:50%;background:var(--k);box-shadow:0 0 0 4px rgba(31,69,214,.12);animation:dotpulse 2.4s ease-in-out infinite}
-  .h1x__title{margin-top:clamp(20px,2.4vw,36px);font-weight:500;letter-spacing:-.055em;line-height:.92;font-size:clamp(48px,6.4vw,118px);max-width:9ch;text-wrap:balance}
-  .h1x__title .k{color:var(--k)}
-  .h1x__ov{margin-top:clamp(28px,3.4vw,52px);max-width:46ch}
-  .h1x__ov h3{font-weight:500;font-size:clamp(18px,1.5vw,24px);letter-spacing:-.02em;margin-bottom:10px}
-  .h1x__ov p{font-size:14px;line-height:1.6;color:var(--mute)}
-  .h1x__btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:clamp(28px,3vw,44px)}
-  .hx__btn .ar{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--ink);font-size:12px;margin-right:-8px}
-  .h1x__right{position:relative;height:min(78vh,760px);min-height:520px}
-  .h1x__pane{position:absolute;border-radius:clamp(22px,2.6vw,40px)}
-  .h1x__pane--k{left:0;right:22%;top:14%;bottom:30%;background:var(--k);
-      background-image:radial-gradient(circle at 20% 20%,rgba(14,15,18,.18) 0 1px,transparent 1.5px);background-size:14px 14px}
-  .h1x__pane--l{left:34%;right:0;top:44%;bottom:0;background:var(--mist)}
-  .h1x__cut{position:absolute;left:50%;bottom:0;height:100%;width:auto;transform:translateX(-46%);z-index:2;filter:drop-shadow(0 30px 40px rgba(14,15,18,.18))}
-  .h1x__stat{position:absolute;z-index:3;padding:18px 20px;border-radius:20px;min-width:150px;animation:h1Float 6s ease-in-out infinite}
-  .h1x__stat b{display:block;font-weight:500;letter-spacing:-.05em;font-size:clamp(40px,3.8vw,64px);line-height:.9}
-  .h1x__stat span{display:block;margin-top:8px;font-size:12.5px;line-height:1.35}
-  .h1x__stat--k{left:3%;top:20%;color:#fff;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
-  .h1x__stat--l{right:3%;bottom:7%;color:var(--ink);background:rgba(255,255,255,.75);backdrop-filter:blur(10px);box-shadow:0 18px 40px -18px rgba(14,15,18,.25);animation-delay:-3s}
-  .h1x__stat--l b{color:var(--k)}
-  @keyframes h1Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-  .h1x__term{position:absolute;left:3%;bottom:6%;z-index:3;margin:0;font-family:var(--font-mono);font-size:11.5px;line-height:1.55;color:var(--k);white-space:pre}
-  .h1x__term .cur{animation:blink 1s steps(1) infinite}
-  @media (max-width:900px){.h1x__in{grid-template-columns:1fr}.h1x__right{height:560px;min-height:0}.h1x__title{font-size:clamp(44px,12vw,80px)}.h1x__term{display:none}}
-  @media (prefers-reduced-motion:reduce){.h1x__stat{animation:none}}
-  .hx--work{padding-top:clamp(40px,5vw,80px)}
-  .h1x__bar{width:100%;box-sizing:border-box}
-  .hx__btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;font-size:14px;text-decoration:none;transition:all .25s;font-family:'Inter Tight',var(--font)}
-  .hx__btn--p{background:#0E0F12;color:#fff} .hx__btn--p:hover{background:#1F45D6}
-  .hx__btn--g{color:#0E0F12;box-shadow:inset 0 0 0 1px rgba(14,15,18,.2)} .hx__btn--g:hover{box-shadow:inset 0 0 0 1px #1F45D6;color:#1F45D6}
-  @media (max-width:900px){.h1x__title{font-size:clamp(44px,13vw,96px)}.h1x__title .ln{white-space:normal}.h1x__foot{flex-direction:column;align-items:flex-start}}
+  /* ═══ HERO ═══ */
+  .hero{padding:clamp(120px,15vw,170px) 0 0}
+  .hero-top{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(24px,5vw,80px);align-items:end}
+  .kick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted)}
+  .kick b{color:var(--k);font-weight:500}
+  .hero h1{font-weight:300;font-size:clamp(2.3rem,5vw,4.2rem);line-height:1.04;letter-spacing:-.045em;max-width:14ch;margin-top:18px}
+  .hero h1 em{font-style:normal;color:var(--k)}
+  .hero p{color:var(--muted);max-width:42ch}
+  .hero-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:22px}
 
-  /* ===== HERO ===== */
-  .hero{position:relative;height:100vh;min-height:680px;overflow:hidden}
-  .hero__bg{position:absolute;inset:0;background:#000}
-  .hero__bg video,.hero__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;
-       opacity:0;transition:opacity 1.2s ease;display:block;filter:brightness(.62) saturate(.9)}
-  .hero__bg video.is-on,.hero__bg img.is-on{opacity:1}
-  .hero__bg.is-fading video.is-on,.hero__bg.is-fading img.is-on{opacity:0;transition:opacity .85s ease}
-  .hero__bg img.ken-burns.is-on{animation:kenBurns 7.2s ease-out both}
-  @keyframes kenBurns{
-    0%   {transform:scale(1.06) translate(0,0)}
-    100% {transform:scale(1.18) translate(-2%,-1.5%)}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .hero__bg img.ken-burns.is-on{animation:none;transform:scale(1.05)}
-  }
-  .kick__avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(14,15,18,.25);margin-bottom:6px}
-  .hero__veil{position:absolute;inset:0;background:
-     linear-gradient(100deg, rgba(244,244,245,.72) 0%, rgba(244,244,245,.30) 42%, rgba(244,244,245,0) 68%),
-     linear-gradient(to top, #F4F4F5 0%, #F4F4F5 8%, rgba(244,244,245,.92) 14%, rgba(244,244,245,.55) 28%, rgba(244,244,245,.18) 45%, rgba(244,244,245,0) 60%);}
-  .wrap{position:absolute;inset:0;z-index:4;max-width:var(--max-w);margin:0 auto;
-        padding:0 var(--pad) 52px;display:flex;flex-direction:column;justify-content:flex-end}
-  .row{display:flex;align-items:flex-end;justify-content:space-between;gap:60px}
-  .hero-left{flex:1;min-width:0}
-  .kick{display:flex;flex-direction:column;gap:6px;margin-bottom:24px;
-        font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em}
-  .kick__avail{display:inline-flex;align-items:center;gap:8px;color:var(--muted)}
-  .titleblock{display:inline-block;max-width:min(88vw,540px)}
-  .title{font-family:var(--font);font-weight:300;font-size:clamp(2.1rem,4.6vw,4rem);
-         line-height:1.08;letter-spacing:-.035em}
-  .titlerule{border-top:1px dotted rgba(14,15,18,.28);margin:20px 0}
-  .lede{font-family:var(--font-mono);font-size:.85rem;color:var(--muted);letter-spacing:.02em}
-  .hero .cta{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
-  .cta-link{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.02em;color:rgba(14,15,18,.75);
-       text-decoration:none;transition:color .25s}
-  .cta-link:hover{color:var(--orange)}
-
-  /* ===== SECCIÓN 4 · WORK CARDS ===== */
-  .pgallery{position:relative;padding:100px 0 80px}
-  .fan__head{max-width:var(--max-w);margin:0 auto 44px;padding:0 var(--pad);position:relative;z-index:2}
-  .fan__idx{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
-  .fan__title{font-family:var(--font);font-weight:300;font-size:clamp(1.9rem,3.4vw,2.8rem);letter-spacing:-.025em;margin-top:12px}
-  .wgrid{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad);
-       display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start}
-  .wcard{position:relative;background:rgba(14,15,18,.02);border:1px solid rgba(14,15,18,.08);
-       border-radius:12px;padding:22px;text-decoration:none;color:inherit;cursor:zoom-in;
-       display:flex;flex-direction:column;gap:14px;
-       transition:background .3s ease,border-color .3s ease,transform .3s ease}
-  .wcard:hover{background:rgba(14,15,18,.04);border-color:rgba(14,15,18,.28);transform:translateY(-4px)}
-  .wcard__cat{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-       transition:color .3s ease}
-  .wcard:hover .wcard__cat{color:var(--accent)}
-  .wcard__thumb{width:100%;border-radius:8px;overflow:hidden;background:#0e0e0e;
-       border:1px solid rgba(14,15,18,.06);aspect-ratio:4/3}
-  .wcard__thumb img{width:100%;height:100%;object-fit:cover;display:block;
-       transition:transform .5s ease,opacity .3s ease;opacity:.85;pointer-events:none}
-  .wcard:hover .wcard__thumb img{transform:scale(1.04);opacity:1}
-  .wcard__foot{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:auto}
-  .wcard__name{font-family:var(--font);font-weight:400;font-size:1.1rem;letter-spacing:-.015em;color:#0E0F12}
-  .wcard__arrow{font-family:var(--font-mono);color:var(--muted);opacity:.7;
-       transition:color .3s ease,opacity .3s ease,transform .3s ease;display:inline-block}
-  .wcard:hover .wcard__arrow{color:var(--accent);opacity:1;transform:translate(2px,-2px)}
-  .lb__caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:.72rem;
-       letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;pointer-events:none}
-  .lb__caption strong{color:#fff;font-weight:500;margin-left:10px}
-
-  /* ===== LIGHTBOX ===== */
-  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.94);display:flex;align-items:center;justify-content:center;
-       padding:5vh 5vw;opacity:0;pointer-events:none;transition:opacity .3s ease;cursor:zoom-out}
-  .lb.on{opacity:1;pointer-events:auto}
-  .lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 90px rgba(0,0,0,.6);
-       transform:scale(.96);transition:transform .3s ease}
-  .lb.on img{transform:scale(1)}
-  .lb__close{position:absolute;top:28px;right:32px;font-family:var(--font-mono);font-size:.8rem;color:var(--muted)}
-  .lb__arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:100px;
-       display:flex;align-items:center;justify-content:center;background:rgba(14,15,18,.05);
-       border:1px solid rgba(14,15,18,.2);color:var(--text);cursor:pointer;z-index:2;
-       transition:background .25s,border-color .25s}
-  .lb__arrow:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4)}
-  .lb__arrow svg{width:16px;height:16px}
-  .lb__arrow--prev{left:24px}
-  .lb__arrow--next{right:24px}
-
-  /* ===== SECCIÓN 3 · INFO STICKY ===== */
-  .info{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad) 200px}
-  .info__intro{position:sticky;top:0;z-index:1;background:var(--bg);max-width:640px;padding:120px 0 48px}
-  .info__body{max-width:640px;padding-bottom:60px}
-  .info__kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:22px}
-  .info__statement{font-family:var(--font);font-weight:300;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;letter-spacing:-.025em;margin-bottom:24px}
-  .info__text{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted)}
-  .caps{position:relative}
-  .caps::after{content:'';display:block;height:54vh}
-  .cap{position:sticky;top:46vh;z-index:2;background:var(--bg);display:flex;align-items:flex-start;justify-content:space-between;
-       gap:60px;padding:40px 4px;min-height:54vh;border-top:1px solid rgba(14,15,18,.14)}
-  .cap__title{font-family:var(--font);font-weight:500;font-size:clamp(1.9rem,4.4vw,3.6rem);letter-spacing:-.03em;line-height:1;
-       color:rgba(14,15,18,.85);transition:color .3s;flex:none}
-  .cap:hover .cap__title{color:#0E0F12}
-  .cap__tags{display:flex;flex-wrap:wrap;align-content:flex-start;gap:10px 26px;max-width:480px;padding-top:10px}
-  .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.78rem;color:rgba(14,15,18,.72);white-space:nowrap;transition:color .3s}
-  .tag::before{content:"✛";color:var(--muted);font-size:.7rem}
-  .cap:hover .tag{color:#0E0F12}
-  /* variante "lista" para Formación & Premios: items en columna, más aire, hover clickable */
-  .cap__tags--list{flex-direction:column;flex-wrap:nowrap;gap:14px;max-width:520px}
-  .cap__tags--list .tag{white-space:normal}
-  .tag--link{text-decoration:none;cursor:pointer}
-  .tag--link:hover{color:#0E0F12}
-  .tag--link .tag__ext{margin-left:6px;color:var(--muted);font-size:.75rem;transition:color .25s,transform .25s;display:inline-block}
-  .tag--link:hover .tag__ext{color:#0E0F12;transform:translate(2px,-2px)}
-  .tag--award::before{content:"★"}
-  /* item con badge lateral (ej: site principal + link secundario al PR de GitHub) */
-  .tag-row{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .tag__badge{display:inline-flex;align-items:center;padding:2px 9px;font-family:var(--font-mono);
-       font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
-       border:1px solid var(--hair);border-radius:100px;text-decoration:none;
-       transition:color .25s,border-color .25s}
-  .tag__badge:hover{color:var(--orange);border-color:color-mix(in srgb, var(--orange) 45%, transparent)}
-
-  /* ===== SECCIÓN · PROCESS ===== */
-  .process-sec{position:relative;padding:60px var(--pad) 60px;overflow:hidden}
-  .process-sec__inner{max-width:var(--max-w);margin:0 auto;position:relative;z-index:2}
-  .process-sec__top{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-bottom:64px}
-  .process-sec__head .kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
-  .process-sec__head h2{font-family:var(--font);font-weight:300;font-size:clamp(1.8rem,3.2vw,2.4rem);letter-spacing:-.025em;line-height:1.15}
-  .process-sec__head h2 strong,
-  .title strong,
-  .cases__title strong,
-  .fan__title strong,
-  .info__statement strong,
-  .closer__title strong{color:var(--accent);font-weight:inherit}
-  .process-sec__head p{font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:var(--muted);margin-top:18px;max-width:52ch}
-  .sphere{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px}
-  .sphere svg{width:100%;max-width:320px;height:auto}
-  .caps-slider{position:relative;width:100%;max-width:520px;height:44px;overflow:hidden;
-       mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 82%,transparent 100%);
-       -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 82%,transparent 100%)}
-  .cap-item{position:absolute;top:50%;
-       font-family:var(--font-mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
-       white-space:nowrap;color:rgba(14,15,18,.25);opacity:0;
-       animation:capSlide 15s ease-in-out infinite;will-change:left,opacity,transform}
-  .cap-item .num{color:var(--accent);font-weight:500;margin-right:10px}
-  .cap-item[data-step="1"]{animation-delay:-6s}
-  .cap-item[data-step="2"]{animation-delay:-3s}
-  .cap-item[data-step="3"]{animation-delay:0s}
-  .cap-item[data-step="4"]{animation-delay:-12s}
-  .cap-item[data-step="5"]{animation-delay:-9s}
-  @keyframes capSlide{
-    0%,17%   {left:130%; transform:translate(-50%,-50%) scale(.85); opacity:0;  color:rgba(14,15,18,.2)}
-    20%,37%  {left:88%;  transform:translate(-50%,-50%) scale(.85); opacity:.3; color:rgba(14,15,18,.4)}
-    40%,57%  {left:50%;  transform:translate(-50%,-50%) scale(1);   opacity:1;  color:#0E0F12}
-    60%,77%  {left:12%;  transform:translate(-50%,-50%) scale(.85); opacity:.3; color:rgba(14,15,18,.4)}
-    80%,97%  {left:-30%; transform:translate(-50%,-50%) scale(.85); opacity:0;  color:rgba(14,15,18,.2)}
-    100%     {left:130%; transform:translate(-50%,-50%) scale(.85); opacity:0;  color:rgba(14,15,18,.2)}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .cap-item{animation:none;opacity:1;color:#0E0F12;left:50%}
-    .cap-item:not([data-step="1"]){display:none}
-  }
-  .sphere .iso{fill:none;stroke:rgba(14,15,18,.4);stroke-width:.6;stroke-linecap:round;stroke-linejoin:round}
-  .sphere .iso--dashed{stroke:rgba(14,15,18,.28);stroke-dasharray:3 3;stroke-linecap:butt}
-  .sphere .vx{fill:rgba(14,15,18,.85)}
-  .sphere text{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;fill:rgba(14,15,18,.7)}
-  .sphere text.num{fill:var(--accent);font-size:7.5px;opacity:1;font-weight:500;letter-spacing:.18em}
-  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
-  .stage{border-top:1px solid rgba(14,15,18,.14);padding-top:22px;display:flex;flex-direction:column;gap:14px;min-height:290px}
-  .stage__num{display:none}
-  .stage__name{font-family:var(--font);font-weight:500;font-size:1.7rem;letter-spacing:-.02em;line-height:1}
-  .stage__desc{font-family:var(--font);font-size:.92rem;line-height:1.55;color:rgba(14,15,18,.72)}
-  .stage__viz{order:-1;margin-top:0;padding-top:0;border-top:none;
-       padding-bottom:24px;margin-bottom:6px;border-bottom:1px dotted rgba(14,15,18,.14);
-       display:flex;flex-direction:column;gap:16px}
-  .stage__viz .fig-label{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.14em;
-       color:rgba(14,15,18,.35);text-transform:uppercase}
-  .stage__viz svg{width:100%;height:auto;max-width:180px;margin:0 auto;overflow:visible;display:block}
-  .stage__viz .iso{fill:none;stroke:rgba(14,15,18,.55);stroke-width:.6;stroke-linecap:round;stroke-linejoin:round}
-  .stage__viz .iso--soft{stroke:rgba(14,15,18,.22);stroke-width:.5}
-  .stage__viz .iso--dashed{stroke:rgba(14,15,18,.35);stroke-width:.5;stroke-dasharray:3 3;stroke-linecap:butt}
-  .stage__viz .iso--accent{stroke:var(--accent);stroke-width:.9;animation:vizAccentBreathe 4s ease-in-out infinite}
-  .stage__viz .vx{fill:rgba(14,15,18,.9)}
-  .stage__viz .vx--ghost{fill:rgba(14,15,18,.5)}
-  @keyframes vizAccentBreathe{0%,100%{opacity:.6}50%{opacity:1}}
-  @media (prefers-reduced-motion:reduce){
-    .stage__viz .iso--accent{animation:none;opacity:.9}
-  }
-
-  /* ===== cubos anidados · cada capa se ilumina por turno (loop 15s, 3s por paso) ===== */
-  .sphere svg{overflow:visible}
-  @keyframes cubeOn{
-    0%,20%{stroke:var(--accent);stroke-width:1}
-    22%,100%{stroke:rgba(14,15,18,.4);stroke-width:.6}
-  }
-  @keyframes labelOn{
-    0%,20%{fill:#0E0F12}
-    22%,100%{fill:var(--muted)}
-  }
-  @keyframes numOn{
-    0%,20%{fill:var(--accent);opacity:1}
-    22%,100%{fill:var(--accent);opacity:.7}
-  }
-  .sphere .cube{animation:cubeOn 15s ease-in-out infinite}
-  .sphere .cube-vx{fill:var(--accent);opacity:0;animation:vxOn 15s ease-in-out infinite}
-  @keyframes vxOn{
-    0%,20%{opacity:1}
-    22%,100%{opacity:0}
-  }
-  .sphere .lbl{animation:labelOn 15s ease-in-out infinite}
-  .sphere .num{animation:numOn 15s ease-in-out infinite}
-  .sphere svg [data-step="1"],.sphere svg [data-step="1"] .cube-vx{animation-delay:0s}
-  .sphere svg [data-step="2"],.sphere svg [data-step="2"] .cube-vx{animation-delay:3s}
-  .sphere svg [data-step="3"],.sphere svg [data-step="3"] .cube-vx{animation-delay:6s}
-  .sphere svg [data-step="4"],.sphere svg [data-step="4"] .cube-vx{animation-delay:9s}
-  .sphere svg [data-step="5"],.sphere svg [data-step="5"] .cube-vx{animation-delay:12s}
-
-  @media (prefers-reduced-motion:reduce){
-    .sphere .cube,.sphere .lbl,.sphere .num{animation:none !important}
-    .sphere .lbl{fill:#0E0F12}
-  }
-
-  /* ===== SECCIÓN 4 · CASOS ===== */
-  .cases{max-width:var(--max-w);margin:0 auto;padding:130px var(--pad) 60px}
-  .cases__head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:22px;border-bottom:1px solid rgba(14,15,18,.12)}
-  .cases__title{font-family:var(--font);font-weight:300;font-size:clamp(1.9rem,3.6vw,2.9rem);letter-spacing:-.03em}
-  .cases__meta{font-family:var(--font-mono);font-size:.72rem;color:var(--orange);letter-spacing:.08em}
-  .cases__list{list-style:none}
-  .crow{position:relative;display:flex;align-items:center;gap:24px;text-decoration:none;padding:30px 6px;
-       border-bottom:1px dotted rgba(14,15,18,.24);transition:padding-left .4s cubic-bezier(.2,.7,.2,1)}
-  .crow__num{font-family:var(--font-mono);font-size:.74rem;color:var(--orange);width:34px;flex:none}
-  .crow__name{font-family:var(--font);font-weight:300;font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1;color:rgba(14,15,18,.72);transition:color .3s}
-  .crow__disc{margin-left:auto;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s}
-  .crow__arrow{flex:none;margin-left:18px;opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .3s;font-family:var(--font-mono);color:var(--orange)}
-  .crow:hover{padding-left:22px}
-  .crow:hover .crow__name{color:#0E0F12}
-  .crow:hover .crow__disc{color:rgba(14,15,18,.85)}
-  .crow:hover .crow__arrow{opacity:1;transform:translateX(0)}
-  .cases__list:hover .crow .crow__name{color:rgba(14,15,18,.3)}
-  .cases__list:hover .crow:hover .crow__name{color:#0E0F12}
-  .games{padding-top:40px}
-  .games__lede{max-width:560px;margin:22px 0 4px;font-size:.95rem;line-height:1.6;color:var(--muted)}
-  .crow__badge{display:inline-block;vertical-align:middle;margin-left:16px;padding:5px 9px;border:1px solid var(--orange);border-radius:999px;
-       font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);line-height:1}
-
-  /* ===== NOVEDADES (bento) ===== */
-  .news{max-width:var(--max-w);margin:0 auto;padding:100px var(--pad) 0}
-  .news__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
-  .ncard{position:relative;display:flex;flex-direction:column;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.1);
-       border-radius:14px;overflow:hidden;background:rgba(14,15,18,.02);transition:border-color .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
-  .ncard:hover{border-color:rgba(var(--accent-rgb),.6);transform:translateY(-3px)}
-  .ncard__cover{position:relative;aspect-ratio:16/10;overflow:hidden;background:#111}
-  .ncard__cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1);filter:saturate(.92)}
-  .ncard:hover .ncard__cover img{transform:scale(1.04)}
-  .ncard__type{position:absolute;top:10px;left:10px;z-index:2;display:flex;gap:8px;align-items:center}
-  .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-family:var(--font-mono);
-       font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;line-height:1;background:rgba(0,0,0,.55);
-       backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(14,15,18,.2);color:#0E0F12}
-  .pill--new{background:var(--accent);border-color:var(--accent);color:#E9EAEE;font-weight:500}
-  .pill--new::before{content:"";width:5px;height:5px;border-radius:50%;background:#E9EAEE;animation:npulse 2s ease-in-out infinite}
-  @keyframes npulse{50%{opacity:.25}}
-  .ncard__body{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:14px 16px 16px}
-  .ncard__date{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .ncard__title{font-weight:300;font-size:1.1rem;letter-spacing:-.015em;line-height:1.2}
-  .ncard__desc{display:none;margin-top:8px;font-size:.88rem;line-height:1.5;color:var(--muted);max-width:44ch}
-  .ncard__arrow{flex:none;font-family:var(--font-mono);color:var(--accent);transition:transform .3s}
-  .ncard:hover .ncard__arrow{transform:translate(3px,-3px)}
-  /* portada tipográfica del playbook */
-  .pbcover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:48px 22px 20px;
-       background:radial-gradient(120% 90% at 85% 10%,rgba(125,214,240,.16),transparent 60%),#141414}
-  .pbcover__q{font-weight:300;font-size:clamp(1.3rem,1.9vw,1.7rem);line-height:1.08;letter-spacing:-.03em;max-width:14ch}
-  .pbcover__q em{font-style:normal;color:#7DD6F0}
-  .pbcover__steps{display:none;grid-template-columns:repeat(3,1fr);border-top:1px dotted rgba(14,15,18,.24)}
-  .pbcover__steps span{padding:12px 10px 0 0;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(14,15,18,.55)}
-  .pbcover__steps b{display:block;color:#7DD6F0;font-weight:400;margin-bottom:4px}
-  @media(max-width:860px){.news__grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:560px){.news__grid{grid-template-columns:1fr}}
-
-
-  /* ===== DECK 3D (Lo nuevo) ===== */
-  .deck{position:relative;margin-top:26px;outline:none;overflow-x:clip;padding:10px 0 4px;margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1)}
-  .deck__stage{position:relative;height:clamp(330px,34vw,400px);perspective:1400px;perspective-origin:50% 40%;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
-  .deck__stage.is-drag{cursor:grabbing}
-  .deck .ncard{position:absolute;top:0;left:50%;width:min(440px,78vw);margin-left:calc(min(440px,78vw) / -2);
-       background:#151515;transform-style:preserve-3d;will-change:transform,opacity;
-       transition:transform .75s cubic-bezier(.2,.75,.15,1),opacity .6s ease,filter .6s ease,border-color .35s;-webkit-user-drag:none}
-  .deck__stage.is-drag .ncard{transition:none}
-  .deck .ncard img{-webkit-user-drag:none;pointer-events:none}
-  .deck .ncard.is-side{filter:brightness(.55) saturate(.8)}
-  .deck .ncard.is-side .ncard__body{opacity:.4}
-  .deck .ncard.is-on{border-color:rgba(var(--accent-rgb),.55);box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(var(--accent-rgb),.15)}
-  .deck .ncard__glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;
-       background:radial-gradient(60% 50% at var(--gx,50%) var(--gy,30%),rgba(14,15,18,.14),transparent 70%)}
-  .deck .ncard.is-on:hover .ncard__glare{opacity:1}
-  .deck__ui{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:22px}
-  .deck__btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(14,15,18,.2);background:rgba(14,15,18,.04);color:#0E0F12;
-       font-family:var(--font-mono);font-size:.9rem;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
-  .deck__btn:hover{background:#0E0F12;color:#E9EAEE;border-color:#0E0F12}
-  .deck__btn:active{transform:scale(.94)}
-  .deck__count{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;color:var(--muted);min-width:64px;text-align:center}
-  .deck__count b{color:#0E0F12;font-weight:400}
-  .deck__bar{width:min(220px,30vw);height:2px;background:rgba(14,15,18,.12);border-radius:2px;overflow:hidden}
-  .deck__bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .6s cubic-bezier(.2,.75,.15,1)}
-  .deck:focus-visible .deck__stage{outline:1px dashed rgba(255,255,255,.3);outline-offset:8px;border-radius:16px}
-  @media(prefers-reduced-motion:reduce){.deck .ncard{transition:opacity .2s}}
-  /* ===== LAB (fila de miniaturas sutiles) ===== */
-  .lab__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:30px;padding-top:26px;border-top:1px dotted rgba(14,15,18,.18)}
-  .lcard{display:flex;flex-direction:column;text-decoration:none;color:#0E0F12}
-  .lcard__img{position:relative;aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:#151515}
-  .lcard__img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(.9) brightness(.62);opacity:.85;transform:scale(1.02);
-       transition:filter .6s ease,opacity .6s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
-  .lcard__img::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(14,15,18,.08);
-       background:linear-gradient(180deg,transparent 55%,rgba(20,20,20,.55));transition:opacity .5s}
-  .lcard[href="gritt-reports.html"] .lcard__img img{filter:grayscale(1) contrast(.85) brightness(.42)}
-  .lcard:hover .lcard__img img,.lcard:focus-visible .lcard__img img{filter:none;opacity:1;transform:scale(1.06)}
-  .lcard:hover .lcard__img::after{opacity:.3}
-  .lcard__img .pill{position:absolute;z-index:2;top:auto;bottom:8px;left:8px;padding:4px 7px;font-size:.52rem;background:rgba(0,0,0,.6)}
-  .lcard__img .pill--new{background:var(--accent)}
-  .lcard__row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 1px 2px}
-  .lcard__name{font-weight:400;font-size:.92rem;letter-spacing:.02em;color:rgba(14,15,18,.8);transition:color .3s}
-  .lcard:hover .lcard__name{color:#0E0F12}
-  .lcard__arrow{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);opacity:0;transform:translateX(-4px);transition:opacity .3s,transform .3s}
-  .lcard:hover .lcard__arrow{opacity:1;transform:none}
-  .lcard__disc{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.6;padding:0 1px}
-  @media(max-width:960px){.lab__grid{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:560px){.lab__grid{grid-template-columns:1fr 1fr;gap:14px}}
-
-  /* nav: marca de novedad */
-  .top__nav a.is-new{position:relative;color:#0E0F12}
-  .top__nav a.is-new::after{content:"";position:absolute;top:-3px;right:-8px;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(var(--accent-rgb),.7)}
-  .cursor-preview{position:fixed;top:0;left:0;z-index:60;width:340px;aspect-ratio:3/2;border-radius:8px;overflow:hidden;
-       border:1px solid rgba(14,15,18,.18);box-shadow:0 24px 70px rgba(0,0,0,.55);pointer-events:none;
-       opacity:0;transform:translate(-50%,-50%) scale(.94);transition:opacity .22s ease,transform .22s ease}
-  .cursor-preview.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
-  .cursor-preview img{width:100%;height:100%;object-fit:cover}
-
-  /* ===== OTROS PROYECTOS (cards) ===== */
-  .others{max-width:var(--max-w);margin:0 auto;padding:40px var(--pad) 120px}
-  .others__label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-       padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid rgba(14,15,18,.1)}
-  .others__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .pcard{display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:170px;
-       border:1px solid rgba(14,15,18,.12);border-radius:10px;padding:22px;text-decoration:none;
-       transition:background .25s,border-color .25s,transform .25s}
-  .pcard:hover{background:rgba(14,15,18,.04);border-color:rgba(14,15,18,.28);transform:translateY(-3px)}
-  .pcard__cat{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .25s}
-  .pcard:hover .pcard__cat{color:var(--accent)}
-  .pcard__name{font-family:var(--font);font-weight:400;font-size:1.3rem;letter-spacing:-.02em;color:#0E0F12;
-       display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
-  .pcard__name svg{width:15px;height:15px;flex:none;opacity:.5;transition:opacity .25s}
-  .pcard:hover .pcard__name svg{opacity:1}
-
-  /* ===== CLOSER · CTA interactivo ===== */
-  .closer{position:relative;display:flex;align-items:center;justify-content:center;
-       min-height:min(90vh,720px);padding:120px var(--pad);
-       border-top:1px solid rgba(14,15,18,.06);overflow:hidden}
-  .closer__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-       object-position:center;z-index:0;opacity:.55;
-       filter:hue-rotate(90deg) sepia(.55) saturate(1.15) brightness(.7) contrast(1.05)}
-  .closer__veil{position:absolute;inset:0;z-index:1;pointer-events:none;
-       background:radial-gradient(ellipse at 50% 50%,rgba(244,244,245,.35) 0,rgba(244,244,245,.75) 65%,var(--bg) 100%),
-                  linear-gradient(180deg,var(--bg) 0,rgba(244,244,245,.5) 15%,rgba(244,244,245,.2) 50%,rgba(244,244,245,.75) 100%)}
-  .closer__stage{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;
-       gap:36px;max-width:960px;width:100%;text-align:center}
-
-  /* estado default */
-  .closer__avail{display:inline-flex;align-items:center;gap:10px;
-       font-family:var(--font-mono);font-size:.66rem;letter-spacing:.24em;
-       text-transform:uppercase;color:var(--muted);
-       transition:opacity .5s ease,transform .5s ease}
-  .closer__pulse{position:relative;display:inline-block;width:8px;height:8px}
-  .closer__pulse i{position:absolute;inset:0;border-radius:50%;background:var(--accent)}
-  .closer__pulse i:first-child{animation:closerPing 1.8s ease-out infinite;opacity:.55}
-  @keyframes closerPing{0%{transform:scale(1);opacity:.55}80%,100%{transform:scale(2.8);opacity:0}}
-
-  .closer__trigger{position:relative;display:flex;flex-direction:column;align-items:center;
-       gap:32px;background:none;border:0;padding:0;color:inherit;cursor:pointer;text-align:center;
-       text-decoration:none;
-       font-family:var(--font);transition:transform .55s cubic-bezier(.2,.7,.2,1)}
-  .closer__titleblock{display:flex;flex-direction:column;gap:0;overflow:hidden}
-  .closer__line{display:block;font-family:var(--font);font-weight:300;
-       font-size:clamp(2.6rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.035em;
-       color:var(--ink);transition:transform .55s cubic-bezier(.2,.7,.2,1)}
-  .closer__line--muted{color:rgba(14,15,18,.45)}
-  .closer__line--muted strong{color:var(--accent);font-weight:inherit}
-  .closer__trigger:hover .closer__line{transform:translateY(-4%)}
-
-  .closer__hint{max-width:44ch;font-family:var(--font-mono);font-size:.82rem;line-height:1.6;
-       color:rgba(14,15,18,.6)}
-  .closer__meta{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;
-       text-transform:uppercase;color:rgba(14,15,18,.4)}
-
-  .closer__arrowline{display:flex;align-items:center;justify-content:center;gap:0;width:100%;
-       margin-top:4px}
-  .closer__sideline{flex:0 0 auto;height:1px;background:rgba(14,15,18,.22);width:80px;
-       transition:width .5s ease,opacity .5s ease,background .5s ease}
-  .closer__sideline--l{margin-right:26px}
-  .closer__sideline--r{margin-left:26px}
-  .closer__trigger:hover .closer__sideline{width:120px;background:rgba(14,15,18,.45)}
-
-  .closer__arrow{display:inline-flex;align-items:center;justify-content:center;
-       width:72px;height:72px;border:1px solid rgba(14,15,18,.28);
-       border-radius:50%;color:var(--ink);flex:0 0 auto;
-       transition:background .4s ease,border-color .4s ease,transform .4s ease,color .4s ease}
-  .closer__arrow svg{width:28px;height:28px;transition:transform .4s ease}
-  .closer__trigger:hover .closer__arrow{background:var(--accent);color:#000;border-color:var(--accent);transform:scale(1.06)}
-  .closer__trigger:hover .closer__arrow svg{transform:translate(2px,-2px)}
-
-  @media(max-width:640px){
-    .closer{min-height:auto;padding:100px var(--pad)}
-    .closer__stage{gap:26px}
-    .closer__trigger{gap:24px}
-    .closer__arrow{width:60px;height:60px}
-    .closer__arrow svg{width:24px;height:24px}
-    .closer__sideline{width:44px}
-    .closer__sideline--l{margin-right:18px}
-    .closer__sideline--r{margin-left:18px}
-    .closer__trigger:hover .closer__sideline{width:64px}
-  }
-
-  @media(prefers-reduced-motion:reduce){
-    .closer__pulse i:first-child{animation:none}
-    .closer__stage *{transition:none !important}
-  }
-  .closer__title{font-family:var(--font);font-weight:300;font-size:clamp(2.4rem,6vw,5rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:34px}
-
-  /* ===== FOOTER (original) ===== */
-  .footer{background:var(--bg);padding-top:80px;border-top:1px solid rgba(14,15,18,.06)}
-  .footer__top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;max-width:var(--max-w);
-       margin:0 auto;padding:0 var(--pad) 80px}
-  .footer__col-title{font-family:var(--font);font-size:.75rem;font-weight:600;letter-spacing:.1em;
-       text-transform:uppercase;color:rgba(14,15,18,.4);margin-bottom:20px}
-  .footer__links{list-style:none;display:flex;flex-direction:column;gap:12px}
-  .footer__links a{font-size:.9375rem;font-weight:300;color:rgba(14,15,18,.6);text-decoration:none;transition:color .2s}
-  .footer__links a:hover{color:#0E0F12}
-  .footer__col--brand{display:flex;flex-direction:column;gap:12px}
-  .footer__logo{font-family:var(--font);font-size:1.5rem;font-weight:600;color:#0E0F12;text-decoration:none}
-  .footer__role{font-size:.875rem;color:var(--orange);font-weight:400}
-  .footer__tagline{font-size:.875rem;color:rgba(14,15,18,.4);font-weight:300}
-  .footer__copy{font-family:var(--font-mono);font-size:.75rem;color:rgba(14,15,18,.25);margin-top:8px}
-  .footer__social{display:flex;gap:12px;align-items:center}
-  .footer__social-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;
-       border-radius:10px;border:1px solid rgba(14,15,18,.12);color:rgba(14,15,18,.45);
-       background:none;cursor:pointer;transition:color .2s,border-color .2s;flex-shrink:0;text-decoration:none}
-  .footer__social-btn svg{width:18px;height:18px}
-  .footer__social-btn:hover{color:var(--orange);border-color:color-mix(in srgb, var(--orange) 40%, transparent)}
-  .footer__copied-toast{font-family:var(--font-mono);font-size:.75rem;color:var(--orange);margin-top:12px;
-       opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s;pointer-events:none}
-  .footer__copied-toast.show{opacity:1;transform:translateY(0)}
-  .footer__social-invite{margin-top:6px;font-family:var(--font-mono);font-size:.6875rem;color:rgba(14,15,18,.35);letter-spacing:.02em}
-
-  /* ===== LIGHTBOX (fan) ===== */
-
-  @media(max-width:960px){
-    .wgrid{grid-template-columns:repeat(3,1fr)}
-  }
-  @media(max-width:860px){
-    .info__intro{position:static;top:auto;padding:80px 0 24px}
-    .cap{flex-direction:column;gap:22px;position:static;top:auto;min-height:0}
-    .caps::after{height:0}
-    .cap__tags{max-width:100%}
-    .tag{white-space:normal}
-    .others__grid{grid-template-columns:1fr 1fr}
-    .process-sec__top{grid-template-columns:1fr;gap:40px}
-    .process-grid{grid-template-columns:1fr 1fr}
-  }
+  /* Hero: foto redonda grande a la izquierda, título y bajada a la derecha */
+  .hero-top{display:grid;grid-template-columns:auto 1fr;column-gap:clamp(28px,5vw,72px);align-items:center;max-width:none}
+  .ava{position:relative;display:block;width:clamp(200px,25vw,312px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:#D9DCE2;box-shadow:0 0 0 6px var(--bg),0 0 0 7px var(--line)}
+  .ava img{position:absolute;left:50%;top:0;width:324%;max-width:none;height:auto;transform:translateX(-50%)}
+  .hero h1{margin-top:0;max-width:14ch}
+  .hero-txt>p{margin-top:22px;font-size:1.08rem;max-width:50ch}
   @media(max-width:760px){
-    .top__nav{display:none}
-    .row{flex-direction:column;align-items:flex-start;gap:24px}
-    .hero .cta{align-items:flex-start}
-    .cursor-preview{display:none} .crow__disc{display:none}
-    .others__grid{grid-template-columns:1fr}
-    .pgallery{padding:80px 0 60px}
-    .wgrid{grid-template-columns:repeat(2,1fr)}
-    .lb__arrow{display:none}
-    .process-grid{grid-template-columns:1fr}
-    .process-sec{padding:80px var(--pad) 40px}
-    .footer__top{grid-template-columns:1fr;gap:40px}
-    .hero__bg img,.hero__bg video{object-position:46% center}
-    .hero__bg video{transform:scale(1.3)}
-    .hero__veil{background:
-       rgba(244,244,245,.6),
-       linear-gradient(100deg, rgba(244,244,245,.72) 0%, rgba(244,244,245,.30) 42%, rgba(244,244,245,0) 68%),
-       linear-gradient(to top, #F4F4F5 0%, rgba(244,244,245,.9) 6%, rgba(244,244,245,.5) 22%, rgba(244,244,245,.15) 45%)}
+    .hero-top{grid-template-columns:1fr}
+    .ava{width:clamp(180px,56vw,240px);margin-bottom:28px}
   }
+  .hsteps{margin-top:clamp(48px,6vw,72px)}
 
-  /* tema claro: contacto sin video, con bruma Klein */
-  .closer__bg{display:none}
-  .closer__veil{background:radial-gradient(60% 55% at 50% 48%,rgba(31,69,214,.10) 0,rgba(31,69,214,.04) 45%,rgba(244,244,245,0) 75%)!important}
+  /* Índice de secciones bajo el hero */
+  .lines{display:grid;grid-template-columns:repeat(4,1fr);margin-top:18px;border-top:1px solid var(--line)}
+  .lines a{display:grid;grid-template-columns:auto 1fr auto;gap:2px 14px;padding:18px 18px 18px 0;border-right:1px solid var(--line);margin-right:18px;transition:color .25s}
+  .lines a:last-child{border-right:0;margin-right:0}
+  .lines i{font-style:normal;font-family:var(--mono);font-size:.7rem;color:var(--k);padding-top:4px}
+  .lines b{font-weight:500;font-size:.98rem;letter-spacing:-.02em}
+  .lines span{grid-column:2;color:var(--muted);font-size:.84rem}
+  .lines a::after{content:"→";grid-column:3;grid-row:1;opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
+  .lines a:hover{color:var(--k)}.lines a:hover::after{opacity:1;transform:none}
+  @media(max-width:860px){.lines{grid-template-columns:1fr 1fr}.lines a:nth-child(2){border-right:0;margin-right:0}.lines a:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+  /* ═══ CABECERA DE SECCIÓN (índice · título · bajada) ═══ */
+  .sh{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2vw,28px);padding-top:18px;border-top:1px solid var(--line)}
+  .sh-i{grid-column:1/4;display:flex;gap:14px;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding-top:.5em;color:var(--muted)}
+  .sh-i span:first-child{color:var(--k)}
+  .sh-t{grid-column:4/12;font-weight:300;font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.04;letter-spacing:-.045em;max-width:17ch}
+  .sh-t em{font-style:normal;color:var(--k)}
+  .sh-l{grid-column:4/10;margin-top:20px;color:var(--muted);font-size:1.02rem;max-width:56ch}
+  @media(max-width:860px){.sh-i,.sh-t,.sh-l{grid-column:1/-1}.sh-t{margin-top:22px}}
+
+  /* ═══ Tarjetas apiladas con índice fijo (casos y líneas del Lab) ═══ */
+  .svw{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2vw,28px);margin-top:clamp(40px,5vw,64px);align-items:start}
+  .svx{grid-column:1/4;margin-right:clamp(0px,2vw,24px);position:sticky;top:96px;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .svl{grid-column:4/13;display:flex;flex-direction:column;gap:clamp(18px,2vw,28px)}
+  .svx a{display:grid;grid-template-columns:28px 1fr;column-gap:8px;padding:14px 0;border-bottom:1px solid var(--line);color:var(--faint);transition:color .3s}
+  .svx a i{font-style:normal;font-family:var(--mono);font-size:.68rem;padding-top:4px}
+  .svx a b{font-weight:500;font-size:1rem;letter-spacing:-.02em}
+  .svx a span{grid-column:2;font-size:.8rem}
+  .svx a:hover{color:var(--ink-2)}
+  .svx a.on{color:var(--ink)}.svx a.on i{color:var(--k)}
+  .svc{background:var(--paper);border-radius:24px;padding:clamp(12px,1.4vw,18px);scroll-margin-top:84px}
+  .svc-m{display:grid;gap:8px;aspect-ratio:2/1;border-radius:16px;overflow:hidden}
+  .svc-m figure{position:relative;margin:0;border-radius:12px;overflow:hidden;background:var(--soft);min-height:0}
+  .svc-m img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s var(--ease)}
+  .svc:hover .svc-m img{transform:scale(1.025)}
+  .svc-m figcaption{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.92);color:var(--ink-2);font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;padding:4px 9px;border-radius:999px}
+  .svc-m.g3{grid-template-columns:1.6fr 1fr;grid-template-rows:1fr 1fr}
+  .svc-m.g3 .big{grid-row:span 2}
+  .svc-m.g3v{grid-template-columns:repeat(3,1fr);background:var(--k);padding:clamp(14px,2vw,24px) clamp(40px,8vw,120px);gap:clamp(10px,1.4vw,18px);border-radius:14px}
+  .svc-m.g1 img{object-position:50% 0}
+  .svc-m.g2{grid-template-columns:1fr 1fr}
+  .svc-b{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,3vw,48px);padding:clamp(20px,2.4vw,30px) clamp(8px,1.2vw,14px) clamp(8px,1vw,12px)}
+  .svc-k{display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .svc-k span{color:var(--k)}
+  .svc h3{font-weight:300;font-size:clamp(2rem,3.4vw,2.9rem);letter-spacing:-.05em;line-height:1;margin:12px 0 14px}
+  .svc-t p{color:var(--muted)}
+  .svc-r small{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .svc-r li{padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--ink-2)}
+  .svc-f{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px}
+  .svc-f em{font-style:normal;font-size:.8rem;color:var(--muted)}
+  @media(max-width:960px){.svw{grid-template-columns:1fr}.svl{grid-column:1/-1}.svx{display:none}.svc-b{grid-template-columns:1fr}}
+  @media(max-width:560px){.svc-m figcaption{display:none}.svc-m{aspect-ratio:4/3}.svc-m.g3v{padding:12px 18px}.svc{border-radius:20px}}
+
+  /* Mini chat (experimento Marca por WhatsApp) */
+  .chat{background:var(--k);display:flex;align-items:center;justify-content:center;padding:18px}
+  .chat-w{width:100%;max-width:300px;background:#EFEDE8;border-radius:14px;overflow:hidden;box-shadow:0 24px 40px -26px rgba(8,20,80,.6)}
+  .chat-h{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border-bottom:1px solid var(--line)}
+  .chat-h i{width:22px;height:22px;border-radius:50%;background:var(--k);flex:none}
+  .chat-h b{display:block;font-weight:500;font-size:.74rem}
+  .chat-h small{display:block;font-size:.6rem;color:var(--muted)}
+  .chat-b{display:flex;flex-direction:column;gap:6px;padding:10px}
+  .bub{max-width:86%;padding:6px 10px;border-radius:10px;font-size:.7rem;line-height:1.35;background:#fff;color:var(--ink-2)}
+  .bub.me{align-self:flex-end;background:#DCE3F0;display:flex;align-items:center;gap:6px}
+  .bub.me .wave{display:flex;gap:2px;align-items:center;height:14px}
+  .bub.me .wave i{width:2px;background:var(--k);border-radius:2px}
+  .bub.ok{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;color:var(--k);background:transparent;padding:0 2px}
+
+  /* ═══ EL LAB · gran sección ═══ */
+  .lab{margin-top:clamp(110px,13vw,170px)}
+  .lab-hd{background:var(--k);color:#fff;padding:clamp(56px,7vw,88px) 0 clamp(48px,6vw,72px);position:relative;overflow:hidden;isolation:isolate}
+  .lab-hd::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.22) 1px,transparent 1.4px);background-size:22px 22px;mask-image:linear-gradient(90deg,transparent,#000 60%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 60%)}
+  .lab-hd .sh{border-color:rgba(255,255,255,.25)}
+  .lab-hd .sh-i{color:rgba(255,255,255,.7)}.lab-hd .sh-i span:first-child{color:#fff}
+  .lab-hd .sh-t{font-size:clamp(3rem,8vw,6.4rem);line-height:.92;letter-spacing:-.06em;max-width:none}
+  .lab-hd .sh-l{color:rgba(255,255,255,.8)}
+  /* El Lab como una sola sección: fondo Klein de título a cards */
+  .lab{background:var(--k);color:#fff;padding-bottom:clamp(56px,7vw,88px);position:relative;isolation:isolate;overflow:hidden}
+  .lab::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1.4px);background-size:22px 22px;mask-image:linear-gradient(180deg,#000,transparent 55%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 55%)}
+  .lab-hd{background:none;padding-bottom:0}
+  .lab-hd::before{display:none}
+  .lab .tabs button{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+  .lab .tabs button small{color:rgba(255,255,255,.6)}
+  .lab .tabs button:hover{border-color:#fff;color:#fff}
+  .lab .tabs button[aria-selected="true"]{background:#fff;border-color:#fff;color:var(--k)}
+  .lab .tabs button[aria-selected="true"] small{color:var(--k)}
+  .lab .tabs-r .link{color:#fff;border-color:rgba(255,255,255,.6)}
+  .lab .tabs-r .link:hover{border-color:#fff}
+  .lab .pj{background:rgba(255,255,255,.08);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .lab .pj:hover{background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 30px 50px -30px rgba(8,20,80,.6)}
+  .lab .pj figure{background:rgba(255,255,255,.08)}
+  .lab .pj p{color:rgba(255,255,255,.75)}
+  .lab .pj .mono{color:rgba(255,255,255,.5)}
+  .lab .pj .ar{color:#fff}
+  .lab .pj .tag.o{border-color:rgba(255,255,255,.5);color:#fff}
+  .lab .pj figure.chat{background:rgba(255,255,255,.1)}
+  .lab .rail-n .bar{background:rgba(255,255,255,.25)}
+  .lab .rail-n .bar i{background:#fff}
+  .lab .arws button{background:rgba(255,255,255,.14);color:#fff;box-shadow:none}
+  .lab .arws button:hover{background:#fff;color:var(--k)}
+
+  /* Pestañas de categorías */
+  .tabs-r{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:clamp(32px,4vw,48px)}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .tabs button{display:inline-flex;align-items:baseline;gap:8px;font-family:var(--sans);font-size:.88rem;letter-spacing:-.01em;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+  .tabs button small{font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);transition:color .25s}
+  .tabs button:hover{border-color:var(--k);color:var(--k)}
+  .tabs button[aria-selected="true"]{background:var(--k);border-color:var(--k);color:#fff}
+  .tabs button[aria-selected="true"] small{color:rgba(255,255,255,.7)}
+  .pj[hidden]{display:none}
+  @media(max-width:620px){.tabs-r{flex-direction:column;align-items:flex-start}.tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:100%;margin:0 calc(-1 * var(--pad));padding:0 var(--pad)}.tabs::-webkit-scrollbar{display:none}.tabs button{flex:none}}
+
+  /* Proyectos propios: carril horizontal */
+  .rail{--edge:max(var(--pad),calc((100vw - var(--max)) / 2 + var(--pad)));margin-top:clamp(28px,3vw,40px)}
+  .rail-t{display:flex;gap:clamp(14px,1.6vw,22px);padding:0 var(--edge) 8px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--edge);scrollbar-width:none}
+  .rail-t::-webkit-scrollbar{display:none}
+  .pj{flex:0 0 clamp(272px,30vw,380px);scroll-snap-align:start;background:var(--paper);border-radius:22px;padding:12px;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s}
+  .pj:hover{transform:translateY(-4px);box-shadow:0 30px 50px -36px rgba(8,20,80,.35)}
+  .pj figure{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--soft)}
+  .pj img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+  .pj:hover img{transform:scale(1.04)}
+  .pj-b{padding:16px 8px 8px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .pj-r{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .pj h4{font-weight:400;font-size:1.35rem;letter-spacing:-.035em}
+  .pj p{font-size:.86rem;color:var(--muted)}
+  .pj .mono{font-size:.6rem;color:var(--faint);margin-top:auto;padding-top:6px}
+  .pj .ar{color:var(--k);font-size:1.1rem}
+  .rail-n{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+  .rail-n .bar{flex:1;height:1px;background:var(--line);position:relative;margin-right:18px}
+  .rail-n .bar i{position:absolute;left:0;top:-1px;height:2px;width:var(--p,20%);background:var(--k);transition:width .2s}
+  .arws{display:flex;gap:8px}
+  .arws button{width:44px;height:44px;border-radius:50%;border:0;background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.06);transition:background .25s,color .25s}
+  .arws button:hover{background:var(--k);color:#fff}
+
+  /* ═══ PLAYBOOKS · formato blog, compacto ═══ */
+  .blog{padding:clamp(72px,9vw,120px) 0 0}
+  .blog-in{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2vw,28px);background:var(--paper);border-radius:24px;padding:clamp(22px,3vw,40px)}
+  .blog-h{grid-column:1/5}
+  .blog-h .mono{color:var(--muted)}.blog-h .mono span:first-child{color:var(--k)}
+  .blog-h h2{font-weight:300;font-size:clamp(1.6rem,2.6vw,2.2rem);letter-spacing:-.045em;line-height:1.05;margin-top:14px}
+  .blog-l{color:var(--muted);font-size:.92rem;margin-top:12px;max-width:34ch}
+  .posts{grid-column:6/13;border-top:1px solid var(--line)}
+  .post{display:grid;grid-template-columns:1fr auto;gap:6px 20px;padding:18px 0;border-bottom:1px solid var(--line);transition:padding .3s var(--ease)}
+  .post:hover{padding-left:8px}
+  .post-m{grid-column:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:.66rem}
+  .post-m .tag{font-style:normal;padding:2px 8px;font-size:.58rem}
+  .post-t{grid-column:1;font-size:1.25rem;letter-spacing:-.03em;transition:color .25s}
+  .post-d{grid-column:1;color:var(--muted);font-size:.88rem;max-width:58ch}
+  .post-a{grid-column:2;grid-row:1/4;align-self:center;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--k);transition:background .25s,color .25s,border-color .25s}
+  .post:hover .post-t{color:var(--k)}
+  .post:hover .post-a{background:var(--k);border-color:var(--k);color:#fff}
+  @media(max-width:860px){.blog-h,.posts{grid-column:1/-1}.posts{margin-top:22px}}
+
+  /* ═══ SOBRE MÍ · como la versión anterior: intro fija y filas que se apilan ═══ */
+  .info{padding:clamp(40px,6vw,80px) 0 0}
+  .info-in{position:sticky;top:0;z-index:1;background:var(--bg);padding:110px 0 28px}
+  .info-in>*{max-width:680px}
+  .info-in::after{content:"";position:absolute;left:0;right:0;top:100%;height:28px;background:linear-gradient(var(--bg),transparent);pointer-events:none}
+  .info-k{color:var(--muted);margin-bottom:22px}.info-k span:first-child{color:var(--k)}
+  .info-st{font-weight:300;font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.1;letter-spacing:-.045em}
+  .info-st em{font-style:normal;color:var(--k)}
+  .info-in p,.info-b p{font-size:.98rem;line-height:1.7;color:var(--muted);max-width:62ch}
+  .info-b{max-width:680px;padding:8px 0 56px}
+  .info-b p+p{margin-top:14px}
+  .caps{position:relative}
+  .caps::after{content:"";display:block;height:clamp(24px,4vw,48px)}
+  .cap:last-child{min-height:0}
+  .cap{position:sticky;top:var(--ih,46vh);z-index:2;background:var(--bg);display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2vw,28px);align-items:start;padding:36px 0;min-height:calc(100vh - var(--ih,46vh));border-top:1px solid var(--line)}
+  .cap h3{grid-column:1/8;white-space:nowrap;font-weight:400;font-size:clamp(1.8rem,3.4vw,2.8rem);letter-spacing:-.045em;line-height:1;color:var(--ink-2);transition:color .3s}
+  .cap:hover h3{color:var(--k)}
+  .cap-t{grid-column:8/13;display:flex;flex-wrap:wrap;gap:10px 26px;padding-top:10px;font-family:var(--mono);font-size:.78rem;color:var(--ink-2)}
+  .cap-t span::before{content:"+ ";color:var(--k)}
+  .cap-l{grid-column:8/13;padding-top:6px}
+  .cap-l li{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--ink-2)}
+  .cap-l li:last-child{border-bottom:0}
+  .cap-l li span{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;color:var(--muted);white-space:nowrap;padding-top:3px}
+  .cap-l a{transition:color .2s}.cap-l a:hover{color:var(--k)}
+  @media(max-width:860px){
+    .info-in{position:static;padding:80px 0 24px}
+    .info-in::after{display:none}
+    .cap{position:static;min-height:0;padding:26px 0}
+    .caps::after{height:0}
+    .cap h3,.cap-t,.cap-l{grid-column:1/-1}.cap h3{white-space:normal}.cap-t,.cap-l{margin-top:14px}
+  }
+  @media(max-width:560px){.cap-l li{flex-direction:column;gap:2px}}
+
+  /* ═══ PROCESO ═══ */
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--line)}
+  .steps li{padding:20px 18px 0 0;border-right:1px solid var(--line);margin-right:18px;min-height:170px;display:flex;flex-direction:column;gap:10px}
+  .steps li:last-child{border-right:0;margin-right:0}
+  .steps i{font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--k)}
+  .steps b{font-weight:500;font-size:1rem;letter-spacing:-.02em}
+  .steps span{color:var(--muted);font-size:.86rem}
+  @media(max-width:960px){.steps{grid-template-columns:1fr 1fr}.steps li{min-height:0;padding-bottom:20px;border-bottom:1px solid var(--line)}.steps li:nth-child(2n){border-right:0;margin-right:0}}
+  @media(max-width:560px){.steps{grid-template-columns:1fr}.steps li{border-right:0;margin-right:0}}
+
+  /* ═══ CONTACTO (Klein, no negro) ═══ */
+  .ct{background:var(--k);color:#fff;margin-top:clamp(56px,7vw,96px);padding:clamp(90px,11vw,140px) 0 0;position:relative;overflow:hidden;isolation:isolate}
+  .ct::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 80% 20%,#000,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 80% 20%,#000,transparent 70%)}
+  .ct .sh{border-color:rgba(255,255,255,.25)}
+  .ct .sh-i{color:rgba(255,255,255,.7)}.ct .sh-i span:first-child{color:#fff}
+  .ct h2{font-weight:300;font-size:clamp(2.2rem,5vw,4.2rem);letter-spacing:-.05em;line-height:1;max-width:15ch;margin-top:clamp(28px,4vw,48px)}
+  .ct h2 span{color:rgba(255,255,255,.55)}
+  .ct-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);margin-top:clamp(40px,5vw,64px);align-items:start}
+  .ct-row p{color:rgba(255,255,255,.75);max-width:38ch}
+  .ct-row .pill{margin-top:24px}
+  .contacts a{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.22);transition:padding .3s,opacity .2s}
+  .contacts li:first-child a{border-top:1px solid rgba(255,255,255,.22)}
+  .contacts a:hover{padding-left:8px}
+  .contacts small{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);min-width:96px}
+  .contacts b{font-weight:400;font-size:1.15rem;flex:1}
+  footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:clamp(80px,10vw,120px) var(--pad) 36px;max-width:var(--max);margin:0 auto;font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;color:rgba(255,255,255,.65)}
+  footer a:hover{color:#fff}
+  @media(max-width:760px){.ct-row{grid-template-columns:1fr}}
+
+  /* Aparición suave */
+  .up{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .up.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.up{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
-<script>
-  /* Random accent per visit — runs pre-paint, no flash */
-  (function(){
-    var palette = [
-      {hex:'#AAFF00', rgb:'170,255,0'},   /* lime */
-      {hex:'#C89B5C', rgb:'200,155,92'},  /* bronze */
-      {hex:'#5FDCE0', rgb:'95,220,224'},  /* cyan */
-      {hex:'#C8A2FF', rgb:'200,162,255'}  /* lavender */
-    ];
-    var forced = (location.search.match(/[?&]accent=([a-z]+)/i) || [])[1];
-    var byName = {lime:0, bronze:1, cyan:2, lavender:3};
-    var p = {hex:'#1F45D6', rgb:'31,69,214'}; if(false) p = (forced && byName[forced.toLowerCase()] != null)
-      ? palette[byName[forced.toLowerCase()]]
-      : palette[Math.floor(Math.random() * palette.length)];
-    var s = document.documentElement.style;
-    s.setProperty('--accent', p.hex);
-    s.setProperty('--accent-rgb', p.rgb);
-  })();
-</script>
 </head>
 <body>
 
-  <!-- ===== HERO ===== -->
-  <section class="h1x" id="inicio">
-    <header class="hx__bar h1x__bar">
-      <span class="l">Lead Designer — Brand, Systems &amp; Product</span>
-      <a class="c" href="#inicio">Alan Buenhombre</a>
-      <nav class="hx__nav">
-        <a href="#casos" data-i18n="nav_casos">Casos</a>
-        <a href="#juegos" data-i18n="nav_juegos">Lab</a>
-        <a href="#playbooks" class="is-new" data-i18n="nav_playbooks">Playbooks</a>
-        <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
-        <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
-        <button class="hx__lang" id="lang" aria-label="Cambiar idioma">
-        EN
-      </button>
+<header class="nav" id="nav">
+  <a class="brand" href="#inicio" data-i18n="t1">Alan Buenhombre<span>Lead Designer</span></a>
+  <nav class="navr" aria-label="Principal">
+    <a href="#trabajo" data-i18n="t2">Trabajo</a>
+    <a href="#lab" data-i18n="t3">Lab</a>
+    <a href="#playbooks" data-i18n="t4">Playbooks</a>
+    <a href="#sobre" data-i18n="t5">Sobre mí</a>
+    <a class="btn" href="#contacto" data-i18n="t6">Hablemos</a>
+  </nav>
+  <button class="lang" id="lang" type="button" aria-label="Switch to English">EN</button>
+  <button class="ham" id="ham" aria-label="Abrir menú" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+</header>
+<div class="mmenu" id="mmenu" aria-hidden="true">
+  <a href="#trabajo" data-i18n="t7"><i>01</i>Trabajo<em>→</em></a>
+  <a href="#lab" data-i18n="t8"><i>02</i>Lab<em>→</em></a>
+  <a href="#playbooks" data-i18n="t9"><i>03</i>Playbooks<em>→</em></a>
+  <a href="#sobre" data-i18n="t10"><i>04</i>Sobre mí<em>→</em></a>
+  <a href="#contacto" data-i18n="t11"><i>05</i>Contacto<em>→</em></a>
+</div>
+
+<main>
+<!-- ═══ HERO ═══ -->
+<span id="proceso" class="anchor"></span>
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="ava"><img src="assets/hero-alan.webp" alt="Alan Buenhombre" width="2000" height="1116" fetchpriority="high"></span>
+      <div class="hero-txt">
+        <h1 data-i18n="t14">Sistemas que hacen crecer <em>marcas</em>.</h1>
+        <p data-i18n="t15">Me gusta trabajar con marcas que piensan en sistemas. Llevo la marca a todos los puntos de contacto: impreso, campañas, motion, comunicación interna y externa, y producto digital.</p>
+        <div class="hero-cta">
+          <a class="pill" href="#trabajo" data-i18n="t16">Ver trabajo <i>→</i></a>
+          <a class="btn" href="#lab" data-i18n="t17">Entrar al Lab</a>
+        </div>
+      </div>
+    </div>
+
+    <ol class="steps hsteps">
+      <li><i>{01}</i><b data-i18n="t18">Product & UX</b><span data-i18n="t19">Research, flujos y prototipos que se prueban antes de pulirse.</span></li>
+      <li><i>{02}</i><b data-i18n="t20">Design Systems</b><span data-i18n="t21">Tokens, componentes y gobernanza para que el equipo reutilice.</span></li>
+      <li><i>{03}</i><b data-i18n="t22">Brand Identity</b><span data-i18n="t23">Concepto, logo y sistema visual que viaja a cada punto de contacto.</span></li>
+      <li><i>{04}</i><b data-i18n="t24">Motion & Video</b><span data-i18n="t25">La marca en movimiento: campañas, piezas y contenido con IA.</span></li>
+      <li><i>{05}</i><b data-i18n="t26">Art Direction</b><span data-i18n="t27">Criterio para decidir qué llega a la marca y qué no.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══ 01 · TRABAJO ═══ -->
+<span id="casos" class="anchor"></span>
+<section class="sec" id="trabajo">
+  <div class="wrap">
+    <div class="sh up">
+      <div class="sh-i"><span>(01)</span><span data-i18n="t28">Trabajo seleccionado</span></div>
+      <h2 class="sh-t" data-i18n="t29">Marca, sistemas y producto, <em>en la misma mesa</em>.</h2>
+      <p class="sh-l" data-i18n="t30">Cinco casos de estudio, de la estrategia de marca al design system y al producto que la gente usa todos los días.</p>
+    </div>
+
+    <div class="svw">
+      <nav class="svx" aria-label="Casos">
+        <a href="#c-kommit" class="on"><i>01</i><b data-i18n="t31">Kommit</b><span data-i18n="t32">Design Ownership</span></a>
+        <a href="#c-chaincerts"><i>02</i><b data-i18n="t33">Chaincerts</b><span data-i18n="t34">Marca + interfaz</span></a>
+        <a href="#c-v5"><i>03</i><b data-i18n="t35">Kommit V5</b><span data-i18n="t36">Design system</span></a>
+        <a href="#c-portal"><i>04</i><b data-i18n="t37">Company Portal</b><span data-i18n="t38">Portal interno B2B</span></a>
+        <a href="#c-okdose"><i>05</i><b data-i18n="t39">OKdose</b><span data-i18n="t40">Health tech</span></a>
       </nav>
-    </header>
-    <div class="h1x__in">
-      <div class="h1x__left">
-        <div class="h1x__tag"><b>01</b><span>Lead Designer</span><span class="h1x__live"><i></i> <span data-i18n="hero_avail">Disponible</span></span></div>
-        <h1 class="h1x__title">Sistemas que hacen crecer <span class="k">marcas<span class="kdot">.</span></span></h1>
-        <div class="h1x__ov">
-          <h3>Brand, Systems &amp; Product</h3>
-          <p data-i18n="hero_lede">Me gusta trabajar con marcas que piensan en sistemas. Llevo la marca a todos los puntos de contacto: impreso, campañas, motion, comunicación interna y externa, y producto digital.</p>
-        </div>
-        <div class="h1x__btns">
-          <a class="hx__btn hx__btn--p" href="#destacados">Ver trabajo <span class="ar">↗</span></a>
-          <a class="hx__btn hx__btn--g" href="#sobre" data-i18n="hero_cta_about">Sobre mí →</a>
-        </div>
-      </div>
-      <div class="h1x__right" aria-hidden="false">
-        <div class="h1x__pane h1x__pane--k"></div>
-        <div class="h1x__pane h1x__pane--l"></div>
-        <img class="h1x__cut" src="assets/hero-cut.webp" alt="Alan Buenhombre" width="725" height="1100" fetchpriority="high">
-        <div class="h1x__stat h1x__stat--k"><b>14</b><span>años de la publicidad<br>al producto digital</span></div>
-        <div class="h1x__stat h1x__stat--l"><b>4+</b><span>años liderando<br>design systems y UI</span></div>
-        <pre class="h1x__term" aria-hidden="true">&gt; brand.system()
-  ├─ identidad
-  ├─ tokens
-  └─ producto
-&gt; status: <b>growing</b><span class="cur">_</span></pre>
-      </div>
-    </div>
-  </section>
+      <div class="svl">
 
-  <section class="hx hx--work" id="destacados">
-
-    <h2 class="hx__title" aria-label="Trabajo seleccionado.">
-      <span class="ln">Trabajo</span>
-      <span class="ln">seleccionado<span class="k">.</span></span>
-    </h2>
-    <div class="hx__stage">
-      <div class="hx__dev" id="hxDev" aria-hidden="true"></div>
-      <div class="hx__frame" id="hxFrame">
-        <div class="hx__info" id="hxInfo"><div class="hx__name" id="hxName"></div><div class="hx__desc" id="hxDesc"></div></div>
-        <div class="hx__count"><span id="hxCount"></span><br><a id="hxLink" href="#casos">Ver caso ↗</a></div>
-      </div>
-      <div class="hx__menu" id="hxMenu" role="tablist" aria-label="Proyectos destacados"></div>
-    </div>
-    <div class="hx__intro" id="hxIntro">
-      <h2 id="hxLead"></h2>
-      <div class="hx__over">
-        <small>[OVERVIEW]</small>
-        <p id="hxOver"></p>
-        <pre class="hx__term" aria-hidden="true"><span class="p">&gt;</span> brand.system()
-  ├─ identidad
-  ├─ tokens
-  ├─ componentes
-  └─ producto
-<span class="p">&gt;</span> status: <b>growing</b><span class="cur">_</span></pre>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== NOVEDADES ===== -->
-  <section class="news" id="nuevo">
-    <div class="cases__head">
-      <h2 class="cases__title" data-i18n-html="news_title">Lo <strong>nuevo</strong></h2>
-      <span class="cases__meta" data-i18n="news_meta">ÚLTIMOS INGRESOS · OCT 2026</span>
-    </div>
-    <div class="deck" id="newsDeck" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Lo nuevo">
-      <div class="deck__stage">
-        <a class="ncard" href="playbook-conocimiento-tacito.html">
-          <div class="ncard__cover"><div class="pbcover"><div class="pbcover__q" data-i18n-html="news_pb_q">Sabemos más de <em>lo que podemos decir</em>.</div></div>
-            <div class="ncard__type"><span class="pill pill--new" data-i18n="new_tag">Nuevo</span><span class="pill">Playbook 01</span></div></div>
-          <div class="ncard__body"><div><div class="ncard__date" data-i18n="news_pb_date">Playbook · 28 oct 2026 · 10 min</div><div class="ncard__title" data-i18n="pb1_name">Alinear un PRD con IA</div></div><span class="ncard__arrow">↗</span></div>
-        </a>
-        <a class="ncard" href="gritt-reports.html">
-          <div class="ncard__cover"><img src="assets/games/gritt-reports.jpg" alt="Gritt Reports" loading="lazy">
-            <div class="ncard__type"><span class="pill pill--new" data-i18n="new_tag">Nuevo</span><span class="pill" data-i18n="saas_badge">Prototipo</span></div></div>
-          <div class="ncard__body"><div><div class="ncard__date" data-i18n="news_gr_date">SaaS · Nueva UI · Oct 2026</div><div class="ncard__title">Gritt Reports</div></div><span class="ncard__arrow">↗</span></div>
-        </a>
-        <a class="ncard" href="paper-trail.html">
-          <div class="ncard__cover"><img src="paper-trail/stage-bosque.jpg" alt="Paper Trail" loading="lazy">
-            <div class="ncard__type"><span class="pill pill--new" data-i18n="new_tag">Nuevo</span><span class="pill" data-i18n="games_beta">Beta</span></div></div>
-          <div class="ncard__body"><div><div class="ncard__date" data-i18n="news_pt_date">Playable de marca · Oct 2026</div><div class="ncard__title">Paper Trail</div></div><span class="ncard__arrow">↗</span></div>
-        </a>
-        <a class="ncard" href="halora.html">
-          <div class="ncard__cover"><img src="assets/games/halora.jpg" alt="Halora" loading="lazy">
-            <div class="ncard__type"><span class="pill pill--new" data-i18n="new_tag">Nuevo</span><span class="pill" data-i18n="ai_badge">Concepto</span></div></div>
-          <div class="ncard__body"><div><div class="ncard__date" data-i18n="news_hl_date">Landing animada · Oct 2026</div><div class="ncard__title">Halora</div></div><span class="ncard__arrow">↗</span></div>
-        </a>
-        <a class="ncard" href="traceline.html">
-          <div class="ncard__cover"><img src="assets/games/traceline.jpg" alt="Traceline" loading="lazy">
-            <div class="ncard__type"><span class="pill" data-i18n="games_dev">En desarrollo</span></div></div>
-          <div class="ncard__body"><div><div class="ncard__date" data-i18n="news_tl_date">Juego · Time trial · Oct 2026</div><div class="ncard__title">Traceline</div></div><span class="ncard__arrow">↗</span></div>
-        </a>
-      </div>
-      <div class="deck__ui">
-        <button type="button" class="deck__btn" data-dir="-1" aria-label="Anterior">←</button>
-        <div class="deck__count"><b id="deckNow">01</b> / <span id="deckTot">05</span></div>
-        <div class="deck__bar"><i id="deckBar"></i></div>
-        <button type="button" class="deck__btn" data-dir="1" aria-label="Siguiente">→</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN 2 · CASOS ===== -->
-  <section class="cases" id="casos">
-    <div class="cases__head">
-      <h2 class="cases__title" data-i18n-html="cases_title">Casos de <strong>estudio</strong></h2>
-      <span class="cases__meta" data-i18n="cases_meta">SELECTED WORK · 05 CASOS DE ESTUDIO</span>
-    </div>
-    <ul class="cases__list" id="casesList">
-      <a class="crow" href="kommit-ownership.html"><span class="crow__num">01</span><span class="crow__name">Kommit · Design Ownership</span><span class="crow__disc">Brand Strategy · Systems · Product · 2022–2026</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="chaincerts.html"><span class="crow__num">02</span><span class="crow__name">Chaincerts</span><span class="crow__disc">Fintech · Web3 · Marca + Interfaz · 2023</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="portal-kommit.html"><span class="crow__num">03</span><span class="crow__name">Kommit V5 Design System</span><span class="crow__disc">Product Systems · Design Governance · 2022–2026</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="worklogs.html"><span class="crow__num">04</span><span class="crow__name">Company Portal</span><span class="crow__disc">Portal interno B2B · 12+ módulos · Adoptado por todo el equipo · 2023–2025</span><span class="crow__arrow">↗</span></a>
-      <a class="crow" href="okdose.html"><span class="crow__num">05</span><span class="crow__name">OKdose</span><span class="crow__disc">Health Tech · Product Design & UX/UI · 2022</span><span class="crow__arrow">↗</span></a>
-    </ul>
-  </section>
-
-  <!-- ===== SECCIÓN · SIDE PROJECTS · GAMES & SAAS ===== -->
-  <section class="cases games" id="juegos">
-    <div class="cases__head">
-      <h2 class="cases__title" data-i18n-html="games_title">El <strong>Lab</strong></h2>
-      <span class="cases__meta" data-i18n="games_meta">PROYECTOS PROPIOS · JUEGOS · SAAS · 2026</span>
-    </div>
-    <p class="games__lede" data-i18n="games_lede">Proyectos propios donde pruebo ideas de producto, interacción y sistema visual: juegos de navegador, un playable para marcas, una landing animada de diseño a código y un SaaS de reportes para estudios creativos.</p>
-    <div class="lab__grid" id="gamesList">
-      <a class="lcard" href="driftway.html"><div class="lcard__img"><img src="assets/games/driftway.jpg" alt="DRIFTWAY" loading="lazy"></div><div class="lcard__row"><span class="lcard__name">DRIFTWAY</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="game1_disc">Arcade 3D · Ranking por piloto · ES/EN · 2026</div></a>
-      <a class="lcard" href="traceline.html"><div class="lcard__img"><img src="assets/games/traceline.jpg" alt="TRACELINE" loading="lazy"><span class="pill" data-i18n="games_dev">En desarrollo</span></div><div class="lcard__row"><span class="lcard__name">TRACELINE</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="game2_disc">Time trial blueprint · Circuitos que se transforman · 2026</div></a>
-      <a class="lcard" href="paper-trail.html"><div class="lcard__img"><img src="assets/games/paper-trail.jpg" alt="PAPER TRAIL" loading="lazy"><span class="pill pill--new" data-i18n="games_beta">Beta</span></div><div class="lcard__row"><span class="lcard__name">PAPER TRAIL</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="game3_disc">Playable de marca · Diorama 3D papercraft · 2026</div></a>
-      <a class="lcard" href="halora.html"><div class="lcard__img"><img src="assets/games/halora.jpg" alt="HALORA" loading="lazy"><span class="pill" data-i18n="ai_badge">Concepto</span></div><div class="lcard__row"><span class="lcard__name">HALORA</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="ai1_disc">Landing animada · Parallax · Figma · Claude Code · 2026</div></a>
-      <a class="lcard" href="gritt-reports.html"><div class="lcard__img"><img src="assets/games/gritt-reports.jpg" alt="GRITT REPORTS" loading="lazy"><span class="pill" data-i18n="saas_badge">Prototipo</span></div><div class="lcard__row"><span class="lcard__name">GRITT REPORTS</span><span class="lcard__arrow">↗</span></div><div class="lcard__disc" data-i18n="saas1_disc">SaaS · Reportes de redes · Prototipo · 2026</div></a>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN · PLAYBOOKS ===== -->
-  <section class="cases games" id="playbooks">
-    <div class="cases__head">
-      <h2 class="cases__title" data-i18n-html="pb_title">Playbooks <strong>de diseño</strong></h2>
-      <span class="cases__meta" data-i18n="pb_meta">MÉTODO · IA · PRODUCTO · 2026</span>
-    </div>
-    <p class="games__lede" data-i18n="pb_lede">Guías cortas y accionables sobre cómo trabajo: frameworks, prompts reutilizables y criterios que aplico con equipos de producto. Respaldadas en investigación, listas para aplicar en tu próximo proyecto.</p>
-    <ul class="cases__list" id="playbooksList">
-      <a class="crow" href="playbook-conocimiento-tacito.html"><span class="crow__num">01</span><span class="crow__name" data-i18n="pb1_name">Alinear un PRD con IA</span><span class="crow__disc" data-i18n="pb1_disc">“Sabemos más de lo que podemos decir” · Kickoff · 10 min</span><span class="crow__arrow">↗</span></a>
-    </ul>
-  </section>
-
-  <!-- ===== SECCIÓN 3 · INFO STICKY ===== -->
-  <section class="info" id="sobre">
-    <div class="info__intro">
-      <p class="info__kicker" data-i18n="info_kicker">Sobre mí</p>
-      <h2 class="info__statement" data-i18n-html="info_statement">De director de arte a <strong>Design Owner</strong> en marca y producto.</h2>
-      <p class="info__text" data-i18n="info_text_p1">Pasé diez años como Director de Arte en AdO Latam (Bogotá), trabajando marcas corporativas como Enel, Grupo Energía Bogotá, Empresa de Energía de Cundinamarca y Mario Hernández. Cuando Enel cambió su marca con una identidad de Wolff Olins, lideré cómo la nueva marca llegó a la comunicación interna en Colombia. También trabajé un año como freelance para un estudio de diseño on-demand en España, diseñando marcas nuevas cada semana.</p>
-    </div>
-    <div class="info__body">
-      <p class="info__text" data-i18n="info_text_p2">En Kommit fui Lead Designer y Design Owner (2022–2026), el guardián de la marca: escribí el manual de marca de 45 páginas, llevé el Design System de la v1 a la v5 y el Company Portal (12+ módulos) a producción. Diseñé la marca y la interfaz actuales de Chaincerts, plataforma Web3 en Stellar respaldada por el Stellar Community Fund #13.</p>
-      <p class="info__text" data-i18n="info_text_p3" style="margin-top:14px">Hoy lidero el diseño de una marca del sector salud (bajo NDA).</p>
-    </div>
-    <div class="caps" id="caps">
-      <div class="cap">
-        <h3 class="cap__title">Brand & Art Direction</h3>
-        <div class="cap__tags"><span class="tag">Logo design</span><span class="tag">Typography & color</span><span class="tag">Brand guidelines</span><span class="tag">Art direction</span><span class="tag">Motion identity</span></div>
-      </div>
-      <div class="cap">
-        <h3 class="cap__title">Design Systems</h3>
-        <div class="cap__tags"><span class="tag">Design tokens</span><span class="tag">Component libraries</span><span class="tag">Documentación</span><span class="tag">Governance</span><span class="tag">Figma</span><span class="tag">Accesibilidad</span></div>
-      </div>
-      <div class="cap">
-        <h3 class="cap__title">Product · UX/UI</h3>
-        <div class="cap__tags"><span class="tag">Apps</span><span class="tag">Dashboards</span><span class="tag">Wireframing</span><span class="tag">Prototyping</span><span class="tag">Product thinking</span><span class="tag">Fintech · Salud · Web3</span><span class="tag">Dominios regulados</span><span class="tag">AI-assisted design</span></div>
-      </div>
-      <div class="cap">
-        <h3 class="cap__title">Herramientas</h3>
-        <div class="cap__tags"><span class="tag">Figma</span><span class="tag">Illustrator</span><span class="tag">Photoshop</span><span class="tag">After Effects</span><span class="tag">Framer</span><span class="tag">React / Remotion</span><span class="tag">Claude</span><span class="tag">Higgsfield</span><span class="tag">Gemini / Veo</span><span class="tag">Suno</span><span class="tag">ElevenLabs</span></div>
-      </div>
-      <div class="cap">
-        <h3 class="cap__title">Experiencia</h3>
-        <div class="cap__tags"><span class="tag">Marca del sector salud (NDA) · Lead Designer · 2026–Hoy</span><span class="tag">Kommit · Lead Designer · 2022–2026</span><span class="tag">Freelance · Estudio on-demand · España</span><span class="tag">AdO Latam · Dir. de Arte · 2012–2022</span><span class="tag">Agencias y estudios · Diseñador · 2008–2012</span></div>
-      </div>
-      <div class="cap">
-        <h3 class="cap__title">Formación & Premios</h3>
-        <div class="cap__tags cap__tags--list">
-          <a class="tag tag--link" href="#" target="_blank" rel="noopener">Google UX Design Specialization · Coursera · 2025 <span class="tag__ext">↗</span></a>
-          <a class="tag tag--link" href="#" target="_blank" rel="noopener">Digital Product Management · University of Virginia · 2022 <span class="tag__ext">↗</span></a>
-          <a class="tag tag--link" href="#" target="_blank" rel="noopener">Curso de Gestión de Equipos Ágiles · Platzi · 2022 <span class="tag__ext">↗</span></a>
-          <a class="tag tag--link" href="#" target="_blank" rel="noopener">Diseño UX/UI · Coderhouse · 2021–2022 <span class="tag__ext">↗</span></a>
-          <a class="tag tag--link" href="#" target="_blank" rel="noopener">UX con Don Norman · Interaction Design Foundation <span class="tag__ext">↗</span></a>
-          <span class="tag">Lic. Diseño Gráfico · F.U. Los Libertadores · 2017–2021</span>
-          <span class="tag tag--award">MUPI JCDECAUX Awards · Nuevos Talentos · Ganador</span>
-          <span class="tag tag--award">Premio Cinestecia · Mejor Corto Universitario · Ganador</span>
-        </div>
-      </div>
-      <div class="cap">
-        <h3 class="cap__title">Community & Open Source</h3>
-        <div class="cap__tags cap__tags--list">
-          <div class="tag-row">
-            <a class="tag tag--link" href="https://www.designsystemchecklist.com/" target="_blank" rel="noopener">Design System Checklist · es-LA translation · 2026 <span class="tag__ext">↗</span></a>
-            <a class="tag__badge" href="#" target="_blank" rel="noopener" title="Ver PR en GitHub">PR</a>
+        <article class="svc up" id="c-kommit">
+          <a class="svc-m g1" href="kommit-ownership.html" aria-label="Ver caso Kommit">
+            <figure><img src="assets/showcase/frame-ds-gen.jpg" alt="Kommit" loading="lazy" style="object-position:50% 30%"><figcaption data-i18n="t41">Marca · sistema · producto</figcaption></figure>
+          </a>
+          <div class="svc-b">
+            <div class="svc-t">
+              <div class="svc-k" data-i18n="t42"><span>01</span>Brand Strategy · Systems · Product · 2022–2026</div>
+              <h3 data-i18n="t43">Kommit · Design Ownership</h3>
+              <p data-i18n="t44">Fui Lead Designer y Design Owner: el guardián de la marca. Escribí el manual de marca, llevé el design system de la v1 a la v5 y el Company Portal a producción.</p>
+            </div>
+            <div class="svc-r">
+              <small data-i18n="t45">Qué hice</small>
+              <ul><li data-i18n="t46">Manual de marca de 45 páginas</li><li data-i18n="t47">Design System v1 → v5</li><li data-i18n="t48">Company Portal (12+ módulos)</li><li data-i18n="t49">Marca en todos los puntos de contacto</li></ul>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="svc-b" style="padding-top:0"><div class="svc-f" style="grid-column:1/-1;margin:0"><em data-i18n="t50">Caso completo</em><a class="link" href="kommit-ownership.html" data-i18n="t51">Ver caso ↗</a></div></div>
+        </article>
 
-  <!-- ===== SECCIÓN · PROCESS (con esfera) ===== -->
-  <section class="process-sec" id="proceso">
-    <div class="process-sec__inner">
-    <div class="process-sec__top">
-      <div class="process-sec__head">
-        <div class="kicker" data-i18n="proc_kicker">05 · Process</div>
-        <h2 data-i18n-html="proc_title">Cómo <strong>trabajo</strong>.</h2>
-        <p data-i18n="proc_sub">Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.</p>
-      </div>
-      <div class="sphere" aria-hidden="true">
-        <svg viewBox="0 0 340 400">
-          <!-- 5 cubos concéntricos (profundidad interna) -->
-          <!-- Cubo más grande = step 5 (último en highlight), interno = step 1 -->
-          <g class="iso cube" data-step="5">
-            <path d="M170 20 L326 110 L170 200 L14 110 Z"/>
-            <line x1="326" y1="110" x2="326" y2="290"/>
-            <line x1="170" y1="200" x2="170" y2="380"/>
-            <line x1="14"  y1="110" x2="14"  y2="290"/>
-            <path d="M326 290 L170 380 L14 290"/>
-          </g>
-          <g class="iso cube" data-step="4">
-            <path d="M170 56 L295 128 L170 200 L45 128 Z"/>
-            <line x1="295" y1="128" x2="295" y2="272"/>
-            <line x1="170" y1="200" x2="170" y2="344"/>
-            <line x1="45"  y1="128" x2="45"  y2="272"/>
-            <path d="M295 272 L170 344 L45 272"/>
-          </g>
-          <g class="iso cube" data-step="3">
-            <path d="M170 92 L264 146 L170 200 L76 146 Z"/>
-            <line x1="264" y1="146" x2="264" y2="254"/>
-            <line x1="170" y1="200" x2="170" y2="308"/>
-            <line x1="76"  y1="146" x2="76"  y2="254"/>
-            <path d="M264 254 L170 308 L76 254"/>
-          </g>
-          <g class="iso cube" data-step="2">
-            <path d="M170 128 L232 164 L170 200 L108 164 Z"/>
-            <line x1="232" y1="164" x2="232" y2="236"/>
-            <line x1="170" y1="200" x2="170" y2="272"/>
-            <line x1="108" y1="164" x2="108" y2="236"/>
-            <path d="M232 236 L170 272 L108 236"/>
-          </g>
-          <g class="iso cube" data-step="1">
-            <path d="M170 164 L201 182 L170 200 L139 182 Z"/>
-            <line x1="201" y1="182" x2="201" y2="218"/>
-            <line x1="170" y1="200" x2="170" y2="236"/>
-            <line x1="139" y1="182" x2="139" y2="218"/>
-            <path d="M201 218 L170 236 L139 218"/>
-          </g>
-          <!-- vértices por cubo, aparecen solo en su ventana de highlight -->
-          <g data-step="5">
-            <circle class="cube-vx" cx="170" cy="20"  r="2"/><circle class="cube-vx" cx="326" cy="110" r="2"/>
-            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="14"  cy="110" r="2"/>
-            <circle class="cube-vx" cx="326" cy="290" r="2"/><circle class="cube-vx" cx="170" cy="380" r="2"/>
-            <circle class="cube-vx" cx="14"  cy="290" r="2"/>
-          </g>
-          <g data-step="4">
-            <circle class="cube-vx" cx="170" cy="56"  r="2"/><circle class="cube-vx" cx="295" cy="128" r="2"/>
-            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="45"  cy="128" r="2"/>
-            <circle class="cube-vx" cx="295" cy="272" r="2"/><circle class="cube-vx" cx="170" cy="344" r="2"/>
-            <circle class="cube-vx" cx="45"  cy="272" r="2"/>
-          </g>
-          <g data-step="3">
-            <circle class="cube-vx" cx="170" cy="92"  r="2"/><circle class="cube-vx" cx="264" cy="146" r="2"/>
-            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="76"  cy="146" r="2"/>
-            <circle class="cube-vx" cx="264" cy="254" r="2"/><circle class="cube-vx" cx="170" cy="308" r="2"/>
-            <circle class="cube-vx" cx="76"  cy="254" r="2"/>
-          </g>
-          <g data-step="2">
-            <circle class="cube-vx" cx="170" cy="128" r="2"/><circle class="cube-vx" cx="232" cy="164" r="2"/>
-            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="108" cy="164" r="2"/>
-            <circle class="cube-vx" cx="232" cy="236" r="2"/><circle class="cube-vx" cx="170" cy="272" r="2"/>
-            <circle class="cube-vx" cx="108" cy="236" r="2"/>
-          </g>
-          <g data-step="1">
-            <circle class="cube-vx" cx="170" cy="164" r="2"/><circle class="cube-vx" cx="201" cy="182" r="2"/>
-            <circle class="cube-vx" cx="170" cy="200" r="2"/><circle class="cube-vx" cx="139" cy="182" r="2"/>
-            <circle class="cube-vx" cx="201" cy="218" r="2"/><circle class="cube-vx" cx="170" cy="236" r="2"/>
-            <circle class="cube-vx" cx="139" cy="218" r="2"/>
-          </g>
-        </svg>
-        <div class="caps-slider">
-          <div class="cap-item" data-step="1"><span class="num">{01}</span>PRODUCT &amp; UX</div>
-          <div class="cap-item" data-step="2"><span class="num">{02}</span>DESIGN SYSTEMS</div>
-          <div class="cap-item" data-step="3"><span class="num">{03}</span>BRAND IDENTITY</div>
-          <div class="cap-item" data-step="4"><span class="num">{04}</span>MOTION &amp; VIDEO</div>
-          <div class="cap-item" data-step="5"><span class="num">{05}</span>ART DIRECTION</div>
-        </div>
-      </div>
-    </div>
-
-    </div>
-  </section>
-
-
-  <!-- ===== CLOSER · CTA directo a mail ===== -->
-  <section class="closer" id="contacto">
-    <video class="closer__bg" src="videos/0_Purple_Flare_Magenta_1280x720.mp4" autoplay muted loop playsinline></video>
-    <div class="closer__veil" aria-hidden="true"></div>
-    <div class="closer__stage">
-
-      <div class="closer__avail">
-        <span class="closer__pulse" aria-hidden="true"><i></i><i></i></span>
-        <span data-i18n="closer_avail">Disponible para roles lead</span>
-      </div>
-
-      <a class="closer__trigger" href="mailto:alangtres@gmail.com?subject=Oportunidad%20Lead%20Designer" aria-label="Escribime a alangtres@gmail.com">
-        <span class="closer__titleblock">
-          <span class="closer__line" data-i18n="closer_l1">Un equipo donde</span>
-          <span class="closer__line closer__line--muted" data-i18n-html="closer_l2"><strong>marca, sistemas y producto</strong> sean uno.</span>
-        </span>
-        <span class="closer__hint" data-i18n="closer_note">¿Estás construyendo una marca, un sistema de diseño o un equipo de producto? Hablemos.</span>
-        <span class="closer__arrowline" aria-hidden="true">
-          <span class="closer__sideline closer__sideline--l"></span>
-          <span class="closer__arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </span>
-          <span class="closer__sideline closer__sideline--r"></span>
-        </span>
-      </a>
-
-      <span class="closer__meta" data-i18n="closer_meta">Bogotá · LATAM & remoto</span>
-
-    </div>
-  </section>
-
-  <!-- ===== FOOTER (original) ===== -->
-  <footer class="footer">
-    <div class="footer__top">
-      <div class="footer__col footer__col--brand">
-        <div class="footer__logo">Alan Buenhombre</div>
-        <p class="footer__role">Lead Designer · Brand, Systems &amp; Product</p>
-        <p class="footer__tagline">Bogotá, Colombia</p>
-        <p class="footer__copy" data-i18n="footer_copy">© 2026 Alan Buenhombre</p>
-      </div>
-      <div class="footer__col">
-        <h6 class="footer__col-title" data-i18n="footer_menu">Menú</h6>
-        <ul class="footer__links">
-          <li><a href="#inicio" data-i18n="nav_inicio">Inicio</a></li>
-          <li><a href="#nuevo" data-i18n="nav_nuevo">Novedades</a></li>
-          <li><a href="#casos" data-i18n="nav_casos">Casos</a></li>
-          <li><a href="#juegos" data-i18n="nav_juegos">Lab</a></li>
-          <li><a href="#playbooks" data-i18n="nav_playbooks">Playbooks</a></li>
-          <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
-          <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h6 class="footer__col-title" data-i18n="footer_contact">Contacto</h6>
-        <div class="footer__social">
-          <button class="footer__social-btn" id="copyEmailBtn" aria-label="Copiar email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-          </button>
-          <a class="footer__social-btn" href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg>
+        <article class="svc up" id="c-chaincerts">
+          <a class="svc-m g1" href="chaincerts.html" aria-label="Ver caso Chaincerts">
+            <figure><img src="assets/chaincerts-hero.jpg" alt="Credencial de Chaincerts en un portátil" loading="lazy" style="object-position:50% 40%"><figcaption data-i18n="t52">Emisión · wallet · verificación</figcaption></figure>
           </a>
-          <a class="footer__social-btn" href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener" aria-label="Behance">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text></svg>
+          <div class="svc-b">
+            <div class="svc-t">
+              <div class="svc-k" data-i18n="t53"><span>02</span>Fintech · Web3 · Marca + interfaz · 2023</div>
+              <h3 data-i18n="t54">Chaincerts</h3>
+              <p data-i18n="t55">Diplomas y certificados que se verifican en segundos. Diseñé la identidad y la experiencia: emisión, wallet y verificación de credenciales sobre blockchain, pensado para universidades y sus egresados.</p>
+            </div>
+            <div class="svc-r">
+              <small data-i18n="t56">Qué hice</small>
+              <ul><li data-i18n="t57">Marca e interfaz actuales</li><li data-i18n="t58">Flujo de emisión y wallet</li><li data-i18n="t59">Verificación pública de credenciales</li><li data-i18n="t60">Visor 2D y 3D</li></ul>
+            </div>
+          </div>
+          <div class="svc-b" style="padding-top:0"><div class="svc-f" style="grid-column:1/-1;margin:0"><em data-i18n="t61">Plataforma Web3 en Stellar</em><a class="link" href="chaincerts.html" data-i18n="t62">Ver caso ↗</a></div></div>
+        </article>
+
+        <article class="svc up" id="c-v5">
+          <a class="svc-m g1" href="portal-kommit.html" aria-label="Ver caso Kommit V5">
+            <figure><img src="assets/portal-kommit-hero.jpg" alt="Kommit V5 Design System" loading="lazy"><figcaption data-i18n="t63">Tokens · componentes · gobernanza</figcaption></figure>
           </a>
-          <a class="footer__social-btn" href="https://www.instagram.com/alanbuenhombre/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          <div class="svc-b">
+            <div class="svc-t">
+              <div class="svc-k" data-i18n="t64"><span>03</span>Product Systems · Design Governance · 2022–2026</div>
+              <h3 data-i18n="t65">Kommit V5 Design System</h3>
+              <p data-i18n="t66">Un sistema que el equipo de producto reutiliza, no reinventa. Lideré V5 de punta a punta: fundamentos, tokens, librería de componentes en Figma, documentación y gobernanza con desarrollo.</p>
+            </div>
+            <div class="svc-r">
+              <small data-i18n="t67">Qué hice</small>
+              <ul><li data-i18n="t68">Fundamentos y tokens</li><li data-i18n="t69">Librería de componentes en Figma</li><li data-i18n="t70">Documentación</li><li data-i18n="t71">Gobernanza con desarrollo</li></ul>
+            </div>
+          </div>
+          <div class="svc-b" style="padding-top:0"><div class="svc-f" style="grid-column:1/-1;margin:0"><em data-i18n="t72">Base de los productos internos y de cliente</em><a class="link" href="portal-kommit.html" data-i18n="t73">Ver caso ↗</a></div></div>
+        </article>
+
+        <article class="svc up" id="c-portal">
+          <a class="svc-m g1" href="worklogs.html" aria-label="Ver caso Company Portal">
+            <figure><img src="assets/portal-kommit-2026-hero.jpg" alt="Company Portal" loading="lazy"><figcaption data-i18n="t74">Horas · tareas · vacaciones · objetivos</figcaption></figure>
           </a>
-        </div>
-        <p class="footer__social-invite" data-i18n="footer_invite">Más diseño por descubrir en mis redes.</p>
-        <div class="footer__copied-toast" id="copiedToast" data-i18n="footer_copied">¡Copiado!</div>
+          <div class="svc-b">
+            <div class="svc-t">
+              <div class="svc-k" data-i18n="t75"><span>04</span>Portal interno B2B · 2023–2025</div>
+              <h3 data-i18n="t76">Company Portal</h3>
+              <p data-i18n="t77">Un portal que el equipo usa todos los días: registro de horas, tareas, vacaciones y objetivos en un solo lugar.</p>
+            </div>
+            <div class="svc-r">
+              <small data-i18n="t78">Resultado</small>
+              <ul><li data-i18n="t79">12+ módulos en producción</li><li data-i18n="t80">Adoptado por todo el equipo</li><li data-i18n="t81">Construido sobre Kommit V5</li></ul>
+            </div>
+          </div>
+          <div class="svc-b" style="padding-top:0"><div class="svc-f" style="grid-column:1/-1;margin:0"><em data-i18n="t82">Producto interno</em><a class="link" href="worklogs.html" data-i18n="t83">Ver caso ↗</a></div></div>
+        </article>
+
+        <article class="svc up" id="c-okdose">
+          <a class="svc-m g1" href="okdose.html" aria-label="Ver caso OKdose">
+            <figure><img src="assets/okdose-hero.jpg" alt="OKdose" loading="lazy"><figcaption data-i18n="t84">Health tech</figcaption></figure>
+          </a>
+          <div class="svc-b">
+            <div class="svc-t">
+              <div class="svc-k" data-i18n="t85"><span>05</span>Health Tech · Product Design & UX/UI · 2022</div>
+              <h3 data-i18n="t86">OKdose</h3>
+              <p data-i18n="t87">Calcular una dosis no debería generar dudas. Producto y UX/UI para una herramienta que guía al médico por categoría, patología y peso hasta la dosis correcta.</p>
+            </div>
+            <div class="svc-r">
+              <small data-i18n="t88">Qué hice</small>
+              <ul><li data-i18n="t89">Producto y arquitectura</li><li data-i18n="t90">Flujo categoría → patología → peso</li><li data-i18n="t91">UI clara y sin fricción</li></ul>
+            </div>
+          </div>
+          <div class="svc-b" style="padding-top:0"><div class="svc-f" style="grid-column:1/-1;margin:0"><em data-i18n="t92">Dominio regulado</em><a class="link" href="okdose.html" data-i18n="t93">Ver caso ↗</a></div></div>
+        </article>
+
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <figure class="cursor-preview" id="cp"><img id="cpimg" src="" alt=""></figure>
-
-  <div class="lb" id="lb">
-    <span class="lb__close">Cerrar ✕</span>
-    <button class="lb__arrow lb__arrow--prev" id="lbPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-    <img id="lbimg" src="" alt="">
-    <button class="lb__arrow lb__arrow--next" id="lbNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-    <div class="lb__caption" id="lbCap"></div>
+<!-- ═══ 02 · EL LAB ═══ -->
+<span id="juegos" class="anchor"></span><span id="nuevo" class="anchor"></span>
+<section class="lab" id="lab">
+  <div class="lab-hd">
+    <div class="wrap">
+      <div class="sh">
+        <div class="sh-i"><span>(02)</span><span data-i18n="t94">Juegos, marcas, producto e IA</span></div>
+        <h2 class="sh-t" data-i18n="t95">El Lab.</h2>
+        <p class="sh-l" data-i18n="t96">Aquí pruebo ideas antes de llevarlas a una marca: juegos de navegador, marcas concepto con su landing, y producto con IA: contenido, flujos y herramientas.</p>
+      </div>
+    </div>
   </div>
 
+  <div class="wrap">
+    <div class="tabs-r">
+      <div class="tabs" role="tablist" aria-label="Categorías del Lab">
+        <button type="button" role="tab" aria-selected="true" data-cat="all" data-i18n="t97">Todo <small>08</small></button>
+        <button type="button" role="tab" aria-selected="false" data-cat="play" data-i18n="g1">Playables <small>03</small></button>
+        <button type="button" role="tab" aria-selected="false" data-cat="brand" data-i18n="g2">Brand <small>02</small></button>
+        <button type="button" role="tab" aria-selected="false" data-cat="ai" data-i18n="g3">Product &amp; AI <small>03</small></button>
+      </div>
+      <a class="link" href="https://gritt.design" target="_blank" rel="noopener" data-i18n="t102">gritt.design ↗</a>
+    </div>
+  </div>
+
+  <div class="rail">
+    <div class="rail-t" id="rail">
+      <a class="pj" data-cat="play" href="driftway.html">
+        <figure><img src="assets/games/driftway.jpg" alt="DRIFTWAY" loading="lazy"></figure>
+        <div class="pj-b"><div class="pj-r"><h4 data-i18n="t103">DRIFTWAY</h4><span class="ar">↗</span></div><p data-i18n="t104">Arcade 3D en el navegador. Esquiva el código, no pares.</p><span class="mono" data-i18n="t105">Juego · arcade 3D · ES/EN</span></div>
+      </a>
+      <a class="pj" data-cat="play" href="traceline.html">
+        <figure><img src="assets/games/traceline.jpg" alt="TRACELINE" loading="lazy"></figure>
+        <div class="pj-b"><div class="pj-r"><h4 data-i18n="t106">TRACELINE</h4><span class="tag o" data-i18n="t107">En desarrollo</span></div><p data-i18n="t108">Time trial blueprint con circuitos que se transforman.</p><span class="mono" data-i18n="t109">Juego · time trial · 2026</span></div>
+      </a>
+      <a class="pj" data-cat="play" href="paper-trail.html">
+        <figure><img src="assets/games/paper-trail.jpg" alt="PAPER TRAIL" loading="lazy"></figure>
+        <div class="pj-b"><div class="pj-r"><h4 data-i18n="t110">PAPER TRAIL</h4><span class="tag o" data-i18n="t111">Beta</span></div><p data-i18n="t112">Playable de marca: diorama 3D en papel recortado para eventos.</p><span class="mono" data-i18n="t113">Juego · playable de marca · 2026</span></div>
+      </a>
+      <a class="pj" data-cat="brand" href="halora.html">
+        <figure><img src="assets/games/halora.jpg" alt="HALORA" loading="lazy"></figure>
+        <div class="pj-b"><div class="pj-r"><h4 data-i18n="t125">HALORA</h4><span class="tag o" data-i18n="t126">Concepto</span></div><p data-i18n="t127">Landing animada con parallax, de Figma a código con Claude Code.</p><span class="mono" data-i18n="t128">Marca concepto · landing animada · 2026</span></div>
+      </a>
+      <a class="pj" data-cat="brand" id="pj-null" href="null-h1/">
+        <figure><img src="assets/gritt-lab/null-h1.jpg" alt="NULL° H1, audífonos concepto en 3D" loading="lazy" style="object-position:58% 45%"></figure>
+        <div class="pj-b"><div class="pj-r"><h4 data-i18n="n1">NULL° H1</h4><span class="tag o" data-i18n="n2">3D · Blender</span></div><p data-i18n="n3">Audífonos concepto de una marca inventada: producto en 3D, vista explotada y configurador de acabados.</p><span class="mono" data-i18n="n4">Marca concepto · landing 3D · Blender</span></div>
+      </a>
+      <a class="pj" data-cat="ai" href="https://gritt.design/proyectos/lanz-world.html" target="_blank" rel="noopener">
+        <figure><img src="assets/gritt-lab/halloween-poster.jpg" alt="LANZ World Halloween" loading="lazy" style="object-position:50% 35%"></figure>
+        <div class="pj-b"><div class="pj-r"><h4 data-i18n="t114">LANZ WORLD</h4><span class="ar">↗</span></div><p data-i18n="t115">Halloween con IA: guion, personajes, video vertical y piezas para la parrilla.</p><span class="mono" data-i18n="t116">Producto &amp; IA · contenido · oct 2026</span></div>
+      </a>
+      <a class="pj" data-cat="ai" href="https://gritt.design/#lab" target="_blank" rel="noopener">
+        <figure class="chat">
+          <div class="chat-w" aria-label="Ejemplo ilustrativo de Marca por WhatsApp">
+            <div class="chat-h"><i></i><div><b data-i18n="t117">Marca por WhatsApp</b><small data-i18n="t118">ejemplo ilustrativo</small></div></div>
+            <div class="chat-b">
+              <div class="bub me">▶ <span class="wave"><i style="height:6px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:5px"></i><i style="height:10px"></i><i style="height:7px"></i></span> 0:14</div>
+              <div class="bub" data-i18n="t119">Listo, armé la pieza con tu paleta y tu tipografía.</div>
+              <div class="bub ok" data-i18n="t120">✓ Aprobada por un diseñador</div>
+            </div>
+          </div>
+        </figure>
+        <div class="pj-b"><div class="pj-r"><h4 data-i18n="t121">MARCA POR WHATSAPP</h4><span class="tag o" data-i18n="t122">Experimento</span></div><p data-i18n="t123">Mandas un audio; la IA propone con tus reglas de marca y un diseñador aprueba.</p><span class="mono" data-i18n="t124">Producto &amp; IA · flujo de marca</span></div>
+      </a>
+      <a class="pj" data-cat="ai" href="gritt-reports.html">
+        <figure><img src="assets/games/gritt-reports.jpg" alt="GRITT REPORTS" loading="lazy"></figure>
+        <div class="pj-b"><div class="pj-r"><h4 data-i18n="t129">GRITT REPORTS</h4><span class="tag o" data-i18n="t130">Prototipo</span></div><p data-i18n="t131">Reportes de redes que un gerente entiende en un minuto: una página con link.</p><span class="mono" data-i18n="t132">Producto &amp; IA · SaaS · 2026</span></div>
+      </a>
+    </div>
+    <div class="wrap">
+      <div class="rail-n"><div class="bar"><i id="railBar"></i></div><div class="arws"><button type="button" id="rPrev" aria-label="Anterior">←</button><button type="button" id="rNext" aria-label="Siguiente">→</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 · PLAYBOOKS (formato blog) ═══ -->
+<section class="blog" id="playbooks">
+  <div class="wrap">
+    <div class="blog-in up">
+      <div class="blog-h">
+        <p class="mono"><span>(03)</span> <span data-i18n="t133">Método · IA · producto</span></p>
+        <h2 data-i18n="t134">Playbooks de diseño.</h2>
+        <p class="blog-l" data-i18n="b1">Guías cortas sobre cómo trabajo: frameworks, prompts reutilizables y criterios para equipos de producto.</p>
+      </div>
+      <ul class="posts">
+        <li>
+          <a class="post" href="playbook-conocimiento-tacito.html">
+            <span class="post-m mono"><span data-i18n="b2">28 oct 2026</span> · Kickoff · 10 min <i class="tag k" data-i18n="t136">Nuevo</i></span>
+            <span class="post-t" data-i18n="t137">Alinear un PRD con IA</span>
+            <span class="post-d" data-i18n="b3">IA generativa para revelar los supuestos ocultos de un PRD: framework de 3 pasos, prompts copiables y una matriz de buenas prácticas.</span>
+            <span class="post-a" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04 · SOBRE MÍ ═══ -->
+<section class="info" id="sobre">
+  <div class="wrap">
+    <div class="info-in">
+      <p class="info-k mono"><span>(04)</span> <span data-i18n="t140">Sobre mí</span></p>
+      <h2 class="info-st" data-i18n="t141">De director de arte a <em>Design Owner</em> en marca y producto.</h2>
+    </div>
+    <div class="info-b">
+      <p data-i18n="t144">Pasé diez años como Director de Arte en AdO Latam (Bogotá), trabajando marcas corporativas como Enel, Grupo Energía Bogotá, Empresa de Energía de Cundinamarca y Mario Hernández. Cuando Enel cambió su marca con una identidad de Wolff Olins, lideré cómo la nueva marca llegó a la comunicación interna en Colombia. También trabajé un año como freelance para un estudio de diseño on-demand en España, diseñando marcas nuevas cada semana.</p>
+      <p data-i18n="t145">En Kommit fui Lead Designer y Design Owner (2022–2026), el guardián de la marca: escribí el manual de marca de 45 páginas, llevé el Design System de la v1 a la v5 y el Company Portal (12+ módulos) a producción. Diseñé la marca y la interfaz actuales de Chaincerts, plataforma Web3 en Stellar respaldada por el Stellar Community Fund #13.</p>
+      <p data-i18n="t146">Hoy lidero el diseño de una marca del sector salud (bajo NDA).</p>
+    </div>
+    <div class="caps">
+      <div class="cap"><h3 data-i18n="t147">Brand &amp; Art Direction</h3><div class="cap-t"><span data-i18n="t148">Logo design</span><span data-i18n="t149">Typography &amp; color</span><span data-i18n="t150">Brand guidelines</span><span data-i18n="t151">Art direction</span><span data-i18n="t152">Motion identity</span></div></div>
+      <div class="cap"><h3 data-i18n="t153">Design Systems</h3><div class="cap-t"><span data-i18n="t154">Design tokens</span><span data-i18n="t155">Component libraries</span><span data-i18n="t156">Documentación</span><span data-i18n="t157">Governance</span><span data-i18n="t158">Figma</span><span data-i18n="t159">Accesibilidad</span></div></div>
+      <div class="cap"><h3 data-i18n="t160">Product · UX/UI</h3><div class="cap-t"><span data-i18n="t161">Apps</span><span data-i18n="t162">Dashboards</span><span data-i18n="t163">Wireframing</span><span data-i18n="t164">Prototyping</span><span data-i18n="t165">Product thinking</span><span data-i18n="t166">Fintech · Salud · Web3</span><span data-i18n="t167">Dominios regulados</span><span data-i18n="t168">AI-assisted design</span></div></div>
+      <div class="cap"><h3 data-i18n="t169">Herramientas</h3><div class="cap-t"><span data-i18n="t170">Figma</span><span data-i18n="t171">Illustrator</span><span data-i18n="t172">Photoshop</span><span data-i18n="t173">After Effects</span><span data-i18n="t174">Framer</span><span data-i18n="t175">React / Remotion</span><span data-i18n="t176">Claude</span><span data-i18n="t177">Higgsfield</span><span data-i18n="t178">Gemini / Veo</span><span data-i18n="t179">Suno</span><span data-i18n="t180">ElevenLabs</span></div></div>
+      <div class="cap"><h3 data-i18n="t181">Experiencia</h3>
+        <ul class="cap-l">
+          <li data-i18n="t182">Marca del sector salud (NDA) · Lead Designer<span>2026–Hoy</span></li>
+          <li data-i18n="t183">Kommit · Lead Designer<span>2022–2026</span></li>
+          <li data-i18n="t184">Freelance · Estudio on-demand · España<span>Remoto</span></li>
+          <li data-i18n="t185">AdO Latam · Dir. de Arte<span>2012–2022</span></li>
+          <li data-i18n="t186">Agencias y estudios · Diseñador<span>2008–2012</span></li>
+        </ul>
+      </div>
+      <div class="cap"><h3 data-i18n="t187">Formación &amp; Premios</h3>
+        <ul class="cap-l">
+          <li data-i18n="t188">Google UX Design Specialization · Coursera<span>2025</span></li>
+          <li data-i18n="t189">Digital Product Management · University of Virginia<span>2022</span></li>
+          <li data-i18n="t190">Curso de Gestión de Equipos Ágiles · Platzi<span>2022</span></li>
+          <li data-i18n="t191">Diseño UX/UI · Coderhouse<span>2021–2022</span></li>
+          <li data-i18n="t192">UX con Don Norman · Interaction Design Foundation<span>IxDF</span></li>
+          <li data-i18n="t193">Lic. Diseño Gráfico · F.U. Los Libertadores<span>2017–2021</span></li>
+          <li data-i18n="t194">★ MUPI JCDecaux Awards · Nuevos Talentos<span>Ganador</span></li>
+          <li data-i18n="t195">★ Premio Cinestecia · Mejor Corto Universitario<span>Ganador</span></li>
+        </ul>
+      </div>
+      <div class="cap"><h3 data-i18n="t196">Community &amp; Open Source</h3>
+        <ul class="cap-l">
+          <li><a href="https://www.designsystemchecklist.com/" target="_blank" rel="noopener" data-i18n="t197">Design System Checklist · traducción es-LA ↗</a><span>2026</span></li>
+        </ul>
+      </div>
+      <div class="cap"><h3 data-i18n="t198">Otros proyectos</h3>
+        <ul class="cap-l">
+          <li><a href="https://www.behance.net/gallery/134824769/CACIQUES-HH" target="_blank" rel="noopener" data-i18n="t199">Caciques HH ↗</a><span data-i18n="t200">Branding · Campaña</span></li>
+          <li><a href="https://www.behance.net/gallery/134821849/CoParching-Hackathon" target="_blank" rel="noopener" data-i18n="t201">CoParching Hackathon ↗</a><span data-i18n="t202">Estrategia · Diseño</span></li>
+          <li><a href="https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald" target="_blank" rel="noopener" data-i18n="t203">Casa Ronald McDonald ↗</a><span data-i18n="t204">Branding · Social</span></li>
+          <li><a href="https://www.behance.net/gallery/92806223/ESPECTROMIA" target="_blank" rel="noopener" data-i18n="t205">Espectromia ↗</a><span data-i18n="t206">Dirección de arte</span></li>
+          <li><a href="https://www.behance.net/gallery/113654193/En-modo-IN" target="_blank" rel="noopener" data-i18n="t207">En modo IN ↗</a><span data-i18n="t208">Campaña</span></li>
+          <li><a href="https://www.behance.net/gallery/80419227/FESTIVAL-RENACER" target="_blank" rel="noopener" data-i18n="t209">Festival Renacer ↗</a><span data-i18n="t210">Identidad · Evento</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ 05 · CONTACTO (Klein) ═══ -->
+<section class="ct" id="contacto">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-i"><span>(05)</span><span data-i18n="t211">Disponible para roles lead</span></div>
+    </div>
+    <h2 data-i18n="t212">Un equipo donde marca, sistemas y producto <span>sean uno.</span></h2>
+    <div class="ct-row">
+      <div>
+        <p data-i18n="t213">¿Estás construyendo una marca, un sistema de diseño o un equipo de producto? Hablemos. Bogotá · LATAM y remoto.</p>
+        <a class="pill lt" href="mailto:alangtres@gmail.com?subject=Oportunidad%20Lead%20Designer" data-i18n="t214">Escríbeme <i>↗</i></a>
+      </div>
+      <ul class="contacts">
+        <li><a href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener"><small data-i18n="t215">LinkedIn</small><b data-i18n="t216">in/buenhombre</b><span>↗</span></a></li>
+        <li><a href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener"><small data-i18n="t217">Behance</small><b data-i18n="t218">AlanBuenhombre</b><span>↗</span></a></li>
+        <li><a href="https://www.instagram.com/alanbuenhombre/" target="_blank" rel="noopener"><small data-i18n="t219">Instagram</small><b data-i18n="t220">@alanbuenhombre</b><span>↗</span></a></li>
+        <li><a href="cv.html"><small data-i18n="t221">CV</small><b data-i18n="t222">Descargar CV</b><span>↗</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <footer>
+    <span data-i18n="t223">© 2026 Alan Buenhombre · Bogotá, Colombia</span>
+    <a href="#inicio" data-i18n="t224">Volver arriba ↑</a>
+  </footer>
+</section>
+
 <script>
-  /* ===== i18n ===== */
-  const T={
-    es:{
-      nav_inicio:'Inicio',nav_casos:'Casos',nav_sobre:'Sobre',nav_contacto:'Contacto',nav_juegos:'Lab',nav_nuevo:'Novedades',new_tag:'Nuevo',news_title:'Lo <strong>nuevo</strong>',news_meta:'ÚLTIMOS INGRESOS · OCT 2026',news_pb_q:'Sabemos más de <em>lo que podemos decir</em>.',news_pb_s1:'Estímulo',news_pb_s2:'Prompting dialéctico',news_pb_s3:'Proceso visible',news_pb_date:'Playbook · 28 oct 2026 · 10 min',news_pb_t:'IA generativa para revelar los supuestos ocultos de un PRD',news_pb_d:'Framework de 3 pasos, prompts copiables y una matriz de buenas prácticas para el kickoff con producto.',news_pt_date:'Playable de marca · Oct 2026',news_hl_date:'Landing animada · Oct 2026',news_gr_date:'SaaS · Nueva UI · Oct 2026',news_tl_date:'Juego · Time trial · Oct 2026',nav_playbooks:'Playbooks',pb_title:'Playbooks <strong>de diseño</strong>',pb_meta:'MÉTODO · IA · PRODUCTO · 2026',pb_lede:'Guías cortas y accionables sobre cómo trabajo: frameworks, prompts reutilizables y criterios que aplico con equipos de producto. Respaldadas en investigación, listas para aplicar en tu próximo proyecto.',pb1_name:'Alinear un PRD con IA',pb1_disc:'“Sabemos más de lo que podemos decir” · Kickoff · 10 min',
-      games_title:'El <strong>Lab</strong>',games_meta:'PROYECTOS PROPIOS · JUEGOS · SAAS · 2026',
-      games_lede:'Proyectos propios donde pruebo ideas de producto, interacción y sistema visual: juegos de navegador, un playable para marcas, una landing animada de diseño a código y un SaaS de reportes para estudios creativos.',
-      games_dev:'En desarrollo',games_wip:'En construcción',saas1_disc:'SaaS · Reportes de redes · Prototipo · 2026',saas_badge:'Prototipo',game3_disc:'Playable de marca · Diorama 3D papercraft · 2026',games_beta:'Beta',game1_disc:'Arcade 3D · Ranking por piloto · ES/EN · 2026',game2_disc:'Time trial blueprint · Circuitos que se transforman · 2026',ai_badge:'Concepto',ai1_disc:'Landing animada · Parallax · Figma · Claude Code · 2026',
-      hero_avail:'Disponible',
-      hero_title:'Lead Designer · <strong>Brand, Systems &amp; Product</strong>.',
-      hero_lede:'Me gusta trabajar con marcas que piensan en sistemas. Llevo la marca a todos los puntos de contacto: impreso, campañas, motion, comunicación interna y externa, y producto digital.',
-      hero_stat:'14 años de la publicidad al producto digital. Hoy lidero el diseño de una marca del sector salud (NDA); antes, Lead Designer y Design Owner en Kommit y Director de Arte en AdO Latam.',
-      hero_cta_about:'Sobre mí →',hero_cta_cases:'Casos de estudio →',
-      fan_idx:'04 · Trabajo & exploración',fan_title:'Algo de lo que <strong>diseño</strong>.',
-      proc_kicker:'05 · Proceso',
-      proc_title:'Cómo <strong>trabajo</strong>.',
-      proc_sub:'Un proceso iterativo entre research, sistema y ship. Colaboro con equipos de producto, tecnología y datos para traducir insights en decisiones de diseño.',
-      proc_s1_name:'Descubrir',
-      proc_s1_desc:'Entrevistas con stakeholders, revisión de métricas existentes y auditoría del ecosistema. Entender el problema real antes de diseñar.',
-      proc_s2_name:'Definir',
-      proc_s2_desc:'Journey maps, blueprints y priorización. La intersección entre lo que el usuario necesita, lo que el negocio requiere y lo que la tecnología permite.',
-      proc_s3_name:'Sistema',
-      proc_s3_desc:'Construcción de tokens, componentes y patrones. Prototipado en Figma. Validación con pruebas de usabilidad y experimentos MVP antes de escalar.',
-      proc_s4_name:'Entrega y Medición',
-      proc_s4_desc:'Handoff con desarrollo, QA visual y seguimiento de adopción. Colaboro con analytics para leer conversión, engagement y NPS, e iterar el sistema.',
-      info_kicker:'Sobre mí',info_statement:'De director de arte a <strong>Design Owner</strong> en marca y producto.',
-      info_text_p1:'Pasé diez años como Director de Arte en AdO Latam (Bogotá), trabajando marcas corporativas como Enel, Grupo Energía Bogotá, Empresa de Energía de Cundinamarca y Mario Hernández. Cuando Enel cambió su marca con una identidad de Wolff Olins, lideré cómo la nueva marca llegó a la comunicación interna en Colombia. También trabajé un año como freelance para un estudio de diseño on-demand en España, diseñando marcas nuevas cada semana.',
-      info_text_p2:'En Kommit fui Lead Designer y Design Owner (2022–2026), el guardián de la marca: escribí el manual de marca de 45 páginas, llevé el Design System de la v1 a la v5 y el Company Portal (12+ módulos) a producción. Diseñé la marca y la interfaz actuales de Chaincerts, plataforma Web3 en Stellar respaldada por el Stellar Community Fund #13.',
-      info_text_p3:'Hoy lidero el diseño de una marca del sector salud (bajo NDA).',
-      cases_title:'Casos de <strong>estudio</strong>',cases_meta:'SELECTED WORK · 05 CASOS DE ESTUDIO',
-      others_label:'Otros proyectos · Dirección de arte & branding de campañas · Behance',
-      closer_title:'Busco mi próximo<br>equipo de <strong>marca y diseño</strong>',closer_btn:'Escríbeme →',
-      closer_avail:'Disponible para roles lead',
-      closer_l1:'Un equipo donde',
-      closer_l2:'<strong>marca, sistemas y producto</strong> sean uno.',
-      closer_note:'¿Estás construyendo una marca, un sistema de diseño o un equipo de producto? Hablemos.',
-      closer_meta:'Bogotá · LATAM & remoto',
-      footer_menu:'Menú',footer_contact:'Contacto',footer_copy:'© 2026 Alan Buenhombre',
-      footer_invite:'Más diseño por descubrir en mis redes.',footer_copied:'¡Copiado!'
-    },
-    en:{
-      nav_inicio:'Home',nav_casos:'Cases',nav_sobre:'About',nav_contacto:'Contact',nav_juegos:'Lab',nav_nuevo:'What\'s new',new_tag:'New',news_title:'What\'s <strong>new</strong>',news_meta:'LATEST ADDITIONS · OCT 2026',news_pb_q:'We know more than <em>we can tell</em>.',news_pb_s1:'Stimulus',news_pb_s2:'Dialectic prompting',news_pb_s3:'Visible process',news_pb_date:'Playbook · Oct 28, 2026 · 10 min',news_pb_t:'Using generative AI to surface the hidden assumptions in a PRD',news_pb_d:'A 3-step framework, copy-ready prompts and a good-practice matrix for the product kickoff.',news_pt_date:'Brand playable · Oct 2026',news_hl_date:'Animated landing · Oct 2026',news_gr_date:'SaaS · New UI · Oct 2026',news_tl_date:'Game · Time trial · Oct 2026',nav_playbooks:'Playbooks',pb_title:'Design <strong>playbooks</strong>',pb_meta:'METHOD · AI · PRODUCT · 2026',pb_lede:'Short, actionable guides on how I work: frameworks, reusable prompts and criteria I apply with product teams. Backed by research, ready to use on your next project.',pb1_name:'Aligning a PRD with AI',pb1_disc:'“We know more than we can tell” · Kickoff · 10 min',
-      games_title:'The <strong>Lab</strong>',games_meta:'SIDE PROJECTS · GAMES · SAAS · 2026',
-      games_lede:'Personal projects where I test ideas on product, interaction and visual systems: browser games, a brand playable, an animated design-to-code landing page and a reporting SaaS for creative studios.',
-      games_dev:'In development',games_wip:'In progress',saas1_disc:'SaaS · Social reports · Prototype · 2026',saas_badge:'Prototype',game3_disc:'Brand playable · 3D papercraft diorama · 2026',games_beta:'Beta',game1_disc:'3D arcade · Pilot ranking · ES/EN · 2026',game2_disc:'Blueprint time trial · Circuits that transform · 2026',ai_badge:'Concept',ai1_disc:'Animated landing · Parallax · Figma · Claude Code · 2026',
-      hero_avail:'Available',
-      hero_title:'Lead Designer · <strong>Brand, Systems &amp; Product</strong>.',
-      hero_lede:'I like working with brands that think in systems. I take a brand everywhere people meet it: print, campaigns, motion, internal and external communication, and digital product.',
-      hero_stat:'14 years from advertising to digital product. Today I lead design for a healthcare brand (NDA). Before that, Lead Designer and Design Owner at Kommit and Art Director at AdO Latam.',
-      hero_cta_about:'About →',hero_cta_cases:'Case studies →',
-      fan_idx:'04 · Work & exploration',fan_title:'Some of what I <strong>design</strong>.',
-      proc_kicker:'05 · Process',
-      proc_title:'How I <strong>work</strong>.',
-      proc_sub:'An iterative process between research, system, and ship. I collaborate with product, engineering, and data teams to translate insights into design decisions.',
-      proc_s1_name:'Discover',
-      proc_s1_desc:'Stakeholder interviews, review of existing metrics, and ecosystem audit. Understand the real problem before designing.',
-      proc_s2_name:'Define',
-      proc_s2_desc:'Journey maps, blueprints, and prioritization. The intersection between what the user needs, what the business requires, and what the technology allows.',
-      proc_s3_name:'System',
-      proc_s3_desc:'Building tokens, components, and patterns. Prototyping in Figma. Validation with usability tests and MVP experiments before scaling.',
-      proc_s4_name:'Ship & Measure',
-      proc_s4_desc:'Handoff with engineering, visual QA, and adoption tracking. I work with analytics to read conversion, engagement, and NPS, and iterate the system.',
-      info_kicker:'About',info_statement:'From art director to <strong>Design Owner</strong> in brand and product.',
-      info_text_p1:'I spent ten years as Art Director at AdO Latam (Bogotá), working on corporate brands like Enel, Grupo Energía Bogotá, Empresa de Energía de Cundinamarca and Mario Hernández. When Enel rebranded with an identity by Wolff Olins, I led how the new brand came to life in internal communication in Colombia. I also spent a year freelancing for an on-demand design studio in Spain, designing new brands every week.',
-      info_text_p2:'At Kommit I was Lead Designer and Design Owner (2022–2026), the guardian of the brand. I wrote the 45-page brand manual, evolved the design system from v1 to v5, and took the Company Portal (12+ modules) to production. I also designed the current brand and interface of Chaincerts, a Web3 platform on Stellar backed by the Stellar Community Fund #13.',
-      info_text_p3:'Today I lead design for a healthcare brand (under NDA).',
-      cases_title:'Case <strong>studies</strong>',cases_meta:'SELECTED WORK · 05 CASE STUDIES',
-      others_label:'Other projects · Art direction & campaign branding · Behance',
-      closer_title:'Looking for my next<br><strong>brand and design</strong> team',closer_btn:'Write me →',
-      closer_avail:'Available for lead roles',
-      closer_l1:'A team where',
-      closer_l2:'<strong>brand, systems and product</strong> are one.',
-      closer_note:'Building a brand, a design system or a product team? Let\'s talk.',
-      closer_meta:'Bogotá · LATAM & remote',
-      footer_menu:'Menu',footer_contact:'Contact',footer_copy:'© 2026 Alan Buenhombre',
-      footer_invite:'More design to discover on my socials.',footer_copied:'Copied!'
-    }
+(() => {
+  // ES / EN: arranca con el idioma del navegador; el botón lo cambia y se recuerda
+  const EN = {"g2": "Brand <small>02</small>","g3": "Product &amp; AI <small>03</small>","t116": "Product &amp; AI · content · Oct 2026","n4": "Concept brand · 3D landing · Blender","t124": "Product &amp; AI · brand workflow","t128": "Concept brand · animated landing · 2026","t132": "Product &amp; AI · SaaS · 2026","t94": "Games, brands, product and AI","t96": "Where I test ideas before taking them to a brand: browser games, concept brands with their landing page, and AI-powered product: content, workflows and tools.","g1": "Playables <small>03</small>","t105": "Game · 3D arcade · ES/EN","t109": "Game · time trial · 2026","t113": "Game · brand playable · 2026","b1": "Short guides on how I work: frameworks, reusable prompts and criteria for product teams.", "b2": "Oct 28, 2026", "b3": "Using generative AI to surface the hidden assumptions in a PRD: a 3-step framework, copy-ready prompts and a good-practice matrix.","n3": "Concept headphones for an invented brand: 3D product, exploded view and finish configurator.","t2": "Work", "t5": "About", "t6": "Let's talk", "t7": "<i>01</i>Work<em>→</em>", "t10": "<i>04</i>About<em>→</em>", "t11": "<i>05</i>Contact<em>→</em>", "t13": "<span class=\"dot\"></span><b>Available</b> · Bogotá, LATAM &amp; remote", "t14": "Systems that help <em>brands</em> grow.", "t15": "I like working with brands that think in systems. I take a brand everywhere people meet it: print, campaigns, motion, internal and external communication, and digital product.", "t16": "See work <i>→</i>", "t17": "Enter the Lab", "t19": "Research, flows and prototypes tested before they get polished.", "t21": "Tokens, components and governance so the team reuses instead of reinventing.", "t23": "Concept, logo and a visual system that travels to every touchpoint.", "t25": "The brand in motion: campaigns, assets and AI content.", "t27": "The judgment to decide what reaches the brand and what doesn't.", "t28": "Selected work", "t29": "Brand, systems and product, <em>at the same table</em>.", "t30": "Five case studies, from brand strategy to the design system and the product people use every day.", "t34": "Brand + interface", "t38": "Internal B2B portal", "t41": "Brand · system · product", "t44": "I was Lead Designer and Design Owner: the guardian of the brand. I wrote the brand manual, evolved the design system from v1 to v5 and took the Company Portal to production.", "t45": "What I did", "t46": "45-page brand manual", "t48": "Company Portal (12+ modules)", "t49": "The brand across every touchpoint", "t50": "Full case", "t51": "See case ↗", "t52": "Issuing · wallet · verification", "t53": "<span>02</span>Fintech · Web3 · Brand + interface · 2023", "t55": "Diplomas and certificates verified in seconds. I designed the identity and the experience: issuing, wallet and verification of credentials on blockchain, built for universities and their graduates.", "t56": "What I did", "t57": "Current brand and interface", "t58": "Issuing and wallet flow", "t59": "Public credential verification", "t60": "2D and 3D viewer", "t61": "Web3 platform on Stellar", "t62": "See case ↗", "t63": "Tokens · components · governance", "t66": "A system the product team reuses, not reinvents. I led V5 end to end: foundations, tokens, a Figma component library, documentation and governance with engineering.", "t67": "What I did", "t68": "Foundations and tokens", "t69": "Figma component library", "t70": "Documentation", "t71": "Governance with engineering", "t72": "The base for internal and client products", "t73": "See case ↗", "t74": "Hours · tasks · time off · goals", "t75": "<span>04</span>Internal B2B portal · 2023–2025", "t77": "A portal the team uses every day: time tracking, tasks, time off and goals in one place.", "t78": "Outcome", "t79": "12+ modules in production", "t80": "Adopted by the whole team", "t81": "Built on Kommit V5", "t82": "Internal product", "t83": "See case ↗", "t87": "Calculating a dose shouldn't raise doubts. Product and UX/UI for a tool that guides doctors by category, condition and weight to the right dose.", "t88": "What I did", "t89": "Product and architecture", "t90": "Category → condition → weight flow", "t91": "Clear, frictionless UI", "t92": "Regulated domain", "t93": "See case ↗", "t95": "The Lab.", "t97": "All <small>08</small>", "t98": "Brand <small>Brand identity</small>", "t99": "Content <small>AI content</small>", "t100": "Play <small>Brand games</small>", "t101": "Reports <small>Social reports</small>", "t104": "3D arcade in the browser. Dodge the code, don't stop.", "t107": "In development", "t108": "Blueprint time trial with circuits that transform.", "t112": "Brand playable: a 3D papercraft diorama for events.", "t115": "Halloween with AI: script, characters, vertical video and assets for the content grid.", "t117": "Brand via WhatsApp", "t118": "illustrative example", "t119": "Done, I built the piece with your palette and typeface.", "t120": "✓ Approved by a designer", "t121": "BRAND VIA WHATSAPP", "t122": "Experiment", "t123": "You send a voice note; AI drafts it with your brand rules and a designer approves it.", "t126": "Concept", "t127": "Animated landing page with parallax, from Figma to code with Claude Code.", "t130": "Prototype", "t131": "Social reports a manager understands in one minute: a single page with a link.", "t133": "Method · AI · product", "t134": "Design playbooks.", "t135": "Short, actionable guides on how I work: frameworks, reusable prompts and criteria I apply with product teams. Backed by research, ready for your next project.", "t136": "01 · New", "t137": "Aligning a PRD with AI", "t138": "“We know more than we can tell” · Kickoff · 10 min · Oct 28, 2026", "t139": "Read <i>→</i>", "t140": "About", "t141": "From art director to <em>Design Owner</em> in brand and product.", "t142": "years from advertising to digital product", "t143": "years leading design systems and UI", "t144": "I spent ten years as Art Director at AdO Latam (Bogotá), working on corporate brands like Enel, Grupo Energía Bogotá, Empresa de Energía de Cundinamarca and Mario Hernández. When Enel rebranded with an identity by Wolff Olins, I led how the new brand came to life in internal communication in Colombia. I also spent a year freelancing for an on-demand design studio in Spain, designing new brands every week.", "t145": "At Kommit I was Lead Designer and Design Owner (2022–2026), the guardian of the brand. I wrote the 45-page brand manual, evolved the design system from v1 to v5, and took the Company Portal (12+ modules) to production. I also designed the current brand and interface of Chaincerts, a Web3 platform on Stellar backed by the Stellar Community Fund #13.", "t146": "Today I lead design for a healthcare brand (under NDA).", "t156": "Documentation", "t159": "Accessibility", "t166": "Fintech · Health · Web3", "t167": "Regulated domains", "t169": "Tools", "t181": "Experience", "t182": "Healthcare brand (NDA) · Lead Designer<span>2026–Now</span>", "t184": "Freelance · On-demand studio · Spain<span>Remote</span>", "t185": "AdO Latam · Art Director<span>2012–2022</span>", "t186": "Agencies &amp; studios · Designer<span>2008–2012</span>", "t187": "Education &amp; Awards", "t190": "Agile Team Management Course · Platzi<span>2022</span>", "t191": "UX/UI Design · Coderhouse<span>2021–2022</span>", "t192": "UX with Don Norman · Interaction Design Foundation<span>IxDF</span>", "t193": "BA Graphic Design · F.U. Los Libertadores<span>2017–2021</span>", "t194": "★ MUPI JCDecaux Awards · New Talents<span>Winner</span>", "t195": "★ Cinestecia Award · Best Student Short Film<span>Winner</span>", "t197": "Design System Checklist · es-LA translation ↗", "t198": "Other projects", "t200": "Branding · Campaign", "t202": "Strategy · Design", "t206": "Art direction", "t208": "Campaign", "t210": "Identity · Event", "t211": "Available for lead roles", "t212": "A team where brand, systems and product <span>are one.</span>", "t213": "Building a brand, a design system or a product team? Let's talk. Bogotá · LATAM &amp; remote.", "t214": "Write me <i>↗</i>", "t222": "Download CV", "t223": "© 2026 Alan Buenhombre · Bogotá, Colombia", "t224": "Back to top ↑"};
+  const META = {es:{t:document.title,d:document.querySelector('meta[name=description]').content},
+    en:{t:'Alan Buenhombre · Lead Designer · Brand, Systems & Product',d:'Lead Designer for brand and design systems. 14 years from advertising to digital product: today I lead design for a healthcare brand (NDA); before that, Lead Designer and Design Owner at Kommit and Art Director at AdO Latam. Bogotá, Colombia.'}};
+  const ES = {}, nodes = [...document.querySelectorAll('[data-i18n]')], langBtn = document.getElementById('lang');
+  nodes.forEach(el => ES[el.dataset.i18n] = el.innerHTML);
+  const setLang = l => {
+    nodes.forEach(el => { const k = el.dataset.i18n; el.innerHTML = l === 'en' && EN[k] != null ? EN[k] : ES[k]; });
+    document.documentElement.lang = l;
+    document.title = META[l].t; document.querySelector('meta[name=description]').content = META[l].d;
+    langBtn.textContent = l === 'en' ? 'ES' : 'EN';
+    langBtn.setAttribute('aria-label', l === 'en' ? 'Cambiar a español' : 'Switch to English');
+    try { localStorage.setItem('portfolio-lang', l); } catch (e) {}
   };
-  /* tag shapes:
-     - 'texto plano'                      → span.tag
-     - {t:'texto', href:'https://...'}    → a.tag.tag--link (target=_blank)  [href TBD → '#']
-     - {t:'texto', award:true}            → span.tag.tag--award
-  */
-  const CAPS_I18N={
-    es:[
-      ['Brand & Art Direction',['Logo design','Typography & color','Brand guidelines','Art direction','Motion identity']],
-      ['Design Systems',['Design tokens','Component libraries','Documentación','Governance','Figma','Accesibilidad']],
-      ['Product · UX/UI',['Apps','Dashboards','Wireframing','Prototyping','Product thinking','Fintech · Salud · Web3','Dominios regulados','AI-assisted design']],
-      ['Herramientas',['Figma','Illustrator','Photoshop','After Effects','Framer','React / Remotion','Claude','Higgsfield','Gemini / Veo','Suno','ElevenLabs']],
-      ['Experiencia',['Marca del sector salud (NDA) · Lead Designer · 2026–Hoy','Kommit · Lead Designer · 2022–2026','Freelance · Estudio on-demand · España','AdO Latam · Dir. de Arte · 2012–2022','Agencias y estudios · Diseñador · 2008–2012']],
-      ['Formación & Premios',[
-        {t:'Google UX Design Specialization · Coursera · 2025', href:'#'},
-        {t:'Digital Product Management · University of Virginia · 2022', href:'#'},
-        {t:'Curso de Gestión de Equipos Ágiles · Platzi · 2022', href:'#'},
-        {t:'Diseño UX/UI · Coderhouse · 2021–2022', href:'#'},
-        {t:'UX con Don Norman · Interaction Design Foundation', href:'#'},
-        'Lic. Diseño Gráfico · F.U. Los Libertadores · 2017–2021',
-        {t:'MUPI JCDECAUX Awards · Nuevos Talentos · Ganador', award:true},
-        {t:'Premio Cinestecia · Mejor Corto Universitario · Ganador', award:true},
-      ]],
-      ['Community & Open Source',[
-        {t:'Design System Checklist · es-LA translation · 2026', href:'https://www.designsystemchecklist.com/', badge:{t:'PR', href:'#', title:'Ver PR en GitHub'}},
-      ]],
-    ],
-    en:[
-      ['Brand & Art Direction',['Logo design','Typography & color','Brand guidelines','Art direction','Motion identity']],
-      ['Design Systems',['Design tokens','Component libraries','Documentation','Governance','Figma','Accessibility']],
-      ['Product · UX/UI',['Apps','Dashboards','Wireframing','Prototyping','Product thinking','Fintech · Health · Web3','Regulated domains','AI-assisted design']],
-      ['Tools',['Figma','Illustrator','Photoshop','After Effects','Framer','React / Remotion','Claude','Higgsfield','Gemini / Veo','Suno','ElevenLabs']],
-      ['Experience',['Healthcare brand (NDA) · Lead Designer · 2026–Now','Kommit · Lead Designer · 2022–2026','Freelance · On-demand studio · Spain','AdO Latam · Art Director · 2012–2022','Agencies & studios · Designer · 2008–2012']],
-      ['Education & Awards',[
-        {t:'Google UX Design Specialization · Coursera · 2025', href:'#'},
-        {t:'Digital Product Management · University of Virginia · 2022', href:'#'},
-        {t:'Agile Team Management Course · Platzi · 2022', href:'#'},
-        {t:'UX/UI Design · Coderhouse · 2021–2022', href:'#'},
-        {t:'UX with Don Norman · Interaction Design Foundation', href:'#'},
-        'BA Graphic Design · F.U. Los Libertadores · 2017–2021',
-        {t:'MUPI JCDECAUX Awards · New Talents · Winner', award:true},
-        {t:'Cinestecia Award · Best Student Short Film · Winner', award:true},
-      ]],
-      ['Community & Open Source',[
-        {t:'Design System Checklist · es-LA translation · 2026', href:'https://www.designsystemchecklist.com/', badge:{t:'PR', href:'#', title:'Ver PR en GitHub'}},
-      ]],
-    ]
-  };
-  const OTHERS_I18N={
-    es:[
-      ['Branding · Campaña','Caciques HH','https://www.behance.net/gallery/134824769/CACIQUES-HH'],
-      ['Estrategia · Diseño','CoParching Hackathon','https://www.behance.net/gallery/134821849/CoParching-Hackathon'],
-      ['Branding · Social','Casa Ronald McDonald','https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald'],
-      ['Dirección de arte','Espectromia','https://www.behance.net/gallery/92806223/ESPECTROMIA'],
-      ['Campaña','En modo IN','https://www.behance.net/gallery/113654193/En-modo-IN'],
-      ['Identidad · Evento','Festival Renacer','https://www.behance.net/gallery/80419227/FESTIVAL-RENACER'],
-    ],
-    en:[
-      ['Branding · Campaign','Caciques HH','https://www.behance.net/gallery/134824769/CACIQUES-HH'],
-      ['Strategy · Design','CoParching Hackathon','https://www.behance.net/gallery/134821849/CoParching-Hackathon'],
-      ['Branding · Social','Casa Ronald McDonald','https://www.behance.net/gallery/113654269/Fundacion-Casa-Ronald-Mcdonald'],
-      ['Art direction','Espectromia','https://www.behance.net/gallery/92806223/ESPECTROMIA'],
-      ['Campaign','En modo IN','https://www.behance.net/gallery/113654193/En-modo-IN'],
-      ['Identity · Event','Festival Renacer','https://www.behance.net/gallery/80419227/FESTIVAL-RENACER'],
-    ]
-  };
-  const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>';
+  let saved = null; try { saved = localStorage.getItem('portfolio-lang'); } catch (e) {}
+  const q = new URLSearchParams(location.search).get('lang');
+  const nav0 = (navigator.languages && navigator.languages[0]) || navigator.language || 'es';
+  const start = q === 'es' || q === 'en' ? q : saved || (/^es\b/i.test(nav0) ? 'es' : 'en');
+  if (start === 'en') setLang('en');
+  langBtn.addEventListener('click', () => setLang(document.documentElement.lang === 'en' ? 'es' : 'en'));
 
-  function buildCaps(l){
-    const wrap=document.getElementById('caps'); wrap.innerHTML='';
-    CAPS_I18N[l].forEach(([t,tags])=>{
-      const r=document.createElement('div');r.className='cap';
-      // detecta si algún tag es objeto (link/award) → variante "lista" (una columna, más aire)
-      const isRich = tags.some(x=>typeof x==='object');
-      const html = tags.map(x=>{
-        if(typeof x==='string') return '<span class="tag">'+x+'</span>';
-        if(x.href){
-          const main='<a class="tag tag--link" href="'+x.href+'" target="_blank" rel="noopener">'+x.t+' <span class="tag__ext">↗</span></a>';
-          if(!x.badge) return main;
-          const b=x.badge, tt=b.title?(' title="'+b.title+'"'):'';
-          return '<div class="tag-row">'+main+'<a class="tag__badge" href="'+b.href+'" target="_blank" rel="noopener"'+tt+'>'+b.t+'</a></div>';
-        }
-        if(x.award) return '<span class="tag tag--award">'+x.t+'</span>';
-        return '<span class="tag">'+x.t+'</span>';
-      }).join('');
-      r.innerHTML='<h3 class="cap__title">'+t+'</h3><div class="cap__tags'+(isRich?' cap__tags--list':'')+'">'+html+'</div>';
-      wrap.appendChild(r);
-    });
-  }
-  function buildOthers(l){
-    const g=document.getElementById('othersGrid'); if(!g) return;
-    g.innerHTML='';
-    OTHERS_I18N[l].forEach(([cat,name,href])=>{const a=document.createElement('a');a.className='pcard';a.href=href;a.target='_blank';a.rel='noopener';
-      a.innerHTML='<span class="pcard__cat">'+cat+'</span><span class="pcard__name">'+name+ARROW+'</span>';
-      g.appendChild(a);});
-  }
-  const langBtn=document.getElementById('lang');
-  let LANG='es';
-  function applyLang(l){
-    LANG=l; document.documentElement.lang=l;
-    document.querySelectorAll('[data-i18n]').forEach(e=>{const v=T[l][e.dataset.i18n]; if(v!=null)e.textContent=v;});
-    document.querySelectorAll('[data-i18n-html]').forEach(e=>{const v=T[l][e.dataset.i18nHtml]; if(v!=null)e.innerHTML=v;});
-    buildCaps(l); buildOthers(l);
-    const lbl=langBtn.querySelector('span'); if(lbl) lbl.textContent = l==='es'?'EN':'ES'; else langBtn.textContent = l==='es'?'EN':'ES';
-  }
-  langBtn.addEventListener('click',()=>applyLang(LANG==='es'?'en':'es'));
+  // Sobre mí: las filas se pegan justo debajo del enunciado fijo
+  const infoIn = document.querySelector('.info-in'), infoSec = document.getElementById('sobre');
+  const setIH = () => infoSec.style.setProperty('--ih', infoIn.offsetHeight + 'px');
+  setIH(); if (window.ResizeObserver) new ResizeObserver(setIH).observe(infoIn); else addEventListener('resize', setIH);
 
-  /* copiar email */
-  const copyBtn=document.getElementById('copyEmailBtn'), toast=document.getElementById('copiedToast');
-  copyBtn&&copyBtn.addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText('alangtres@gmail.com');
-    toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1600);});
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('solid', scrollY > 10);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-  /* ---- WORK CARDS + LIGHTBOX ---- */
-  (function(){
-    const cards=Array.from(document.querySelectorAll('#wgrid .wcard'));
-    const items=cards.map(c=>{
-      const img=c.querySelector('img');
-      return {src:img.getAttribute('src'), cat:c.querySelector('.wcard__cat').textContent, name:c.querySelector('.wcard__name').textContent};
-    });
+  // Menú móvil
+  const ham = document.getElementById('ham'), mm = document.getElementById('mmenu');
+  const setMenu = o => { ham.classList.toggle('open', o); mm.classList.toggle('open', o); ham.setAttribute('aria-expanded', o); mm.setAttribute('aria-hidden', !o); document.body.style.overflow = o ? 'hidden' : ''; };
+  ham.addEventListener('click', () => setMenu(!mm.classList.contains('open')));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-    // aspect-ratio nativo por imagen (evita crops)
-    cards.forEach(c=>{
-      const img=c.querySelector('img'), thumb=c.querySelector('.wcard__thumb');
-      const apply=()=>{ if(img.naturalWidth && img.naturalHeight){
-        thumb.style.aspectRatio = img.naturalWidth+' / '+img.naturalHeight;
-        img.style.objectFit='contain';
-      }};
-      if(img.complete) apply(); else img.addEventListener('load',apply,{once:true});
-    });
+  // Aparición
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.up').forEach(el => io.observe(el));
 
-    const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg'), lbCap=document.getElementById('lbCap');
-    let cur=0;
-    function render(){
-      lbimg.src=items[cur].src;
-      if(lbCap) lbCap.textContent = items[cur].cat + ' · ' + items[cur].name;
-    }
-    function open(i){ cur=i; render(); lb.classList.add('on'); }
-    function close(){ lb.classList.remove('on'); }
-    function step(dir){ cur=(cur+dir+items.length)%items.length; render(); }
-
-    cards.forEach((c,i)=>c.addEventListener('click',e=>{e.preventDefault(); open(i);}));
-    lb.addEventListener('click',e=>{ if(e.target===lb || e.target.classList.contains('lb__close')) close(); });
-    document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation();step(-1);});
-    document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation();step(1);});
-    addEventListener('keydown',e=>{
-      if(!lb.classList.contains('on')) return;
-      if(e.key==='Escape')close();
-      else if(e.key==='ArrowRight')step(1);
-      else if(e.key==='ArrowLeft')step(-1);
-    });
-    let touchX=0;
-    lb.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});
-    lb.addEventListener('touchend',e=>{
-      const dx=e.changedTouches[0].clientX-touchX;
-      if(Math.abs(dx)>40) step(dx<0?1:-1);
-    });
-  })();
-
-  /* ---- CASES ---- */
-  (function(){
-    const CASES=[
-      ['Kommit · Design Ownership','Brand Strategy · Systems · Product · 2022–2026','kommit-ownership.html','assets/real/kommit-home.jpg'],
-      ['Chaincerts','Fintech · Web3 · Marca + Interfaz · 2023','chaincerts.html','assets/real/chaincerts-credential.jpg'],
-      ['Kommit V5 Design System','Product Systems · Design Governance · 2022–2026','portal-kommit.html','assets/portal-kommit-hero.jpg'],
-      ['Company Portal','Portal interno B2B · 12+ módulos · Adoptado por todo el equipo · 2023–2025','worklogs.html','assets/portal-kommit-2026-hero.jpg'],
-      ['OKdose','Health Tech · Product Design & UX/UI · 2022','okdose.html','assets/okdose-hero.jpg'],
-    ];
-    const list=document.getElementById('casesList'),cp=document.getElementById('cp'),cpimg=document.getElementById('cpimg');
-    list.innerHTML='';
-    CASES.forEach(([name,disc,href,src],i)=>{const a=document.createElement('a');a.className='crow';a.href=href;
-      a.innerHTML='<span class="crow__num">'+String(i+1).padStart(2,'0')+'</span><span class="crow__name">'+name+'</span><span class="crow__disc">'+disc+'</span><span class="crow__arrow">↗</span>';
-      a.addEventListener('mouseenter',()=>{cpimg.src=src;cp.classList.add('on');});
-      a.addEventListener('mouseleave',()=>cp.classList.remove('on'));
-      list.appendChild(a);});
-    document.querySelectorAll('#gamesList .crow').forEach((a)=>{
-      a.addEventListener('mouseenter',()=>{cpimg.src=a.dataset.preview;cp.classList.add('on');});
-      a.addEventListener('mouseleave',()=>cp.classList.remove('on'));
-    });
-    let tx=0,ty=0,cx=0,cy=0;
-    addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});
-    (function loop(){cx+=(tx-cx)*.16;cy+=(ty-cy)*.16;cp.style.left=cx+'px';cp.style.top=cy+'px';requestAnimationFrame(loop);})();
-  })();
-
-
-  /* ---- HERO v6: showcase de 5 proyectos ---- */
-  (function(){
-    const hx=document.querySelector('.hx'); if(!hx) return;
-    const A='assets/showcase/';
-    const P=[
-      {n:'Kommit V5',sup:'DS',d:'Design system para todo el producto: tokens, componentes y gobernanza.',dev:'ds',w:'96%',href:'portal-kommit.html',
-       lead:'Un sistema que el equipo de producto reutiliza, no reinventa.',over:'Lideré Kommit V5 end-to-end: fundamentos, tokens, librería de componentes en Figma, documentación y gobernanza con desarrollo. Hoy es la base de todos los productos internos y de cliente.'},
-      {n:'Chaincerts',sup:'',d:'Credenciales digitales verificables en Web3. Marca e interfaz.',dev:'chaincerts',w:'96%',href:'chaincerts.html',
-       lead:'Diplomas y certificados que se verifican en segundos.',over:'Diseñé la identidad y la experiencia de Chaincerts: emisión, wallet y verificación de credenciales sobre blockchain, pensado para universidades y sus egresados.'},
-      {n:'Driftway',sup:'',d:'Juego arcade en el navegador. Esquiva el código, no pares.',dev:'game',w:'96%',href:'driftway.html',
-       lead:'Un juego propio para explorar ritmo, sonido y feedback.',over:'Driftway es un proyecto del Lab: una nave que esquiva cubos de código en Three.js. Lo uso para experimentar con game feel, motion y diseño de interacción en tiempo real.'},
-      {n:'OKdose',sup:'',d:'Dosificación médica precisa, en segundos.',dev:'okdose',w:'100%',href:'okdose.html',
-       lead:'Calcular una dosis no debería generar dudas.',over:'Producto y UX/UI para una herramienta health-tech que guía al médico por categoría, patología y peso hasta la dosis correcta, con una interfaz clara y sin fricción.'},
-      {n:'Company Portal',sup:'',d:'Portal interno B2B: 12+ módulos adoptados por todo el equipo.',dev:'portal',w:'92%',href:'worklogs.html',
-       lead:'Un portal que el equipo usa todos los días.',over:'Diseñé el portal interno de la compañía: registro de horas, tareas, vacaciones y objetivos en un solo lugar. 12+ módulos adoptados por todo el equipo entre 2023 y 2025.'}
-    ];
-    const frame=document.getElementById('hxFrame'),dev=document.getElementById('hxDev'),menu=document.getElementById('hxMenu');
-    const info=document.getElementById('hxInfo'),nm=document.getElementById('hxName'),ds=document.getElementById('hxDesc'),ct=document.getElementById('hxCount'),ln=document.getElementById('hxLink');
-    const intro=document.getElementById('hxIntro'),lead=document.getElementById('hxLead'),over=document.getElementById('hxOver');
-    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, DUR=6000;
-    const slides=P.map(p=>{const d=document.createElement('div');d.className='hx__slide';d.innerHTML=`<img src="${A}frame-${p.dev}.jpg" alt="" loading="lazy">`;frame.prepend(d);return d;});
-    const btns=P.map((p,k)=>{const b=document.createElement('button');b.setAttribute('role','tab');b.innerHTML=`<b>${String(k+1).padStart(2,'0')}</b><span>${p.n}</span>`;b.addEventListener('click',()=>go(k));menu.appendChild(b);return b;});
-    P.forEach(p=>{const i=new Image();i.src=A+'dev-'+p.dev+'.webp'});
-    let cur=-1,t0=0,paused=false,devImg=null;
-    function go(k){
-      if(k===cur) return; const first=cur<0; cur=k; t0=performance.now(); const p=P[k];
-      slides.forEach((s,i)=>s.classList.toggle('on',i===k));
-      btns.forEach((b,i)=>{b.classList.toggle('on',i===k);b.setAttribute('aria-selected',i===k);b.style.setProperty('--p',i<k?1:0)});
-      nm.innerHTML=p.n+(p.sup?`<sup>${p.sup}</sup>`:''); ds.textContent=p.d; ln.href=p.href; ct.textContent=`${String(k+1).padStart(2,'0')} / ${String(P.length).padStart(2,'0')}`;
-      lead.textContent=p.lead; over.textContent=p.over;
-      [info,intro].forEach(el=>{el.classList.remove('swap');void el.offsetWidth;el.classList.add('swap')});
-      const old=devImg, ni=document.createElement('img'); ni.src=A+'dev-'+p.dev+'.webp'; ni.alt=''; ni.style.setProperty('--w',p.w);
-      if(!first&&!reduce) ni.className='in'; dev.appendChild(ni); devImg=ni;
-      requestAnimationFrame(()=>requestAnimationFrame(()=>ni.classList.remove('in')));
-      if(old){ if(reduce) old.remove(); else {old.classList.add('out'); setTimeout(()=>old.remove(),1000);} }
-    }
-    function tick(now){
-      if(!reduce){ if(paused) t0=now-(parseFloat(btns[cur].style.getPropertyValue('--p'))||0)*DUR;
-        else {const p=Math.min(1,(now-t0)/DUR);btns[cur].style.setProperty('--p',p);if(p>=1)go((cur+1)%P.length);} }
-      requestAnimationFrame(tick);
-    }
-    [frame,menu].forEach(el=>{el.addEventListener('mouseenter',()=>paused=true);el.addEventListener('mouseleave',()=>paused=false)});
-    go(0); requestAnimationFrame(tick);
-    if(!reduce) addEventListener('scroll',()=>{dev.style.translate=`0 ${(Math.min(scrollY,900)*.1).toFixed(1)}px`},{passive:true});
-  })();
-
-  /* ---- INIT idioma ---- */
-  applyLang('es');
-
-  /* ---- HERO: single video loop with fade-to-black + first-frame hold ---- */
-  (function(){
-    const slider = document.getElementById('heroSlider');
-    if (!slider) return;
-    const v = slider.querySelector('video');
-    if (!v) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      v.loop = true;
-      return;
-    }
-    v.removeAttribute('loop');
-    v.loop = false;
-    const FADE_S = 0.9;
-    const HOLD_MS = 900;
-    let fading = false;
-    const holdThenPlay = () => {
-      try { v.pause(); v.currentTime = 0; } catch(_) {}
-      setTimeout(() => {
-        const p = v.play();
-        if (p && p.catch) p.catch(()=>{});
-      }, HOLD_MS);
+  // Índices fijos: marca la tarjeta visible
+  document.querySelectorAll('.svw').forEach(w => {
+    const links = [...w.querySelectorAll('.svx a')];
+    const cards = [...w.querySelectorAll('.svc')];
+    const mark = () => {
+      const line = innerHeight * .45;
+      let cur = cards[0];
+      cards.forEach(c => { if (c.getBoundingClientRect().top <= line) cur = c; });
+      links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + cur.id));
     };
-    if (v.readyState >= 1) holdThenPlay();
-    else v.addEventListener('loadedmetadata', holdThenPlay, {once:true});
-    v.addEventListener('timeupdate', () => {
-      if (!v.duration || !isFinite(v.duration)) return;
-      const remaining = v.duration - v.currentTime;
-      if (remaining < FADE_S && !fading){
-        fading = true;
-        slider.classList.add('is-fading');
-      }
-    });
-    v.addEventListener('ended', () => {
-      holdThenPlay();
-      setTimeout(() => {
-        slider.classList.remove('is-fading');
-        fading = false;
-      }, 60);
-    });
-  })();
-</script>
-
-<script>
-/* ===== DECK 3D: tarjetas en perspectiva, arrastre, teclado, flechas, tilt ===== */
-(function(){
-  const deck=document.getElementById('newsDeck'); if(!deck) return;
-  const stage=deck.querySelector('.deck__stage'); const cards=[...stage.querySelectorAll('.ncard')];
-  const N=cards.length, now=document.getElementById('deckNow'), tot=document.getElementById('deckTot'), bar=document.getElementById('deckBar');
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let idx=0, drag=0, startX=0, moved=false, down=false, timer=null;
-  tot.textContent=String(N).padStart(2,'0');
-  cards.forEach(c=>{const g=document.createElement('span');g.className='ncard__glare';c.appendChild(g);});
-  const wrap=d=>{ // distancia circular más corta
-    let o=d%N; if(o>N/2)o-=N; if(o<-N/2)o+=N; return o; };
-  function layout(){
-    const w=cards[0].offsetWidth||400;
-    cards.forEach((c,i)=>{
-      c.style.transition=''; const o=wrap(i-idx)+drag; const a=Math.abs(o);
-      const x=o*w*0.62, z=-a*160, ry=-Math.max(-1,Math.min(1,o))*32*(reduce?0:1), sc=1-Math.min(a,2)*0.08;
-      c.style.transform=`translate3d(${x}px,${a*10}px,${z}px) rotateY(${ry}deg) scale(${sc})`;
-      c.style.opacity=a>2.4?0:1; c.style.zIndex=100-Math.round(a*10);
-      c.style.pointerEvents=a>2.4?'none':'';
-      c.classList.toggle('is-on',Math.round(a*10)===0); c.classList.toggle('is-side',a>=.5);
-      c.setAttribute('tabindex',Math.round(a*10)===0?'0':'-1'); c.setAttribute('aria-hidden',a>=.5?'true':'false');
-    });
-    now.textContent=String(idx+1).padStart(2,'0'); bar.style.width=((idx+1)/N*100)+'%';
-  }
-  function go(n){ idx=(n%N+N)%N; drag=0; layout(); }
-  function auto(){ clearInterval(timer); if(reduce) return; timer=setInterval(()=>{ if(!down && !deck.matches(':hover')) go(idx+1); },5200); }
-  deck.querySelectorAll('.deck__btn').forEach(b=>b.addEventListener('click',()=>{go(idx+ +b.dataset.dir);auto();}));
-  deck.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'){go(idx+1);auto();e.preventDefault();} if(e.key==='ArrowLeft'){go(idx-1);auto();e.preventDefault();} });
-  // arrastre / swipe
-  stage.addEventListener('pointerdown',e=>{ down=true; moved=false; startX=e.clientX; stage.classList.add('is-drag'); });
-  window.addEventListener('pointermove',e=>{ if(!down) return; const dx=e.clientX-startX; if(Math.abs(dx)>6) moved=true; drag=-dx/(cards[0].offsetWidth*0.62); drag=Math.max(-1.4,Math.min(1.4,drag)); layout(); });
-  window.addEventListener('pointerup',()=>{ if(!down) return; down=false; stage.classList.remove('is-drag'); const step=Math.abs(drag)>.18?Math.sign(drag):0; drag=0; go(idx+step); auto(); });
-  // click: lateral -> traer al frente; activa -> abrir
-  cards.forEach((c,i)=>c.addEventListener('click',e=>{ if(moved){e.preventDefault();return;} if(i!==idx){e.preventDefault(); go(i); auto();} }));
-  // tilt + brillo en la activa
-  if(!reduce) stage.addEventListener('pointermove',e=>{
-    if(down) return; const c=cards[idx]; const r=c.getBoundingClientRect();
-    if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom){ layout(); return; }
-    const px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
-    c.style.transition='transform .15s ease-out';
-    c.style.transform=`translate3d(0,-6px,40px) rotateY(${px*14}deg) rotateX(${-py*12}deg)`;
-    c.style.setProperty('--gx',(px+.5)*100+'%'); c.style.setProperty('--gy',(py+.5)*100+'%');
+    addEventListener('scroll', mark, {passive:true}); mark();
   });
-  stage.addEventListener('pointerleave',()=>{ cards.forEach(c=>c.style.transition=''); layout(); });
-  stage.addEventListener('pointermove',()=>{},{passive:true});
-  window.addEventListener('resize',layout);
-  layout(); auto();
-})();
-</script>
 
-
-<!-- ===== HILO · conexiones al hacer scroll ===== -->
-<style>
-  .thread{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:6;overflow:visible}
-  .thread path{fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .thread .rail-bg{stroke:rgba(127,127,127,.18);stroke-width:1}
-  .thread .rail{stroke:url(#thGrad);stroke-width:1.6}
-  .thread .br{stroke:url(#thGrad);stroke-width:1.2;transition:stroke-dashoffset .7s cubic-bezier(.2,.7,.2,1)}
-  .thread .nd{fill:var(--bg,#1A1A1A);stroke:rgba(127,127,127,.45);stroke-width:1.2;transition:fill .35s,stroke .35s,r .35s}
-  .thread .nd.on{stroke:none}
-  .thread .lb{font:500 10px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;fill:rgba(127,127,127,.6);transition:fill .35s}
-  .thread .head{filter:drop-shadow(0 0 6px currentColor)}
-  .tdot{position:fixed;left:0;top:0;border-radius:50%;background:#1F45D6;pointer-events:none;z-index:60;will-change:transform;display:none}
-  .kdot.ghost,.hx__title .k.ghost{color:transparent!important}
-  .hx__title .k.hit{animation:kHit .9s cubic-bezier(.2,.7,.2,1)}
-  @keyframes kHit{0%{text-shadow:0 0 0 rgba(31,69,214,0)}30%{text-shadow:0 0 28px rgba(31,69,214,.55)}100%{text-shadow:0 0 0 rgba(31,69,214,0)}}
-  .th-on strong,.th-on .k{transition:color .4s}
-  .closer__arrow{transition:box-shadow .5s,border-color .5s,background .5s}
-  .closer__arrow.th-hit{border-color:var(--accent)!important;box-shadow:0 0 0 6px rgba(200,255,0,.08),0 0 32px rgba(200,255,0,.25)}
-  @media (max-width:900px){.thread{display:none}}
-</style>
-<script>
-(()=>{
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const NS='http://www.w3.org/2000/svg';
-  const $=s=>document.querySelector(s);
-  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
-  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
-  const lerp=(a,b,t)=>a+(b-a)*t;
-  const pageRect=el=>{const r=el.getBoundingClientRect();return{x:r.left+scrollX,y:r.top+scrollY,w:r.width,h:r.height}};
-
-  /* ---------- 1 · Punto viajero: "marcas." -> "seleccionado." ---------- */
-  const src=$('.h1x__title .kdot'), tgt=$('#destacados .hx__title .k');
-  const ctx=document.createElement('canvas').getContext('2d');
-  function dotGeom(el){
-    // posición exacta del punto tipográfico: centro del glifo sobre la línea base
-    const cs=getComputedStyle(el);ctx.font=`${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-    const m=ctx.measureText('.');
-    const rg=document.createRange();rg.selectNodeContents(el);const r=rg.getBoundingClientRect();
-    const bl=document.createElement('i');bl.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';
-    el.appendChild(bl);const base=bl.getBoundingClientRect().top;bl.remove();
-    const h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
-    const w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight;
-    return{x:r.left+scrollX+m.actualBoundingBoxLeft*0+ (m.width-w)/2 + w/2,y:base+scrollY-m.actualBoundingBoxAscent+h/2,d:Math.max(w,h)};
-  }
-  const dot=document.createElement('div');dot.className='tdot';document.body.appendChild(dot);
-  let A,B,landed=false;
-  function measureDot(){if(!src||!tgt)return;A=dotGeom(src);B=dotGeom(tgt)}
-  function updDot(){
-    if(!A)return;
-    const vh=innerHeight, s0=40, s1=Math.max(s0+200,B.y-vh*.5);
-    const t=reduce?1:clamp((scrollY-s0)/(s1-s0));
-    if(t<=0||t>=1){dot.style.display='none';src.classList.remove('ghost');tgt.classList.remove('ghost');
-      if(t>=1&&!landed){landed=true;if(!reduce){tgt.classList.remove('hit');void tgt.offsetWidth;tgt.classList.add('hit')}}
-      if(t<=0)landed=false;return}
-    landed=false;
-    src.classList.add('ghost');tgt.classList.add('ghost');
-    const e=ease(t);
-    // curva: sale hacia la derecha, rodea el título y aterriza en su punto
-    const cx=Math.min(innerWidth-40,B.x+Math.max(160,innerWidth*.18)), cy=lerp(A.y,B.y,.42);
-    const x=(1-e)*(1-e)*A.x+2*(1-e)*e*cx+e*e*B.x;
-    const y=(1-e)*(1-e)*A.y+2*(1-e)*e*cy+e*e*B.y;
-    const d=lerp(A.d,B.d,e)*(1+Math.sin(Math.PI*t)*.35);
-    dot.style.display='block';dot.style.width=dot.style.height=d+'px';
-    dot.style.transform=`translate(${x-scrollX-d/2}px,${y-scrollY-d/2}px)`;
-  }
-
-  /* ---------- 2 · El hilo: une cada sección hasta el contacto ---------- */
-  const svg=document.createElementNS(NS,'svg');svg.classList.add('thread');svg.setAttribute('aria-hidden','true');
-  document.body.appendChild(svg);
-  const stops=[
-    ['#nuevo','#nuevo .cases__title'],['#casos','#casos .cases__title'],['#juegos','#juegos .cases__title'],
-    ['#playbooks','#playbooks .cases__title'],['#sobre','#sobre .info__statement'],['#proceso','#proceso h2']
-  ];
-  let L=null;
-  function build(){
-    const docH=document.documentElement.scrollHeight;svg.setAttribute('width',innerWidth);svg.setAttribute('height',docH);
-    svg.setAttribute('viewBox',`0 0 ${innerWidth} ${docH}`);svg.style.height=docH+'px';svg.innerHTML='';
-    const intro=$('#hxIntro'), nuevo=$('#nuevo'), arrow=$('.closer__arrow'), side=$('.closer__sideline--l');
-    if(!intro||!nuevo||!arrow)return;
-    const nodes=stops.map(([sec,sel],i)=>{const el=$(sel);if(!el)return null;const r=pageRect(el);
-      const strong=el.querySelector('strong');const rs=strong?pageRect(strong):r;
-      return{el,x:r.x,y:r.y+Math.min(r.h,parseFloat(getComputedStyle(el).fontSize)*1.1)/2+2,n:String(i+3).padStart(2,'0')}}).filter(Boolean);
-    const minX=Math.min(...nodes.filter(n=>!n.el.closest('#proceso')).map(n=>n.x));
-    const RX=Math.max(18,minX-132);
-    const y0=pageRect(intro).y+10;
-    const ar=pageRect(arrow), sl=side?pageRect(side):{x:ar.x-120,y:ar.y+ar.h/2};
-    const yEnd=ar.y+ar.h/2, xEnd=ar.x, R=28;
-    const darkY=pageRect(nuevo).y;
-    const defs=document.createElementNS(NS,'defs');
-    const accent=getComputedStyle(document.body).getPropertyValue('--accent').trim()||'#C8FF00';
-    defs.innerHTML=`<linearGradient id="thGrad" gradientUnits="userSpaceOnUse" x1="0" y1="${darkY-160}" x2="0" y2="${darkY+40}">
-      <stop offset="0" stop-color="#1F45D6"/><stop offset="1" style="stop-color:var(--accent)"/></linearGradient>`;
-    svg.appendChild(defs);
-    const d=`M${RX} ${y0} L${RX} ${yEnd-R} Q${RX} ${yEnd} ${RX+R} ${yEnd} L${xEnd} ${yEnd}`;
-    const mk=(cls,dd)=>{const p=document.createElementNS(NS,'path');p.setAttribute('class',cls);p.setAttribute('d',dd);svg.appendChild(p);return p};
-    mk('rail-bg',d);const rail=mk('rail',d);
-    const len=rail.getTotalLength();rail.style.strokeDasharray=len;rail.style.strokeDashoffset=len;
-    const start=document.createElementNS(NS,'circle');start.setAttribute('cx',RX);start.setAttribute('cy',y0);start.setAttribute('r',3.5);start.setAttribute('fill','#1F45D6');svg.appendChild(start);
-    const items=nodes.map(n=>{
-      const bx=n.x-16;const br=mk('br',`M${RX} ${n.y} L${bx} ${n.y}`);const bl=bx-RX;
-      br.style.strokeDasharray=bl;br.style.strokeDashoffset=bl;
-      const c=document.createElementNS(NS,'circle');c.setAttribute('class','nd');c.setAttribute('cx',RX);c.setAttribute('cy',n.y);c.setAttribute('r',4);svg.appendChild(c);
-      const t=document.createElementNS(NS,'text');t.setAttribute('class','lb');t.setAttribute('x',RX+12);t.setAttribute('y',n.y-8);t.textContent=n.n;svg.appendChild(t);
-      return{...n,br,bl,c,t,on:false}});
-    const head=document.createElementNS(NS,'circle');head.setAttribute('class','head');head.setAttribute('r',4);svg.appendChild(head);
-    // tabla largo -> y para mover la cabeza
-    const tab=[];for(let l=0;l<=len;l+=6){tab.push([l,rail.getPointAtLength(l)])}
-    L={rail,len,tab,items,head,yEnd,xEnd,y0,darkY,accent,arrow};
-    upd();
-  }
-  function upd(){
-    updDot();
-    if(!L)return;
-    const hy=scrollY+innerHeight*(reduce?10:.62);
-    let l;
-    const fy=L.yEnd-innerHeight*.3;
-    const lenAtY=y=>{let lo=0,hi=L.tab.length-1;while(lo<hi){const m=(lo+hi)>>1;if(L.tab[m][1].y<y)lo=m+1;else hi=m}return L.tab[lo][0]};
-    if(hy<=L.y0)l=0;
-    else if(hy>=fy){const l0=lenAtY(fy);l=lerp(l0,L.len,clamp((hy-fy)/(innerHeight*.3)))}
-    else l=lenAtY(hy);
-    L.rail.style.strokeDashoffset=L.len-l;
-    const p=L.rail.getPointAtLength(l);L.head.setAttribute('cx',p.x);L.head.setAttribute('cy',p.y);
-    const col=p.y<L.darkY-60?'#1F45D6':'var(--accent)';L.head.style.fill=col;L.head.style.color=col;
-    L.head.style.opacity=l>0&&l<L.len?1:0;
-    for(const it of L.items){const on=hy>=it.y;if(on!==it.on){it.on=on;
-      it.br.style.strokeDashoffset=on?0:it.bl;it.c.classList.toggle('on',on);
-      it.c.style.fill=on?(it.y<L.darkY?'#1F45D6':'var(--accent)'):'';it.c.setAttribute('r',on?4.5:4);
-      it.t.style.fill=on?(it.y<L.darkY?'#1F45D6':'var(--accent)'):''}}
-    L.arrow.classList.toggle('th-hit',l>=L.len-1);
-  }
-  let raf=0;const tick=()=>{raf=0;upd()};
-  addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(tick)},{passive:true});
-  let rt;const rebuild=()=>{clearTimeout(rt);rt=setTimeout(()=>{measureDot();build()},120)};
-  addEventListener('resize',rebuild);
-  new ResizeObserver(rebuild).observe(document.body);
-  (document.fonts?document.fonts.ready:Promise.resolve()).then(rebuild);
-  addEventListener('load',rebuild);
-  measureDot();build();
+  // Carril de proyectos propios
+  const rail = document.getElementById('rail'), bar = document.getElementById('railBar');
+  const upd = () => { const m = rail.scrollWidth - rail.clientWidth; const r = rail.clientWidth / rail.scrollWidth; bar.style.setProperty('--p', Math.min(100, (r + (m ? rail.scrollLeft / m : 1) * (1 - r)) * 100) + '%'); };
+  rail.addEventListener('scroll', upd, {passive:true}); addEventListener('resize', upd); upd();
+  const step = () => rail.querySelector('.pj:not([hidden])').getBoundingClientRect().width + 20;
+  const tabs = [...document.querySelectorAll('.tabs [role=tab]')], cards = [...rail.querySelectorAll('.pj')];
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.setAttribute('aria-selected', x === t));
+    cards.forEach(c => c.hidden = t.dataset.cat !== 'all' && c.dataset.cat !== t.dataset.cat);
+    rail.scrollLeft = 0; upd();
+  }));
+  // Avance automático del carrusel del Lab (se pausa al interactuar o si no está en pantalla)
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let holdUntil = 0;
+  const nudge = () => { holdUntil = Date.now() + 6000; };
+  const advance = () => {
+    const hold = rail.matches(':hover') || !!rail.querySelector(':focus-visible');
+    const rb = rail.getBoundingClientRect(), inView = rb.top < innerHeight * .8 && rb.bottom > innerHeight * .2;
+    if (reduceMotion || hold || !inView || Date.now() < holdUntil || document.hidden) return;
+    const max = rail.scrollWidth - rail.clientWidth;
+    if (max <= 4) return;
+    if (rail.scrollLeft >= max - 4) rail.scrollTo({left:0, behavior:'smooth'});
+    else rail.scrollBy({left: step(), behavior:'smooth'});
+  };
+  setInterval(advance, 3500);
+  rail.addEventListener('mouseleave', nudge);
+  rail.addEventListener('pointerdown', nudge, {passive:true});
+  rail.addEventListener('wheel', nudge, {passive:true});
+  rail.addEventListener('touchstart', nudge, {passive:true});
+  tabs.forEach(t => t.addEventListener('click', nudge));
+  document.getElementById('rPrev').onclick = () => { nudge(); rail.scrollBy({left:-step(), behavior:'smooth'}); };
+  document.getElementById('rNext').onclick = () => { nudge(); rail.scrollBy({left: step(), behavior:'smooth'}); };
 })();
 </script>
 </body>

@@ -1166,7 +1166,7 @@ const T = {
 function detectLang() {
   const stored = localStorage.getItem('portfolio-lang');
   if (stored === 'en' || stored === 'es') return stored;
-  return (navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
+  return (navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en';
 }
 
 function applyLang(lang) {
