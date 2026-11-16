@@ -519,6 +519,9 @@ const T = {
     'pk.learn.li4': '<strong>Handoff dev es diseño:</strong> Cómo se comunica el diseño al dev determina calidad de ejecución. Figma + design tokens + specs claras = implementación fiel.',
     'pk.learn.li5': '<strong>IA tools aceleran pero no reemplazan:</strong> Integración con Claude Design acelera generación de componentes, pero el sistema mismo (principios, governance) debe estar claro de inicio.',
     'pk.learn.li6': '<strong>Sistemas como producto interno:</strong> Un design system no es "hecho una vez". Requiere mantenimiento, evolución, y adopción activa del equipo.',
+    'pk.pb.label': 'Playbook relacionado',
+    'pk.pb.p': 'El proceso que hoy recomiendo para llevar un design system de Figma a código, con tokens, Storybook y reglas de gobernanza.',
+    'pk.pb.link': 'De Figma a Storybook →',
     /* NOAH APP / PASSAGE */
     'noah.tag': 'Branding · UX · UI',
     'noah.year': '2023',
@@ -1160,6 +1163,9 @@ const T = {
     'pk.learn.li4': '<strong>Dev handoff is design:</strong> how design is communicated to engineering determines execution quality. Figma + design tokens + clear specs = faithful implementation.',
     'pk.learn.li5': '<strong>AI tools accelerate but don\'t replace:</strong> Claude Design integration speeds up component generation, but the system itself (principles, governance) has to be clear from the start.',
     'pk.learn.li6': '<strong>Systems as an internal product:</strong> a design system is never "done once." It requires maintenance, evolution, and active adoption from the team.',
+    'pk.pb.label': 'Related playbook',
+    'pk.pb.p': 'The process I recommend today to take a design system from Figma to code, with tokens, Storybook and governance rules.',
+    'pk.pb.link': 'From Figma to Storybook →',
     /* NOAH APP / PASSAGE */
     'noah.tag': 'Branding · UX · UI',
     'noah.year': '2023',

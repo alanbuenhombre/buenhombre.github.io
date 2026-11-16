@@ -947,7 +947,7 @@ const T = {
       }, 1600);
     });
   });
-  let initial = 'es';
+  let initial = /^es\b/i.test(navigator.language || '') ? 'es' : 'en';
   try{
     const saved = localStorage.getItem('portfolio-lang');
     if (saved === 'es' || saved === 'en') initial = saved;

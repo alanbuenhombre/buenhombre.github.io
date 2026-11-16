@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>De Figma a Storybook · Playbook 02 · Alan Buenhombre</title>
+<meta name="description" content="Playbook de design systems para equipos pequeños: cómo conectar Figma y código con tokens, Storybook y reglas claras. Arquitectura en 5 capas, fases 0 a 3, flujo de 8 pasos y gobernanza. Inspirado en el proceso de Florian Bölter." />
+<meta name="keywords" content="playbook, design system, Figma, Storybook, design tokens, Figma Variables, Cursor, Figma MCP, Tailwind, Code Connect, gobernanza, Alan Buenhombre" />
+<meta name="author" content="Alan Buenhombre" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://buenhombre.design/playbook-design-system-figma-storybook.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Alan Buenhombre" />
+<meta property="og:title" content="De Figma a Storybook en un design system · Playbook 02" />
+<meta property="og:description" content="Figma documenta la intención. El código es la fuente de verdad. Cómo conectar diseño y código para que un design system se mantenga vivo." />
+<meta property="og:url" content="https://buenhombre.design/playbook-design-system-figma-storybook.html" />
+<meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"De Figma a Storybook en un design system — Playbook 02","alternativeHeadline":"From Figma to Storybook in a design system","description":"Cómo conectar diseño y código con tokens, Storybook y reglas claras para que un design system se mantenga vivo.","inLanguage":["es","en"],"datePublished":"2026-11-16","author":{"@type":"Person","name":"Alan Buenhombre","url":"https://buenhombre.design"},"keywords":"design system, Figma, Storybook, design tokens, governance","url":"https://buenhombre.design/playbook-design-system-figma-storybook.html"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F2F2F0;
+  --paper:#FFFFFF;
+  --ink:#161616;
+  --ink-2:#3A3A38;
+  --muted:#6E6E6A;
+  --faint:#A3A39E;
+  --line:#DEDDD8;
+  --soft:#E7E6E2;
+  --k:#1F45D6;
+  --k-2:#1838B0;
+  --k-soft:#E4E9FA;
+  --hair:var(--line);
+  --hair-dot:var(--line);
+  --hair-strong:var(--line);
+  --accent:var(--k);
+  --surface:var(--paper);
+  --surface-2:var(--soft);
+  --sans:"Inter", ui-sans-serif, -apple-system, system-ui, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --max-w:1200px;
+  --pad:48px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (max-width:720px){ :root{ --pad:24px; } }
+
+*{box-sizing:border-box;}
+html,body{background:var(--bg);color:var(--ink);}
+body{
+  font-family:var(--sans);
+  font-weight:400; font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  font-feature-settings:"kern","liga";
+  letter-spacing:-.01em;
+  overflow-x:clip;
+}
+.mono{
+  font-family:var(--mono);
+  font-weight:400; letter-spacing:.02em;
+}
+.kicker{
+  font-family:var(--mono);
+  font-weight:400; text-transform:uppercase;
+  letter-spacing:.08em; font-size:.72rem;
+  color:var(--k);
+}
+.kicker.muted{color:var(--muted);}
+
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad);}
+hr.hair{border:0;border-top:1px solid var(--line);margin:0;}
+hr.dot{border:0;border-top:1px solid var(--line);margin:0;}
+
+/* ============ NAV ============ */
+nav.top{
+  position:sticky;top:0;z-index:20;
+  background:rgba(242,242,240,.86);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.top-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:18px var(--pad);
+}
+.logo{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--sans);
+  font-weight:500;font-size:15px;letter-spacing:-.02em;
+  color:var(--ink);text-decoration:none;
+}
+.logo .dot-avail{
+  flex:none;
+  width:7px;height:7px;border-radius:99px;background:var(--k);
+  box-shadow:0 0 0 4px rgba(31,69,214,.15);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+.logo .avail-txt{color:var(--muted);font-size:12px;letter-spacing:0;}
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:1;}
+  50%{transform:scale(.92);opacity:.75;}
+}
+@media (prefers-reduced-motion:reduce){
+  .logo .dot-avail{animation:none;}
+}
+.top-right{display:flex;align-items:center;gap:20px;}
+.top-meta{color:var(--ink-2);font-size:12px;letter-spacing:.02em;}
+.top-meta.back{text-decoration:none;transition:color .3s var(--ease);}
+.top-meta.back:hover{color:var(--k);}
+@media (max-width:640px){.top-meta{display:none;}}
+.lang{
+  display:inline-flex;align-items:center;gap:0;
+  border:1px solid var(--line);border-radius:99px;padding:3px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  background:var(--paper);
+}
+.lang button{
+  background:transparent;border:0;color:var(--muted);
+  padding:6px 12px;border-radius:99px;cursor:pointer;
+  transition:color .3s var(--ease), background .3s var(--ease);
+  font-family:inherit;font-size:inherit;letter-spacing:inherit;
+  text-transform:uppercase;
+}
+.lang button.on{background:var(--k);color:#fff;}
+.lang button:hover{color:var(--k);}
+.lang button.on:hover{color:#fff;}
+.lang button:focus-visible{outline:2px solid var(--k);outline-offset:2px;}
+
+/* ============ HERO ============ */
+.hero{padding:clamp(80px,12vw,160px) 0 clamp(64px,10vw,120px);}
+.hero-kicker{display:flex;gap:14px;align-items:center;margin-bottom:36px;}
+.hero-kicker .bar{flex:0 0 40px;height:1px;background:var(--k);}
+h1{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(44px,7.6vw,96px);
+  line-height:1.04; letter-spacing:-.045em;
+  margin:0 0 32px;
+  text-wrap:balance;
+  max-width:18ch;
+  color:var(--ink);
+}
+h1 .accent{color:var(--k);}
+.hero-sub{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(18px,1.8vw,22px);
+  line-height:1.55; color:var(--muted);
+  max-width:60ch; letter-spacing:-.015em;
+}
+.hero-sub em{font-style:normal;color:var(--ink);}
+
+.hero-meta{
+  margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border-top:1px solid var(--line);
+}
+.hero-meta > div{
+  padding:26px 28px 0 28px;
+  border-right:1px solid var(--line);
+}
+.hero-meta > div:first-child{padding-left:0;}
+.hero-meta > div:last-child{border-right:0;padding-right:0;}
+.hero-meta .k{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--k);margin-bottom:10px;
+}
+.hero-meta .v{
+  font-family:var(--sans);font-weight:400;
+  font-size:14.5px;line-height:1.5;color:var(--ink-2);
+}
+@media (max-width:820px){
+  .hero-meta{grid-template-columns:1fr 1fr;}
+  .hero-meta > div:nth-child(2){border-right:0;}
+  .hero-meta > div:nth-child(1),.hero-meta > div:nth-child(2){
+    border-bottom:1px solid var(--line);padding-bottom:20px;
+  }
+}
+@media (max-width:520px){
+  .hero-meta{grid-template-columns:1fr;}
+  .hero-meta > div{border-right:0;border-bottom:1px solid var(--line);padding:20px 0;}
+  .hero-meta > div:last-child{border-bottom:0;}
+}
+
+/* ============ SECTION ============ */
+section.chapter{padding:clamp(90px,12vw,130px) 0;border-top:1px solid var(--line);}
+.chap-head{display:grid;grid-template-columns:180px 1fr;gap:clamp(24px,4vw,64px);align-items:baseline;margin-bottom:clamp(40px,6vw,72px);}
+.chap-num{
+  font-family:var(--mono);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--k);
+}
+h2{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(30px,4.2vw,52px);
+  line-height:1.08; letter-spacing:-.04em;
+  margin:0; text-wrap:balance; max-width:24ch;
+  color:var(--ink);
+}
+@media (max-width:720px){ .chap-head{grid-template-columns:1fr;gap:12px;} }
+
+/* body + margin */
+.body-grid{display:grid;grid-template-columns:1fr minmax(200px,260px);gap:clamp(28px,5vw,72px);}
+.prose{max-width:64ch;}
+.prose p{margin:0 0 1.15em;color:var(--ink-2);font-size:16.5px;line-height:1.75;}
+.prose strong{color:var(--ink);font-weight:500;}
+.prose em{color:var(--ink);}
+.margin-note{padding-top:6px;}
+.margin-note .label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--k);margin-bottom:12px;
+}
+.margin-note p{margin:0;color:var(--muted);font-size:14px;line-height:1.6;}
+@media (max-width:820px){
+  .body-grid{grid-template-columns:1fr;}
+  .margin-note{border-top:1px solid var(--line);padding-top:20px;}
+}
+
+/* pull quote (Polanyi) */
+.pullquote{
+  margin:56px 0 0;
+  padding:36px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:baseline;
+}
+.pullquote .brace{font-family:var(--mono);color:var(--k);font-size:36px;line-height:1;}
+.pullquote q{
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(22px,2.8vw,34px);line-height:1.2;letter-spacing:-.04em;
+  quotes:"" "";color:var(--ink);
+}
+.pullquote cite{
+  display:block;margin-top:16px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);font-style:normal;
+}
+
+/* dialectic pair */
+.dialectic{
+  margin-top:56px;
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:20px;overflow:hidden;
+}
+.dialectic > article{
+  background:var(--paper);
+  padding:clamp(28px,3.4vw,44px);
+  transition:background .4s var(--ease);
+}
+.dialectic > article:hover{background:#FAFAF8;}
+.dialectic .tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+.dialectic .tag .glyph{color:var(--k);}
+.dialectic h3{
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(22px,2.4vw,28px);line-height:1.15;letter-spacing:-.04em;
+  margin:0 0 14px;color:var(--ink);
+}
+.dialectic h3 em{font-style:normal;color:var(--k);}
+.dialectic p{margin:0;color:var(--muted);font-size:15px;line-height:1.65;max-width:42ch;}
+@media (max-width:720px){ .dialectic{grid-template-columns:1fr;} }
+
+/* framework strip */
+.framework{
+  margin-top:56px;
+  border:1px solid var(--line);
+  border-radius:20px;overflow:hidden;
+  background:var(--paper);
+  display:grid;grid-template-columns:repeat(3,1fr);
+}
+.framework .step{
+  padding:clamp(28px,3vw,40px);
+  border-right:1px solid var(--line);
+  transition:background .4s var(--ease);
+}
+.framework .step:last-child{border-right:0;}
+.framework .step:hover{background:#FAFAF8;}
+.framework .step .n{
+  font-family:var(--mono);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--k);margin-bottom:16px;
+}
+.framework .step h4{
+  font-family:var(--sans);font-weight:400;
+  font-size:20px;line-height:1.2;letter-spacing:-.03em;
+  margin:0 0 10px;color:var(--ink);
+}
+.framework .step p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+@media (max-width:820px){
+  .framework{grid-template-columns:1fr;}
+  .framework .step{border-right:0;border-bottom:1px solid var(--line);}
+  .framework .step:last-child{border-bottom:0;}
+}
+
+/* numbered rules (steps) */
+.rules{margin-top:64px;display:grid;gap:0;border-top:1px solid var(--line);}
+.rule-item{
+  padding:clamp(32px,4.5vw,56px) 0;
+  border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:120px 1fr;gap:clamp(24px,4vw,56px);
+  transition:padding-left .4s var(--ease);
+}
+.rule-item > *{min-width:0;}
+.rule-item:hover{padding-left:16px;}
+.rule-num{
+  font-family:var(--mono);
+  font-size:14px;color:var(--k);letter-spacing:.06em;
+  align-self:start;padding-top:6px;
+}
+.rule-body h3{
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(22px,2.6vw,30px);line-height:1.18;letter-spacing:-.04em;
+  margin:0 0 18px; max-width:36ch;color:var(--ink);
+}
+.rule-body h3 em{font-style:normal;color:var(--k);}
+.rule-body p{margin:0 0 14px;color:var(--ink-2);font-size:15.5px;line-height:1.7;max-width:60ch;}
+.rule-body p strong{color:var(--ink);font-weight:500;}
+.rule-body .action{
+  margin-top:24px;padding:20px 24px;
+  border:1px solid var(--line);
+  border-left:2px solid var(--k);
+  border-radius:0 16px 16px 0;
+  background:var(--paper);
+}
+.rule-body .action .lbl{
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--k);margin-bottom:10px;
+}
+.rule-body .action p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.65;}
+@media (max-width:640px){
+  .rule-item{grid-template-columns:1fr;gap:14px;}
+  .rule-item:hover{padding-left:0;}
+}
+
+/* matrix table */
+.matrix{
+  margin-top:56px;border:1px solid var(--line);overflow-x:auto;
+  border-radius:20px;background:var(--paper);
+}
+.matrix table{width:100%;border-collapse:collapse;min-width:720px;}
+.matrix th, .matrix td{
+  padding:24px 28px;vertical-align:top;text-align:left;
+  border-bottom:1px solid var(--line);
+  border-right:1px solid var(--line);
+}
+.matrix th:last-child, .matrix td:last-child{border-right:0;}
+.matrix tr:last-child td{border-bottom:0;}
+.matrix thead th{
+  background:#FAFAF8;
+  font-family:var(--mono);font-weight:400;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+.matrix td.moment{
+  font-family:var(--sans);font-weight:500;
+  font-size:15px;color:var(--ink);width:22%;letter-spacing:-.02em;
+}
+.matrix td.cell{width:39%;color:var(--muted);font-size:14.5px;line-height:1.65;}
+.matrix .cell .lbl{
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;display:block;margin-bottom:10px;
+}
+.matrix .cell.dont .lbl{color:var(--faint);}
+.matrix .cell.dont .lbl::before{content:"✕  ";}
+.matrix .cell.doo  .lbl{color:var(--k);}
+.matrix .cell.doo  .lbl::before{content:"→  ";}
+.matrix .cell.dont p{color:var(--muted);}
+.matrix .cell.doo  p{color:var(--ink-2);}
+.matrix p{margin:0;}
+
+/* bibliography */
+.biblio ol{list-style:none;padding:0;margin:0;counter-reset:ref;}
+.biblio li{
+  counter-increment:ref;
+  display:grid;grid-template-columns:64px 1fr auto;gap:24px;
+  padding:24px 0;border-top:1px solid var(--line);align-items:baseline;
+  transition:padding-left .3s var(--ease);
+}
+.biblio li:last-child{border-bottom:1px solid var(--line);}
+.biblio li:hover{padding-left:12px;}
+.biblio li::before{
+  content:"{" counter(ref,decimal-leading-zero) "}";
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  color:var(--k);
+}
+.biblio .ref{color:var(--ink-2);font-size:15.5px;line-height:1.55;max-width:70ch;}
+.biblio .ref .who{color:var(--ink);font-weight:500;}
+.biblio .ref em{color:var(--muted);font-style:italic;}
+.biblio .ref a{
+  color:var(--k);text-decoration:none;
+  border-bottom:1px solid var(--k-soft);
+  transition:border-color .3s var(--ease);
+}
+.biblio .ref a:hover{border-bottom-color:var(--k);}
+.biblio .link{
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  align-self:baseline;
+}
+.biblio .link a{color:var(--k);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s var(--ease);}
+.biblio .link a:hover{border-bottom-color:var(--k);}
+@media (max-width:640px){
+  .biblio li{grid-template-columns:1fr;gap:8px;}
+  .biblio li::before{margin-bottom:0;}
+  .biblio .link{margin-top:4px;}
+}
+
+/* footer */
+footer.foot{
+  padding:56px 0 72px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  color:var(--muted);font-size:12px;letter-spacing:.02em;
+}
+footer.foot .mono-l{font-family:var(--mono);letter-spacing:.06em;}
+footer.foot a{color:var(--k);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s var(--ease);}
+footer.foot a:hover{border-bottom-color:var(--k);}
+
+/* prompt block */
+.prompt{
+  margin-top:22px;
+  border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;
+  background:var(--paper);
+  transition:border-color .4s var(--ease);
+}
+.prompt:hover{border-color:var(--faint);}
+.prompt header{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:14px 20px;border-bottom:1px solid var(--line);
+  background:#FAFAF8;
+}
+.prompt header .lbl{
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);
+}
+.prompt header .lbl .sub{color:var(--muted);margin-left:8px;}
+.prompt .copy{
+  flex:none;
+  background:var(--paper);border:1px solid var(--line);
+  color:var(--ink-2);cursor:pointer;
+  font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 12px;border-radius:99px;
+  transition:color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+}
+.prompt .copy:hover{color:var(--k);border-color:var(--k);background:var(--k-soft);}
+.prompt .copy.done{color:#fff;border-color:var(--k);background:var(--k);}
+.prompt .copy:focus-visible{outline:2px solid var(--k);outline-offset:2px;}
+.prompt .body{
+  padding:22px 24px;margin:0;
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:13.5px; line-height:1.75;
+  color:var(--ink-2);
+  letter-spacing:0;
+  overflow-wrap:anywhere;
+}
+.prompt .body .hash{color:var(--k);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px;}
+.prompt .body .slot{
+  color:var(--ink);
+  background:var(--k-soft);
+  border-bottom:1px solid var(--k);
+  padding:0 2px;
+}
+
+::selection{background:var(--k-soft);color:var(--ink);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--k);outline-offset:3px;border-radius:2px;}
+
+/* ============ PLAYBOOK 02 · nuevos bloques ============ */
+code{
+  font-family:var(--mono);font-size:.84em;letter-spacing:0;
+  background:var(--soft);color:var(--ink);
+  padding:2px 6px;border-radius:6px;white-space:nowrap;
+}
+h3 code{font-size:.72em;vertical-align:.12em;}
+.sub-h{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);margin:56px 0 0;
+}
+.sub-h + .framework{margin-top:16px;}
+
+/* 5-layer stack */
+.layers{
+  list-style:none;margin:0;padding:0;
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:var(--paper);
+}
+.layers li{
+  position:relative;
+  display:grid;grid-template-columns:96px minmax(180px,260px) 1fr;
+  gap:clamp(16px,3vw,40px);align-items:baseline;
+  padding:clamp(22px,2.6vw,30px) clamp(24px,3vw,40px);
+  border-bottom:1px solid var(--line);
+  transition:background .4s var(--ease);
+}
+.layers li:last-child{border-bottom:0;}
+.layers li:hover{background:#FAFAF8;}
+.layers .ln{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--k);}
+.layers .lt{font-weight:400;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.03em;color:var(--ink);line-height:1.2;}
+.layers .lr{color:var(--muted);font-size:15px;line-height:1.6;}
+.layers li.truth{background:var(--k-soft);}
+.layers li.truth::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--k);}
+.pill{
+  display:inline-block;margin-left:10px;vertical-align:.15em;
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:#fff;background:var(--k);padding:4px 9px;border-radius:99px;white-space:nowrap;
+}
+@media (max-width:720px){
+  .layers li{grid-template-columns:56px 1fr;}
+  .layers .lr{grid-column:2;}
+}
+
+/* checklist */
+.checklist{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line);max-width:62ch;}
+.checklist li{border-bottom:1px solid var(--line);}
+.checklist label{
+  display:grid;grid-template-columns:22px 1fr;gap:16px;align-items:start;
+  padding:16px 0;cursor:pointer;color:var(--ink-2);font-size:15.5px;line-height:1.6;
+}
+.checklist input{
+  appearance:none;-webkit-appearance:none;margin:2px 0 0;
+  width:20px;height:20px;border:1.5px solid var(--faint);border-radius:6px;
+  background:var(--paper);display:grid;place-content:center;cursor:pointer;
+  transition:background .25s var(--ease),border-color .25s var(--ease);
+}
+.checklist input::after{
+  content:"";width:10px;height:6px;margin-top:-2px;
+  border-left:2px solid #fff;border-bottom:2px solid #fff;
+  transform:rotate(-45deg) scale(0);transition:transform .2s var(--ease);
+}
+.checklist input:checked{background:var(--k);border-color:var(--k);}
+.checklist input:checked::after{transform:rotate(-45deg) scale(1);}
+.checklist input:focus-visible{outline:2px solid var(--k);outline-offset:3px;}
+.checklist input:checked + span{color:var(--muted);}
+
+/* numbered + dash lists */
+.olist{list-style:none;margin:20px 0 0;padding:0;counter-reset:ol;max-width:62ch;}
+.olist > li{
+  counter-increment:ol;position:relative;
+  padding:12px 0 12px 52px;border-top:1px solid var(--line);
+  color:var(--ink-2);font-size:15.5px;line-height:1.65;
+}
+.olist > li:last-child{border-bottom:1px solid var(--line);}
+.olist > li::before{
+  content:counter(ol,decimal-leading-zero);
+  position:absolute;left:0;top:15px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--k);
+}
+.olist strong,.dlist strong{color:var(--ink);font-weight:500;}
+.dlist{list-style:none;margin:10px 0 0;padding:0;}
+.dlist li{position:relative;padding:4px 0 4px 22px;color:var(--ink-2);font-size:15px;line-height:1.65;}
+.dlist li::before{content:"—";position:absolute;left:0;color:var(--faint);}
+.olist.lg > li{font-size:clamp(17px,1.7vw,20px);font-weight:300;letter-spacing:-.02em;color:var(--ink);padding:20px 0 20px 96px;}
+.olist.lg > li::before{font-size:13px;top:26px;}
+@media (max-width:640px){.olist.lg > li{padding-left:52px;}}
+
+/* key fact + chain */
+.fact{
+  margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;
+  color:var(--ink-2);font-size:15px;line-height:1.6;
+}
+.fact .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 12px;}
+.chain b{
+  font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.02em;
+  background:var(--k-soft);color:var(--k-2);padding:5px 10px;border-radius:99px;white-space:nowrap;
+}
+.chain i{font-style:normal;color:var(--faint);font-family:var(--mono);font-size:12px;}
+
+/* standalone callout */
+.callout{
+  margin-top:40px;padding:20px 24px;max-width:62ch;
+  border:1px solid var(--line);border-left:2px solid var(--k);
+  border-radius:0 16px 16px 0;background:var(--paper);
+}
+.callout .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);margin-bottom:10px;}
+.callout p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.65;}
+
+/* generic table */
+.tbl{border:1px solid var(--line);border-radius:20px;background:var(--paper);overflow-x:auto;}
+.tbl table{width:100%;border-collapse:collapse;min-width:560px;}
+.tbl th,.tbl td{padding:18px 28px;text-align:left;vertical-align:middle;border-bottom:1px solid var(--line);}
+.tbl tbody tr:last-child td{border-bottom:0;}
+.tbl tbody tr{transition:background .3s var(--ease);}
+.tbl tbody tr:hover{background:#FAFAF8;}
+.tbl thead th{
+  background:#FAFAF8;font-family:var(--mono);font-weight:400;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+.tbl td.n{width:72px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--k);}
+.tbl td.s{color:var(--ink);font-size:15.5px;letter-spacing:-.01em;}
+.tbl td.w{width:180px;}
+.own{
+  display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;padding:5px 10px;border-radius:99px;white-space:nowrap;
+  border:1px solid var(--line);color:var(--muted);background:var(--bg);
+}
+.own.d{background:var(--k-soft);border-color:var(--k-soft);color:var(--k-2);}
+.own.e{background:var(--paper);border-color:var(--ink-2);color:var(--ink);}
+@media (max-width:640px){
+  .tbl table{min-width:0;}
+  .tbl thead{display:none;}
+  .tbl tbody tr{display:grid;grid-template-columns:40px 1fr;padding:16px 20px;border-bottom:1px solid var(--line);}
+  .tbl tbody tr:last-child{border-bottom:0;}
+  .tbl td{padding:0;border:0;}
+  .tbl td.n{width:auto;padding-top:3px;}
+  .tbl td.w{grid-column:2;width:auto;margin-top:8px;}
+}
+
+/* tools */
+.tools{margin:0;border-top:1px solid var(--line);}
+.tools > div{
+  display:grid;grid-template-columns:minmax(180px,280px) 1fr;gap:clamp(16px,4vw,56px);
+  padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  transition:padding-left .3s var(--ease);
+}
+.tools > div:hover{padding-left:12px;}
+.tools dt{font-size:clamp(18px,1.8vw,22px);font-weight:300;letter-spacing:-.03em;color:var(--ink);}
+.tools dd{margin:0;color:var(--muted);font-size:15px;line-height:1.6;}
+@media (max-width:640px){.tools > div{grid-template-columns:1fr;gap:6px;}.tools > div:hover{padding-left:0;}}
+
+.framework .step h4 code{font-size:.8em;}
+.rule-body .dlist + .action,.rule-body .olist + .action,.rule-body .checklist + .action,.rule-body .fact + .action{margin-top:28px;}
+footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
+
+@media print{
+  nav.top,.lang{display:none;}
+  section.chapter{padding:40px 0;break-inside:avoid-page;}
+  .checklist input{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap top-inner">
+    <a href="index.html" class="logo">
+      <span class="dot-avail" aria-hidden="true"></span>
+      <span>Alan Buenhombre</span>
+      <span class="avail-txt" data-i18n="avail">Disponible para proyectos</span>
+    </a>
+    <div class="top-right">
+      <a class="top-meta mono back" href="index.html#playbooks" data-i18n="back">← Playbooks</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="es" class="on" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-kicker">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker" data-i18n="hero.kicker">{ 02 } · Playbook · Design systems</span>
+    </div>
+
+    <h1 data-i18n="hero.title">De Figma a Storybook en un <span class="accent">design system</span>.</h1>
+
+    <p class="hero-sub" data-i18n="hero.sub">Cómo conectar diseño y código, con reglas claras, para que un design system se mantenga vivo sin depender de procesos pesados.</p>
+
+    <dl class="hero-meta">
+      <div>
+        <div class="k" data-i18n="meta.for.k">Para</div>
+        <div class="v" data-i18n="meta.for.v">Equipos pequeños: 1 diseñador + 1 ingeniero, o incluso un equipo sin ingeniero dedicado.</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.time.k">Duración</div>
+        <div class="v" data-i18n="meta.time.v">Lectura de 6 minutos. Se aplica desde el primer token.</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.based.k">Basado en</div>
+        <div class="v" data-i18n="meta.based.v">El proceso de Florian Bölter. Adaptado por Alan Buenhombre.</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.stance.k">Postura</div>
+        <div class="v" data-i18n="meta.stance.v">Figma documenta la intención. El código es la fuente de verdad.</div>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<!-- 01 · PRINCIPIO -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c1.num">{ 01 } — Principio base</div>
+      <h2 data-i18n="c1.title">Una regla antes que cualquier componente.</h2>
+    </div>
+
+    <div class="body-grid">
+      <div class="prose">
+        <p data-i18n="c1.p1">Esta es la regla más importante del playbook. Cuando la fuente de verdad está en el código, el <em>drift</em> se detecta con CI y las discusiones pasan de <em>“cuál versión es la correcta”</em> a <em>“qué cambio queremos hacer”</em>.</p>
+        <p data-i18n="c1.p2"><strong>Lo que este playbook no es:</strong> una guía de Storybook desde cero ni un tutorial de Figma. Es la forma de conectar ambos mundos y de ponerle reglas claras al proceso.</p>
+      </div>
+      <aside class="margin-note">
+        <div class="label" data-i18n="c1.note.k">Para quién es</div>
+        <p data-i18n="c1.note.v">Equipos de 1 diseñador + 1 ingeniero, o incluso sin ingeniero dedicado, que quieren un design system vivo sin procesos pesados.</p>
+      </aside>
+    </div>
+
+    <blockquote class="pullquote">
+      <span class="brace" aria-hidden="true">“</span>
+      <div>
+        <q data-i18n="c1.quote">Figma documenta la intención. El código es la fuente de verdad.</q>
+        <cite data-i18n="c1.cite">— Principio base · De Figma a Storybook</cite>
+      </div>
+    </blockquote>
+  </div>
+</section>
+
+<!-- 02 · ARQUITECTURA -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c2.num">{ 02 } — Arquitectura</div>
+      <h2 data-i18n="c2.title">Cinco capas, cada una con un dueño claro.</h2>
+    </div>
+
+    <ol class="layers">
+      <li>
+        <span class="ln">{ 01 }</span>
+        <span class="lt">Figma Variables</span>
+        <span class="lr" data-i18n="c2.l1">BASE (color, spacing, radius, type) + SEMANTIC (surface, text, action).</span>
+      </li>
+      <li>
+        <span class="ln">{ 02 }</span>
+        <span class="lt">Cursor + Figma MCP</span>
+        <span class="lr" data-i18n="c2.l2">Lee las variables y el código, y propone cambios.</span>
+      </li>
+      <li class="truth">
+        <span class="ln">{ 03 }</span>
+        <span class="lt"><span data-i18n="c2.l3.t">Tokens en código</span><span class="pill" data-i18n="c2.truth">Fuente de verdad</span></span>
+        <span class="lr" data-i18n="c2.l3">Tailwind o equivalente. Aquí vive la versión canónica.</span>
+      </li>
+      <li>
+        <span class="ln">{ 04 }</span>
+        <span class="lt">Storybook</span>
+        <span class="lr" data-i18n="c2.l4">Stories por componente, con sincronización unidireccional.</span>
+      </li>
+      <li>
+        <span class="ln">{ 05 }</span>
+        <span class="lt" data-i18n="c2.l5.t">Adopción</span>
+        <span class="lr" data-i18n="c2.l5">El producto usa la librería.</span>
+      </li>
+    </ol>
+
+    <p class="sub-h" data-i18n="c2.why">Por qué esta arquitectura</p>
+    <div class="framework">
+      <div class="step">
+        <div class="n">01</div>
+        <h4 data-i18n="c2.w1">Los tokens se definen una sola vez y se exportan a cada plataforma.</h4>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h4 data-i18n="c2.w2">Las stories son una ventana al código, no una copia.</h4>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h4 data-i18n="c2.w3">Cada capa tiene un dueño claro.</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · FASES -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c3.num">{ 03 } — Fases</div>
+      <h2 data-i18n="c3.title">Cuatro fases: de los acuerdos a un proceso repetible.</h2>
+    </div>
+
+    <div class="rules">
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="c3.f0.n">Fase 0</div>
+        <div class="rule-body">
+          <h3 data-i18n="c3.f0.h">Acuerdos <em>antes de tocar nada</em>.</h3>
+          <p data-i18n="c3.f0.p">Antes de crear un solo componente, define con tu ingeniero aliado:</p>
+          <ul class="checklist">
+            <li><label><input type="checkbox"><span data-i18n="c3.f0.c1">Quién es el dueño de los tokens (diseño propone, ingeniería valida).</span></label></li>
+            <li><label><input type="checkbox"><span data-i18n="c3.f0.c2">Qué significa “listo para handoff” (p. ej. variantes probadas, documentadas, con estados).</span></label></li>
+            <li><label><input type="checkbox"><span data-i18n="c3.f0.c3">Qué stack de código usarán (Tailwind, CSS variables, etc.).</span></label></li>
+            <li><label><input type="checkbox"><span data-i18n="c3.f0.c4">Dónde vive el repositorio y quién puede hacer merge.</span></label></li>
+          </ul>
+          <div class="action">
+            <div class="lbl">Tip</div>
+            <p data-i18n="c3.f0.a">Si no tienes ingeniero dedicado, este paso puede hacerse con un asistente de IA como Claude. Lo importante es que las decisiones queden escritas.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="c3.f1.n">Fase 1</div>
+        <div class="rule-body">
+          <h3 data-i18n="c3.f1.h">Tokens <em>primero</em>.</h3>
+          <p data-i18n="c3.f1.p"><strong>Objetivo:</strong> tener una base estable antes de los componentes.</p>
+          <ol class="olist">
+            <li><div><span data-i18n="c3.f1.s1">En Figma, crea las variables en dos niveles:</span>
+              <ul class="dlist">
+                <li data-i18n="c3.f1.s1a"><strong>BASE:</strong> valores crudos (<code>blue-600: #185FA5</code>, <code>space-4: 16px</code>).</li>
+                <li data-i18n="c3.f1.s1b"><strong>SEMANTIC:</strong> significado de uso (<code>action-primary → blue-600</code>, <code>text-secondary → gray-600</code>).</li>
+              </ul></div>
+            </li>
+            <li data-i18n="c3.f1.s2">Exporta las variables a un archivo JSON (<code>tokens.json</code>).</li>
+            <li data-i18n="c3.f1.s3">Con Cursor + Figma MCP, genera la configuración de Tailwind a partir de esas variables.</li>
+            <li data-i18n="c3.f1.s4">Revisa el resultado en un commit pequeño y pide aprobación de tu ingeniero aliado.</li>
+          </ol>
+          <div class="fact"><span class="k" data-i18n="c3.f1.tk">Tiempo aproximado</span><span data-i18n="c3.f1.tv">20 a 30 minutos con IA, frente a una jornada completa de trabajo manual.</span></div>
+          <div class="action">
+            <div class="lbl" data-i18n="c3.f1.al">Primera contribución segura</div>
+            <div class="chain" data-i18n="c3.f1.chain"><b>Figma Variables</b><i>→</i><b>Cursor</b><i>→</i><b>PR de tokens</b><i>→</i><b>revisión</b><i>→</i><b>merge</b></div>
+            <p data-i18n="c3.f1.a">Aunque nadie lo vea todavía, la base queda viva.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="c3.f2.n">Fase 2</div>
+        <div class="rule-body">
+          <h3 data-i18n="c3.f2.h">El <em>primer componente</em>.</h3>
+          <p data-i18n="c3.f2.p"><strong>Objetivo:</strong> establecer el patrón que se repetirá.</p>
+          <ol class="olist">
+            <li data-i18n="c3.f2.s1">Elige un componente simple y muy usado (botón, input, badge).</li>
+            <li data-i18n="c3.f2.s2">Diseña y documenta sus variantes en Figma usando los tokens semánticos.</li>
+            <li data-i18n="c3.f2.s3">Crea una rama en Figma para el componente. Al menos un diseñador revisa antes de llevarlo al archivo principal.</li>
+            <li data-i18n="c3.f2.s4">Con Cursor, genera el componente en código y su archivo <code>*.stories.tsx</code>.</li>
+            <li data-i18n="c3.f2.s5">Revisa el componente en Storybook <strong>antes</strong> de abrir el pull request.</li>
+            <li data-i18n="c3.f2.s6">Abre el PR; el ingeniero revisa y hace merge.</li>
+          </ol>
+          <div class="action">
+            <div class="lbl" data-i18n="c3.f2.al">Regla clave</div>
+            <p data-i18n="c3.f2.a">El diseñador ve el componente en Storybook antes del merge, no después. Así el problema de tiempos desaparece.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="c3.f3.n">Fase 3</div>
+        <div class="rule-body">
+          <h3 data-i18n="c3.f3.h">Hacerlo <em>repetible</em> con <code>RULES.md</code>.</h3>
+          <p data-i18n="c3.f3.p">Después del primer componente, escriban juntos un archivo <code>RULES.md</code> que se cargue como contexto cada vez que se trabaje con IA. Debe incluir:</p>
+          <ul class="dlist">
+            <li data-i18n="c3.f3.s1">Estructura de carpetas y de componentes.</li>
+            <li data-i18n="c3.f3.s2">Convenciones de nombres, variantes y props.</li>
+            <li data-i18n="c3.f3.s3">Cómo usar tokens (qué clases o variables son válidas).</li>
+            <li data-i18n="c3.f3.s4">Cómo se escriben las stories (formato, argumentos, estados).</li>
+          </ul>
+          <div class="action">
+            <div class="lbl" data-i18n="c3.f3.al">Qué cambia</div>
+            <p data-i18n="c3.f3.a">El segundo componente ya no requiere repetir el prompt completo. Si algo se desvía, se ajusta la regla, no el resultado.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · FLUJO -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c4.num">{ 04 } — Flujo</div>
+      <h2 data-i18n="c4.title">Flujo de trabajo por componente, en 8 pasos.</h2>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr><th>#</th><th data-i18n="c4.h2">Paso</th><th data-i18n="c4.h3">Responsable</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="n">01</td><td class="s" data-i18n="c4.s1">Cambios en rama de Figma</td><td class="w"><span class="own d" data-i18n="who.d">Diseñador</span></td></tr>
+          <tr><td class="n">02</td><td class="s" data-i18n="c4.s2">Notificación automática (p. ej. Slack)</td><td class="w"><span class="own" data-i18n="who.a">Automático</span></td></tr>
+          <tr><td class="n">03</td><td class="s" data-i18n="c4.s3">Prompt a Cursor con el cambio</td><td class="w"><span class="own d" data-i18n="who.d">Diseñador</span></td></tr>
+          <tr><td class="n">04</td><td class="s" data-i18n="c4.s4">Cursor lee Figma MCP + código</td><td class="w"><span class="own" data-i18n="who.ai">IA</span></td></tr>
+          <tr><td class="n">05</td><td class="s" data-i18n="c4.s5">Propuesta de cambio en código</td><td class="w"><span class="own">Cursor</span></td></tr>
+          <tr><td class="n">06</td><td class="s" data-i18n="c4.s6">Revisión local en Storybook</td><td class="w"><span class="own d" data-i18n="who.d">Diseñador</span></td></tr>
+          <tr><td class="n">07</td><td class="s">Pull request</td><td class="w"><span class="own d" data-i18n="who.d">Diseñador</span></td></tr>
+          <tr><td class="n">08</td><td class="s" data-i18n="c4.s8">Revisión y merge</td><td class="w"><span class="own e" data-i18n="who.e">Ingeniero</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · GOBERNANZA -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c5.num">{ 05 } — Gobernanza</div>
+      <h2 data-i18n="c5.title">Cinco reglas para que el sistema no se desvíe.</h2>
+    </div>
+
+    <div class="rules">
+      <article class="rule-item">
+        <div class="rule-num">{ 01 }</div>
+        <div class="rule-body">
+          <h3 data-i18n="c5.r1.h">Ramas en Figma para componentes.</h3>
+          <p data-i18n="c5.r1.p">Mínimo una aprobación de diseño antes de mergear al archivo principal.</p>
+        </div>
+      </article>
+      <article class="rule-item">
+        <div class="rule-num">{ 02 }</div>
+        <div class="rule-body">
+          <h3 data-i18n="c5.r2.h">Criterio de <em>handoff</em>.</h3>
+          <p data-i18n="c5.r2.p">El componente sale a código solo cuando está completo: pulido, documentado y con variantes probadas.</p>
+        </div>
+      </article>
+      <article class="rule-item">
+        <div class="rule-num">{ 03 }</div>
+        <div class="rule-body">
+          <h3 data-i18n="c5.r3.h">El código es <em>canónico</em>.</h3>
+          <p data-i18n="c5.r3.p">Si Figma y código divergen, gana el código y el CI lo marca.</p>
+        </div>
+      </article>
+      <article class="rule-item">
+        <div class="rule-num">{ 04 }</div>
+        <div class="rule-body">
+          <h3 data-i18n="c5.r4.h">Tokens antes que componentes.</h3>
+          <p data-i18n="c5.r4.p">Primero, acuerdo en las fundaciones; después, componentes.</p>
+        </div>
+      </article>
+      <article class="rule-item">
+        <div class="rule-num">{ 05 }</div>
+        <div class="rule-body">
+          <h3 data-i18n="c5.r5.h">Repetibilidad con <code>RULES.md</code>.</h3>
+          <p data-i18n="c5.r5.p">El proceso se documenta una vez y se reutiliza.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="callout">
+      <div class="lbl" data-i18n="c5.note.k">Nota honesta</div>
+      <p data-i18n="c5.note.v">Estas reglas añaden un poco de carga. Vale la pena si el sistema se va a usar en serio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · HERRAMIENTAS -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c6.num">{ 06 } — Herramientas</div>
+      <h2 data-i18n="c6.title">Qué hace cada herramienta en el flujo.</h2>
+    </div>
+
+    <dl class="tools">
+      <div><dt>Figma</dt><dd data-i18n="c6.t1">Diseño, variables, ramas y Code Connect.</dd></div>
+      <div><dt>Figma Code Connect</dt><dd data-i18n="c6.t2">Vincula componentes de Figma con archivos de código.</dd></div>
+      <div><dt>Cursor + Figma MCP</dt><dd data-i18n="c6.t3">Genera código a partir del diseño, con contexto del repositorio.</dd></div>
+      <div><dt>Tailwind CSS</dt><dd data-i18n="c6.t4">Sintaxis literal, fácil de leer para la IA.</dd></div>
+      <div><dt>Storybook</dt><dd data-i18n="c6.t5">Prueba de estados y comportamiento; corre local con un comando.</dd></div>
+      <div><dt>GitHub + CI</dt><dd data-i18n="c6.t6">Detecta el drift entre diseño y código.</dd></div>
+      <div><dt>Claude</dt><dd data-i18n="c6.t7">Decisiones conceptuales y planeación del sistema.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 07 · CASO DE REFERENCIA -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c7.num">{ 07 } — Caso de referencia</div>
+      <h2 data-i18n="c7.title">Lo que se acumuló en el caso original.</h2>
+    </div>
+
+    <div class="body-grid">
+      <div class="prose">
+        <p data-i18n="c7.p1">En el caso de estudio original: unos 6 meses, con 1 diseñador + 1 ingeniero trabajando en paralelo con el producto normal.</p>
+      </div>
+      <aside class="margin-note">
+        <div class="label" data-i18n="c7.note.k">Fuente</div>
+        <p data-i18n="c7.note.v">Estas cifras vienen del caso de estudio de Florian Bölter, no de un proyecto propio.</p>
+      </aside>
+    </div>
+
+    <div class="framework">
+      <div class="step">
+        <div class="n" data-i18n="c7.m1.n">Fundaciones</div>
+        <h4 data-i18n="c7.m1">Tokens base + semánticos en Figma y en código.</h4>
+      </div>
+      <div class="step">
+        <div class="n" data-i18n="c7.m2.n">Librería</div>
+        <h4 data-i18n="c7.m2">~12 componentes documentados y vivos en Storybook.</h4>
+      </div>
+      <div class="step">
+        <div class="n" data-i18n="c7.m3.n">Adopción</div>
+        <h4 data-i18n="c7.m3">El equipo de front-end empieza a trabajar desde la librería.</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · SIGUIENTES PASOS -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c8.num">{ 08 } — Siguientes pasos</div>
+      <h2 data-i18n="c8.title">Cómo aplicar este playbook.</h2>
+    </div>
+
+    <ol class="olist lg">
+      <li data-i18n="c8.s1">Define los acuerdos de la Fase 0 con tu ingeniero aliado.</li>
+      <li data-i18n="c8.s2">Exporta tokens desde tu archivo de Figma.</li>
+      <li data-i18n="c8.s3">Elige un solo componente para el piloto.</li>
+      <li data-i18n="c8.s4">Documenta las reglas en <code>RULES.md</code> después del primer componente, no antes.</li>
+      <li data-i18n="c8.s5">Mide cuántos componentes se acumulan en el primer trimestre.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 09 · CRÉDITOS -->
+<section class="chapter biblio">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c9.num">{ 09 } — Créditos</div>
+      <h2 data-i18n="c9.title">Linaje y adaptación.</h2>
+    </div>
+
+    <ol>
+      <li>
+        <div class="ref"><span class="who">Florian Bölter.</span> <span data-i18n="c9.b1">Metodología original y caso de estudio.</span></div>
+        <div class="link"></div>
+      </li>
+      <li>
+        <div class="ref"><span class="who">Alan Buenhombre.</span> <span data-i18n="c9.b2">Adaptación y documentación.</span></div>
+        <div class="link"><a href="index.html">buenhombre.design ↗</a></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap" style="max-width:var(--max-w);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;width:100%;">
+    <div class="mono-l" data-i18n="foot.l">Playbook 02 · De Figma a Storybook.</div>
+    <div class="links">
+      <a href="portal-kommit.html" data-i18n="foot.case">Caso: Kommit V5 Design System →</a>
+      <a href="index.html#playbooks" data-i18n="foot.more">Más playbooks →</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  es: {}, /* el español se toma del HTML al cargar */
+  en: {
+    "avail":"Available for projects",
+    "back":"← Playbooks",
+    "hero.kicker":"{ 02 } · Playbook · Design systems",
+    "hero.title":"From Figma to Storybook in a <span class=\"accent\">design system</span>.",
+    "hero.sub":"How to connect design and code, with clear rules, so a design system stays alive without relying on heavy processes.",
+    "meta.for.k":"For","meta.for.v":"Small teams: 1 designer + 1 engineer, or even a team with no dedicated engineer.",
+    "meta.time.k":"Length","meta.time.v":"6-minute read. Applies from the very first token.",
+    "meta.based.k":"Based on","meta.based.v":"Florian Bölter’s process. Adapted by Alan Buenhombre.",
+    "meta.stance.k":"Stance","meta.stance.v":"Figma documents intent. Code is the source of truth.",
+
+    "c1.num":"{ 01 } — Core principle",
+    "c1.title":"One rule before any component.",
+    "c1.p1":"This is the most important rule in the playbook. When the source of truth lives in code, <em>drift</em> gets caught by CI, and discussions shift from <em>“which version is right”</em> to <em>“what change do we want to make”</em>.",
+    "c1.p2":"<strong>What this playbook is not:</strong> a Storybook guide from scratch or a Figma tutorial. It’s a way to connect both worlds and give the process clear rules.",
+    "c1.note.k":"Who it’s for",
+    "c1.note.v":"Teams of 1 designer + 1 engineer, or even without a dedicated engineer, who want a living design system without heavy processes.",
+    "c1.quote":"Figma documents intent. Code is the source of truth.",
+    "c1.cite":"— Core principle · From Figma to Storybook",
+
+    "c2.num":"{ 02 } — Architecture",
+    "c2.title":"Five layers, each with a clear owner.",
+    "c2.l1":"BASE (color, spacing, radius, type) + SEMANTIC (surface, text, action).",
+    "c2.l2":"Reads the variables and the code, and proposes changes.",
+    "c2.l3.t":"Tokens in code","c2.truth":"Source of truth",
+    "c2.l3":"Tailwind or equivalent. This is where the canonical version lives.",
+    "c2.l4":"Stories per component, with one-way sync.",
+    "c2.l5.t":"Adoption","c2.l5":"The product uses the library.",
+    "c2.why":"Why this architecture",
+    "c2.w1":"Tokens are defined once and exported to every platform.",
+    "c2.w2":"Stories are a window into the code, not a copy.",
+    "c2.w3":"Each layer has a clear owner.",
+
+    "c3.num":"{ 03 } — Phases",
+    "c3.title":"Four phases: from agreements to a repeatable process.",
+    "c3.f0.n":"Phase 0",
+    "c3.f0.h":"Agreements <em>before touching anything</em>.",
+    "c3.f0.p":"Before creating a single component, agree with your partner engineer on:",
+    "c3.f0.c1":"Who owns the tokens (design proposes, engineering validates).",
+    "c3.f0.c2":"What “ready for handoff” means (e.g. tested variants, documented, with states).",
+    "c3.f0.c3":"Which code stack you’ll use (Tailwind, CSS variables, etc.).",
+    "c3.f0.c4":"Where the repository lives and who can merge.",
+    "c3.f0.a":"If you don’t have a dedicated engineer, this step can be done with an AI assistant like Claude. What matters is that the decisions get written down.",
+    "c3.f1.n":"Phase 1",
+    "c3.f1.h":"Tokens <em>first</em>.",
+    "c3.f1.p":"<strong>Goal:</strong> a stable foundation before any components.",
+    "c3.f1.s1":"In Figma, create the variables on two levels:",
+    "c3.f1.s1a":"<strong>BASE:</strong> raw values (<code>blue-600: #185FA5</code>, <code>space-4: 16px</code>).",
+    "c3.f1.s1b":"<strong>SEMANTIC:</strong> usage meaning (<code>action-primary → blue-600</code>, <code>text-secondary → gray-600</code>).",
+    "c3.f1.s2":"Export the variables to a JSON file (<code>tokens.json</code>).",
+    "c3.f1.s3":"With Cursor + Figma MCP, generate the Tailwind config from those variables.",
+    "c3.f1.s4":"Review the result in a small commit and ask your partner engineer for approval.",
+    "c3.f1.tk":"Approximate time",
+    "c3.f1.tv":"20 to 30 minutes with AI, versus a full day of manual work.",
+    "c3.f1.al":"First safe contribution",
+    "c3.f1.chain":"<b>Figma Variables</b><i>→</i><b>Cursor</b><i>→</i><b>Token PR</b><i>→</i><b>review</b><i>→</i><b>merge</b>",
+    "c3.f1.a":"Even if no one sees it yet, the foundation is alive.",
+    "c3.f2.n":"Phase 2",
+    "c3.f2.h":"The <em>first component</em>.",
+    "c3.f2.p":"<strong>Goal:</strong> set the pattern that will repeat.",
+    "c3.f2.s1":"Pick a simple, widely used component (button, input, badge).",
+    "c3.f2.s2":"Design and document its variants in Figma using the semantic tokens.",
+    "c3.f2.s3":"Create a Figma branch for the component. At least one designer reviews it before it goes into the main file.",
+    "c3.f2.s4":"With Cursor, generate the component in code along with its <code>*.stories.tsx</code> file.",
+    "c3.f2.s5":"Review the component in Storybook <strong>before</strong> opening the pull request.",
+    "c3.f2.s6":"Open the PR; the engineer reviews and merges.",
+    "c3.f2.al":"Key rule",
+    "c3.f2.a":"The designer sees the component in Storybook before the merge, not after. That’s how the timing problem goes away.",
+    "c3.f3.n":"Phase 3",
+    "c3.f3.h":"Make it <em>repeatable</em> with <code>RULES.md</code>.",
+    "c3.f3.p":"After the first component, write a <code>RULES.md</code> file together, loaded as context every time you work with AI. It should include:",
+    "c3.f3.s1":"Folder and component structure.",
+    "c3.f3.s2":"Naming, variant and prop conventions.",
+    "c3.f3.s3":"How to use tokens (which classes or variables are valid).",
+    "c3.f3.s4":"How stories are written (format, args, states).",
+    "c3.f3.al":"What changes",
+    "c3.f3.a":"The second component no longer needs the full prompt repeated. If something drifts, you adjust the rule, not the output.",
+
+    "c4.num":"{ 04 } — Workflow",
+    "c4.title":"Per-component workflow, in 8 steps.",
+    "c4.h2":"Step","c4.h3":"Owner",
+    "c4.s1":"Changes in a Figma branch",
+    "c4.s2":"Automatic notification (e.g. Slack)",
+    "c4.s3":"Prompt to Cursor with the change",
+    "c4.s4":"Cursor reads Figma MCP + code",
+    "c4.s5":"Proposed change in code",
+    "c4.s6":"Local review in Storybook",
+    "c4.s8":"Review and merge",
+    "who.d":"Designer","who.a":"Automatic","who.ai":"AI","who.e":"Engineer",
+
+    "c5.num":"{ 05 } — Governance",
+    "c5.title":"Five rules to keep the system from drifting.",
+    "c5.r1.h":"Figma branches for components.",
+    "c5.r1.p":"At least one design approval before merging into the main file.",
+    "c5.r2.h":"<em>Handoff</em> criteria.",
+    "c5.r2.p":"A component goes to code only when it’s complete: polished, documented and with tested variants.",
+    "c5.r3.h":"Code is <em>canonical</em>.",
+    "c5.r3.p":"If Figma and code diverge, code wins and CI flags it.",
+    "c5.r4.h":"Tokens before components.",
+    "c5.r4.p":"Agree on the foundations first; components come after.",
+    "c5.r5.h":"Repeatability with <code>RULES.md</code>.",
+    "c5.r5.p":"The process is documented once and reused.",
+    "c5.note.k":"Honest note",
+    "c5.note.v":"These rules add some overhead. It’s worth it if the system is going to be used for real.",
+
+    "c6.num":"{ 06 } — Tools",
+    "c6.title":"What each tool does in the flow.",
+    "c6.t1":"Design, variables, branches and Code Connect.",
+    "c6.t2":"Links Figma components to code files.",
+    "c6.t3":"Generates code from design, with repository context.",
+    "c6.t4":"Literal syntax, easy for AI to read.",
+    "c6.t5":"Tests states and behavior; runs locally with one command.",
+    "c6.t6":"Catches drift between design and code.",
+    "c6.t7":"Conceptual decisions and system planning.",
+
+    "c7.num":"{ 07 } — Reference case",
+    "c7.title":"What built up in the original case.",
+    "c7.p1":"In the original case study: about 6 months, with 1 designer + 1 engineer working alongside regular product work.",
+    "c7.note.k":"Source",
+    "c7.note.v":"These figures come from Florian Bölter’s case study, not from a project of my own.",
+    "c7.m1.n":"Foundations","c7.m1":"Base + semantic tokens in Figma and in code.",
+    "c7.m2.n":"Library","c7.m2":"~12 components documented and live in Storybook.",
+    "c7.m3.n":"Adoption","c7.m3":"The front-end team starts working from the library.",
+
+    "c8.num":"{ 08 } — Next steps",
+    "c8.title":"How to apply this playbook.",
+    "c8.s1":"Set the Phase 0 agreements with your partner engineer.",
+    "c8.s2":"Export tokens from your Figma file.",
+    "c8.s3":"Pick a single component for the pilot.",
+    "c8.s4":"Document the rules in <code>RULES.md</code> after the first component, not before.",
+    "c8.s5":"Measure how many components build up in the first quarter.",
+
+    "c9.num":"{ 09 } — Credits",
+    "c9.title":"Lineage and adaptation.",
+    "c9.b1":"Original methodology and case study.",
+    "c9.b2":"Adaptation and documentation.",
+
+    "foot.l":"Playbook 02 · From Figma to Storybook.",
+    "foot.case":"Case: Kommit V5 Design System →",
+    "foot.more":"More playbooks →"
+  }
+};
+
+(function(){
+  const buttons = document.querySelectorAll('.lang button');
+  const nodes = document.querySelectorAll('[data-i18n]');
+  nodes.forEach(n => { T.es[n.getAttribute('data-i18n')] = n.innerHTML; });
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    nodes.forEach(n => {
+      const val = T[lang] && T[lang][n.getAttribute('data-i18n')];
+      if (val !== undefined) n.innerHTML = val;
+    });
+    buttons.forEach(b => {
+      const on = b.dataset.lang === lang;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    try{ localStorage.setItem('portfolio-lang', lang); }catch(e){}
+  }
+  buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  const q = new URLSearchParams(location.search).get('lang');
+  let initial = /^es\b/i.test(navigator.language || '') ? 'es' : 'en';
+  try{
+    const saved = localStorage.getItem('portfolio-lang');
+    if (saved === 'es' || saved === 'en') initial = saved;
+  }catch(e){}
+  if (q === 'es' || q === 'en') initial = q;
+  setLang(initial);
+})();
+</script>
+</body>
+</html>
