@@ -157,6 +157,7 @@
 
   /* Avatar → visor del CV en video */
   .ava-wrap{position:relative;justify-self:start}
+  @media(max-width:760px){.ava-wrap{justify-self:center}.ava{width:clamp(220px,72vw,300px)}}
   .ava{overflow:clip;transition:border-radius .7s var(--ease)}
   .ava img{transition:opacity .5s var(--ease),transform .9s var(--ease)}
   .ava-play{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);z-index:3;width:54px;height:54px;border:0;border-radius:50%;background:#fff;color:var(--k);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(22,22,22,.28),0 0 0 4px rgba(255,255,255,.35);transition:transform .4s var(--ease),background .25s,opacity .3s}
