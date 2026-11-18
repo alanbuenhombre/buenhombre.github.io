@@ -48,6 +48,18 @@
   .cblock+.mw-shots{margin-top:56px}
   .mw-shots+.cblock{margin-top:70px}
   @media(max-width:860px){.mw-shots{grid-template-columns:1fr}.mw-chrome .mw-bar{display:none}}
+  .mw-upd{border-left:3px solid var(--k);background:rgba(31,69,214,.05);border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:64px}
+  .mw-upd .cblock__label{margin-bottom:6px}
+  .mw-upd p{margin:0;font-size:1rem;line-height:1.6;color:var(--ink-2)}
+  .lb{border:0;padding:0;margin:auto;max-width:none;max-height:none;width:100vw;height:100vh;background:transparent;overflow:hidden}
+  .lb::backdrop{background:rgba(14,18,32,.86);backdrop-filter:blur(6px)}
+  .lb[open]{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;animation:lbIn .25s ease}
+  .lb img{max-width:min(94vw,1600px);max-height:84vh;width:auto;height:auto;border-radius:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);cursor:zoom-out}
+  .lb p{margin:0;max-width:min(94vw,900px);text-align:center;color:#E8EAF0;font-size:.9rem;line-height:1.5}
+  .lb button{position:fixed;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:22px;line-height:1;cursor:pointer}
+  .lb button:hover{background:rgba(255,255,255,.18)}
+  .mw-shot a{cursor:zoom-in}
+  @keyframes lbIn{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -63,18 +75,18 @@
     <button class="top__lang nav__lang" aria-label="Cambiar idioma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 3 3.5 6 3.5 9s-1 6-3.5 9"/><path d="M12 3c-2.5 3-3.5 6-3.5 9s1 6 3.5 9"/></svg><span>EN</span></button>
   </nav>
   <header class="chead">
-    <div class="chead__kicker" data-i18n-html="mw.kicker">Product &amp; AI · Experimento personal · En desarrollo</div>
+    <div class="chead__kicker" data-i18n-html="mw.kicker">Producto con IA · Experimento personal · Beta</div>
     <h1 class="chead__title" data-i18n-html="mw.title">Marca por WhatsApp</h1>
-    <p class="chead__sub" data-i18n-html="mw.sub">El cliente pide piezas de su marca por WhatsApp, con texto o <strong>nota de voz</strong>. La IA las arma con las guías de la marca y un diseñador las aprueba en un panel antes de que lleguen.</p>
+    <p class="chead__sub" data-i18n-html="mw.sub">Un canal para producir piezas de marca dentro de WhatsApp. El cliente pide lo que necesita con un mensaje o una <strong>nota de voz</strong>, la IA lo produce con las reglas de su marca y un diseñador lo aprueba antes de entregarlo.</p>
     <div class="chead__play-row">
       <a class="play-cta" href="index.html#contacto"><span data-i18n-html="mw.cta">Pide una demo en vivo</span> <span class="play-cta__arrow">→</span></a>
     </div>
   </header>
 
   <div class="cmeta">
-    <div><div class="cmeta__k" data-i18n-html="mw.m.state.k">Estado</div><div class="cmeta__v" data-i18n-html="mw.m.state">Case study en desarrollo · beta</div></div>
-    <div><div class="cmeta__k" data-i18n-html="mw.m.role.k">Rol</div><div class="cmeta__v" data-i18n-html="mw.m.role">Producto · UX/UI · Prompting · Front-end</div></div>
-    <div><div class="cmeta__k" data-i18n-html="mw.m.stack.k">Stack</div><div class="cmeta__v" data-i18n-html="mw.m.stack">Claude Fable 5.2 · Node · TypeScript · Claude Code</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.state.k">Estado</div><div class="cmeta__v" data-i18n-html="mw.m.state">Beta · actualizado el 17 nov 2026</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.role.k">Rol</div><div class="cmeta__v" data-i18n-html="mw.m.role">Producto · Diseño de agentes · UX/UI · Front-end</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.stack.k">Stack</div><div class="cmeta__v" data-i18n-html="mw.m.stack">Claude Fable 5.2 · APIs y MCP · WhatsApp Business · Flow</div></div>
     <div><div class="cmeta__k" data-i18n-html="mw.m.lab.k">Tipo</div><div class="cmeta__v" data-i18n-html="mw.m.lab">Experimento personal · 2026</div></div>
   </div>
 
@@ -83,51 +95,80 @@
       <div class="mw-chrome"><span class="mw-dots"><i></i><i></i><i></i></span><span class="mw-bar" data-i18n-html="mw.win">Panel del diseñador · Aprobar</span><span class="mw-beta">Beta</span></div>
       <img src="assets/marca-whatsapp/aprobar.jpg" alt="Panel del diseñador: la pieza propuesta por la IA, el pedido del cliente y la nota del agente, lista para aprobar" width="2000" height="1250">
     </div>
-    <p class="mw-cap" data-i18n-html="mw.cap">El cliente nunca ve este panel: solo usa WhatsApp · captura real de la beta</p>
+    <p class="mw-cap" data-i18n-html="mw.cap">El cliente nunca ve este panel; solo usa WhatsApp · captura real de la beta</p>
   </div>
 
   <section class="cbody">
 
+    <div class="mw-upd"><div class="cblock__label" data-i18n-html="mw.up.l">Avance · 17 nov 2026</div><p data-i18n-html="mw.up.p">Esta versión suma el alta de marca con IA, el panel de aprobación con historial de versiones y la primera marca real como piloto. <strong>Siguiente:</strong> fotos de marca generadas con IA a partir de character sheets.</p></div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="mw.pb.l">Por qué existe</div>
+      <h2 class="cblock__title" data-i18n-html="mw.pb.t">Las marcas necesitan piezas todos los días, y cada una cuesta un brief.</h2>
+      <p class="cblock__text" data-i18n-html="mw.pb.p">Un post, una historia o un anuncio pasan por correos, briefs y rondas de revisión, y tardan días. Si se hacen sin diseñador salen rápido, pero rompen la marca. Este producto busca las dos cosas: la velocidad de pedirlo por chat y la consistencia de una marca cuidada.</p>
+    </div>
+
     <div class="cblock">
       <div class="cblock__label" data-i18n-html="mw.how.l">Cómo funciona</div>
-      <h2 class="cblock__title" data-i18n-html="mw.how.t">Dos lados: WhatsApp para el cliente, un panel para el diseñador.</h2>
+      <h2 class="cblock__title" data-i18n-html="mw.how.t">Por fuera, un chat. Por dentro, producción con reglas y aprobación.</h2>
       <ol class="hl-steps">
-        <li class="hl-step"><span class="hl-step__n">01</span><div><h3 data-i18n-html="mw.s1.t">El cliente escribe por WhatsApp</h3><p data-i18n-html="mw.s1.p">Pide un post, una historia o un anuncio, con texto o nota de voz. No instala nada ni ve ningún panel. Si falta un dato, como una fecha o una cifra, el agente pregunta en vez de inventarlo.</p></div></li>
-        <li class="hl-step"><span class="hl-step__n">02</span><div><h3 data-i18n-html="mw.s2.t">La IA propone</h3><p data-i18n-html="mw.s2.p">Claude Fable 5.2 lee el pedido, escribe el texto y elige formato, layout, color y foto dentro de las guías de la marca. Una plantilla compone la pieza con la tipografía y el logo exactos.</p></div></li>
-        <li class="hl-step"><span class="hl-step__n">03</span><div><h3 data-i18n-html="mw.s3.t">El diseñador aprueba</h3><p data-i18n-html="mw.s3.p">La propuesta llega a su panel. Ahí ajusta el texto o el color, pide otra versión o la descarta. Solo cuando la aprueba, la pieza le llega al cliente por WhatsApp.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">01</span><div><h3 data-i18n-html="mw.s1.t">El cliente lo pide por WhatsApp</h3><p data-i18n-html="mw.s1.p">Con un mensaje o una nota de voz, desde la app que ya usa. No hay plataforma nueva que aprender. Si falta un dato, como una fecha o un precio, el agente lo pregunta en vez de inventarlo.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">02</span><div><h3 data-i18n-html="mw.s2.t">La IA lo produce</h3><p data-i18n-html="mw.s2.p">Escribe el texto y arma la pieza con las reglas de la marca: colores, tipografía, logo, tono y fotos aprobadas. La propuesta está lista en segundos.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">03</span><div><h3 data-i18n-html="mw.s3.t">Un diseñador lo aprueba</h3><p data-i18n-html="mw.s3.p">Revisa, ajusta o pide otra versión desde un panel. Nada le llega al cliente sin esa aprobación, y cada cambio queda registrado.</p></div></li>
       </ol>
     </div>
 
     <div class="mw-shots mw-shots--2">
       <figure class="mw-shot"><a href="assets/marca-whatsapp/marcas.jpg" target="_blank" rel="noopener"><img src="assets/marca-whatsapp/marcas.jpg" alt="Ficha de reglas de una marca con piezas de muestra" loading="lazy" width="2000" height="1250"></a>
-        <figcaption><b data-i18n-html="mw.g1.t">Marcas</b><span data-i18n-html="mw.g1.p">El diseñador sube las guías de cada marca y la IA arma su ficha de reglas, con piezas de muestra para revisarla.</span></figcaption></figure>
+        <figcaption><b data-i18n-html="mw.g1.t">Alta de marca</b><span data-i18n-html="mw.g1.p">La IA lee el material de la marca y propone su ficha de reglas, con piezas de muestra para validarla.</span></figcaption></figure>
       <figure class="mw-shot"><a href="assets/marca-whatsapp/cliente.jpg" target="_blank" rel="noopener"><img src="assets/marca-whatsapp/cliente.jpg" alt="Chat de prueba que imita WhatsApp, con la pieza aprobada entregada al cliente" loading="lazy" width="2000" height="1250"></a>
-        <figcaption><b data-i18n-html="mw.g2.t">Probar como cliente</b><span data-i18n-html="mw.g2.p">Herramienta de desarrollo que imita WhatsApp para probar el flujo completo antes de conectar un número real.</span></figcaption></figure>
+        <figcaption><b data-i18n-html="mw.g2.t">Vista del cliente</b><span data-i18n-html="mw.g2.p">Simulador de WhatsApp para probar el flujo completo antes de conectar un número real.</span></figcaption></figure>
     </div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n-html="mw.built.l">Lo que construí</div>
-      <h2 class="cblock__title" data-i18n-html="mw.built.t">Cuatro piezas para que la IA respete la marca.</h2>
+      <div class="cblock__label" data-i18n-html="mw.val.l">Qué gana la empresa</div>
+      <h2 class="cblock__title" data-i18n-html="mw.val.t">Velocidad sin perder el control de la marca.</h2>
       <ul class="cblock__list">
-        <li data-i18n-html="mw.b1"><strong>La marca como ficha de reglas.</strong> Colores en combinaciones cerradas, tipografías, tono, palabras prohibidas, firmas y fotos descritas. El agente solo usa lo que diga la ficha.</li>
-        <li data-i18n-html="mw.b2"><strong>Alta de marca con IA.</strong> El diseñador sube logos, tipografías, piezas publicadas y fotos, y la IA propone la ficha y lista lo que tuvo que suponer. Los colores se miden en los archivos, no se estiman a ojo.</li>
-        <li data-i18n-html="mw.b3"><strong>Plantillas, no imágenes generadas.</strong> Seis layouts en tres formatos: post, cuadrado e historia. El titular se ajusta solo al espacio, así la tipografía y el logo salen siempre exactos.</li>
-        <li data-i18n-html="mw.b4"><strong>Aprobación humana.</strong> Cada ajuste queda como versión nueva, el agente deja una nota para quien revisa y nada sale sin aprobación.</li>
+        <li data-i18n-html="mw.v1"><strong>Velocidad.</strong> La primera propuesta llega en segundos, no en días.</li>
+        <li data-i18n-html="mw.v2"><strong>Consistencia.</strong> La IA solo usa lo que dice la ficha de la marca: no inventa colores, tipografías ni datos.</li>
+        <li data-i18n-html="mw.v3"><strong>Control.</strong> Aprobación humana obligatoria e historial de versiones de cada pieza.</li>
+        <li data-i18n-html="mw.v4"><strong>Escala.</strong> Está pensado para que un mismo diseñador atienda el día a día de varias marcas.</li>
+        <li data-i18n-html="mw.v5"><strong>Adopción.</strong> El cliente no cambia de herramienta: pide por WhatsApp.</li>
       </ul>
     </div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n-html="mw.why.l">La idea</div>
-      <h2 class="cblock__title" data-i18n-html="mw.why.t">La IA explora; el criterio decide qué sale.</h2>
-      <p class="cblock__text" data-i18n-html="mw.why.p">Es un experimento personal: quiero ver si un diseñador puede atender el día a día de varias marcas sin perder el criterio. Lo probé dando de alta una marca real a partir de su material: la IA propuso la ficha en unos tres minutos, eligió la foto correcta para cada pedido y evitó las palabras que la marca no usa.</p>
+      <div class="cblock__label" data-i18n-html="mw.arch.l">Por dentro</div>
+      <h2 class="cblock__title" data-i18n-html="mw.arch.t">Una solución de marca sencilla por fuera, conectada por dentro.</h2>
+      <p class="cblock__text" data-i18n-html="mw.arch.p">El cliente solo ve un chat. Debajo, el sistema une varias herramientas por API y MCP, el estándar que permite que un agente de IA use otras herramientas. Estas son las capas, sin entrar en la arquitectura:</p>
+      <ul class="cblock__list">
+        <li data-i18n-html="mw.a1"><strong>Canal:</strong> WhatsApp Business, conectado por API.</li>
+        <li data-i18n-html="mw.a2"><strong>Cerebro:</strong> Claude Fable 5.2 interpreta el pedido, redacta y decide dentro de las reglas.</li>
+        <li data-i18n-html="mw.a3"><strong>Reglas de marca:</strong> una ficha por marca con colores, tipografías, tono, palabras prohibidas y fotos aprobadas. La IA la propone a partir del material de la marca y un diseñador la valida.</li>
+        <li data-i18n-html="mw.a4"><strong>Producción:</strong> plantillas que garantizan el logo y la tipografía exactos, más una capa de imagen generada con IA.</li>
+        <li data-i18n-html="mw.a5"><strong>Conexiones:</strong> APIs y MCP para sumar herramientas nuevas, como transcripción de voz o generación de imagen, sin rehacer el sistema.</li>
+      </ul>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="mw.img.l">Siguiente capa</div>
+      <h2 class="cblock__title" data-i18n-html="mw.img.t">Fotos de marca generadas con IA, con el mismo personaje y el mismo producto en cada pieza.</h2>
+      <p class="cblock__text" data-i18n-html="mw.img.p">La próxima versión suma generación de imagen con Flow. La clave es el <strong>character sheet</strong>: una hoja de referencia que fija cómo se ve un personaje de la marca o un producto desde varios ángulos. Con ella, la IA puede crear fotos nuevas, como una persona usando el producto o el producto en contexto, sin que cambien de una pieza a otra. Así una marca puede tener fotos nuevas sin organizar una sesión para cada pieza. Como todo lo demás, pasan por aprobación antes de salir.</p>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="mw.why.l">La hipótesis</div>
+      <h2 class="cblock__title" data-i18n-html="mw.why.t">Un diseñador puede atender varias marcas si la IA hace la producción y él conserva la decisión.</h2>
+      <p class="cblock__text" data-i18n-html="mw.why.p">Lo probé dando de alta una marca real a partir de su material: la IA propuso la ficha de reglas en unos tres minutos, eligió la foto adecuada para cada pedido y evitó las palabras que la marca no usa.</p>
     </div>
 
     <div class="cblock">
       <div class="cblock__label" data-i18n-html="mw.st.l">Estado</div>
-      <h2 class="cblock__title" data-i18n-html="mw.st.t">En desarrollo: qué funciona y qué falta.</h2>
+      <h2 class="cblock__title" data-i18n-html="mw.st.t">Qué funciona hoy y qué sigue.</h2>
       <ul class="cblock__list">
-        <li data-i18n-html="mw.st1"><strong>Funciona:</strong> pedidos por texto, propuestas con Claude Fable 5.2, alta de marca con IA, panel de aprobación y entrega en el chat de prueba.</li>
-        <li data-i18n-html="mw.st2"><strong>Falta:</strong> transcripción de notas de voz, conexión con un número real de WhatsApp Business y despliegue en la nube.</li>
+        <li data-i18n-html="mw.st1"><strong>Funciona:</strong> pedidos por texto, propuestas en segundos con Claude Fable 5.2, alta de marca con IA, panel de aprobación con versiones y entrega en un chat de prueba.</li>
+        <li data-i18n-html="mw.st2"><strong>En integración:</strong> fotos generadas con Flow a partir de character sheets.</li>
+        <li data-i18n-html="mw.st3"><strong>Falta:</strong> notas de voz, un número real de WhatsApp Business y el despliegue en la nube.</li>
       </ul>
     </div>
 
@@ -170,6 +211,13 @@
     </div>
   </footer>
 
+  <dialog class="lb" id="lb" aria-label="Captura ampliada"><button type="button" aria-label="Cerrar">&times;</button><img alt=""><p></p></dialog>
+  <script>
+  (()=>{const lb=document.getElementById('lb');if(!lb||!lb.showModal)return;const im=lb.querySelector('img'),cap=lb.querySelector('p');
+  document.querySelectorAll('.mw-shot a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const i=a.querySelector('img'),fc=a.closest('figure').querySelector('figcaption');
+  im.src=a.href;im.alt=i.alt;const b=fc&&fc.querySelector('b'),t=fc?[...fc.childNodes].filter(n=>n!==b).map(n=>n.textContent).join('').replace(/\s+/g,' ').trim():'';cap.textContent=(b?b.textContent.trim()+' · ':'')+t;lb.showModal();}));
+  lb.addEventListener('click',()=>lb.close());lb.addEventListener('close',()=>{im.removeAttribute('src')});})();
+  </script>
   <script src="i18n.js"></script>
 </body>
 </html>
