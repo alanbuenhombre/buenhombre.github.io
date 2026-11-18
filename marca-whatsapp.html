@@ -141,13 +141,18 @@
       <div class="cblock__label" data-i18n-html="mw.arch.l">Por dentro</div>
       <h2 class="cblock__title" data-i18n-html="mw.arch.t">Una solución de marca sencilla por fuera, conectada por dentro.</h2>
       <p class="cblock__text" data-i18n-html="mw.arch.p">El cliente solo ve un chat. Debajo, el sistema une varias herramientas por API y MCP, el estándar que permite que un agente de IA use otras herramientas. Estas son las capas, sin entrar en la arquitectura:</p>
-      <ul class="cblock__list">
-        <li data-i18n-html="mw.a1"><strong>Canal:</strong> WhatsApp Business, conectado por API.</li>
-        <li data-i18n-html="mw.a2"><strong>Cerebro:</strong> Claude Fable 5.2 interpreta el pedido, redacta y decide dentro de las reglas.</li>
-        <li data-i18n-html="mw.a3"><strong>Reglas de marca:</strong> una ficha por marca con colores, tipografías, tono, palabras prohibidas y fotos aprobadas. La IA la propone a partir del material de la marca y un diseñador la valida.</li>
-        <li data-i18n-html="mw.a4"><strong>Producción:</strong> plantillas que garantizan el logo y la tipografía exactos, más una capa de imagen generada con IA.</li>
-        <li data-i18n-html="mw.a5"><strong>Conexiones:</strong> APIs y MCP para sumar herramientas nuevas, como transcripción de voz o generación de imagen, sin rehacer el sistema.</li>
-      </ul>
+      <div class="cflow cflow--out">
+        <ol class="cflow__track mix" style="--n:7">
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="mw.fl1.t">Pedido</h4><p data-i18n-html="mw.fl1.p">Texto o nota de voz</p></li>
+          <li><span class="cflow__dot"></span><h4 data-i18n-html="mw.fl2.t">Voz a texto</h4><p data-i18n-html="mw.fl2.p">ElevenLabs Scribe</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="mw.fl3.t">Cerebro</h4><p data-i18n-html="mw.fl3.p">Claude Fable 5.2</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="mw.fl4.t">Reglas</h4><p data-i18n-html="mw.fl4.p">Ficha de marca validada por un diseñador</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="mw.fl5.t">Pieza</h4><p data-i18n-html="mw.fl5.p">Plantillas · fotos con Flow</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="mw.fl6.t">Aprobación</h4><p data-i18n-html="mw.fl6.p">Panel del diseñador</p></li>
+          <li><span class="cflow__dot"></span><h4 data-i18n-html="mw.fl7.t">Entrega</h4><p data-i18n-html="mw.fl7.p">WhatsApp Business API</p></li>
+        </ol>
+        <div class="cflow__note"><i></i><span data-i18n-html="mw.fl.note">En integración</span></div>
+      </div>
     </div>
 
     <div class="cblock">
