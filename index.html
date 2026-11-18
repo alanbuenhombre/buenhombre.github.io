@@ -165,8 +165,8 @@
   .ava-play:hover{background:var(--k);color:#fff;transform:translateX(-50%) scale(1.07)}
   .ava-play:focus-visible,.ava-ctl button:focus-visible,.ava-note:focus-visible{outline:2px solid var(--k);outline-offset:3px}
   @keyframes avaPing{0%{transform:scale(.9);opacity:.6}70%,100%{transform:scale(1.35);opacity:0}}
-  .ava-vid{position:absolute;inset:0;z-index:1;opacity:0;pointer-events:none;transition:opacity .6s var(--ease) .15s;background:#0d0d0d}
-  .ava-vid iframe,.ava-vid>div{position:absolute;top:0;left:50%;height:100%;width:177.78%;transform:translateX(-50%);border:0}
+  .ava-vid{position:absolute;inset:0;z-index:1;opacity:0;pointer-events:none;transition:opacity .6s var(--ease) .15s;background:#D9DCE2}
+  .ava-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .ava-hit{position:absolute;inset:0;z-index:2;cursor:pointer;display:none}
   .ava-ctl{position:absolute;left:10px;right:10px;bottom:10px;z-index:3;display:flex;align-items:center;gap:8px;padding:6px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .4s var(--ease) .3s,transform .5s var(--ease) .3s}
   .ava-ctl button{flex:none;width:32px;height:32px;border:0;border-radius:50%;display:grid;place-items:center;cursor:pointer;background:transparent;color:var(--ink);transition:background .2s}
@@ -454,7 +454,7 @@
     <div class="hero-top">
       <div class="ava-wrap" id="avaWrap">
         <span class="ava"><img src="assets/hero-alan.webp" alt="Alan Buenhombre" width="2000" height="1116" fetchpriority="high">
-          <span class="ava-vid" id="avaVid"><div id="avaYT"></div></span>
+          <span class="ava-vid" id="avaVid"><video id="avaV" src="assets/cv-give-chaos-a-shape.mp4" playsinline preload="metadata" title="Alan Buenhombre · Give chaos a shape."></video></span>
           <span class="ava-hit" id="avaHit" aria-hidden="true"></span>
           <button class="ava-play" id="avaPlay" type="button" aria-label="Reproducir mi CV en video"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z" fill="currentColor"/></svg></button>
           <span class="ava-ctl" id="avaCtl">
@@ -884,10 +884,9 @@
 
 <script>
 (() => {
-  // Avatar → visor del CV en YouTube (controles propios: play/pausa, progreso, volumen)
-  const VID = 'Egl6X4lxyJs';
+  // Avatar → visor del CV en video (archivo propio: arranca con un solo clic)
   const $ = id => document.getElementById(id);
-  const wrap = $('avaWrap'), ppBtn = $('avaPP'), muteBtn = $('avaMute'), vol = $('avaVol'), bar = $('avaBar');
+  const wrap = $('avaWrap'), v = $('avaV'), ppBtn = $('avaPP'), muteBtn = $('avaMute'), vol = $('avaVol'), bar = $('avaBar');
   const ICON = {
     play:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z" fill="currentColor"/></svg>',
     pause:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5h2.5v11H4.5zM9 2.5h2.5v11H9z" fill="currentColor"/></svg>',
@@ -896,62 +895,36 @@
   };
   const L = k => ({es:{play:'Reproducir',pause:'Pausar',mute:'Silenciar',unmute:'Activar sonido'},
                    en:{play:'Play',pause:'Pause',mute:'Mute',unmute:'Unmute'}})[document.documentElement.lang === 'en' ? 'en' : 'es'][k];
-  let player = null, ready = false, wantPlay = false, timer = 0, muted = false;
+  v.volume = vol.value / 100;
 
-  const setPP = playing => { ppBtn.innerHTML = playing ? ICON.pause : ICON.play; ppBtn.setAttribute('aria-label', L(playing ? 'pause' : 'play')); };
-  const setMute = m => { muted = m; muteBtn.innerHTML = m ? ICON.mute : ICON.vol; muteBtn.setAttribute('aria-label', L(m ? 'unmute' : 'mute')); vol.style.setProperty('--v', (m ? 0 : vol.value) + '%'); };
-  setMute(false); setPP(false);
+  const setPP = () => { const on = !v.paused; ppBtn.innerHTML = on ? ICON.pause : ICON.play; ppBtn.setAttribute('aria-label', L(on ? 'pause' : 'play')); };
+  const setMute = () => { const m = v.muted || v.volume === 0; muteBtn.innerHTML = m ? ICON.mute : ICON.vol; muteBtn.setAttribute('aria-label', L(m ? 'unmute' : 'mute')); vol.style.setProperty('--v', (m ? 0 : vol.value) + '%'); };
+  const tick = () => { const p = v.duration ? v.currentTime / v.duration * 100 : 0; bar.style.setProperty('--p', p + '%'); bar.setAttribute('aria-valuenow', Math.round(p)); };
+  setPP(); setMute();
 
-  const tick = () => {
-    if (!ready) return;
-    const d = player.getDuration() || 0, t = player.getCurrentTime() || 0, p = d ? t / d * 100 : 0;
-    bar.style.setProperty('--p', p + '%'); bar.setAttribute('aria-valuenow', Math.round(p));
-  };
+  const open = () => { wrap.classList.add('on', 'seen'); const pr = v.play(); if (pr) pr.catch(() => {}); };
+  const close = () => { v.pause(); v.currentTime = 0; tick(); wrap.classList.remove('on'); $('avaPlay').focus({preventScroll:true}); };
+  const toggle = () => { v.paused ? v.play() : v.pause(); };
 
-  const loadAPI = () => new Promise(res => {
-    if (window.YT && YT.Player) return res();
-    const prev = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = () => { prev && prev(); res(); };
-    const sc = document.createElement('script'); sc.src = 'https://www.youtube.com/iframe_api'; document.head.appendChild(sc);
-  });
-
-  const open = async () => {
-    wrap.classList.add('on', 'seen'); wantPlay = true;
-    if (player) { ready && player.playVideo(); return; }
-    await loadAPI();
-    player = new YT.Player('avaYT', {
-      host: 'https://www.youtube-nocookie.com', videoId: VID,
-      playerVars: {autoplay:1, controls:0, disablekb:1, fs:0, rel:0, playsinline:1, iv_load_policy:3, modestbranding:1, cc_load_policy:0},
-      events: {
-        onReady: e => { ready = true; try { e.target.unloadModule('captions'); } catch (_) {} e.target.setVolume(+vol.value); if (wantPlay) e.target.playVideo(); },
-        onStateChange: e => {
-          const playing = e.data === YT.PlayerState.PLAYING;
-          if (playing) { try { e.target.unloadModule('captions'); } catch (_) {} }
-          setPP(playing); clearInterval(timer); if (playing) timer = setInterval(tick, 250); tick();
-          if (e.data === YT.PlayerState.ENDED) close();
-        }
-      }
-    });
-    const f = player.getIframe && player.getIframe(); if (f) f.title = 'Alan Buenhombre · Give chaos a shape.';
-  };
-  const close = () => { wantPlay = false; if (ready) { player.pauseVideo(); player.seekTo(0, true); } wrap.classList.remove('on'); clearInterval(timer); bar.style.setProperty('--p', '0%'); $('avaPlay').focus({preventScroll:true}); };
-  const toggle = () => { if (!ready) return; player.getPlayerState() === YT.PlayerState.PLAYING ? player.pauseVideo() : player.playVideo(); };
-
+  v.addEventListener('play', setPP); v.addEventListener('pause', setPP);
+  v.addEventListener('timeupdate', tick); v.addEventListener('ended', close);
+  v.addEventListener('volumechange', setMute);
   $('avaPlay').addEventListener('click', open);
   $('avaNote').addEventListener('click', open);
   $('avaHit').addEventListener('click', toggle);
   ppBtn.addEventListener('click', toggle);
   $('avaX').addEventListener('click', close);
-  muteBtn.addEventListener('click', () => { if (!ready) return; muted ? player.unMute() : player.mute(); setMute(!muted); });
-  vol.addEventListener('input', () => {
-    vol.style.setProperty('--v', vol.value + '%');
-    if (!ready) return; player.setVolume(+vol.value);
-    if (+vol.value === 0) { player.mute(); setMute(true); } else if (muted) { player.unMute(); setMute(false); }
+  muteBtn.addEventListener('click', () => {
+    if (v.muted || v.volume === 0) { v.muted = false; if (v.volume === 0) { vol.value = 60; v.volume = .6; } }
+    else v.muted = true;
   });
-  const seek = x => { if (!ready) return; const r = bar.getBoundingClientRect(); player.seekTo(Math.max(0, Math.min(1, (x - r.left) / r.width)) * player.getDuration(), true); tick(); };
+  vol.addEventListener('input', () => { v.volume = vol.value / 100; v.muted = +vol.value === 0; });
+  const seek = x => { if (!v.duration) return; const r = bar.getBoundingClientRect(); v.currentTime = Math.max(0, Math.min(1, (x - r.left) / r.width)) * v.duration; };
   bar.addEventListener('click', e => seek(e.clientX));
-  bar.addEventListener('keydown', e => { if (!ready) return; const d = e.key === 'ArrowRight' ? 5 : e.key === 'ArrowLeft' ? -5 : 0; if (d) { e.preventDefault(); player.seekTo(player.getCurrentTime() + d, true); tick(); } });
+  bar.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 5 : e.key === 'ArrowLeft' ? -5 : 0; if (d && v.duration) { e.preventDefault(); v.currentTime = Math.max(0, Math.min(v.duration, v.currentTime + d)); } });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && wrap.classList.contains('on')) close(); });
+  // al cambiar de idioma, actualiza las etiquetas de los botones
+  document.getElementById('lang').addEventListener('click', () => setTimeout(() => { setPP(); setMute(); }, 0));
 })();
 </script>
 </body>
