@@ -165,7 +165,7 @@
   .ava-play:hover{background:var(--k);color:#fff;transform:translateX(-50%) scale(1.07)}
   .ava-play:focus-visible,.ava-ctl button:focus-visible,.ava-note:focus-visible{outline:2px solid var(--k);outline-offset:3px}
   @keyframes avaPing{0%{transform:scale(.9);opacity:.6}70%,100%{transform:scale(1.35);opacity:0}}
-  .ava-vid{position:absolute;inset:0;z-index:1;opacity:0;pointer-events:none;transition:opacity .6s var(--ease) .15s;background:#D9DCE2}
+  .ava-vid{position:absolute;inset:0;z-index:1;opacity:0;pointer-events:none;transition:opacity .45s var(--ease);background:#D9DCE2}
   .ava-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .ava-hit{position:absolute;inset:0;z-index:2;cursor:pointer;display:none}
   .ava-ctl{position:absolute;left:10px;right:10px;bottom:10px;z-index:3;display:flex;align-items:center;gap:8px;padding:6px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .4s var(--ease) .3s,transform .5s var(--ease) .3s}
@@ -181,8 +181,9 @@
   .ava-ctl input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--k);border:2px solid #fff}
   .ava-ctl input[type=range]:focus-visible{outline:2px solid var(--k);outline-offset:4px}
   .ava-wrap.on .ava{border-radius:12%}
-  .ava-wrap.on .ava img{opacity:0;transform:translateX(-50%) scale(1.08)}
-  .ava-wrap.on .ava-vid{opacity:1;pointer-events:auto}
+  .ava-wrap.vis .ava img{opacity:0;transform:translateX(-50%) scale(1.08)}
+  .ava-wrap.on .ava-vid{pointer-events:auto}
+  .ava-wrap.vis .ava-vid{opacity:1}
   .ava-wrap.on .ava-hit{display:block}
   .ava-wrap.on .ava-ctl{opacity:1;transform:none;pointer-events:auto}
   .ava-wrap.on .ava-play{opacity:0;pointer-events:none;transform:translateX(-50%) scale(.6)}
@@ -893,8 +894,17 @@
   const tick = () => { const p = v.duration ? v.currentTime / v.duration * 100 : 0; bar.style.setProperty('--p', p + '%'); bar.setAttribute('aria-valuenow', Math.round(p)); };
   setPP(); setMute();
 
+  // el video abre con ~1,3 s en negro (con música): la foto se queda hasta que aparece la primera imagen
+  const FIRST = 1.25;
+  const vis = () => wrap.classList.toggle('vis', wrap.classList.contains('on') && v.currentTime >= FIRST);
+  const watch = () => { vis(); if (!v.paused && !wrap.classList.contains('vis') && v.requestVideoFrameCallback) v.requestVideoFrameCallback(watch); };
+  v.addEventListener('timeupdate', vis); v.addEventListener('seeked', vis); v.addEventListener('playing', watch);
+  // precarga en cuanto hay intención de verlo
+  const warm = () => { v.preload = 'auto'; };
+  ['pointerenter', 'touchstart', 'focus'].forEach(e => $('avaPlay').addEventListener(e, warm, {once: true, passive: true}));
+  ['pointerenter', 'focus'].forEach(e => $('avaNote').addEventListener(e, warm, {once: true, passive: true}));
   const open = () => { wrap.classList.add('on', 'seen'); const pr = v.play(); if (pr) pr.catch(() => {}); };
-  const close = () => { v.pause(); v.currentTime = 0; tick(); wrap.classList.remove('on'); $('avaPlay').focus({preventScroll:true}); };
+  const close = () => { v.pause(); v.currentTime = 0; tick(); wrap.classList.remove('on', 'vis'); $('avaPlay').focus({preventScroll:true}); };
   const toggle = () => { v.paused ? v.play() : v.pause(); };
 
   v.addEventListener('play', setPP); v.addEventListener('pause', setPP);
