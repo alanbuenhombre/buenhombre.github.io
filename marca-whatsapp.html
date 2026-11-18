@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Marca por WhatsApp · Experimento · Alan Buenhombre</title>
-<meta name="description" content="Experimento de Gritt Lab: pedir una pieza de marca con un audio de WhatsApp. La IA propone con las reglas de la marca y un diseñador aprueba." />
+<title>Marca por WhatsApp · Experimento en desarrollo · Alan Buenhombre</title>
+<meta name="description" content="Experimento personal en desarrollo: el cliente pide piezas de su marca por WhatsApp, la IA (Claude Fable 5.2) las arma con las guías de la marca y un diseñador las aprueba en un panel antes de entregar." />
 <link rel="canonical" href="https://buenhombre.design/marca-whatsapp.html" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta property="og:title" content="Marca por WhatsApp · Experimento · Alan Buenhombre" />
-<meta property="og:description" content="Experimento de Gritt Lab: pedir una pieza de marca con un audio de WhatsApp. La IA propone con las reglas de la marca y un diseñador aprueba." />
+<meta property="og:title" content="Marca por WhatsApp · Experimento en desarrollo · Alan Buenhombre" />
+<meta property="og:description" content="Experimento personal en desarrollo: el cliente pide piezas de su marca por WhatsApp, la IA (Claude Fable 5.2) las arma con las guías de la marca y un diseñador las aprueba en un panel antes de entregar." />
 <meta property="og:url" content="https://buenhombre.design/marca-whatsapp.html" />
-<meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta property="og:image" content="https://buenhombre.design/assets/marca-whatsapp/aprobar.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="case.css" />
 <style>
@@ -27,23 +27,27 @@
   .hl-step p{font-size:.93rem;line-height:1.6;color:var(--ink-2);margin:0}
   .hl-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
   .hl-tools span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:7px 14px}
-  /* panel Klein para piezas verticales y el chat */
-  .kpanel{max-width:1000px;margin:0 auto;border-radius:20px;background:var(--k);padding:clamp(22px,4vw,48px);display:flex;justify-content:center;gap:clamp(12px,2vw,24px);scroll-margin-top:24px}
-  .kpanel video,.kpanel img{display:block;border-radius:14px;width:auto;height:min(72vh,640px);aspect-ratio:9/16;object-fit:cover;background:#0b1a5a}
-  .frames{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,18px);max-width:1000px;margin:0 auto}
-  .frames img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;border:6px solid var(--paper)}
-  .note-s{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:14px}
-  .chat-w{width:min(100%,400px);background:#EFEDE8;border-radius:18px;overflow:hidden;box-shadow:0 30px 50px -30px rgba(8,20,80,.6);align-self:center}
-  .chat-h{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border-bottom:1px solid var(--line)}
-  .chat-h i{width:28px;height:28px;border-radius:50%;background:var(--k);flex:none}
-  .chat-h b{display:block;font-weight:500;font-size:.86rem}
-  .chat-h small{display:block;font-size:.68rem;color:var(--muted)}
-  .chat-b{display:flex;flex-direction:column;gap:10px;padding:16px}
-  .bub{max-width:84%;padding:9px 13px;border-radius:12px;font-size:.84rem;line-height:1.45;background:#fff;color:var(--ink-2)}
-  .bub.me{align-self:flex-end;background:#DCE3F0;display:flex;align-items:center;gap:8px}
-  .wave{display:flex;gap:2px;align-items:center;height:16px}.wave i{width:2px;background:var(--k);border-radius:2px}
-  .bub.ok{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--k);background:transparent;padding:0 2px}
-  @media(max-width:760px){.kpanel{flex-direction:column;align-items:center}.kpanel video{height:auto;width:100%;max-width:340px}.frames{grid-template-columns:1fr 1fr 1fr;gap:8px}.frames img{border-width:3px}}
+  /* ventana del producto: mismo lenguaje del dashboard, acento Klein */
+  .mw-win{max-width:1180px;margin:0 auto;border-radius:24px;overflow:hidden;background:linear-gradient(160deg,#ECEDF2,#DFE1E8);
+       box-shadow:0 40px 80px -40px rgba(8,20,80,.35),0 0 0 1px var(--line)}
+  .mw-chrome{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid rgba(20,20,22,.08)}
+  .mw-dots{display:flex;gap:6px}.mw-dots i{width:10px;height:10px;border-radius:50%;background:rgba(20,20,22,.14)}
+  .mw-bar{flex:1;max-width:440px;margin:0 auto;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--muted);
+       background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);border-radius:100px;padding:5px 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mw-beta{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:var(--k);border-radius:100px;padding:5px 10px}
+  .mw-win img{display:block;width:100%;height:auto}
+  .mw-cap{max-width:1180px;margin:16px auto 0;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .mw-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .mw-shot{margin:0;display:flex;flex-direction:column;gap:12px}
+  .mw-shot a{display:block;border-radius:14px;overflow:hidden;box-shadow:0 24px 50px -30px rgba(8,20,80,.35),0 0 0 1px var(--line);transition:transform .35s ease}
+  .mw-shot a:hover{transform:translateY(-3px)}
+  .mw-shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:left top}
+  .mw-shot figcaption{font-size:.88rem;line-height:1.55;color:var(--ink-2)}
+  .mw-shot figcaption b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--k);margin-bottom:4px}
+  .mw-shots--2{grid-template-columns:repeat(2,1fr)}
+  .cblock+.mw-shots{margin-top:56px}
+  .mw-shots+.cblock{margin-top:70px}
+  @media(max-width:860px){.mw-shots{grid-template-columns:1fr}.mw-chrome .mw-bar{display:none}}
 </style>
 </head>
 <body>
@@ -59,47 +63,72 @@
     <button class="top__lang nav__lang" aria-label="Cambiar idioma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 3 3.5 6 3.5 9s-1 6-3.5 9"/><path d="M12 3c-2.5 3-3.5 6-3.5 9s1 6 3.5 9"/></svg><span>EN</span></button>
   </nav>
   <header class="chead">
-    <div class="chead__kicker" data-i18n-html="mw.kicker">Product &amp; AI · Experimento 01 · Explorando</div>
+    <div class="chead__kicker" data-i18n-html="mw.kicker">Product &amp; AI · Experimento personal · En desarrollo</div>
     <h1 class="chead__title" data-i18n-html="mw.title">Marca por WhatsApp</h1>
-    <p class="chead__sub" data-i18n-html="mw.sub">¿Y si pedir una pieza de tu marca fuera tan fácil como <strong>mandar un audio</strong>? La IA propone siguiendo las reglas de la marca y un diseñador aprueba antes de entregar.</p>
+    <p class="chead__sub" data-i18n-html="mw.sub">El cliente pide piezas de su marca por WhatsApp, con texto o <strong>nota de voz</strong>. La IA las arma con las guías de la marca y un diseñador las aprueba en un panel antes de que lleguen.</p>
+    <div class="chead__play-row">
+      <a class="play-cta" href="index.html#contacto"><span data-i18n-html="mw.cta">Pide una demo en vivo</span> <span class="play-cta__arrow">→</span></a>
+    </div>
   </header>
 
   <div class="cmeta">
-    <div><div class="cmeta__k" data-i18n-html="mw.m.state.k">Estado</div><div class="cmeta__v" data-i18n-html="mw.m.state">Explorando · sin cliente</div></div>
-    <div><div class="cmeta__k" data-i18n-html="mw.m.type.k">Tipo</div><div class="cmeta__v" data-i18n-html="mw.m.type">Flujo de marca con IA</div></div>
-    <div><div class="cmeta__k" data-i18n-html="mw.m.chan.k">Canal</div><div class="cmeta__v" data-i18n-html="mw.m.chan">WhatsApp</div></div>
-    <div><div class="cmeta__k" data-i18n-html="mw.m.lab.k">Hecho en</div><div class="cmeta__v" data-i18n-html="mw.m.lab">Gritt Lab · 2026</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.state.k">Estado</div><div class="cmeta__v" data-i18n-html="mw.m.state">Case study en desarrollo · beta</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.role.k">Rol</div><div class="cmeta__v" data-i18n-html="mw.m.role">Producto · UX/UI · Prompting · Front-end</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.stack.k">Stack</div><div class="cmeta__v" data-i18n-html="mw.m.stack">Claude Fable 5.2 · Node · TypeScript · Claude Code</div></div>
+    <div><div class="cmeta__k" data-i18n-html="mw.m.lab.k">Tipo</div><div class="cmeta__v" data-i18n-html="mw.m.lab">Experimento personal · 2026</div></div>
   </div>
 
   <div class="cmediawrap">
-    <div class="kpanel">
-      <div class="chat-w" aria-label="Ejemplo ilustrativo de la conversación">
-        <div class="chat-h"><i></i><div><b data-i18n-html="mw.chat.n">Marca por WhatsApp</b><small data-i18n-html="mw.chat.s">en línea · ejemplo ilustrativo</small></div></div>
-        <div class="chat-b">
-          <div class="bub me">▶ <span class="wave"><i style="height:6px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:15px"></i><i style="height:5px"></i><i style="height:11px"></i><i style="height:7px"></i><i style="height:13px"></i><i style="height:4px"></i></span> 0:14</div>
-          <div class="bub" data-i18n-html="mw.chat.a">Listo, armé una pieza para historia con tu paleta y tu tipografía. La está revisando el equipo.</div>
-          <div class="bub ok" data-i18n-html="mw.chat.ok">✓ Aprobada por un diseñador</div>
-        </div>
-      </div>
+    <div class="mw-win">
+      <div class="mw-chrome"><span class="mw-dots"><i></i><i></i><i></i></span><span class="mw-bar" data-i18n-html="mw.win">Panel del diseñador · Aprobar</span><span class="mw-beta">Beta</span></div>
+      <img src="assets/marca-whatsapp/aprobar.jpg" alt="Panel del diseñador: la pieza propuesta por la IA, el pedido del cliente y la nota del agente, lista para aprobar" width="2000" height="1250">
     </div>
+    <p class="mw-cap" data-i18n-html="mw.cap">El cliente nunca ve este panel: solo usa WhatsApp · captura real de la beta</p>
   </div>
 
   <section class="cbody">
 
     <div class="cblock">
       <div class="cblock__label" data-i18n-html="mw.how.l">Cómo funciona</div>
-      <h2 class="cblock__title" data-i18n-html="mw.how.t">Del audio a la pieza aprobada.</h2>
+      <h2 class="cblock__title" data-i18n-html="mw.how.t">Dos lados: WhatsApp para el cliente, un panel para el diseñador.</h2>
       <ol class="hl-steps">
-        <li class="hl-step"><span class="hl-step__n">01</span><div><h3 data-i18n-html="mw.s1.t">Audio</h3><p data-i18n-html="mw.s1.p">Mandas un audio por WhatsApp contando qué necesitas.</p></div></li>
-        <li class="hl-step"><span class="hl-step__n">02</span><div><h3 data-i18n-html="mw.s2.t">Propuesta</h3><p data-i18n-html="mw.s2.p">La IA arma la pieza siguiendo las reglas de tu marca: colores, tipografías, tono y prompts de dirección visual.</p></div></li>
-        <li class="hl-step"><span class="hl-step__n">03</span><div><h3 data-i18n-html="mw.s3.t">Aprobación</h3><p data-i18n-html="mw.s3.p">Un diseñador la revisa, la ajusta y la aprueba. Solo entonces te llega.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">01</span><div><h3 data-i18n-html="mw.s1.t">El cliente escribe por WhatsApp</h3><p data-i18n-html="mw.s1.p">Pide un post, una historia o un anuncio, con texto o nota de voz. No instala nada ni ve ningún panel. Si falta un dato, como una fecha o una cifra, el agente pregunta en vez de inventarlo.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">02</span><div><h3 data-i18n-html="mw.s2.t">La IA propone</h3><p data-i18n-html="mw.s2.p">Claude Fable 5.2 lee el pedido, escribe el texto y elige formato, layout, color y foto dentro de las guías de la marca. Una plantilla compone la pieza con la tipografía y el logo exactos.</p></div></li>
+        <li class="hl-step"><span class="hl-step__n">03</span><div><h3 data-i18n-html="mw.s3.t">El diseñador aprueba</h3><p data-i18n-html="mw.s3.p">La propuesta llega a su panel. Ahí ajusta el texto o el color, pide otra versión o la descarta. Solo cuando la aprueba, la pieza le llega al cliente por WhatsApp.</p></div></li>
       </ol>
+    </div>
+
+    <div class="mw-shots mw-shots--2">
+      <figure class="mw-shot"><a href="assets/marca-whatsapp/marcas.jpg" target="_blank" rel="noopener"><img src="assets/marca-whatsapp/marcas.jpg" alt="Ficha de reglas de una marca con piezas de muestra" loading="lazy" width="2000" height="1250"></a>
+        <figcaption><b data-i18n-html="mw.g1.t">Marcas</b><span data-i18n-html="mw.g1.p">El diseñador sube las guías de cada marca y la IA arma su ficha de reglas, con piezas de muestra para revisarla.</span></figcaption></figure>
+      <figure class="mw-shot"><a href="assets/marca-whatsapp/cliente.jpg" target="_blank" rel="noopener"><img src="assets/marca-whatsapp/cliente.jpg" alt="Chat de prueba que imita WhatsApp, con la pieza aprobada entregada al cliente" loading="lazy" width="2000" height="1250"></a>
+        <figcaption><b data-i18n-html="mw.g2.t">Probar como cliente</b><span data-i18n-html="mw.g2.p">Herramienta de desarrollo que imita WhatsApp para probar el flujo completo antes de conectar un número real.</span></figcaption></figure>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="mw.built.l">Lo que construí</div>
+      <h2 class="cblock__title" data-i18n-html="mw.built.t">Cuatro piezas para que la IA respete la marca.</h2>
+      <ul class="cblock__list">
+        <li data-i18n-html="mw.b1"><strong>La marca como ficha de reglas.</strong> Colores en combinaciones cerradas, tipografías, tono, palabras prohibidas, firmas y fotos descritas. El agente solo usa lo que diga la ficha.</li>
+        <li data-i18n-html="mw.b2"><strong>Alta de marca con IA.</strong> El diseñador sube logos, tipografías, piezas publicadas y fotos, y la IA propone la ficha y lista lo que tuvo que suponer. Los colores se miden en los archivos, no se estiman a ojo.</li>
+        <li data-i18n-html="mw.b3"><strong>Plantillas, no imágenes generadas.</strong> Seis layouts en tres formatos: post, cuadrado e historia. El titular se ajusta solo al espacio, así la tipografía y el logo salen siempre exactos.</li>
+        <li data-i18n-html="mw.b4"><strong>Aprobación humana.</strong> Cada ajuste queda como versión nueva, el agente deja una nota para quien revisa y nada sale sin aprobación.</li>
+      </ul>
     </div>
 
     <div class="cblock">
       <div class="cblock__label" data-i18n-html="mw.why.l">La idea</div>
       <h2 class="cblock__title" data-i18n-html="mw.why.t">La IA explora; el criterio decide qué sale.</h2>
-      <p class="cblock__text" data-i18n-html="mw.why.p">Parte de tener la marca como <strong>reglas vivas</strong> (tokens, tipografías y prompts en un solo lugar) en vez de un PDF. Con eso, la IA puede proponer rápido y una persona decide qué llega a la marca. Es un experimento en curso, todavía sin cliente.</p>
+      <p class="cblock__text" data-i18n-html="mw.why.p">Es un experimento personal: quiero ver si un diseñador puede atender el día a día de varias marcas sin perder el criterio. Lo probé dando de alta una marca real a partir de su material: la IA propuso la ficha en unos tres minutos, eligió la foto correcta para cada pedido y evitó las palabras que la marca no usa.</p>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="mw.st.l">Estado</div>
+      <h2 class="cblock__title" data-i18n-html="mw.st.t">En desarrollo: qué funciona y qué falta.</h2>
+      <ul class="cblock__list">
+        <li data-i18n-html="mw.st1"><strong>Funciona:</strong> pedidos por texto, propuestas con Claude Fable 5.2, alta de marca con IA, panel de aprobación y entrega en el chat de prueba.</li>
+        <li data-i18n-html="mw.st2"><strong>Falta:</strong> transcripción de notas de voz, conexión con un número real de WhatsApp Business y despliegue en la nube.</li>
+      </ul>
     </div>
 
   </section>
