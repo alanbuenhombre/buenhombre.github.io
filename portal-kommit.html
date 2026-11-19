@@ -73,7 +73,24 @@
       </div>
       <div class="cblock__sub">
         <div class="cblock__subhead" data-i18n="pk.dec.s5.h">05 — Procesos de handoff dev</div>
-        <p class="cblock__text" data-i18n="pk.dec.s5.p">Establecí workflow claro: Figma → Design tokens exportados → Frontend implementa componentes → QA valida. Cada componente tenía documentación de props, estados y casos de uso.</p>
+        <p class="cblock__text" data-i18n="pk.dec.s5.p">Establecí un workflow claro: Figma → specs para frontend → frontend implementa los componentes → QA valida. Cada componente tenía documentación de props, estados y casos de uso.</p>
+      </div>
+    </div>
+
+    <div class="cblock cblock--wide">
+      <div class="cblock__label" data-i18n-html="pk.fl.l">Por dentro</div>
+      <h2 class="cblock__title" data-i18n-html="pk.fl.t">Cómo avanzaba un componente, y qué faltó.</h2>
+      <div class="cflow">
+        <ol class="cflow__track mix" style="--n:7;--on:57%">
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="pk.fl1.t">Fundamentos</h4><p data-i18n-html="pk.fl1.p">Figma · color, tipo, grid 8px</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="pk.fl2.t">Componentes</h4><p data-i18n-html="pk.fl2.p">Figma · variantes y estados</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="pk.fl3.t">IA</h4><p data-i18n-html="pk.fl3.p">Claude Design con el sistema documentado</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="pk.fl4.t">Handoff</h4><p data-i18n-html="pk.fl4.p">Specs de Figma al frontend</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="pk.fl5.t">Desarrollo</h4><p data-i18n-html="pk.fl5.p">Frontend programa a mano · QA valida</p></li>
+          <li><span class="cflow__dot"></span><h4 data-i18n-html="pk.fl6.t">Tokens en código</h4><p data-i18n-html="pk.fl6.p">Fuente de verdad</p></li>
+          <li><span class="cflow__dot"></span><h4 data-i18n-html="pk.fl7.t">Storybook</h4><p data-i18n-html="pk.fl7.p">Revisión antes del merge</p></li>
+        </ol>
+        <div class="cflow__note"><i></i><span data-i18n-html="pk.fl.note">Lo que faltó y haría hoy</span></div>
       </div>
     </div>
 
@@ -105,8 +122,8 @@
     </div>
 
     <div class="cblock">
-      <div class="cblock__label" data-i18n="pk.pb.label">Playbook relacionado</div>
-      <p class="cblock__text" data-i18n="pk.pb.p">El proceso que hoy recomiendo para llevar un design system de Figma a código, con tokens, Storybook y reglas de gobernanza.</p>
+      <div class="cblock__label" data-i18n="pk.pb.label">Lo que haría hoy</div>
+      <p class="cblock__text" data-i18n="pk.pb.p">El paso que faltó: llevar los tokens de Figma al código y revisar cada componente en Storybook antes del merge. Lo documenté a partir de la charla de Florian Boelter.</p>
       <div class="chead__links"><a class="chead__link" href="playbook-design-system-figma-storybook.html" data-i18n="pk.pb.link">De Figma a Storybook →</a></div>
     </div>
   </section>

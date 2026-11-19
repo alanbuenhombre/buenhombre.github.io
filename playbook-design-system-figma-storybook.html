@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>De Figma a Storybook · Playbook 02 · Alan Buenhombre</title>
-<meta name="description" content="Playbook de design systems para equipos pequeños: cómo conectar Figma y código con tokens, Storybook y reglas claras. Arquitectura en 5 capas, fases 0 a 3, flujo de 8 pasos y gobernanza. Inspirado en el proceso de Florian Boelter." />
+<meta name="description" content="Síntesis en español de la charla de Florian Boelter sobre design systems con Figma, código e IA. Organizada como playbook para equipos pequeños." />
 <meta name="keywords" content="playbook, design system, Figma, Storybook, design tokens, Figma Variables, Cursor, Figma MCP, Tailwind, Code Connect, gobernanza, Alan Buenhombre" />
 <meta name="author" content="Alan Buenhombre" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Alan Buenhombre" />
 <meta property="og:title" content="De Figma a Storybook en un design system · Playbook 02" />
-<meta property="og:description" content="Figma documenta la intención. El código es la fuente de verdad. Cómo conectar diseño y código para que un design system se mantenga vivo." />
+<meta property="og:description" content="Síntesis en español de la charla de Florian Boelter sobre design systems con Figma, código e IA. Organizada como playbook para equipos pequeños." />
 <meta property="og:url" content="https://buenhombre.design/playbook-design-system-figma-storybook.html" />
 <meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -573,6 +573,8 @@ h3 code{font-size:.72em;vertical-align:.12em;}
   background:var(--k-soft);color:var(--k-2);padding:5px 10px;border-radius:99px;white-space:nowrap;
 }
 .chain i{font-style:normal;color:var(--faint);font-family:var(--mono);font-size:12px;}
+.codeblock{margin:2px 0 12px;padding:12px 16px;background:var(--soft);border-radius:10px;overflow-x:auto;}
+.codeblock code{background:none;padding:0;font-size:12.5px;white-space:pre-wrap;}
 
 /* standalone callout */
 .callout{
@@ -677,12 +679,12 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
         <div class="v" data-i18n="meta.time.v">Lectura de 6 minutos. Se aplica desde el primer token.</div>
       </div>
       <div>
-        <div class="k" data-i18n="meta.based.k">Basado en</div>
-        <div class="v" data-i18n="meta.based.v">El proceso de Florian Boelter. Adaptado por Alan Buenhombre.</div>
+        <div class="k" data-i18n="meta.based.k">Fuente</div>
+        <div class="v" data-i18n="meta.based.v">Síntesis en español de la charla de Florian Boelter sobre design systems con Figma, código e IA. Organizada como playbook para equipos pequeños.</div>
       </div>
       <div>
-        <div class="k" data-i18n="meta.stance.k">Postura</div>
-        <div class="v" data-i18n="meta.stance.v">Figma documenta la intención. El código es la fuente de verdad.</div>
+        <div class="k" data-i18n="meta.tools.k">Herramientas</div>
+        <div class="v" data-i18n="meta.tools.v">Figma, Cursor + Figma MCP, Storybook y GitHub.</div>
       </div>
     </dl>
   </div>
@@ -698,7 +700,7 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
 
     <div class="body-grid">
       <div class="prose">
-        <p data-i18n="c1.p1">Esta es la regla más importante del playbook. Cuando la fuente de verdad está en el código, el <em>drift</em> se detecta con CI y las discusiones pasan de <em>“cuál versión es la correcta”</em> a <em>“qué cambio queremos hacer”</em>.</p>
+        <p data-i18n="c1.p1">Esta es la regla más importante del playbook. Cuando la fuente de verdad está en el código, el <em>drift</em> (desviación entre diseño y código) se detecta con CI y las discusiones pasan de <em>“cuál versión es la correcta”</em> a <em>“qué cambio queremos hacer”</em>.</p>
         <p data-i18n="c1.p2"><strong>Lo que este playbook no es:</strong> una guía de Storybook desde cero ni un tutorial de Figma. Es la forma de conectar ambos mundos y de ponerle reglas claras al proceso.</p>
       </div>
       <aside class="margin-note">
@@ -710,7 +712,7 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
     <blockquote class="pullquote">
       <span class="brace" aria-hidden="true">“</span>
       <div>
-        <q data-i18n="c1.quote">Figma documenta la intención. El código es la fuente de verdad.</q>
+        <q data-i18n="c1.quote">Figma define la intención; el código es la fuente de verdad después del merge.</q>
         <cite data-i18n="c1.cite">— Principio base · De Figma a Storybook</cite>
       </div>
     </blockquote>
@@ -725,33 +727,33 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
       <h2 data-i18n="c2.title">Cinco capas, cada una con un dueño claro.</h2>
     </div>
 
-    <ol class="layers">
+    <ul class="layers">
       <li>
-        <span class="ln">{ 01 }</span>
+        <span class="ln" aria-hidden="true">•</span>
         <span class="lt">Figma Variables</span>
         <span class="lr" data-i18n="c2.l1">BASE (color, spacing, radius, type) + SEMANTIC (surface, text, action).</span>
       </li>
       <li>
-        <span class="ln">{ 02 }</span>
+        <span class="ln" aria-hidden="true">•</span>
         <span class="lt">Cursor + Figma MCP</span>
         <span class="lr" data-i18n="c2.l2">Lee las variables y el código, y propone cambios.</span>
       </li>
       <li class="truth">
-        <span class="ln">{ 03 }</span>
-        <span class="lt"><span data-i18n="c2.l3.t">Tokens en código</span><span class="pill" data-i18n="c2.truth">Fuente de verdad</span></span>
+        <span class="ln" aria-hidden="true">•</span>
+        <span class="lt"><span data-i18n="c2.l3.t">Tokens en código</span> <span class="pill" data-i18n="c2.truth">Fuente de verdad</span></span>
         <span class="lr" data-i18n="c2.l3">Tailwind o equivalente. Aquí vive la versión canónica.</span>
       </li>
       <li>
-        <span class="ln">{ 04 }</span>
+        <span class="ln" aria-hidden="true">•</span>
         <span class="lt">Storybook</span>
         <span class="lr" data-i18n="c2.l4">Stories por componente, con sincronización unidireccional.</span>
       </li>
       <li>
-        <span class="ln">{ 05 }</span>
+        <span class="ln" aria-hidden="true">•</span>
         <span class="lt" data-i18n="c2.l5.t">Adopción</span>
         <span class="lr" data-i18n="c2.l5">El producto usa la librería.</span>
       </li>
-    </ol>
+    </ul>
 
     <p class="sub-h" data-i18n="c2.why">Por qué esta arquitectura</p>
     <div class="framework">
@@ -814,10 +816,10 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
             <li data-i18n="c3.f1.s3">Con Cursor + Figma MCP, genera la configuración de Tailwind a partir de esas variables.</li>
             <li data-i18n="c3.f1.s4">Revisa el resultado en un commit pequeño y pide aprobación de tu ingeniero aliado.</li>
           </ol>
-          <div class="fact"><span class="k" data-i18n="c3.f1.tk">Tiempo aproximado</span><span data-i18n="c3.f1.tv">20 a 30 minutos con IA, frente a una jornada completa de trabajo manual.</span></div>
+          <div class="fact"><span class="k" data-i18n="c3.f1.tk">Tiempo aproximado</span> <span data-i18n="c3.f1.tv">20 a 30 minutos con IA, frente a una jornada completa de trabajo manual, según la charla de Florian.</span></div>
           <div class="action">
             <div class="lbl" data-i18n="c3.f1.al">Primera contribución segura</div>
-            <div class="chain" data-i18n="c3.f1.chain"><b>Figma Variables</b><i>→</i><b>Cursor</b><i>→</i><b>PR de tokens</b><i>→</i><b>revisión</b><i>→</i><b>merge</b></div>
+            <pre class="codeblock"><code data-i18n="c3.f1.chain">Figma Variables → Cursor → PR de tokens → revisión → merge</code></pre>
             <p data-i18n="c3.f1.a">Aunque nadie lo vea todavía, la base queda viva.</p>
           </div>
         </div>
@@ -838,7 +840,7 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
           </ol>
           <div class="action">
             <div class="lbl" data-i18n="c3.f2.al">Regla clave</div>
-            <p data-i18n="c3.f2.a">El diseñador ve el componente en Storybook antes del merge, no después. Así el problema de tiempos desaparece.</p>
+            <p data-i18n="c3.f2.a">El diseñador ve el componente en Storybook antes del merge, no después. Si algo no coincide con Figma, se corrige en la misma rama, antes de que llegue al producto.</p>
           </div>
         </div>
       </article>
@@ -960,7 +962,7 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
       <div><dt>Tailwind CSS</dt><dd data-i18n="c6.t4">Sintaxis literal, fácil de leer para la IA.</dd></div>
       <div><dt>Storybook</dt><dd data-i18n="c6.t5">Prueba de estados y comportamiento; corre local con un comando.</dd></div>
       <div><dt>GitHub + CI</dt><dd data-i18n="c6.t6">Detecta el drift entre diseño y código.</dd></div>
-      <div><dt>Claude</dt><dd data-i18n="c6.t7">Decisiones conceptuales y planeación del sistema.</dd></div>
+      <div><dt>Claude</dt><dd data-i18n="c6.t7">Decisiones conceptuales y planeación del sistema (en la charla, Florian usa Claude para dudas conceptuales).</dd></div>
     </dl>
   </div>
 </section>
@@ -970,16 +972,16 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
   <div class="wrap">
     <div class="chap-head">
       <div class="chap-num" data-i18n="c7.num">{ 07 } — Caso de referencia</div>
-      <h2 data-i18n="c7.title">Lo que se acumuló en el caso original.</h2>
+      <h2 data-i18n="c7.title">Lo que se acumuló en el caso presentado por Florian.</h2>
     </div>
 
     <div class="body-grid">
       <div class="prose">
-        <p data-i18n="c7.p1">En el caso de estudio original: unos 6 meses, con 1 diseñador + 1 ingeniero trabajando en paralelo con el producto normal.</p>
+        <p data-i18n="c7.p1">Caso presentado por Florian: unos 6 meses, con 1 diseñador + 1 ingeniero trabajando en paralelo con el producto normal.</p>
       </div>
       <aside class="margin-note">
         <div class="label" data-i18n="c7.note.k">Fuente</div>
-        <p data-i18n="c7.note.v">Estas cifras vienen del caso de estudio de Florian Boelter, no de un proyecto propio.</p>
+        <p data-i18n="c7.note.v">Estas cifras son del caso presentado por Florian Boelter en su charla, no de un proyecto propio.</p>
       </aside>
     </div>
 
@@ -1023,16 +1025,16 @@ footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
   <div class="wrap">
     <div class="chap-head">
       <div class="chap-num" data-i18n="c9.num">{ 09 } — Créditos</div>
-      <h2 data-i18n="c9.title">Linaje y adaptación.</h2>
+      <h2 data-i18n="c9.title">Créditos.</h2>
     </div>
 
     <ol>
       <li>
-        <div class="ref"><span class="who">Florian Boelter.</span> <span data-i18n="c9.b1">Metodología original y caso de estudio.</span></div>
+        <div class="ref"><span class="who">Florian Boelter.</span> <span data-i18n="c9.b1">Charla «From Chaos to Components: A Practical AI Workflow for Design Systems».</span></div>
         <div class="link"><a href="https://florianboelter.com/" target="_blank" rel="noopener">florianboelter.com ↗</a> · <a href="https://www.linkedin.com/in/florian-boelter" target="_blank" rel="noopener">LinkedIn ↗</a></div>
       </li>
       <li>
-        <div class="ref"><span class="who">Alan Buenhombre.</span> <span data-i18n="c9.b2">Adaptación y documentación.</span></div>
+        <div class="ref"><span class="who">Alan Buenhombre.</span> <span data-i18n="c9.b2">Síntesis y documentación.</span></div>
         <div class="link"><a href="index.html">buenhombre.design ↗</a></div>
       </li>
     </ol>
@@ -1060,16 +1062,16 @@ const T = {
     "hero.sub":"How to connect design and code, with clear rules, so a design system stays alive without relying on heavy processes.",
     "meta.for.k":"For","meta.for.v":"Small teams: 1 designer + 1 engineer, or even a team with no dedicated engineer.",
     "meta.time.k":"Length","meta.time.v":"6-minute read. Applies from the very first token.",
-    "meta.based.k":"Based on","meta.based.v":"Florian Boelter’s process. Adapted by Alan Buenhombre.",
-    "meta.stance.k":"Stance","meta.stance.v":"Figma documents intent. Code is the source of truth.",
+    "meta.based.k":"Source","meta.based.v":"A synthesis of Florian Boelter’s talk on design systems with Figma, code and AI. Written in Spanish and organized as a playbook for small teams.",
+    "meta.tools.k":"Tools","meta.tools.v":"Figma, Cursor + Figma MCP, Storybook and GitHub.",
 
     "c1.num":"{ 01 } — Core principle",
     "c1.title":"One rule before any component.",
-    "c1.p1":"This is the most important rule in the playbook. When the source of truth lives in code, <em>drift</em> gets caught by CI, and discussions shift from <em>“which version is right”</em> to <em>“what change do we want to make”</em>.",
+    "c1.p1":"This is the most important rule in the playbook. When the source of truth lives in code, <em>drift</em> (the gap between design and code) gets caught by CI, and discussions shift from <em>“which version is right”</em> to <em>“what change do we want to make”</em>.",
     "c1.p2":"<strong>What this playbook is not:</strong> a Storybook guide from scratch or a Figma tutorial. It’s a way to connect both worlds and give the process clear rules.",
     "c1.note.k":"Who it’s for",
     "c1.note.v":"Teams of 1 designer + 1 engineer, or even without a dedicated engineer, who want a living design system without heavy processes.",
-    "c1.quote":"Figma documents intent. Code is the source of truth.",
+    "c1.quote":"Figma defines intent; code is the source of truth after the merge.",
     "c1.cite":"— Core principle · From Figma to Storybook",
 
     "c2.num":"{ 02 } — Architecture",
@@ -1105,9 +1107,9 @@ const T = {
     "c3.f1.s3":"With Cursor + Figma MCP, generate the Tailwind config from those variables.",
     "c3.f1.s4":"Review the result in a small commit and ask your partner engineer for approval.",
     "c3.f1.tk":"Approximate time",
-    "c3.f1.tv":"20 to 30 minutes with AI, versus a full day of manual work.",
+    "c3.f1.tv":"20 to 30 minutes with AI, versus a full day of manual work, according to Florian’s talk.",
     "c3.f1.al":"First safe contribution",
-    "c3.f1.chain":"<b>Figma Variables</b><i>→</i><b>Cursor</b><i>→</i><b>Token PR</b><i>→</i><b>review</b><i>→</i><b>merge</b>",
+    "c3.f1.chain":"Figma Variables → Cursor → Token PR → review → merge",
     "c3.f1.a":"Even if no one sees it yet, the foundation is alive.",
     "c3.f2.n":"Phase 2",
     "c3.f2.h":"The <em>first component</em>.",
@@ -1119,7 +1121,7 @@ const T = {
     "c3.f2.s5":"Review the component in Storybook <strong>before</strong> opening the pull request.",
     "c3.f2.s6":"Open the PR; the engineer reviews and merges.",
     "c3.f2.al":"Key rule",
-    "c3.f2.a":"The designer sees the component in Storybook before the merge, not after. That’s how the timing problem goes away.",
+    "c3.f2.a":"The designer sees the component in Storybook before the merge, not after. If something doesn’t match Figma, it gets fixed in the same branch, before it reaches the product.",
     "c3.f3.n":"Phase 3",
     "c3.f3.h":"Make it <em>repeatable</em> with <code>RULES.md</code>.",
     "c3.f3.p":"After the first component, write a <code>RULES.md</code> file together, loaded as context every time you work with AI. It should include:",
@@ -1165,13 +1167,13 @@ const T = {
     "c6.t4":"Literal syntax, easy for AI to read.",
     "c6.t5":"Tests states and behavior; runs locally with one command.",
     "c6.t6":"Catches drift between design and code.",
-    "c6.t7":"Conceptual decisions and system planning.",
+    "c6.t7":"Conceptual decisions and system planning (in the talk, Florian uses Claude for conceptual questions).",
 
     "c7.num":"{ 07 } — Reference case",
-    "c7.title":"What built up in the original case.",
-    "c7.p1":"In the original case study: about 6 months, with 1 designer + 1 engineer working alongside regular product work.",
+    "c7.title":"What built up in the case Florian presented.",
+    "c7.p1":"Case presented by Florian: about 6 months, with 1 designer + 1 engineer working alongside regular product work.",
     "c7.note.k":"Source",
-    "c7.note.v":"These figures come from Florian Boelter’s case study, not from a project of my own.",
+    "c7.note.v":"These figures come from the case Florian Boelter presented in his talk, not from a project of my own.",
     "c7.m1.n":"Foundations","c7.m1":"Base + semantic tokens in Figma and in code.",
     "c7.m2.n":"Library","c7.m2":"~12 components documented and live in Storybook.",
     "c7.m3.n":"Adoption","c7.m3":"The front-end team starts working from the library.",
@@ -1185,9 +1187,9 @@ const T = {
     "c8.s5":"Measure how many components build up in the first quarter.",
 
     "c9.num":"{ 09 } — Credits",
-    "c9.title":"Lineage and adaptation.",
-    "c9.b1":"Original methodology and case study.",
-    "c9.b2":"Adaptation and documentation.",
+    "c9.title":"Credits.",
+    "c9.b1":"Talk “From Chaos to Components: A Practical AI Workflow for Design Systems.”",
+    "c9.b2":"Synthesis and documentation.",
 
     "foot.l":"Playbook 02 · From Figma to Storybook.",
     "foot.case":"Case: Kommit V5 Design System →",
