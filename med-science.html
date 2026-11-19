@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MED Science · Lead Designer · Alan Buenhombre</title>
+<meta name="description" content="Caso MED Science: Lead Designer de una marca de compresión médica. Sistema de marca, empaque, catálogo editorial, plantillas para redes, web 3D en Three.js y flujos de diseño asistidos por IA, en 8 semanas." />
+<link rel="canonical" href="https://buenhombre.design/med-science.html" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="MED Science · Lead Designer · Alan Buenhombre" />
+<meta property="og:description" content="Caso MED Science: Lead Designer de una marca de compresión médica. Sistema de marca, empaque, catálogo editorial, plantillas para redes, web 3D en Three.js y flujos de diseño asistidos por IA, en 8 semanas." />
+<meta property="og:url" content="https://buenhombre.design/med-science.html" />
+<meta property="og:image" content="https://buenhombre.design/assets/med/cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CreativeWork","name":"MED Science — Lead Designer case","inLanguage":["es","en"],"dateCreated":"2026-11-17","url":"https://buenhombre.design/med-science.html","image":"https://buenhombre.design/assets/med/cover.jpg","creator":{"@type":"Person","name":"Alan Buenhombre","jobTitle":"Lead Designer","url":"https://buenhombre.design"},"about":["brand system","packaging design","editorial design","social media templates","Three.js","AI-assisted design workflow","healthcare","medical devices"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="case.css" />
+<style>
+  /* ===== MED: cifras, entregables, resultados ===== */
+  .md-m{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .md-m li{padding:22px 20px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper)}
+  .md-m__k{display:block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--k);margin-bottom:14px}
+  .md-m b{display:block;font-family:var(--font);font-weight:300;font-size:clamp(2.2rem,3.6vw,3rem);line-height:1;letter-spacing:-.05em;color:var(--ink);margin-bottom:12px}
+  .md-m sup{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);vertical-align:super;margin-left:2px}
+  .md-m p{font-size:.84rem;line-height:1.55;color:var(--ink-2);margin:0}
+  .md-t{width:100%;border-collapse:collapse;margin-top:26px;font-size:.92rem}
+  .md-t th,.md-t td{text-align:left;vertical-align:top;padding:14px 0;border-bottom:1px dotted var(--line)}
+  .md-t thead th{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400;border-bottom:1px solid var(--line);padding-top:0}
+  .md-t tbody th{font-weight:500;color:var(--ink);width:32%;padding-right:24px}
+  .md-t td{color:var(--ink-2);line-height:1.55}
+  .md-live{margin:14px 0 70px;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .md-live a{color:var(--k);text-decoration:none}
+  .md-o{list-style:none;margin:24px 0 0;padding:0}
+  .md-o li{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:16px 0;border-top:1px dotted var(--line)}
+  .md-o li:last-child{border-bottom:1px dotted var(--line)}
+  .md-o b{font-weight:500;color:var(--ink);font-size:.98rem}
+  .md-o p{margin:4px 0 0;font-size:.9rem;line-height:1.55;color:var(--ink-2)}
+  .md-o__s{flex:none;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--k);background:var(--k-soft);border-radius:100px;padding:5px 10px}
+  .md-nda{margin-top:56px;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.06em;line-height:1.7;color:var(--muted);max-width:660px}
+  @media (max-width:900px){.md-m{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.md-t tbody th{width:40%;padding-right:14px}.md-o li{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+
+  <nav class="top">
+    <a href="index.html" class="top__name">Alan Buenhombre</a>
+    <div class="top__nav">
+      <a href="index.html#inicio" data-i18n="nav.home">Inicio</a>
+      <a href="index.html#trabajo" data-i18n="nav.work">Trabajo</a>
+      <a href="index.html#casos" data-i18n="nav.cases">Casos</a>
+      <a href="index.html#contacto" data-i18n="nav.contact">Contacto</a>
+    </div>
+    <button class="top__lang nav__lang" aria-label="Cambiar idioma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 3 3.5 6 3.5 9s-1 6-3.5 9"/><path d="M12 3c-2.5 3-3.5 6-3.5 9s1 6 3.5 9"/></svg><span>EN</span></button>
+  </nav>
+
+  <header class="chead">
+    <div class="chead__kicker" data-i18n-html="md.kicker">Healthcare · Marca · Empaque · Design ops con IA</div>
+    <h1 class="chead__title">MED Science</h1>
+    <p class="chead__sub" data-i18n-html="md.sub">Un solo diseñador para toda el área de diseño de una marca de compresión médica que salía a nuevos mercados: marca, empaque, catálogo, redes y web en 8 semanas.</p>
+    <div class="chead__links"><a class="chead__link" href="https://medsciencesystems.com" target="_blank" rel="noopener">medsciencesystems.com ↗</a></div>
+  </header>
+
+  <div class="cmeta">
+    <div><div class="cmeta__k" data-i18n="work.meta.role">Rol</div><div class="cmeta__v" data-i18n-html="md.role">Lead Designer · dueño del área de diseño</div></div>
+    <div><div class="cmeta__k" data-i18n="work.meta.company">Empresa</div><div class="cmeta__v">MED Science</div></div>
+    <div><div class="cmeta__k" data-i18n="work.meta.year">Año</div><div class="cmeta__v" data-i18n-html="md.year">2026 · en curso</div></div>
+    <div><div class="cmeta__k" data-i18n="work.meta.disciplines">Disciplinas</div><div class="cmeta__v" data-i18n-html="md.disc">Marca · Empaque · Editorial · Redes · Web 3D</div></div>
+  </div>
+
+  <div class="cmediawrap"><div class="cshot cshot--hero"><img src="assets/med/cover.jpg" alt="Visual original dirigido con IA: prenda de compresión en un maniquí" width="2400" height="1340"></div></div>
+
+  <section class="cbody">
+    <div class="cblock">
+      <h2 class="cblock__title" data-i18n-html="md.ctx.t">Contexto</h2>
+      <p class="cblock__text" data-i18n-html="md.ctx.p1">MED, una marca de compresión médica, salía a nuevos mercados con cuatro líneas de producto, distribuidores en tres países y <strong>sin un sistema de diseño detrás</strong>. Entré como único diseñador, dueño de las decisiones de marca y no solo de la ejecución.</p>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n-html="md.c1.h">El reto</div>
+        <p class="cblock__text" data-i18n-html="md.c1.p">Cada pieza tenía que funcionar en español e inglés, para médicos y distribuidores, en impreso y digital. Son prendas médicas reales, así que en cada imagen e ilustración reviso producto y anatomía contra la referencia.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n-html="md.c2.h">Mi enfoque</div>
+        <p class="cblock__text" data-i18n-html="md.c2.p">Construir sistemas, no piezas sueltas. Un solo lenguaje visual (frío, clínico, premium) para marca, empaque, catálogo, redes y web, con flujos asistidos por IA para producir a escala. Los datos confidenciales no los subo a herramientas de IA.</p>
+      </div>
+    </div>
+
+    <div class="cshot cshot--wide"><img src="assets/med/site-live.jpg" alt="Página de lanzamiento de medsciencesystems.com con el logo de MED" loading="lazy" width="1456" height="727"></div>
+    <p class="md-live"><span data-i18n-html="md.live">En vivo · <a href="https://medsciencesystems.com" target="_blank" rel="noopener">medsciencesystems.com ↗</a> · página de lanzamiento</span></p>
+
+    <div class="cblock cblock--wide">
+      <div class="cblock__label" data-i18n-html="md.met.l">En cifras</div>
+      <h2 class="cblock__title" data-i18n-html="md.met.t">8 semanas de producción.</h2>
+      <ul class="md-m">
+        <li><span class="md-m__k"><span data-i18n-html="md.m1.t">Velocidad</span></span><b>8 <sup><span data-i18n-html="md.m1.u">sem</span></sup></b><p><span data-i18n-html="md.m1.p">Del 22 de septiembre al 17 de noviembre de 2026, con un solo diseñador para toda el área.</span></p></li>
+        <li><span class="md-m__k"><span data-i18n-html="md.m2.t">Áreas de trabajo</span></span><b>15</b><p><span data-i18n-html="md.m2.p">En paralelo: marca, empaque, marquillas, catálogo, redes, web, video, presentaciones y más.</span></p></li>
+        <li><span class="md-m__k"><span data-i18n-html="md.m3.t">Listo para imprenta</span></span><b>11</b><p><span data-i18n-html="md.m3.p">Paquetes de preprensa en CMYK: 3 cajas, 6 stickers de bolsa y 2 stickers de producto.</span></p></li>
+        <li><span class="md-m__k"><span data-i18n-html="md.m4.t">Catálogo</span></span><b>44</b><p><span data-i18n-html="md.m4.p">Referencias organizadas en 7 familias, con 25 fichas técnicas en producción.</span></p></li>
+        <li><span class="md-m__k"><span data-i18n-html="md.m5.t">Redes</span></span><b>41</b><p><span data-i18n-html="md.m5.p">Piezas terminadas de la parrilla de noviembre, en español e inglés.</span></p></li>
+        <li><span class="md-m__k"><span data-i18n-html="md.m6.t">Firmas</span></span><b>72</b><p><span data-i18n-html="md.m6.p">Archivos de firma de correo: 6 personas × 4 estilos × 3 tamaños.</span></p></li>
+        <li><span class="md-m__k"><span data-i18n-html="md.m7.t">Visuales con IA</span></span><b>450 <sup><span data-i18n-html="md.m7.u">+</span></sup></b><p><span data-i18n-html="md.m7.p">Imágenes y clips generados con prompts estándar. Solo uso los que reviso y apruebo.</span></p></li>
+        <li><span class="md-m__k"><span data-i18n-html="md.m8.t">Idiomas</span></span><b>2</b><p><span data-i18n-html="md.m8.p">Español e inglés, para distribuidores en tres países.</span></p></li>
+      </ul>
+    </div>
+
+    <div class="cblock cblock--wide">
+      <div class="cblock__label" data-i18n-html="md.del.l">Entregables</div>
+      <h2 class="cblock__title" data-i18n-html="md.del.t">Qué entregué, por área.</h2>
+      <table class="md-t">
+        <thead><tr><th scope="col"><span data-i18n-html="md.th1">Área</span></th><th scope="col"><span data-i18n-html="md.th2">Entregado</span></th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><span data-i18n-html="md.r1.a">Sistema de logo</span></th><td><span data-i18n-html="md.r1.b">6 versiones + edición dorada (foil y plana), avatares, favicon e ícono de app</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r2.a">Empaque</span></th><td><span data-i18n-html="md.r2.b">Cajas S / M / L con troqueles del proveedor + stickers de bolsa en 3 tamaños</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r3.a">Marquillas</span></th><td><span data-i18n-html="md.r3.b">Tallas 2XS → 7XL + marquillas de cuidado, composición y producción</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r4.a">Íconos de cuidado</span></th><td><span data-i18n-html="md.r4.b">Set propio (no stock), en 3 colores</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r5.a">Fichas técnicas</span></th><td><span data-i18n-html="md.r5.b">Sistema de fichas con infografías tipo rayos X y QR a la página del producto</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r6.a">Parrilla mensual</span></th><td><span data-i18n-html="md.r6.b">8 contenidos → archivos finales en ES + EN (posts, carruseles, portadas de reel)</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r7.a">Sistema de plantillas</span></th><td><span data-i18n-html="md.r7.b">Plantillas de paneles para 16:9, 1:1, 4:5, 9:16 y YouTube</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r8.a">Banners de redes</span></th><td><span data-i18n-html="md.r8.b">3 direcciones para LinkedIn y YouTube, 2 aprobadas</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r9.a">Sitio web</span></th><td><span data-i18n-html="md.r9.b">Secciones diseñadas + scroll tech-scan en Three.js + visor 3D de producto por QR</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r10.a">Presentaciones</span></th><td><span data-i18n-html="md.r10.b">Template de marca, lanzamiento a distribuidores, estructura de la compañía y programa de socios</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r11.a">Film y sonido</span></th><td><span data-i18n-html="md.r11.b">Film manifiesto de marca (20+ iteraciones), tráiler del hero, piezas de música y voz</span></td></tr>
+          <tr><th scope="row"><span data-i18n-html="md.r12.a">Kit de distribuidores</span></th><td><span data-i18n-html="md.r12.b">Logos y avatares por país, kit de mapa y tula premium</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cblock">
+      <h2 class="cblock__title" data-i18n-html="md.built.t">Lo que construí</h2>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n-html="md.w1.h">01 — Sistema de marca</div>
+        <p class="cblock__text" data-i18n-html="md.w1.p">Manual de marca, arquitectura de líneas por color, reglas de logo, tipografía y un banco de micrográficos.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n-html="md.w2.h">02 — Sistema de empaque</div>
+        <p class="cblock__text" data-i18n-html="md.w2.p">Cajas, stickers de bolsa, marquillas e íconos de cuidado: un diseño compartido en todos los tamaños, listo para imprenta en CMYK.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n-html="md.w3.h">03 — Catálogo editorial</div>
+        <p class="cblock__text" data-i18n-html="md.w3.p">Sistema de fichas técnicas y catálogo para 44 referencias en 7 familias, con infografías tipo rayos X y QR a la página de cada producto.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n-html="md.w4.h">04 — Plantillas para redes</div>
+        <p class="cblock__text" data-i18n-html="md.w4.p">Familia de plantillas en Figma para la parrilla mensual, con logos e idiomas intercambiables y carruseles continuos.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n-html="md.w5.h">05 — Web 3D y visor de producto</div>
+        <p class="cblock__text" data-i18n-html="md.w5.p">Una sección de scroll en Three.js que arma la prenda de malla a tejido, y un prototipo de visor 3D por QR que le entregué al desarrollador web.</p>
+      </div>
+      <div class="cblock__sub">
+        <div class="cblock__subhead" data-i18n-html="md.w6.h">06 — Design ops</div>
+        <p class="cblock__text" data-i18n-html="md.w6.p">Estructura de archivos, reglas de entrega, cotizaciones con proveedores, actualización diaria a dirección y presentaciones para distribuidores.</p>
+      </div>
+    </div>
+
+    <div class="cblock cblock--wide">
+      <div class="cblock__label" data-i18n-html="md.ai.l">Flujos con IA</div>
+      <h2 class="cblock__title" data-i18n-html="md.ai.t">Para producir a esta escala solo, armé mis propios flujos.</h2>
+      <p class="cblock__text" data-i18n-html="md.ai.p">Yo pongo la dirección y las reglas; los flujos hacen el trabajo repetitivo.</p>
+      <div class="cflow">
+        <ol class="cflow__track" style="--n:4;--on:75%">
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="md.f1.t">Dirección</h4><p data-i18n-html="md.f1.p">Dirección de arte, reglas y aprobaciones: mías</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="md.f2.t">Generar</h4><p data-i18n-html="md.f2.p">Google Flow + Claude, con prompts estándar</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="md.f3.t">Proteger</h4><p data-i18n-html="md.f3.p">Los datos confidenciales no van a la IA</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="md.f4.t">Finalizar</h4><p data-i18n-html="md.f4.p">Arte final en Illustrator / Photoshop, revisado contra la referencia</p></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="cblock">
+      <h2 class="cblock__title" data-i18n-html="md.pipe.t">Los seis flujos</h2>
+      <ul class="cblock__list">
+        <li data-i18n-html="md.a1"><strong>Flujo de imágenes.</strong> Claude maneja Google Flow en el navegador con mis prompts estándar: una imagen por paso, variantes de plano, y descarga y renombrado por sección.</li>
+        <li data-i18n-html="md.a2"><strong>Sistema de parrillas.</strong> Familia de plantillas con logo, idioma y layout intercambiables. Primero la maestra en español; encima, la versión en inglés. Se entrega por mes e idioma.</li>
+        <li data-i18n-html="md.a3"><strong>Generador de landings.</strong> Entran los fundamentos de marca (colores, tipografía, tono y secciones) y salen secciones del sitio con el look de la marca, listas para el desarrollador.</li>
+        <li data-i18n-html="md.a4"><strong>Prompts de dirección de arte.</strong> Una librería de estilos aprobados (rayos X, laboratorio a 45°, scan láser, marcos) que convierte cualquier pedido en prompts consistentes.</li>
+        <li data-i18n-html="md.a5"><strong>Fichas sin conexión.</strong> Una herramienta local que diagrama las fichas técnicas sin internet, para no subir datos confidenciales de producto a herramientas de IA.</li>
+        <li data-i18n-html="md.a6"><strong>Producción impresa con scripts.</strong> ExtendScript arma piezas de redes y paquetes de preprensa: CMYK, textos en curvas, imágenes enlazadas y láminas con cotas para aprobación.</li>
+      </ul>
+    </div>
+
+    <div class="cblock">
+      <h2 class="cblock__title" data-i18n-html="md.out.t">Resultados</h2>
+      <ul class="md-o">
+        <li><div><b><span data-i18n-html="md.o1.a">Fundamentos de marca</span></b><p><span data-i18n-html="md.o1.b">Presentados a dirección como base de todo el trabajo que sigue.</span></p></div><span class="md-o__s" data-i18n-html="md.o1.c">Adoptado</span></li>
+        <li><div><b><span data-i18n-html="md.o2.a">Sistema de empaque</span></b><p><span data-i18n-html="md.o2.b">La propuesta de caja se aprobó en general; el sticker de producto se reutiliza en bolsas y cajas.</span></p></div><span class="md-o__s" data-i18n-html="md.o2.c">Aprobado</span></li>
+        <li><div><b><span data-i18n-html="md.o3.a">IA para fichas técnicas</span></b><p><span data-i18n-html="md.o3.b">Dirección aprobó escalar el catálogo con un proceso asistido por IA que no expone los datos de producto.</span></p></div><span class="md-o__s" data-i18n-html="md.o3.c">Aprobado</span></li>
+        <li><div><b><span data-i18n-html="md.o4.a">Kit de distribuidores</span></b><p><span data-i18n-html="md.o4.b">Kits de identidad por país para 3 mercados y una tula premium para médicos y socios.</span></p></div><span class="md-o__s" data-i18n-html="md.o4.c">Entregado</span></li>
+        <li><div><b><span data-i18n-html="md.o5.a">Brand kit para redes</span></b><p><span data-i18n-html="md.o5.b">Dos direcciones visuales aprobadas para marca, redes y portada del catálogo.</span></p></div><span class="md-o__s" data-i18n-html="md.o5.c">Aprobado</span></li>
+      </ul>
+      <p class="md-nda" data-i18n-html="md.nda">Sin datos internos de producto: nombres, referencias y fichas están bajo NDA. El cover es un visual original dirigido con IA para este caso, no una foto de producto.</p>
+    </div>
+  </section>
+
+  <section class="cnext">
+    <div class="cnext__label" data-i18n="work.next.label">Siguiente proyecto</div>
+    <a href="kommit-ownership.html" class="cnext__row">
+      <span class="cnext__name">Kommit</span>
+      <span class="cnext__disc">Brand · Systems · Product · 2022–2026</span>
+    </a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div>
+        <div class="footer__logo">Alan Buenhombre</div>
+        <p class="footer__role">Product &amp; Brand Designer</p>
+        <p class="footer__tagline">Bogotá, Colombia</p>
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Alan Buenhombre</p>
+      </div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.menu">Menú</div>
+        <ul class="footer__links">
+          <li><a href="index.html#inicio" data-i18n="nav.home">Inicio</a></li>
+          <li><a href="index.html#trabajo" data-i18n="nav.work">Trabajo</a></li>
+          <li><a href="index.html#casos" data-i18n="nav.cases">Casos</a></li>
+          <li><a href="index.html#contacto" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title" data-i18n="footer.contact">Contacto</div>
+        <div class="footer__social">
+          <a class="footer__social-btn" href="mailto:alangtres@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
+          <a class="footer__social-btn" href="https://linkedin.com/in/buenhombre/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a class="footer__social-btn" href="https://behance.net/AlanBuenhombre" target="_blank" rel="noopener" aria-label="Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><text x="12" y="16.5" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor" stroke="none">Be</text></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bigname" aria-hidden="true">Buenhombre</div>
+  </footer>
+
+  <script src="i18n.js"></script>
+</body>
+</html>
