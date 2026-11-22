@@ -409,8 +409,8 @@
   <div class="cmeta">
     <div><div class="cmeta__k" data-i18n-html="gr.m.role.k">Rol</div><div class="cmeta__v" data-i18n-html="gr.m.role">Producto · UX/UI · Design system · Front-end</div></div>
     <div><div class="cmeta__k" data-i18n-html="gr.m.for.k">Para</div><div class="cmeta__v" data-i18n-html="gr.m.for">Estudios y agencias con 3 a 20 clientes</div></div>
-    <div><div class="cmeta__k" data-i18n-html="gr.m.stack.k">Stack</div><div class="cmeta__v">Next.js · TypeScript · Tailwind · Claude Code</div></div>
-    <div><div class="cmeta__k" data-i18n-html="gr.m.state.k">Estado</div><div class="cmeta__v" data-i18n-html="gr.m.state">Prototipo funcional · 2026</div></div>
+    <div><div class="cmeta__k" data-i18n-html="gr.m.stack.k">Stack</div><div class="cmeta__v">Next.js · TypeScript · recharts · Claude Code</div></div>
+    <div><div class="cmeta__k" data-i18n-html="gr.m.state.k">Estado</div><div class="cmeta__v" data-i18n-html="gr.m.state">Prototipo · datos de prueba · 2026</div></div>
   </div>
 
   <!-- ===== PROTOTIPO ===== -->
@@ -446,20 +446,38 @@
         <li><b>01</b><div><h3 data-i18n-html="gr.d1.t">Un número protagonista por tarjeta</h3><p data-i18n-html="gr.d1.p">Cifra grande y liviana, variación contra el periodo anterior y una tendencia mínima. La geometría de línea fina queda detrás y nunca compite con el dato. Tocar una tarjeta cambia la métrica del gráfico.</p></div></li>
         <li><b>02</b><div><h3 data-i18n-html="gr.d2.t">Lectura antes que dashboard</h3><p data-i18n-html="gr.d2.p">Cada vista trae una lectura del periodo en frases cortas: qué subió, qué canal mueve la cuenta, qué formato funciona y qué día publicar. El cliente entiende sin interpretar gráficos.</p></div></li>
         <li><b>03</b><div><h3 data-i18n-html="gr.d3.t">Comparar siempre contra algo</h3><p data-i18n-html="gr.d3.p">El periodo anterior aparece como línea punteada en el mismo gráfico. Un número suelto no dice si es bueno; la comparación sí.</p></div></li>
-        <li><b>04</b><div><h3 data-i18n-html="gr.d4.t">Diseñar la interfaz antes que las integraciones</h3><p data-i18n-html="gr.d4.p">La interfaz consume una capa de datos con un contrato tipado (<code>MetricsProvider</code>). Hoy la alimentan datos de prueba; mañana Meta y TikTok, sin tocar un componente.</p></div></li>
+        <li><b>04</b><div><h3 data-i18n-html="gr.d4.t">Diseñar la interfaz antes que las integraciones</h3><p data-i18n-html="gr.d4.p">Los números viven en un archivo tipado, separado de la interfaz: si un dato no está ahí, no sale en pantalla. Hoy ese archivo se llena a mano; la idea es que después lo llenen Meta y TikTok sin tocar los componentes.</p></div></li>
       </ul>
     </div>
 
     <div class="cblock cblock--wide">
       <div class="cblock__label" data-i18n-html="gr.flow.l">Cómo funciona</div>
-      <h2 class="cblock__title" data-i18n-html="gr.flow.t">De los datos al link, sin pasos manuales.</h2>
-      <ol class="gr-flow">
-        <li><strong data-i18n-html="gr.f1.t">Conectar</strong><span data-i18n-html="gr.f1.p">Cuentas del cliente en Meta y TikTok.</span></li>
-        <li><strong data-i18n-html="gr.f2.t">Recolectar</strong><span data-i18n-html="gr.f2.p">Métricas diarias por plataforma y publicación.</span></li>
-        <li><strong data-i18n-html="gr.f3.t">Leer</strong><span data-i18n-html="gr.f3.p">Comparativa y lectura del periodo.</span></li>
-        <li><strong data-i18n-html="gr.f4.t">Revisar</strong><span data-i18n-html="gr.f4.p">El estudio ajusta y aprueba en el panel.</span></li>
-        <li><strong data-i18n-html="gr.f5.t">Compartir</strong><span data-i18n-html="gr.f5.p">Link con vencimiento y resumen por email.</span></li>
-      </ol>
+      <h2 class="cblock__title" data-i18n-html="gr.flow.t">Del dato al link.</h2>
+      <div class="cflow cflow--out">
+        <ol class="cflow__track mix" style="--n:6;--on:58%">
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="gr.f1.t">Datos</h4><p data-i18n-html="gr.f1.p">Archivo tipado, cargado a mano</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="gr.f2.t">Lectura</h4><p data-i18n-html="gr.f2.p">Comparativa y frases del periodo</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="gr.f3.t">Revisar</h4><p data-i18n-html="gr.f3.p">Panel del estudio (demo)</p></li>
+          <li class="on"><span class="cflow__dot"></span><h4 data-i18n-html="gr.f4.t">Compartir</h4><p data-i18n-html="gr.f4.p">Link para el cliente (demo)</p></li>
+          <li><span class="cflow__dot"></span><h4 data-i18n-html="gr.f5.t">Conectar</h4><p data-i18n-html="gr.f5.p">Meta y TikTok</p></li>
+          <li><span class="cflow__dot"></span><h4 data-i18n-html="gr.f6.t">Automatizar</h4><p data-i18n-html="gr.f6.p">Envío por email y link con vencimiento</p></li>
+        </ol>
+        <div class="cflow__note"><i></i><span data-i18n-html="gr.flow.note">Próxima capa: integraciones y envío automático</span></div>
+      </div>
+    </div>
+
+    <div class="cblock">
+      <div class="cblock__label" data-i18n-html="gr.ai.l">Proceso</div>
+      <h2 class="cblock__title" data-i18n-html="gr.ai.t">Cómo lo construí con IA.</h2>
+      <p class="cblock__text" data-i18n-html="gr.ai.p1">Empezó el 21 de agosto de 2026 con cinco documentos de producto: visión, estructura, roadmap y un plan de cuatro semanas. Con <strong>Claude Code</strong> armé el proyecto en Next.js y el primer informe real para un cliente. La demo de esta página la hice después, el 28 y 29 de octubre, también con Claude Code.</p>
+      <p class="cblock__text" data-i18n-html="gr.ai.p2">Yo decidía qué mostrar, cómo se veía y cuándo estaba listo. La IA escribía el código y yo lo revisaba en el navegador.</p>
+      <p class="cblock__text" data-i18n-html="gr.ai.p3" style="margin-top:22px"><strong>Cuatro veces en que el código generado no estaba bien:</strong></p>
+      <ul class="cblock__list">
+        <li data-i18n-html="gr.ai.e1"><strong>Los gráficos salían todos grises.</strong> La paleta base dejaba las series iguales. Validé los colores con un script de contraste y daltonismo; el celeste no pasaba y lo ajusté a #5CD2F5.</li>
+        <li data-i18n-html="gr.ai.e2"><strong>Los medidores de audiencia no se dibujaban.</strong> Dentro de un contenedor flexible medían 0×0. Les dimos ancho fijo y comprobé los ángulos en pantalla.</li>
+        <li data-i18n-html="gr.ai.e3"><strong>En el celular desaparecía la columna de inversión.</strong> Una tabla de 537 px quedaba recortada en una caja de 325 px. Ahora se desplaza de lado.</li>
+        <li data-i18n-html="gr.ai.e4"><strong>Había gráficos que no contaban nada.</strong> Un radial distorsionaba las proporciones y una línea de tiempo no tenía serie. Los cambié por una barra apilada y una tabla comparativa.</li>
+      </ul>
     </div>
 
     <div class="cblock cblock--wide">
@@ -476,7 +494,7 @@
             <span><i style="background:#E8C58A"></i>#E8C58A</span>
             <span><i style="background:#FF8A7A"></i>#FF8A7A</span>
           </div>
-          <div class="gr-comp"><code>KpiCard</code><code>TrendChart</code><code>Delta</code><code>InsightList</code><code>PlatformSplit</code><code>PostRow</code><code>BudgetBar</code><code>SharePopover</code></div>
+          <div class="gr-comp"><code>StatCard</code><code>AnimatedNumber</code><code>ShareBar</code><code>EvolucionChart</code><code>AudienciaGauge</code><code>VistasPiezaChart</code><code>FormatoRadialChart</code><code>IsoStack</code></div>
         </div>
         <div class="gr-sys__box gr-type">
           <h4 data-i18n-html="gr.sys.ty">Tipografía</h4>
@@ -491,8 +509,8 @@
     <div class="cblock cblock--wide">
       <div class="gr-state">
         <span data-i18n-html="gr.st.k">Estado</span>
-        <h3 data-i18n-html="gr.st.t">Prototipo funcional de producto, con datos de prueba.</h3>
-        <p data-i18n-html="gr.st.p">La interfaz, el sistema y los flujos están resueltos y se pueden probar arriba. Las integraciones con Meta y TikTok, el envío automático y las cuentas de estudio están en el roadmap. Una iniciativa propia: hice el producto, el diseño y el front-end.</p>
+        <h3 data-i18n-html="gr.st.t">Una demo para probar y un primer informe real.</h3>
+        <p data-i18n-html="gr.st.p">La demo de arriba usa datos de prueba: se puede cambiar de cliente, periodo, plataforma y vista. Aparte, en Next.js armé el primer informe real para un cliente, con 30 días de Instagram; vive en local y no está publicado. Las integraciones con Meta y TikTok, el envío automático y las cuentas de estudio están en el roadmap. Es una iniciativa propia: hice el producto, el diseño y el front-end con Claude Code.</p>
       </div>
     </div>
 
