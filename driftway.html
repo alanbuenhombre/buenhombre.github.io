@@ -227,6 +227,25 @@
     </div>
 
     <div class="cblock">
+      <div class="cblock__label">Proceso</div>
+      <h2 class="cblock__title">Cómo lo construí con IA.</h2>
+      <p class="cblock__text">DRIFTWAY empezó como un experimento. En Claude.ai estaba probando Three.js para el hero de un sitio web, con elementos 3D animados, y para animar cards. Uno de esos experimentos se volvió juego: una nave, cinco sectores y una regla, no pares.</p>
+      <p class="cblock__text">Desde el 6 de octubre lo seguí en <strong>Claude Code</strong>, directamente sobre el repositorio: ranking con Supabase, inglés, soporte para TV y mando, y modo tráiler. Yo decidía qué hacía el juego, cómo se veía y cuándo estaba listo. La IA escribía el código y yo lo revisaba en el navegador antes de publicar.</p>
+      <ul class="cblock__list">
+        <li><strong>5 versiones</strong> publicadas entre el 6 y el 28 de octubre de 2026.</li>
+        <li><strong>Unos 30 pedidos</strong> de cambios y arreglos en Claude Code.</li>
+        <li><strong>Un solo archivo HTML</strong> que funciona en computador, celular, TV y mando.</li>
+      </ul>
+      <p class="cblock__text" style="margin-top:22px"><strong>Cuatro veces en que el código generado no estaba bien:</strong></p>
+      <ul class="cblock__list">
+        <li><strong>La tarjeta de piloto salía estirada.</strong> El código trataba los caracteres ASCII como cuadrados, pero miden 9×15. Lo corregimos y lo probé con una imagen de un círculo y un cuadrado.</li>
+        <li><strong>El ranking me llamaba «piloto n.º 2» siendo el único jugador.</strong> Lo vi en una captura: comparaba el puntaje de la partida y no el mejor guardado.</li>
+        <li><strong>Supabase devolvía error 503 aunque la base funcionaba.</strong> El log mostró que la API no tenía el esquema expuesto. Era configuración, no código.</li>
+        <li><strong>El contador sumaba en cada recarga.</strong> Lo cambiamos a una vez por navegador y lo probé con una base simulada: recargar dejaba 42 y borrar la marca daba 43.</li>
+      </ul>
+    </div>
+
+    <div class="cblock">
       <div class="cblock__label">Specs</div>
       <h2 class="cblock__title">Tech stack · un vistazo.</h2>
       <div class="cflow cflow--out" style="margin-bottom:40px">
@@ -247,6 +266,7 @@
         <div class="dw-specs__row"><span class="dw-specs__k">Build</span><span class="dw-specs__v">Ninguno · git push</span></div>
         <div class="dw-specs__row"><span class="dw-specs__k">Audio</span><span class="dw-specs__v">Web Audio API · Suno</span></div>
         <div class="dw-specs__row"><span class="dw-specs__k">i18n</span><span class="dw-specs__v">ES / EN · auto-detect</span></div>
+        <div class="dw-specs__row"><span class="dw-specs__k">IA</span><span class="dw-specs__v">Claude.ai (prototipo) · Claude Code</span></div>
       </div>
     </div>
 
