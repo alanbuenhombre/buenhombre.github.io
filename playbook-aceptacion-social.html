@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aceptación social en diseño · Playbook 03 · Alan Buenhombre</title>
+<meta name="description" content="Por qué la gente adopta, o no, lo que diseñamos. Seis marcos de psicología social, siete fases con compuertas, plantillas y prompts listos para usar con IA." />
+<meta name="keywords" content="playbook, aceptación social, adopción, Kelman, Katz, FIRO, TAM, UTAUT, Rogers, Cialdini, deceptive patterns, diseño de producto, marca, Alan Buenhombre" />
+<meta name="author" content="Alan Buenhombre" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://buenhombre.design/playbook-aceptacion-social.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Alan Buenhombre" />
+<meta property="og:title" content="Aceptación social en diseño · Playbook 03" />
+<meta property="og:description" content="Por qué la gente adopta, o no, lo que diseñamos. Seis marcos de psicología social, siete fases con compuertas, plantillas y prompts listos para usar con IA." />
+<meta property="og:url" content="https://buenhombre.design/playbook-aceptacion-social.html" />
+<meta property="og:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Aceptación social en diseño · Playbook 03" />
+<meta name="twitter:description" content="Por qué la gente adopta, o no, lo que diseñamos. Seis marcos de psicología social, siete fases con compuertas, plantillas y prompts listos para usar con IA." />
+<meta name="twitter:image" content="https://buenhombre.design/assets/og-cover.jpg" />
+<meta property="og:locale" content="es_LA" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="article:published_time" content="2026-11-22" />
+<meta property="article:author" content="https://buenhombre.design" />
+<meta property="article:section" content="Playbooks de diseño" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Article","headline":"Aceptación social en diseño — Playbook 03","alternativeHeadline":"Social acceptance in design","description":"Por qué la gente adopta, o no, lo que diseñamos. Seis marcos de psicología social, siete fases con compuertas, plantillas y prompts listos para usar con IA.","inLanguage":["es","en"],"datePublished":"2026-11-22","dateModified":"2026-11-22","image":"https://buenhombre.design/assets/og-cover.jpg","author":{"@type":"Person","name":"Alan Buenhombre","url":"https://buenhombre.design","jobTitle":"Lead Designer"},"publisher":{"@type":"Person","name":"Alan Buenhombre","url":"https://buenhombre.design"},"mainEntityOfPage":"https://buenhombre.design/playbook-aceptacion-social.html","url":"https://buenhombre.design/playbook-aceptacion-social.html","wordCount":2690,"timeRequired":"PT10M","keywords":"aceptación social, adopción de producto, Kelman, Katz, FIRO, TAM, UTAUT, Rogers, Cialdini, deceptive patterns, diseño de producto","about":["Aceptación social","Adopción de tecnología","Diseño de producto","Ética en diseño"],"citation":["Kelman, H. C. (1958). Compliance, identification, and internalization.","Katz, D. (1960). The functional approach to the study of attitudes.","Schutz, W. (1958). FIRO.","Davis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information technology.","Venkatesh, V. et al. (2003). User acceptance of information technology: Toward a unified view.","Rogers, E. M. (1962). Diffusion of Innovations.","Cialdini, R. B. (1984). Influence.","Brignull, H. (2023). Deceptive Patterns.","Minto, B. (1987). The Pyramid Principle."]},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Alan Buenhombre","item":"https://buenhombre.design/"},{"@type":"ListItem","position":2,"name":"Playbooks","item":"https://buenhombre.design/#playbooks"},{"@type":"ListItem","position":3,"name":"Aceptación social en diseño","item":"https://buenhombre.design/playbook-aceptacion-social.html"}]}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F2F2F0;
+  --paper:#FFFFFF;
+  --ink:#161616;
+  --ink-2:#3A3A38;
+  --muted:#6E6E6A;
+  --faint:#A3A39E;
+  --line:#DEDDD8;
+  --soft:#E7E6E2;
+  --k:#1F45D6;
+  --k-2:#1838B0;
+  --k-soft:#E4E9FA;
+  --hair:var(--line);
+  --hair-dot:var(--line);
+  --hair-strong:var(--line);
+  --accent:var(--k);
+  --surface:var(--paper);
+  --surface-2:var(--soft);
+  --sans:"Inter", ui-sans-serif, -apple-system, system-ui, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --max-w:1200px;
+  --pad:48px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (max-width:720px){ :root{ --pad:24px; } }
+
+*{box-sizing:border-box;}
+html,body{background:var(--bg);color:var(--ink);}
+body{
+  font-family:var(--sans);
+  font-weight:400; font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  font-feature-settings:"kern","liga";
+  letter-spacing:-.01em;
+  overflow-x:clip;
+}
+.mono{
+  font-family:var(--mono);
+  font-weight:400; letter-spacing:.02em;
+}
+.kicker{
+  font-family:var(--mono);
+  font-weight:400; text-transform:uppercase;
+  letter-spacing:.08em; font-size:.72rem;
+  color:var(--k);
+}
+.kicker.muted{color:var(--muted);}
+
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 var(--pad);}
+hr.hair{border:0;border-top:1px solid var(--line);margin:0;}
+hr.dot{border:0;border-top:1px solid var(--line);margin:0;}
+
+/* ============ NAV ============ */
+nav.top{
+  position:sticky;top:0;z-index:20;
+  background:rgba(242,242,240,.86);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.top-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:18px var(--pad);
+}
+.logo{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--sans);
+  font-weight:500;font-size:15px;letter-spacing:-.02em;
+  color:var(--ink);text-decoration:none;
+}
+.logo .dot-avail{
+  flex:none;
+  width:7px;height:7px;border-radius:99px;background:var(--k);
+  box-shadow:0 0 0 4px rgba(31,69,214,.15);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+.logo .avail-txt{color:var(--muted);font-size:12px;letter-spacing:0;}
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:1;}
+  50%{transform:scale(.92);opacity:.75;}
+}
+@media (prefers-reduced-motion:reduce){
+  .logo .dot-avail{animation:none;}
+}
+.top-right{display:flex;align-items:center;gap:20px;}
+.top-meta{color:var(--ink-2);font-size:12px;letter-spacing:.02em;}
+.top-meta.back{text-decoration:none;transition:color .3s var(--ease);}
+.top-meta.back:hover{color:var(--k);}
+@media (max-width:640px){.top-meta{display:none;}}
+.lang{
+  display:inline-flex;align-items:center;gap:0;
+  border:1px solid var(--line);border-radius:99px;padding:3px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  background:var(--paper);
+}
+.lang button{
+  background:transparent;border:0;color:var(--muted);
+  padding:6px 12px;border-radius:99px;cursor:pointer;
+  transition:color .3s var(--ease), background .3s var(--ease);
+  font-family:inherit;font-size:inherit;letter-spacing:inherit;
+  text-transform:uppercase;
+}
+.lang button.on{background:var(--k);color:#fff;}
+.lang button:hover{color:var(--k);}
+.lang button.on:hover{color:#fff;}
+.lang button:focus-visible{outline:2px solid var(--k);outline-offset:2px;}
+
+/* ============ HERO ============ */
+.hero{padding:clamp(80px,12vw,160px) 0 clamp(64px,10vw,120px);}
+.hero-kicker{display:flex;gap:14px;align-items:center;margin-bottom:36px;}
+.hero-kicker .bar{flex:0 0 40px;height:1px;background:var(--k);}
+h1{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(44px,7.6vw,96px);
+  line-height:1.04; letter-spacing:-.045em;
+  margin:0 0 32px;
+  text-wrap:balance;
+  max-width:18ch;
+  color:var(--ink);
+}
+h1 .accent{color:var(--k);}
+.hero-sub{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(18px,1.8vw,22px);
+  line-height:1.55; color:var(--muted);
+  max-width:60ch; letter-spacing:-.015em;
+}
+.hero-sub em{font-style:normal;color:var(--ink);}
+
+.hero-meta{
+  margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border-top:1px solid var(--line);
+}
+.hero-meta > div{
+  padding:26px 28px 0 28px;
+  border-right:1px solid var(--line);
+}
+.hero-meta > div:first-child{padding-left:0;}
+.hero-meta > div:last-child{border-right:0;padding-right:0;}
+.hero-meta .k{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--k);margin-bottom:10px;
+}
+.hero-meta .v{
+  font-family:var(--sans);font-weight:400;
+  font-size:14.5px;line-height:1.5;color:var(--ink-2);
+}
+@media (max-width:820px){
+  .hero-meta{grid-template-columns:1fr 1fr;}
+  .hero-meta > div:nth-child(2){border-right:0;}
+  .hero-meta > div:nth-child(1),.hero-meta > div:nth-child(2){
+    border-bottom:1px solid var(--line);padding-bottom:20px;
+  }
+}
+@media (max-width:520px){
+  .hero-meta{grid-template-columns:1fr;}
+  .hero-meta > div{border-right:0;border-bottom:1px solid var(--line);padding:20px 0;}
+  .hero-meta > div:last-child{border-bottom:0;}
+}
+
+/* ============ SECTION ============ */
+section.chapter{padding:clamp(90px,12vw,130px) 0;border-top:1px solid var(--line);}
+.chap-head{display:grid;grid-template-columns:180px 1fr;gap:clamp(24px,4vw,64px);align-items:baseline;margin-bottom:clamp(40px,6vw,72px);}
+.chap-num{
+  font-family:var(--mono);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--k);
+}
+h2{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(30px,4.2vw,52px);
+  line-height:1.08; letter-spacing:-.04em;
+  margin:0; text-wrap:balance; max-width:24ch;
+  color:var(--ink);
+}
+@media (max-width:720px){ .chap-head{grid-template-columns:1fr;gap:12px;} }
+
+/* body + margin */
+.body-grid{display:grid;grid-template-columns:1fr minmax(200px,260px);gap:clamp(28px,5vw,72px);}
+.prose{max-width:64ch;}
+.prose p{margin:0 0 1.15em;color:var(--ink-2);font-size:16.5px;line-height:1.75;}
+.prose strong{color:var(--ink);font-weight:500;}
+.prose em{color:var(--ink);}
+.margin-note{padding-top:6px;}
+.margin-note .label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--k);margin-bottom:12px;
+}
+.margin-note p{margin:0;color:var(--muted);font-size:14px;line-height:1.6;}
+@media (max-width:820px){
+  .body-grid{grid-template-columns:1fr;}
+  .margin-note{border-top:1px solid var(--line);padding-top:20px;}
+}
+
+/* pull quote (Polanyi) */
+.pullquote{
+  margin:56px 0 0;
+  padding:36px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:baseline;
+}
+.pullquote .brace{font-family:var(--mono);color:var(--k);font-size:36px;line-height:1;}
+.pullquote q{
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(22px,2.8vw,34px);line-height:1.2;letter-spacing:-.04em;
+  quotes:"" "";color:var(--ink);
+}
+.pullquote cite{
+  display:block;margin-top:16px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);font-style:normal;
+}
+
+/* dialectic pair */
+.dialectic{
+  margin-top:56px;
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:20px;overflow:hidden;
+}
+.dialectic > article{
+  background:var(--paper);
+  padding:clamp(28px,3.4vw,44px);
+  transition:background .4s var(--ease);
+}
+.dialectic > article:hover{background:#FAFAF8;}
+.dialectic .tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+.dialectic .tag .glyph{color:var(--k);}
+.dialectic h3{
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(22px,2.4vw,28px);line-height:1.15;letter-spacing:-.04em;
+  margin:0 0 14px;color:var(--ink);
+}
+.dialectic h3 em{font-style:normal;color:var(--k);}
+.dialectic p{margin:0;color:var(--muted);font-size:15px;line-height:1.65;max-width:42ch;}
+@media (max-width:720px){ .dialectic{grid-template-columns:1fr;} }
+
+/* framework strip */
+.framework{
+  margin-top:56px;
+  border:1px solid var(--line);
+  border-radius:20px;overflow:hidden;
+  background:var(--paper);
+  display:grid;grid-template-columns:repeat(3,1fr);
+}
+.framework .step{
+  padding:clamp(28px,3vw,40px);
+  border-right:1px solid var(--line);
+  transition:background .4s var(--ease);
+}
+.framework .step:last-child{border-right:0;}
+.framework .step:hover{background:#FAFAF8;}
+.framework .step .n{
+  font-family:var(--mono);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--k);margin-bottom:16px;
+}
+.framework .step h4{
+  font-family:var(--sans);font-weight:400;
+  font-size:20px;line-height:1.2;letter-spacing:-.03em;
+  margin:0 0 10px;color:var(--ink);
+}
+.framework .step p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+@media (max-width:820px){
+  .framework{grid-template-columns:1fr;}
+  .framework .step{border-right:0;border-bottom:1px solid var(--line);}
+  .framework .step:last-child{border-bottom:0;}
+}
+
+/* numbered rules (steps) */
+.rules{margin-top:64px;display:grid;gap:0;border-top:1px solid var(--line);}
+.rule-item{
+  padding:clamp(32px,4.5vw,56px) 0;
+  border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:120px 1fr;gap:clamp(24px,4vw,56px);
+  transition:padding-left .4s var(--ease);
+}
+.rule-item > *{min-width:0;}
+.rule-item:hover{padding-left:16px;}
+.rule-num{
+  font-family:var(--mono);
+  font-size:14px;color:var(--k);letter-spacing:.06em;
+  align-self:start;padding-top:6px;
+}
+.rule-body h3{
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(22px,2.6vw,30px);line-height:1.18;letter-spacing:-.04em;
+  margin:0 0 18px; max-width:36ch;color:var(--ink);
+}
+.rule-body h3 em{font-style:normal;color:var(--k);}
+.rule-body p{margin:0 0 14px;color:var(--ink-2);font-size:15.5px;line-height:1.7;max-width:60ch;}
+.rule-body p strong{color:var(--ink);font-weight:500;}
+.rule-body .action{
+  margin-top:24px;padding:20px 24px;
+  border:1px solid var(--line);
+  border-left:2px solid var(--k);
+  border-radius:0 16px 16px 0;
+  background:var(--paper);
+}
+.rule-body .action .lbl{
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--k);margin-bottom:10px;
+}
+.rule-body .action p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.65;}
+@media (max-width:640px){
+  .rule-item{grid-template-columns:1fr;gap:14px;}
+  .rule-item:hover{padding-left:0;}
+}
+
+/* matrix table */
+.matrix{
+  margin-top:56px;border:1px solid var(--line);overflow-x:auto;
+  border-radius:20px;background:var(--paper);
+}
+.matrix table{width:100%;border-collapse:collapse;min-width:720px;}
+.matrix th, .matrix td{
+  padding:24px 28px;vertical-align:top;text-align:left;
+  border-bottom:1px solid var(--line);
+  border-right:1px solid var(--line);
+}
+.matrix th:last-child, .matrix td:last-child{border-right:0;}
+.matrix tr:last-child td{border-bottom:0;}
+.matrix thead th{
+  background:#FAFAF8;
+  font-family:var(--mono);font-weight:400;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+.matrix td.moment{
+  font-family:var(--sans);font-weight:500;
+  font-size:15px;color:var(--ink);width:22%;letter-spacing:-.02em;
+}
+.matrix td.cell{width:39%;color:var(--muted);font-size:14.5px;line-height:1.65;}
+.matrix .cell .lbl{
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;display:block;margin-bottom:10px;
+}
+.matrix .cell.dont .lbl{color:var(--faint);}
+.matrix .cell.dont .lbl::before{content:"✕  ";}
+.matrix .cell.doo  .lbl{color:var(--k);}
+.matrix .cell.doo  .lbl::before{content:"→  ";}
+.matrix .cell.dont p{color:var(--muted);}
+.matrix .cell.doo  p{color:var(--ink-2);}
+.matrix p{margin:0;}
+
+/* bibliography */
+.biblio ol{list-style:none;padding:0;margin:0;counter-reset:ref;}
+.biblio li{
+  counter-increment:ref;
+  display:grid;grid-template-columns:64px 1fr auto;gap:24px;
+  padding:24px 0;border-top:1px solid var(--line);align-items:baseline;
+  transition:padding-left .3s var(--ease);
+}
+.biblio li:last-child{border-bottom:1px solid var(--line);}
+.biblio li:hover{padding-left:12px;}
+.biblio li::before{
+  content:"{" counter(ref,decimal-leading-zero) "}";
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  color:var(--k);
+}
+.biblio .ref{color:var(--ink-2);font-size:15.5px;line-height:1.55;max-width:70ch;}
+.biblio .ref .who{color:var(--ink);font-weight:500;}
+.biblio .ref em{color:var(--muted);font-style:italic;}
+.biblio .ref a{
+  color:var(--k);text-decoration:none;
+  border-bottom:1px solid var(--k-soft);
+  transition:border-color .3s var(--ease);
+}
+.biblio .ref a:hover{border-bottom-color:var(--k);}
+.biblio .link{
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  align-self:baseline;
+}
+.biblio .link a{color:var(--k);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s var(--ease);}
+.biblio .link a:hover{border-bottom-color:var(--k);}
+@media (max-width:640px){
+  .biblio li{grid-template-columns:1fr;gap:8px;}
+  .biblio li::before{margin-bottom:0;}
+  .biblio .link{margin-top:4px;}
+}
+
+/* footer */
+footer.foot{
+  padding:56px 0 72px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  color:var(--muted);font-size:12px;letter-spacing:.02em;
+}
+footer.foot .mono-l{font-family:var(--mono);letter-spacing:.06em;}
+footer.foot a{color:var(--k);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s var(--ease);}
+footer.foot a:hover{border-bottom-color:var(--k);}
+
+/* prompt block */
+.prompt{
+  margin-top:22px;
+  border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;
+  background:var(--paper);
+  transition:border-color .4s var(--ease);
+}
+.prompt:hover{border-color:var(--faint);}
+.prompt header{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:14px 20px;border-bottom:1px solid var(--line);
+  background:#FAFAF8;
+}
+.prompt header .lbl{
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);
+}
+.prompt header .lbl .sub{color:var(--muted);margin-left:8px;}
+.prompt .copy{
+  flex:none;
+  background:var(--paper);border:1px solid var(--line);
+  color:var(--ink-2);cursor:pointer;
+  font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 12px;border-radius:99px;
+  transition:color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+}
+.prompt .copy:hover{color:var(--k);border-color:var(--k);background:var(--k-soft);}
+.prompt .copy.done{color:#fff;border-color:var(--k);background:var(--k);}
+.prompt .copy:focus-visible{outline:2px solid var(--k);outline-offset:2px;}
+.prompt .body{
+  padding:22px 24px;margin:0;
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:13.5px; line-height:1.75;
+  color:var(--ink-2);
+  letter-spacing:0;
+  overflow-wrap:anywhere;
+}
+.prompt .body .hash{color:var(--k);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px;}
+.prompt .body .slot{
+  color:var(--ink);
+  background:var(--k-soft);
+  border-bottom:1px solid var(--k);
+  padding:0 2px;
+}
+
+::selection{background:var(--k-soft);color:var(--ink);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--k);outline-offset:3px;border-radius:2px;}
+
+/* ============ PLAYBOOK 02 · nuevos bloques ============ */
+code{
+  font-family:var(--mono);font-size:.84em;letter-spacing:0;
+  background:var(--soft);color:var(--ink);
+  padding:2px 6px;border-radius:6px;white-space:nowrap;
+}
+h3 code{font-size:.72em;vertical-align:.12em;}
+.sub-h{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);margin:56px 0 0;
+}
+.sub-h + .framework{margin-top:16px;}
+
+/* 5-layer stack */
+.layers{
+  list-style:none;margin:0;padding:0;
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:var(--paper);
+}
+.layers li{
+  position:relative;
+  display:grid;grid-template-columns:96px minmax(180px,260px) 1fr;
+  gap:clamp(16px,3vw,40px);align-items:baseline;
+  padding:clamp(22px,2.6vw,30px) clamp(24px,3vw,40px);
+  border-bottom:1px solid var(--line);
+  transition:background .4s var(--ease);
+}
+.layers li:last-child{border-bottom:0;}
+.layers li:hover{background:#FAFAF8;}
+.layers .ln{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--k);}
+.layers .lt{font-weight:400;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.03em;color:var(--ink);line-height:1.2;}
+.layers .lr{color:var(--muted);font-size:15px;line-height:1.6;}
+.layers li.truth{background:var(--k-soft);}
+.layers li.truth::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--k);}
+.pill{
+  display:inline-block;margin-left:10px;vertical-align:.15em;
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:#fff;background:var(--k);padding:4px 9px;border-radius:99px;white-space:nowrap;
+}
+@media (max-width:720px){
+  .layers li{grid-template-columns:56px 1fr;}
+  .layers .lr{grid-column:2;}
+}
+
+/* checklist */
+.checklist{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line);max-width:62ch;}
+.checklist li{border-bottom:1px solid var(--line);}
+.checklist label{
+  display:grid;grid-template-columns:22px 1fr;gap:16px;align-items:start;
+  padding:16px 0;cursor:pointer;color:var(--ink-2);font-size:15.5px;line-height:1.6;
+}
+.checklist input{
+  appearance:none;-webkit-appearance:none;margin:2px 0 0;
+  width:20px;height:20px;border:1.5px solid var(--faint);border-radius:6px;
+  background:var(--paper);display:grid;place-content:center;cursor:pointer;
+  transition:background .25s var(--ease),border-color .25s var(--ease);
+}
+.checklist input::after{
+  content:"";width:10px;height:6px;margin-top:-2px;
+  border-left:2px solid #fff;border-bottom:2px solid #fff;
+  transform:rotate(-45deg) scale(0);transition:transform .2s var(--ease);
+}
+.checklist input:checked{background:var(--k);border-color:var(--k);}
+.checklist input:checked::after{transform:rotate(-45deg) scale(1);}
+.checklist input:focus-visible{outline:2px solid var(--k);outline-offset:3px;}
+.checklist input:checked + span{color:var(--muted);}
+
+/* numbered + dash lists */
+.olist{list-style:none;margin:20px 0 0;padding:0;counter-reset:ol;max-width:62ch;}
+.olist > li{
+  counter-increment:ol;position:relative;
+  padding:12px 0 12px 52px;border-top:1px solid var(--line);
+  color:var(--ink-2);font-size:15.5px;line-height:1.65;
+}
+.olist > li:last-child{border-bottom:1px solid var(--line);}
+.olist > li::before{
+  content:counter(ol,decimal-leading-zero);
+  position:absolute;left:0;top:15px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--k);
+}
+.olist strong,.dlist strong{color:var(--ink);font-weight:500;}
+.dlist{list-style:none;margin:10px 0 0;padding:0;}
+.dlist li{position:relative;padding:4px 0 4px 22px;color:var(--ink-2);font-size:15px;line-height:1.65;}
+.dlist li::before{content:"—";position:absolute;left:0;color:var(--faint);}
+.olist.lg > li{font-size:clamp(17px,1.7vw,20px);font-weight:300;letter-spacing:-.02em;color:var(--ink);padding:20px 0 20px 96px;}
+.olist.lg > li::before{font-size:13px;top:26px;}
+@media (max-width:640px){.olist.lg > li{padding-left:52px;}}
+
+/* key fact + chain */
+.fact{
+  margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;
+  color:var(--ink-2);font-size:15px;line-height:1.6;
+}
+.fact .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 12px;}
+.chain b{
+  font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.02em;
+  background:var(--k-soft);color:var(--k-2);padding:5px 10px;border-radius:99px;white-space:nowrap;
+}
+.chain i{font-style:normal;color:var(--faint);font-family:var(--mono);font-size:12px;}
+.codeblock{margin:2px 0 12px;padding:12px 16px;background:var(--soft);border-radius:10px;overflow-x:auto;}
+.codeblock code{background:none;padding:0;font-size:12.5px;white-space:pre-wrap;}
+
+/* standalone callout */
+.callout{
+  margin-top:40px;padding:20px 24px;max-width:62ch;
+  border:1px solid var(--line);border-left:2px solid var(--k);
+  border-radius:0 16px 16px 0;background:var(--paper);
+}
+.callout .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);margin-bottom:10px;}
+.callout p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.65;}
+
+/* generic table */
+.tbl{border:1px solid var(--line);border-radius:20px;background:var(--paper);overflow-x:auto;}
+.tbl table{width:100%;border-collapse:collapse;min-width:560px;}
+.tbl th,.tbl td{padding:18px 28px;text-align:left;vertical-align:middle;border-bottom:1px solid var(--line);}
+.tbl tbody tr:last-child td{border-bottom:0;}
+.tbl tbody tr{transition:background .3s var(--ease);}
+.tbl tbody tr:hover{background:#FAFAF8;}
+.tbl thead th{
+  background:#FAFAF8;font-family:var(--mono);font-weight:400;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+.tbl td.n{width:72px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--k);}
+.tbl td.s{color:var(--ink);font-size:15.5px;letter-spacing:-.01em;}
+.tbl td.w{width:180px;}
+.own{
+  display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;padding:5px 10px;border-radius:99px;white-space:nowrap;
+  border:1px solid var(--line);color:var(--muted);background:var(--bg);
+}
+.own.d{background:var(--k-soft);border-color:var(--k-soft);color:var(--k-2);}
+.own.e{background:var(--paper);border-color:var(--ink-2);color:var(--ink);}
+@media (max-width:640px){
+  .tbl table{min-width:0;}
+  .tbl thead{display:none;}
+  .tbl tbody tr{display:grid;grid-template-columns:40px 1fr;padding:16px 20px;border-bottom:1px solid var(--line);}
+  .tbl tbody tr:last-child{border-bottom:0;}
+  .tbl td{padding:0;border:0;}
+  .tbl td.n{width:auto;padding-top:3px;}
+  .tbl td.w{grid-column:2;width:auto;margin-top:8px;}
+}
+
+/* tools */
+.tools{margin:0;border-top:1px solid var(--line);}
+.tools > div{
+  display:grid;grid-template-columns:minmax(180px,280px) 1fr;gap:clamp(16px,4vw,56px);
+  padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  transition:padding-left .3s var(--ease);
+}
+.tools > div:hover{padding-left:12px;}
+.tools dt{font-size:clamp(18px,1.8vw,22px);font-weight:300;letter-spacing:-.03em;color:var(--ink);}
+.tools dd{margin:0;color:var(--muted);font-size:15px;line-height:1.6;}
+@media (max-width:640px){.tools > div{grid-template-columns:1fr;gap:6px;}.tools > div:hover{padding-left:0;}}
+
+.framework .step h4 code{font-size:.8em;}
+.rule-body .dlist + .action,.rule-body .olist + .action,.rule-body .checklist + .action,.rule-body .fact + .action{margin-top:28px;}
+footer.foot .links{display:flex;gap:20px;flex-wrap:wrap;}
+
+@media print{
+  nav.top,.lang{display:none;}
+  section.chapter{padding:40px 0;break-inside:avoid-page;}
+  .checklist input{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+
+/* ============ PLAYBOOK 03 · bloques propios ============ */
+.framework .step.on{background:var(--k-soft);}
+.framework .step.on:hover{background:var(--k-soft);}
+.framework .step .who{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:14px;}
+.framework .step.on .who{color:var(--k-2);}
+
+/* Kelman: tres modos con su estabilidad */
+.modes{
+  margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+}
+.modes > article{background:var(--paper);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:14px;transition:background .4s var(--ease);}
+.modes > article:hover{background:#FAFAF8;}
+.modes .mn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);}
+.modes h3{font-weight:300;font-size:clamp(22px,2.4vw,28px);line-height:1.15;letter-spacing:-.04em;margin:0;color:var(--ink);}
+.modes h3 small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:6px;}
+.modes q{quotes:"“" "”";font-size:16px;line-height:1.5;color:var(--ink-2);letter-spacing:-.015em;}
+.modes .ux{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;}
+.modes .ux b{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:4px;}
+.stab{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);}
+.stab .bars{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;}
+.stab .bars i{height:6px;border-radius:99px;background:var(--soft);}
+.stab .bars i.f{background:var(--k);}
+.stab p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-2);}
+.stab p b{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);margin-right:6px;}
+@media (max-width:820px){.modes{grid-template-columns:1fr;}}
+
+/* marcos teóricos con año */
+.theory{list-style:none;margin:16px 0 0;padding:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);}
+.theory li{
+  display:grid;grid-template-columns:112px minmax(180px,260px) 1fr;gap:clamp(16px,3vw,40px);align-items:baseline;
+  padding:clamp(22px,2.6vw,30px) clamp(24px,3vw,40px);border-bottom:1px solid var(--line);transition:background .4s var(--ease);
+}
+.theory li:last-child{border-bottom:0;}
+.theory li:hover{background:#FAFAF8;}
+.theory .yr{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--k);}
+.theory .nm{font-weight:400;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.03em;color:var(--ink);line-height:1.2;}
+.theory .nm small{display:block;font-size:13.5px;letter-spacing:-.01em;color:var(--muted);margin-top:6px;font-weight:400;}
+.theory .ds{color:var(--ink-2);font-size:15px;line-height:1.65;}
+.theory .ds .chain{margin:10px 0 0;}
+@media (max-width:720px){
+  .theory li{grid-template-columns:1fr;gap:6px;}
+}
+
+/* mapa de modos de trabajo y fases */
+.phasemap{margin-top:0;}
+.phasemap td.fases{width:auto;}
+.ph{display:flex;gap:6px;flex-wrap:wrap;}
+.ph i{
+  font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  width:34px;height:28px;border-radius:8px;display:grid;place-items:center;
+  background:var(--bg);color:var(--faint);border:1px solid var(--line);
+}
+.ph i.on{background:var(--k);border-color:var(--k);color:#fff;}
+.phasemap .nt{display:block;margin-top:8px;color:var(--muted);font-size:13.5px;line-height:1.5;}
+.phasemap td.s small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:4px;}
+.phasemap td.c{color:var(--ink-2);font-size:15px;}
+@media (max-width:640px){
+  .phasemap tbody tr{grid-template-columns:1fr !important;gap:10px;}
+  .phasemap td.fases{grid-column:1 !important;}
+  .ph{gap:4px;flex-wrap:nowrap;}
+  .ph i{width:30px;height:26px;font-size:10.5px;}
+}
+
+/* fases: objetivo, fórmula y compuerta */
+.obj{font-size:16px !important;}
+.formula{
+  margin:18px 0 4px;padding:16px 20px;max-width:62ch;
+  background:var(--k-soft);border-radius:12px;
+  font-size:16px;line-height:1.6;letter-spacing:-.015em;color:var(--ink);
+}
+.formula .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--k-2);margin-bottom:6px;}
+.formula .slot{border-bottom:1px solid var(--k);padding:0 1px;}
+.rule-body .action.gate{background:var(--paper);}
+.rule-body .action.gate p{font-size:16px;color:var(--ink);letter-spacing:-.015em;}
+.asks{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--line);max-width:62ch;}
+.asks li{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.55;color:var(--ink-2);}
+.asks li b{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);padding-top:3px;}
+@media (max-width:520px){.asks li{grid-template-columns:1fr;gap:4px;}}
+.patterns{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;}
+.patterns > div{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:18px 20px;}
+.patterns b{display:block;font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--k);margin-bottom:8px;}
+.patterns p{margin:0 !important;font-size:14.5px !important;line-height:1.6 !important;color:var(--ink-2);}
+@media (max-width:820px){.patterns{grid-template-columns:1fr;}}
+.rule-body .prompt{margin-top:28px;}
+.rule-body .asks + .action,.rule-body .patterns + .action,.rule-body .formula + .action,.rule-body .chain + .action{margin-top:28px;}
+
+/* plantillas para llenar */
+.tpl-h{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:56px 0 16px;flex-wrap:wrap;}
+.tpl-h .sub-h{margin:0;}
+.tpl-h .sub-h span{color:var(--k);margin-right:8px;}
+.tpl-copy{
+  background:var(--paper);border:1px solid var(--line);color:var(--ink-2);cursor:pointer;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 13px;border-radius:99px;
+  transition:color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+}
+.tpl-copy:hover{color:var(--k);border-color:var(--k);background:var(--k-soft);}
+.tpl-copy.done{color:#fff;border-color:var(--k);background:var(--k);}
+.tpl{border:1px solid var(--line);border-radius:20px;background:var(--paper);overflow-x:auto;}
+.tpl table{width:100%;border-collapse:collapse;}
+.tpl th,.tpl td{padding:16px 20px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);border-right:1px solid var(--line);font-size:14.5px;line-height:1.55;}
+.tpl th:last-child,.tpl td:last-child{border-right:0;}
+.tpl tbody tr:last-child td{border-bottom:0;}
+.tpl thead th{background:#FAFAF8;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.tpl td{color:var(--ink-2);}
+.tpl td.r{color:var(--ink);font-weight:500;letter-spacing:-.01em;white-space:nowrap;}
+.tpl td.src{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;}
+
+.tpl td.e::after{content:"";display:block;height:1px;margin-top:12px;border-bottom:1px dashed var(--line);}
+.tpl td em{font-style:normal;color:var(--k);}
+.tpl.w7 table{min-width:980px;}
+.tpl.w5 table{min-width:820px;}
+.tpl.w4 table{min-width:640px;}
+.hyp{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--k-2);background:var(--k-soft);padding:4px 9px;border-radius:99px;white-space:nowrap;}
+
+/* ejemplo aplicado */
+.ex-note a{color:var(--k);text-decoration:none;border-bottom:1px solid var(--k-soft);}
+.ex-note a:hover{border-bottom-color:var(--k);}
+.tools dd strong{color:var(--ink);font-weight:500;}
+.tools.ex{margin-top:40px;}
+.tools.ex dt{font-size:clamp(17px,1.6vw,20px);}
+.tools.ex dd{color:var(--ink-2);}
+
+.next{margin-top:40px;}
+.next a{color:var(--k);text-decoration:none;border-bottom:1px solid var(--k-soft);}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap top-inner">
+    <a href="index.html" class="logo">
+      <span class="dot-avail" aria-hidden="true"></span>
+      <span>Alan Buenhombre</span>
+      <span class="avail-txt" data-i18n="avail">Disponible para proyectos</span>
+    </a>
+    <div class="top-right">
+      <a class="top-meta mono back" href="index.html#playbooks" data-i18n="back">← Playbooks</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="es" class="on" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-kicker">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker" data-i18n="hero.kicker">{ 03 } · Playbook · Producto y marca</span>
+    </div>
+
+    <h1 data-i18n="hero.title">Aceptación social en <span class="accent">diseño</span>.</h1>
+
+    <p class="hero-sub" data-i18n="hero.sub">La pregunta que la usabilidad no cubre: <em>¿la gente va a adoptar esto, por qué razón y qué tan estable será esa adopción?</em></p>
+
+    <dl class="hero-meta">
+      <div>
+        <div class="k" data-i18n="meta.for.k">Para</div>
+        <div class="v" data-i18n="meta.for.v">Equipos de producto, marca y diseño que lanzan algo nuevo o necesitan entender por qué algo no se adopta.</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.time.k">Duración</div>
+        <div class="v" data-i18n="meta.time.v">Lectura de 10 minutos. El modo Express cabe en una sesión.</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.based.k">Base</div>
+        <div class="v" data-i18n="meta.based.v">Seis marcos de psicología social y comunicación con décadas de respaldo, llevados a decisiones de diseño.</div>
+      </div>
+      <div>
+        <div class="k" data-i18n="meta.tools.k">Herramientas</div>
+        <div class="v" data-i18n="meta.tools.v">Claude u otro asistente de IA, y tres plantillas para Figma, FigJam o Notion.</div>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<!-- 01 · PARA QUÉ SIRVE -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c1.num">{ 01 } — Para qué sirve</div>
+      <h2 data-i18n="c1.title">Funcionar no es lo mismo que ser adoptado.</h2>
+    </div>
+
+    <div class="body-grid">
+      <div class="prose">
+        <p data-i18n="c1.p1">Un producto puede funcionar perfecto y aun así ser rechazado, o usarse solo por obligación y abandonarse cuando la presión desaparece. Este playbook sirve para ver eso <strong>antes</strong> de lanzar, no después.</p>
+        <p data-i18n="c1.p2">Está construido sobre teoría de psicología social y comunicación, no sobre opiniones de redes. Lo propio es la aplicación: cómo llevar esa teoría a decisiones de diseño, con preguntas, plantillas y prompts listos para usar con IA.</p>
+      </div>
+      <aside class="margin-note">
+        <div class="label" data-i18n="c1.note.k">Regla de oro</div>
+        <p data-i18n="c1.note.v">Todo lo que no venga de personas reales se marca como hipótesis.</p>
+      </aside>
+    </div>
+
+    <p class="sub-h" data-i18n="c1.sys">Un sistema de tres playbooks</p>
+    <div class="framework">
+      <div class="step">
+        <div class="n">01</div>
+        <h4 data-i18n="c1.s1">¿Funciona y resuelve el problema?</h4>
+        <span class="who">Design Thinking</span>
+      </div>
+      <div class="step on">
+        <div class="n">02</div>
+        <h4 data-i18n="c1.s2">¿La gente lo va a adoptar, y por qué?</h4>
+        <span class="who" data-i18n="c1.s2w">Aceptación social · este</span>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h4 data-i18n="c1.s3">¿Qué pasa cuando cruzamos ambas respuestas?</h4>
+        <span class="who" data-i18n="c1.s3w">Doble lente · próximo</span>
+      </div>
+    </div>
+
+    <blockquote class="pullquote">
+      <span class="brace" aria-hidden="true">“</span>
+      <div>
+        <q data-i18n="c1.quote">Un producto puede funcionar perfecto y aun así ser rechazado.</q>
+        <cite data-i18n="c1.cite">— Punto de partida · Aceptación social en diseño</cite>
+      </div>
+    </blockquote>
+  </div>
+</section>
+
+<!-- 02 · MARCO TEÓRICO -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c2.num">{ 02 } — Marco teórico</div>
+      <h2 data-i18n="c2.title">Seis autores: por qué aceptamos algo y qué lo frena.</h2>
+    </div>
+
+    <div class="prose">
+      <p data-i18n="c2.p1">Los tres primeros explican por qué alguien acepta algo; los otros tres, qué frena o acelera esa aceptación en productos y tecnología. El eje de todo es Kelman: una persona acepta por una de tres razones, y cada una dura distinto.</p>
+    </div>
+
+    <p class="sub-h" data-i18n="c2.k.h">Modos de aceptación · Herbert Kelman, 1958</p>
+    <div class="modes">
+      <article>
+        <span class="mn">01</span>
+        <h3><span data-i18n="c2.m1">Sumisión</span><small>compliance</small></h3>
+        <q data-i18n="c2.m1.q">Lo hago porque me toca o porque gano algo.</q>
+        <p class="ux"><b data-i18n="c2.ux">En UX se ve como</b><span data-i18n="c2.m1.ux">Software corporativo obligatorio, uso solo con incentivo.</span></p>
+        <div class="stab">
+          <div class="bars" aria-hidden="true"><i class="f"></i><i></i><i></i></div>
+          <p><b data-i18n="c2.low">Baja</b><span data-i18n="c2.m1.s">Cae al quitar la presión.</span></p>
+        </div>
+      </article>
+      <article>
+        <span class="mn">02</span>
+        <h3><span data-i18n="c2.m2">Identificación</span><small>identification</small></h3>
+        <q data-i18n="c2.m2.q">Lo hago porque lo hacen los que admiro o mi grupo.</q>
+        <p class="ux"><b data-i18n="c2.ux">En UX se ve como</b><span data-i18n="c2.m2.ux">Herramientas que definen a una comunidad, marca como señal de pertenencia.</span></p>
+        <div class="stab">
+          <div class="bars" aria-hidden="true"><i class="f"></i><i class="f"></i><i></i></div>
+          <p><b data-i18n="c2.mid">Media</b><span data-i18n="c2.m2.s">Depende del grupo.</span></p>
+        </div>
+      </article>
+      <article>
+        <span class="mn">03</span>
+        <h3><span data-i18n="c2.m3">Interiorización</span><small>internalization</small></h3>
+        <q data-i18n="c2.m3.q">Lo hago porque coincide con lo que creo.</q>
+        <p class="ux"><b data-i18n="c2.ux">En UX se ve como</b><span data-i18n="c2.m3.ux">Usuarios que defienden y recomiendan sin incentivo.</span></p>
+        <div class="stab">
+          <div class="bars" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i></div>
+          <p><b data-i18n="c2.high">Alta</b><span data-i18n="c2.m3.s">Se sostiene sin presión ni premio.</span></p>
+        </div>
+      </article>
+    </div>
+
+    <p class="sub-h" data-i18n="c2.t.h">Los otros cinco marcos</p>
+    <ul class="theory">
+      <li>
+        <span class="yr">1960</span>
+        <span class="nm"><span data-i18n="c2.t1.n">Funciones de las actitudes</span><small>Daniel Katz</small></span>
+        <span class="ds"><span data-i18n="c2.t1.d">Una actitud se adopta porque cumple una función para la persona. Si el diseño habla de una función (“ahorra tiempo”) y la persona busca otra (“quiero verme profesional”), el mensaje no llega.</span>
+          <span class="chain"><b data-i18n="c2.t1.a">Utilitaria</b><b data-i18n="c2.t1.b">Conocimiento</b><b data-i18n="c2.t1.c">Defensa del yo</b><b data-i18n="c2.t1.e">Expresión de valores</b></span></span>
+      </li>
+      <li>
+        <span class="yr">1958</span>
+        <span class="nm"><span data-i18n="c2.t2.n">Necesidades interpersonales</span><small>William Schutz · FIRO</small></span>
+        <span class="ds"><span data-i18n="c2.t2.d">En toda relación buscamos tres cosas. Un producto que toca una de ellas deja de ser solo una herramienta.</span>
+          <span class="chain"><b data-i18n="c2.t2.a">Inclusión: pertenecer</b><b data-i18n="c2.t2.b">Control: influir y sentirse competente</b><b data-i18n="c2.t2.c">Afecto: cercanía y reconocimiento</b></span></span>
+      </li>
+      <li>
+        <span class="yr">1989 · 2003</span>
+        <span class="nm"><span data-i18n="c2.t3.n">Aceptación tecnológica</span><small>TAM, Fred Davis · UTAUT, Venkatesh et al.</small></span>
+        <span class="ds" data-i18n="c2.t3.d">TAM explica la adopción con dos variables: utilidad percibida y facilidad de uso percibida. UTAUT agrega la <strong>influencia social</strong>: cuánto creen las personas importantes para el usuario que debería usar el sistema. Es el puente académico directo entre Kelman y el diseño de producto.</span>
+      </li>
+      <li>
+        <span class="yr">1962</span>
+        <span class="nm"><span data-i18n="c2.t4.n">Difusión de innovaciones</span><small>Everett Rogers</small></span>
+        <span class="ds"><span data-i18n="c2.t4.d">Cinco atributos predicen qué tan rápido se adopta algo nuevo.</span>
+          <span class="chain"><b data-i18n="c2.t4.a">Ventaja relativa</b><b data-i18n="c2.t4.b">Compatibilidad</b><b data-i18n="c2.t4.c">Complejidad</b><b data-i18n="c2.t4.e">Posibilidad de probar</b><b data-i18n="c2.t4.f">Observabilidad</b></span></span>
+      </li>
+      <li>
+        <span class="yr">1984</span>
+        <span class="nm"><span data-i18n="c2.t5.n">Prueba social</span><small>Robert Cialdini · <em>Influence</em></small></span>
+        <span class="ds" data-i18n="c2.t5.d">Cuando hay duda, miramos qué hacen otros parecidos a nosotros. Es la palanca más usada en diseño y también la más fácil de convertir en manipulación cuando la evidencia social es falsa.</span>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <div class="lbl" data-i18n="c2.eth.k">El límite ético · Harry Brignull, deceptive patterns</div>
+      <p data-i18n="c2.eth.v">Diseñar para la aceptación no es forzarla. Urgencia inventada, escasez falsa, culpa o “todos ya lo hicieron” sin ser cierto producen sumisión manipulada. Este playbook las detecta y las descarta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CÓMO USARLO -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c3.num">{ 03 } — Cómo usarlo</div>
+      <h2 data-i18n="c3.title">Tres modos de trabajo, según el tamaño del reto.</h2>
+    </div>
+
+    <div class="tbl phasemap">
+      <table>
+        <thead><tr><th data-i18n="c3.h1">Modo</th><th data-i18n="c3.h2">Cuándo</th><th data-i18n="c3.h3">Fases</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="s"><span data-i18n="c3.m1">Express</span><small data-i18n="c3.m1.t">1 sesión</small></td>
+            <td class="c" data-i18n="c3.m1.w">Idea, feature o campaña corta.</td>
+            <td class="fases"><span class="ph"><i class="on">01</i><i class="on">02</i><i>03</i><i class="on">04</i><i>05</i><i class="on">06</i><i>07</i></span></td>
+          </tr>
+          <tr>
+            <td class="s"><span data-i18n="c3.m2">Completo</span><small data-i18n="c3.m2.t">1–2 semanas</small></td>
+            <td class="c" data-i18n="c3.m2.w">Producto, marca o lanzamiento nuevo.</td>
+            <td class="fases"><span class="ph"><i class="on">01</i><i class="on">02</i><i class="on">03</i><i class="on">04</i><i class="on">05</i><i class="on">06</i><i class="on">07</i></span></td>
+          </tr>
+          <tr>
+            <td class="s"><span data-i18n="c3.m3">Retrospectivo</span><small data-i18n="c3.m3.t">producto ya lanzado</small></td>
+            <td class="c" data-i18n="c3.m3.w">Producto que ya está en el mercado.</td>
+            <td class="fases"><span class="ph"><i class="on">01</i><i class="on">02</i><i class="on">03</i><i class="on">04</i><i>05</i><i>06</i><i>07</i></span><span class="nt" data-i18n="c3.m3.n">Con datos reales de uso, abandono y comentarios.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="body-grid" style="margin-top:48px">
+      <div class="prose">
+        <p data-i18n="c3.p1">Para arrancar, copia el prompt base en Claude y describe la idea. Encuadra toda la sesión: los marcos, el modo de trabajo y las reglas. Si prefieres ir fase por fase, cada fase de la sección siguiente trae su propio prompt.</p>
+      </div>
+      <aside class="margin-note">
+        <div class="label" data-i18n="c3.note.k">Las tres reglas</div>
+        <p data-i18n="c3.note.v">Hipótesis marcadas, cada hallazgo traducido a una métrica de negocio y cualquier táctica manipuladora señalada.</p>
+      </aside>
+    </div>
+
+    <section class="prompt" aria-label="Prompt base">
+      <header>
+        <div class="lbl"><span data-i18n="pr.base">Prompt base</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+        <button class="copy" type="button" data-copy="pr.0.body" data-i18n="pr.copy">Copiar</button>
+      </header>
+      <p class="body" data-i18n="pr.0.body">Vamos a analizar la aceptación social de <span class="slot">[idea/producto]</span> con el playbook de aceptación social (Kelman, Katz, Schutz FIRO, TAM/UTAUT, Rogers, Cialdini).<br>Contexto: <span class="slot">[qué es, para quién, en qué mercado, qué sabemos de los usuarios]</span>.<br>Modo: <span class="slot">[Express / Completo / Retrospectivo]</span>.<br>Reglas: marca como hipótesis todo lo que no venga de evidencia real, traduce cada hallazgo a una métrica de negocio y señala cualquier táctica que cruce a manipulación.<br>Avancemos fase por fase y cierra cada una con su compuerta.</p>
+    </section>
+  </div>
+</section>
+
+<!-- 04 · LAS 7 FASES -->
+<section class="chapter" id="fases">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c4.num">{ 04 } — Las 7 fases</div>
+      <h2 data-i18n="c4.title">Siete fases, cada una con su compuerta.</h2>
+    </div>
+
+    <div class="prose">
+      <p data-i18n="c4.p1">Cada fase tiene un objetivo, una herramienta, una <strong>compuerta</strong> que hay que pasar antes de seguir y un prompt para la IA. Si la compuerta no se pasa, no se avanza.</p>
+    </div>
+
+    <div class="rules">
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="f.n1">Fase 01</div>
+        <div class="rule-body">
+          <h3 data-i18n="f1.h">Encuadre <em>social</em>.</h3>
+          <p class="obj" data-i18n="f1.o"><strong>Objetivo:</strong> saber quién tiene que aceptar qué y qué le cuesta socialmente hacerlo.</p>
+          <ul class="dlist">
+            <li data-i18n="f1.b1">Separar comprador, usuario y entorno social del usuario (equipo, jefe, familia, comunidad).</li>
+            <li data-i18n="f1.b2">Definir qué se pide aceptar: el producto, un hábito nuevo, compartir datos, pagar o mostrarse usándolo.</li>
+            <li data-i18n="f1.b3">Nombrar el costo social: verse ingenuo, perder estatus, romper la norma del grupo.</li>
+          </ul>
+          <div class="action gate">
+            <div class="lbl" data-i18n="gate">Compuerta</div>
+            <p data-i18n="f1.g">¿Tenemos claro quién debe aceptar qué y qué arriesga?</p>
+          </div>
+          <section class="prompt" aria-label="Prompt fase 01">
+            <header>
+              <div class="lbl"><span data-i18n="pr.f1">Prompt · Fase 01</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+              <button class="copy" type="button" data-copy="pr.1.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.1.body">Fase 01 · Encuadre social para <span class="slot">[idea]</span>.<br>1. Lista los actores: quién paga, quién usa, quién decide y quién rodea al usuario e influye en él.<br>2. Para cada actor, di qué se le pide aceptar exactamente (producto, hábito, dato, pago, exposición pública).<br>3. Para cada actor, describe qué arriesga socialmente si acepta y frente a quién.<br>Entrégalo en una tabla: actor · qué acepta · costo social · frente a quién. Marca como hipótesis lo que no esté en el contexto.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="f.n2">Fase 02</div>
+        <div class="rule-body">
+          <h3 data-i18n="f2.h">Diagnóstico de <em>modo</em> (Kelman).</h3>
+          <p class="obj" data-i18n="f2.o"><strong>Objetivo:</strong> ubicar a cada actor en sumisión, identificación o interiorización, hoy y como objetivo.</p>
+          <ul class="dlist">
+            <li data-i18n="f2.b1">Buscar señales observables, no intenciones declaradas.</li>
+            <li data-i18n="f2.b2">Nombrar el salto de modo que buscamos y si es realista.</li>
+          </ul>
+          <div class="action gate">
+            <div class="lbl" data-i18n="gate">Compuerta</div>
+            <p data-i18n="f2.g">¿El modo objetivo es alcanzable, o le estamos pidiendo amor a algo que solo será obligatorio?</p>
+          </div>
+          <section class="prompt" aria-label="Prompt fase 02">
+            <header>
+              <div class="lbl"><span data-i18n="pr.f2">Prompt · Fase 02</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+              <button class="copy" type="button" data-copy="pr.2.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.2.body">Fase 02 · Diagnóstico de modo de Kelman para <span class="slot">[idea]</span>.<br>Para cada actor de la fase 01:<br>— Modo actual (sumisión, identificación, interiorización o ninguno) y las señales observables que lo indican.<br>— Modo objetivo y por qué ese.<br>— Qué tan realista es el salto (alto, medio, bajo) y qué tendría que ser cierto para lograrlo.<br>Adviérteme si estoy buscando interiorización en algo que por naturaleza será de sumisión.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="f.n3">Fase 03</div>
+        <div class="rule-body">
+          <h3 data-i18n="f3.h">Funciones y <em>necesidades</em> (Katz + Schutz).</h3>
+          <p class="obj" data-i18n="f3.o"><strong>Objetivo:</strong> entender qué gana socialmente la persona, no solo funcionalmente.</p>
+          <ul class="dlist">
+            <li data-i18n="f3.b1">Función de Katz dominante: utilitaria, conocimiento, defensa del yo o expresión de valores.</li>
+            <li data-i18n="f3.b2">Necesidad FIRO que toca: inclusión, control o afecto.</li>
+          </ul>
+          <p class="formula"><span class="lbl" data-i18n="f3.fl">El trabajo social, en una frase</span><span data-i18n="f3.f">Cuando <span class="slot">[situación]</span>, <span class="slot">[persona]</span> lo usa para <span class="slot">[función]</span> frente a <span class="slot">[quién]</span>.</span></p>
+          <div class="action gate">
+            <div class="lbl" data-i18n="gate">Compuerta</div>
+            <p data-i18n="f3.g">¿Sabemos qué gana socialmente la persona?</p>
+          </div>
+          <section class="prompt" aria-label="Prompt fase 03">
+            <header>
+              <div class="lbl"><span data-i18n="pr.f3">Prompt · Fase 03</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+              <button class="copy" type="button" data-copy="pr.3.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.3.body">Fase 03 · Funciones y necesidades para <span class="slot">[idea]</span>.<br>Para el usuario principal:<br>1. Indica la función de Katz dominante y la secundaria, con evidencia o como hipótesis.<br>2. Indica qué necesidad FIRO toca (inclusión, control, afecto) y cómo.<br>3. Escribe 2 o 3 versiones del trabajo social con la fórmula: “Cuando [situación], [persona] lo usa para [función] frente a [quién]”.<br>4. Señala si nuestro mensaje actual habla de una función distinta a la que la persona busca.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="f.n4">Fase 04</div>
+        <div class="rule-body">
+          <h3 data-i18n="f4.h">Barreras de <em>adopción</em> (Rogers + TAM/UTAUT).</h3>
+          <p class="obj" data-i18n="f4.o"><strong>Objetivo:</strong> encontrar la barrera que más frena la aceptación.</p>
+          <p data-i18n="f4.p">Se califica cada eje como alto, medio, bajo o desconocido, con una línea de razón. La plantilla está en la <a href="#plantillas" style="color:var(--k)">sección 05</a>.</p>
+          <span class="chain"><b data-i18n="f4.a">Ventaja relativa</b><b data-i18n="f4.b">Utilidad percibida</b><b data-i18n="f4.c">Facilidad de uso</b><b data-i18n="f4.d">Compatibilidad</b><b data-i18n="f4.e">Posibilidad de probar</b><b data-i18n="f4.f">Observabilidad</b><b data-i18n="f4.g2">Influencia social</b></span>
+          <div class="action gate">
+            <div class="lbl" data-i18n="gate">Compuerta</div>
+            <p data-i18n="f4.g">¿Cuál es la barrera principal?</p>
+          </div>
+          <section class="prompt" aria-label="Prompt fase 04">
+            <header>
+              <div class="lbl"><span data-i18n="pr.f4">Prompt · Fase 04</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+              <button class="copy" type="button" data-copy="pr.4.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.4.body">Fase 04 · Barreras de adopción para <span class="slot">[idea]</span>.<br>Califica como alto, medio, bajo o desconocido, con una línea de razón:<br>ventaja relativa, utilidad percibida, facilidad de uso, compatibilidad con valores y hábitos del grupo, posibilidad de probar sin compromiso, observabilidad, influencia social.<br>Cierra con la barrera principal y por qué pesa más que las demás.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="f.n5">Fase 05</div>
+        <div class="rule-body">
+          <h3 data-i18n="f5.h">Investigación de <em>aceptación</em>.</h3>
+          <p class="obj" data-i18n="f5.o"><strong>Objetivo:</strong> convertir el diagnóstico en evidencia.</p>
+          <p data-i18n="f5.p">Preguntas por modo, sin preguntar directamente “¿te importa lo que piensen?”:</p>
+          <ul class="asks">
+            <li><b data-i18n="c2.m1">Sumisión</b><span data-i18n="f5.q1">¿Qué pasaría si dejaras de usarlo mañana?</span></li>
+            <li><b data-i18n="c2.m2">Identificación</b><span data-i18n="f5.q2">¿Quién más que conozcas lo usa? ¿Se lo has mostrado a alguien?</span></li>
+            <li><b data-i18n="c2.m3">Interiorización</b><span data-i18n="f5.q3">¿Lo recomendarías aunque no ganaras nada? ¿Qué dirías?</span></li>
+          </ul>
+          <p style="margin-top:22px" data-i18n="f5.s">Señales medibles:</p>
+          <span class="chain"><b data-i18n="f5.s1">Uso voluntario frente a obligado</b><b data-i18n="f5.s2">Compartidos</b><b data-i18n="f5.s3">Invitaciones</b><b>NPS</b><b data-i18n="f5.s4">Comportamiento al retirar incentivos</b></span>
+          <div class="action gate">
+            <div class="lbl" data-i18n="gate">Compuerta</div>
+            <p data-i18n="f5.g">¿El diagnóstico viene de evidencia o sigue siendo hipótesis?</p>
+          </div>
+          <section class="prompt" aria-label="Prompt fase 05">
+            <header>
+              <div class="lbl"><span data-i18n="pr.f5">Prompt · Fase 05</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+              <button class="copy" type="button" data-copy="pr.5.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.5.body">Fase 05 · Investigación de aceptación para <span class="slot">[idea]</span>.<br>1. Arma una guía de entrevista de 10 preguntas que distinga los tres modos de Kelman sin preguntar directamente por presión social.<br>2. Propón 5 métricas de comportamiento que revelen el modo de aceptación en datos reales.<br>3. Dime qué resultado confirmaría y cuál refutaría nuestra hipótesis de modo.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="f.n6">Fase 06</div>
+        <div class="rule-body">
+          <h3 data-i18n="f6.h">Patrones de diseño <em>por modo</em>.</h3>
+          <p class="obj" data-i18n="f6.o"><strong>Objetivo:</strong> diseñar hacia el modo objetivo sin manipular.</p>
+          <div class="patterns">
+            <div><b data-i18n="f6.a.k">Si se queda en sumisión</b><p data-i18n="f6.a">Quitar fricción, no pedir compromiso emocional, beneficio inmediato visible.</p></div>
+            <div><b data-i18n="f6.b.k">Hacia identificación</b><p data-i18n="f6.b">Comunidad, referentes visibles, señales de estatus legítimas, contenido compartible, prueba social real.</p></div>
+            <div><b data-i18n="f6.c.k">Hacia interiorización</b><p data-i18n="f6.c">Propósito claro, coherencia entre lo que la marca dice y hace, control y transparencia, sobre todo con datos.</p></div>
+          </div>
+          <div class="action gate">
+            <div class="lbl" data-i18n="gate">Compuerta</div>
+            <p data-i18n="f6.g">¿Cada patrón empuja hacia el modo objetivo sin manipular?</p>
+          </div>
+          <section class="prompt" aria-label="Prompt fase 06">
+            <header>
+              <div class="lbl"><span data-i18n="pr.f6">Prompt · Fase 06</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+              <button class="copy" type="button" data-copy="pr.6.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.6.body">Fase 06 · Patrones de diseño para <span class="slot">[idea]</span>, buscando llevar a <span class="slot">[actor]</span> de <span class="slot">[modo actual]</span> a <span class="slot">[modo objetivo]</span>.<br>1. Propón 6 patrones concretos de diseño (pantalla, flujo, mensaje o mecánica), cada uno ligado al modo que empuja y a la barrera de la fase 04 que ataca.<br>2. Pasa cada patrón por el chequeo ético: ¿informa, persuade o manipula? Descarta lo que manipula y explica por qué.<br>3. Ordena los que quedan por impacto esperado y esfuerzo.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="rule-item">
+        <div class="rule-num" data-i18n="f.n7">Fase 07</div>
+        <div class="rule-body">
+          <h3 data-i18n="f7.h"><em>Aterrizaje</em>.</h3>
+          <p class="obj" data-i18n="f7.o"><strong>Objetivo:</strong> que alguien pueda decidir con esto.</p>
+          <p class="formula"><span class="lbl">Business value statement</span><span data-i18n="f7.f">Llevar a <span class="slot">[actor]</span> de <span class="slot">[modo]</span> a <span class="slot">[modo]</span> debería mover <span class="slot">[métrica]</span> medida en <span class="slot">[unidad]</span>.</span></p>
+          <ul class="dlist">
+            <li data-i18n="f7.b1">Recomendación con principio piramidal (Barbara Minto): conclusión, argumentos, evidencia.</li>
+            <li data-i18n="f7.b2">Prueba más barata del supuesto de aceptación más riesgoso, con criterio de seguir, pivotar o parar.</li>
+          </ul>
+          <div class="action gate">
+            <div class="lbl" data-i18n="gate">Compuerta</div>
+            <p data-i18n="f7.g">¿Alguien puede decidir con esto?</p>
+          </div>
+          <section class="prompt" aria-label="Prompt fase 07">
+            <header>
+              <div class="lbl"><span data-i18n="pr.f7">Prompt · Fase 07</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+              <button class="copy" type="button" data-copy="pr.7.body" data-i18n="pr.copy">Copiar</button>
+            </header>
+            <p class="body" data-i18n="pr.7.body">Fase 07 · Aterrizaje para <span class="slot">[idea]</span>.<br>1. Escribe el business value statement: “Llevar a [actor] de [modo] a [modo] debería mover [métrica] medida en [unidad]”.<br>2. Escribe la recomendación en estructura piramidal: conclusión primero, 3 argumentos, evidencia o hipótesis de cada uno.<br>3. Diseña la prueba más barata del supuesto de aceptación más riesgoso, con qué medimos y qué resultado nos hace seguir, pivotar o parar.<br>Cierra con una línea de estado: modo de trabajo, fases cubiertas, salto de modo buscado, barrera principal y siguiente prueba.</p>
+          </section>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 05 · PLANTILLAS -->
+<section class="chapter" id="plantillas">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c5.num">{ 05 } — Plantillas</div>
+      <h2 data-i18n="c5.title">Tres tablas para llenar en cada caso.</h2>
+    </div>
+
+    <div class="prose">
+      <p data-i18n="c5.p1">Cada botón copia la tabla en Markdown, lista para pegar en Notion, FigJam o en la conversación con la IA.</p>
+    </div>
+
+    <div class="tpl-h">
+      <p class="sub-h"><span>A</span><span data-i18n="c5.t1">Diagnóstico de modo por actor</span></p>
+      <button class="tpl-copy" type="button" data-table="tpl1" data-i18n="tpl.copy">Copiar en Markdown</button>
+    </div>
+    <div class="tpl w7">
+      <table id="tpl1">
+        <thead><tr><th data-i18n="c5.a1">Actor</th><th data-i18n="c5.a2">Qué acepta</th><th data-i18n="c5.a3">Modo actual</th><th data-i18n="c5.a4">Señales</th><th data-i18n="c5.a5">Modo objetivo</th><th data-i18n="c5.a6">Realismo del salto</th><th data-i18n="c5.a7">Evidencia o hipótesis</th></tr></thead>
+        <tbody>
+          <tr><td class="r" data-i18n="c5.r1">Usuario</td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td></tr>
+          <tr><td class="r" data-i18n="c5.r2">Comprador</td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td></tr>
+          <tr><td class="r" data-i18n="c5.r3">Entorno social</td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tpl-h">
+      <p class="sub-h"><span>B</span><span data-i18n="c5.t2">Barreras de adopción</span></p>
+      <button class="tpl-copy" type="button" data-table="tpl2" data-i18n="tpl.copy">Copiar en Markdown</button>
+    </div>
+    <div class="tpl w4">
+      <table id="tpl2">
+        <thead><tr><th data-i18n="c5.b1">Eje</th><th data-i18n="c5.b2">Fuente</th><th data-i18n="c5.b3">Calificación</th><th data-i18n="c5.b4">Por qué</th></tr></thead>
+        <tbody>
+          <tr><td class="r" data-i18n="f4.a">Ventaja relativa</td><td class="src">Rogers</td><td class="e"></td><td class="e"></td></tr>
+          <tr><td class="r" data-i18n="f4.b">Utilidad percibida</td><td class="src">TAM</td><td class="e"></td><td class="e"></td></tr>
+          <tr><td class="r" data-i18n="f4.c">Facilidad de uso</td><td class="src">TAM / Rogers</td><td class="e"></td><td class="e"></td></tr>
+          <tr><td class="r" data-i18n="c5.b5">Compatibilidad con valores y hábitos</td><td class="src">Rogers</td><td class="e"></td><td class="e"></td></tr>
+          <tr><td class="r" data-i18n="f4.e">Posibilidad de probar</td><td class="src">Rogers</td><td class="e"></td><td class="e"></td></tr>
+          <tr><td class="r" data-i18n="f4.f">Observabilidad</td><td class="src">Rogers</td><td class="e"></td><td class="e"></td></tr>
+          <tr><td class="r" data-i18n="f4.g2">Influencia social</td><td class="src">UTAUT / Kelman</td><td class="e"></td><td class="e"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tpl-h">
+      <p class="sub-h"><span>C</span><span data-i18n="c5.t3">Chequeo ético de tácticas</span></p>
+      <button class="tpl-copy" type="button" data-table="tpl3" data-i18n="tpl.copy">Copiar en Markdown</button>
+    </div>
+    <div class="tpl w4">
+      <table id="tpl3">
+        <thead><tr><th data-i18n="c5.c1">Táctica</th><th data-i18n="c5.c2">Modo que empuja</th><th data-i18n="c5.c3">¿Informa, persuade o manipula?</th><th data-i18n="c5.c4">Decisión</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="c5.c5">Ej.: contador de personas usando el producto ahora</td><td data-i18n="c2.m2">Identificación</td><td data-i18n="c5.c6">Persuade si la cifra es real; manipula si es inventada</td><td data-i18n="c5.c7">Usar solo con datos reales</td></tr>
+          <tr><td class="e"></td><td class="e"></td><td class="e"></td><td class="e"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · EJEMPLO APLICADO -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c6.num">{ 06 } — Ejemplo aplicado</div>
+      <h2 data-i18n="c6.title">Paper Trail, en modo Express.</h2>
+    </div>
+
+    <div class="body-grid">
+      <div class="prose">
+        <p data-i18n="c6.p1">Paper Trail es un juego de papercraft con un jeep, pensado como activación de marca en un punto de exhibición. Lo pasé por el playbook en modo Express.</p>
+      </div>
+      <aside class="margin-note ex-note">
+        <div class="label" data-i18n="c6.note.k">Estado</div>
+        <p data-i18n="c6.note.v"><span class="hyp">Hipótesis</span><br><br>Todavía no se ha probado con personas. <a href="paper-trail.html">Ver el caso →</a></p>
+      </aside>
+    </div>
+
+    <div class="tpl w5" style="margin-top:40px">
+      <table>
+        <thead><tr><th data-i18n="c5.a1">Actor</th><th data-i18n="c5.a2">Qué acepta</th><th data-i18n="c5.a3">Modo actual</th><th data-i18n="c5.a5">Modo objetivo</th><th data-i18n="c6.h5">Costo social</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="r" data-i18n="c6.r1">Jugador</td>
+            <td data-i18n="c6.r1a">Detenerse y jugar en público</td>
+            <td data-i18n="c6.r1b">Ninguno: no conoce la pieza</td>
+            <td data-i18n="c6.r1c"><em>Identificación:</em> “juego porque otros juegan y quiero aparecer en el ranking”</td>
+            <td data-i18n="c6.r1d">Exponerse y perder frente a desconocidos</td>
+          </tr>
+          <tr>
+            <td class="r" data-i18n="c6.r2">Marca o agencia BTL</td>
+            <td data-i18n="c6.r2a">Pagar por un juego en vez de sus tácticas de siempre</td>
+            <td data-i18n="c6.r2b"><em>Sumisión utilitaria:</em> “lo compro si me da leads”</td>
+            <td data-i18n="c6.r2c">Se queda en sumisión</td>
+            <td data-i18n="c6.r2d">Arriesgar presupuesto en algo nuevo frente a su jefe</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <dl class="tools ex">
+      <div><dt data-i18n="c6.k1">Función y necesidad del jugador</dt><dd data-i18n="c6.v1">Expresión de valores y defensa del yo (Katz); inclusión y control (FIRO).</dd></div>
+      <div><dt data-i18n="c6.k2">Barrera principal</dt><dd data-i18n="c6.v2"><strong>Observabilidad negativa:</strong> miedo a hacer el ridículo en público.</dd></div>
+      <div><dt data-i18n="c6.k3">Patrones</dt><dd data-i18n="c6.v3">Partidas cortas, ranking con alias en lugar de nombre real y una pantalla que muestra a otros jugando para normalizar la participación.</dd></div>
+      <div><dt data-i18n="c6.k4">Para la marca</dt><dd data-i18n="c6.v4">No pedirle que “crea” en los juegos. Entregarle un reporte de leads por hora y tiempo de permanencia.</dd></div>
+      <div><dt data-i18n="c6.k5">Supuesto más riesgoso</dt><dd data-i18n="c6.v5">Que la gente juegue frente a otros sin incentivo.</dd></div>
+      <div><dt data-i18n="c6.k6">Prueba más barata</dt><dd data-i18n="c6.v6">Un punto piloto de un día midiendo la tasa de personas que se detienen, con premio y sin premio.</dd></div>
+      <div><dt>Business value statement</dt><dd data-i18n="c6.v7">Llevar al jugador de ninguno a identificación debería mover la tasa de parada y los leads por hora del punto de exhibición.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 07 · CHEQUEO DE CIERRE -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c7.num">{ 07 } — Chequeo de cierre</div>
+      <h2 data-i18n="c7.title">Cinco preguntas antes de dar algo por cierto.</h2>
+    </div>
+
+    <div class="prose">
+      <p data-i18n="c7.p1">Cada afirmación sobre aceptación debe resistir estas cinco preguntas. Si no resiste, se marca como hipótesis o como hueco.</p>
+    </div>
+
+    <ol class="olist lg">
+      <li data-i18n="c7.q1">¿Quién, concretamente, está en ese modo?</li>
+      <li data-i18n="c7.q2">¿Qué comportamiento lo demuestra?</li>
+      <li data-i18n="c7.q3">¿Qué pasaría si quitamos el incentivo o la obligación?</li>
+      <li data-i18n="c7.q4">¿Frente a quién gana o pierde algo la persona al usarlo?</li>
+      <li data-i18n="c7.q5">¿Alguna táctica cruza a manipulación?</li>
+    </ol>
+
+    <section class="prompt" aria-label="Prompt chequeo de cierre" style="margin-top:40px">
+      <header>
+        <div class="lbl"><span data-i18n="pr.close">Prompt · Chequeo de cierre</span> <span class="sub" data-i18n="pr.hint">Llena los [campos] · Claude · ChatGPT · Gemini</span></div>
+        <button class="copy" type="button" data-copy="pr.8.body" data-i18n="pr.copy">Copiar</button>
+      </header>
+      <p class="body" data-i18n="pr.8.body">Pasa el análisis de <span class="slot">[idea]</span> por el chequeo de cierre del playbook de aceptación social. Para cada afirmación importante, responde las 5 preguntas y marca como hipótesis o hueco lo que no resista.</p>
+    </section>
+
+    <div class="callout next">
+      <div class="lbl" data-i18n="c7.next.k">Siguiente en el sistema</div>
+      <p data-i18n="c7.next.v">Si la idea aún no está clara como problema, primero Design Thinking. Al terminar, el playbook de doble lente cruzará ambos resultados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · FUENTES -->
+<section class="chapter biblio">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num" data-i18n="c8.num">{ 08 } — Fuentes</div>
+      <h2 data-i18n="c8.title">Fuentes.</h2>
+    </div>
+
+    <ol>
+      <li><div class="ref"><span class="who">Kelman, H. C. (1958).</span> Compliance, identification, and internalization: Three processes of attitude change. <em>Journal of Conflict Resolution</em>, 2(1).</div></li>
+      <li><div class="ref"><span class="who">Katz, D. (1960).</span> The functional approach to the study of attitudes. <em>Public Opinion Quarterly</em>, 24(2).</div></li>
+      <li><div class="ref"><span class="who">Schutz, W. (1958).</span> <em>FIRO: A Three-Dimensional Theory of Interpersonal Behavior</em>.</div></li>
+      <li><div class="ref"><span class="who">Davis, F. D. (1989).</span> Perceived usefulness, perceived ease of use, and user acceptance of information technology. <em>MIS Quarterly</em>, 13(3).</div></li>
+      <li><div class="ref"><span class="who">Venkatesh, V., Morris, M., Davis, G. y Davis, F. (2003).</span> User acceptance of information technology: Toward a unified view. <em>MIS Quarterly</em>, 27(3).</div></li>
+      <li><div class="ref"><span class="who">Rogers, E. M. (1962).</span> <em>Diffusion of Innovations</em>.</div></li>
+      <li><div class="ref"><span class="who">Cialdini, R. B. (1984).</span> <em>Influence: The Psychology of Persuasion</em>.</div></li>
+      <li><div class="ref"><span class="who">Brignull, H. (2023).</span> <em>Deceptive Patterns</em>.</div></li>
+      <li><div class="ref"><span class="who">Minto, B. (1987).</span> <em>The Pyramid Principle</em>.</div></li>
+    </ol>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap" style="max-width:var(--max-w);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;width:100%;">
+    <div class="mono-l" data-i18n="foot.l">Playbook 03 · Aceptación social en diseño.</div>
+    <div class="links">
+      <a href="paper-trail.html" data-i18n="foot.case">Caso: Paper Trail →</a>
+      <a href="index.html#playbooks" data-i18n="foot.more">Más playbooks →</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  es: {}, /* el español se toma del HTML al cargar */
+  en: {
+    "avail":"Available for projects",
+    "back":"← Playbooks",
+    "hero.kicker":"{ 03 } · Playbook · Product and brand",
+    "hero.title":"Social acceptance in <span class=\"accent\">design</span>.",
+    "hero.sub":"The question usability doesn’t answer: <em>will people adopt this, for what reason, and how stable will that adoption be?</em>",
+    "meta.for.k":"For","meta.for.v":"Product, brand and design teams launching something new, or trying to understand why something isn’t being adopted.",
+    "meta.time.k":"Length","meta.time.v":"10-minute read. Express mode fits in one session.",
+    "meta.based.k":"Foundation","meta.based.v":"Six frameworks from social psychology and communication, with decades of backing, turned into design decisions.",
+    "meta.tools.k":"Tools","meta.tools.v":"Claude or another AI assistant, and three templates for Figma, FigJam or Notion.",
+
+    "c1.num":"{ 01 } — What it’s for",
+    "c1.title":"Working is not the same as being adopted.",
+    "c1.p1":"A product can work perfectly and still be rejected, or be used only out of obligation and dropped once the pressure goes away. This playbook helps you see that <strong>before</strong> launch, not after.",
+    "c1.p2":"It’s built on social psychology and communication theory, not on social media opinions. What’s mine is the application: how to turn that theory into design decisions, with questions, templates and prompts ready to use with AI.",
+    "c1.note.k":"Golden rule",
+    "c1.note.v":"Anything that doesn’t come from real people is marked as a hypothesis.",
+    "c1.sys":"A system of three playbooks",
+    "c1.s1":"Does it work and solve the problem?",
+    "c1.s2":"Will people adopt it, and why?",
+    "c1.s2w":"Social acceptance · this one",
+    "c1.s3":"What happens when we cross both answers?",
+    "c1.s3w":"Double lens · coming next",
+    "c1.quote":"A product can work perfectly and still be rejected.",
+    "c1.cite":"— Starting point · Social acceptance in design",
+
+    "c2.num":"{ 02 } — Theory",
+    "c2.title":"Six authors: why we accept something and what holds it back.",
+    "c2.p1":"The first three explain why someone accepts something; the other three, what slows down or speeds up that acceptance in products and technology. Kelman is the backbone: a person accepts for one of three reasons, and each one lasts differently.",
+    "c2.k.h":"Modes of acceptance · Herbert Kelman, 1958",
+    "c2.m1":"Compliance","c2.m2":"Identification","c2.m3":"Internalization",
+    "c2.m1.q":"I do it because I have to, or because I get something.",
+    "c2.m2.q":"I do it because the people I admire, or my group, do it.",
+    "c2.m3.q":"I do it because it matches what I believe.",
+    "c2.ux":"In UX it looks like",
+    "c2.m1.ux":"Mandatory corporate software, use only with an incentive.",
+    "c2.m2.ux":"Tools that define a community, a brand as a sign of belonging.",
+    "c2.m3.ux":"Users who defend and recommend it with no incentive.",
+    "c2.low":"Low","c2.mid":"Medium","c2.high":"High",
+    "c2.m1.s":"Drops when the pressure is removed.",
+    "c2.m2.s":"Depends on the group.",
+    "c2.m3.s":"Holds up with no pressure or reward.",
+    "c2.t.h":"The other five frameworks",
+    "c2.t1.n":"Functions of attitudes",
+    "c2.t1.d":"An attitude is adopted because it serves a function for the person. If the design speaks to one function (“saves time”) and the person is after another (“I want to look professional”), the message doesn’t land.",
+    "c2.t1.a":"Utilitarian","c2.t1.b":"Knowledge","c2.t1.c":"Ego defense","c2.t1.e":"Value expression",
+    "c2.t2.n":"Interpersonal needs",
+    "c2.t2.d":"In every relationship we look for three things. A product that touches one of them stops being just a tool.",
+    "c2.t2.a":"Inclusion: belonging","c2.t2.b":"Control: influence and competence","c2.t2.c":"Affection: closeness and recognition",
+    "c2.t3.n":"Technology acceptance",
+    "c2.t3.d":"TAM explains adoption with two variables: perceived usefulness and perceived ease of use. UTAUT adds <strong>social influence</strong>: how much the people who matter to the user believe they should use the system. It’s the direct academic bridge between Kelman and product design.",
+    "c2.t4.n":"Diffusion of innovations",
+    "c2.t4.d":"Five attributes predict how fast something new gets adopted.",
+    "c2.t4.a":"Relative advantage","c2.t4.b":"Compatibility","c2.t4.c":"Complexity","c2.t4.e":"Trialability","c2.t4.f":"Observability",
+    "c2.t5.n":"Social proof",
+    "c2.t5.d":"When in doubt, we look at what people like us are doing. It’s the most used lever in design, and also the easiest to turn into manipulation when the social evidence is fake.",
+    "c2.eth.k":"The ethical limit · Harry Brignull, deceptive patterns",
+    "c2.eth.v":"Designing for acceptance is not forcing it. Made-up urgency, false scarcity, guilt or “everyone already did it” when it isn’t true produce manipulated compliance. This playbook spots them and rules them out.",
+
+    "c3.num":"{ 03 } — How to use it",
+    "c3.title":"Three working modes, depending on the size of the challenge.",
+    "c3.h1":"Mode","c3.h2":"When","c3.h3":"Phases",
+    "c3.m1":"Express","c3.m1.t":"1 session","c3.m1.w":"An idea, a feature or a short campaign.",
+    "c3.m2":"Full","c3.m2.t":"1–2 weeks","c3.m2.w":"A new product, brand or launch.",
+    "c3.m3":"Retrospective","c3.m3.t":"already launched","c3.m3.w":"A product that’s already on the market.",
+    "c3.m3.n":"With real usage, churn and feedback data.",
+    "c3.p1":"To start, paste the base prompt into Claude and describe the idea. It frames the whole session: the frameworks, the working mode and the rules. If you’d rather go phase by phase, each phase in the next section has its own prompt.",
+    "c3.note.k":"The three rules",
+    "c3.note.v":"Hypotheses flagged, every finding translated into a business metric, and any manipulative tactic called out.",
+    "pr.base":"Base prompt",
+    "pr.hint":"Fill in the [fields] · Claude · ChatGPT · Gemini",
+    "pr.copy":"Copy",
+    "pr.0.body":"Let’s analyze the social acceptance of <span class=\"slot\">[idea/product]</span> using the social acceptance playbook (Kelman, Katz, Schutz FIRO, TAM/UTAUT, Rogers, Cialdini).<br>Context: <span class=\"slot\">[what it is, who it’s for, which market, what we know about the users]</span>.<br>Mode: <span class=\"slot\">[Express / Full / Retrospective]</span>.<br>Rules: mark as a hypothesis anything that doesn’t come from real evidence, translate every finding into a business metric, and flag any tactic that crosses into manipulation.<br>Let’s go phase by phase and close each one with its gate.",
+
+    "c4.num":"{ 04 } — The 7 phases",
+    "c4.title":"Seven phases, each with its own gate.",
+    "c4.p1":"Each phase has a goal, a tool, a <strong>gate</strong> you have to pass before moving on, and a prompt for the AI. If the gate isn’t passed, you don’t move forward.",
+    "gate":"Gate",
+    "f.n1":"Phase 01","f.n2":"Phase 02","f.n3":"Phase 03","f.n4":"Phase 04","f.n5":"Phase 05","f.n6":"Phase 06","f.n7":"Phase 07",
+    "pr.f1":"Prompt · Phase 01","pr.f2":"Prompt · Phase 02","pr.f3":"Prompt · Phase 03","pr.f4":"Prompt · Phase 04","pr.f5":"Prompt · Phase 05","pr.f6":"Prompt · Phase 06","pr.f7":"Prompt · Phase 07",
+
+    "f1.h":"<em>Social</em> framing.",
+    "f1.o":"<strong>Goal:</strong> know who has to accept what, and what it costs them socially.",
+    "f1.b1":"Separate the buyer, the user and the user’s social circle (team, boss, family, community).",
+    "f1.b2":"Define what you’re asking them to accept: the product, a new habit, sharing data, paying, or being seen using it.",
+    "f1.b3":"Name the social cost: looking naive, losing status, breaking the group’s norm.",
+    "f1.g":"Are we clear on who has to accept what, and what they risk?",
+    "pr.1.body":"Phase 01 · Social framing for <span class=\"slot\">[idea]</span>.<br>1. List the actors: who pays, who uses, who decides, and who surrounds and influences the user.<br>2. For each actor, say exactly what they’re being asked to accept (product, habit, data, payment, public exposure).<br>3. For each actor, describe what they risk socially if they accept, and in front of whom.<br>Deliver it as a table: actor · what they accept · social cost · in front of whom. Mark as a hypothesis anything that isn’t in the context.",
+
+    "f2.h":"<em>Mode</em> diagnosis (Kelman).",
+    "f2.o":"<strong>Goal:</strong> place each actor in compliance, identification or internalization, today and as a target.",
+    "f2.b1":"Look for observable signals, not stated intentions.",
+    "f2.b2":"Name the mode shift we’re after, and whether it’s realistic.",
+    "f2.g":"Is the target mode reachable, or are we asking for love from something that will only ever be mandatory?",
+    "pr.2.body":"Phase 02 · Kelman mode diagnosis for <span class=\"slot\">[idea]</span>.<br>For each actor from phase 01:<br>— Current mode (compliance, identification, internalization or none) and the observable signals that point to it.<br>— Target mode and why that one.<br>— How realistic the shift is (high, medium, low) and what would have to be true to get there.<br>Warn me if I’m looking for internalization in something that will by nature be compliance.",
+
+    "f3.h":"Functions and <em>needs</em> (Katz + Schutz).",
+    "f3.o":"<strong>Goal:</strong> understand what the person gains socially, not just functionally.",
+    "f3.b1":"Dominant Katz function: utilitarian, knowledge, ego defense or value expression.",
+    "f3.b2":"The FIRO need it touches: inclusion, control or affection.",
+    "f3.fl":"The social job, in one sentence",
+    "f3.f":"When <span class=\"slot\">[situation]</span>, <span class=\"slot\">[person]</span> uses it to <span class=\"slot\">[function]</span> in front of <span class=\"slot\">[whom]</span>.",
+    "f3.g":"Do we know what the person gains socially?",
+    "pr.3.body":"Phase 03 · Functions and needs for <span class=\"slot\">[idea]</span>.<br>For the main user:<br>1. State the dominant and secondary Katz function, with evidence or as a hypothesis.<br>2. State which FIRO need it touches (inclusion, control, affection) and how.<br>3. Write 2 or 3 versions of the social job using the formula: “When [situation], [person] uses it to [function] in front of [whom]”.<br>4. Point out whether our current message speaks to a different function than the one the person is after.",
+
+    "f4.h":"<em>Adoption</em> barriers (Rogers + TAM/UTAUT).",
+    "f4.o":"<strong>Goal:</strong> find the barrier that holds acceptance back the most.",
+    "f4.p":"Rate each axis as high, medium, low or unknown, with a one-line reason. The template is in <a href=\"#plantillas\" style=\"color:var(--k)\">section 05</a>.",
+    "f4.a":"Relative advantage","f4.b":"Perceived usefulness","f4.c":"Ease of use","f4.d":"Compatibility","f4.e":"Trialability","f4.f":"Observability","f4.g2":"Social influence",
+    "f4.g":"What’s the main barrier?",
+    "pr.4.body":"Phase 04 · Adoption barriers for <span class=\"slot\">[idea]</span>.<br>Rate as high, medium, low or unknown, with a one-line reason:<br>relative advantage, perceived usefulness, ease of use, compatibility with the group’s values and habits, ability to try it without commitment, observability, social influence.<br>Close with the main barrier and why it weighs more than the others.",
+
+    "f5.h":"<em>Acceptance</em> research.",
+    "f5.o":"<strong>Goal:</strong> turn the diagnosis into evidence.",
+    "f5.p":"Questions by mode, without asking directly “do you care what others think?”:",
+    "f5.q1":"What would happen if you stopped using it tomorrow?",
+    "f5.q2":"Who else you know uses it? Have you shown it to anyone?",
+    "f5.q3":"Would you recommend it even if you got nothing for it? What would you say?",
+    "f5.s":"Measurable signals:",
+    "f5.s1":"Voluntary vs. mandatory use","f5.s2":"Shares","f5.s3":"Invites","f5.s4":"Behavior when incentives are removed",
+    "f5.g":"Does the diagnosis come from evidence, or is it still a hypothesis?",
+    "pr.5.body":"Phase 05 · Acceptance research for <span class=\"slot\">[idea]</span>.<br>1. Build a 10-question interview guide that tells Kelman’s three modes apart without asking directly about social pressure.<br>2. Propose 5 behavioral metrics that reveal the mode of acceptance in real data.<br>3. Tell me which result would confirm and which would refute our mode hypothesis.",
+
+    "f6.h":"Design patterns <em>by mode</em>.",
+    "f6.o":"<strong>Goal:</strong> design toward the target mode without manipulating.",
+    "f6.a.k":"If it stays in compliance","f6.a":"Remove friction, don’t ask for emotional commitment, make the benefit immediate and visible.",
+    "f6.b.k":"Toward identification","f6.b":"Community, visible role models, legitimate status signals, shareable content, real social proof.",
+    "f6.c.k":"Toward internalization","f6.c":"A clear purpose, consistency between what the brand says and does, control and transparency, especially with data.",
+    "f6.g":"Does each pattern push toward the target mode without manipulating?",
+    "pr.6.body":"Phase 06 · Design patterns for <span class=\"slot\">[idea]</span>, aiming to move <span class=\"slot\">[actor]</span> from <span class=\"slot\">[current mode]</span> to <span class=\"slot\">[target mode]</span>.<br>1. Propose 6 concrete design patterns (screen, flow, message or mechanic), each tied to the mode it pushes and the phase 04 barrier it tackles.<br>2. Run each pattern through the ethics check: does it inform, persuade or manipulate? Drop what manipulates and explain why.<br>3. Rank the rest by expected impact and effort.",
+
+    "f7.h":"<em>Landing</em> it.",
+    "f7.o":"<strong>Goal:</strong> make it possible for someone to decide with this.",
+    "f7.f":"Moving <span class=\"slot\">[actor]</span> from <span class=\"slot\">[mode]</span> to <span class=\"slot\">[mode]</span> should move <span class=\"slot\">[metric]</span> measured in <span class=\"slot\">[unit]</span>.",
+    "f7.b1":"A recommendation using the pyramid principle (Barbara Minto): conclusion, arguments, evidence.",
+    "f7.b2":"The cheapest test of the riskiest acceptance assumption, with criteria to continue, pivot or stop.",
+    "f7.g":"Can someone decide with this?",
+    "pr.7.body":"Phase 07 · Landing for <span class=\"slot\">[idea]</span>.<br>1. Write the business value statement: “Moving [actor] from [mode] to [mode] should move [metric] measured in [unit]”.<br>2. Write the recommendation in pyramid structure: conclusion first, 3 arguments, evidence or hypothesis for each.<br>3. Design the cheapest test of the riskiest acceptance assumption: what we measure and which result makes us continue, pivot or stop.<br>Close with a status line: working mode, phases covered, mode shift sought, main barrier and next test.",
+
+    "c5.num":"{ 05 } — Templates",
+    "c5.title":"Three tables to fill in for every case.",
+    "c5.p1":"Each button copies the table as Markdown, ready to paste into Notion, FigJam or your conversation with the AI.",
+    "tpl.copy":"Copy as Markdown",
+    "c5.t1":"Mode diagnosis by actor","c5.t2":"Adoption barriers","c5.t3":"Ethics check for tactics",
+    "c5.a1":"Actor","c5.a2":"What they accept","c5.a3":"Current mode","c5.a4":"Signals","c5.a5":"Target mode","c5.a6":"How realistic the shift is","c5.a7":"Evidence or hypothesis",
+    "c5.r1":"User","c5.r2":"Buyer","c5.r3":"Social circle",
+    "c5.b1":"Axis","c5.b2":"Source","c5.b3":"Rating","c5.b4":"Why","c5.b5":"Compatibility with values and habits",
+    "c5.c1":"Tactic","c5.c2":"Mode it pushes","c5.c3":"Inform, persuade or manipulate?","c5.c4":"Decision",
+    "c5.c5":"E.g.: a counter of people using the product right now","c5.c6":"Persuades if the number is real; manipulates if it’s made up","c5.c7":"Use only with real data",
+
+    "c6.num":"{ 06 } — Applied example",
+    "c6.title":"Paper Trail, in Express mode.",
+    "c6.p1":"Paper Trail is a papercraft game with a jeep, designed as a brand activation at a showroom or exhibition point. I ran it through the playbook in Express mode.",
+    "c6.note.k":"Status",
+    "c6.note.v":"<span class=\"hyp\">Hypothesis</span><br><br>Not tested with people yet. <a href=\"paper-trail.html\">See the case →</a>",
+    "c6.h5":"Social cost",
+    "c6.r1":"Player","c6.r1a":"Stopping to play in public","c6.r1b":"None: they don’t know the piece","c6.r1c":"<em>Identification:</em> “I play because others play and I want to be on the leaderboard”","c6.r1d":"Being exposed and losing in front of strangers",
+    "c6.r2":"Brand or BTL agency","c6.r2a":"Paying for a game instead of their usual tactics","c6.r2b":"<em>Utilitarian compliance:</em> “I’ll buy it if it gets me leads”","c6.r2c":"Stays in compliance","c6.r2d":"Risking budget on something new in front of their boss",
+    "c6.k1":"Player’s function and need","c6.v1":"Value expression and ego defense (Katz); inclusion and control (FIRO).",
+    "c6.k2":"Main barrier","c6.v2":"<strong>Negative observability:</strong> the fear of looking silly in public.",
+    "c6.k3":"Patterns","c6.v3":"Short rounds, a leaderboard with aliases instead of real names, and a screen showing others playing to normalize taking part.",
+    "c6.k4":"For the brand","c6.v4":"Don’t ask them to “believe” in games. Give them a report of leads per hour and dwell time.",
+    "c6.k5":"Riskiest assumption","c6.v5":"That people will play in front of others without an incentive.",
+    "c6.k6":"Cheapest test","c6.v6":"A one-day pilot point measuring the rate of people who stop, with and without a prize.",
+    "c6.v7":"Moving the player from none to identification should move the stop rate and the leads per hour at the exhibition point.",
+
+    "c7.num":"{ 07 } — Closing check",
+    "c7.title":"Five questions before taking anything as true.",
+    "c7.p1":"Every claim about acceptance has to hold up against these five questions. If it doesn’t, it gets marked as a hypothesis or a gap.",
+    "c7.q1":"Who, specifically, is in that mode?",
+    "c7.q2":"What behavior proves it?",
+    "c7.q3":"What would happen if we removed the incentive or the obligation?",
+    "c7.q4":"In front of whom does the person gain or lose something by using it?",
+    "c7.q5":"Does any tactic cross into manipulation?",
+    "pr.close":"Prompt · Closing check",
+    "pr.8.body":"Run the analysis of <span class=\"slot\">[idea]</span> through the closing check of the social acceptance playbook. For each important claim, answer the 5 questions and mark as a hypothesis or gap whatever doesn’t hold up.",
+    "c7.next.k":"Next in the system",
+    "c7.next.v":"If the idea isn’t clear as a problem yet, start with Design Thinking. Afterwards, the double lens playbook will cross both results.",
+
+    "c8.num":"{ 08 } — Sources",
+    "c8.title":"Sources.",
+
+    "foot.l":"Playbook 03 · Social acceptance in design.",
+    "foot.case":"Case: Paper Trail →",
+    "foot.more":"More playbooks →"
+  }
+};
+
+(function(){
+  const buttons = document.querySelectorAll('.lang button');
+  const nodes = document.querySelectorAll('[data-i18n]');
+  nodes.forEach(n => { const k = n.getAttribute('data-i18n'); if (!(k in T.es)) T.es[k] = n.innerHTML; });
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    nodes.forEach(n => {
+      const val = T[lang] && T[lang][n.getAttribute('data-i18n')];
+      if (val !== undefined) n.innerHTML = val;
+    });
+    buttons.forEach(b => {
+      const on = b.dataset.lang === lang;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    try{ localStorage.setItem('portfolio-lang', lang); }catch(e){}
+  }
+  buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  async function copyText(text){
+    try { await navigator.clipboard.writeText(text); }
+    catch(e){
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(_){}
+      document.body.removeChild(ta);
+    }
+  }
+  function flash(btn, key){
+    const lang = document.documentElement.lang || 'es';
+    btn.textContent = lang === 'es' ? 'Copiado ✓' : 'Copied ✓';
+    btn.classList.add('done');
+    setTimeout(() => { btn.classList.remove('done'); btn.innerHTML = T[lang][key]; }, 1600);
+  }
+
+  // prompts
+  const stripHtml = (html) => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent || ''; };
+  document.querySelectorAll('.prompt .copy').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const lang = document.documentElement.lang || 'es';
+      const raw = (T[lang] && T[lang][btn.getAttribute('data-copy')]) || '';
+      const text = stripHtml(raw.replace(/<br\s*\/?>/gi,'\n')).replace(/ /g,' ').split('\n').map(l => l.trim()).join('\n').trim();
+      await copyText(text);
+      flash(btn, 'pr.copy');
+    });
+  });
+
+  // plantillas → Markdown, en el idioma visible
+  document.querySelectorAll('.tpl-copy').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const table = document.getElementById(btn.getAttribute('data-table'));
+      const cell = c => c.textContent.replace(/\s+/g,' ').replace(/\|/g,'/').trim();
+      const head = [...table.querySelectorAll('thead th')].map(cell);
+      const rows = [...table.querySelectorAll('tbody tr')].map(tr => [...tr.children].map(cell));
+      const line = cols => '| ' + cols.map(c => c || ' ').join(' | ') + ' |';
+      const md = [line(head), '| ' + head.map(() => '---').join(' | ') + ' |', ...rows.map(line)].join('\n');
+      await copyText(md);
+      flash(btn, 'tpl.copy');
+    });
+  });
+
+  const q = new URLSearchParams(location.search).get('lang');
+  let initial = /^es\b/i.test(navigator.language || '') ? 'es' : 'en';
+  try{
+    const saved = localStorage.getItem('portfolio-lang');
+    if (saved === 'es' || saved === 'en') initial = saved;
+  }catch(e){}
+  if (q === 'es' || q === 'en') initial = q;
+  setLang(initial);
+})();
+</script>
+</body>
+</html>
