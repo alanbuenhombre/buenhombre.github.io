@@ -173,7 +173,7 @@ Recursos: [tiempo, acceso a usuarios y datos de analítica que ya tenemos]
 
 1. Guía de entrevista de 10 preguntas que distinga los tres modos de Kelman sin preguntar directamente por presión social. Pregunta por hechos y momentos pasados (“la última vez que…”), no por intenciones ni hipotéticos. Para cada pregunta: qué modo detecta y qué respuesta indicaría cada uno.
 2. Incluye una pregunta de retiro (“¿qué pasaría si mañana ya no estuviera?”) y una de exposición (“¿quién te ha visto usarlo?”).
-3. Cinco métricas de comportamiento que revelen el modo en datos reales. Para cada una: definición exacta, de dónde sale el dato y el umbral que leeríamos como cada modo. Ej.: si el uso cae más de 50% al quitar el incentivo, es sumisión.
+3. Cinco métricas de comportamiento que revelen el modo en datos reales. Para cada una: definición exacta, de dónde sale el dato y el umbral que leeríamos como cada modo. Ej.: si el uso cae más del 50 % al quitar el incentivo, es sumisión.
 4. Criterio de decisión: qué resultado confirma nuestra hipótesis de modo, cuál la refuta y cuál nos deja igual que antes.
 5. Los sesgos que hay que cuidar en este caso (deseabilidad social, muestra solo de entusiastas, el entrevistador visto como la marca) y cómo evitarlos.
 
@@ -194,7 +194,7 @@ Meta: llevar a [actor] de [modo actual] a [modo objetivo], atacando [barrera pri
 
 1. Propón 6 patrones concretos: pantallas, momentos del flujo, mensajes, mecánicas o rituales. Con detalle suficiente para bocetarlos: dónde aparece, qué ve la persona, qué hace y cómo queda frente a otros.
 2. Para cada uno: el modo que empuja, la barrera que ataca, la función de Katz o la necesidad FIRO que atiende y el principio de Cialdini que usa, si usa alguno.
-3. Chequeo ético: ¿informa (da datos ciertos), persuade (apela a motivos reales con información verdadera) o manipula (engaña, presiona con falsa escasez o culpa, o hace difícil decir que no)? Compáralo con los deceptive patterns de Brignull. Descarta lo que manipula y explica por qué; si tiene una versión honesta, propónla.
+3. Chequeo ético: ¿informa (da datos ciertos), persuade (apela a motivos reales con información verdadera) o manipula (engaña, presiona con falsa escasez o culpa, o hace difícil decir que no)? Compáralo con los deceptive patterns de Brignull. Descarta lo que manipula y explica por qué; si tiene una versión honesta, proponla.
 4. Ordena los que quedan por impacto esperado y esfuerzo, y elige los 2 primeros para prototipar.
 5. Para esos 2, la métrica que debería moverse y en qué dirección.
 
@@ -213,7 +213,7 @@ Quién decide: [rol, qué le importa y cuánto tiempo tiene para leer]
 
 #### Tarea
 
-1. Business value statement: “Llevar a [actor] de [modo] a [modo] debería mover [métrica] medida en [unidad], de [valor actual] a [valor esperado] en [plazo]”. Si no hay línea base, dilo y propone cómo obtenerla.
+1. Business value statement: “Llevar a [actor] de [modo] a [modo] debería mover [métrica] medida en [unidad], de [valor actual] a [valor esperado] en [plazo]”. Si no hay línea base, dilo y propón cómo obtenerla.
 2. Recomendación con el principio piramidal de Minto: una conclusión accionable en una frase, 3 argumentos que no se repitan y, debajo de cada uno, su evidencia o la hipótesis marcada.
 3. Los 2 supuestos de aceptación más riesgosos, ordenados por probabilidad de fallar e impacto si fallan.
 4. La prueba más barata del supuesto más riesgoso: qué hacemos, con quién, cuánto dura, cuánto cuesta aproximadamente, qué medimos y los umbrales exactos para seguir, pivotar o parar.
@@ -238,7 +238,7 @@ Cierra con una línea de estado: modo de trabajo · fases cubiertas · salto de 
 
 #### Tarea
 
-Haz de abogado del diablo. Extrae las 5 a 10 afirmaciones más importantes sobre aceptación y pasa cada una por las 5 preguntas:
+Busca dónde se cae el análisis. Extrae las 5 a 10 afirmaciones más importantes sobre aceptación y pasa cada una por las 5 preguntas:
 1. ¿Quién, concretamente, está en ese modo? Un segmento real, no “los usuarios”.
 2. ¿Qué comportamiento lo demuestra?
 3. ¿Qué pasaría si quitamos el incentivo o la obligación?
